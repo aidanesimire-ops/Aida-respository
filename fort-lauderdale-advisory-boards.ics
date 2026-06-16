@@ -1,0 +1,548 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Fort Lauderdale Advisory Boards//Calendar Generator//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Fort Lauderdale Advisory Boards
+X-WR-TIMEZONE:America/New_York
+BEGIN:VTIMEZONE
+TZID:America/New_York
+X-LIC-LOCATION:America/New_York
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+DTSTART:19700308T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:19701101T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:planning-zoning-board-recurring@fortlauderdale-boards
+SUMMARY:Planning and Zoning Board
+DTSTART;TZID=America/New_York:20260715T180000
+DTEND;TZID=America/New_York:20260715T200000
+RRULE:FREQ=MONTHLY;BYDAY=3WE
+LOCATION:Development Services Department\, 700 NW 19th Avenue\, Fort Lauder
+ dale\, FL 33311
+DESCRIPTION:Meets the 3rd Wednesday of each month at 6:00 PM.\nContact: pla
+ nning@fortlauderdale.gov\nSource: https://www.fortlauderdale.gov/governmen
+ t/departments-a-h/development-services/urban-design-and-planning/developme
+ nt-applications-boards-and-committees/planning-and-zoning-board\n\nSchedul
+ e auto-compiled from public web sources on 2026-06-16 - confirm date/time/
+ location with the City Clerk (954-828-5288) or the Legistar calendar (http
+ s://fortlauderdale.legistar.com/) before attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/development-s
+ ervices/urban-design-and-planning/development-applications-boards-and-comm
+ ittees/planning-and-zoning-board
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:board-of-adjustment-recurring@fortlauderdale-boards
+SUMMARY:Board of Adjustment
+DTSTART;TZID=America/New_York:20260708T180000
+DTEND;TZID=America/New_York:20260708T200000
+RRULE:FREQ=MONTHLY;BYDAY=2WE
+LOCATION:Development Services Department\, 700 NW 19th Avenue\, Fort Lauder
+ dale\, FL 33311
+DESCRIPTION:Meets the 2nd Wednesday of each month at 6:00 PM.\nContact: pla
+ nning@fortlauderdale.gov\nSource: https://www.fortlauderdale.gov/governmen
+ t/departments-a-h/city-clerk-s-office/advisory-boards-committees-authoriti
+ es-agendas-and-minutes/board-of-adjustment\n\nSchedule auto-compiled from 
+ public web sources on 2026-06-16 - confirm date/time/location with the Cit
+ y Clerk (954-828-5288) or the Legistar calendar (https://fortlauderdale.le
+ gistar.com/) before attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/board-of
+ -adjustment
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:economic-development-advisory-board-recurring@fortlauderdale-boards
+SUMMARY:Economic Development Advisory Board
+DTSTART;TZID=America/New_York:20260708T150000
+DTEND;TZID=America/New_York:20260708T170000
+RRULE:FREQ=MONTHLY;BYDAY=2WE
+LOCATION:Development Services Department\, 700 NW 19th Avenue\, Fort Lauder
+ dale\, FL 33311
+DESCRIPTION:Meets the 2nd Wednesday of each month at 3:00 PM.\nSource: http
+ s://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-office/
+ advisory-boards-committees-authorities-agendas-and-minutes/economic-develo
+ pment-advisory-board\n\nSchedule auto-compiled from public web sources on 
+ 2026-06-16 - confirm date/time/location with the City Clerk (954-828-5288)
+  or the Legistar calendar (https://fortlauderdale.legistar.com/) before at
+ tending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/economic
+ -development-advisory-board
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:beach-bid-advisory-committee-recurring@fortlauderdale-boards
+SUMMARY:Beach Business Improvement District Advisory Committee
+DTSTART;TZID=America/New_York:20260713T133000
+DTEND;TZID=America/New_York:20260713T150000
+RRULE:FREQ=MONTHLY;BYDAY=2MO
+LOCATION:Beach Community Center / City Hall\, Fort Lauderdale\, FL
+DESCRIPTION:Meets the 2nd Monday of each month at 1:30 PM.\nContact: BeachB
+ usinessImprovementDistrictAdvisoryCommittee@fortlauderdale.gov\nSource: ht
+ tps://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-offic
+ e/advisory-boards-committees-authorities-agendas-and-minutes/beach-busines
+ s-improvement-district-advisory-committee\n\nSchedule auto-compiled from p
+ ublic web sources on 2026-06-16 - confirm date/time/location with the City
+  Clerk (954-828-5288) or the Legistar calendar (https://fortlauderdale.leg
+ istar.com/) before attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/beach-bu
+ siness-improvement-district-advisory-committee
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:historic-preservation-board-recurring@fortlauderdale-boards
+SUMMARY:Historic Preservation Board
+DTSTART;TZID=America/New_York:20260706T180000
+DTEND;TZID=America/New_York:20260706T200000
+RRULE:FREQ=MONTHLY;BYDAY=1MO
+LOCATION:Development Services Department\, 700 NW 19th Avenue\, Fort Lauder
+ dale\, FL 33311
+DESCRIPTION:Meets the 1st Monday of each month at 6:00 PM.\nNote: Meets 1st
+  Monday with exceptions\; some months differ. Verify each month.\nContact:
+  HistoricPreservationBoard@fortlauderdale.gov\nSource: https://www.fortlau
+ derdale.gov/government/departments-a-h/development-services/urban-design-a
+ nd-planning/development-applications-boards-and-committees/historic-preser
+ vation-board\n\nSchedule auto-compiled from public web sources on 2026-06-
+ 16 - confirm date/time/location with the City Clerk (954-828-5288) or the 
+ Legistar calendar (https://fortlauderdale.legistar.com/) before attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/development-s
+ ervices/urban-design-and-planning/development-applications-boards-and-comm
+ ittees/historic-preservation-board
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:sustainability-advisory-board-recurring@fortlauderdale-boards
+SUMMARY:Sustainability Advisory Board
+DTSTART;TZID=America/New_York:20260727T180000
+DTEND;TZID=America/New_York:20260727T200000
+RRULE:FREQ=MONTHLY;BYDAY=4MO
+LOCATION:City Hall\, 100 N Andrews Avenue\, Fort Lauderdale\, FL 33301
+DESCRIPTION:Meets the 4th Monday of each month at 6:00 PM.\nNote: 4th Monda
+ y inferred from 2026 dates\; time approximate. Verify each month.\nSource:
+  https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-of
+ fice/advisory-boards-committees-authorities-agendas-and-minutes/sustainabi
+ lity-advisory-board\n\nSchedule auto-compiled from public web sources on 2
+ 026-06-16 - confirm date/time/location with the City Clerk (954-828-5288) 
+ or the Legistar calendar (https://fortlauderdale.legistar.com/) before att
+ ending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/sustaina
+ bility-advisory-board
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:budget-advisory-board-recurring@fortlauderdale-boards
+SUMMARY:Budget Advisory Board
+DTSTART;TZID=America/New_York:20260715T170000
+DTEND;TZID=America/New_York:20260715T190000
+RRULE:FREQ=MONTHLY;BYDAY=3WE
+LOCATION:City Hall\, 100 N Andrews Avenue\, Fort Lauderdale\, FL 33301
+DESCRIPTION:Meets the 3rd Wednesday of each month at 5:00 PM.\nNote: Meets 
+ roughly monthly (often 3rd Wednesday) but dates vary widely. Verify each m
+ onth.\nContact: BudgetAdvisoryBoard@fortlauderdale.gov\nSource: https://ww
+ w.fortlauderdale.gov/government/departments-a-h/city-clerk-s-office/adviso
+ ry-boards-committees-authorities-agendas-and-minutes/budget-advisory-board
+ \n\nSchedule auto-compiled from public web sources on 2026-06-16 - confirm
+  date/time/location with the City Clerk (954-828-5288) or the Legistar cal
+ endar (https://fortlauderdale.legistar.com/) before attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/budget-a
+ dvisory-board
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:marine-advisory-board-verify@fortlauderdale-boards
+SUMMARY:Verify schedule - Marine Advisory Board
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+LOCATION:City Hall\, 100 N Andrews Avenue\, Fort Lauderdale\, FL 33301
+DESCRIPTION:Schedule: as-needed / not published - verify with the City.\nCo
+ ntact: MarineAdvisoryBoard@fortlauderdale.gov\nSource: https://www.fortlau
+ derdale.gov/government/departments-a-h/city-clerk-s-office/advisory-boards
+ -committees-authorities-agendas-and-minutes/marine-advisory-board\n\nSched
+ ule auto-compiled from public web sources on 2026-06-16 - confirm date/tim
+ e/location with the City Clerk (954-828-5288) or the Legistar calendar (ht
+ tps://fortlauderdale.legistar.com/) before attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/marine-a
+ dvisory-board
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:parks-recreation-beaches-board-verify@fortlauderdale-boards
+SUMMARY:Verify schedule - Parks\, Recreation\, and Beaches Board
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+LOCATION:Fire Station 2\, 528 NW 2nd Street\, 3rd Floor\, Fort Lauderdale\,
+  FL 33311
+DESCRIPTION:Schedule: as-needed / not published - verify with the City.\nSo
+ urce: https://www.fortlauderdale.gov/government/departments-a-h/city-clerk
+ -s-office/advisory-boards-committees-authorities-agendas-and-minutes/parks
+ -recreation-and-beaches-board\n\nSchedule auto-compiled from public web so
+ urces on 2026-06-16 - confirm date/time/location with the City Clerk (954-
+ 828-5288) or the Legistar calendar (https://fortlauderdale.legistar.com/) 
+ before attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/parks-re
+ creation-and-beaches-board
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:affordable-housing-advisory-committee-verify@fortlauderdale-boards
+SUMMARY:Verify schedule - Affordable Housing Advisory Committee
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+DESCRIPTION:Schedule: as-needed / not published - verify with the City.\nCo
+ ntact: AffordableHousingAdvisoryCommittee@fortlauderdale.gov\nSource: http
+ s://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-office/
+ advisory-boards-committees-authorities-agendas-and-minutes/affordable-hous
+ ing-advisory-committee\n\nSchedule auto-compiled from public web sources o
+ n 2026-06-16 - confirm date/time/location with the City Clerk (954-828-528
+ 8) or the Legistar calendar (https://fortlauderdale.legistar.com/) before 
+ attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/affordab
+ le-housing-advisory-committee
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:fire-rescue-advisory-committee-verify@fortlauderdale-boards
+SUMMARY:Verify schedule - Fire Rescue Advisory Committee
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+DESCRIPTION:Schedule: as-needed / not published - verify with the City.\nCo
+ ntact: Fire-rescueadvisorycommittee@fortlauderdale.gov\nSource: https://ww
+ w.fortlauderdale.gov/government/departments-a-h/city-clerk-s-office/adviso
+ ry-boards-committees-authorities-agendas-and-minutes/fire-rescue-advisory-
+ committee\n\nSchedule auto-compiled from public web sources on 2026-06-16 
+ - confirm date/time/location with the City Clerk (954-828-5288) or the Leg
+ istar calendar (https://fortlauderdale.legistar.com/) before attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/fire-res
+ cue-advisory-committee
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:education-advisory-board-verify@fortlauderdale-boards
+SUMMARY:Verify schedule - Education Advisory Board
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+DESCRIPTION:Schedule: as-needed / not published - verify with the City.\nCo
+ ntact: EducationAdvisoryBoard@fortlauderdale.gov\nSource: https://www.fort
+ lauderdale.gov/government/departments-a-h/city-clerk-s-office/advisory-boa
+ rds-committees-authorities-agendas-and-minutes/education-advisory-board\n\
+ nSchedule auto-compiled from public web sources on 2026-06-16 - confirm da
+ te/time/location with the City Clerk (954-828-5288) or the Legistar calend
+ ar (https://fortlauderdale.legistar.com/) before attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/educatio
+ n-advisory-board
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:infrastructure-advisory-board-verify@fortlauderdale-boards
+SUMMARY:Verify schedule - Infrastructure Advisory Board
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+DESCRIPTION:Schedule: as-needed / not published - verify with the City.\nCo
+ ntact: infrastructureAdvisoryBoard@fortlauderdale.gov\nSource: https://www
+ .fortlauderdale.gov/government/departments-a-h/city-clerk-s-office/advisor
+ y-boards-committees-authorities-agendas-and-minutes/infrastructure-advisor
+ y-board\n\nSchedule auto-compiled from public web sources on 2026-06-16 - 
+ confirm date/time/location with the City Clerk (954-828-5288) or the Legis
+ tar calendar (https://fortlauderdale.legistar.com/) before attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/infrastr
+ ucture-advisory-board
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:infrastructure-task-force-advisory-committee-verify@fortlauderdale-boar
+ ds
+SUMMARY:Verify schedule - Infrastructure Task Force Advisory Committee
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+DESCRIPTION:Schedule: as-needed / not published - verify with the City.\nCo
+ ntact: infrastructureAdvisoryBoard@fortlauderdale.gov\nSource: https://www
+ .fortlauderdale.gov/government/departments-a-h/city-clerk-s-office/advisor
+ y-boards-committees-authorities-agendas-and-minutes/infrastructure-task-fo
+ rce-advisory-committee\n\nSchedule auto-compiled from public web sources o
+ n 2026-06-16 - confirm date/time/location with the City Clerk (954-828-528
+ 8) or the Legistar calendar (https://fortlauderdale.legistar.com/) before 
+ attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/infrastr
+ ucture-task-force-advisory-committee
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:noise-control-advisory-committee-verify@fortlauderdale-boards
+SUMMARY:Verify schedule - Noise Control Advisory Committee
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+DESCRIPTION:Schedule: as-needed / not published - verify with the City.\nSo
+ urce: https://www.fortlauderdale.gov/government/departments-a-h/city-clerk
+ -s-office/advisory-boards-committees-authorities-agendas-and-minutes/noise
+ -control-advisory-committee\n\nSchedule auto-compiled from public web sour
+ ces on 2026-06-16 - confirm date/time/location with the City Clerk (954-82
+ 8-5288) or the Legistar calendar (https://fortlauderdale.legistar.com/) be
+ fore attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/noise-co
+ ntrol-advisory-committee
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:nuisance-abatement-board-verify@fortlauderdale-boards
+SUMMARY:Verify schedule - Nuisance Abatement Board
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+DESCRIPTION:Schedule: as-needed / not published - verify with the City.\nSo
+ urce: https://www.fortlauderdale.gov/government/departments-a-h/city-clerk
+ -s-office/advisory-boards-committees-authorities-agendas-and-minutes/nuisa
+ nce-abatement-board\n\nSchedule auto-compiled from public web sources on 2
+ 026-06-16 - confirm date/time/location with the City Clerk (954-828-5288) 
+ or the Legistar calendar (https://fortlauderdale.legistar.com/) before att
+ ending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/nuisance
+ -abatement-board
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:community-appearance-board-verify@fortlauderdale-boards
+SUMMARY:Verify schedule - Community Appearance Board
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+LOCATION:Development Services Department\, 700 NW 19th Avenue\, Fort Lauder
+ dale\, FL 33311
+DESCRIPTION:Schedule: as-needed / not published - verify with the City.\nCo
+ ntact: communityappearanceboard@fortlauderdale.gov\nSource: https://www.fo
+ rtlauderdale.gov/government/departments-a-h/city-clerk-s-office/advisory-b
+ oards-committees-authorities-agendas-and-minutes/community-appearance-boar
+ d\n\nSchedule auto-compiled from public web sources on 2026-06-16 - confir
+ m date/time/location with the City Clerk (954-828-5288) or the Legistar ca
+ lendar (https://fortlauderdale.legistar.com/) before attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/communit
+ y-appearance-board
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:public-art-placemaking-advisory-board-verify@fortlauderdale-boards
+SUMMARY:Verify schedule - Public Art and Placemaking Advisory Board
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+DESCRIPTION:Schedule: as-needed / not published - verify with the City.\nCo
+ ntact: PublicArtAndPlacementBoard@fortlauderdale.gov\nSource: https://www.
+ fortlauderdale.gov/government/departments-a-h/city-clerk-s-office/advisory
+ -boards-committees-authorities-agendas-and-minutes/public-art-and-placemak
+ ing-advisory-board\n\nSchedule auto-compiled from public web sources on 20
+ 26-06-16 - confirm date/time/location with the City Clerk (954-828-5288) o
+ r the Legistar calendar (https://fortlauderdale.legistar.com/) before atte
+ nding.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/public-a
+ rt-and-placemaking-advisory-board
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:homeless-advisory-committee-verify@fortlauderdale-boards
+SUMMARY:Verify schedule - Homeless Advisory Committee
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+DESCRIPTION:Schedule: as-needed / not published - verify with the City.\nCo
+ ntact: HomelessAdvisoryCommittee@fortlauderdale.gov\nSource: https://www.f
+ ortlauderdale.gov/government/departments-a-h/city-clerk-s-office/advisory-
+ boards-committees-authorities-agendas-and-minutes/homeless-advisory-commit
+ tee\n\nSchedule auto-compiled from public web sources on 2026-06-16 - conf
+ irm date/time/location with the City Clerk (954-828-5288) or the Legistar 
+ calendar (https://fortlauderdale.legistar.com/) before attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/homeless
+ -advisory-committee
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:housing-authority-verify@fortlauderdale-boards
+SUMMARY:Verify schedule - Housing Authority
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+DESCRIPTION:Schedule: as-needed / not published - verify with the City.\nSo
+ urce: https://www.fortlauderdale.gov/government/departments-a-h/city-clerk
+ -s-office/advisory-boards-committees-authorities-agendas-and-minutes/housi
+ ng-authority\n\nSchedule auto-compiled from public web sources on 2026-06-
+ 16 - confirm date/time/location with the City Clerk (954-828-5288) or the 
+ Legistar calendar (https://fortlauderdale.legistar.com/) before attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/housing-
+ authority
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:nw-progresso-flagler-heights-rac-verify@fortlauderdale-boards
+SUMMARY:Verify schedule - Northwest-Progresso-Flagler Heights Redevelopment
+  Advisory Board
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+DESCRIPTION:Schedule: as-needed / not published - verify with the City.\nSo
+ urce: https://www.fortlauderdale.gov/government/departments-a-h/city-clerk
+ -s-office/advisory-boards-committees-authorities-agendas-and-minutes\n\nSc
+ hedule auto-compiled from public web sources on 2026-06-16 - confirm date/
+ time/location with the City Clerk (954-828-5288) or the Legistar calendar 
+ (https://fortlauderdale.legistar.com/) before attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:development-review-committee-verify@fortlauderdale-boards
+SUMMARY:Verify schedule - Development Review Committee
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+LOCATION:Development Services Department\, 700 NW 19th Avenue\, Fort Lauder
+ dale\, FL 33311
+DESCRIPTION:Schedule: as-needed / not published - verify with the City.\nCo
+ ntact: planning@fortlauderdale.gov\nSource: https://www.fortlauderdale.gov
+ /government/departments-a-h/city-clerk-s-office/advisory-boards-committees
+ -authorities-agendas-and-minutes/development-review-committee\n\nSchedule 
+ auto-compiled from public web sources on 2026-06-16 - confirm date/time/lo
+ cation with the City Clerk (954-828-5288) or the Legistar calendar (https:
+ //fortlauderdale.legistar.com/) before attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/developm
+ ent-review-committee
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:code-enforcement-board-verify@fortlauderdale-boards
+SUMMARY:Verify schedule - Code Enforcement Board
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+DESCRIPTION:Schedule: as-needed / not published - verify with the City.\nCo
+ ntact: cenforcement@fortlauderdale.gov\nSource: https://www.fortlauderdale
+ .gov/government/departments-a-h/city-clerk-s-office/advisory-boards-commit
+ tees-authorities-agendas-and-minutes/code-enforcement-board/code-enforceme
+ nt-board-archives\n\nSchedule auto-compiled from public web sources on 202
+ 6-06-16 - confirm date/time/location with the City Clerk (954-828-5288) or
+  the Legistar calendar (https://fortlauderdale.legistar.com/) before atten
+ ding.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/code-enf
+ orcement-board/code-enforcement-board-archives
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:civil-service-board-verify@fortlauderdale-boards
+SUMMARY:Verify schedule - Civil Service Board
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+DESCRIPTION:Schedule: as-needed / not published - verify with the City.\nSo
+ urce: https://www.fortlauderdale.gov/government/departments-a-h/city-clerk
+ -s-office/advisory-boards-committees-authorities-agendas-and-minutes/civil
+ -service-board\n\nSchedule auto-compiled from public web sources on 2026-0
+ 6-16 - confirm date/time/location with the City Clerk (954-828-5288) or th
+ e Legistar calendar (https://fortlauderdale.legistar.com/) before attendin
+ g.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes/civil-se
+ rvice-board
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:insurance-advisory-board-verify@fortlauderdale-boards
+SUMMARY:Verify schedule - Insurance Advisory Board
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+DESCRIPTION:Schedule: as-needed / not published - verify with the City.\nSo
+ urce: https://www.fortlauderdale.gov/government/departments-a-h/city-clerk
+ -s-office/advisory-boards-committees-authorities-agendas-and-minutes\n\nSc
+ hedule auto-compiled from public web sources on 2026-06-16 - confirm date/
+ time/location with the City Clerk (954-828-5288) or the Legistar calendar 
+ (https://fortlauderdale.legistar.com/) before attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20260616T170839Z
+STATUS:TENTATIVE
+TRANSP:OPAQUE
+UID:charter-revision-board-verify@fortlauderdale-boards
+SUMMARY:Verify schedule - Charter Revision Board
+DTSTART;VALUE=DATE:20260630
+DTEND;VALUE=DATE:20260701
+DESCRIPTION:Schedule: as-needed / not published - verify with the City.\nSo
+ urce: https://www.fortlauderdale.gov/government/departments-a-h/city-clerk
+ -s-office/advisory-boards-committees-authorities-agendas-and-minutes\n\nSc
+ hedule auto-compiled from public web sources on 2026-06-16 - confirm date/
+ time/location with the City Clerk (954-828-5288) or the Legistar calendar 
+ (https://fortlauderdale.legistar.com/) before attending.
+URL:https://www.fortlauderdale.gov/government/departments-a-h/city-clerk-s-
+ office/advisory-boards-committees-authorities-agendas-and-minutes
+END:VEVENT
+END:VCALENDAR
