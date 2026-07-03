@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2"><Document>
+  <name>Cove Waterfront District - Study Area (Deerfield Beach)</name>
+  <description><![CDATA[Cove Waterfront District - Study Area.
+
+STATUS: Provided/official study-area boundary (extracted verbatim from the supplied KMZ '01__Cove_Waterfront_District_Study_Area.kmz'). This supersedes the earlier interpretive polygon.
+
+EXTENT: ~1,040 acres / 1.63 sq mi. Bounded by US-1/Federal Highway (W) and the Intracoastal/canal waterfront (E), extending from a southern edge near the Lighthouse Point transition north past Hillsboro Blvd to the north waterfront.
+
+For planning / discussion use. Geometry is authoritative as supplied; verify against the city's official GIS if used for regulatory purposes.]]></description>
+  <Style id="cove"><LineStyle><color>ff0000ff</color><width>3</width></LineStyle>
+    <PolyStyle><color>4d0000ff</color><fill>1</fill><outline>1</outline></PolyStyle></Style>
+  <Style id="core"><IconStyle><color>ff0000ff</color><scale>1.1</scale>
+    <Icon><href>http://maps.google.com/mapfiles/kml/shapes/shopping.png</href></Icon></IconStyle></Style>
+  <Placemark><name>Cove Waterfront District - Study Area</name>
+    <description><![CDATA[Cove Waterfront District - Study Area.
+
+STATUS: Provided/official study-area boundary (extracted verbatim from the supplied KMZ '01__Cove_Waterfront_District_Study_Area.kmz'). This supersedes the earlier interpretive polygon.
+
+EXTENT: ~1,040 acres / 1.63 sq mi. Bounded by US-1/Federal Highway (W) and the Intracoastal/canal waterfront (E), extending from a southern edge near the Lighthouse Point transition north past Hillsboro Blvd to the north waterfront.
+
+For planning / discussion use. Geometry is authoritative as supplied; verify against the city's official GIS if used for regulatory purposes.]]></description>
+    <styleUrl>#cove</styleUrl>
+    <Polygon><tessellate>1</tessellate><outerBoundaryIs><LinearRing>
+      <coordinates>-80.090640,26.325227,0 -80.092603,26.326246,0 -80.094722,26.324756,0 -80.095631,26.323856,0 -80.095939,26.322419,0 -80.098270,26.322438,0 -80.099679,26.320457,0 -80.099684,26.305031,0 -80.095618,26.305031,0 -80.095500,26.301001,0 -80.093716,26.300960,0 -80.092481,26.300767,0 -80.092345,26.301430,0 -80.091437,26.301555,0 -80.091423,26.302382,0 -80.091439,26.303921,0 -80.089095,26.303858,0 -80.085307,26.302608,0 -80.083092,26.301540,0 -80.080061,26.301434,0 -80.079267,26.305324,0 -80.080061,26.309099,0 -80.080898,26.312874,0 -80.081306,26.316918,0 -80.080576,26.320188,0 -80.080404,26.320803,0 -80.087657,26.320803,0 -80.088387,26.320996,0 -80.089331,26.322842,0 -80.089245,26.324034,0 -80.089460,26.324592,0 -80.090640,26.325227,0</coordinates>
+    </LinearRing></outerBoundaryIs></Polygon></Placemark>
+  <Placemark><name>The Cove Shopping Center / Commercial Core</name>
+    <description><![CDATA[The Cove Shopping Center, ~1574-1584 SE 3rd Ct, Deerfield Beach, FL 33441.]]></description>
+    <styleUrl>#core</styleUrl>
+    <Point><coordinates>-80.087650,26.315150,0</coordinates></Point></Placemark>
+</Document></kml>

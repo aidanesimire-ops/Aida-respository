@@ -6,6 +6,15 @@
 **Boundary type:** Interpretive planning boundary (GIS-informed)
 **Official status:** ⚠️ **Unofficial** — no official City/County GIS polygon for "The Cove" was found.
 
+> **🔄 BOUNDARY UPDATE (2026-07-03):** An official/provided **"Cove Waterfront District Study Area"**
+> boundary was later supplied as a KMZ and is now the authoritative geometry — see
+> `the_cove_waterfront_district_study_area.kml/.geojson`, generated verbatim from the KMZ by
+> `generate_study_area_files.py`. It is a **waterfront district** (~**1,040 acres / 1.63 sq mi**, 32
+> vertices) that is **larger** than the interpretive polygon below (~814 acres) and extends **north of
+> Hillsboro Blvd** to the north waterfront. The interpretive boundary and its notes below are retained
+> for provenance but are **superseded** by the study-area boundary for all downstream use (including the
+> LEED-ND analysis, which is anchored to this district).
+
 > **Disclaimer.** This is a **planning / discussion** boundary, not a legal or surveyed
 > boundary. It is defensible enough to bring to City of Deerfield Beach planning/CRA staff,
 > a city manager, or a planning consultant to discuss neighborhood-scale topics
