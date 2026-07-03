@@ -1,0 +1,8 @@
+name,edge,longitude,latitude,type
+Hillsboro Blvd / US-1 edge (NW),north/west corner,-80.09695,26.31858,reference_point
+Hillsboro Blvd / Intracoastal edge (NE),north/east corner,-80.07945,26.31848,reference_point
+Intracoastal / waterfront edge (E mid),east,-80.07903,26.3107,reference_point
+South waterfront transition (SE),south/east corner,-80.08245,26.30055,reference_point
+South / US-1 transition (SW),south/west corner,-80.09608,26.3063,reference_point
+US-1 / Federal Hwy edge (W mid),west,-80.09665,26.31125,reference_point
+The Cove Shopping Center / Commercial Core,interior,-80.08765,26.31515,commercial_core
