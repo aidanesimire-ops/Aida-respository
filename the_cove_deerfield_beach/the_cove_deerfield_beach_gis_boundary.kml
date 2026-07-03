@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+  <name>The Cove - Deerfield Beach (GIS-Informed Planning Boundary)</name>
+  <description><![CDATA[The Cove - GIS-Informed Planning Boundary (INTERPRETIVE).
+
+STATUS: Interpretive planning boundary. As of 2026-07-03, no official City of Deerfield Beach or Broward County GIS polygon defining 'The Cove' was found in public sources. A Cove Club Civic Association exists but publishes no GIS boundary.
+
+BOUNDARY LOGIC:
+- North: Hillsboro Boulevard
+- West: US-1 / Federal Highway
+- East: Intracoastal Waterway / canal waterfront edge
+- South: transition toward the Lighthouse Point municipal line
+
+SOURCES CONSULTED: City of Deerfield Beach GIS & Planning/Zoning ArcGIS app; Broward County GIS/GeoHub (municipal boundaries, parcels, roads, waterways); Broward County Property Appraiser (bcpa.net); OpenStreetMap roads/waterways. Neighborhood extent corroborated by published descriptions (The Cove spans the Intracoastal to US-1, and Hillsboro Blvd south to the Lighthouse Point border).
+
+For planning / discussion use only - not a legal or surveyed boundary unless replaced by an official city/county GIS polygon.]]></description>
+  <Style id="cove">
+    <LineStyle><color>ff0000ff</color><width>3</width></LineStyle>
+    <PolyStyle><color>4d0000ff</color><fill>1</fill><outline>1</outline></PolyStyle>
+  </Style>
+  <Style id="core">
+    <IconStyle><color>ff0000ff</color><scale>1.1</scale>
+      <Icon><href>http://maps.google.com/mapfiles/kml/shapes/shopping.png</href></Icon>
+    </IconStyle>
+  </Style>
+  <Style id="ref">
+    <IconStyle><color>ff00a5ff</color><scale>0.8</scale>
+      <Icon><href>http://maps.google.com/mapfiles/kml/shapes/placemark_circle.png</href></Icon>
+    </IconStyle>
+  </Style>
+  <Placemark>
+    <name>The Cove - GIS-Informed Planning Boundary</name>
+    <description><![CDATA[The Cove - GIS-Informed Planning Boundary (INTERPRETIVE).
+
+STATUS: Interpretive planning boundary. As of 2026-07-03, no official City of Deerfield Beach or Broward County GIS polygon defining 'The Cove' was found in public sources. A Cove Club Civic Association exists but publishes no GIS boundary.
+
+BOUNDARY LOGIC:
+- North: Hillsboro Boulevard
+- West: US-1 / Federal Highway
+- East: Intracoastal Waterway / canal waterfront edge
+- South: transition toward the Lighthouse Point municipal line
+
+SOURCES CONSULTED: City of Deerfield Beach GIS & Planning/Zoning ArcGIS app; Broward County GIS/GeoHub (municipal boundaries, parcels, roads, waterways); Broward County Property Appraiser (bcpa.net); OpenStreetMap roads/waterways. Neighborhood extent corroborated by published descriptions (The Cove spans the Intracoastal to US-1, and Hillsboro Blvd south to the Lighthouse Point border).
+
+For planning / discussion use only - not a legal or surveyed boundary unless replaced by an official city/county GIS polygon.]]></description>
+    <styleUrl>#cove</styleUrl>
+    <Polygon>
+      <tessellate>1</tessellate>
+      <outerBoundaryIs><LinearRing>
+        <coordinates>-80.096950,26.318580,0 -80.081000,26.318580,0 -80.079800,26.318520,0 -80.079450,26.318480,0 -80.079360,26.318200,0 -80.079200,26.317600,0 -80.079060,26.317000,0 -80.078950,26.316400,0 -80.078910,26.316100,0 -80.078830,26.315200,0 -80.078790,26.314300,0 -80.078790,26.314000,0 -80.078820,26.313100,0 -80.078880,26.312200,0 -80.079540,26.305600,0 -80.079660,26.304700,0 -80.079820,26.303800,0 -80.079900,26.303500,0 -80.080000,26.303200,0 -80.080120,26.302900,0 -80.080260,26.302600,0 -80.080430,26.302300,0 -80.080620,26.302000,0 -80.080840,26.301720,0 -80.081380,26.301180,0 -80.081700,26.300940,0 -80.082050,26.300720,0 -80.082450,26.300550,0 -80.082900,26.300480,0 -80.083800,26.300430,0 -80.085150,26.300400,0 -80.088300,26.300400,0 -80.089650,26.300440,0 -80.090100,26.300470,0 -80.090550,26.300520,0 -80.091000,26.300600,0 -80.091420,26.300720,0 -80.091820,26.300880,0 -80.092200,26.301080,0 -80.092560,26.301300,0 -80.092900,26.301550,0 -80.093220,26.301820,0 -80.093520,26.302100,0 -80.094070,26.302700,0 -80.094330,26.303000,0 -80.094820,26.303650,0 -80.095270,26.304350,0 -80.095480,26.304720,0 -80.095660,26.305100,0 -80.095820,26.305500,0 -80.095960,26.305900,0 -80.096080,26.306300,0 -80.096270,26.307650,0 -80.096570,26.310350,0 -80.096810,26.313050,0 -80.096900,26.314400,0 -80.096940,26.315300,0 -80.096970,26.316650,0 -80.096950,26.318580,0</coordinates>
+      </LinearRing></outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+  <Placemark>
+    <name>The Cove Shopping Center / Commercial Core</name>
+    <description><![CDATA[The Cove Shopping Center, ~1574-1584 SE 3rd Ct, Deerfield Beach, FL 33441.]]></description>
+    <styleUrl>#core</styleUrl>
+    <Point><coordinates>-80.087650,26.315150,0</coordinates></Point>
+  </Placemark>
+  <Folder>
+    <name>Edge reference points</name>
+    <Placemark>
+      <name>Hillsboro Blvd / US-1 edge (NW)</name>
+      <styleUrl>#ref</styleUrl>
+      <Point><coordinates>-80.096950,26.318580,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Hillsboro Blvd / Intracoastal edge (NE)</name>
+      <styleUrl>#ref</styleUrl>
+      <Point><coordinates>-80.079450,26.318480,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Intracoastal / waterfront edge (E mid)</name>
+      <styleUrl>#ref</styleUrl>
+      <Point><coordinates>-80.079030,26.310700,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>South waterfront transition (SE)</name>
+      <styleUrl>#ref</styleUrl>
+      <Point><coordinates>-80.082450,26.300550,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>South / US-1 transition (SW)</name>
+      <styleUrl>#ref</styleUrl>
+      <Point><coordinates>-80.096080,26.306300,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>US-1 / Federal Hwy edge (W mid)</name>
+      <styleUrl>#ref</styleUrl>
+      <Point><coordinates>-80.096650,26.311250,0</coordinates></Point>
+    </Placemark>
+  </Folder>
+</Document>
+</kml>
