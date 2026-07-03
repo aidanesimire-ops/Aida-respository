@@ -1,5 +1,11 @@
 # The Cove (Deerfield Beach, FL) — LEED v4 for Neighborhood Development Evaluation
 
+> **✅ CANONICAL SCORING (2026-07-03):** The authoritative, scored version now lives in
+> **`the_cove_LEED_ND_scorecard.xlsx`** (sheet *Neighborhood Development*), with one locked set of
+> numbers: **Today ~20 · after the improvement plan (no rezoning) ~35 · LEED Certified 40 · Max 110.**
+> The action plan behind the "+15" sits on the *The Cove – Action Plan* sheet. This narrative below is
+> retained for reasoning/context; where any earlier figure here differs, the workbook governs.
+
 **Subject:** The Cove neighborhood boundary (the mapped area) assessed against the
 **LEED v4 for Neighborhood Development (LEED-ND)** checklist (110 pts; Certified 40–49,
 Silver 50–59, Gold 60–79, Platinum 80+).
