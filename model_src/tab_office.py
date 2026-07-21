@@ -217,8 +217,13 @@ def build(s):
     ret("NPV_U", "Unlevered NPV @ discount rate", f"={CL(ACQ)}{rows['PROJCF']}+NPV({R('DISC')},{proj1})", F_ACCT_TOP)
     ret("IRR_L", "Levered IRR", f"=IRR({lev})", F_PCT1)
     ret("EM_L", "Levered equity multiple", f"=SUM({lev1})/{R('EQ_ACQ')}", F_MULT)
-    ret("NOI1", "In-place NOI (Yr 1)", f"={CL(pc(1))}{rows['NOI']}", F_ACCT_TOP)
-    ret("GOINGIN", "Going-in cap (Yr-1 NOI ÷ price)", f"={CL(pc(1))}{rows['NOI']}/{R('PRICE')}", F_PCT2)
+    ret("NOI1", "Year-1 NOI (pro-forma)", f"={CL(pc(1))}{rows['NOI']}", F_ACCT_TOP)
+    ret("AS_IS_NOI", "As-is in-place NOI (at occ0, no lease-up)",
+        f"=({R('GLA')}*{R('OCC0')}*{R('MRENT')})"
+        f"-({R('GLA')}*{R('OCC0')}*{R('MRENT')})*{R('CLOSS')}"
+        f"-({R('PRICE')}*{R('MILL')}+{R('GLA')}*{R('OPEX')})"
+        f"-(({R('GLA')}*{R('OCC0')}*{R('MRENT')})-({R('GLA')}*{R('OCC0')}*{R('MRENT')})*{R('CLOSS')})*{R('MGMT')}", F_ACCT_TOP)
+    ret("GOINGIN", "Going-in cap (as-is NOI ÷ price)", f"={R('AS_IS_NOI')}/{R('PRICE')}", F_PCT2)
     ret("STABNOI", "Stabilized NOI (Yr 2)", f"={CL(pc(2))}{rows['NOI']}", F_ACCT_TOP)
     ret("STABVAL", "Stabilized value (÷ exit cap)", f"={R('STABNOI')}/{R('EXITCAP')}", F_ACCT_TOP)
     ret("NOIPSF", "In-place NOI per SF", f"={CL(pc(1))}{rows['NOI']}/{R('GLA')}", F_PSF)

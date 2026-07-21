@@ -91,9 +91,11 @@ def build(s, regs):
     s.put(r, 4, "5 assets · ~7+ ac · 341,501 SF bldg", style="total", align="left", merge=(r, 6))
     s.put(r, 7, f"={x(A,'RAW_COST')}", style="total", color=None, fmt=F_ACCT_TOP, align="right")
     s.put(r, 8, f"={x(A,'TOT_NOI')}", style="total", fmt=F_ACCT_TOP, align="right", merge=(r, 9))
-    s.put(r, 10, f"={x(A,'BL_IRR_U')}", style="total", fmt=F_PCT1, align="right")
-    s.put(r, 11, f"={x(A,'BL_IRR_L')}", style="total", fmt=F_PCT1, align="right", merge=(r, 13))
-    r += 2
+    s.put(r, 10, f"={x(IV,'IRR_U')}", style="total", fmt=F_PCT1, align="right")
+    s.put(r, 11, f"={x(IV,'IRR_L')}", style="total", fmt=F_PCT1, align="right", merge=(r, 13))
+    r += 1
+    s.put(r, L, "Portfolio IRR (unlev / lev) = consolidated cash-flow IRR at the income price (Income Valuation tab)",
+          style="note", align="left", merge=(r, 13)); r += 2
 
     # ---- capital & valuation ----
     s.section(r, L, 13, "CAPITAL, VALUATION  &  COVERED-LAND MATH"); r += 1

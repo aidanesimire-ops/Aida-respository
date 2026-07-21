@@ -2,11 +2,41 @@
 build_model.py — assemble the full E Sunrise Blvd Assemblage underwriting workbook.
 Run:  python3 build_model.py
 """
+from openpyxl.utils import get_column_letter, column_index_from_string
 from mblib import new_book, add_sheet, NAVY, GOLD
-import tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_income, tab_exec
+import tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_income, tab_exec, tab_notes
 import configs
 
 OUT = "../Shahidi_Assemblage_Model.xlsx"
+
+
+def fit_row_heights(ws):
+    """Bump row heights so wrapped text in merged cells doesn't clip (Excel
+    does not auto-fit merged-cell row height)."""
+    # map top-left cell -> (min_col,max_col) of its merged range
+    span = {}
+    for mr in ws.merged_cells.ranges:
+        span[(mr.min_row, mr.min_col)] = (mr.min_col, mr.max_col)
+    def colw(ci):
+        w = ws.column_dimensions[get_column_letter(ci)].width
+        return w if w else 8.43
+    for row in ws.iter_rows():
+        need = 0
+        for c in row:
+            if not isinstance(c.value, str) or c.value.startswith("="):
+                continue
+            al = c.alignment
+            if not (al and al.wrap_text):
+                continue
+            c1, c2 = span.get((c.row, c.column), (c.column, c.column))
+            width_chars = sum(colw(ci) for ci in range(c1, c2 + 1))
+            sz = (c.font.size or 8)
+            cpr = max(6, width_chars * (11.0 / sz))   # chars per line, font-scaled
+            lines = max(1, -(-len(c.value) // int(cpr)))
+            need = max(need, lines * (sz + 4) + 3)
+        if need:
+            cur = ws.row_dimensions[row[0].row].height or 15
+            ws.row_dimensions[row[0].row].height = min(64, max(cur, need))
 
 
 def main():
@@ -46,9 +76,13 @@ def main():
     sh["Executive Summary"] = add_sheet(wb, "Executive Summary", tabcolor=GOLD)
     tab_exec.build(sh["Executive Summary"], all_regs)
 
-    # ---- reorder: Exec, Income, Assemblage(HBU), then the five assets ----
+    # ---- notes / sources / methodology ----
+    sh["Notes & Sources"] = add_sheet(wb, "Notes & Sources", tabcolor=GOLD)
+    tab_notes.build(sh["Notes & Sources"])
+
+    # ---- reorder: Exec, Income, Assemblage(HBU), the five assets, Notes ----
     order = ["Executive Summary", "Income Valuation", "Assemblage", "Shahidi Retail",
-             "Publix & Starbucks", "Sunrise Plaza", "Office Condo", "Land"]
+             "Publix & Starbucks", "Sunrise Plaza", "Office Condo", "Land", "Notes & Sources"]
     wb._sheets = [sh[t].ws for t in order]
     wb.active = 0
 
@@ -62,6 +96,7 @@ def main():
         ws.print_options.horizontalCentered = True
         ws.page_margins.left = ws.page_margins.right = 0.3
         ws.page_margins.top = ws.page_margins.bottom = 0.4
+        fit_row_heights(ws)
 
     wb.save(OUT)
     print("saved", OUT)

@@ -137,20 +137,17 @@ def build(s, regs):
                 "Best use today = hold the income-covered land + Live Local density option until costs/rents support redevelopment.",
           style="warn", align="left", merge=(r, 13)); r += 2
 
-    # ---- blended returns ----
-    s.section(r, L, 13, "BLENDED RETURNS  —  income assets, weighted (unlevered & levered)"); r += 1
-    # weighted IRR by control cost (income-producing assets: exclude the pure land hold weight optionally)
-    wu = "+".join(f"{x(a,'IRR_U')}*{x(a,CONTROL[a])}" for a in ORDER)
-    wl = "+".join(f"{x(a,'IRR_L')}*{x(a,CONTROL[a])}" for a in ORDER)
-    s.put(r, L, "Blended unlevered IRR (cost-weighted)", style="label", align="left")
-    s.put(r, 3, f"=({wu})/{s.reg['RAW_COST']}", style="calc", fmt=F_PCT1, align="right", name="BL_IRR_U"); r += 1
-    s.put(r, L, "Blended levered IRR (cost-weighted)", style="label", align="left")
-    s.put(r, 3, f"=({wl})/{s.reg['RAW_COST']}", style="calc", fmt=F_PCT1, align="right", name="BL_IRR_L"); r += 1
+    # ---- portfolio capital (returns live on the Income Valuation tab) ----
+    s.section(r, L, 13, "PORTFOLIO CAPITAL  —  consolidated returns computed on the Income Valuation tab"); r += 1
     eqsum = "+".join(x(a, EQCELL[a]) for a in ORDER)
-    s.put(r, L, "Total equity required (all assets)", style="label", align="left")
+    s.put(r, L, "Total equity required (all assets, at asset prices)", style="label", align="left")
     s.put(r, 3, f"={eqsum}", style="calc", fmt=F_ACCT_TOP, align="right", name="TOT_EQ"); r += 1
     s.put(r, L, "Total in-place NOI (covers carry)", style="label", align="left")
     s.put(r, 3, f"={s.reg['TOT_NOI']}", style="calc", fmt=F_ACCT_TOP, align="right"); r += 1
+    s.put(r, L, "Portfolio IRR (unlevered / levered)", style="warn", align="left")
+    s.put(r, 4, "Computed from the CONSOLIDATED cash flows on the Income Valuation tab — never by averaging asset IRRs "
+                "(mathematically invalid). See that tab for portfolio returns at both the income and covered-land prices.",
+          style="warn", align="left", merge=(r, 13)); r += 1
 
     s.freeze("C6")
     return s
