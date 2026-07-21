@@ -1,0 +1,4 @@
+__pycache__/
+recalc_out/
+registry.json
+*.pyc
