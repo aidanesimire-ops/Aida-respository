@@ -425,5 +425,10 @@ def build(s):
     s.put(r, 8, f"={CL(8)}{cfad-2}-{R('DS')}", style="calc", fmt=F_ACCT_TOP, align="right", bold=True, merge=(r, 9))
     s.put(r, 10, f"={CL(8)}{r}/{R('GLA')}", style="calc", fmt=F_PSF, align="right", bold=True, merge=(r, 13)); r += 1
 
+    # row anchors for the consolidated income tab
+    s.reg["ROW_NOI"] = f"D{rows['NOI']}"
+    s.reg["ROW_CAP"] = f"D{rows['TCAP']}"
+    s.reg["ROW_REV"] = f"D{rows['NETSALE']}"
+
     s.freeze("C6")
     return s

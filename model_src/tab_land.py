@@ -223,5 +223,9 @@ def build(s):
     s.put(r, 4, "Residual < entitled-land basis → redevelopment does not pencil today; hold as covered land for Live Local optionality",
           style="warn", align="left", merge=(r, 13)); r += 1
 
+    # row anchors for the consolidated income tab (land: interim NOI, no capital)
+    s.reg["ROW_NOI"] = f"D{rows['INOIY']}"
+    s.reg["ROW_REV"] = f"D{rows['SALE']}"
+
     s.freeze("C6")
     return s

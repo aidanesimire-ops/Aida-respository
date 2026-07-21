@@ -40,10 +40,11 @@ def build(s, regs):
           style="kpi_note", align="left", merge=(r, 13)); s.rowh(r, 16); r += 2
 
     # ---- KPI boxes (4 across) ----
+    IV = "Income Valuation"
     kpis = [
-        ("TOTAL ACQUISITION", f"={x(A,'ACQ')}", F_ACCT_TOP, "base incl. 20% assemblage premium"),
-        ("BLENDED IN-PLACE CAP", f"={x(A,'BLEND_CAP2')}", F_PCT2, "income covers carry (covered land)"),
-        ("BLENDED LEVERED IRR", f"={x(A,'BL_IRR_L')}", F_PCT1, "cost-weighted, income assets"),
+        ("INCOME-BASED PRICE", f"={x(IV,'PX_INCOME')}", F_ACCT_TOP, "what the combined cash flows support"),
+        ("COVERED-LAND PRICE", f"={x(A,'ACQ')}", F_ACCT_TOP, "HBU: land value + assemblage premium"),
+        ("BLENDED IN-PLACE CAP", f"={x(A,'BLEND_CAP2')}", F_PCT2, "income covers carry"),
         ("LAND CONTROLLED", f"={x(A,'TOT_AC')}", "#,##0.00", "acres of E Sunrise frontage"),
     ]
     c = 2
@@ -102,9 +103,11 @@ def build(s, regs):
         s.put(r, 3, formula, style="calc", color="008000", fmt=fmt, align="right")
         if note: s.put(r, 4, note, style="note", align="left", merge=(r, 13))
         r += 1
+    kv("① Income-based price (assemblage cash flows)", f"={x(IV,'PX_INCOME')}", F_ACCT_TOP, note="direct cap on consolidated in-place NOI")
+    kv("② Covered-land / HBU price (control cost)", f"={x(A,'ACQ')}", F_ACCT_TOP, note="land value + 20% assemblage premium")
+    kv("Premium over income value (dirt + optionality)", f"={x(IV,'PREMIUM')}", F_ACCT_TOP, note="② − ① = the land / Live Local option cost")
     kv("Summed control cost (pre-premium)", f"={x(A,'RAW_COST')}", F_ACCT_TOP)
-    kv("Total assemblage acquisition (base, +20%)", f"={x(A,'ACQ')}", F_ACCT_TOP, note="range: link to Assemblage low/high")
-    kv("Total equity required (all assets)", f"={x(A,'TOT_EQ')}", F_ACCT_TOP)
+    kv("Total equity required (all assets, HBU)", f"={x(A,'TOT_EQ')}", F_ACCT_TOP)
     kv("Total in-place NOI", f"={x(A,'TOT_NOI')}", F_ACCT_TOP, note="covers debt service + taxes during hold")
     kv("Blended in-place cap", f"={x(A,'BLEND_CAP2')}", F_PCT2, note="covered-land ~3–5% range")
     kv("Total land assembled (SF)", f"={x(A,'TOT_LANDSF')}", F_NUM)

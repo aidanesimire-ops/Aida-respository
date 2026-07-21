@@ -3,7 +3,7 @@ build_model.py — assemble the full E Sunrise Blvd Assemblage underwriting work
 Run:  python3 build_model.py
 """
 from mblib import new_book, add_sheet, NAVY, GOLD
-import tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_exec
+import tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_income, tab_exec
 import configs
 
 OUT = "../Shahidi_Assemblage_Model.xlsx"
@@ -29,20 +29,26 @@ def main():
     sh["Land"] = add_sheet(wb, "Land", tabcolor=NAVY)
     tab_land.build(sh["Land"])
 
-    # ---- assemblage (links to assets) ----
+    # ---- assemblage HBU (links to assets) ----
     asset_regs = {name: s.reg for name, s in sh.items()}
     sh["Assemblage"] = add_sheet(wb, "Assemblage", tabcolor=GOLD)
     tab_assemblage.build(sh["Assemblage"], asset_regs)
 
-    # ---- executive summary (links to assemblage + assets) ----
-    all_regs = dict(asset_regs)
-    all_regs["Assemblage"] = sh["Assemblage"].reg
+    # ---- income valuation (links to assets + assemblage) ----
+    inc_regs = dict(asset_regs)
+    inc_regs["Assemblage"] = sh["Assemblage"].reg
+    sh["Income Valuation"] = add_sheet(wb, "Income Valuation", tabcolor=GOLD)
+    tab_income.build(sh["Income Valuation"], inc_regs)
+
+    # ---- executive summary (links to everything) ----
+    all_regs = dict(inc_regs)
+    all_regs["Income Valuation"] = sh["Income Valuation"].reg
     sh["Executive Summary"] = add_sheet(wb, "Executive Summary", tabcolor=GOLD)
     tab_exec.build(sh["Executive Summary"], all_regs)
 
-    # ---- reorder: Exec, Assemblage, then the five assets ----
-    order = ["Executive Summary", "Assemblage", "Shahidi Retail", "Publix & Starbucks",
-             "Sunrise Plaza", "Office Condo", "Land"]
+    # ---- reorder: Exec, Income, Assemblage(HBU), then the five assets ----
+    order = ["Executive Summary", "Income Valuation", "Assemblage", "Shahidi Retail",
+             "Publix & Starbucks", "Sunrise Plaza", "Office Condo", "Land"]
     wb._sheets = [sh[t].ws for t in order]
     wb.active = 0
 
