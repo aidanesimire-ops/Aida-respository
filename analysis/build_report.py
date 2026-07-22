@@ -34,6 +34,7 @@ def main():
     red = load("analysis_bundle.json")
     tb = load("time_bundle.json")
     sb = load("street_bundle.json")
+    rb = load("reprice_bundle.json")
     m = mls["meta"]
     pr = m["premiums"]
     nb = pd.DataFrame(mls["neighborhoods"])
@@ -232,6 +233,34 @@ def main():
               f"{d['gap_vs_street']:.0f}% |")
     w("\nThe dashboard's street table is searchable by street or neighborhood, with the full "
       "underwriting list.\n")
+
+    # ---------------- Repricing ----------------
+    rm = rb["meta"]
+    rover = 100 * (rm["list_total"] / rm["should_be_total"] - 1)
+    w("## Repricing the live inventory\n")
+    w(f"Every one of the **{rm['n_live']:,} active & pending listings** is repriced against the "
+      "model's value. Of the **{:,} that have real sold comps** to price against, the asking "
+      "prices sit **{:+.0f}% above** what the model says they should be.\n".format(
+          rm["n_repriceable"], rover))
+    vc = rm["verdict_counts"]
+    w(f"- **{vc.get('Overpriced',0)} overpriced · {vc.get('Fairly priced',0)} fairly priced · "
+      f"{vc.get('Underpriced',0)} underpriced** (comp-backed). "
+      f"{vc.get('Insufficient comps',0)} are pre-construction / thin buildings the model can't value.\n")
+    condo = sorted([c for c in rb["condos_by_nbhd"]], key=lambda c: -c["gap_pct"])
+    if condo:
+        w("**Condo markets most overpriced vs. recent sold comps:**\n")
+        w("| Neighborhood | Live | Asking $/sqft | Should be (sold) | Ask vs sold | Comps |\n"
+          "|--|--|--|--|--|--|")
+        for c in condo[:6]:
+            w(f"| {c['neighborhood']} | {c['n_live']} | {usd(c['ask_ppsf'])} | {usd(c['sold_ppsf'])} | "
+              f"{c['gap_pct']:+.0f}% | {c['n_sold_comps']} |")
+        val = [c for c in condo if c["verdict"] == "Underpriced"][-6:]
+        if val:
+            w("\n**Condo value (asking below recent sold):** "
+              + ", ".join(f"{c['neighborhood']} ({c['gap_pct']:.0f}%)" for c in val) + ".\n")
+    w("The **Condo Repricing**, **Neighborhood Repricing** and **Repriced Inventory** tabs in the "
+      "workbook (and the dashboard's repricing view) carry every neighborhood and listing. "
+      "\"Should be\" is the recent sold-comp benchmark; the model value is shown alongside.\n")
 
     # ---------------- Talking points ----------------
     w("## Using this with homeowners\n")

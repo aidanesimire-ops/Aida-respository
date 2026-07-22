@@ -39,13 +39,18 @@ def _time():
         return json.load(f)
 
 
+def _reprice():
+    with open(os.path.join(PROC, "reprice_bundle.json")) as f:
+        return json.load(f)
+
+
 def _wavg(rows, val, wt):
     num = sum((r[val] or 0) * (r[wt] or 0) for r in rows if r.get(val) is not None)
     den = sum((r[wt] or 0) for r in rows if r.get(val) is not None)
     return num / den if den else float("nan")
 
 
-def key_conclusions_sheet(wb, mm, red, tb, sb):
+def key_conclusions_sheet(wb, mm, red, tb, sb, rb=None):
     ws = wb.add_worksheet("Key Conclusions")
     m, pr, ci = mm["meta"], mm["meta"]["premiums"], mm["meta"]["premiums_ci95"]
     nbs = mm["neighborhoods"]
@@ -115,6 +120,24 @@ def key_conclusions_sheet(wb, mm, red, tb, sb):
         ("Comp-backed live opportunities", f"{len(sb['deals'])} SFR candidates",
          "Active single-family listings asking below their street value (≥4 street comps, "
          "bounded gap). Screening only — verify condition on site.", "Medium"),
+    ]
+    if rb:
+        rm = rb["meta"]
+        cover = 100 * (rm["list_total"] / rm["should_be_total"] - 1)
+        cv = rm["condo_verdict_counts"]
+        rows += [
+            ("Live inventory is priced above the model",
+             f"asking {cover:+.0f}% vs should-be",
+             f"{rm['n_repriceable']:,} of {rm['n_live']:,} live listings are comp-backed; "
+             f"of those, {rm['verdict_counts'].get('Overpriced',0)} overpriced / "
+             f"{rm['verdict_counts'].get('Fairly priced',0)} fair / "
+             f"{rm['verdict_counts'].get('Underpriced',0)} underpriced. See Repriced Inventory.", "Medium"),
+            ("Condo pricing vs. recent sold comps",
+             f"{cv.get('Overpriced',0)} over / {cv.get('Underpriced',0)} under",
+             "Condos repriced against recent SOLD comps per neighborhood (≥8 comps). See "
+             "Condo Repricing tab. Excludes pre-construction towers (no comps).", "Medium"),
+        ]
+    rows += [
         ("Data validated & cleaned",
          "100% addr · ~98% sqft/yr",
          "Top sales match public records to the dollar (5 Harborage $70M, 84 Isla Bahia $34M). "
@@ -516,6 +539,89 @@ def street_sheets(wb, fmts, sb):
     ws2.hide_gridlines(2)
 
 
+NBHD_REPRICE_COLS = [
+    ("neighborhood", "Neighborhood", None, 26),
+    ("n_live", "Live", "#,##0", 7),
+    ("ask_ppsf", "Now asking $/sqft", "$#,##0", 15),
+    ("sold_ppsf", "Should be (recent sold)", "$#,##0", 18),
+    ("model_ppsf", "Model $/sqft", "$#,##0", 12),
+    ("gap_pct", "Ask vs should-be", '+0.0"%";-0.0"%"', 15),
+    ("verdict", "Verdict", None, 16),
+    ("n_sold_comps", "Comps", "#,##0", 8),
+    ("list_total", "Listed at", "$#,##0", 15),
+    ("should_be_total", "Should be", "$#,##0", 15),
+]
+INVENTORY_COLS = [
+    ("address", "Address", None, 26),
+    ("neighborhood", "Neighborhood", None, 20),
+    ("ptype", "Type", None, 13),
+    ("sqft", "SqFt", "#,##0", 8),
+    ("list_price", "Now listed", "$#,##0", 13),
+    ("ask_ppsf", "Ask $/sqft", "$#,##0", 11),
+    ("should_be_ppsf", "Should-be $/sqft", "$#,##0", 15),
+    ("should_be_price", "Should-be price", "$#,##0", 15),
+    ("diff_price", "Over/(under) listed", "$#,##0", 17),
+    ("gap_pct", "Gap", '+0.0"%";-0.0"%"', 9),
+    ("comps", "Comps", "#,##0", 7),
+    ("verdict", "Verdict", None, 16),
+]
+
+
+def _verdict_fmt(wb):
+    base = dict(border=1, border_color="white", align="center", bold=True)
+    return {
+        "Overpriced": wb.add_format({**base, "font_color": "#b23b28", "bg_color": "#fbe9e7"}),
+        "Underpriced": wb.add_format({**base, "font_color": "#166b34", "bg_color": "#e4f3e9"}),
+        "Fairly priced": wb.add_format({**base, "font_color": "#52514e", "bg_color": "#f0efec"}),
+        "Insufficient comps": wb.add_format({**base, "font_color": "#8a8a8a", "bg_color": "#f4f2ee"}),
+    }
+
+
+def _write_verdict_table(wb, ws, df, cols, fmts, vfmt, title, sub):
+    write_table(wb, ws, df, cols, fmts, title, sub)
+    vcol = next(i for i, c in enumerate(cols) if c[0] == "verdict")
+    for r, (_, row) in enumerate(df.iterrows()):
+        v = row.get("verdict")
+        if v in vfmt:
+            ws.write(4 + r, vcol, v, vfmt[v])
+    ws.hide_gridlines(2)
+
+
+def reprice_sheets(wb, fmts, rb):
+    vfmt = _verdict_fmt(wb)
+    m = rb["meta"]
+    over = 100 * (m["list_total"] / m["should_be_total"] - 1)
+
+    condo = pd.DataFrame(rb["condos_by_nbhd"])
+    ws = wb.add_worksheet("Condo Repricing")
+    if len(condo):
+        _write_verdict_table(wb, ws, condo, NBHD_REPRICE_COLS, fmts, vfmt,
+            "Condo repricing by neighborhood — current asking vs. what they should be",
+            "\"Should be\" = median recent SOLD $/sqft (comparable closings). Verdict from asking "
+            "vs sold. Neighborhoods with >=8 condo comps; pre-construction towers excluded.")
+        ws.conditional_format(4, 5, 3 + len(condo), 5, {"type": "3_color_scale",
+            "min_color": "#0f8a3c", "mid_color": "#f0efec", "max_color": "#d5473f"})
+
+    allnb = pd.DataFrame(rb["by_nbhd"])
+    ws2 = wb.add_worksheet("Neighborhood Repricing")
+    if len(allnb):
+        _write_verdict_table(wb, ws2, allnb, NBHD_REPRICE_COLS, fmts, vfmt,
+            "All-property repricing by neighborhood — asking vs. recent sold",
+            "Every property type. \"Should be\" = median recent sold $/sqft. >=8 comps.")
+        ws2.conditional_format(4, 5, 3 + len(allnb), 5, {"type": "3_color_scale",
+            "min_color": "#0f8a3c", "mid_color": "#f0efec", "max_color": "#d5473f"})
+
+    inv = pd.DataFrame(rb["inventory"])
+    ws3 = wb.add_worksheet("Repriced Inventory")
+    _write_verdict_table(wb, ws3, inv, INVENTORY_COLS, fmts, vfmt,
+        f"Every live listing repriced ({m['n_live']:,} active/pending)",
+        f"Model \"should-be\" price vs current list. Comp-backed asking ${m['list_total']/1e9:.2f}B "
+        f"vs model ${m['should_be_total']/1e9:.2f}B ({over:+.0f}%). 'Insufficient comps' = "
+        "pre-construction/thin buildings the model can't value. Screening — verify condition.")
+    ws3.conditional_format(4, 9, 3 + len(inv), 9, {"type": "3_color_scale",
+        "min_color": "#0f8a3c", "mid_color": "#f0efec", "max_color": "#d5473f"})
+
+
 def main():
     b = _bundle()
     meta = b["meta"]
@@ -531,7 +637,11 @@ def main():
     fmts = make_formats(wb)
 
     try:
-        key_conclusions_sheet(wb, mm, b, _time(), _street())
+        try:
+            rb = _reprice()
+        except FileNotFoundError:
+            rb = None
+        key_conclusions_sheet(wb, mm, b, _time(), _street(), rb)
     except FileNotFoundError:
         pass
     readme_sheet(wb, meta)
@@ -541,6 +651,10 @@ def main():
     mls_ranking_sheet(wb, fmts, mm)
     mls_drivers_sheet(wb, mm)
     mls_deals_sheet(wb, fmts, mm)
+    try:
+        reprice_sheets(wb, fmts, _reprice())
+    except FileNotFoundError:
+        pass
     try:
         street_sheets(wb, fmts, _street())
     except FileNotFoundError:

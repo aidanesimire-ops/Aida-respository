@@ -24,6 +24,8 @@ with open(os.path.join(PROC, "time_bundle.json")) as f:
     TIME = json.load(f)
 with open(os.path.join(PROC, "street_bundle.json")) as f:
     STREET = json.load(f)
+with open(os.path.join(PROC, "reprice_bundle.json")) as f:
+    REPRICE = json.load(f)
 
 INNER = r"""
 <style>
@@ -250,6 +252,22 @@ footer.fl-foot a{color:var(--accent)}
   </div>
 
   <div class="card">
+    <h2>Repricing — is each neighborhood priced right? <span style="font-weight:400;color:var(--muted);font-size:13px" id="repriceSummary"></span></h2>
+    <p class="cap">Current asking vs. what it <em>should</em> be (median recent sold comps per neighborhood). Verdict from asking vs sold.</p>
+    <div class="controls" style="margin-bottom:10px">
+      <div class="seg" id="repSeg" role="group" aria-label="Repricing type">
+        <button data-t="condo" aria-pressed="true">Condos</button>
+        <button data-t="all" aria-pressed="false">All types</button>
+      </div>
+    </div>
+    <div class="flagrow" id="repFlags"></div>
+    <div class="tbl-scroll"><table class="fl" id="repNbhdTbl"><thead></thead><tbody></tbody></table></div>
+    <div style="font-size:12px;font-weight:600;color:var(--ink-2);margin:18px 0 4px">Repriced inventory — every live listing vs its should-be price <span style="font-weight:400;color:var(--muted)" id="repInvNote"></span></div>
+    <div class="controls" style="margin-bottom:10px"><input class="search" id="repSearch" type="search" placeholder="Search address or neighborhood…" aria-label="Search inventory"></div>
+    <div class="tbl-scroll"><table class="fl" id="repInvTbl"><thead></thead><tbody></tbody></table></div>
+  </div>
+
+  <div class="card">
     <h2>Street-by-street underwriting <span style="font-weight:400;color:var(--muted);font-size:13px" id="streetSummary"></span></h2>
     <p class="cap">Value per street (≥4 closed comps) and its premium/discount vs the surrounding neighborhood. Search a street or neighborhood.</p>
     <div class="controls" style="margin-bottom:12px">
@@ -272,6 +290,7 @@ footer.fl-foot a{color:var(--accent)}
 <script id="redfin-data" type="application/json">__REDFIN_JSON__</script>
 <script id="time-data" type="application/json">__TIME_JSON__</script>
 <script id="street-data" type="application/json">__STREET_JSON__</script>
+<script id="reprice-data" type="application/json">__REPRICE_JSON__</script>
 <script>
 (function(){
 "use strict";
@@ -279,13 +298,19 @@ const MLS=JSON.parse(document.getElementById("mls-data").textContent);
 const RED=JSON.parse(document.getElementById("redfin-data").textContent);
 const TM=JSON.parse(document.getElementById("time-data").textContent);
 const ST=JSON.parse(document.getElementById("street-data").textContent);
+const REP=JSON.parse(document.getElementById("reprice-data").textContent);
 const M=MLS.meta, NB=MLS.neighborhoods;
 const $=s=>document.querySelector(s), tt=$("#tt");
 const usd=v=>v==null?"—":"$"+Math.round(v).toLocaleString();
 const pctS=v=>v==null?"—":(v>=0?"+":"")+v.toFixed(0)+"%";
 const cvar=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 let state={basis:"all", q:"", sort:{key:"norm_ppsf",dir:-1}, sel:null,
-           timeMetric:"ppsf", timeNb:"", streetQ:"", streetSort:{key:"sold_ppsf",dir:-1}};
+           timeMetric:"ppsf", timeNb:"", streetQ:"", streetSort:{key:"sold_ppsf",dir:-1},
+           repType:"condo", repQ:""};
+function vpill(v){
+  const fg={Overpriced:"var(--over-fg)",Underpriced:"var(--under-fg)","Fairly priced":"var(--ink-2)","Insufficient comps":"var(--muted)"}[v]||"var(--ink-2)";
+  const bg={Overpriced:"var(--over-bg)",Underpriced:"var(--under-bg)","Fairly priced":"var(--surface-2)","Insufficient comps":"var(--surface-2)"}[v]||"var(--surface-2)";
+  return `<span class="pill" style="background:${bg};color:${fg}">${v||"—"}</span>`;}
 const PROFILES={}; (MLS.profiles||[]).forEach(p=>PROFILES[p.neighborhood]=p);
 function renderProfile(nb){const p=PROFILES[nb]; if(!p)return; state.sel=nb;
   $("#profName").textContent=nb;
@@ -559,8 +584,61 @@ function renderUW(){
 }
 $("#streetSearch").addEventListener("input",e=>{state.streetQ=e.target.value;renderStreets();renderUW();});
 
+// ---------- repricing ----------
+const rover=100*(REP.meta.list_total/REP.meta.should_be_total-1);
+$("#repriceSummary").textContent=`· ${REP.meta.n_repriceable.toLocaleString()} comp-backed listings asking ${rover>=0?"+":""}${rover.toFixed(0)}% vs model`;
+$("#repInvNote").textContent=`(${REP.meta.n_live.toLocaleString()} live; "insufficient comps" = pre-construction/thin buildings)`;
+const RNCOLS=[
+  {k:"neighborhood",t:"Neighborhood",l:1,f:r=>`<span class="nbh">${r.neighborhood}</span>`},
+  {k:"n_live",t:"Live",f:r=>`<span class="tnum">${r.n_live}</span>`},
+  {k:"ask_ppsf",t:"Now asking $/ft²",f:r=>`<span class="tnum">${usd(r.ask_ppsf)}</span>`},
+  {k:"sold_ppsf",t:"Should be (sold)",f:r=>`<span class="tnum">${usd(r.sold_ppsf)}</span>`},
+  {k:"model_ppsf",t:"Model $/ft²",f:r=>`<span class="tnum" style="color:var(--muted)">${usd(r.model_ppsf)}</span>`},
+  {k:"gap_pct",t:"Ask vs should-be",f:r=>`<span class="tnum ${r.gap_pct>0?'neg':'pos'}">${pctS(r.gap_pct)}</span>`},
+  {k:"verdict",t:"Verdict",l:1,f:r=>vpill(r.verdict)},
+  {k:"n_sold_comps",t:"Comps",f:r=>`<span class="tnum">${r.n_sold_comps}</span>`},
+];
+function repData(){return state.repType==="condo"?REP.condos_by_nbhd:REP.by_nbhd;}
+function renderRepFlags(){
+  const a=repData(),c={Overpriced:0,"Fairly priced":0,Underpriced:0};
+  a.forEach(r=>{if(r.verdict in c)c[r.verdict]++;});
+  $("#repFlags").innerHTML=
+    `<div class="flagbox fb-over"><div class="n tnum">${c.Overpriced}</div><div class="t">Overpriced</div></div>`
+   +`<div class="flagbox fb-fair"><div class="n tnum">${c["Fairly priced"]}</div><div class="t">Fairly priced</div></div>`
+   +`<div class="flagbox fb-under"><div class="n tnum">${c.Underpriced}</div><div class="t">Underpriced (value)</div></div>`;
+}
+function renderRepNbhd(){
+  const rows=repData().slice().sort((a,b)=>b.gap_pct-a.gap_pct);
+  $("#repNbhdTbl thead").innerHTML="<tr>"+RNCOLS.map(c=>`<th class="${c.l?'l':''}">${c.t}</th>`).join("")+"</tr>";
+  $("#repNbhdTbl tbody").innerHTML=rows.map(r=>"<tr>"+RNCOLS.map(c=>`<td class="${c.l?'l':''}">${c.f(r)}</td>`).join("")+"</tr>").join("");
+}
+const RICOLS=[
+  {k:"address",t:"Address",l:1,f:r=>`<span class="nbh">${r.address}</span>`},
+  {k:"ptype",t:"Type",l:1,f:r=>`<span class="geo">${r.ptype}</span>`},
+  {k:"neighborhood",t:"Neighborhood",l:1,f:r=>`<span class="geo">${r.neighborhood}</span>`},
+  {k:"list_price",t:"Now listed",f:r=>`<span class="tnum">${usd(r.list_price)}</span>`},
+  {k:"ask_ppsf",t:"Ask $/ft²",f:r=>`<span class="tnum">${usd(r.ask_ppsf)}</span>`},
+  {k:"should_be_ppsf",t:"Should-be $/ft²",f:r=>`<span class="tnum">${usd(r.should_be_ppsf)}</span>`},
+  {k:"should_be_price",t:"Should-be price",f:r=>`<span class="tnum">${usd(r.should_be_price)}</span>`},
+  {k:"gap_pct",t:"Gap",f:r=>`<span class="tnum ${r.gap_pct>0?'neg':'pos'}">${pctS(r.gap_pct)}</span>`},
+  {k:"verdict",t:"Verdict",l:1,f:r=>vpill(r.verdict)},
+];
+function renderRepInv(){
+  const q=state.repQ.toLowerCase();
+  let rows=REP.inventory.filter(r=>state.repType!=="condo"||r.ptype==="Condo");
+  rows=rows.filter(r=>!q||(r.address||"").toLowerCase().includes(q)||(r.neighborhood||"").toLowerCase().includes(q));
+  rows=rows.slice(0,150);
+  $("#repInvTbl thead").innerHTML="<tr>"+RICOLS.map(c=>`<th class="${c.l?'l':''}">${c.t}</th>`).join("")+"</tr>";
+  $("#repInvTbl tbody").innerHTML=rows.map(r=>"<tr>"+RICOLS.map(c=>`<td class="${c.l?'l':''}">${c.f(r)}</td>`).join("")+"</tr>").join("")
+    ||`<tr><td class="l" colspan="9" style="color:var(--muted)">No matches.</td></tr>`;
+}
+$("#repSeg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+  state.repType=b.dataset.t;[...$("#repSeg").children].forEach(x=>x.setAttribute("aria-pressed",x===b));
+  renderRepFlags();renderRepNbhd();renderRepInv();});
+$("#repSearch").addEventListener("input",e=>{state.repQ=e.target.value;renderRepInv();});
+
 function renderAll(){kpis();drivers();geostrip();lineChart();flags();barChart();renderTable();
-  renderTime();movers();renderStreets();renderUW();
+  renderTime();movers();renderStreets();renderUW();renderRepFlags();renderRepNbhd();renderRepInv();
   renderProfile(state.sel || (filtered()[0]||NB[0]||{}).neighborhood);}
 $("#basisSeg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
   state.basis=b.dataset.b;[...$("#basisSeg").children].forEach(x=>x.setAttribute("aria-pressed",x===b));
@@ -582,7 +660,8 @@ def build():
              .replace("__MLS_JSON__", json.dumps(MLS, separators=(",", ":")))
              .replace("__REDFIN_JSON__", json.dumps(REDFIN, separators=(",", ":")))
              .replace("__TIME_JSON__", json.dumps(TIME, separators=(",", ":")))
-             .replace("__STREET_JSON__", json.dumps(STREET, separators=(",", ":"))))
+             .replace("__STREET_JSON__", json.dumps(STREET, separators=(",", ":")))
+             .replace("__REPRICE_JSON__", json.dumps(REPRICE, separators=(",", ":"))))
     standalone = (
         "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"
         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"

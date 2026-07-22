@@ -1,0 +1,39 @@
+neighborhood,n_live,n_sold_comps,ask_ppsf,sold_ppsf,model_ppsf,gap_pct,verdict,list_total,should_be_total
+Selene Oceanfront Residen,6,10,1390.0,918.0,1087.0,51.4,Overpriced,24190000,15320000
+Club Resort Residence,3,22,459.0,340.0,342.0,34.8,Overpriced,1474000,1116000
+Point Americas,20,28,697.0,541.0,576.0,28.8,Overpriced,30208000,23876000
+Sunrise East,4,9,508.0,403.0,550.0,26.1,Overpriced,4617000,3858000
+Sole Fort Lauderdale,3,15,382.0,315.0,344.0,21.3,Overpriced,1153999,1030000
+East Point Towers,13,25,257.0,214.0,219.0,20.1,Overpriced,4180400,3484000
+River Reach,36,54,320.0,266.0,300.0,19.9,Overpriced,11649098,9702000
+Essex Tower,7,16,459.0,386.0,382.0,19.1,Overpriced,4023900,3444000
+Shore Club,6,9,550.0,467.0,570.0,17.7,Overpriced,5000900,4203000
+Marina Oaks,7,14,303.0,260.0,273.0,16.5,Overpriced,1649000,1385000
+Breakwater Towers,3,11,347.0,298.0,281.0,16.4,Overpriced,898000,720000
+Victoria Park,11,11,260.0,225.0,322.0,15.6,Overpriced,2744500,2122000
+River Manor,3,27,319.0,279.0,314.0,14.3,Overpriced,953900,837000
+Wilton Village,5,11,335.0,302.0,319.0,10.9,Overpriced,1237900,1115000
+Vantage View,10,14,472.0,432.0,385.0,9.4,Fairly priced,5150000,4833000
+Bayshore Towers,5,11,581.0,536.0,541.0,8.4,Fairly priced,3892500,3665000
+Lauderdale Tower,7,12,429.0,396.0,427.0,8.2,Fairly priced,1829300,1919000
+Las Olas,68,140,654.0,608.0,578.0,7.5,Fairly priced,109890698,80817000
+Corinthian,3,8,466.0,437.0,449.0,6.6,Fairly priced,2079000,1966000
+Watergarden,17,46,601.0,572.0,617.0,5.1,Fairly priced,13741000,11938000
+River Shores,9,15,315.0,300.0,303.0,5.0,Fairly priced,1659500,1695000
+Oceanage,5,17,830.0,799.0,706.0,3.9,Fairly priced,6293000,5064000
+Four Seasons,22,17,1846.0,1784.0,1579.0,3.5,Fairly priced,74376900,81184000
+Strada,8,11,427.0,417.0,434.0,2.4,Fairly priced,4222000,4173000
+Manor Grove Village Four,4,17,266.0,264.0,277.0,0.6,Fairly priced,1193800,1175000
+Village East,10,21,337.0,337.0,346.0,0.0,Fairly priced,3417096,3405000
+Pine Crest Village,5,10,338.0,340.0,359.0,-0.7,Fairly priced,1860000,1805000
+Sapphire Fort Lauderdale,4,8,648.0,656.0,493.0,-1.3,Fairly priced,4314000,4300000
+Gallery One,21,29,234.0,241.0,261.0,-2.9,Fairly priced,3238499,3051000
+Runaway Bay,3,9,262.0,274.0,294.0,-4.4,Fairly priced,720000,762000
+Rio Nuevo,12,11,276.0,290.0,307.0,-4.7,Fairly priced,3078050,3265000
+Waverly Las Olas,7,23,356.0,383.0,391.0,-7.0,Fairly priced,3316000,3482000
+Avenue Lofts,3,8,429.0,465.0,381.0,-7.7,Fairly priced,2188900,2317000
+Nuriver Landing,9,34,384.0,432.0,436.0,-11.1,Underpriced,4598000,4831000
+Marine Tower,11,12,343.0,386.0,306.0,-11.1,Underpriced,6456777,6852000
+Sky Harbour East,10,9,444.0,500.0,544.0,-11.3,Underpriced,4884900,6392000
+Berkley South,8,21,265.0,300.0,310.0,-11.7,Underpriced,3192400,2922000
+Drake Tower,5,13,215.0,254.0,301.0,-15.4,Underpriced,948799,1078000

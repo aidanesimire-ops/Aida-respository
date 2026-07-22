@@ -203,6 +203,27 @@ Value is resolved down to **274 individual streets** (≥4 closed comps each), e
 
 The dashboard's street table is searchable by street or neighborhood, with the full underwriting list.
 
+## Repricing the live inventory
+
+Every one of the **1,935 active & pending listings** is repriced against the model's value. Of the **1,080 that have real sold comps** to price against, the asking prices sit **+25% above** what the model says they should be.
+
+- **470 overpriced · 341 fairly priced · 269 underpriced** (comp-backed). 855 are pre-construction / thin buildings the model can't value.
+
+**Condo markets most overpriced vs. recent sold comps:**
+
+| Neighborhood | Live | Asking $/sqft | Should be (sold) | Ask vs sold | Comps |
+|--|--|--|--|--|--|
+| Selene Oceanfront Residen | 6 | $1,390 | $918 | +51% | 10 |
+| Club Resort Residence | 3 | $459 | $340 | +35% | 22 |
+| Point Americas | 20 | $697 | $541 | +29% | 28 |
+| Sunrise East | 4 | $508 | $403 | +26% | 9 |
+| Sole Fort Lauderdale | 3 | $382 | $315 | +21% | 15 |
+| East Point Towers | 13 | $257 | $214 | +20% | 25 |
+
+**Condo value (asking below recent sold):** Nuriver Landing (-11%), Marine Tower (-11%), Sky Harbour East (-11%), Berkley South (-12%), Drake Tower (-15%).
+
+The **Condo Repricing**, **Neighborhood Repricing** and **Repriced Inventory** tabs in the workbook (and the dashboard's repricing view) carry every neighborhood and listing. "Should be" is the recent sold-comp benchmark; the model value is shown alongside.
+
 ## Using this with homeowners
 
 Each neighborhood has an auto-generated profile (see the **Neighborhood Profiles** sheet and the dashboard). Example:

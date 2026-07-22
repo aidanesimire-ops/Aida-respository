@@ -16,6 +16,7 @@ STEPS = [
     ("Redfin neighborhood normalization", "normalize_ppsf.py"),
     ("MLS per-home hedonic + profiles", "mls_normalize.py"),
     ("Street-by-street underwriting", "street_underwrite.py"),
+    ("Reprice live inventory", "reprice.py"),
     ("Time analysis (2020 -> now)", "time_analysis.py"),
     ("Charts", "build_charts.py"),
     ("Excel workbook", "build_excel.py"),
