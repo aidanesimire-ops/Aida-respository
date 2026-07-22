@@ -20,6 +20,8 @@ with open(os.path.join(PROC, "mls_bundle.json")) as f:
     MLS = json.load(f)
 with open(os.path.join(PROC, "analysis_bundle.json")) as f:
     REDFIN = json.load(f)
+with open(os.path.join(PROC, "time_bundle.json")) as f:
+    TIME = json.load(f)
 
 INNER = r"""
 <style>
@@ -194,6 +196,28 @@ footer.fl-foot a{color:var(--accent)}
   </div>
 
   <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px">
+      <h2>The market since 2020 <span style="font-weight:400;color:var(--muted);font-size:13px" id="timeSummary"></span></h2>
+    </div>
+    <div class="controls" style="margin:10px 0 6px">
+      <div class="seg" id="metricSeg" role="group" aria-label="Metric">
+        <button data-m="ppsf" aria-pressed="true">Price/ft²</button>
+        <button data-m="dom" aria-pressed="false">Days on market</button>
+        <button data-m="disc" aria-pressed="false">Discount to list</button>
+      </div>
+      <select id="nbSelect" class="search" style="flex:0 0 auto;min-width:220px" aria-label="Overlay a neighborhood">
+        <option value="">Compare a neighborhood…</option>
+      </select>
+    </div>
+    <div id="timeChart"></div>
+    <div class="legend" id="timeLegend"></div>
+    <div class="grid2" style="margin-top:16px">
+      <div><div style="font-size:12px;font-weight:600;color:var(--ink-2);margin-bottom:6px">Biggest gainers since 2020</div><div id="gainers" class="deals"></div></div>
+      <div><div style="font-size:12px;font-weight:600;color:var(--ink-2);margin-bottom:6px">Cooled most from their peak</div><div id="coolers" class="deals"></div></div>
+    </div>
+  </div>
+
+  <div class="card">
     <div class="controls">
       <div class="seg" id="basisSeg" role="group" aria-label="Property basis">
         <button data-b="all" aria-pressed="true">All</button>
@@ -233,17 +257,20 @@ footer.fl-foot a{color:var(--accent)}
 
 <script id="mls-data" type="application/json">__MLS_JSON__</script>
 <script id="redfin-data" type="application/json">__REDFIN_JSON__</script>
+<script id="time-data" type="application/json">__TIME_JSON__</script>
 <script>
 (function(){
 "use strict";
 const MLS=JSON.parse(document.getElementById("mls-data").textContent);
 const RED=JSON.parse(document.getElementById("redfin-data").textContent);
+const TM=JSON.parse(document.getElementById("time-data").textContent);
 const M=MLS.meta, NB=MLS.neighborhoods;
 const $=s=>document.querySelector(s), tt=$("#tt");
 const usd=v=>v==null?"—":"$"+Math.round(v).toLocaleString();
 const pctS=v=>v==null?"—":(v>=0?"+":"")+v.toFixed(0)+"%";
 const cvar=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
-let state={basis:"all", q:"", sort:{key:"norm_ppsf",dir:-1}, sel:null};
+let state={basis:"all", q:"", sort:{key:"norm_ppsf",dir:-1}, sel:null,
+           timeMetric:"ppsf", timeNb:""};
 const PROFILES={}; (MLS.profiles||[]).forEach(p=>PROFILES[p.neighborhood]=p);
 function renderProfile(nb){const p=PROFILES[nb]; if(!p)return; state.sel=nb;
   $("#profName").textContent=nb;
@@ -400,7 +427,79 @@ function geostrip(){
     +`<div class="g-v tnum">${usd(g.median_ppsf)}</div><div class="g-n">${g.n.toLocaleString()} sales`
     +`${g.waterfront_ppsf?` · WF ${usd(g.waterfront_ppsf)}`:''}</div></div>`).join("");
 }
+// ---------- time explorer ----------
+const TMETA=TM.meta;
+$("#timeSummary").textContent=`· citywide $${TMETA.city_2020_ppsf}/ft² (2020) → $${TMETA.city_now_ppsf} (${(TMETA.city_pct_since_2020>=0?"+":"")+TMETA.city_pct_since_2020}%)`;
+(function initSelect(){
+  const names=Object.keys(TM.neighborhood_ppsf.series).sort();
+  $("#nbSelect").insertAdjacentHTML("beforeend",
+    names.map(n=>`<option value="${n}">${n}</option>`).join(""));
+})();
+function timeVal(r,m){return m==="ppsf"?r.ppsf:m==="dom"?r.dom:(1-r.s2l)*100;}
+function timeFmt(v,m){return m==="ppsf"?usd(v):m==="dom"?Math.round(v)+"d":v.toFixed(1)+"%";}
+function renderTime(){
+  const tl=TM.market_timeline, months=TM.neighborhood_ppsf.months, m=state.timeMetric;
+  const cw=tl.map(r=>timeVal(r,m));
+  const overlay=(m==="ppsf"&&state.timeNb)?TM.neighborhood_ppsf.series[state.timeNb]:null;
+  const W=1000,H=340,pl=56,pr=16,pt=14,pb=28;
+  const xs=i=>pl+(W-pl-pr)*i/(cw.length-1);
+  let vals=cw.filter(v=>v!=null); if(overlay)vals=vals.concat(overlay.filter(v=>v!=null));
+  let vmin=Math.min(...vals),vmax=Math.max(...vals); if(m==="disc")vmin=Math.min(0,vmin);
+  const pad=(vmax-vmin)*0.08; vmin-=pad; vmax+=pad;
+  if(m!=="disc")vmin=Math.max(0,vmin);   // price / DOM can't go negative
+  const ys=v=>pt+(H-pt-pb)*(1-(v-vmin)/(vmax-vmin));
+  const acc=cvar("--accent"),orange="#eb6834",line=cvar("--line"),muted=cvar("--muted");
+  let g="";
+  for(let k=0;k<=4;k++){const v=vmin+(vmax-vmin)*k/4,y=ys(v);
+    g+=`<line x1="${pl}" y1="${y}" x2="${W-pr}" y2="${y}" stroke="${line}"/>`
+      +`<text x="${pl-7}" y="${y+4}" text-anchor="end" font-size="11" fill="${muted}">${timeFmt(v,m)}</text>`;}
+  let seen={},xlab="";
+  months.forEach((mo,i)=>{const yr=mo.slice(0,4);
+    if(!(yr in seen)){seen[yr]=1;xlab+=`<text x="${xs(i)}" y="${H-8}" text-anchor="middle" font-size="10.5" fill="${muted}">${yr}</text>`;}});
+  // frenzy marker (2022-05)
+  const fi=months.indexOf("2022-05");
+  if(fi>=0)g+=`<line x1="${xs(fi)}" y1="${pt}" x2="${xs(fi)}" y2="${H-pb}" stroke="${muted}" stroke-width="1" stroke-dasharray="3 3"/>`;
+  const path=(arr,col)=>{let d="",started=false;
+    arr.forEach((v,i)=>{if(v==null){started=false;return;}
+      d+=(started?"L":"M")+xs(i)+" "+ys(v)+" ";started=true;});
+    return `<path d="${d}" fill="none" stroke="${col}" stroke-width="2.2"/>`;};
+  let paths=path(cw,acc); if(overlay)paths+=path(overlay,orange);
+  const hit=months.map((mo,i)=>`<rect x="${xs(i)-4}" y="${pt}" width="8" height="${H-pt-pb}" fill="transparent" data-i="${i}"/>`).join("");
+  $("#timeChart").innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Market metric over time">${g}${paths}<g id="th">${hit}</g></svg>`;
+  const label={ppsf:"Price per ft²",dom:"Days on market",disc:"Discount to list"}[m];
+  $("#timeLegend").innerHTML=`<span><span class="sw" style="background:${acc}"></span>Citywide — ${label}</span>`
+    +(overlay?`<span><span class="sw" style="background:${orange}"></span>${state.timeNb}</span>`:"");
+  $("#timeChart").querySelectorAll("#th rect").forEach(r=>{
+    r.addEventListener("mousemove",e=>{const i=+r.dataset.i,mo=months[i];
+      let h=`<b>${mo}</b><br>Citywide ${timeFmt(cw[i],m)}`;
+      if(overlay&&overlay[i]!=null)h+=`<br>${state.timeNb} ${usd(overlay[i])}`;
+      showTT(h,e);});
+    r.addEventListener("mouseleave",hideTT);});
+}
+function movers(){
+  const ok=TM.shifts.filter(s=>s.sold_total>=40);
+  const gain=ok.filter(s=>s.pct_2020_now!=null).sort((a,b)=>b.pct_2020_now-a.pct_2020_now).slice(0,6);
+  const cool=ok.filter(s=>s.pct_off_peak!=null).sort((a,b)=>a.pct_off_peak-b.pct_off_peak).slice(0,6);
+  $("#gainers").innerHTML=gain.map(s=>
+    `<div class="deal"><div><span class="dn">${s.neighborhood}</span>`
+    +`<div class="dm">$${s.ppsf_2020}→$${s.ppsf_now}/ft² · DOM ${s.dom_2020}→${s.dom_now}</div></div>`
+    +`<div class="dg">+${s.pct_2020_now.toFixed(0)}%</div></div>`).join("");
+  $("#coolers").innerHTML=cool.map(s=>
+    `<div class="deal"><div><span class="dn">${s.neighborhood}</span>`
+    +`<div class="dm">peak $${s.ppsf_peak} → now $${s.ppsf_now}/ft²</div></div>`
+    +`<div class="dg" style="color:var(--neg)">${s.pct_off_peak.toFixed(0)}%</div></div>`).join("");
+}
+$("#metricSeg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+  state.timeMetric=b.dataset.m;
+  if(state.timeMetric!=="ppsf"){state.timeNb="";$("#nbSelect").value="";}
+  [...$("#metricSeg").children].forEach(x=>x.setAttribute("aria-pressed",x===b));renderTime();});
+$("#nbSelect").addEventListener("change",e=>{state.timeNb=e.target.value;
+  if(state.timeNb&&state.timeMetric!=="ppsf"){state.timeMetric="ppsf";
+    [...$("#metricSeg").children].forEach(x=>x.setAttribute("aria-pressed",x.dataset.m==="ppsf"));}
+  renderTime();});
+
 function renderAll(){kpis();drivers();geostrip();lineChart();flags();barChart();renderTable();
+  renderTime();movers();
   renderProfile(state.sel || (filtered()[0]||NB[0]||{}).neighborhood);}
 $("#basisSeg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
   state.basis=b.dataset.b;[...$("#basisSeg").children].forEach(x=>x.setAttribute("aria-pressed",x===b));
@@ -420,7 +519,8 @@ renderAll();
 def build():
     inner = (INNER
              .replace("__MLS_JSON__", json.dumps(MLS, separators=(",", ":")))
-             .replace("__REDFIN_JSON__", json.dumps(REDFIN, separators=(",", ":"))))
+             .replace("__REDFIN_JSON__", json.dumps(REDFIN, separators=(",", ":")))
+             .replace("__TIME_JSON__", json.dumps(TIME, separators=(",", ":"))))
     standalone = (
         "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"
         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"

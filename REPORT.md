@@ -125,14 +125,34 @@ Citywide, brand-new homes (≤6 yrs) command **+15%** per foot over comparable e
 | Progresso | $593 | $405 | +46% |
 | Poinsettia Heights | $703 | $484 | +45% |
 
-## Market timing & negotiation (Redfin layer)
+## Market shifts since 2020 (Redfin layer)
 
-The MLS export has no dates, so appreciation and days-on-market come from Redfin's neighborhood aggregates:
+The MLS export has no dates, so the trajectory comes from Redfin's monthly neighborhood data. Three metrics tell the whole cycle:
 
-![Market appreciation](outputs/chart_market_index.png)
+![Market shifts since 2020](outputs/chart_timeline.png)
 
-- The quality-adjusted price index has risen **3.3×** since 2012.
-- Homes citywide typically close a few percent under ask; the per-neighborhood discount and days-on-market are in the workbook and dashboard.
+- **Price:** citywide **$283/sqft in 2020 → $482 now (+70%)**, at new highs.
+- **Speed:** days-on-market bottomed at **45 days (2022-05)** during the 2022 frenzy, then climbed back above 100.
+- **Leverage:** homes sold *at* asking in mid-2022; buyers now negotiate ~6% off again. **Price is at a high while the market is slow — a genuine divergence.**
+
+![Biggest shifts since 2020](outputs/chart_shifts.png)
+
+**Biggest price gains, 2020 → now** (neighborhoods with ≥40 sales):
+
+| Neighborhood | 2020 $/sqft | Now $/sqft | Change | DOM 2020→now |
+|--|--|--|--|--|
+| Lauderdale Harbours | $435 | $1,096 | +152% | 167→58 |
+| Livermore Estates | $230 | $545 | +137% | 136→87 |
+| Beach Way Heights | $275 | $645 | +134% | 84→110 |
+| Croissant Park River | $238 | $544 | +128% | 25→292 |
+| Bal Harbour | $348 | $782 | +125% | 46→55 |
+| Coral Ridge Galt | $310 | $687 | +122% | 94→112 |
+| Lauder del Mar | $443 | $956 | +116% | 308→101 |
+| Harbor Beach | $394 | $850 | +115% | 192→140 |
+
+**Cooled most from their peak:** Bay Colony (-66%), Las Olas Park (-55%), Birch Oceanfront (-52%), Harbor Beach (-47%), Riviera Isles (-45%).
+
+The interactive dashboard lets you pull any neighborhood's price path against the citywide line and toggle price / days-on-market / discount.
 
 ## Live opportunities
 

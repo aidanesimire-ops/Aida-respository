@@ -21,7 +21,12 @@ with a **per-home hedonic model** so what's left is the neighborhood's true pric
 | Layer | Source | Gives us |
 |---|---|---|
 | **Primary** | User-provided Fort Lauderdale **MLS** exports — 12k+ listings across sold / expired / withdrawn / cancelled / temp-off / active / pending | Per-home hedonic normalized $/sqft, waterfront & new-construction premiums, real discounts, overpricing & live-listing flags |
-| **Context** | **Redfin Data Center** neighborhood tracker (2012–2026), public & free | Market appreciation index and days-on-market (the MLS export has no dates) |
+| **Context** | **Redfin Data Center** neighborhood tracker (2012–2026), public & free | Market appreciation index, days-on-market, and the **2020→now shift analysis** (the MLS export has no dates) |
+
+The dashboard includes a **"since 2020" time explorer** — toggle price / days-on-market /
+discount and overlay any neighborhood's price path against the citywide line — plus the
+COVID-cycle story: +70% price, the 2022 frenzy (45-day market), and today's divergence of
+new-high prices with a slow market.
 
 The two are built from different data with different methods and agree at **r = 0.93** —
 the main validation that the normalization is sound. Top sales were also spot-checked
@@ -51,6 +56,7 @@ Or step by step:
 ```bash
 python analysis/normalize_ppsf.py   # Redfin layer  -> data/processed/*.csv, analysis_bundle.json
 python analysis/mls_normalize.py    # MLS per-home  -> data/processed/mls_*.csv, mls_bundle.json
+python analysis/time_analysis.py    # 2020->now shifts -> data/processed/time_bundle.json
 python analysis/build_charts.py     # -> outputs/*.png
 python analysis/build_excel.py      # -> outputs/Fort_Lauderdale_PPSF_Normalized.xlsx
 python analysis/build_dashboard.py  # -> dashboard/index.html (+ artifact.html)

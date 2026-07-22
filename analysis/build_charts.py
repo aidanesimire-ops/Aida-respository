@@ -69,6 +69,11 @@ def load_mls():
         return json.load(f)
 
 
+def load_time():
+    with open(os.path.join(PROC, "time_bundle.json")) as f:
+        return json.load(f)
+
+
 def chart_top_ppsf(b):
     h = pd.DataFrame(b["headline"]).sort_values("norm_ppsf", ascending=False).head(20)
     h = h.iloc[::-1]
@@ -303,6 +308,58 @@ def chart_geography(mb):
     plt.close(fig)
 
 
+def chart_timeline(tb):
+    tl = pd.DataFrame(tb["market_timeline"])
+    tl["date"] = pd.to_datetime(tl["month"] + "-01")
+    tl["disc"] = (1 - tl["s2l"]) * 100
+    fig, axes = plt.subplots(3, 1, figsize=(11, 9), sharex=True)
+    panels = [("ppsf", "Median $/sqft", BLUE, "${x:,.0f}"),
+              ("dom", "Days on market", "#eb6834", "{x:.0f}"),
+              ("disc", "Discount to list (%)", GREEN, "{x:.0f}%")]
+    for ax, (col, lab, color, fmt) in zip(axes, panels):
+        ax.plot(tl["date"], tl[col], color=color, linewidth=2.2, zorder=3)
+        ax.fill_between(tl["date"], tl[col], tl[col].min(), color=color, alpha=0.07)
+        _style(ax, "y")
+        ax.set_ylabel(lab, fontsize=10.5)
+        ax.yaxis.set_major_formatter(mticker.StrMethodFormatter(fmt))
+        ax.margins(x=0.01)
+    # mark the mid-2022 frenzy
+    peak = pd.to_datetime("2022-05-01")
+    for ax in axes:
+        ax.axvline(peak, color=MUTED, linewidth=1, linestyle=(0, (3, 3)), zorder=1)
+    axes[0].annotate("2022 frenzy peak\n(45-day market)", (peak, tl["ppsf"].max()),
+                     textcoords="offset points", xytext=(8, -6), fontsize=9, color=INK2)
+    axes[0].set_title("Fort Lauderdale market shifts since 2020",
+                      fontsize=14, fontweight="bold", color=INK, pad=10, loc="left")
+    fig.text(0.01, 0.005, "Citywide, homes-sold-weighted (All Residential, 90-day rolling). "
+             "Source: Redfin Data Center.", fontsize=8, color=MUTED)
+    fig.tight_layout(rect=(0, 0.02, 1, 1))
+    fig.savefig(os.path.join(OUT, "chart_timeline.png"), dpi=150)
+    plt.close(fig)
+
+
+def chart_shifts(tb):
+    s = pd.DataFrame(tb["shifts"])
+    s = s[s["pct_2020_now"].notna() & (s["sold_total"] >= 40)]
+    top = s.nlargest(16, "pct_2020_now").iloc[::-1]
+    fig, ax = plt.subplots(figsize=(10.5, 8))
+    ax.barh(top["neighborhood"], top["pct_2020_now"], color=GREEN, height=0.72, zorder=3)
+    for y, (v, a, b_) in enumerate(zip(top["pct_2020_now"], top["ppsf_2020"], top["ppsf_now"])):
+        ax.text(v + 2, y, f"+{v:.0f}%  (${a:,.0f}→${b_:,.0f})", va="center",
+                fontsize=8.5, color=INK2)
+    _style(ax, "x")
+    ax.set_xlim(0, top["pct_2020_now"].max() * 1.22)
+    ax.xaxis.set_major_formatter(mticker.StrMethodFormatter("+{x:.0f}%"))
+    ax.set_xlabel("PPSF growth, 2020 → now")
+    ax.set_title("Biggest price shifts since 2020 (reliable sample)",
+                 fontsize=14, fontweight="bold", color=INK, pad=12, loc="left")
+    fig.text(0.01, 0.005, "Neighborhoods with ≥40 sales. Source: Redfin Data Center.",
+             fontsize=8, color=MUTED)
+    fig.tight_layout(rect=(0, 0.02, 1, 1))
+    fig.savefig(os.path.join(OUT, "chart_shifts.png"), dpi=150)
+    plt.close(fig)
+
+
 def main():
     b = load()
     chart_top_ppsf(b)
@@ -318,6 +375,12 @@ def main():
         chart_geography(mb)
     except FileNotFoundError:
         print("(mls_bundle.json not found — skipping MLS charts)")
+    try:
+        tb = load_time()
+        chart_timeline(tb)
+        chart_shifts(tb)
+    except FileNotFoundError:
+        print("(time_bundle.json not found — skipping time charts)")
     print("Charts written to outputs/:", ", ".join(sorted(
         f for f in os.listdir(OUT) if f.endswith(".png"))))
 

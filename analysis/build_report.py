@@ -32,6 +32,7 @@ def pct(v, s=True):
 def main():
     mls = load("mls_bundle.json")
     red = load("analysis_bundle.json")
+    tb = load("time_bundle.json")
     m = mls["meta"]
     pr = m["premiums"]
     nb = pd.DataFrame(mls["neighborhoods"])
@@ -158,14 +159,32 @@ def main():
           f"{pct(r['new_premium_pct'])} |")
     w("")
 
-    # ---------------- Market timing ----------------
-    w("## Market timing & negotiation (Redfin layer)\n")
-    w("The MLS export has no dates, so appreciation and days-on-market come from Redfin's "
-      "neighborhood aggregates:\n")
-    w("![Market appreciation](outputs/chart_market_index.png)\n")
-    w(f"- The quality-adjusted price index has risen **{appr:.1f}×** since 2012.")
-    w("- Homes citywide typically close a few percent under ask; the per-neighborhood discount "
-      "and days-on-market are in the workbook and dashboard.\n")
+    # ---------------- Market shifts since 2020 ----------------
+    tm = tb["meta"]
+    w("## Market shifts since 2020 (Redfin layer)\n")
+    w("The MLS export has no dates, so the trajectory comes from Redfin's monthly neighborhood "
+      "data. Three metrics tell the whole cycle:\n")
+    w("![Market shifts since 2020](outputs/chart_timeline.png)\n")
+    w(f"- **Price:** citywide **${tm['city_2020_ppsf']:,.0f}/sqft in 2020 → "
+      f"${tm['city_now_ppsf']:,.0f} now ({tm['city_pct_since_2020']:+.0f}%)**, at new highs.")
+    w(f"- **Speed:** days-on-market bottomed at **{tm['fastest_dom']:.0f} days ({tm['fastest_month']})** "
+      "during the 2022 frenzy, then climbed back above 100.")
+    w("- **Leverage:** homes sold *at* asking in mid-2022; buyers now negotiate ~6% off again. "
+      "**Price is at a high while the market is slow — a genuine divergence.**\n")
+    w("![Biggest shifts since 2020](outputs/chart_shifts.png)\n")
+    sh = [s for s in tb["shifts"] if s.get("pct_2020_now") is not None and s["sold_total"] >= 40]
+    top = sorted(sh, key=lambda s: -s["pct_2020_now"])[:8]
+    w("**Biggest price gains, 2020 → now** (neighborhoods with ≥40 sales):\n")
+    w("| Neighborhood | 2020 $/sqft | Now $/sqft | Change | DOM 2020→now |\n|--|--|--|--|--|")
+    for s in top:
+        w(f"| {s['neighborhood']} | {usd(s['ppsf_2020'])} | {usd(s['ppsf_now'])} | "
+          f"+{s['pct_2020_now']:.0f}% | {s['dom_2020']:.0f}→{s['dom_now']:.0f} |")
+    cool = sorted([s for s in sh if s.get("pct_off_peak") is not None],
+                  key=lambda s: s["pct_off_peak"])[:5]
+    w("\n**Cooled most from their peak:** "
+      + ", ".join(f"{s['neighborhood']} ({s['pct_off_peak']:.0f}%)" for s in cool) + ".\n")
+    w("The interactive dashboard lets you pull any neighborhood's price path against the "
+      "citywide line and toggle price / days-on-market / discount.\n")
 
     # ---------------- Opportunities ----------------
     w("## Live opportunities\n")
