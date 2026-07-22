@@ -477,9 +477,10 @@ def value_all_listings(df, sold, mod, smear, dmodel):
     d["actual_ppsf"] = np.where(d["status"] == "Sold", d["sale_ppsf"], d["ask_ppsf"])
     d["gap_pct"] = (d["actual_ppsf"] / d["pred_ppsf"] - 1) * 100
     d["price"] = np.where(d["status"] == "Sold", d["sale_price"], d["list_price"])
+    d["is_new"] = (d["new"] == 1)
     keep = ["status", "address", "street", "neighborhood", "geo_type", "ptype",
-            "sqft", "beds", "baths", "waterfront", "price", "actual_ppsf",
-            "pred_ppsf", "gap_pct"]
+            "sqft", "beds", "baths", "waterfront", "pool", "year_built", "age",
+            "lot_sqft", "is_new", "price", "actual_ppsf", "pred_ppsf", "gap_pct"]
     out = d[keep].copy()
     out["actual_ppsf"] = out["actual_ppsf"].round(0)
     out["pred_ppsf"] = out["pred_ppsf"].round(0)

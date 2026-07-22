@@ -26,6 +26,10 @@ with open(os.path.join(PROC, "street_bundle.json")) as f:
     STREET = json.load(f)
 with open(os.path.join(PROC, "reprice_bundle.json")) as f:
     REPRICE = json.load(f)
+with open(os.path.join(PROC, "underpriced_bundle.json")) as f:
+    _UP = json.load(f)
+UNDER = {"meta": _UP["meta"], "by_band": _UP["by_band"],
+         "listings": _UP["listings"][:200]}   # trim payload; full set in the CSV/Excel
 with open(os.path.join(PROC, "high_ticket_bundle.json")) as f:
     _HT = json.load(f)
 # trim listings out of the dashboard payload (they live in the Excel tab); keep the
@@ -106,6 +110,17 @@ h1.fl-title{font-size:clamp(26px,4vw,42px);line-height:1.06;margin:0;font-weight
 .geot{flex:1;min-width:150px;background:var(--surface-2);border:1px solid var(--line);
   border-radius:10px;padding:10px 12px}
 .geot.wet{border-left:3px solid var(--accent)}
+.opp{border:1px solid var(--line);border-left:3px solid var(--good);border-radius:12px;
+  padding:13px 15px;margin-bottom:10px;background:var(--surface-2)}
+.opp-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
+.opp-addr{font-weight:700;font-size:15px}
+.opp-gap{font-weight:700;color:var(--good);font-size:15px;white-space:nowrap}
+.opp-gap span{color:var(--muted);font-weight:600;font-size:12px}
+.opp-sub{font-size:12px;color:var(--ink-2);margin:3px 0 8px}
+.opp-conf{font-size:11px;padding:1px 8px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.opp-reasons{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px}
+.opp-reasons li{position:relative;padding-left:16px;font-size:13px;color:var(--ink-2);line-height:1.4}
+.opp-reasons li:before{content:"";position:absolute;left:3px;top:7px;width:5px;height:5px;border-radius:50%;background:var(--good)}
 .geot .g-t{font-size:11.5px;color:var(--ink-2);font-weight:600}
 .geot .g-v{font-size:19px;font-weight:700;margin-top:2px}
 .geot .g-n{font-size:11px;color:var(--muted)}
@@ -196,6 +211,22 @@ footer.fl-foot a{color:var(--accent)}
     <div class="geostrip" id="htBands"></div>
     <div class="controls" style="margin:14px 0 10px"><input class="search" id="htSearch" type="search" placeholder="Search neighborhood (e.g. Coral Ridge, Las Olas)…" aria-label="Search high-ticket neighborhood"></div>
     <div class="tbl-scroll"><table class="fl" id="htTbl"><thead></thead><tbody></tbody></table></div>
+  </div>
+
+  <div class="card">
+    <h2>Underpriced opportunities — where the market is mispriced, and why <span style="font-weight:400;color:var(--muted);font-size:13px" id="upSummary"></span></h2>
+    <p class="cap">Live listings asking below comp-supported value, ranked by dollar opportunity. Each reason is generated from the data — verify condition on site.</p>
+    <div class="controls" style="margin-bottom:12px">
+      <select id="upBand" class="search" style="flex:0 0 auto;min-width:150px" aria-label="Price band">
+        <option value="">All bands</option>
+        <option value="ht">≥ $1M only</option>
+        <option value="$1M–$2M">$1M–$2M</option><option value="$2M–$3M">$2M–$3M</option>
+        <option value="$3M–$5M">$3M–$5M</option><option value="$5M–$10M">$5M–$10M</option>
+        <option value="$10M+">$10M+</option>
+      </select>
+      <input class="search" id="upSearch" type="search" placeholder="Search neighborhood or address…" aria-label="Search opportunities">
+    </div>
+    <div id="upList"></div>
   </div>
 
   <div class="grid2">
@@ -306,6 +337,7 @@ footer.fl-foot a{color:var(--accent)}
 <script id="street-data" type="application/json">__STREET_JSON__</script>
 <script id="reprice-data" type="application/json">__REPRICE_JSON__</script>
 <script id="high-data" type="application/json">__HIGH_JSON__</script>
+<script id="under-data" type="application/json">__UNDER_JSON__</script>
 <script>
 (function(){
 "use strict";
@@ -315,6 +347,7 @@ const TM=JSON.parse(document.getElementById("time-data").textContent);
 const ST=JSON.parse(document.getElementById("street-data").textContent);
 const REP=JSON.parse(document.getElementById("reprice-data").textContent);
 const HT=JSON.parse(document.getElementById("high-data").textContent);
+const UP=JSON.parse(document.getElementById("under-data").textContent);
 const M=MLS.meta, NB=MLS.neighborhoods;
 const $=s=>document.querySelector(s), tt=$("#tt");
 const usd=v=>v==null?"—":"$"+Math.round(v).toLocaleString();
@@ -600,6 +633,28 @@ function renderUW(){
 }
 $("#streetSearch").addEventListener("input",e=>{state.streetQ=e.target.value;renderStreets();renderUW();});
 
+// ---------- underpriced opportunities ----------
+$("#upSummary").textContent=`· ${UP.meta.n} listings · $${Math.round(UP.meta.total_opportunity/1e6)}M total gap to supported value`;
+let upBand="", upQ="";
+const HT_BANDS=new Set(["$1M–$2M","$2M–$3M","$3M–$5M","$5M–$10M","$10M+"]);
+function renderUnder(){
+  const q=upQ.toLowerCase();
+  let rows=UP.listings.filter(r=>{
+    if(upBand==="ht")return HT_BANDS.has(r.band);
+    if(upBand&&r.band!==upBand)return false; return true;});
+  rows=rows.filter(r=>!q||(r.neighborhood||"").toLowerCase().includes(q)||(r.address||"").toLowerCase().includes(q));
+  rows=rows.slice(0,50);
+  $("#upList").innerHTML=rows.map(r=>
+    `<div class="opp"><div class="opp-head">`
+    +`<div><span class="opp-addr">${r.address}</span> <span class="geo">${r.neighborhood} · ${r.band} · ${r.ptype}</span></div>`
+    +`<div class="opp-gap">${usd(r.opportunity)}<span> · ${r.under_pct.toFixed(0)}% under</span></div></div>`
+    +`<div class="opp-sub">List ${usd(r.list_price)} · asking ${usd(r.ask_ppsf)}/ft² vs supported ${usd(r.supported_ppsf)}/ft² · <span class="opp-conf">${r.confidence}</span></div>`
+    +`<ul class="opp-reasons">${r.reasons.map(x=>`<li>${x}</li>`).join("")}</ul></div>`).join("")
+    ||`<div class="cap">No opportunities match.</div>`;
+}
+$("#upBand").addEventListener("change",e=>{upBand=e.target.value;renderUnder();});
+$("#upSearch").addEventListener("input",e=>{upQ=e.target.value;renderUnder();});
+
 // ---------- high-ticket band trends ----------
 $("#htSummary").textContent=`· ${HT.meta.n_listings} listings ≥ $${(HT.meta.min_ticket/1e6).toFixed(0)}M, asking ${HT.meta.list_vs_suggested_pct>=0?"+":""}${HT.meta.list_vs_suggested_pct.toFixed(0)}% vs supported`;
 function htBands(){
@@ -686,7 +741,7 @@ $("#repSearch").addEventListener("input",e=>{state.repQ=e.target.value;renderRep
 
 function renderAll(){kpis();drivers();geostrip();lineChart();flags();barChart();renderTable();
   renderTime();movers();renderStreets();renderUW();renderRepFlags();renderRepNbhd();renderRepInv();
-  htBands();htTable();
+  htBands();htTable();renderUnder();
   renderProfile(state.sel || (filtered()[0]||NB[0]||{}).neighborhood);}
 $("#basisSeg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
   state.basis=b.dataset.b;[...$("#basisSeg").children].forEach(x=>x.setAttribute("aria-pressed",x===b));
@@ -710,7 +765,8 @@ def build():
              .replace("__TIME_JSON__", json.dumps(TIME, separators=(",", ":")))
              .replace("__STREET_JSON__", json.dumps(STREET, separators=(",", ":")))
              .replace("__REPRICE_JSON__", json.dumps(REPRICE, separators=(",", ":")))
-             .replace("__HIGH_JSON__", json.dumps(HIGH, separators=(",", ":"))))
+             .replace("__HIGH_JSON__", json.dumps(HIGH, separators=(",", ":")))
+             .replace("__UNDER_JSON__", json.dumps(UNDER, separators=(",", ":"))))
     standalone = (
         "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"
         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"

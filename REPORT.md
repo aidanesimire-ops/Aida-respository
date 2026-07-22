@@ -63,6 +63,34 @@ A derived classification (from the waterfront flag + subdivision name + MLS area
 
 Finger-isle (point-lot) waterfront runs about **2.2×** mainland-inland per foot — the single biggest geographic swing in the market.
 
+## Underpriced opportunities — the mispricing, and why
+
+**287 live listings** are asking below comp-supported value — a total **$72M gap** to what the comps support. Ranked by dollar opportunity, with the reason pulled from the data:
+
+**1500 SE 14th Street — Lauderdale Harbors** ($5M–$10M, Single Family) · list $6,999,999 · **39% under · ~$2,717,000 gap** · _High_
+  - Asking $1,291/sqft — 39% under supported $1,792/sqft (8 sales on SE 14th St).
+  - Newer construction (built 2025) priced near existing-home levels ($855/sqft).
+
+**91 Fiesta Way — Nurmi Isles** ($5M–$10M, Single Family) · list $7,450,000 · **27% under · ~$2,041,000 gap** · _High_
+  - Asking $1,205/sqft — 27% under supported $1,535/sqft (9 sales on Fiesta Way).
+  - Newer construction (built 2023) priced near existing-home levels ($988/sqft).
+
+**2601 Delmar Pl — Gould Isles** ($5M–$10M, Single Family) · list $6,250,000 · **28% under · ~$1,746,000 gap** · _Medium_
+  - Asking $1,038/sqft — 28% under supported $1,328/sqft (4 sales on Delmar Pl).
+  - In Gould Isles's $5M–$10M band, homes sell around $1,268/sqft.
+
+**310 SE 11th Ave — Himmarshee Park** ($5M–$10M, Single Family) · list $5,890,000 · **30% under · ~$1,739,000 gap** · _High_
+  - Asking $972/sqft — 30% under supported $1,259/sqft (8 sales on SE 11th Ave).
+
+**441 Royal Plaza Drive — Stilwell Isles** ($5M–$10M, Single Family) · list $6,475,000 · **24% under · ~$1,553,000 gap** · _High_
+  - Asking $1,051/sqft — 24% under supported $1,303/sqft (6 sales on Royal Plz Dr).
+  - In Stilwell Isles's $5M–$10M band, homes sell around $1,182/sqft.
+
+**424 Coconut Isle Drive — Venice** ($5M–$10M, Single Family) · list $6,495,000 · **23% under · ~$1,495,000 gap** · _High_
+  - Asking $1,225/sqft — 23% under supported $1,507/sqft (7 sales on Coconut Isle Dr).
+
+Opportunity concentrates in the **$3M–$10M single-family bands**; condos are flagged "verify" (floor/view/condition aren't in the model). The **Underpriced + Why** tab and the dashboard's opportunities page carry the full list with every reason.
+
 ## High-ticket underwriting (≥ $1M)
 
 The luxury segment — **742 live listings ≥ $1M** (605 comp-backed). Comp-backed inventory is asking **+29% vs. supported value**. By band:

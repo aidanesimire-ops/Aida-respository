@@ -36,6 +36,7 @@ def main():
     sb = load("street_bundle.json")
     rb = load("reprice_bundle.json")
     hb = load("high_ticket_bundle.json")
+    ub = load("underpriced_bundle.json")
     m = mls["meta"]
     pr = m["premiums"]
     nb = pd.DataFrame(mls["neighborhoods"])
@@ -128,6 +129,23 @@ def main():
             w(f"\nFinger-isle (point-lot) waterfront runs about "
               f"**{fi['median_ppsf']/ml['median_ppsf']:.1f}×** mainland-inland per foot — the "
               "single biggest geographic swing in the market.\n")
+
+    # ---------------- Underpriced opportunities ----------------
+    um = ub["meta"]
+    w("## Underpriced opportunities — the mispricing, and why\n")
+    w(f"**{um['n']} live listings** are asking below comp-supported value — a total "
+      f"**${um['total_opportunity']/1e6:.0f}M gap** to what the comps support. Ranked by dollar "
+      "opportunity, with the reason pulled from the data:\n")
+    for r in ub["listings"][:6]:
+        w(f"**{r['address']} — {r['neighborhood']}** ({r['band']}, {r['ptype']}) · "
+          f"list {usd(r['list_price'])} · **{r['under_pct']:.0f}% under · "
+          f"~{usd(r['opportunity'])} gap** · _{r['confidence']}_")
+        for rs in r["reasons"]:
+            w(f"  - {rs}")
+        w("")
+    w("Opportunity concentrates in the **$3M–$10M single-family bands**; condos are flagged "
+      "\"verify\" (floor/view/condition aren't in the model). The **Underpriced + Why** tab and "
+      "the dashboard's opportunities page carry the full list with every reason.\n")
 
     # ---------------- High-ticket ----------------
     hm = hb["meta"]

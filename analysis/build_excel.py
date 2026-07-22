@@ -54,6 +54,11 @@ def _master():
         return json.load(f)
 
 
+def _underpriced():
+    with open(os.path.join(PROC, "underpriced_bundle.json")) as f:
+        return json.load(f)
+
+
 def _wavg(rows, val, wt):
     num = sum((r[val] or 0) * (r[wt] or 0) for r in rows if r.get(val) is not None)
     den = sum((r[wt] or 0) for r in rows if r.get(val) is not None)
@@ -718,6 +723,58 @@ HTBAND_COLS = [
 ]
 
 
+def underpriced_sheet(wb, ub):
+    ws = wb.add_worksheet("Underpriced + Why")
+    m = ub["meta"]
+    title = wb.add_format({"bold": True, "font_size": 15, "font_color": DARK})
+    sub = wb.add_format({"font_size": 10, "italic": True, "font_color": "#898781"})
+    hdr = wb.add_format({"bold": True, "font_color": "white", "bg_color": "#0f8a3c",
+                         "border": 1, "border_color": "white", "valign": "vcenter",
+                         "text_wrap": True, "align": "center"})
+    txt = wb.add_format({"border": 1, "border_color": "#e1e0d9", "valign": "top"})
+    txtl = wb.add_format({"border": 1, "border_color": "#e1e0d9", "valign": "top",
+                          "text_wrap": True})
+    nbf = wb.add_format({"bold": True, "border": 1, "border_color": "#e1e0d9", "valign": "top"})
+    usd = wb.add_format({"num_format": "$#,##0", "border": 1, "border_color": "#e1e0d9",
+                         "valign": "top", "align": "center"})
+    opp = wb.add_format({"num_format": "$#,##0", "bold": True, "font_color": "#0f8a3c",
+                         "border": 1, "border_color": "#e1e0d9", "valign": "top", "align": "center"})
+    pctf = wb.add_format({"num_format": '0"%"', "border": 1, "border_color": "#e1e0d9",
+                          "valign": "top", "align": "center"})
+    conff = wb.add_format({"border": 1, "border_color": "#e1e0d9", "valign": "top",
+                           "align": "center", "font_size": 10})
+    reas = wb.add_format({"border": 1, "border_color": "#e1e0d9", "valign": "top",
+                          "text_wrap": True, "font_size": 10})
+
+    ws.write(0, 0, "Underpriced opportunities — where the market is mispriced, and WHY", title)
+    ws.write(1, 0, f"{m['n']} live listings asking below comp-supported value "
+             f"(${m['total_opportunity']/1e6:.0f}M total gap). Ranked by dollar opportunity. "
+             "'Why' is generated from the data. Verify condition on site.", sub)
+    heads = ["Opportunity $", "Address", "Neighborhood", "Band", "Type", "List price",
+             "Ask $/sqft", "Supported $/sqft", "% under", "Confidence", "Why it's underpriced"]
+    widths = [14, 26, 20, 11, 13, 14, 11, 15, 9, 15, 82]
+    for c, (h, wd) in enumerate(zip(heads, widths)):
+        ws.write(3, c, h, hdr)
+        ws.set_column(c, c, wd)
+    for i, r in enumerate(ub["listings"]):
+        row = 4 + i
+        ws.write_number(row, 0, r["opportunity"], opp)
+        ws.write(row, 1, r["address"], nbf)
+        ws.write(row, 2, r["neighborhood"], txt)
+        ws.write(row, 3, r["band"], txt)
+        ws.write(row, 4, r["ptype"], txt)
+        ws.write_number(row, 5, r["list_price"], usd)
+        ws.write_number(row, 6, r["ask_ppsf"], usd)
+        ws.write_number(row, 7, r["supported_ppsf"], usd)
+        ws.write_number(row, 8, r["under_pct"], pctf)
+        ws.write(row, 9, r["confidence"], conff)
+        ws.write(row, 10, "• " + "\n• ".join(r["reasons"]), reas)
+        ws.set_row(row, 14 * max(2, len(r["reasons"])))
+    ws.freeze_panes(4, 2)
+    ws.autofilter(3, 0, 3 + len(ub["listings"]), len(heads) - 1)
+    ws.hide_gridlines(2)
+
+
 def high_ticket_sheets(wb, fmts, hb):
     vfmt = _verdict_fmt(wb)
     m = hb["meta"]
@@ -784,6 +841,10 @@ def main():
     # ---- HIGH-TICKET FOCUS (>= $1M) ----
     try:
         high_ticket_sheets(wb, fmts, _high())
+    except FileNotFoundError:
+        pass
+    try:
+        underpriced_sheet(wb, _underpriced())
     except FileNotFoundError:
         pass
 

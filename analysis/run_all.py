@@ -17,6 +17,7 @@ STEPS = [
     ("MLS per-home hedonic + profiles", "mls_normalize.py"),
     ("Street-by-street underwriting", "street_underwrite.py"),
     ("High-ticket underwriting (>=$1M)", "high_ticket.py"),
+    ("Underpriced opportunities + reasons", "underpriced.py"),
     ("Reprice live inventory", "reprice.py"),
     ("Time analysis (2020 -> now)", "time_analysis.py"),
     ("Master ranked neighborhood summary", "master_summary.py"),
