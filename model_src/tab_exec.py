@@ -136,7 +136,7 @@ def build(s, regs):
     s.section(r, L, 13, "RECOMMENDATION"); r += 1
     rec = [
         "ACQUIRE & HOLD as a covered land play. Pursue the acquirable parcels (Shahidi, Sunrise Plaza, the two office-condo owners, and",
-        "the Bayview land); treat Publix as a long-dated, land-value option (not a current seller). The blended in-place income covers the",
+        "the Bayview land); structure Publix as a SALE-LEASEBACK — acquire the fee and lease it back during entitlement. The blended in-place income covers the",
         "carry, individual assets deliver value-add / income returns in their own right, and the assemblage banks ~7+ acres of the Galleria",
         "hard corner for Live Local density once coastal hard costs and achievable rents make redevelopment pencil. Do not underwrite the",
         "redevelopment as accretive today — the residual is negative. The return is optionality on the dirt, paid for by the rent.",

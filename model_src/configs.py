@@ -4,44 +4,45 @@ configs.py — per-asset config dicts for the generic income-asset builder.
 
 # =============================================================== PUBLIX + STARBUCKS
 PUBLIX_CFG = dict(
-    title="PUBLIX + STARBUCKS  ·  SHADOW-ANCHOR PAD",
+    title="PUBLIX + STARBUCKS  ·  SALE-LEASEBACK  (acquire fee, lease back during entitlement)",
     subtitle="2501–2519 E Sunrise Blvd   |   Folio 49-42-36-12-0060   |   REAL SUB LLC (Publix) "
-             "— fee owner, NOT a seller · 36,822 SF · built 2011 · valued off the rent it produces",
-    facts_header="PROPERTY FACTS  —  ✅ BCPA / ⚠️ REPORTED (Publix is not a seller — modeled as a mark-to-market case)",
+             "· 36,822 SF · built 2011 · acquire the fee → Publix leases back → rent covers carry while you entitle the land",
+    facts_header="PROPERTY FACTS  —  ✅ BCPA / 🔶 SALE-LEASEBACK STRUCTURE (leaseback terms on the Assumptions tab)",
     facts=[
-        ("Record owner", "REAL SUB LLC (Publix Super Markets real-estate entity, Lakeland FL)", True),
-        ("Status", "Publix bought the FEE under its own store 03/2025 — NOT a seller; modeled as assumption case", False),
-        ("Building", "36,822 SF (Publix ~34,622 SF + Starbucks drive-thru pad ~2,200 SF)", True),
+        ("Record owner (today)", "REAL SUB LLC (Publix Super Markets real-estate entity, Lakeland FL) — fee owner", True),
+        ("Deal structure", "Sale-leaseback: DAWN RE acquires the fee; Publix leases back and pays rent during the entitlement period, then vacates for redevelopment", False),
+        ("Building", "36,822 SF (Publix ~34,622 SF leaseback + Starbucks drive-thru pad ~2,200 SF)", True),
         ("Land", "109,791 SF  (2.520 ac)", True),
         ("Year built", "2011 (eff. 2012)", True),
         ("Last sale", "03/14/2025  —  $25,000,000  (Trustee's Deed)  =  $679/SF bldg · $228/SF land", True),
-        ("2025 real-estate taxes", "$208,467   (2024: $217,404)", True),
-        ("Rent economics (market)", "Publix ~$13/SF NNN (newer FL store); Starbucks pad ~$60/SF NNN", False),
-        ("Cap rates (market)", "Grocery-anchored 6.0–6.75%; Starbucks pad 4.75–5.5%", False),
-        ("Covered-land insight", "Publix paid $25M (land value) vs. ~$9–10M rent-supported income value — the land premium IS the covered-land thesis", False),
+        ("2025 real-estate taxes", "$208,467   (2024: $217,404) — NNN, reimbursed by Publix during leaseback", True),
+        ("Leaseback economics", "Publix leaseback ~$22/SF NNN (bridge rate) + Starbucks pad ~$60/SF NNN; ~4-yr term (adjustable on Assumptions tab)", False),
+        ("Covered-land logic", "The leaseback rent covers the operating carry (Publix pays taxes/ins NNN) while the land is entitled; the play is the dirt, not the current yield", False),
+        ("Standalone return (below)", "NEGATIVE on a pure income basis by design — you pay land value ($25M) for income supporting only ~$13M. The return is the LAND, realized via the assemblage / redevelopment; the leaseback (DSCR ≈ 1.0x) simply covers the entitlement carry", False),
     ],
-    lease_header="RENT DETAIL  —  🔶 market mark-to-market (Publix is fee-owned; no contract rent flows today)",
+    lease_header="RENT ROLL  —  🔶 sale-leaseback terms (set on the Assumptions tab · Publix block)",
     leases=[
-        ("Publix Super Market", "Grocery anchor (credit)", 34622, 13.00, "~$13/SF NNN newer store"),
-        ("Starbucks (drive-thru pad)", "QSR pad (credit)", 2200, 60.00, "~$60/SF NNN pad"),
+        ("Publix (sale-leaseback)", "Grocery anchor (credit) — leases back during entitlement", 34622, 22.00, "leaseback NNN; terms on Assumptions tab"),
+        ("Starbucks (drive-thru pad)", "QSR pad (credit)", 2200, 60.00, "pad NNN; terms on Assumptions tab"),
     ],
     vacant_sf=0,
-    lease_note="100% occ · credit tenants",
+    lease_note="100% occ · credit tenants · sale-leaseback",
     land_psf=227.75,   # Publix's actual land basis -> land value ties to $25M
+    mrent_from_slb=True,   # blended rent computed from Publix leaseback + Starbucks pad (Assumptions tab)
     src=dict(
         gla="✅ BCPA (36,822 SF)", occ0="✅ fully occupied", stab_occ="🔶",
-        rent="🔶 blended $13 grocery + $60 pad", mill="✅ 2025",
-        price="🔶 income value (rent ÷ 6% cap); land basis $25M",
-        cap="🔶 grocery-anchored 6.0%", exit="🔶 6.25%",
+        rent="🔶 leaseback + pad", mill="✅ 2025",
+        price="🔶 SLB acquisition price (fee) — negotiated ≈ $25M basis",
+        cap="🔶 grocery-anchored 6.0% (reference)", exit="🔶 6.25%",
     ),
     inp=dict(
         gla=36822, occ0=1.00, stab_occ=1.00,
-        market_rent=15.81,               # (34,622×13 + 2,200×60)/36,822
+        market_rent=24.27,               # fallback blended (leaseback+pad); real value computed on tab
         rent_growth=0.02, credit_loss=0.01, millage=0.0191,
         insurance=45000, cam=35000, rm=25000, mgmt_pct=0.02, exp_growth=0.03,
         ti_psf=0.00, lc_psf=0.00, reserve_psf=0.15, rollover_psf=0.15,
-        price=9700000,                   # rent-supported income value
-        closing_pct=0.02, ltv=0.55, loan_rate=0.0625, amort=30,
+        price=25000000,                  # SLB acquisition price (fee, ≈ Publix basis)
+        closing_pct=0.02, ltv=0.45, loan_rate=0.0625, amort=30,
         goingin_cap=0.060, exit_cap=0.0625, cost_sale=0.02, hold=5, disc=0.07,
         land_sf=109791,
     ),

@@ -39,7 +39,26 @@ def _blocks():
     ka = dict(KI); ka["_landsf_name"] = "GLANDSF"
     return [
         ("SHA", "Shahidi Retail (Galleria Plaza) — NNN retail  ✅ verified parcel", retail(sh, "Purchase price / basis", 254.92)),
-        ("PUB", "Publix + Starbucks — grocery + pad (NNN)  ✅ verified parcel · not a seller", retail(pu, "Income-value basis", PUBLIX_CFG["land_psf"])),
+        ("PUB", "Publix + Starbucks — SALE-LEASEBACK (acquire fee, lease back during entitlement)  ✅ verified parcel", [
+            ("PRICE", "SLB acquisition price (fee)", 25000000, F_ACCT_TOP),
+            ("GLANDSF", "Land (SF)", PI["land_sf"], F_NUM),
+            ("GLAND_PSF", "Land value ($/SF)", PUBLIX_CFG["land_psf"], F_PSF),
+            ("SLB_RENT", "Publix leaseback rent ($/SF NNN)", 22.00, F_PSF),
+            ("SLB_SF", "Publix leaseback SF", 34622, F_NUM),
+            ("SBUX_RENT", "Starbucks pad rent ($/SF NNN)", 60.00, F_PSF),
+            ("SBUX_SF", "Starbucks pad SF", 2200, F_NUM),
+            ("TERM", "Leaseback term / entitlement (yrs)", 4, F_YR),
+            ("OCC0", "In-place occupancy", 1.00, F_PCT1),
+            ("STABOCC", "Stabilized occupancy", 1.00, F_PCT1),
+            ("INS", "Insurance ($/yr)", PI["insurance"], F_ACCT),
+            ("CAM", "CAM ($/yr, recoverable)", PI["cam"], F_ACCT),
+            ("RM", "Repairs & maintenance ($/yr)", PI["rm"], F_ACCT),
+            ("MGMT", "Management fee (% EGR)", PI["mgmt_pct"], F_PCT1),
+            ("GICAP", "Going-in cap (reference)", PI["goingin_cap"], F_PCT2),
+            ("EXITCAP", "Exit cap", PI["exit_cap"], F_PCT2),
+            ("LTV", "Senior LTV (covered-land, conservative)", 0.45, F_PCT1),
+            ("RATE", "Senior rate", PI["loan_rate"], F_PCT2),
+        ]),
         ("SUN", "Sunrise Plaza (Kar Luen) — value-add retail  ⚠️ reported parcel", retail(ka, "Purchase price / basis", KARLUEN_CFG["land_psf"])),
         ("OFF", "Galleria Corporate Centre — office, Modified Gross  ⚠️ reported parcel", [
             ("PRICE", "Acquisition basis", OA["price"], F_ACCT_TOP),

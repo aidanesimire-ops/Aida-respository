@@ -92,7 +92,14 @@ def build(s, cfg, amap=None):
     inp("GLANDSF", "Land (SF)", "land_sf", F_NUM, cfg["src"].get("land", "🔶 parcel land"))
     inp("OCC0", "In-place occupancy", "occ0", F_PCT1, cfg["src"]["occ0"])
     inp("STABOCC", "Stabilized occupancy", "stab_occ", F_PCT1, cfg["src"]["stab_occ"])
-    inp("MRENT", "Market rent ($/SF NNN)", "market_rent", F_PSF, cfg["src"]["rent"])
+    if cfg.get("mrent_from_slb"):
+        AL = lambda n: f"'Assumptions'!{amap[n]}"
+        s.put(r, L, "Blended NNN rent ($/SF) — leaseback + pad", style="label", align="left")
+        s.put(r, 3, f"=({AL('SLB_SF')}*{AL('SLB_RENT')}+{AL('SBUX_SF')}*{AL('SBUX_RENT')})/{s.reg['GLA']}",
+              style="calc", color="008000", fmt=F_PSF, align="right", name="MRENT")
+        s.put(r, 4, "🟢 computed from Publix leaseback + Starbucks pad (Assumptions)", style="note", align="left", merge=(r, 13)); r += 1
+    else:
+        inp("MRENT", "Market rent ($/SF NNN)", "market_rent", F_PSF, cfg["src"]["rent"])
     inp("RGROW", "Rent growth", "rent_growth", F_PCT1, "🔶")
     inp("CLOSS", "Credit & collection loss", "credit_loss", F_PCT1, "🔶")
     inp("MILL", "Effective millage", "millage", F_PCT2, cfg["src"]["mill"])
@@ -322,10 +329,10 @@ def build(s, cfg, amap=None):
         s.put(r, L, label, style="label", align="left")
         s.put(r, 3, formula, style="calc", fmt=fmt, align="right", name=name)
         r += 1
-    ret("IRR_U", "Unlevered IRR", f"=IRR({proj})", F_PCT1)
+    ret("IRR_U", "Unlevered IRR", f'=IFERROR(IRR({proj}),"n/m")', F_PCT1)
     ret("EM_U", "Unlevered equity multiple", f"=SUM({proj1})/-{CL(ACQ)}{rows['PROJCF']}", F_MULT)
     ret("NPV_U", "Unlevered NPV @ discount rate", f"={CL(ACQ)}{rows['PROJCF']}+NPV({R('DISC')},{proj1})", F_ACCT_TOP)
-    ret("IRR_L", "Levered IRR", f"=IRR({lev})", F_PCT1)
+    ret("IRR_L", "Levered IRR", f'=IFERROR(IRR({lev}),"n/m")', F_PCT1)
     ret("EM_L", "Levered equity multiple", f"=SUM({lev1})/{R('EQ_ACQ')}", F_MULT)
     ret("NOI1", "Year-1 NOI (pro-forma)", f"={CL(pc(1))}{rows['NOI']}", F_ACCT_TOP)
     ret("AS_IS_NOI", "As-is in-place NOI (at occ0, no lease-up)",

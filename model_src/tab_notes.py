@@ -42,7 +42,8 @@ def build(s):
     kv("Return attribution", "Unlevered profit is decomposed into operating cash flow, NOI growth / lease-up, cap-rate movement, cost of sale, and closing — and ties exactly to the consolidated cash flow.")
     kv("Scenario analysis", "Downside / Base / Upside bundle NOI achievement, exit cap, and financing rate; each is a full consolidated cash flow with its own IRR / multiple / DSCR / cash-on-cash.")
     kv("Break-even", "The break-even exit cap is the softest exit that still returns 1.0x of equity; the cushion vs. the underwritten exit cap is a downside guardrail.")
-    kv("Covered-land (HBU) price", "Summed control cost (each parcel at the greater of income or land value; Publix at its land basis, as it is not a seller) plus a 15/20/25% assemblage premium.")
+    kv("Covered-land (HBU) price", "Summed control cost (each parcel at the greater of income or land value; Publix via sale-leaseback at its fee price) plus a 15/20/25% assemblage premium.")
+    kv("Publix sale-leaseback", "Acquire the Publix fee; Publix leases back and pays NNN rent during entitlement (rent covers the operating carry), then vacates for redevelopment. Leaseback rent, SF, price, and term are on the Assumptions tab.")
     kv("Reversion", "Each asset sells in the hold year at its forward NOI ÷ exit cap, net of cost of sale; the consolidated reversion sums the asset-level reversions.")
     kv("Redevelopment", "The Live Local residual runs negative in the AE flood zone at current coastal hard costs; the model does NOT force it positive — the conclusion is HOLD.")
     r += 1

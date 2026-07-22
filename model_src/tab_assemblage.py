@@ -19,7 +19,7 @@ GLA = {"Shahidi Retail": 26272, "Publix & Starbucks": 36822,
        "Sunrise Plaza": 25105, "Office Condo": 168807, "Land": 84495}
 
 # control-cost source cell per asset (covered-land control basis)
-CONTROL = {"Shahidi Retail": "PRICE", "Publix & Starbucks": "LANDVAL",
+CONTROL = {"Shahidi Retail": "PRICE", "Publix & Starbucks": "PRICE",
            "Sunrise Plaza": "PRICE", "Office Condo": "PRICE", "Land": "CONCLUDED"}
 NOICELL = {"Shahidi Retail": "INPLACE_NOI", "Publix & Starbucks": "NOI1",
            "Sunrise Plaza": "NOI1", "Office Condo": "NOI1", "Land": "INOI"}
@@ -35,7 +35,7 @@ LABEL = {"Shahidi Retail": "Shahidi Retail (Galleria Plaza)",
          "Office Condo": "Galleria Corporate Centre (office)",
          "Land": "1040 Bayview (covered land)"}
 NOTE = {"Shahidi Retail": "acquirable · value-add lease-up",
-        "Publix & Starbucks": "NOT a seller · priced at land value",
+        "Publix & Starbucks": "sale-leaseback · acquire fee, lease back",
         "Sunrise Plaza": "acquirable · restaurant value-add",
         "Office Condo": "buy out both condo owners",
         "Land": "entitled 259 units · hold for redevelopment"}
