@@ -128,6 +128,17 @@ def build_inputs(s):
     inp("LEGALDD", "Legal & due diligence (% price)", 0.0040, F_PCT2, "🔶", "closing cost")
     inp("ORIG", "Loan origination (% loan)", 0.0100, F_PCT2, "🔶", "financing cost → equity")
 
+    sect("GLOBAL — PRIOR SALE / SELLER BASIS  (→ HBU acquisition history · Exec scorecard)")
+    inp("SHA_ACQ", "Shahidi — prior sale price", 17100000, F_ACCT, "✅", "Shawnick Galleria LLC, 11/2021 (disqualified deed)")
+    inp("SHA_ACQYR", "Shahidi — prior sale year", 2021, F_YR, "✅", "→ scorecard 'they paid' year")
+    inp("PUB_ACQ", "Publix — prior sale price", 25000000, F_ACCT, "✅", "REAL SUB LLC Trustee's Deed, 03/2025 ($679/SF)")
+    inp("PUB_ACQYR", "Publix — prior sale year", 2025, F_YR, "✅", "→ scorecard 'they paid' year")
+    inp("SUN_ACQ", "Sunrise Plaza — prior sale price", 128000, F_ACCT, "⚠️", "Kar Luen Inc, Oct 2000 — stale/nominal")
+    inp("SUN_ACQYR", "Sunrise Plaza — prior sale year", 2000, F_YR, "⚠️", "→ scorecard 'they paid' year")
+    inp("OFF_ACQ", "Office — Grove Gate bulk price (57.4%)", 10000000, F_ACCT, "⚠️", "from Intl Sunrise 09/2019 (~$103/SF)")
+    inp("OFF_ACQYR", "Office — bulk purchase year", 2019, F_YR, "⚠️", "→ scorecard 'they paid' year")
+    inp("LND_ACQYR", "1040 Bayview — JV formation year", 2014, F_YR, "⚠️", "Procacci JV; no clean arm's-length basis")
+
     sect("GLOBAL — ASSEMBLAGE PREMIUM  (→ Assemblage / covered-land price)")
     inp("PREM_LOW", "Assemblage premium — low", 0.15, F_PCT1, "🔶", "control-cost premium")
     inp("PREM_BASE", "Assemblage premium — base", 0.20, F_PCT1, "🔶", "headline covered-land price")

@@ -259,16 +259,16 @@ def build(s, amap=None):
     r += 1
     o_first = r
     for i, (nm, sf, basis, bdate, note) in enumerate(OWNERS):
-        s.put(r, L, nm, style="calc", align="left", merge=(r, 3))
-        s.put(r, 4, sf, style="input", fmt=F_NUM, align="right", name=f"OWN{i+1}_SF")   # 🔵 adjustable
+        s.put(r, L, nm, style="input", align="left", merge=(r, 3))                        # 🔵 editable
+        s.put(r, 4, sf, style="input", fmt=F_NUM, align="right", name=f"OWN{i+1}_SF")      # 🔵 editable
         s.put(r, 5, f"={CL(4)}{r}/{R('GLA')}", style="calc", fmt=F_PCT1, align="right")
-        s.put(r, 6, (basis if basis else "—"), style=("verified" if basis else "note"), fmt=(F_ACCT if basis else None), align="right")
-        s.put(r, 7, bdate, style=("verified" if basis else "note"), align="center")
+        s.put(r, 6, (basis if basis else "—"), style="input", fmt=(F_ACCT if basis else None), align="right")  # 🔵
+        s.put(r, 7, bdate, style="input", align="center")                                 # 🔵 editable
         s.put(r, 8, f"={R('NOIPSF')}*{CL(4)}{r}/{R('GICAP')}", style="calc", fmt=F_ACCT, align="right")
         s.put(r, 9, f"={CL(4)}{r}*{R('BUYOUT_PSF')}", style="calc", fmt=F_ACCT, align="right")
         if i == 0: s.reg["BUYOUT1"] = f"{CL(9)}{r}"
         if i == 1: s.reg["BUYOUT2"] = f"{CL(9)}{r}"
-        s.put(r, 10, note, style="calc", align="left", merge=(r, 13)); r += 1
+        s.put(r, 10, note, style="input", align="left", merge=(r, 13)); r += 1            # 🔵 editable
     o_last = r - 1
     s.put(r, L, "TOTAL BUILDING — FULL BUY-OUT", style="grand", align="left", merge=(r, 3))
     s.put(r, 4, f"=SUM({CL(4)}{o_first}:{CL(4)}{o_last})", style="grand", fmt=F_NUM, align="right")

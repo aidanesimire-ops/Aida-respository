@@ -35,6 +35,17 @@ def build(s):
     para("Each component is priced independently (asset tabs) and combined (Assemblage / Income / HBU). The HBU tab prices the land as regular fragmented parcels vs. an assembled superblock (plottage premium), and carries the office condo full buy-out.")
     r += 1
 
+    head("REUSE FOR A NEW ASSEMBLAGE  (this is a template)")
+    para("The workbook is a system: the same engine repriced for any covered-land / assemblage play. To repoint it at a new deal, change only the blue")
+    para("inputs — no formulas move. The recipe:")
+    kv("1. Prior-sale basis", "On ASSUMPTIONS → 'PRIOR SALE / SELLER BASIS', set each component's last price + year. Drives the HBU acquisition history and the Exec scorecard's 'they paid' column (one source, both places).")
+    kv("2. Per-asset blocks", "On ASSUMPTIONS → 'PER-ASSET INPUTS', reset each asset's price · rents · occupancy · operating expenses · caps · debt. Retail/office/land blocks already differ by type; copy the closest one for a new asset.")
+    kv("3. Global drivers", "Reset caps, hold, financing, closing costs, assemblage premium, and the land/redevelopment ladder up top. These flow to Income, Scenarios, Assemblage, and HBU automatically.")
+    kv("4. Rosters & rent rolls", "Replace the office owner roster (Office Condo tab) and each asset's tenant rows with the real ones — all blue/editable. Sizes and $/SF recompute value, buy-out, and plottage.")
+    kv("5. Component list", "Add/drop an asset by editing the component list in the builder (one tuple per asset in tab_hbu / tab_exec / tab_assemblage); the scorecard, ladder, and sum-of-parts pick it up.")
+    kv("6. Verify & re-flag", "Confirm ⚠️ REPORTED figures at the county, move them to ✅ VERIFIED, and re-run. The data-gap register on Assumptions lists exactly what to confirm.")
+    r += 1
+
     head("VALUATION METHODOLOGY")
     kv("As-is vs. stabilized", "Direct cap on AS-IS in-place NOI (current occupancy) gives the going-in value; stabilized NOI ÷ exit cap gives post-lease-up value. The spread is value creation.")
     kv("Income-based price", "Concluded on as-is direct cap; stabilized direct cap and a DCF (PV of unlevered cash flows at the target unlevered yield) are shown as cross-checks.")

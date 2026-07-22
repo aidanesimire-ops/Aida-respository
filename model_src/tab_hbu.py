@@ -21,11 +21,12 @@ COMPONENTS = [
     ("Land", "1040 Bayview (entitled land)", "CONCLUDED", "covered land · hold for redevelopment"),
 ]
 # acquisition history: (label, date, orig price, (sheet,our-price-cell) or None, verified, note)
+# price cell = an Assumptions input name (live link, single source of truth) or None
 ACQ_HISTORY = [
-    ("Shahidi Retail — Shawnick Galleria LLC (Shahidi)", "11/09/2021", 17100000, ("Shahidi Retail", "PRICE"), True, "Special Warranty Deed (flagged disqualified sale)"),
-    ("Publix + Starbucks — REAL SUB LLC (Publix)", "03/14/2025", 25000000, ("Publix & Starbucks", "PRICE"), True, "Trustee's Deed · $679/SF bldg"),
-    ("Sunrise Plaza — Kar Luen Inc", "Oct 2000", 128000, ("Sunrise Plaza", "PRICE"), False, "stale/nominal — held since; no recent arm's-length"),
-    ("Office — Grove Gate bulk (57.4%)", "09/23/2019", 10000000, ("Office Condo", "BUYOUT1"), False, "$103/SF from Intl Sunrise (dissolved 2020); now reselling units $270–381/SF"),
+    ("Shahidi Retail — Shawnick Galleria LLC (Shahidi)", "11/09/2021", "SHA_ACQ", ("Shahidi Retail", "PRICE"), True, "Special Warranty Deed (flagged disqualified sale)"),
+    ("Publix + Starbucks — REAL SUB LLC (Publix)", "03/14/2025", "PUB_ACQ", ("Publix & Starbucks", "PRICE"), True, "Trustee's Deed · $679/SF bldg"),
+    ("Sunrise Plaza — Kar Luen Inc", "Oct 2000", "SUN_ACQ", ("Sunrise Plaza", "PRICE"), False, "stale/nominal — held since; no recent arm's-length"),
+    ("Office — Grove Gate bulk (57.4%)", "09/23/2019", "OFF_ACQ", ("Office Condo", "BUYOUT1"), False, "$103/SF from Intl Sunrise (dissolved 2020); now reselling units $270–381/SF"),
     ("Office — 42.6% individual owners", "2011→2026", None, None, False, "~40 small owners (Merrimac, Cosmo, Jorgensen, Hublot); un-itemizable without BCPA"),
     ("1040 Bayview — Sunrise & Bayview Partners", "2014 (JV)", None, ("Land", "CONCLUDED"), False, "Procacci; BBX exited 2022; stale 1961 deed $801,933"),
 ]
@@ -83,7 +84,10 @@ def build(s, regs):
         st = "verified" if verified else "calc"
         s.put(r, L, label, style=st, align="left")
         s.put(r, 3, date, style=st, align="center")
-        s.put(r, 4, (price if price else "—"), style=st, fmt=(F_ACCT if price else None), align="right")
+        if price:
+            s.put(r, 4, f"={AS(price)}", style="calc", color="008000", fmt=F_ACCT, align="right")
+        else:
+            s.put(r, 4, "—", style="note", align="right")
         if ourcell:
             sheet, cell = ourcell
             s.put(r, 5, f"={x(sheet, cell)}", style="calc", color="008000", fmt=F_ACCT, align="right")

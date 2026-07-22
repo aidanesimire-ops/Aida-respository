@@ -1,155 +1,142 @@
 """
-tab_exec.py — Executive Summary (Tab 1). Outputs only; every value is a live
-green cross-sheet link. KPI banner, the covered-land deal, per-asset scorecard,
-capital & returns, and the recommendation.
+tab_exec.py — EXECUTIVE DASHBOARD (Tab 1). One dense command center for the whole
+assemblage: headline KPIs, the valuation ladder, a per-component scorecard (what
+each owner paid vs. our price + returns), land / highest-and-best-use, returns +
+scenario range, and capital. Outputs only — every value is a live green link.
+Template note: swap the component list + Assumptions inputs to reuse for any assemblage.
 """
 from openpyxl.utils import get_column_letter
-from mblib import (F_ACCT, F_ACCT_TOP, F_PCT1, F_PCT2, F_MULT, F_PSF, F_NUM)
+from mblib import F_ACCT, F_ACCT_TOP, F_PCT1, F_PCT2, F_MULT, F_PSF, F_NUM
 
 L = 2
 def CL(c): return get_column_letter(c)
 
-ORDER = ["Shahidi Retail", "Publix & Starbucks", "Sunrise Plaza", "Office Condo", "Land"]
-LABEL = {"Shahidi Retail": "Shahidi Retail (Galleria Plaza)",
-         "Publix & Starbucks": "Publix + Starbucks",
-         "Sunrise Plaza": "Sunrise Plaza (Kar Luen)",
-         "Office Condo": "Galleria Corporate Centre",
-         "Land": "1040 Bayview (land)"}
-ADDR = {"Shahidi Retail": "2541–2595 E Sunrise · 26,272 SF retail",
-        "Publix & Starbucks": "2501–2519 E Sunrise · 36,822 SF grocery + pad",
-        "Sunrise Plaza": "2465–2485 E Sunrise · 25,105 SF retail",
-        "Office Condo": "2455 E Sunrise · 168,807 SF office condo",
-        "Land": "1040 Bayview Dr · 2.39 ac · 259 units entitled"}
-CONTROL = {"Shahidi Retail": "PRICE", "Publix & Starbucks": "PRICE",
-           "Sunrise Plaza": "PRICE", "Office Condo": "BUYOUT_TOTAL", "Land": "CONCLUDED"}
-NOICELL = {"Shahidi Retail": "INPLACE_NOI", "Publix & Starbucks": "NOI1",
-           "Sunrise Plaza": "NOI1", "Office Condo": "NOI1", "Land": "INOI"}
+# component -> (sheet, label, size, control-cost cell, in-place NOI cell,
+#               Assumptions prior-sale price name | None, Assumptions prior-sale year name)
+COMP = [
+    ("Shahidi Retail", "Shahidi Retail (Galleria Plaza)", "26,272 SF retail", "PRICE", "INPLACE_NOI", "SHA_ACQ", "SHA_ACQYR"),
+    ("Publix & Starbucks", "Publix + Starbucks (SLB)", "36,822 SF grocery+pad", "PRICE", "NOI1", "PUB_ACQ", "PUB_ACQYR"),
+    ("Sunrise Plaza", "Sunrise Plaza (Kar Luen)", "25,105 SF retail", "PRICE", "NOI1", "SUN_ACQ", "SUN_ACQYR"),
+    ("Office Condo", "Galleria Corp Centre (buy-out)", "168,807 SF office condo", "BUYOUT_TOTAL", "NOI1", "OFF_ACQ", "OFF_ACQYR"),
+    ("Land", "1040 Bayview (covered land)", "2.39 ac · 259 units", "CONCLUDED", "INOI", None, "LND_ACQYR"),
+]
 
 
 def build(s, regs):
     def x(sheet, name):
         return f"'{sheet}'!{regs[sheet][name]}"
-    s.colw({"A": 2.5, "B": 30, "C": 17, "D": 17, "E": 17, "F": 17, "G": 12,
-            "H": 12, "I": 12, "J": 12, "K": 12, "L": 12, "M": 12})
-    A = "Assemblage"
+    A, IV, HB, SC = "Assemblage", "Income Valuation", "Highest & Best Use", "Scenarios"
+    s.colw({"A": 2, "B": 30, "C": 20, "D": 13, "E": 7, "F": 14, "G": 13, "H": 9,
+            "I": 9, "J": 9, "K": 9, "L": 9, "M": 9})
     r = 1
-    # banner
-    s.put(r, L, "DAWN RE ENTERPRISES CORP.", style="banner", align="left", merge=(r, 13)); s.rowh(r, 24); r += 1
-    s.put(r, L, "E SUNRISE BLVD ASSEMBLAGE  ·  COVERED LAND PLAY  —  EXECUTIVE SUMMARY", style="banner_sub", align="left", merge=(r, 13)); s.rowh(r, 20); r += 1
-    s.put(r, L, "Fort Lauderdale, FL 33304  ·  Galleria hard corner  ·  five contiguous assets, plat block 49-42-36-12  ·  prepared 2026-07-21  ·  CONFIDENTIAL",
-          style="kpi_note", align="left", merge=(r, 13)); s.rowh(r, 16); r += 2
+    # ---------------- banner ----------------
+    s.put(r, L, "DAWN RE ENTERPRISES CORP.  ·  EXECUTIVE DASHBOARD", style="banner", align="left", merge=(r, 13)); s.rowh(r, 24); r += 1
+    s.put(r, L, "E SUNRISE BLVD ASSEMBLAGE  —  COVERED LAND PLAY", style="banner_sub", align="left", merge=(r, 13)); s.rowh(r, 18); r += 1
+    s.put(r, L, "Fort Lauderdale FL 33304 · Galleria hard corner · 5 contiguous assets · plat 49-42-36-12 · ~7.2 ac / 341,501 SF bldg · CONFIDENTIAL",
+          style="kpi_note", align="left", merge=(r, 13)); s.rowh(r, 15); r += 2
 
-    # ---- KPI boxes (4 across) ----
-    IV = "Income Valuation"
+    # ---------------- KPI strip (6 across) ----------------
     kpis = [
-        ("INCOME-BASED PRICE", f"={x(IV,'PX_INCOME')}", F_ACCT_TOP, "what the combined cash flows support"),
-        ("COVERED-LAND PRICE", f"={x(A,'ACQ')}", F_ACCT_TOP, "HBU: land value + assemblage premium"),
-        ("BLENDED IN-PLACE CAP", f"={x(A,'BLEND_CAP2')}", F_PCT2, "income covers carry"),
-        ("LAND CONTROLLED", f"={x(A,'TOT_AC')}", "#,##0.00", "acres of E Sunrise frontage"),
+        ("INCOME PRICE", f"={x(IV,'PX_INCOME')}", F_ACCT_TOP),
+        ("COVERED-LAND", f"={x(A,'ACQ')}", F_ACCT_TOP),
+        ("BLENDED CAP", f"={x(A,'BLEND_CAP2')}", F_PCT2),
+        ("LEVERED IRR", f"={x(IV,'IRR_L')}", F_PCT1),
+        ("EQUITY", f"={x(IV,'EQ_I')}", F_ACCT_TOP),
+        ("LAND (AC)", f"={x(A,'TOT_AC')}", "#,##0.0"),
     ]
     c = 2
-    for lab, val, fmt, note in kpis:
-        s.put(r, c, lab, style="kpi_lab", align="center", merge=(r, c+2))
-        s.put(r+1, c, val, style="kpi_val", fmt=fmt, align="center", merge=(r+1, c+2))
-        s.put(r+2, c, note, style="kpi_note", align="center", merge=(r+2, c+2))
-        c += 3
-    s.rowh(r, 16); s.rowh(r+1, 34); s.rowh(r+2, 16); r += 4
+    for lab, val, fmt in kpis:
+        s.put(r, c, lab, style="kpi_lab", align="center", merge=(r, c+1))
+        s.put(r+1, c, val, style="kpi_val", fmt=fmt, align="center", merge=(r+1, c+1))
+        c += 2
+    s.rowh(r, 14); s.rowh(r+1, 30); r += 3
 
-    # ---- the deal ----
-    s.section(r, L, 13, "THE DEAL"); r += 1
-    deal = [
-        "Assemble the entire E Sunrise Blvd frontage at the Galleria hard corner (~60,000 vehicles/day, across from the 31.5-ac Galleria",
-        "redevelopment and the Live Local corridor). Five contiguous assets on one plat block. Strategy: buy/value each asset off the rent it",
-        "produces, let the in-place income cover the carry, and control ~7+ acres for eventual Live Local high-density redevelopment. The",
-        "redevelopment residual is negative today (AE flood zone, coastal hard costs), so the disciplined play is to HOLD income-covered land.",
-        "Publix already validated the thesis — it paid land value ($679/SF building), not income value, to control its parcel.",
-    ]
-    for t in deal:
-        s.put(r, L, t, style="calc", align="left", merge=(r, 13)); r += 1
+    # ---------------- valuation ladder ----------------
+    s.section(r, L, 13, "VALUATION LADDER  —  three ways to price the block"); r += 1
+    def band(label, formula, fmt, note, style="calc", nm=None):
+        nonlocal r
+        s.put(r, L, label, style=("grand" if style == "grand" else "label"), align="left", merge=(r, 4))
+        s.put(r, 5, formula, style=("grand" if style == "grand" else "calc"), color=(None if style == "grand" else "008000"),
+              fmt=fmt, align="right", merge=(r, 6), name=nm)
+        s.put(r, 7, note, style="note", align="left", merge=(r, 13)); r += 1
+    band("① Income basis (combined cash flows)", f"={x(IV,'PX_INCOME')}", F_ACCT_TOP, "direct cap on consolidated in-place NOI — what the rent supports")
+    band("② Sum of the parts (each priced alone)", f"={x(HB,'SUM_PARTS')}", F_ACCT_TOP, "buy each component independently")
+    band("③ COVERED-LAND / HBU (assembled)", f"={x(A,'ACQ')}", F_ACCT_TOP, "sum of parts + assemblage premium — control the whole block", style="grand")
+    band("Premium over income (dirt + optionality)", f"={x(IV,'PREMIUM')}", F_ACCT_TOP, "③ − ① = what you pay for the land / Live Local option")
+    band("Post-approval assembled land (upside)", f"={x(HB,'LAND_ENTITLED')}", F_ACCT_TOP, "entitled dirt once Live Local is approved")
     r += 1
 
-    # ---- per-asset scorecard ----
-    s.section(r, L, 13, "ASSET SCORECARD  —  🟢 live links to each asset tab"); r += 1
-    hdr = ["Asset", "Address / size", "Control cost", "In-place NOI", "Unlev IRR", "Lev IRR"]
-    cols = [L, 4, 7, 8, 10, 11]
-    spans = {4: 6, 8: 9, 11: 13}
-    for h, c in zip(hdr, cols):
-        endc = spans.get(c, c)
-        s.put(r, c, h, style="subhead", align="left" if c in (L, 4) else "center", merge=(r, endc) if endc != c else None)
+    # ---------------- component scorecard ----------------
+    s.section(r, L, 13, "COMPONENT SCORECARD  —  priced independently  (what they paid → our price → return)"); r += 1
+    hdr = [(L, "Component"), (3, "Size"), (4, "They paid"), (5, "Yr"), (6, "Our price"),
+           (7, "In-place NOI"), (8, "Cap"), (9, "Lev IRR"), (10, "Basis / note")]
+    for c, h in hdr:
+        endc = 13 if c == 10 else c
+        s.put(r, c, h, style="subhead", align="left" if c in (L, 10) else "center", merge=(r, endc) if endc != c else None)
     r += 1
     first = r
-    for a in ORDER:
-        s.put(r, L, LABEL[a], style="calc", align="left")
-        s.put(r, 4, ADDR[a], style="calc", align="left", merge=(r, 6))
-        s.put(r, 7, f"={x(a, CONTROL[a])}", style="calc", color="008000", fmt=F_ACCT, align="right")
-        s.put(r, 8, f"={x(a, NOICELL[a])}", style="calc", color="008000", fmt=F_ACCT, align="right", merge=(r, 9))
-        s.put(r, 10, f"={x(a, 'IRR_U')}", style="calc", color="008000", fmt=F_PCT1, align="right")
-        s.put(r, 11, f"={x(a, 'IRR_L')}", style="calc", color="008000", fmt=F_PCT1, align="right", merge=(r, 13))
-        r += 1
+    for key, label, size, ctrl, noic, acqname, yrname in COMP:
+        s.put(r, L, label, style="calc", align="left")
+        s.put(r, 3, size, style="note", align="left")
+        if acqname:
+            s.put(r, 4, f"={x('Assumptions', acqname)}", style="calc", color="008000", fmt=F_ACCT, align="right")
+        else:
+            s.put(r, 4, "—", style="note", align="right")
+        s.put(r, 5, f"={x('Assumptions', yrname)}", style="calc", color="008000", fmt="0", align="center")
+        s.put(r, 6, f"={x(key, ctrl)}", style="calc", color="008000", fmt=F_ACCT, align="right")
+        s.put(r, 7, f"={x(key, noic)}", style="calc", color="008000", fmt=F_ACCT, align="right")
+        s.put(r, 8, f"={CL(7)}{r}/{CL(6)}{r}", style="calc", fmt=F_PCT2, align="center")
+        s.put(r, 9, f"={x(key, 'IRR_L')}", style="calc", color="008000", fmt=F_PCT1, align="center")
+        note = {"Publix & Starbucks": "sale-leaseback · land exit",
+                "Office Condo": "unit-market buy-out; fractured condo",
+                "Land": "entitled 259 units · covered land"}.get(key, "acquire fee")
+        s.put(r, 10, note, style="note", align="left", merge=(r, 13)); r += 1
     last = r - 1
-    s.put(r, L, "ASSEMBLAGE (pre-premium)", style="total", align="left")
-    s.put(r, 4, "5 assets · ~7+ ac · 341,501 SF bldg", style="total", align="left", merge=(r, 6))
-    s.put(r, 7, f"={x(A,'RAW_COST')}", style="total", color=None, fmt=F_ACCT_TOP, align="right")
-    s.put(r, 8, f"={x(A,'TOT_NOI')}", style="total", fmt=F_ACCT_TOP, align="right", merge=(r, 9))
-    s.put(r, 10, f"={x(IV,'IRR_U')}", style="total", fmt=F_PCT1, align="right")
-    s.put(r, 11, f"={x(IV,'IRR_L')}", style="total", fmt=F_PCT1, align="right", merge=(r, 13))
-    r += 1
-    s.put(r, L, "Portfolio IRR (unlev / lev) = consolidated cash-flow IRR at the income price (Income Valuation tab)",
-          style="note", align="left", merge=(r, 13)); r += 2
+    s.put(r, L, "ASSEMBLAGE — priced independently", style="total", align="left")
+    s.put(r, 3, "5 assets", style="total", align="left")
+    s.put(r, 4, "—", style="total", align="center")
+    s.put(r, 5, "", style="total")
+    s.put(r, 6, f"={x(A,'RAW_COST')}", style="total", fmt=F_ACCT_TOP, align="right")
+    s.put(r, 7, f"={x(A,'TOT_NOI')}", style="total", fmt=F_ACCT_TOP, align="right")
+    s.put(r, 8, f"={x(A,'BLEND_CAP2')}", style="total", fmt=F_PCT2, align="center")
+    s.put(r, 9, f"={x(IV,'IRR_L')}", style="total", fmt=F_PCT1, align="center")
+    s.put(r, 10, "portfolio lev IRR = consolidated cash-flow IRR", style="total", align="left", merge=(r, 13)); r += 2
 
-    # ---- capital & valuation ----
-    s.section(r, L, 13, "CAPITAL, VALUATION  &  COVERED-LAND MATH"); r += 1
-    def kv(label, formula, fmt, col=3, note=""):
+    # ---------------- land & HBU + returns (two columns) ----------------
+    s.section(r, L, 6, "LAND  &  HIGHEST-AND-BEST-USE")
+    s.section(r, 7, 13, "RETURNS  (at income price)"); r += 1
+    def twocol(l1, f1, fmt1, l2, f2, fmt2):
         nonlocal r
-        s.put(r, L, label, style="label", align="left")
-        s.put(r, 3, formula, style="calc", color="008000", fmt=fmt, align="right")
-        if note: s.put(r, 4, note, style="note", align="left", merge=(r, 13))
-        r += 1
-    HB = "Highest & Best Use"
-    kv("① Income-based price (assemblage cash flows)", f"={x(IV,'PX_INCOME')}", F_ACCT_TOP, note="direct cap on consolidated in-place NOI")
-    kv("② Sum of the parts (priced independently)", f"={x(HB,'SUM_PARTS')}", F_ACCT_TOP, note="each component on its own")
-    kv("③ Covered-land / HBU price (assembled)", f"={x(A,'ACQ')}", F_ACCT_TOP, note="sum of parts + assemblage premium")
-    kv("Premium over income value (dirt + optionality)", f"={x(IV,'PREMIUM')}", F_ACCT_TOP, note="③ − ① = the land / Live Local option cost")
-    kv("Office condo FULL BUY-OUT (both owners)", f"={x('Office Condo','BUYOUT_TOTAL')}", F_ACCT_TOP, note="Main St 57.4% + Intl Sunrise 42.6% + premium")
-    kv("Land — fragmented vs. assembled (plottage)", f"={x(HB,'PLOTTAGE')}", F_ACCT_TOP, note="assembled land worth this much more than the parts")
-    kv("Summed control cost (pre-premium)", f"={x(A,'RAW_COST')}", F_ACCT_TOP)
-    kv("Total equity required (all assets, HBU)", f"={x(A,'TOT_EQ')}", F_ACCT_TOP)
-    kv("Total in-place NOI", f"={x(A,'TOT_NOI')}", F_ACCT_TOP, note="covers debt service + taxes during hold")
-    kv("Blended in-place cap", f"={x(A,'BLEND_CAP2')}", F_PCT2, note="covered-land ~3–5% range")
-    kv("Total land assembled (SF)", f"={x(A,'TOT_LANDSF')}", F_NUM)
-    kv("Blended land basis ($/SF)", f"={x(A,'BLEND_LANDPSF')}", F_PSF, note="vs. subject comps $228–255/SF")
-    kv("Total land value", f"={x(A,'TOT_LANDVAL')}", F_ACCT_TOP)
-    kv("Redevelopment residual (Live Local)", f"={x('Land','RESID')}", F_ACCT_TOP, note="NEGATIVE → hold, do not redevelop yet")
-    r += 1
+        s.put(r, L, l1, style="label", align="left", merge=(r, 3))
+        s.put(r, 4, f1, style="calc", color="008000", fmt=fmt1, align="right", merge=(r, 6))
+        s.put(r, 7, l2, style="label", align="left", merge=(r, 9))
+        s.put(r, 10, f2, style="calc", color="008000", fmt=fmt2, align="right", merge=(r, 13)); r += 1
+    twocol("Land — fragmented parcels", f"={x(HB,'LAND_FRAG')}", F_ACCT, "Unlevered / levered IRR", f"={x(IV,'IRR_U')}", F_PCT1)
+    twocol("Land — assembled (plottage)", f"={x(HB,'LAND_ASM')}", F_ACCT, "Levered equity multiple", f"={x(IV,'EML_I')}", F_MULT)
+    twocol("Plottage premium", f"={x(HB,'PLOTTAGE')}", F_ACCT, "Avg cash-on-cash (levered)", f"={x(IV,'COC_AVG_I')}", F_PCT1)
+    twocol("Office condo FULL BUY-OUT", f"={x('Office Condo','BUYOUT_TOTAL')}", F_ACCT, "Year-1 DSCR", f"={x(IV,'DSCR_I')}", F_MULT)
+    twocol("Blended land basis ($/SF)", f"={x(A,'BLEND_LANDPSF')}", F_PSF, "Break-even exit cap", f"={x(IV,'BE_EXITCAP')}", F_PCT2)
+    twocol("Redevelopment residual (Live Local)", f"={x('Land','RESID')}", F_ACCT, "Total senior debt", f"={x(IV,'LOAN')}", F_ACCT)
+    # scenario range row
+    s.put(r, L, "HBU verdict", style="warn", align="left", merge=(r, 3))
+    s.put(r, 4, "HOLD — residual negative", style="warn", align="left", merge=(r, 6))
+    s.put(r, 7, "Lev IRR down/base/up", style="label", align="left", merge=(r, 9))
+    s.put(r, 10, f"={x(SC,'IRRL_DOWN')}", style="calc", color="008000", fmt=F_PCT1, align="center")
+    s.put(r, 11, f"={x(IV,'IRR_L')}", style="calc", color="008000", fmt=F_PCT1, align="center")
+    s.put(r, 12, f"={x(SC,'IRRL_UP')}", style="calc", color="008000", fmt=F_PCT1, align="center", merge=(r, 13)); r += 2
 
-    # ---- returns at income price + scenario range ----
-    s.section(r, L, 13, "RETURNS AT THE INCOME PRICE  &  SCENARIO RANGE"); r += 1
-    SC = "Scenarios"
-    kv("Portfolio unlevered / levered IRR (base)", f"={x(IV,'IRR_L')}", F_PCT1, note="levered; unlevered on Income Valuation tab")
-    s.put(r, L, "Levered IRR — downside / base / upside", style="label", align="left")
-    s.put(r, 3, f"={x(SC,'IRRL_DOWN')}", style="calc", color="008000", fmt=F_PCT1, align="right")
-    s.put(r, 4, f"={x(IV,'IRR_L')}", style="calc", color="008000", fmt=F_PCT1, align="center")
-    s.put(r, 5, f"={x(SC,'IRRL_UP')}", style="calc", color="008000", fmt=F_PCT1, align="left")
-    s.put(r, 6, "recession → plan → tailwind (see Scenarios tab)", style="note", align="left", merge=(r, 13)); r += 1
-    kv("Avg cash-on-cash (base, levered)", f"={x(IV,'COC_AVG_I')}", F_PCT1, note="current yield on equity")
-    kv("Break-even exit cap (return of capital)", f"={x(IV,'BE_EXITCAP')}", F_PCT2, note="downside guardrail; underwritten exit 6.75%")
-    kv("Total equity (income price) / LTC", f"={x(IV,'EQ_I')}", F_ACCT_TOP, note="see Sources & Uses on Income Valuation tab")
-    r += 1
-
-    # ---- recommendation ----
-    s.section(r, L, 13, "RECOMMENDATION"); r += 1
-    rec = [
-        "ACQUIRE & HOLD as a covered land play. Pursue the acquirable parcels (Shahidi, Sunrise Plaza, the two office-condo owners, and",
-        "the Bayview land); structure Publix as a SALE-LEASEBACK — acquire the fee and lease it back during entitlement. The blended in-place income covers the",
-        "carry, individual assets deliver value-add / income returns in their own right, and the assemblage banks ~7+ acres of the Galleria",
-        "hard corner for Live Local density once coastal hard costs and achievable rents make redevelopment pencil. Do not underwrite the",
-        "redevelopment as accretive today — the residual is negative. The return is optionality on the dirt, paid for by the rent.",
-    ]
-    for t in rec:
+    # ---------------- thesis + recommendation ----------------
+    s.section(r, L, 13, "THESIS  &  RECOMMENDATION"); r += 1
+    for t in [
+        "ACQUIRE & HOLD a covered land play on the Galleria hard corner. Buy/value each asset off the rent it produces; the blended in-place income",
+        "covers the carry while we control ~7.2 acres for eventual Live Local density. Structure Publix as a sale-leaseback (rent covers carry, then it",
+        "vacates for redevelopment) and buy out the fractured office condo through Grove Gate (Brad Weiss controls the majority + the board).",
+        "Redevelopment does NOT pencil today (AE flood zone, coastal hard costs → negative residual) — the return is optionality on the dirt, paid for by the rent.",
+    ]:
         s.put(r, L, t, style="calc", align="left", merge=(r, 13)); r += 1
     r += 1
-    s.put(r, L, "Confidence flags", style="note", align="left")
-    s.put(r, 4, "✅ Shahidi & Publix = BCPA-verified · ⚠️ Sunrise Plaza, Office, Land = reported (BCPA blocked in build env — verify at bcpa.net) · 🔶 all rents/caps modeled",
+    s.put(r, L, "Confidence", style="note", align="left", merge=(r, 3))
+    s.put(r, 4, "✅ Shahidi & Publix = BCPA-verified · ⚠️ Sunrise, Office, Land = web-sourced (BCPA/Clerk/Sunbiz egress-blocked — verify at county) · 🔶 all rents/caps/premiums modeled on the Assumptions tab",
           style="note", align="left", merge=(r, 13)); r += 1
 
     s.freeze("C6")
