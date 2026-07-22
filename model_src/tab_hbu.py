@@ -25,8 +25,8 @@ ACQ_HISTORY = [
     ("Shahidi Retail — Shawnick Galleria LLC (Shahidi)", "11/09/2021", 17100000, ("Shahidi Retail", "PRICE"), True, "Special Warranty Deed (flagged disqualified sale)"),
     ("Publix + Starbucks — REAL SUB LLC (Publix)", "03/14/2025", 25000000, ("Publix & Starbucks", "PRICE"), True, "Trustee's Deed · $679/SF bldg"),
     ("Sunrise Plaza — Kar Luen Inc", "Oct 2000", 128000, ("Sunrise Plaza", "PRICE"), False, "stale/nominal — held since; no recent arm's-length"),
-    ("Office — Main St Fund LLC (57.4%)", "09/23/2019", 10000000, ("Office Condo", "BUYOUT1"), False, "96,930 SF + 2 parking lots (Daily Business Review)"),
-    ("Office — Intl Sunrise Partners (42.6%)", "2011", None, ("Office Condo", "BUYOUT2"), False, "condo-conversion sponsor (Bush Development)"),
+    ("Office — Grove Gate bulk (57.4%)", "09/23/2019", 10000000, ("Office Condo", "BUYOUT1"), False, "$103/SF from Intl Sunrise (dissolved 2020); now reselling units $270–381/SF"),
+    ("Office — 42.6% individual owners", "2011→2026", None, None, False, "~40 small owners (Merrimac, Cosmo, Jorgensen, Hublot); un-itemizable without BCPA"),
     ("1040 Bayview — Sunrise & Bayview Partners", "2014 (JV)", None, ("Land", "CONCLUDED"), False, "Procacci; BBX exited 2022; stale 1961 deed $801,933"),
 ]
 # land parcels -> (label, land-SF cell, $/SF cell or None, land-value cell)

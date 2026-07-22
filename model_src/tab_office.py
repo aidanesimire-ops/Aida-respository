@@ -26,13 +26,14 @@ A = dict(
 
 # (owner, SF, original basis, bought, note)  — partial roster; BCPA/Clerk egress-blocked
 OWNERS = [
-    ("Main Street Fund LLC (Grove Gate)", 96930, 10000000, "09/2019", "57.4% + 2 parking lots · ✅ press · NOW RESELLING units individually"),
-    ("International Sunrise Partners LLC", 40000, None, "2011", "Bush Development condo-conversion sponsor · retained balance · SF est."),
-    ("P. Jorgensen Management LLC — Ste 805", 1722, 410000, "11/2019", "Denmark-based US HQ · ✅ press (Berger Commercial)"),
-    ("Hublot of America, Inc. — Ste 402", 2000, None, "—", "Swiss watchmaker boutique · SF est. · ⚠️ reported"),
-    ("Merrimac Ventures (Motwani) — unit(s)", 3000, None, "—", "reported owner · SF est. · ⚠️ reported"),
-    ("Unit 401 owner — Ste 401", 682, 260000, "06/2024", "sold via MLS 6/2024 · ⚠️ reported"),
-    ("Other unit owners (dozens of small units)", 24473, None, "—", "⚠️ balance — needs a BCPA folio pull to itemize each"),
+    ("Main Street Fund LLC — Grove Gate (Brad Weiss)", 94381, 10000000, "09/2019", "57.4% bulk @ $103/SF; RESELLING units $270–381/SF · controls the condo board"),
+    ("P. Jorgensen Mgmt — Ste 805", 1722, 410000, "11/2019", "$238/SF · ✅ Berger Commercial (prior owner Pelican Invest)"),
+    ("CU-11A owner", 1867, 515000, "02/2025", "$276/SF closed · ✅ Elliman MLS A11538174"),
+    ("Unit 401 owner — Ste 401", 682, 260000, "06/2024", "$381/SF closed · ✅ MLS A11438689"),
+    ("Merrimac Ventures — Motwani family", 3000, None, "—", "Dev & Nitin Motwani (co-mgrs) · ✅ owner · SF est."),
+    ("Cosmo Int'l Fragrances — Marc Blaison", 2000, None, "—", "owner-occupant · condo board president · SF est."),
+    ("Hublot of America — Ste 402", 2000, None, "—", "Swiss watchmaker boutique · owner-occ · SF est."),
+    ("Other unit owners (~40 small units)", 63155, None, "—", "⚠️ balance of the 42.6% — needs a BCPA folio pull to itemize"),
 ]
 
 
@@ -56,9 +57,10 @@ def build(s, amap=None):
         ("Lease economics", "Office units leased ≈ $26/SF Modified Gross"),
         ("Sale comp (historical)", "Unit sales ≈ $300/SF (pre-2020; office values since softened)"),
         ("Amenities", "Covered/valet parking, concierge, on-site café, two conference facilities"),
-        ("Ownership", "Fractured condo: Main St Fund (Grove Gate) held 57.4% and is NOW RESELLING units individually; the balance is International Sunrise + a growing number of small owners (Jorgensen, Hublot, Merrimac, individual suites)"),
-        ("Buy-out note", "Assembling the building = buying out EVERY unit owner (modeled individually below; the un-itemizable balance is grouped)"),
-        ("⚠️ BCPA limitation", "bcpa.net and the Broward Clerk are egress-blocked in this build; the complete per-unit folio roster (every unit, owner, price, date) needs a direct BCPA pull to finish"),
+        ("Ownership", "Fractured condo: Main St Fund (Grove Gate) holds ~57.4% and is NOW RESELLING units at $270–381/SF; the 42.6% balance is ~40 individual owners (Merrimac/Motwani, Cosmo/Blaison, Jorgensen, Hublot, single suites). International Sunrise Partners = the 2011 converter/seller, DISSOLVED 2020 — not a current owner"),
+        ("Control / who to approach", "Bradley Weiss (Grove Gate) controls the majority AND the condo board (3 of ~5 seats); gatekeeper is attorney Neale Poller (Ste 200, in the building). Merrimac → Dev & Nitin Motwani; Cosmo → Marc Blaison (board president)"),
+        ("Buy-out note", "Assembling the building = buying out EVERY unit owner at unit-market $/SF (modeled individually below; un-itemizable balance grouped)"),
+        ("⚠️ BCPA limitation", "bcpa.net and the Broward Clerk are egress-blocked here; the complete per-unit folio roster needs a direct BCPA pull. Entity/owner data above is from Sunbiz/press via web search"),
     ]
     for lab, val in facts:
         s.put(r, L, lab, style="calc", align="left")
@@ -243,12 +245,12 @@ def build(s, amap=None):
     ret("COMPVAL", "Sale-comp value (SF × $/SF)", f"={R('GLA')}*{R('SALEPSF')}", F_ACCT_TOP)
     r += 1
 
-    # ---- per-owner lease valuation & full buy-out (partial roster; BCPA/Clerk blocked) ----
-    s.section(r, L, 13, "OWNERS & FULL BUY-OUT  —  every identifiable owner modeled individually  (⚠️ BCPA/Clerk egress-blocked; balance grouped)"); r += 1
-    s.put(r, L, "Condo buyout premium (fractured ownership / holdout)", style="label", align="left")
-    s.put(r, 3, 0.12, style="input", fmt=F_PCT1, align="right", name="BUYOUT_PREM")
-    s.put(r, 4, "🔵 uplift over income value to get owners to sell", style="note", align="left", merge=(r, 13)); r += 1
-    hdr = ["Owner / unit", "SF", "% bldg", "Orig basis", "Bought", "Income value", "Buy-out value", "Note"]
+    # ---- per-owner roster & full buy-out at unit-market $/SF (condos trade above income value) ----
+    s.section(r, L, 13, "OWNERS & FULL BUY-OUT  —  every identifiable owner; buy-out at UNIT-MARKET $/SF  (⚠️ BCPA blocked; balance grouped)"); r += 1
+    s.put(r, L, "Buy-out $/SF (unit market)", style="label", align="left")
+    s.put(r, 3, 225, style="input", fmt=F_PSF, align="right", name="BUYOUT_PSF")
+    s.put(r, 4, "🔵 closed comps: 805 $238 · CU-11A $276 · 401 $381; Grove Gate resale ask ~$270–285 (bulk-discounted here)", style="note", align="left", merge=(r, 13)); r += 1
+    hdr = ["Owner / unit", "SF", "% bldg", "Orig basis", "Bought", "Income value", "Buy-out ($/SF)", "Note"]
     cols = [L, 4, 5, 6, 7, 8, 9, 10]
     spans = {2: 3, 10: 13}
     for h, c in zip(hdr, cols):
@@ -263,7 +265,7 @@ def build(s, amap=None):
         s.put(r, 6, (basis if basis else "—"), style=("verified" if basis else "note"), fmt=(F_ACCT if basis else None), align="right")
         s.put(r, 7, bdate, style=("verified" if basis else "note"), align="center")
         s.put(r, 8, f"={R('NOIPSF')}*{CL(4)}{r}/{R('GICAP')}", style="calc", fmt=F_ACCT, align="right")
-        s.put(r, 9, f"={CL(8)}{r}*(1+{R('BUYOUT_PREM')})", style="calc", fmt=F_ACCT, align="right")
+        s.put(r, 9, f"={CL(4)}{r}*{R('BUYOUT_PSF')}", style="calc", fmt=F_ACCT, align="right")
         if i == 0: s.reg["BUYOUT1"] = f"{CL(9)}{r}"
         if i == 1: s.reg["BUYOUT2"] = f"{CL(9)}{r}"
         s.put(r, 10, note, style="calc", align="left", merge=(r, 13)); r += 1
@@ -276,9 +278,11 @@ def build(s, amap=None):
     s.put(r, 8, f"=SUM({CL(8)}{o_first}:{CL(8)}{o_last})", style="grand", fmt=F_ACCT_TOP, align="right", name="OWN_INCVAL")
     s.put(r, 9, f"=SUM({CL(9)}{o_first}:{CL(9)}{o_last})", style="grand", fmt=F_ACCT_TOP, align="right", name="BUYOUT_TOTAL")
     s.put(r, 10, "cost to control the whole building", style="grand", align="left", merge=(r, 13)); r += 1
-    s.put(r, L, "cross-check — income value (no premium) vs. $300/SF comp", style="note", align="left", merge=(r, 3))
-    s.put(r, 8, f"={R('OWN_INCVAL')}", style="note", fmt=F_ACCT, align="right")
-    s.put(r, 9, f"={R('COMPVAL')}", style="note", fmt=F_ACCT, align="right"); r += 2
+    s.put(r, L, "Income value (cross-check — what rent supports)", style="label", align="left")
+    s.put(r, 3, f"={R('OWN_INCVAL')}", style="calc", fmt=F_ACCT, align="right"); r += 1
+    s.put(r, L, "FRAGMENTATION PREMIUM (buy-out − income value)", style="grand", align="left")
+    s.put(r, 3, f"={R('BUYOUT_TOTAL')}-{R('OWN_INCVAL')}", style="grand", fmt=F_ACCT_TOP, align="right", name="FRAG_PREM")
+    s.put(r, 4, "the office trades higher as fragmented condos than as one income asset — you overpay ~2× income value to re-assemble it", style="warn", align="left", merge=(r, 13)); r += 2
 
     # P&L
     s.section(r, L, 13, "PROFIT & LOSS STATEMENT  —  Year 1 vs. Stabilized (Yr 2)"); r += 1
