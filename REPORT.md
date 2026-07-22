@@ -63,6 +63,45 @@ A derived classification (from the waterfront flag + subdivision name + MLS area
 
 Finger-isle (point-lot) waterfront runs about **2.2×** mainland-inland per foot — the single biggest geographic swing in the market.
 
+## Absorption — how hard it is to sell at each level
+
+The leverage signal: months of supply (active ÷ monthly sold rate) by price band. The higher you go, the more oversupplied — and the more buyer leverage.
+
+| Price band | Sold (2y) | Active | Months of supply | Market |
+|--|--|--|--|--|
+| <$1M | 3098 | 1193 | **9.2** | Balanced |
+| $1M–$2M | 837 | 320 | **9.2** | Balanced |
+| $2M–$3M | 274 | 136 | **11.9** | Balanced |
+| $3M–$5M | 193 | 143 | **17.8** | Buyer's market |
+| $5M–$10M | 94 | 87 | **22.2** | Buyer's market |
+| $10M+ | 31 | 56 | **43.4** | Deep buyer's market |
+
+**The top is drowning in inventory** — $10M+ carries multiple years of supply, a deep buyer's market, while $1–3M is balanced. This is *why* the luxury bands are overpriced. The **Absorption** tab and dashboard break this down by band within each neighborhood.
+
+## Seller / listing-prospect engine
+
+The listing side of the business: **472 owners ≥$1M who tried and couldn't** (expired/withdrawn/cancelled) plus **144 overpriced actives**. Each carries what they asked, what the comps support, and the suggested list that moves it:
+
+- **1700 Brickell Dr (Colee Hammock)** — asked $30,000,000, **54% over**; suggested list **$19,544,000**. Listed 53% over supported value — comparable Colee Hammock homes sell near $686/sqft. Suggested list $19,544,000.
+- **725 Poinciana Drive (Idlewyld)** — asked $21,990,000, **49% over**; suggested list **$14,778,000**. Listed 49% over supported value — comparable Idlewyld homes sell near $813/sqft. Suggested list $14,778,000.
+- **2880 NE 28th St (Coral Ridge Galt)** — asked $17,900,000, **55% over**; suggested list **$11,566,000**. Listed 55% over supported value — comparable Coral Ridge Galt homes sell near $701/sqft. Suggested list $11,566,000.
+- **2549 Mercedes Dr (Harbor Beach)** — asked $15,000,000, **38% over**; suggested list **$10,865,000**. Listed 38% over supported value — comparable Harbor Beach homes sell near $921/sqft. Suggested list $10,865,000.
+- **409 Isle Of Capri Dr (Las Olas)** — asked $14,999,999, **53% over**; suggested list **$9,822,000**. Listed 53% over supported value — comparable Las Olas homes sell near $627/sqft. Suggested list $9,822,000.
+
+See the **Seller Prospects** and **Overpriced Actives** tabs.
+
+## Teardown / land plays
+
+**51 single-family listings** (4 waterfront) where the implied land value is the bulk of the ask — redevelopment candidates. Top of the list:
+
+- **1708 NW 15th St (Lauderdale Manors)** — $155,000, land ~$146,000 (94% of ask) on a 8,622 sqft lot.
+- **2711 Mayan Dr (Harbor Beach)** — $1,699,000, land ~$1,466,000 (86% of ask) on a 17,553 sqft lot.
+- **1908 NE 26th Street (Coral Point)** — $560,000, land ~$426,000 (76% of ask) on a 8,616 sqft lot.
+- **205 NE 16th Ter (Victoria Park)** — $950,000, land ~$726,000 (76% of ask) on a 7,536 sqft lot.
+- **805 SE 10th Street (Rio Vista)** — $1,500,000, land ~$1,118,000 (75% of ask) on a 9,375 sqft lot.
+
+See the **Teardown / Land Plays** tab. Confirm zoning & buildable area.
+
 ## Underpriced opportunities — the mispricing, and why
 
 **287 live listings** are asking below comp-supported value — a total **$72M gap** to what the comps support. Ranked by dollar opportunity, with the reason pulled from the data:

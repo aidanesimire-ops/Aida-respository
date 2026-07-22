@@ -26,6 +26,12 @@ with open(os.path.join(PROC, "street_bundle.json")) as f:
     STREET = json.load(f)
 with open(os.path.join(PROC, "reprice_bundle.json")) as f:
     REPRICE = json.load(f)
+with open(os.path.join(PROC, "absorption_bundle.json")) as f:
+    ABSORB = json.load(f)
+with open(os.path.join(PROC, "seller_bundle.json")) as f:
+    _SL = json.load(f)
+SELLER = {"meta": _SL["meta"], "failed": _SL["failed"][:150],
+          "overpriced_active": _SL["overpriced_active"][:150]}
 with open(os.path.join(PROC, "underpriced_bundle.json")) as f:
     _UP = json.load(f)
 UNDER = {"meta": _UP["meta"], "by_band": _UP["by_band"],
@@ -214,6 +220,14 @@ footer.fl-foot a{color:var(--accent)}
   </div>
 
   <div class="card">
+    <h2>Absorption — months of supply by band &amp; neighborhood</h2>
+    <p class="cap">How hard it is to sell at each level. &lt;6 mo = seller's market · 6–12 balanced · 12–24 buyer's · &gt;24 deep buyer's. Search a neighborhood for its band-level absorption.</p>
+    <div class="geostrip" id="absBands"></div>
+    <div class="controls" style="margin:14px 0 10px"><input class="search" id="absSearch" type="search" placeholder="Search neighborhood (e.g. Rio Vista, Coral Ridge)…" aria-label="Search absorption"></div>
+    <div class="tbl-scroll"><table class="fl" id="absTbl"><thead></thead><tbody></tbody></table></div>
+  </div>
+
+  <div class="card">
     <h2>Underpriced opportunities — where the market is mispriced, and why <span style="font-weight:400;color:var(--muted);font-size:13px" id="upSummary"></span></h2>
     <p class="cap">Live listings asking below comp-supported value, ranked by dollar opportunity. Each reason is generated from the data — verify condition on site.</p>
     <div class="controls" style="margin-bottom:12px">
@@ -227,6 +241,19 @@ footer.fl-foot a{color:var(--accent)}
       <input class="search" id="upSearch" type="search" placeholder="Search neighborhood or address…" aria-label="Search opportunities">
     </div>
     <div id="upList"></div>
+  </div>
+
+  <div class="card">
+    <h2>Seller prospects — owners to call for a listing <span style="font-weight:400;color:var(--muted);font-size:13px" id="slSummary"></span></h2>
+    <p class="cap">≥$1M owners who tried and couldn't (expired/withdrawn/cancelled), plus overpriced actives. What they asked, what comps support, and the number that moves it.</p>
+    <div class="controls" style="margin-bottom:10px">
+      <div class="seg" id="slSeg" role="group" aria-label="Prospect type">
+        <button data-t="failed" aria-pressed="true">Failed listings</button>
+        <button data-t="overpriced_active" aria-pressed="false">Overpriced actives</button>
+      </div>
+      <input class="search" id="slSearch" type="search" placeholder="Search neighborhood or address…" aria-label="Search prospects">
+    </div>
+    <div class="tbl-scroll"><table class="fl" id="slTbl"><thead></thead><tbody></tbody></table></div>
   </div>
 
   <div class="grid2">
@@ -338,6 +365,8 @@ footer.fl-foot a{color:var(--accent)}
 <script id="reprice-data" type="application/json">__REPRICE_JSON__</script>
 <script id="high-data" type="application/json">__HIGH_JSON__</script>
 <script id="under-data" type="application/json">__UNDER_JSON__</script>
+<script id="absorb-data" type="application/json">__ABSORB_JSON__</script>
+<script id="seller-data" type="application/json">__SELLER_JSON__</script>
 <script>
 (function(){
 "use strict";
@@ -348,7 +377,11 @@ const ST=JSON.parse(document.getElementById("street-data").textContent);
 const REP=JSON.parse(document.getElementById("reprice-data").textContent);
 const HT=JSON.parse(document.getElementById("high-data").textContent);
 const UP=JSON.parse(document.getElementById("under-data").textContent);
+const ABS=JSON.parse(document.getElementById("absorb-data").textContent);
+const SL=JSON.parse(document.getElementById("seller-data").textContent);
 const M=MLS.meta, NB=MLS.neighborhoods;
+function mktColor(m){return {"Seller's market":"var(--neg)","Balanced":"var(--ink-2)",
+  "Buyer's market":"var(--good)","Deep buyer's market":"var(--good)"}[m]||"var(--ink-2)";}
 const $=s=>document.querySelector(s), tt=$("#tt");
 const usd=v=>v==null?"—":"$"+Math.round(v).toLocaleString();
 const pctS=v=>v==null?"—":(v>=0?"+":"")+v.toFixed(0)+"%";
@@ -633,6 +666,57 @@ function renderUW(){
 }
 $("#streetSearch").addEventListener("input",e=>{state.streetQ=e.target.value;renderStreets();renderUW();});
 
+// ---------- absorption ----------
+let absQ="";
+function absBands(){
+  $("#absBands").innerHTML=(ABS.by_band||[]).map(b=>
+    `<div class="geot"><div class="g-t">${b.band}</div>`
+    +`<div class="g-v tnum">${b.months_supply}<span style="font-size:12px;color:var(--muted)"> mo</span></div>`
+    +`<div class="g-n" style="color:${mktColor(b.market)}">${b.market}</div>`
+    +`<div class="g-n">${b.sold_2y} sold / ${b.active} live</div></div>`).join("");
+}
+const ABCOLS=[
+  {k:"neighborhood",t:"Neighborhood",l:1,f:r=>`<span class="nbh">${r.neighborhood}</span>`},
+  {k:"band",t:"Band",l:1,f:r=>`<span class="basis">${r.band}</span>`},
+  {k:"sold_2y",t:"Sold (2y)",f:r=>`<span class="tnum">${r.sold_2y}</span>`},
+  {k:"active",t:"Active",f:r=>`<span class="tnum">${r.active}</span>`},
+  {k:"months_supply",t:"Months supply",f:r=>`<span class="tnum">${r.months_supply==null?"—":r.months_supply}</span>`},
+  {k:"market",t:"Market",l:1,f:r=>`<span class="tnum" style="color:${mktColor(r.market)};font-weight:600">${r.market||"—"}</span>`},
+];
+function absTable(){
+  const q=absQ.toLowerCase();
+  let rows=ABS.by_band_neighborhood.filter(r=>!q||r.neighborhood.toLowerCase().includes(q));
+  if(!q)rows=rows.slice(0,60);
+  $("#absTbl thead").innerHTML="<tr>"+ABCOLS.map(c=>`<th class="${c.l?'l':''}">${c.t}</th>`).join("")+"</tr>";
+  $("#absTbl tbody").innerHTML=rows.map(r=>"<tr>"+ABCOLS.map(c=>`<td class="${c.l?'l':''}">${c.f(r)}</td>`).join("")+"</tr>").join("")
+    ||`<tr><td class="l" colspan="6" style="color:var(--muted)">No absorption data for that search.</td></tr>`;
+}
+$("#absSearch").addEventListener("input",e=>{absQ=e.target.value;absTable();});
+
+// ---------- seller prospects ----------
+$("#slSummary").textContent=`· ${SL.meta.n_failed} failed-listing owners, ${SL.meta.n_overpriced_active} overpriced actives`;
+let slType="failed", slQ="";
+const SLCOLS=[
+  {k:"address",t:"Address",l:1,f:r=>`<span class="nbh">${r.address}</span>`},
+  {k:"neighborhood",t:"Neighborhood",l:1,f:r=>`<span class="geo">${r.neighborhood}</span>`},
+  {k:"status",t:"Status",l:1,f:r=>`<span class="basis">${r.status}</span>`},
+  {k:"asked",t:"Asked",f:r=>`<span class="tnum">${usd(r.asked)}</span>`},
+  {k:"over_pct",t:"% over",f:r=>`<span class="tnum neg">+${r.over_pct.toFixed(0)}%</span>`},
+  {k:"suggested_list",t:"Suggested list",f:r=>`<span class="tnum" style="color:var(--good);font-weight:600">${usd(r.suggested_list)}</span>`},
+  {k:"reduce_by",t:"Reduce by",f:r=>`<span class="tnum">${usd(r.reduce_by)}</span>`},
+];
+function slTable(){
+  const q=slQ.toLowerCase();
+  let rows=(SL[slType]||[]).filter(r=>!q||(r.neighborhood||"").toLowerCase().includes(q)||(r.address||"").toLowerCase().includes(q));
+  rows=rows.slice(0,80);
+  $("#slTbl thead").innerHTML="<tr>"+SLCOLS.map(c=>`<th class="${c.l?'l':''}">${c.t}</th>`).join("")+"</tr>";
+  $("#slTbl tbody").innerHTML=rows.map(r=>"<tr>"+SLCOLS.map(c=>`<td class="${c.l?'l':''}">${c.f(r)}</td>`).join("")+"</tr>").join("")
+    ||`<tr><td class="l" colspan="7" style="color:var(--muted)">No prospects match.</td></tr>`;
+}
+$("#slSeg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+  slType=b.dataset.t;[...$("#slSeg").children].forEach(x=>x.setAttribute("aria-pressed",x===b));slTable();});
+$("#slSearch").addEventListener("input",e=>{slQ=e.target.value;slTable();});
+
 // ---------- underpriced opportunities ----------
 $("#upSummary").textContent=`· ${UP.meta.n} listings · $${Math.round(UP.meta.total_opportunity/1e6)}M total gap to supported value`;
 let upBand="", upQ="";
@@ -741,7 +825,7 @@ $("#repSearch").addEventListener("input",e=>{state.repQ=e.target.value;renderRep
 
 function renderAll(){kpis();drivers();geostrip();lineChart();flags();barChart();renderTable();
   renderTime();movers();renderStreets();renderUW();renderRepFlags();renderRepNbhd();renderRepInv();
-  htBands();htTable();renderUnder();
+  htBands();htTable();absBands();absTable();slTable();renderUnder();
   renderProfile(state.sel || (filtered()[0]||NB[0]||{}).neighborhood);}
 $("#basisSeg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
   state.basis=b.dataset.b;[...$("#basisSeg").children].forEach(x=>x.setAttribute("aria-pressed",x===b));
@@ -766,7 +850,9 @@ def build():
              .replace("__STREET_JSON__", json.dumps(STREET, separators=(",", ":")))
              .replace("__REPRICE_JSON__", json.dumps(REPRICE, separators=(",", ":")))
              .replace("__HIGH_JSON__", json.dumps(HIGH, separators=(",", ":")))
-             .replace("__UNDER_JSON__", json.dumps(UNDER, separators=(",", ":"))))
+             .replace("__UNDER_JSON__", json.dumps(UNDER, separators=(",", ":")))
+             .replace("__ABSORB_JSON__", json.dumps(ABSORB, separators=(",", ":")))
+             .replace("__SELLER_JSON__", json.dumps(SELLER, separators=(",", ":"))))
     standalone = (
         "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"
         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"

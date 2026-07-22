@@ -61,6 +61,10 @@ python analysis/mls_normalize.py    # MLS per-home  -> data/processed/mls_*.csv,
 python analysis/street_underwrite.py# street-by-street value + deal underwriting -> street_bundle.json
 python analysis/high_ticket.py      # >=$1M underwriting + band x neighborhood -> high_ticket_bundle.json
 python analysis/underpriced.py      # underpriced opportunities + reasons -> underpriced_bundle.json
+python analysis/absorption.py       # months-of-supply by band x neighborhood -> absorption_bundle.json
+python analysis/seller_prospects.py # failed + overpriced owners to list -> seller_bundle.json
+python analysis/teardown.py         # land-play screen -> teardown_bundle.json
+python analysis/comps.py            # comps behind each valuation -> comps_bundle.json
 python analysis/reprice.py          # reprice live inventory vs should-be -> reprice_bundle.json
 python analysis/time_analysis.py    # 2020->now shifts -> data/processed/time_bundle.json
 python analysis/build_charts.py     # -> outputs/*.png

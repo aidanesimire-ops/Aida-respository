@@ -37,6 +37,9 @@ def main():
     rb = load("reprice_bundle.json")
     hb = load("high_ticket_bundle.json")
     ub = load("underpriced_bundle.json")
+    absb = load("absorption_bundle.json")
+    slb = load("seller_bundle.json")
+    tdb = load("teardown_bundle.json")
     m = mls["meta"]
     pr = m["premiums"]
     nb = pd.DataFrame(mls["neighborhoods"])
@@ -129,6 +132,40 @@ def main():
             w(f"\nFinger-isle (point-lot) waterfront runs about "
               f"**{fi['median_ppsf']/ml['median_ppsf']:.1f}×** mainland-inland per foot — the "
               "single biggest geographic swing in the market.\n")
+
+    # ---------------- Absorption ----------------
+    w("## Absorption — how hard it is to sell at each level\n")
+    w("The leverage signal: months of supply (active ÷ monthly sold rate) by price band. "
+      "The higher you go, the more oversupplied — and the more buyer leverage.\n")
+    w("| Price band | Sold (2y) | Active | Months of supply | Market |\n|--|--|--|--|--|")
+    for b in absb["by_band"]:
+        w(f"| {b['band']} | {b['sold_2y']} | {b['active']} | **{b['months_supply']}** | {b['market']} |")
+    w("\n**The top is drowning in inventory** — $10M+ carries multiple years of supply, a deep "
+      "buyer's market, while $1–3M is balanced. This is *why* the luxury bands are overpriced. "
+      "The **Absorption** tab and dashboard break this down by band within each neighborhood.\n")
+
+    # ---------------- Seller prospects ----------------
+    sm = slb["meta"]
+    w("## Seller / listing-prospect engine\n")
+    w(f"The listing side of the business: **{sm['n_failed']} owners ≥$1M who tried and couldn't** "
+      f"(expired/withdrawn/cancelled) plus **{sm['n_overpriced_active']} overpriced actives**. Each "
+      "carries what they asked, what the comps support, and the suggested list that moves it:\n")
+    for r in slb["failed"][:5]:
+        w(f"- **{r['address']} ({r['neighborhood']})** — asked {usd(r['asked'])}, "
+          f"**{r['over_pct']:.0f}% over**; suggested list **{usd(r['suggested_list'])}**. {r['pitch']}")
+    w("\nSee the **Seller Prospects** and **Overpriced Actives** tabs.\n")
+
+    # ---------------- Teardown ----------------
+    tm = tdb["meta"]
+    if tm["n"]:
+        w("## Teardown / land plays\n")
+        w(f"**{tm['n']} single-family listings** ({tm['n_waterfront']} waterfront) where the "
+          "implied land value is the bulk of the ask — redevelopment candidates. Top of the list:\n")
+        for r in tdb["candidates"][:5]:
+            w(f"- **{r['address']} ({r['neighborhood']})** — {usd(r['list_price'])}, "
+              f"land ~{usd(r['land_value'])} ({r['land_share_pct']:.0f}% of ask) on a "
+              f"{r['lot_sqft']:,} sqft lot.")
+        w("\nSee the **Teardown / Land Plays** tab. Confirm zoning & buildable area.\n")
 
     # ---------------- Underpriced opportunities ----------------
     um = ub["meta"]

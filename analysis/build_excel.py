@@ -59,6 +59,11 @@ def _underpriced():
         return json.load(f)
 
 
+def _jload(name):
+    with open(os.path.join(PROC, name)) as f:
+        return json.load(f)
+
+
 def _wavg(rows, val, wt):
     num = sum((r[val] or 0) * (r[wt] or 0) for r in rows if r.get(val) is not None)
     den = sum((r[wt] or 0) for r in rows if r.get(val) is not None)
@@ -723,6 +728,96 @@ HTBAND_COLS = [
 ]
 
 
+SELLER_COLS = [
+    ("status", "Status", None, 11),
+    ("band", "Band", None, 11),
+    ("address", "Address", None, 24),
+    ("neighborhood", "Neighborhood", None, 20),
+    ("ptype", "Type", None, 12),
+    ("sqft", "SqFt", "#,##0", 8),
+    ("asked", "Asked", "$#,##0", 14),
+    ("ask_ppsf", "Ask $/sqft", "$#,##0", 11),
+    ("supported_ppsf", "Supported $/sqft", "$#,##0", 15),
+    ("over_pct", "% over", '+0"%"', 8),
+    ("suggested_list", "SUGGESTED LIST", "$#,##0", 16),
+    ("reduce_by", "Reduce by", "$#,##0", 14),
+    ("pitch", "The pitch", None, 70),
+]
+TEARDOWN_COLS = [
+    ("band", "Band", None, 11),
+    ("address", "Address", None, 24),
+    ("neighborhood", "Neighborhood", None, 20),
+    ("geo_type", "Geography", None, 22),
+    ("list_price", "List price", "$#,##0", 14),
+    ("sqft", "Living sqft", "#,##0", 11),
+    ("lot_sqft", "Lot sqft", "#,##0", 10),
+    ("year_built", "Year built", "0", 10),
+    ("land_value", "Land value", "$#,##0", 14),
+    ("land_share_pct", "Land % of ask", '0"%"', 12),
+    ("note", "Note", None, 48),
+]
+COMPS_COLS = [
+    ("target", "Listing", None, 24),
+    ("target_neighborhood", "Neighborhood", None, 18),
+    ("target_list", "List price", "$#,##0", 14),
+    ("basis", "Comp basis", None, 18),
+    ("comp_address", "Comparable sale", None, 24),
+    ("comp_sold_price", "Sold for", "$#,##0", 13),
+    ("comp_ppsf", "$/sqft", "$#,##0", 10),
+    ("comp_sqft", "SqFt", "#,##0", 8),
+]
+
+
+def absorption_sheet(wb, fmts, ab):
+    ws = wb.add_worksheet("Absorption")
+    title = wb.add_format({"bold": True, "font_size": 15, "font_color": DARK})
+    sub = wb.add_format({"font_size": 10, "italic": True, "font_color": "#898781"})
+    hdr = wb.add_format({"bold": True, "font_color": "white", "bg_color": BLUE, "border": 1,
+                         "border_color": "white", "align": "center"})
+    txt = wb.add_format({"border": 1, "border_color": "#e1e0d9"})
+    num = wb.add_format({"num_format": "#,##0", "border": 1, "border_color": "#e1e0d9", "align": "center"})
+    mos = wb.add_format({"num_format": "0.0", "border": 1, "border_color": "#e1e0d9", "align": "center"})
+    ws.write(0, 0, "Absorption — months of supply by price band", title)
+    ws.write(1, 0, "How hard it is to sell at each level. <6 = seller's market, 6–12 balanced, "
+             "12–24 buyer's, >24 deep buyer's. active ÷ (sold-per-month over ~2 yrs).", sub)
+    heads = ["Price band", "Sold (2y)", "Active", "Months supply", "Market"]
+    for c, (h, wd) in enumerate(zip(heads, [12, 10, 8, 14, 20])):
+        ws.write(3, c, h, hdr)
+        ws.set_column(c, c, wd)
+    r = 4
+    for row in ab["by_band"]:
+        ws.write(r, 0, row["band"], txt)
+        ws.write_number(r, 1, row["sold_2y"], num)
+        ws.write_number(r, 2, row["active"], num)
+        ws.write_number(r, 3, row["months_supply"], mos)
+        ws.write(r, 4, row["market"] or "—", txt)
+        r += 1
+    ws.conditional_format(4, 3, r - 1, 3, {"type": "3_color_scale", "min_color": "#f6b6b6",
+        "mid_color": "#f0efec", "max_color": "#8fd48f"})
+    # band x neighborhood block
+    r += 2
+    ws.write(r, 0, "By band within each neighborhood", title)
+    r += 1
+    bnhead = ["Neighborhood", "Band", "Sold (2y)", "Active", "Months supply", "Market"]
+    for c, h in enumerate(bnhead):
+        ws.write(r, c, h, hdr)
+    ws.set_column(0, 0, 24)
+    start = r + 1
+    for row in ab["by_band_neighborhood"]:
+        r += 1
+        ws.write(r, 0, row["neighborhood"], txt)
+        ws.write(r, 1, row["band"], txt)
+        ws.write_number(r, 2, row["sold_2y"], num)
+        ws.write_number(r, 3, row["active"], num)
+        ws.write_number(r, 4, row["months_supply"] if row["months_supply"] is not None else 0, mos)
+        ws.write(r, 5, row["market"] or "—", txt)
+    ws.conditional_format(start, 4, r, 4, {"type": "3_color_scale", "min_color": "#f6b6b6",
+        "mid_color": "#f0efec", "max_color": "#8fd48f"})
+    ws.freeze_panes(start, 0)
+    ws.autofilter(start - 1, 0, r, 5)
+    ws.hide_gridlines(2)
+
+
 def underpriced_sheet(wb, ub):
     ws = wb.add_worksheet("Underpriced + Why")
     m = ub["meta"]
@@ -810,6 +905,59 @@ def high_ticket_sheets(wb, fmts, hb):
     ws3.hide_gridlines(2)
 
 
+def seller_sheet(wb, fmts, sb):
+    ws = wb.add_worksheet("Seller Prospects")
+    df = pd.DataFrame(sb["failed"])
+    m = sb["meta"]
+    if len(df):
+        write_table(wb, ws, df, SELLER_COLS, fmts,
+                    "Listing-prospect engine — owners who tried and couldn't (≥$1M)",
+                    f"{m['n_failed']} failed-listing owners + {m['n_overpriced_active']} overpriced "
+                    "actives (separate sheet/CSV). Each shows what they asked, what comps support, "
+                    "and the suggested list that moves it — your listing-appointment pitch.")
+        ws.conditional_format(4, 9, 3 + len(df), 9, {"type": "3_color_scale",
+            "min_color": "#f0efec", "mid_color": "#f6b6b6", "max_color": "#d5473f"})
+    ws.hide_gridlines(2)
+    # overpriced actives on their own sheet
+    dfa = pd.DataFrame(sb["overpriced_active"])
+    ws2 = wb.add_worksheet("Overpriced Actives")
+    if len(dfa):
+        write_table(wb, ws2, dfa, SELLER_COLS, fmts,
+                    "Currently overpriced active listings (≥$1M) — tomorrow's expireds",
+                    "Live listings well above comp-supported value — approach for a price "
+                    "reduction / relist. Suggested list = comp-supported value.")
+    ws2.hide_gridlines(2)
+
+
+def teardown_sheet(wb, fmts, tb):
+    ws = wb.add_worksheet("Teardown Land Plays")
+    df = pd.DataFrame(tb["candidates"])
+    if len(df):
+        write_table(wb, ws, df, TEARDOWN_COLS, fmts,
+                    "Teardown / land plays — where the lot is most of the value",
+                    f"{tb['meta']['n']} single-family listings ({tb['meta']['n_waterfront']} "
+                    "waterfront) where implied land value is the bulk of the ask. Redevelopment "
+                    "candidates — confirm zoning & buildable area.")
+        ws.conditional_format(4, 9, 3 + len(df), 9, {"type": "3_color_scale",
+            "min_color": "#f0efec", "mid_color": "#f6c99a", "max_color": "#eb6834"})
+    else:
+        ws.write(0, 0, "No land-play candidates in the current set.", fmts["title"])
+    ws.hide_gridlines(2)
+
+
+def comps_sheet(wb, fmts):
+    path = os.path.join(PROC, "comps_flat.csv")
+    if not os.path.exists(path):
+        return
+    df = pd.read_csv(path)
+    ws = wb.add_worksheet("Comps Drill-Down")
+    write_table(wb, ws, df, COMPS_COLS, fmts,
+                "Comps behind every live valuation (≥$1M)",
+                "The actual comparable sales behind each listing's value — filter by Listing to "
+                "defend a number in the room. Prefers same-street sales, then neighborhood + band.")
+    ws.hide_gridlines(2)
+
+
 def main():
     b = _bundle()
     meta = b["meta"]
@@ -845,6 +993,17 @@ def main():
         pass
     try:
         underpriced_sheet(wb, _underpriced())
+    except FileNotFoundError:
+        pass
+    for fn, arg in [(absorption_sheet, "absorption_bundle.json"),
+                    (seller_sheet, "seller_bundle.json"),
+                    (teardown_sheet, "teardown_bundle.json")]:
+        try:
+            fn(wb, fmts, _jload(arg))
+        except FileNotFoundError:
+            pass
+    try:
+        comps_sheet(wb, fmts)
     except FileNotFoundError:
         pass
 

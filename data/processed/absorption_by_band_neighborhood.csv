@@ -1,0 +1,447 @@
+neighborhood,band,sold_2y,active,months_supply,market
+Almar Estates,<$1M,9,6,16.0,Buyer's market
+Altessa Wilton Manors,<$1M,0,8,999.0,Deep buyer's market
+Amadale,<$1M,9,0,0.0,Seller's market
+Aquablu,$1M–$2M,3,1,8.0,Balanced
+Aquablu,$2M–$3M,3,2,16.0,Buyer's market
+Artist Colony,<$1M,0,3,999.0,Deep buyer's market
+Atlantic Hotel,<$1M,3,12,96.0,Deep buyer's market
+Atlantic Towers,<$1M,6,1,4.0,Seller's market
+Atlantic Towers Co Op,<$1M,1,8,192.0,Deep buyer's market
+Auberge Beach Residences,$2M–$3M,4,0,0.0,Seller's market
+Auberge Beach Residences,$3M–$5M,5,1,4.8,Seller's market
+Avenue Lofts,<$1M,7,3,10.3,Balanced
+Babco Heights,<$1M,5,3,14.4,Buyer's market
+Babco Manors,<$1M,3,1,8.0,Balanced
+Babco Park,<$1M,8,4,12.0,Buyer's market
+Bal Harbour,$1M–$2M,3,1,8.0,Balanced
+Bamboo Flats,<$1M,4,0,0.0,Seller's market
+Bayshore Embassy,<$1M,1,3,72.0,Deep buyer's market
+Bayshore Towers,<$1M,10,4,9.6,Balanced
+Beach Way Heights,$3M–$5M,1,3,72.0,Deep buyer's market
+Beach Way Heights,$5M–$10M,4,3,18.0,Buyer's market
+Belle Isles,<$1M,3,0,0.0,Seller's market
+Berkley South,<$1M,21,8,9.1,Balanced
+Beta Grove River Oaks,<$1M,3,0,0.0,Seller's market
+Boulevard Estates Amen,<$1M,2,5,60.0,Deep buyer's market
+Breakwater Towers,<$1M,11,3,6.5,Balanced
+Breakwater Towers Co Op,<$1M,3,7,56.0,Deep buyer's market
+Breakwater Towers Co Op Breakwater Towers,<$1M,4,5,30.0,Deep buyer's market
+Britannia,<$1M,5,0,0.0,Seller's market
+Burton Point,<$1M,5,3,14.4,Buyer's market
+Camelot Shores,<$1M,9,0,0.0,Seller's market
+Capistrano Townhomes,<$1M,4,0,0.0,Seller's market
+Carlton Tower,<$1M,7,2,6.9,Balanced
+Carver Park,<$1M,7,3,10.3,Balanced
+Casa Murano,$3M–$5M,3,0,0.0,Seller's market
+Cascade Holly Heights,<$1M,4,1,6.0,Balanced
+Chateau Mar,<$1M,5,0,0.0,Seller's market
+Chateau Park,<$1M,4,0,0.0,Seller's market
+Citrus Isles,$1M–$2M,5,0,0.0,Seller's market
+City View Townhomes,<$1M,6,1,4.0,Seller's market
+Cliff Lake Villas,<$1M,3,3,24.0,Deep buyer's market
+Cliff Lake Villas Co Op,<$1M,0,3,999.0,Deep buyer's market
+Club,<$1M,4,0,0.0,Seller's market
+Club Resort Residence,<$1M,22,3,3.3,Seller's market
+Club Resort Residences,<$1M,0,14,999.0,Deep buyer's market
+Colee Hammock,<$1M,5,1,4.8,Seller's market
+Colee Hammock,$1M–$2M,13,4,7.4,Balanced
+Colee Hammock,$2M–$3M,7,3,10.3,Balanced
+Coral Cove,<$1M,5,1,4.8,Seller's market
+Coral Cove Assoc Co Op,<$1M,3,0,0.0,Seller's market
+Coral Estates,<$1M,11,0,0.0,Seller's market
+Coral Gardens,<$1M,11,1,2.2,Seller's market
+Coral Gardens,$1M–$2M,4,0,0.0,Seller's market
+Coral Isles,$3M–$5M,7,0,0.0,Seller's market
+Coral Isles,$5M–$10M,5,4,19.2,Buyer's market
+Coral Isles,$10M+,1,3,72.0,Deep buyer's market
+Coral Point,<$1M,8,1,3.0,Seller's market
+Coral Point,$1M–$2M,6,3,12.0,Buyer's market
+Coral Ridge,<$1M,5,1,4.8,Seller's market
+Coral Ridge,$1M–$2M,31,2,1.5,Seller's market
+Coral Ridge,$2M–$3M,8,3,9.0,Balanced
+Coral Ridge,$3M–$5M,18,4,5.3,Seller's market
+Coral Ridge,$5M–$10M,10,7,16.8,Buyer's market
+Coral Ridge,$10M+,1,3,72.0,Deep buyer's market
+Coral Ridge Galt,<$1M,5,2,9.6,Balanced
+Coral Ridge Galt,$1M–$2M,51,7,3.3,Seller's market
+Coral Ridge Galt,$2M–$3M,20,2,2.4,Seller's market
+Coral Ridge Galt,$3M–$5M,10,7,16.8,Buyer's market
+Coral Ridge Galt,$5M–$10M,2,5,60.0,Deep buyer's market
+Coral Shores,<$1M,12,4,8.0,Balanced
+Coral Shores,$1M–$2M,7,4,13.7,Buyer's market
+Corinthian,<$1M,8,3,9.0,Balanced
+Corinthian On Intraco Corinthian,<$1M,2,3,36.0,Deep buyer's market
+Corinthian On Intracoa,<$1M,0,4,999.0,Deep buyer's market
+Croissant Park,<$1M,28,6,5.1,Seller's market
+Croissant Park,$1M–$2M,6,1,4.0,Seller's market
+Cromwell East,<$1M,5,3,14.4,Buyer's market
+Cromwell West,<$1M,4,4,24.0,Deep buyer's market
+Cypress Arms,<$1M,3,0,0.0,Seller's market
+Cypress Cove,<$1M,4,1,6.0,Balanced
+Del Lago Isles,$10M+,0,3,999.0,Deep buyer's market
+Devonshire,<$1M,6,2,8.0,Balanced
+Dorsey Park First,<$1M,2,3,36.0,Deep buyer's market
+Dorsey Park Second,<$1M,2,4,48.0,Deep buyer's market
+Dorsey Park Th,<$1M,5,2,9.6,Balanced
+Dorsey Park Third,<$1M,3,3,24.0,Deep buyer's market
+Drake Tower,<$1M,13,5,9.2,Balanced
+East Point Towers,<$1M,25,13,12.5,Buyer's market
+Edge On,<$1M,4,0,0.0,Seller's market
+Edge On Th,<$1M,3,2,16.0,Buyer's market
+Edgewater Estates,$1M–$2M,12,1,2.0,Seller's market
+Edgewater Townhomes,<$1M,5,1,4.8,Seller's market
+Ellington,<$1M,4,0,0.0,Seller's market
+Embassy Tower,<$1M,7,1,3.4,Seller's market
+Embassy Tower Ii,<$1M,5,1,4.8,Seller's market
+Embassy Tower Ii Inc Cond Embassy Tower Ii,<$1M,3,0,0.0,Seller's market
+Embassy Tower Inc Embassy Tower,<$1M,3,0,0.0,Seller's market
+Esplanade,<$1M,7,0,0.0,Seller's market
+Essex Tower,<$1M,16,7,10.5,Balanced
+Everglade Land Sales Co,<$1M,3,2,16.0,Buyer's market
+Everglades Club,<$1M,5,1,4.8,Seller's market
+Everglades House,<$1M,6,3,12.0,Buyer's market
+First To Tuskegee Par,<$1M,7,2,6.9,Balanced
+Flb Condominium Resid Ocean Resort,<$1M,3,0,0.0,Seller's market
+Fort Lauderdale Residence Fort Lauderdale,<$1M,4,1,6.0,Balanced
+Fort Lauderdale Residence Fort Lauderdale Residen,<$1M,0,3,999.0,Deep buyer's market
+Fort Lauderdale Residence Residences,<$1M,5,1,4.8,Seller's market
+Foundry Lofts,<$1M,6,1,4.0,Seller's market
+Fountains On Ocean,<$1M,5,1,4.8,Seller's market
+Four Seasons,<$1M,4,8,48.0,Deep buyer's market
+Four Seasons,$3M–$5M,6,9,36.0,Deep buyer's market
+Four Seasons,$5M–$10M,5,2,9.6,Balanced
+Fusion Gardens,<$1M,6,0,0.0,Seller's market
+Galleria Lofts,<$1M,5,1,4.8,Seller's market
+Gallery One,<$1M,29,21,17.4,Buyer's market
+Gardenia Park,<$1M,6,3,12.0,Buyer's market
+Gateway Arms,<$1M,5,1,4.8,Seller's market
+Gill Isles,<$1M,8,0,0.0,Seller's market
+Gill Isles,$1M–$2M,6,4,16.0,Buyer's market
+Gould Isles,$5M–$10M,3,2,16.0,Buyer's market
+Grove,<$1M,4,2,12.0,Buyer's market
+Grove River Oaks,<$1M,6,0,0.0,Seller's market
+Grove Wilton Manor,<$1M,6,1,4.0,Seller's market
+Halls,<$1M,3,0,0.0,Seller's market
+Halls,$1M–$2M,7,0,0.0,Seller's market
+Harbor Beach,$1M–$2M,9,3,8.0,Balanced
+Harbor Beach,$2M–$3M,4,1,6.0,Balanced
+Harbor Beach,$3M–$5M,11,2,4.4,Seller's market
+Harbor Beach,$5M–$10M,4,2,12.0,Buyer's market
+Harbor Beach,$10M+,2,4,48.0,Deep buyer's market
+Harbor Haven,<$1M,4,3,18.0,Buyer's market
+Harbordale,<$1M,6,2,8.0,Balanced
+Harbour Heights,$1M–$2M,9,3,8.0,Balanced
+Harbour Heights,$5M–$10M,0,3,999.0,Deep buyer's market
+Hawthorne Bay,<$1M,6,0,0.0,Seller's market
+Hemingway Landings,$1M–$2M,1,3,72.0,Deep buyer's market
+Hendricks Heights,<$1M,4,1,6.0,Balanced
+Hibiscus Park,<$1M,3,0,0.0,Seller's market
+Hidden Harbor,<$1M,9,0,0.0,Seller's market
+Hidden Harbor Condominium,<$1M,4,0,0.0,Seller's market
+Highland Estates,<$1M,15,4,6.4,Balanced
+Hillbrook,<$1M,7,4,13.7,Buyer's market
+Hillbrook,$1M–$2M,5,0,0.0,Seller's market
+Hillmont Middle River Vis,<$1M,3,3,24.0,Deep buyer's market
+Holiday Isles Yacht Club,<$1M,3,0,0.0,Seller's market
+Holmberg Mc Kees,$1M–$2M,7,1,3.4,Seller's market
+Holmberg Mc Kees,$3M–$5M,1,3,72.0,Deep buyer's market
+Horizon House,<$1M,7,5,17.1,Buyer's market
+Hundred North,$1M–$2M,3,0,0.0,Seller's market
+Idlewyld,$1M–$2M,6,0,0.0,Seller's market
+Idlewyld,$2M–$3M,3,1,8.0,Balanced
+Idlewyld,$3M–$5M,4,2,12.0,Buyer's market
+Isla Bahia,$10M+,2,3,36.0,Deep buyer's market
+Isles City Lofts,<$1M,5,2,9.6,Balanced
+Isles View,<$1M,3,1,8.0,Balanced
+Jackson Tower,$1M–$2M,4,0,0.0,Seller's market
+Jackson Tower Las Olas,$1M–$2M,5,0,0.0,Seller's market
+Jackson Tower Las Olas Con,<$1M,0,3,999.0,Deep buyer's market
+Jackson Tower Las Olas Con,$1M–$2M,1,3,72.0,Deep buyer's market
+Jenada Isles,<$1M,5,3,14.4,Buyer's market
+Jenada Isles,$1M–$2M,1,3,72.0,Deep buyer's market
+Jenada Villas,<$1M,21,7,8.0,Balanced
+La Cascade,$1M–$2M,5,2,9.6,Balanced
+La Rive,$1M–$2M,3,1,8.0,Balanced
+Lacancha,<$1M,3,0,0.0,Seller's market
+Lago Mar Place,<$1M,4,1,6.0,Balanced
+Lake Ridge,<$1M,12,4,8.0,Balanced
+Lake Ridge,$1M–$2M,10,3,7.2,Balanced
+Lakeway,<$1M,4,1,6.0,Balanced
+Las Brisas,<$1M,3,0,0.0,Seller's market
+Las Olas,<$1M,66,33,12.0,Buyer's market
+Las Olas,$1M–$2M,66,25,9.1,Balanced
+Las Olas,$2M–$3M,25,12,11.5,Balanced
+Las Olas,$3M–$5M,5,7,33.6,Deep buyer's market
+Las Olas,$10M+,0,3,999.0,Deep buyer's market
+Las Olas Isles,$3M–$5M,4,2,12.0,Buyer's market
+Las Olas Isles,$5M–$10M,3,1,8.0,Balanced
+Lauderdale,<$1M,42,8,4.6,Seller's market
+Lauderdale,$1M–$2M,4,4,24.0,Deep buyer's market
+Lauderdale Beach,$1M–$2M,4,1,6.0,Balanced
+Lauderdale Beach,$2M–$3M,3,2,16.0,Buyer's market
+Lauderdale Beach,$3M–$5M,3,3,24.0,Deep buyer's market
+Lauderdale Beach Ext,$1M–$2M,6,4,16.0,Buyer's market
+Lauderdale Beach Ext,$2M–$3M,3,0,0.0,Seller's market
+Lauderdale Gardens,<$1M,3,2,16.0,Buyer's market
+Lauderdale Harbors,<$1M,5,0,0.0,Seller's market
+Lauderdale Harbors,$1M–$2M,8,3,9.0,Balanced
+Lauderdale Harbors,$2M–$3M,9,0,0.0,Seller's market
+Lauderdale Harbors,$5M–$10M,3,2,16.0,Buyer's market
+Lauderdale Manor,<$1M,10,0,0.0,Seller's market
+Lauderdale Manors,<$1M,102,23,5.4,Seller's market
+Lauderdale Park,<$1M,18,5,6.7,Balanced
+Lauderdale Park,$1M–$2M,3,3,24.0,Deep buyer's market
+Lauderdale Shores Reamen,$3M–$5M,3,0,0.0,Seller's market
+Lauderdale Tennis Club,<$1M,8,0,0.0,Seller's market
+Lauderdale Tower,<$1M,12,7,14.0,Buyer's market
+Lauderdale Villas,<$1M,20,6,7.2,Balanced
+Laurel Terrace,<$1M,3,0,0.0,Seller's market
+Le Cercle,<$1M,3,0,0.0,Seller's market
+Leisure Beach,<$1M,5,12,57.6,Deep buyer's market
+Leisure Sands,<$1M,3,4,32.0,Deep buyer's market
+Lincoln Park First,<$1M,4,2,12.0,Buyer's market
+Lincoln Park Sixth,<$1M,8,0,0.0,Seller's market
+Lumiere,$3M–$5M,0,5,999.0,Deep buyer's market
+Manor Grove,<$1M,10,1,2.4,Seller's market
+Manor Grove Townhomes,<$1M,4,0,0.0,Seller's market
+Manor Grove Village,<$1M,7,2,6.9,Balanced
+Manor Grove Village Four,<$1M,17,4,5.6,Seller's market
+Manor Grove Village Iv,<$1M,3,0,0.0,Seller's market
+Manor Grove Village One,<$1M,5,2,9.6,Balanced
+Manor Grove Village One In,<$1M,0,6,999.0,Deep buyer's market
+Manor Grove Village Three,<$1M,3,3,24.0,Deep buyer's market
+Manor Grove Village Two,<$1M,12,1,2.0,Seller's market
+Manor Grove Village Two Co,<$1M,1,4,96.0,Deep buyer's market
+March Estates,<$1M,5,1,4.8,Seller's market
+March Estates Amen,<$1M,4,2,12.0,Buyer's market
+Marina Del Mar,<$1M,5,4,19.2,Buyer's market
+Marina Landings,$1M–$2M,25,5,4.8,Seller's market
+Marina Oaks,<$1M,14,7,12.0,Buyer's market
+Marine Tower,<$1M,12,11,22.0,Buyer's market
+Mark,<$1M,5,0,0.0,Seller's market
+Marvilla Condominium,<$1M,4,0,0.0,Seller's market
+Maya Marca,<$1M,5,2,9.6,Balanced
+Maya Marca Condominium,<$1M,3,0,0.0,Seller's market
+Maya Marca Condominium Ap,<$1M,3,0,0.0,Seller's market
+Mayfair Arms,<$1M,4,0,0.0,Seller's market
+Meadowbrook,<$1M,5,1,4.8,Seller's market
+Michelle Ii,<$1M,0,3,999.0,Deep buyer's market
+Mickels Nd To Wilton,<$1M,4,0,0.0,Seller's market
+Middle River Estates,<$1M,19,0,0.0,Seller's market
+Middle River Estates,$1M–$2M,3,1,8.0,Balanced
+Middle River Homes,<$1M,6,1,4.0,Seller's market
+Middle River Manor,<$1M,6,1,4.0,Seller's market
+Middle River Manor,$1M–$2M,11,5,10.9,Balanced
+Middle River Terrace,<$1M,15,2,3.2,Seller's market
+Middle River Villas,<$1M,8,1,3.0,Seller's market
+Nautical Towers,<$1M,5,1,4.8,Seller's market
+Nola Lofts,<$1M,4,0,0.0,Seller's market
+North Bal Harbour,$1M–$2M,3,0,0.0,Seller's market
+North Lauderdale,<$1M,1,4,96.0,Deep buyer's market
+North Ridge,<$1M,6,0,0.0,Seller's market
+North Ridge,$1M–$2M,3,0,0.0,Seller's market
+Nu River Landing,<$1M,9,0,0.0,Seller's market
+Nuriver Landing,<$1M,34,9,6.4,Balanced
+Nurmi Isles,$2M–$3M,4,0,0.0,Seller's market
+Nurmi Isles,$3M–$5M,4,9,54.0,Deep buyer's market
+Nurmi Isles,$5M–$10M,6,4,16.0,Buyer's market
+Nurmi Isles,$10M+,3,2,16.0,Buyer's market
+Oasis Nurmi Isles,<$1M,3,0,0.0,Seller's market
+Ocean Resort Residences,<$1M,9,1,2.7,Seller's market
+Oceanage,<$1M,5,1,4.8,Seller's market
+Oceanage,$1M–$2M,12,4,8.0,Balanced
+Ombelle Fort Lauderdale,<$1M,0,11,999.0,Deep buyer's market
+Ombelle Fort Lauderdale,$1M–$2M,0,3,999.0,Deep buyer's market
+Orleans Chateau Villas,<$1M,3,0,0.0,Seller's market
+Osceola Park,<$1M,3,5,40.0,Deep buyer's market
+Palm Isles Villas,<$1M,4,0,0.0,Seller's market
+Palma Vista,<$1M,3,0,0.0,Seller's market
+Palms,$1M–$2M,5,1,4.8,Seller's market
+Palms On Venice,$1M–$2M,4,0,0.0,Seller's market
+Paramount,$1M–$2M,3,0,0.0,Seller's market
+Paramount,$2M–$3M,5,2,9.6,Balanced
+Petite,<$1M,5,1,4.8,Seller's market
+Petite,$1M–$2M,3,3,24.0,Deep buyer's market
+Pine Crest Village,<$1M,10,5,12.0,Buyer's market
+Pine Crest Village Ii,<$1M,0,4,999.0,Deep buyer's market
+Pinehurst,<$1M,3,1,8.0,Balanced
+Place Des Arts,$1M–$2M,1,3,72.0,Deep buyer's market
+Placido Place,<$1M,3,2,16.0,Buyer's market
+Plaza,<$1M,2,3,36.0,Deep buyer's market
+Poinsettia Heights,<$1M,27,2,1.8,Seller's market
+Poinsettia Heights,$1M–$2M,10,1,2.4,Seller's market
+Poinsettia Heights,$2M–$3M,3,4,32.0,Deep buyer's market
+Poinsettia Landings,<$1M,3,1,8.0,Balanced
+Point Americas,<$1M,18,6,8.0,Balanced
+Point Americas,$1M–$2M,9,11,29.3,Deep buyer's market
+Point Americas Ii,$1M–$2M,4,0,0.0,Seller's market
+Point Americas Phase Ii,$1M–$2M,1,3,72.0,Deep buyer's market
+Pointe Middle River,<$1M,4,2,12.0,Buyer's market
+Port,<$1M,2,4,48.0,Deep buyer's market
+Port Residences,<$1M,5,0,0.0,Seller's market
+Portofino,$1M–$2M,5,0,0.0,Seller's market
+Portside Yacht Club,$1M–$2M,4,3,18.0,Buyer's market
+Progresso,<$1M,215,86,9.6,Balanced
+Progresso,$1M–$2M,24,16,16.0,Buyer's market
+Progresso,$2M–$3M,3,7,56.0,Deep buyer's market
+Regency House,<$1M,3,0,0.0,Seller's market
+Reserve Edgewood,<$1M,2,4,48.0,Deep buyer's market
+Residence,<$1M,3,1,8.0,Balanced
+Residences,<$1M,5,0,0.0,Seller's market
+Rickel,<$1M,4,0,0.0,Seller's market
+Rio Nuevo,<$1M,11,12,26.2,Deep buyer's market
+Rio South Townhomes,$1M–$2M,0,3,999.0,Deep buyer's market
+Rio Vista,<$1M,9,1,2.7,Seller's market
+Rio Vista,$1M–$2M,28,5,4.3,Seller's market
+Rio Vista,$2M–$3M,28,5,4.3,Seller's market
+Rio Vista,$3M–$5M,17,13,18.4,Buyer's market
+Rio Vista,$5M–$10M,6,4,16.0,Buyer's market
+Rio Vista,$10M+,3,3,24.0,Deep buyer's market
+Ritz Carlton,$2M–$3M,3,0,0.0,Seller's market
+Riva Residences,$2M–$3M,3,2,16.0,Buyer's market
+River Bend,<$1M,4,1,6.0,Balanced
+River Manor,<$1M,27,3,2.7,Seller's market
+River Manors,<$1M,4,0,0.0,Seller's market
+River Oaks,<$1M,12,3,6.0,Balanced
+River Oaks,$1M–$2M,6,4,16.0,Buyer's market
+River Reach,<$1M,54,36,16.0,Buyer's market
+River Shores,<$1M,15,9,14.4,Buyer's market
+River Terrace,<$1M,5,1,4.8,Seller's market
+River Vista,<$1M,3,0,0.0,Seller's market
+Riverbend,<$1M,3,0,0.0,Seller's market
+Rivercrest,<$1M,3,0,0.0,Seller's market
+Rivers Bend,<$1M,0,3,999.0,Deep buyer's market
+Riverside,<$1M,11,2,4.4,Seller's market
+Riverside Amen,<$1M,3,2,16.0,Buyer's market
+Riverside Estates Nd,<$1M,7,0,0.0,Seller's market
+Riverside Park,<$1M,9,3,8.0,Balanced
+Riverview South,<$1M,3,1,8.0,Balanced
+Riviera,$3M–$5M,3,0,0.0,Seller's market
+Riviera,$5M–$10M,3,1,8.0,Balanced
+Robertson Park,<$1M,3,1,8.0,Balanced
+Runaway Bay,<$1M,9,3,8.0,Balanced
+Sailboat Bend,<$1M,7,1,3.4,Seller's market
+Sapphire,$1M–$2M,3,0,0.0,Seller's market
+Sapphire Fort Lauderdale,<$1M,3,2,16.0,Buyer's market
+Sapphire Fort Lauderdale,$1M–$2M,5,2,9.6,Balanced
+Sea Tower,<$1M,4,2,12.0,Buyer's market
+Seasons,<$1M,5,2,9.6,Balanced
+Seawanna,<$1M,4,1,6.0,Balanced
+Selene,$2M–$3M,2,3,36.0,Deep buyer's market
+Selene Oceanfront,$1M–$2M,1,3,72.0,Deep buyer's market
+Selene Oceanfront,$2M–$3M,1,3,72.0,Deep buyer's market
+Selene Oceanfront Residen,$1M–$2M,7,0,0.0,Seller's market
+Selene Oceanfront Residen,$3M–$5M,2,4,48.0,Deep buyer's market
+Seminole Forest,<$1M,4,0,0.0,Seller's market
+Seven Isles,$3M–$5M,4,0,0.0,Seller's market
+Seven Isles,$5M–$10M,4,0,0.0,Seller's market
+Sevilla Courts,<$1M,3,3,24.0,Deep buyer's market
+Shady Banks,<$1M,16,3,4.5,Seller's market
+Shady Banks On New River,<$1M,3,2,16.0,Buyer's market
+Sherwood Forest,<$1M,4,2,12.0,Buyer's market
+Shore Club,<$1M,9,6,16.0,Buyer's market
+Sky Harbour East,<$1M,9,10,26.7,Deep buyer's market
+Sol Fort Lauderdale,<$1M,3,0,0.0,Seller's market
+Sole,<$1M,5,1,4.8,Seller's market
+Sole Fort Lauderdale,<$1M,15,3,4.8,Seller's market
+Sole Fort Lauderdale Co,<$1M,2,6,72.0,Deep buyer's market
+Sole Fort Lauderdale Sole,<$1M,3,0,0.0,Seller's market
+South Middle River,<$1M,4,1,6.0,Balanced
+South New River Isles,<$1M,11,0,0.0,Seller's market
+South New River Isles,$1M–$2M,14,6,10.3,Balanced
+South New River Isles,$2M–$3M,1,4,96.0,Deep buyer's market
+Southdale,<$1M,3,0,0.0,Seller's market
+Spanish Springs Townhomes,<$1M,3,0,0.0,Seller's market
+St Regis Residences,$5M–$10M,0,3,999.0,Deep buyer's market
+Stilwell Isles,$3M–$5M,3,0,0.0,Seller's market
+Stilwell Isles,$5M–$10M,4,3,18.0,Buyer's market
+Strada,<$1M,11,8,17.5,Buyer's market
+Stranahans,$1M–$2M,7,1,3.4,Seller's market
+Stranahans,$2M–$3M,1,3,72.0,Deep buyer's market
+Sun Set Manors First,<$1M,6,1,4.0,Seller's market
+Sunrise,$10M+,0,3,999.0,Deep buyer's market
+Sunrise Bay Club Co Op,<$1M,5,1,4.8,Seller's market
+Sunrise East,<$1M,8,3,9.0,Balanced
+Sunrise Tower,<$1M,15,2,3.2,Seller's market
+Sunset Manors,<$1M,13,0,0.0,Seller's market
+Sunset Manors,$1M–$2M,6,0,0.0,Seller's market
+Sunset Manors Amen,<$1M,5,1,4.8,Seller's market
+Symphony,<$1M,13,1,1.8,Seller's market
+Symphony,$1M–$2M,3,0,0.0,Seller's market
+Symphony Condominium,<$1M,3,0,0.0,Seller's market
+Symphony North,<$1M,5,0,0.0,Seller's market
+Symphony North Symphony,<$1M,3,2,16.0,Buyer's market
+Symphony South,<$1M,6,0,0.0,Seller's market
+Tarpon River,<$1M,20,2,2.4,Seller's market
+Tarpon River,$1M–$2M,6,5,20.0,Buyer's market
+Tennis Club,<$1M,6,0,0.0,Seller's market
+Tennis Club Ii,<$1M,4,1,6.0,Balanced
+Tennis Club Tilden,<$1M,3,0,0.0,Seller's market
+Three Rivers East,<$1M,6,0,0.0,Seller's market
+Tides,<$1M,4,0,0.0,Seller's market
+Tides Bridgeside,<$1M,9,2,5.3,Seller's market
+Tides Bridgeside Squar,<$1M,5,0,0.0,Seller's market
+Tides Bridgeside Square,<$1M,0,5,999.0,Deep buyer's market
+Tiffany House,<$1M,1,4,96.0,Deep buyer's market
+Tiffany House,$1M–$2M,3,6,48.0,Deep buyer's market
+Townhouse Isles,<$1M,3,0,0.0,Seller's market
+Tradewinds By Sea,<$1M,3,1,8.0,Balanced
+Tradewinds By Sea Cond,<$1M,0,3,999.0,Deep buyer's market
+Tropical Gardens,<$1M,4,0,0.0,Seller's market
+Tropical Manors,<$1M,14,7,12.0,Buyer's market
+Tropical Palms,<$1M,4,0,0.0,Seller's market
+Valentines,<$1M,4,0,0.0,Seller's market
+Vantage View,<$1M,14,10,17.1,Buyer's market
+Vela Vista,$1M–$2M,3,0,0.0,Seller's market
+Venetian,<$1M,3,3,24.0,Deep buyer's market
+Venetian Condominium,<$1M,12,1,2.0,Seller's market
+Venezia Las Olas,<$1M,7,0,0.0,Seller's market
+Venice,$3M–$5M,5,2,9.6,Balanced
+Venice,$5M–$10M,5,2,9.6,Balanced
+Venice Isles Tower,<$1M,6,3,12.0,Buyer's market
+Verena Park,<$1M,1,4,96.0,Deep buyer's market
+Viceroy Fort Lauderdale,<$1M,0,4,999.0,Deep buyer's market
+Viceroy Fort Lauderdale,$1M–$2M,0,5,999.0,Deep buyer's market
+Victoria Courts,<$1M,4,0,0.0,Seller's market
+Victoria Courts,$1M–$2M,3,0,0.0,Seller's market
+Victoria Highlands,<$1M,4,0,0.0,Seller's market
+Victoria Highlands,$1M–$2M,3,0,0.0,Seller's market
+Victoria Mews,<$1M,3,0,0.0,Seller's market
+Victoria Park,<$1M,43,18,10.0,Balanced
+Victoria Park,$1M–$2M,64,13,4.9,Seller's market
+Victoria Park,$2M–$3M,29,4,3.3,Seller's market
+Victoria Park,$3M–$5M,10,9,21.6,Buyer's market
+Victorian,<$1M,3,1,8.0,Balanced
+Villa Medici,<$1M,12,2,4.0,Seller's market
+Villa Tuscany,<$1M,6,0,0.0,Seller's market
+Village East,<$1M,26,11,10.2,Balanced
+Village Harbor Beach,<$1M,5,7,33.6,Deep buyer's market
+Village Harbor Beach Co,<$1M,0,4,999.0,Deep buyer's market
+Village Sailboat,<$1M,3,0,0.0,Seller's market
+Village Sailboat Bend,<$1M,23,5,5.2,Seller's market
+Village Victoria Park,<$1M,3,0,0.0,Seller's market
+Village Wilton Manors,<$1M,6,2,8.0,Balanced
+Vinik,<$1M,6,5,20.0,Buyer's market
+Vista Las Olas,$1M–$2M,3,0,0.0,Seller's market
+Vue,<$1M,4,9,54.0,Deep buyer's market
+Watergarden,<$1M,41,13,7.6,Balanced
+Watergarden,$1M–$2M,5,4,19.2,Buyer's market
+Waterside,$1M–$2M,0,4,999.0,Deep buyer's market
+Waverly,<$1M,3,1,8.0,Balanced
+Waverly Las Olas,<$1M,22,7,7.6,Balanced
+Waverly Place,<$1M,7,4,13.7,Buyer's market
+White Egret,<$1M,14,1,1.7,Seller's market
+Wilton Estates,<$1M,7,5,17.1,Buyer's market
+Wilton Manors,<$1M,12,2,4.0,Seller's market
+Wilton Manors,$1M–$2M,7,1,3.4,Seller's market
+Wilton Manors,$2M–$3M,4,1,6.0,Balanced
+Wilton Place,<$1M,3,1,8.0,Balanced
+Wilton Shores,<$1M,3,0,0.0,Seller's market
+Wilton Shores East,<$1M,3,1,8.0,Balanced
+Wilton Station,<$1M,48,5,2.5,Seller's market
+Wilton Village,<$1M,11,5,10.9,Balanced
+Wisteria Court,<$1M,4,1,6.0,Balanced
+Woods,<$1M,3,1,8.0,Balanced
+Yellowstone Park,<$1M,6,0,0.0,Seller's market
+Yellowstone Park Amen Pla,<$1M,7,2,6.9,Balanced

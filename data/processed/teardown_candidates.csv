@@ -1,0 +1,52 @@
+band,address,neighborhood,geo_type,waterfront,list_price,sqft,lot_sqft,year_built,land_value,land_share_pct,land_ppsf,note
+<$1M,1708 NW 15th St,Lauderdale Manors,Mainland inland,False,155000,1248,8622,1952,146000,94.0,17.0,Land alone is ~94% of the ask; 1952 structure.
+$1M–$2M,2711 Mayan Dr,Harbor Beach,Barrier island / beach,False,1699000,1846,17553,1962,1466000,86.0,84.0,Land alone is ~86% of the ask; 1962 structure.
+<$1M,1908 NE 26th Street,Coral Point,Mainland inland,False,560000,1382,8616,1954,426000,76.0,49.0,Land alone is ~76% of the ask; 1954 structure.
+<$1M,205 NE 16th Ter,Victoria Park,Mainland inland,False,950000,2191,7536,1968,726000,76.0,96.0,Land alone is ~76% of the ask; 1968 structure.
+$1M–$2M,805 SE 10th Street,Rio Vista,Mainland inland,False,1500000,2408,9375,1979,1118000,75.0,119.0,Land alone is ~75% of the ask; 1979 structure.
+<$1M,815 SE 7th Street,Rio Vista,Mainland inland,False,990000,1317,6150,1934,734000,74.0,119.0,Land alone is ~74% of the ask; 1934 structure.
+<$1M,1140 NW 4th Ave,Progresso,Mainland inland,False,465000,1056,12159,1931,330000,71.0,27.0,Land alone is ~71% of the ask; 1931 structure.
+<$1M,1001 NW 13th Ct,Lauderdale Manors,Mainland inland,False,232000,1318,9687,1955,164000,71.0,17.0,Land alone is ~71% of the ask; 1955 structure.
+$1M–$2M,1508 NE 6th Street,Las Olas,Mainland inland,False,1199000,1609,6534,1960,816000,68.0,125.0,Land alone is ~68% of the ask; 1960 structure.
+<$1M,713 NE 17th Road,Victoria Park,Mainland inland,False,740000,943,4814,1926,464000,63.0,96.0,Land alone is ~63% of the ask; 1926 structure.
+<$1M,1742 NE 7th Street,Victoria Park,Mainland inland,False,935000,1667,6147,1950,592000,63.0,96.0,Land alone is ~63% of the ask; 1950 structure.
+$1M–$2M,1321 CORDOVA Road,Lauderdale Harbors,Mainland inland,False,1285000,1726,7500,1951,793000,62.0,106.0,Land alone is ~62% of the ask; 1951 structure.
+$1M–$2M,1635 Seabreeze Boulevard,Harbor Beach,Barrier island / beach,False,1895000,1584,13639,1953,1139000,60.0,84.0,Land alone is ~60% of the ask; 1953 structure.
+<$1M,1241 NW 6th Ave,Progresso,Mainland inland,False,380000,1015,8445,1952,229000,60.0,27.0,Land alone is ~60% of the ask; 1952 structure.
+$1M–$2M,1413 NE 4th Court,Las Olas,Mainland inland,False,1295000,1894,5966,1938,745000,58.0,125.0,Land alone is ~58% of the ask; 1938 structure.
+<$1M,2024 NE 26th Drive,Coral Gardens,Mainland inland,False,530000,1310,6994,1953,307000,58.0,44.0,Land alone is ~58% of the ask; 1953 structure.
+$1M–$2M,1817 SE 25 Avenue,Harbour Heights,Mainland inland,False,1275000,2529,10625,1955,722000,57.0,68.0,Land alone is ~57% of the ask; 1955 structure.
+$1M–$2M,1900 Bayview Drive,Coral Ridge,Mainland inland,False,1300000,1711,9862,1952,746000,57.0,76.0,Land alone is ~57% of the ask; 1952 structure.
+$1M–$2M,1627 Seabreeze Boulevard,Harbor Beach,Barrier island / beach,False,1999999,2540,13636,1953,1139000,57.0,84.0,Land alone is ~57% of the ask; 1953 structure.
+<$1M,1131 NW 18th Avenue,Lauderdale Manors,Mainland inland,False,370000,1112,12383,1954,209000,57.0,17.0,Land alone is ~57% of the ask; 1954 structure.
+$2M–$3M,325 Bontona Ave,Venice,Finger-isle waterfront,True,2990000,3673,9488,1957,1653000,55.0,174.0,Land alone is ~55% of the ask; 1957 structure.
+$2M–$3M,3025 Center Avenue,Lauderdale Beach,Barrier island / beach,False,2249999,2315,9003,1978,1237000,55.0,137.0,Land alone is ~55% of the ask; 1978 structure.
+<$1M,1708 NW 8th Avenue,Progresso,Mainland inland,False,379900,925,7771,1954,211000,55.0,27.0,Land alone is ~55% of the ask; 1954 structure.
+$1M–$2M,1109 SE 11th Court,Rio Vista,Mainland inland,False,1950000,2668,8750,1950,1044000,54.0,119.0,Land alone is ~54% of the ask; 1950 structure.
+$1M–$2M,1617 NE 3rd Ct,Victoria Park,Mainland inland,False,1119000,1628,6232,1931,600000,54.0,96.0,Land alone is ~54% of the ask; 1931 structure.
+<$1M,1142 NW 2nd Ave,Progresso,Mainland inland,False,521980,1102,10124,1958,274000,53.0,27.0,Land alone is ~53% of the ask; 1958 structure.
+<$1M,1124 NW 19th Street,Lauderdale Villas,Mainland inland,False,299900,1252,9767,1953,160000,53.0,16.0,Land alone is ~53% of the ask; 1953 structure.
+$2M–$3M,1001 SE 10th Street,Rio Vista,Mainland inland,False,2295000,2518,10000,1941,1193000,52.0,119.0,Land alone is ~52% of the ask; 1941 structure.
+<$1M,2732 NW 9th Terrace,Jenada Villas,Mainland inland,False,515000,1547,9264,1960,269000,52.0,29.0,Land alone is ~52% of the ask; 1960 structure.
+<$1M,901 NE 16th Pl,Lauderdale Park,Mainland inland,False,600000,992,8246,1952,304000,51.0,37.0,Land alone is ~51% of the ask; 1952 structure.
+<$1M,1115 NW 7th Ave,Progresso,Mainland inland,False,449900,1180,8434,1952,229000,51.0,27.0,Land alone is ~51% of the ask; 1952 structure.
+$3M–$5M,449 Bontona Avenue,Venice,Finger-isle waterfront,True,3100000,2440,8855,1975,1543000,50.0,174.0,Land alone is ~50% of the ask; 1975 structure.
+$1M–$2M,636 NE 17th Ter,Victoria Park,Mainland inland,False,1150000,1219,5980,1951,576000,50.0,96.0,Land alone is ~50% of the ask; 1951 structure.
+<$1M,1220 NW 7th Terrace,Progresso,Mainland inland,False,364000,1392,6752,1951,183000,50.0,27.0,Land alone is ~50% of the ask; 1951 structure.
+<$1M,2417 NW 7th Avenue,Hillbrook,Mainland inland,False,649000,1763,11251,1959,325000,50.0,29.0,Land alone is ~50% of the ask; 1959 structure.
+<$1M,516 NE 28th Dr,Tropical Manors,Mainland inland,False,620000,1238,7005,1955,308000,50.0,44.0,Land alone is ~50% of the ask; 1955 structure.
+<$1M,1420 NW 5th Avenue,Progresso,Mainland inland,False,565000,1615,10132,1950,275000,49.0,27.0,Land alone is ~49% of the ask; 1950 structure.
+<$1M,2217 NW 4th Avenue,Hillbrook,Mainland inland,False,589000,1365,10000,1958,289000,49.0,29.0,Land alone is ~49% of the ask; 1958 structure.
+$1M–$2M,1318 SE 12TH Way,Lauderdale Harbors,Intracoastal / canal waterfront,True,1495000,1457,7000,1952,740000,49.0,106.0,Land alone is ~49% of the ask; 1952 structure.
+$1M–$2M,648 NE 17th Avenue,Victoria Park,Mainland inland,False,1380000,1888,6972,1941,671000,49.0,96.0,Land alone is ~49% of the ask; 1941 structure.
+<$1M,1732 NE 15TH Avenue,Progresso,Mainland inland,False,550000,1080,9764,1951,265000,48.0,27.0,Land alone is ~48% of the ask; 1951 structure.
+$2M–$3M,3319 NE 18TH Street,Las Olas,Mainland inland,False,2400000,2208,9164,1960,1145000,48.0,125.0,Land alone is ~48% of the ask; 1960 structure.
+<$1M,1406 NW 11th Street,Lauderdale Manors,Mainland inland,False,299000,894,8571,1953,145000,48.0,17.0,Land alone is ~48% of the ask; 1953 structure.
+<$1M,2456 Middle River Drive,Coral Ridge Galt,Barrier island / beach,False,999000,1478,8864,1954,472000,47.0,53.0,Land alone is ~47% of the ask; 1954 structure.
+$2M–$3M,359 Poinciana Drive,Idlewyld,Mainland inland,False,2250000,2344,8625,1978,1047000,47.0,121.0,Land alone is ~47% of the ask; 1978 structure.
+<$1M,1015 SW 20th Street,River Oaks,Mainland inland,False,699000,1550,7123,1951,329000,47.0,46.0,Land alone is ~47% of the ask; 1951 structure.
+<$1M,2924 NW 8th Avenue,Jenada Villas,Mainland inland,False,695000,2465,11154,1955,323000,47.0,29.0,Land alone is ~47% of the ask; 1955 structure.
+$3M–$5M,405 Bontona Ave,Venice,Finger-isle waterfront,True,3595000,3342,9487,1984,1653000,46.0,174.0,Land alone is ~46% of the ask; 1984 structure.
+<$1M,1317 NW 7th Terrace,Progresso,Mainland inland,False,399990,955,6756,1953,183000,46.0,27.0,Land alone is ~46% of the ask; 1953 structure.
+<$1M,1408 NW 9th Ave,Progresso,Mainland inland,False,405000,1331,6748,1954,183000,45.0,27.0,Land alone is ~45% of the ask; 1954 structure.
+<$1M,1020 SW 18th Court,River Oaks,Mainland inland,False,699000,1566,6873,1952,318000,45.0,46.0,Land alone is ~45% of the ask; 1952 structure.
