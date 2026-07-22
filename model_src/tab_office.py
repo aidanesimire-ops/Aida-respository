@@ -24,11 +24,15 @@ A = dict(
     sale_comp_psf=300.00,
 )
 
+# (owner, SF, original basis, bought, note)  — partial roster; BCPA/Clerk egress-blocked
 OWNERS = [
-    ("Main Street Fund LLC", "Grove Gate affiliate", 96930, 0.574, 10000000,
-     "Bought 57.4% + 2 parking lots for $10.0M (Sept 2019) — dominant owner / lessor"),
-    ("International Sunrise Partners LLC", "Bush Development entity", 71877, 0.426, None,
-     "Prior bulk owner (2011 condo-conversion sponsor); retains the balance of units"),
+    ("Main Street Fund LLC (Grove Gate)", 96930, 10000000, "09/2019", "57.4% + 2 parking lots · ✅ press · NOW RESELLING units individually"),
+    ("International Sunrise Partners LLC", 40000, None, "2011", "Bush Development condo-conversion sponsor · retained balance · SF est."),
+    ("P. Jorgensen Management LLC — Ste 805", 1722, 410000, "11/2019", "Denmark-based US HQ · ✅ press (Berger Commercial)"),
+    ("Hublot of America, Inc. — Ste 402", 2000, None, "—", "Swiss watchmaker boutique · SF est. · ⚠️ reported"),
+    ("Merrimac Ventures (Motwani) — unit(s)", 3000, None, "—", "reported owner · SF est. · ⚠️ reported"),
+    ("Unit 401 owner — Ste 401", 682, 260000, "06/2024", "sold via MLS 6/2024 · ⚠️ reported"),
+    ("Other unit owners (dozens of small units)", 24473, None, "—", "⚠️ balance — needs a BCPA folio pull to itemize each"),
 ]
 
 
@@ -40,7 +44,7 @@ def build(s, amap=None):
     r = 1
     s.put(r, L, "GALLERIA CORPORATE CENTRE  ·  OFFICE CONDOMINIUM", style="banner", align="left", merge=(r, 13)); s.rowh(r, 26); r += 1
     s.put(r, L, "2455 E Sunrise Blvd   |   13-story Class B office condo · ~168,807 SF · built 1973 (renov. 2007) "
-                "· two dominant owners — lease-position valuation", style="banner_sub", align="left", merge=(r, 13)); s.rowh(r, 18); r += 2
+                "· fractured ownership — every owner modeled individually + full buy-out", style="banner_sub", align="left", merge=(r, 13)); s.rowh(r, 20); r += 2
 
     # facts
     s.section(r, L, 13, "PROPERTY FACTS  —  ⚠️ REPORTED (LoopNet / Daily Business Review / Sunbiz; BCPA blocked in build env)"); r += 1
@@ -52,7 +56,9 @@ def build(s, amap=None):
         ("Lease economics", "Office units leased ≈ $26/SF Modified Gross"),
         ("Sale comp (historical)", "Unit sales ≈ $300/SF (pre-2020; office values since softened)"),
         ("Amenities", "Covered/valet parking, concierge, on-site café, two conference facilities"),
-        ("Deal note", "Assembling the building = buying out BOTH dominant owners' condo positions"),
+        ("Ownership", "Fractured condo: Main St Fund (Grove Gate) held 57.4% and is NOW RESELLING units individually; the balance is International Sunrise + a growing number of small owners (Jorgensen, Hublot, Merrimac, individual suites)"),
+        ("Buy-out note", "Assembling the building = buying out EVERY unit owner (modeled individually below; the un-itemizable balance is grouped)"),
+        ("⚠️ BCPA limitation", "bcpa.net and the Broward Clerk are egress-blocked in this build; the complete per-unit folio roster (every unit, owner, price, date) needs a direct BCPA pull to finish"),
     ]
     for lab, val in facts:
         s.put(r, L, lab, style="calc", align="left")
@@ -237,47 +243,42 @@ def build(s, amap=None):
     ret("COMPVAL", "Sale-comp value (SF × $/SF)", f"={R('GLA')}*{R('SALEPSF')}", F_ACCT_TOP)
     r += 1
 
-    # ---- two-owner lease valuation ----
-    s.section(r, L, 13, "LEASE-POSITION VALUATION BY OWNER  —  the two dominant condo owners"); r += 1
-    hdr = ["Owner", "SF owned", "% bldg", "2019 basis", "Income value", "$300/SF comp", "Note"]
-    cols = [L, 4, 5, 6, 7, 8, 9]
-    spans = {2: 3, 9: 13}
+    # ---- per-owner lease valuation & full buy-out (partial roster; BCPA/Clerk blocked) ----
+    s.section(r, L, 13, "OWNERS & FULL BUY-OUT  —  every identifiable owner modeled individually  (⚠️ BCPA/Clerk egress-blocked; balance grouped)"); r += 1
+    s.put(r, L, "Condo buyout premium (fractured ownership / holdout)", style="label", align="left")
+    s.put(r, 3, 0.12, style="input", fmt=F_PCT1, align="right", name="BUYOUT_PREM")
+    s.put(r, 4, "🔵 uplift over income value to get owners to sell", style="note", align="left", merge=(r, 13)); r += 1
+    hdr = ["Owner / unit", "SF", "% bldg", "Orig basis", "Bought", "Income value", "Buy-out value", "Note"]
+    cols = [L, 4, 5, 6, 7, 8, 9, 10]
+    spans = {2: 3, 10: 13}
     for h, c in zip(hdr, cols):
         endc = spans.get(c, c)
-        s.put(r, c, h, style="subhead", align="left" if c in (L, 9) else "center", merge=(r, endc) if endc != c else None)
+        s.put(r, c, h, style="subhead", align="left" if c in (L, 10) else "center", merge=(r, endc) if endc != c else None)
     r += 1
-    for i, (nm, sub, sf, pct, basis, note) in enumerate(OWNERS):
+    o_first = r
+    for i, (nm, sf, basis, bdate, note) in enumerate(OWNERS):
         s.put(r, L, nm, style="calc", align="left", merge=(r, 3))
         s.put(r, 4, sf, style="input", fmt=F_NUM, align="right", name=f"OWN{i+1}_SF")   # 🔵 adjustable
         s.put(r, 5, f"={CL(4)}{r}/{R('GLA')}", style="calc", fmt=F_PCT1, align="right")
-        s.put(r, 6, (basis if basis else "—"), style=("calc" if basis else "note"), fmt=(F_ACCT if basis else None), align="right")
-        s.put(r, 7, f"={R('NOIPSF')}*{CL(4)}{r}/{R('GICAP')}", style="calc", fmt=F_ACCT, align="right")
-        s.put(r, 8, f"={CL(4)}{r}*{R('SALEPSF')}", style="calc", fmt=F_ACCT, align="right")
-        s.put(r, 9, note, style="calc", align="left", merge=(r, 13)); r += 1
-    otot = r
-    s.put(r, L, "TOTAL BUILDING", style="total", align="left", merge=(r, 3))
-    s.put(r, 4, f"=SUM({CL(4)}{otot-2}:{CL(4)}{otot-1})", style="total", fmt=F_NUM, align="right")
-    s.put(r, 5, f"=SUM({CL(5)}{otot-2}:{CL(5)}{otot-1})", style="total", fmt=F_PCT1, align="right")
-    s.put(r, 6, "—", style="total", align="right")
-    s.put(r, 7, f"=SUM({CL(7)}{otot-2}:{CL(7)}{otot-1})", style="total", fmt=F_ACCT_TOP, align="right", name="OWN_INCVAL")
-    s.put(r, 8, f"=SUM({CL(8)}{otot-2}:{CL(8)}{otot-1})", style="total", fmt=F_ACCT_TOP, align="right")
-    s.put(r, 9, "buy out both to assemble", style="total", align="left", merge=(r, 13)); r += 2
-
-    # ---- full buy-out value (both owners) ----
-    s.section(r, L, 13, "FULL BUY-OUT VALUE  —  cost to acquire BOTH condo owners' positions"); r += 1
-    s.put(r, L, "Condo buyout premium (fractured ownership / holdout)", style="label", align="left")
-    s.put(r, 3, 0.12, style="input", fmt=F_PCT1, align="right", name="BUYOUT_PREM")
-    s.put(r, 4, "🔵 uplift over income value to get both owners to sell", style="note", align="left", merge=(r, 13)); r += 1
-    s.put(r, L, "Main Street Fund LLC (57.4%) — buyout", style="label", align="left")
-    s.put(r, 3, f"={CL(7)}{otot-2}*(1+{R('BUYOUT_PREM')})", style="calc", fmt=F_ACCT, align="right", name="BUYOUT1"); r += 1
-    s.put(r, L, "International Sunrise Partners LLC (42.6%) — buyout", style="label", align="left")
-    s.put(r, 3, f"={CL(7)}{otot-1}*(1+{R('BUYOUT_PREM')})", style="calc", fmt=F_ACCT, align="right", name="BUYOUT2"); r += 1
-    s.put(r, L, "FULL BUY-OUT VALUE (both owners)", style="grand", align="left")
-    s.put(r, 3, f"={R('BUYOUT1')}+{R('BUYOUT2')}", style="grand", fmt=F_ACCT_TOP, align="right", name="BUYOUT_TOTAL")
-    s.put(r, 4, "cost to control the whole building (income value + buyout premium)", style="note", align="left", merge=(r, 13)); r += 1
-    s.put(r, L, "  cross-check — income value (no premium)", style="note", align="left")
-    s.put(r, 3, f"={R('OWN_INCVAL')}", style="calc", fmt=F_ACCT, align="right")
-    s.put(r, 5, "vs. $300/SF sale comp (stale/high) shown in Returns above", style="note", align="left", merge=(r, 13)); r += 2
+        s.put(r, 6, (basis if basis else "—"), style=("verified" if basis else "note"), fmt=(F_ACCT if basis else None), align="right")
+        s.put(r, 7, bdate, style=("verified" if basis else "note"), align="center")
+        s.put(r, 8, f"={R('NOIPSF')}*{CL(4)}{r}/{R('GICAP')}", style="calc", fmt=F_ACCT, align="right")
+        s.put(r, 9, f"={CL(8)}{r}*(1+{R('BUYOUT_PREM')})", style="calc", fmt=F_ACCT, align="right")
+        if i == 0: s.reg["BUYOUT1"] = f"{CL(9)}{r}"
+        if i == 1: s.reg["BUYOUT2"] = f"{CL(9)}{r}"
+        s.put(r, 10, note, style="calc", align="left", merge=(r, 13)); r += 1
+    o_last = r - 1
+    s.put(r, L, "TOTAL BUILDING — FULL BUY-OUT", style="grand", align="left", merge=(r, 3))
+    s.put(r, 4, f"=SUM({CL(4)}{o_first}:{CL(4)}{o_last})", style="grand", fmt=F_NUM, align="right")
+    s.put(r, 5, f"=SUM({CL(5)}{o_first}:{CL(5)}{o_last})", style="grand", fmt=F_PCT1, align="right")
+    s.put(r, 6, "—", style="grand", align="center")
+    s.put(r, 7, "—", style="grand", align="center")
+    s.put(r, 8, f"=SUM({CL(8)}{o_first}:{CL(8)}{o_last})", style="grand", fmt=F_ACCT_TOP, align="right", name="OWN_INCVAL")
+    s.put(r, 9, f"=SUM({CL(9)}{o_first}:{CL(9)}{o_last})", style="grand", fmt=F_ACCT_TOP, align="right", name="BUYOUT_TOTAL")
+    s.put(r, 10, "cost to control the whole building", style="grand", align="left", merge=(r, 13)); r += 1
+    s.put(r, L, "cross-check — income value (no premium) vs. $300/SF comp", style="note", align="left", merge=(r, 3))
+    s.put(r, 8, f"={R('OWN_INCVAL')}", style="note", fmt=F_ACCT, align="right")
+    s.put(r, 9, f"={R('COMPVAL')}", style="note", fmt=F_ACCT, align="right"); r += 2
 
     # P&L
     s.section(r, L, 13, "PROFIT & LOSS STATEMENT  —  Year 1 vs. Stabilized (Yr 2)"); r += 1
