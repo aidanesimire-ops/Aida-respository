@@ -4,7 +4,7 @@ Run:  python3 build_model.py
 """
 from openpyxl.utils import get_column_letter, column_index_from_string
 from mblib import new_book, add_sheet, NAVY, GOLD
-import tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_income, tab_exec, tab_notes
+import tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_income, tab_scenarios, tab_exec, tab_notes
 import configs
 
 OUT = "../Shahidi_Assemblage_Model.xlsx"
@@ -70,9 +70,15 @@ def main():
     sh["Income Valuation"] = add_sheet(wb, "Income Valuation", tabcolor=GOLD)
     tab_income.build(sh["Income Valuation"], inc_regs)
 
+    # ---- scenarios (links to income valuation) ----
+    scen_regs = dict(inc_regs)
+    scen_regs["Income Valuation"] = sh["Income Valuation"].reg
+    sh["Scenarios"] = add_sheet(wb, "Scenarios", tabcolor=GOLD)
+    tab_scenarios.build(sh["Scenarios"], scen_regs)
+
     # ---- executive summary (links to everything) ----
-    all_regs = dict(inc_regs)
-    all_regs["Income Valuation"] = sh["Income Valuation"].reg
+    all_regs = dict(scen_regs)
+    all_regs["Scenarios"] = sh["Scenarios"].reg
     sh["Executive Summary"] = add_sheet(wb, "Executive Summary", tabcolor=GOLD)
     tab_exec.build(sh["Executive Summary"], all_regs)
 
@@ -80,8 +86,8 @@ def main():
     sh["Notes & Sources"] = add_sheet(wb, "Notes & Sources", tabcolor=GOLD)
     tab_notes.build(sh["Notes & Sources"])
 
-    # ---- reorder: Exec, Income, Assemblage(HBU), the five assets, Notes ----
-    order = ["Executive Summary", "Income Valuation", "Assemblage", "Shahidi Retail",
+    # ---- reorder: Exec, Income, Scenarios, Assemblage(HBU), assets, Notes ----
+    order = ["Executive Summary", "Income Valuation", "Scenarios", "Assemblage", "Shahidi Retail",
              "Publix & Starbucks", "Sunrise Plaza", "Office Condo", "Land", "Notes & Sources"]
     wb._sheets = [sh[t].ws for t in order]
     wb.active = 0

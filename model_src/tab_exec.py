@@ -118,6 +118,20 @@ def build(s, regs):
     kv("Redevelopment residual (Live Local)", f"={x('Land','RESID')}", F_ACCT_TOP, note="NEGATIVE → hold, do not redevelop yet")
     r += 1
 
+    # ---- returns at income price + scenario range ----
+    s.section(r, L, 13, "RETURNS AT THE INCOME PRICE  &  SCENARIO RANGE"); r += 1
+    SC = "Scenarios"
+    kv("Portfolio unlevered / levered IRR (base)", f"={x(IV,'IRR_L')}", F_PCT1, note="levered; unlevered on Income Valuation tab")
+    s.put(r, L, "Levered IRR — downside / base / upside", style="label", align="left")
+    s.put(r, 3, f"={x(SC,'IRRL_DOWN')}", style="calc", color="008000", fmt=F_PCT1, align="right")
+    s.put(r, 4, f"={x(IV,'IRR_L')}", style="calc", color="008000", fmt=F_PCT1, align="center")
+    s.put(r, 5, f"={x(SC,'IRRL_UP')}", style="calc", color="008000", fmt=F_PCT1, align="left")
+    s.put(r, 6, "recession → plan → tailwind (see Scenarios tab)", style="note", align="left", merge=(r, 13)); r += 1
+    kv("Avg cash-on-cash (base, levered)", f"={x(IV,'COC_AVG_I')}", F_PCT1, note="current yield on equity")
+    kv("Break-even exit cap (return of capital)", f"={x(IV,'BE_EXITCAP')}", F_PCT2, note="downside guardrail; underwritten exit 6.75%")
+    kv("Total equity (income price) / LTC", f"={x(IV,'EQ_I')}", F_ACCT_TOP, note="see Sources & Uses on Income Valuation tab")
+    r += 1
+
     # ---- recommendation ----
     s.section(r, L, 13, "RECOMMENDATION"); r += 1
     rec = [

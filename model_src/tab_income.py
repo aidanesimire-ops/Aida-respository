@@ -131,7 +131,10 @@ def build(s, regs):
     inp("GROW", "Blended NOI growth (for reversion/sens.)", 0.025, F_PCT1, "🔶")
     inp("HOLD", "Hold period (yrs)", 5, F_YR, "🔶 assets exit together")
     inp("COS", "Cost of sale at exit", 0.02, F_PCT1, "🔶")
-    inp("CLOSE", "Closing & acq costs (% price)", 0.02, F_PCT1, "🔶")
+    inp("DOCSTAMP", "Doc-stamp / transfer tax (% price)", 0.0070, F_PCT2, "🔶 FL Broward $0.70/$100")
+    inp("TITLE", "Title insurance (% price)", 0.0050, F_PCT2, "🔶")
+    inp("LEGALDD", "Legal & due diligence (% price)", 0.0040, F_PCT2, "🔶")
+    inp("ORIG", "Loan origination fee (% loan)", 0.0100, F_PCT2, "🔶")
     inp("LTV", "Max senior LTV", 0.60, F_PCT1, "🔶 constraint 1")
     inp("DSCRMIN", "Min DSCR (sizing constraint)", 1.30, F_MULT, "🔶 constraint 2")
     inp("DYMIN", "Min debt yield (sizing constraint)", 0.085, F_PCT1, "🔶 constraint 3")
@@ -150,6 +153,8 @@ def build(s, regs):
     der("MRATE", "Monthly rate", f"={R('RATE')}/12", F_PCT2)
     der("MCONST", "Mortgage constant (annual)",
         f"=({R('MRATE')}/(1-(1+{R('MRATE')})^(-{R('AMORT')}*12)))*12", F_PCT2, "DS ÷ loan")
+    der("CLOSE", "Total transaction cost (% price)",
+        f"={R('DOCSTAMP')}+{R('TITLE')}+{R('LEGALDD')}", F_PCT2, "doc stamps + title + legal/DD")
     der("SUMOP5", "Σ unlevered operating CF, Yr 1–hold",
         f"=SUM({CL(pc(1))}{op_row}:INDEX({CL(pc(1))}{op_row}:{CL(pc(10))}{op_row},{R('HOLD')}))", F_ACCT_TOP)
     der("EXITNOI", "Exit-year consolidated NOI",
@@ -185,8 +190,38 @@ def build(s, regs):
     der("DS", "Annual debt service", f"={R('LOAN')}*{R('MCONST')}", F_ACCT_TOP)
     der("LBAL5", "Loan balance at exit",
         f"={R('LOAN')}*(1+{R('MRATE')})^(12*{R('HOLD')})-({R('DS')}/12)*((1+{R('MRATE')})^(12*{R('HOLD')})-1)/{R('MRATE')}", F_ACCT_TOP)
-    der("EQ", "Equity required (at income price)", f"={R('PRICE')}*(1+{R('CLOSE')})-{R('LOAN')}", F_ACCT_TOP)
+    der("EQ", "Equity required (at income price)",
+        f"={R('PRICE')}*(1+{R('CLOSE')})+{R('ORIG')}*{R('LOAN')}-{R('LOAN')}", F_ACCT_TOP)
     r += 1
+
+    # ================= sources & uses =================
+    s.section(r, L, 13, "SOURCES  &  USES  (at the income-based price)"); r += 1
+    s.put(r, L, "USES", style="subhead", align="left", merge=(r, 3))
+    s.put(r, 5, "SOURCES", style="subhead", align="left", merge=(r, 6)); r += 1
+    u0 = r
+    s.put(r, L, "  Purchase price", style="label", align="left")
+    s.put(r, 3, f"={R('PRICE')}", style="calc", fmt=F_ACCT_TOP, align="right")
+    s.put(r, 5, "  Senior loan (sized)", style="label", align="left")
+    s.put(r, 6, f"={R('LOAN')}", style="calc", fmt=F_ACCT_TOP, align="right", name="SU_DEBT"); r += 1
+    s.put(r, L, "  Doc-stamp / transfer tax", style="label", align="left")
+    s.put(r, 3, f"={R('PRICE')}*{R('DOCSTAMP')}", style="calc", fmt=F_ACCT, align="right")
+    s.put(r, 5, "  Sponsor equity (plug)", style="label", align="left")
+    s.put(r, 6, f"={R('EQ')}", style="calc", fmt=F_ACCT_TOP, align="right", name="SU_EQ"); r += 1
+    s.put(r, L, "  Title insurance", style="label", align="left")
+    s.put(r, 3, f"={R('PRICE')}*{R('TITLE')}", style="calc", fmt=F_ACCT, align="right"); r += 1
+    s.put(r, L, "  Legal & due diligence", style="label", align="left")
+    s.put(r, 3, f"={R('PRICE')}*{R('LEGALDD')}", style="calc", fmt=F_ACCT, align="right"); r += 1
+    s.put(r, L, "  Loan origination fee", style="label", align="left")
+    s.put(r, 3, f"={R('ORIG')}*{R('LOAN')}", style="calc", fmt=F_ACCT, align="right"); r += 1
+    uN = r - 1
+    s.put(r, L, "TOTAL USES", style="subtotal", align="left")
+    s.put(r, 3, f"=SUM({CL(3)}{u0}:{CL(3)}{uN})", style="calc", fmt=F_ACCT_TOP, align="right", bold=True, name="SU_USES")
+    s.put(r, 5, "TOTAL SOURCES", style="subtotal", align="left")
+    s.put(r, 6, f"={R('SU_DEBT')}+{R('SU_EQ')}", style="calc", fmt=F_ACCT_TOP, align="right", bold=True, name="SU_SRC"); r += 1
+    s.put(r, L, "Check (sources − uses)", style="note", align="left")
+    s.put(r, 3, f"={R('SU_SRC')}-{R('SU_USES')}", style="calc", fmt=F_ACCT, align="right")
+    s.put(r, 5, "Loan-to-cost (LTC)", style="note", align="left")
+    s.put(r, 6, f"={R('SU_DEBT')}/{R('SU_USES')}", style="calc", fmt=F_PCT1, align="right"); r += 2
 
     # ================= dual-scenario returns =================
     s.section(r, L, 13, "PORTFOLIO RETURNS  —  consolidated cash-flow IRR at income price vs. covered-land price"); r += 1
@@ -205,7 +240,8 @@ def build(s, regs):
     two("LN_I", "LN_H", "Sized senior loan",
         f"={R('LOAN')}", f"=MIN({px_hbu}*{R('LTV')},{R('L_DSCR')},{R('L_DY')})", F_ACCT_TOP)
     two("EQ_I", "EQ_H", "Equity required",
-        f"={R('PRICE')}*(1+{R('CLOSE')})-{R('LN_I')}", f"={px_hbu}*(1+{R('CLOSE')})-{R('LN_H')}", F_ACCT_TOP)
+        f"={R('PRICE')}*(1+{R('CLOSE')})+{R('ORIG')}*{R('LN_I')}-{R('LN_I')}",
+        f"={px_hbu}*(1+{R('CLOSE')})+{R('ORIG')}*{R('LN_H')}-{R('LN_H')}", F_ACCT_TOP)
     two("GI_I", "GI_H", "Going-in cap (as-is NOI ÷ price)",
         f"={R('ASIS_NOI')}/{R('PRICE')}", f"={R('ASIS_NOI')}/{px_hbu}", F_PCT2)
     # unlevered CF rows (differ only in acq)
@@ -248,6 +284,16 @@ def build(s, regs):
         f"=SUM({CL(pc(1))}{lh_row}:{CL(pc(10))}{lh_row})/{R('EQ_H')}", F_MULT)
     two("DSCR_I", "DSCR_H", "Year-1 DSCR",
         f"={R('ASIS_NOI')}/({R('LN_I')}*{R('MCONST')})", f"={R('ASIS_NOI')}/({R('LN_H')}*{R('MCONST')})", F_MULT)
+    # cash-on-cash (income scenario) — levered operating CF (pre-reversion) ÷ equity
+    coc_row = r
+    s.put(r, L, "  Cash-on-cash ① by year (levered)", style="note", align="left")
+    for y in range(1, 11):
+        s.put(r, pc(y), f"=IF({y}<={R('HOLD')},({CL(pc(y))}{op_row}-{R('LN_I')}*{R('MCONST')})/{R('EQ_I')},0)",
+              style="calc", fmt=F_PCT1, align="right")
+    r += 1
+    two("COC_AVG_I", "COC_AVG_H", "Avg cash-on-cash (Yr 1–hold)",
+        f"=SUM({CL(pc(1))}{coc_row}:{CL(pc(10))}{coc_row})/{R('HOLD')}",
+        f"=(( {R('SUMOP5')}-{R('HOLD')}*{R('LN_H')}*{R('MCONST')})/{R('HOLD')})/{R('EQ_H')}", F_PCT1)
     r += 1
 
     # ================= land appreciation break-even =================
@@ -262,6 +308,32 @@ def build(s, regs):
     s.put(r, 4, "At the covered-land price the income IRR is thin — the return thesis is land appreciation / redevelopment, "
                 "not current yield. The premium only pencils if land compounds at ≥ the rate above over the hold.",
           style="warn", align="left", merge=(r, 13)); r += 2
+
+    # ================= return attribution (value-creation bridge) =================
+    s.section(r, L, 13, "RETURN ATTRIBUTION  —  where the unlevered profit comes from  (at income price)"); r += 1
+    der("EXIT_FWD", "Exit-year forward NOI (grown into sale)", f"={R('EXITNOI')}*(1+{R('GROW')})", F_ACCT_TOP)
+    der("GROSS_EXIT", "Gross exit value (from consolidated reversion)", f"={R('REV_BASE')}/(1-{R('COS')})", F_ACCT_TOP)
+    der("V_OPCF", "＋ Operating cash flow (Yr 1–hold)", f"={R('SUMOP5')}", F_ACCT)
+    der("V_NOIG", "＋ Value from NOI growth / lease-up", f"=({R('EXIT_FWD')}-{R('ASIS_NOI')})/{R('CAP')}", F_ACCT)
+    der("V_CAP", "＋/− Value from cap-rate movement", f"={R('GROSS_EXIT')}-{R('EXIT_FWD')}/{R('CAP')}", F_ACCT)
+    der("V_COS", "− Cost of sale at exit", f"=-{R('GROSS_EXIT')}*{R('COS')}", F_ACCT)
+    der("V_CLOSE", "− Acquisition transaction costs", f"=-{R('PRICE')}*{R('CLOSE')}", F_ACCT)
+    s.put(r, L, "UNLEVERED PROFIT (sum of the above)", style="subtotal", align="left")
+    s.put(r, 3, f"={R('V_OPCF')}+{R('V_NOIG')}+{R('V_CAP')}+{R('V_COS')}+{R('V_CLOSE')}",
+          style="calc", fmt=F_ACCT_TOP, align="right", bold=True, name="UNLEV_PROFIT")
+    r += 1
+    s.put(r, L, "Check: Σ unlevered cash flow (income scenario)", style="note", align="left")
+    s.put(r, 3, f"=SUM({CL(ACQ)}{ui_row}:{CL(pc(10))}{ui_row})", style="calc", fmt=F_ACCT, align="right")
+    s.put(r, 4, "ties to unlevered profit above", style="note", align="left", merge=(r, 13)); r += 2
+
+    # ================= break-even =================
+    s.section(r, L, 13, "BREAK-EVEN  —  downside guardrails (at income price)"); r += 1
+    der("SUMOP5_LEV", "Σ levered operating CF (Yr 1–hold)", f"={R('SUMOP5')}-{R('HOLD')}*{R('DS')}", F_ACCT_TOP)
+    der("BE_EXITCAP", "Break-even exit cap (return of capital, 1.00x)",
+        f"={R('EXIT_FWD')}*(1-{R('COS')})/({R('EQ_I')}-{R('SUMOP5_LEV')}+{R('LBAL5')})", F_PCT2,
+        "max exit cap before levered equity < 1.0x")
+    der("BE_CUSHION", "Cushion vs. underwritten exit cap", f"={R('BE_EXITCAP')}-{R('SCAP')}", F_PCT2, "bps of exit-cap softening tolerable")
+    r += 1
 
     # ================= valuation bridge =================
     s.section(r, L, 13, "VALUATION BRIDGE  —  income basis vs. highest-and-best-use (covered land)"); r += 1
@@ -328,6 +400,9 @@ def build(s, regs):
     s.put(r, 4, "Sensitivity ② uses a blended exit cap on consolidated exit-year NOI and lesser-of debt sizing at each price; "
                 "operating cash flows are held at the underwritten level. Green = higher multiple.",
           style="note", align="left", merge=(r, 13)); r += 1
+
+    # row anchor for the Scenarios tab
+    s.reg["ROW_OPCF"] = f"D{op_row}"
 
     s.freeze("C6")
     return s
