@@ -1,0 +1,1195 @@
+{
+  "meta": {
+    "model": "E Sunrise Blvd Assemblage — covered land play",
+    "owner": "DAWN RE Enterprises Corp.",
+    "location": "Fort Lauderdale, FL 33304 · Galleria hard corner · plat 49-42-36-12",
+    "generated_by": "export_inputs.py",
+    "note": "Generated from the model source; regenerate after any input change."
+  },
+  "conventions": {
+    "confidence": {
+      "VERIFIED": "public record — BCPA / FL Sunbiz / recorded deed",
+      "REPORTED": "counterparty / broker listing / press — unconfirmed at the county",
+      "MODELED": "assumption from market research; moves with the inputs",
+      "ESTIMATED": "market-research triangulation"
+    },
+    "ratios": "all caps/rates/percentages are decimals (0.065 = 6.5%)",
+    "control_surface": "the 'global' block + per-asset 'inputs' are the Assumptions control tab (single input surface). 'detail_inputs' live on each asset tab. Change a value here + regenerate the workbook to reprice."
+  },
+  "global": [
+    {
+      "section": "GLOBAL — VALUATION & HOLD  (→ Income Valuation)",
+      "drivers": [
+        {
+          "key": "CAP",
+          "label": "Blended going-in cap (as-is)",
+          "value": 0.065,
+          "unit": "ratio (0-1)",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "income price = as-is NOI ÷ this"
+        },
+        {
+          "key": "SCAP",
+          "label": "Blended stabilized / exit cap",
+          "value": 0.0675,
+          "unit": "ratio (0-1)",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "reversion & stabilized value"
+        },
+        {
+          "key": "TYLD",
+          "label": "Target unlevered yield (DCF discount)",
+          "value": 0.085,
+          "unit": "ratio (0-1)",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "DCF value; NPV hurdle"
+        },
+        {
+          "key": "GROW",
+          "label": "Blended NOI growth",
+          "value": 0.025,
+          "unit": "ratio (0-1)",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "reversion & sensitivities"
+        },
+        {
+          "key": "HOLD",
+          "label": "Hold period (yrs)",
+          "value": 5,
+          "unit": "years",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "exit year for all assets"
+        },
+        {
+          "key": "COS",
+          "label": "Cost of sale at exit",
+          "value": 0.02,
+          "unit": "ratio (0-1)",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "net reversion"
+        }
+      ]
+    },
+    {
+      "section": "GLOBAL — SENIOR FINANCING  (→ Income Valuation)",
+      "drivers": [
+        {
+          "key": "LTV",
+          "label": "Max senior LTV",
+          "value": 0.6,
+          "unit": "ratio (0-1)",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "debt sizing constraint 1"
+        },
+        {
+          "key": "DSCRMIN",
+          "label": "Min DSCR",
+          "value": 1.3,
+          "unit": "multiple (x)",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "debt sizing constraint 2"
+        },
+        {
+          "key": "DYMIN",
+          "label": "Min debt yield",
+          "value": 0.085,
+          "unit": "ratio (0-1)",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "debt sizing constraint 3"
+        },
+        {
+          "key": "RATE",
+          "label": "Senior rate",
+          "value": 0.065,
+          "unit": "ratio (0-1)",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "debt service"
+        },
+        {
+          "key": "AMORT",
+          "label": "Amortization (yrs)",
+          "value": 30,
+          "unit": "years",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "mortgage constant"
+        }
+      ]
+    },
+    {
+      "section": "GLOBAL — ACQUISITION COSTS  (→ Income Valuation Sources & Uses)",
+      "drivers": [
+        {
+          "key": "DOCSTAMP",
+          "label": "Doc-stamp / transfer tax (% price)",
+          "value": 0.007,
+          "unit": "ratio (0-1)",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "FL Broward $0.70/$100"
+        },
+        {
+          "key": "TITLE",
+          "label": "Title insurance (% price)",
+          "value": 0.005,
+          "unit": "ratio (0-1)",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "closing cost"
+        },
+        {
+          "key": "LEGALDD",
+          "label": "Legal & due diligence (% price)",
+          "value": 0.004,
+          "unit": "ratio (0-1)",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "closing cost"
+        },
+        {
+          "key": "ORIG",
+          "label": "Loan origination (% loan)",
+          "value": 0.01,
+          "unit": "ratio (0-1)",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "financing cost → equity"
+        }
+      ]
+    },
+    {
+      "section": "GLOBAL — PRIOR SALE / SELLER BASIS  (→ HBU acquisition history · Exec scorecard)",
+      "drivers": [
+        {
+          "key": "SHA_ACQ",
+          "label": "Shahidi — prior sale price",
+          "value": 17100000,
+          "unit": "USD",
+          "type": "number",
+          "confidence": "VERIFIED",
+          "drives": "Shawnick Galleria LLC, 11/2021 (disqualified deed)"
+        },
+        {
+          "key": "SHA_ACQYR",
+          "label": "Shahidi — prior sale year",
+          "value": 2021,
+          "unit": "years",
+          "type": "number",
+          "confidence": "VERIFIED",
+          "drives": "→ scorecard 'they paid' year"
+        },
+        {
+          "key": "PUB_ACQ",
+          "label": "Publix — prior sale price",
+          "value": 25000000,
+          "unit": "USD",
+          "type": "number",
+          "confidence": "VERIFIED",
+          "drives": "REAL SUB LLC Trustee's Deed, 03/2025 ($679/SF)"
+        },
+        {
+          "key": "PUB_ACQYR",
+          "label": "Publix — prior sale year",
+          "value": 2025,
+          "unit": "years",
+          "type": "number",
+          "confidence": "VERIFIED",
+          "drives": "→ scorecard 'they paid' year"
+        },
+        {
+          "key": "SUN_ACQ",
+          "label": "Sunrise Plaza — prior sale price",
+          "value": 128000,
+          "unit": "USD",
+          "type": "number",
+          "confidence": "REPORTED",
+          "drives": "Kar Luen Inc, Oct 2000 — stale/nominal"
+        },
+        {
+          "key": "SUN_ACQYR",
+          "label": "Sunrise Plaza — prior sale year",
+          "value": 2000,
+          "unit": "years",
+          "type": "number",
+          "confidence": "REPORTED",
+          "drives": "→ scorecard 'they paid' year"
+        },
+        {
+          "key": "OFF_ACQ",
+          "label": "Office — Grove Gate bulk price (57.4%)",
+          "value": 10000000,
+          "unit": "USD",
+          "type": "number",
+          "confidence": "REPORTED",
+          "drives": "from Intl Sunrise 09/2019 (~$103/SF)"
+        },
+        {
+          "key": "OFF_ACQYR",
+          "label": "Office — bulk purchase year",
+          "value": 2019,
+          "unit": "years",
+          "type": "number",
+          "confidence": "REPORTED",
+          "drives": "→ scorecard 'they paid' year"
+        },
+        {
+          "key": "LND_ACQYR",
+          "label": "1040 Bayview — JV formation year",
+          "value": 2014,
+          "unit": "years",
+          "type": "number",
+          "confidence": "REPORTED",
+          "drives": "Procacci JV; no clean arm's-length basis"
+        }
+      ]
+    },
+    {
+      "section": "GLOBAL — ASSEMBLAGE PREMIUM  (→ Assemblage / covered-land price)",
+      "drivers": [
+        {
+          "key": "PREM_LOW",
+          "label": "Assemblage premium — low",
+          "value": 0.15,
+          "unit": "ratio (0-1)",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "control-cost premium"
+        },
+        {
+          "key": "PREM_BASE",
+          "label": "Assemblage premium — base",
+          "value": 0.2,
+          "unit": "ratio (0-1)",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "headline covered-land price"
+        },
+        {
+          "key": "PREM_HIGH",
+          "label": "Assemblage premium — high",
+          "value": 0.25,
+          "unit": "ratio (0-1)",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "aggressive case"
+        }
+      ]
+    },
+    {
+      "section": "GLOBAL — LAND & REDEVELOPMENT (1040 Bayview)  (→ Land tab)",
+      "drivers": [
+        {
+          "key": "ELIFT",
+          "label": "Entitlement lift (% uplift post-Live Local approval)",
+          "value": 0.3,
+          "unit": "ratio (0-1)",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "assembled land value bump once entitled"
+        },
+        {
+          "key": "LPSF_LOW",
+          "label": "Land value — low ($/SF)",
+          "value": 64.0,
+          "unit": "count/SF",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "BCPA-implied floor"
+        },
+        {
+          "key": "LPSF_BASE",
+          "label": "Land value — base ($/SF)",
+          "value": 125.0,
+          "unit": "count/SF",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "mid-block corridor"
+        },
+        {
+          "key": "LPSF_HIGH",
+          "label": "Land value — high ($/SF)",
+          "value": 200.0,
+          "unit": "count/SF",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "toward hard-corner comps"
+        },
+        {
+          "key": "UNIT_LOW",
+          "label": "Per entitled unit — low ($)",
+          "value": 40000,
+          "unit": "USD",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "259 units"
+        },
+        {
+          "key": "UNIT_BASE",
+          "label": "Per entitled unit — base ($)",
+          "value": 55000,
+          "unit": "USD",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "entitled-land value"
+        },
+        {
+          "key": "UNIT_HIGH",
+          "label": "Per entitled unit — high ($)",
+          "value": 70000,
+          "unit": "USD",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "strong entitlement"
+        },
+        {
+          "key": "REVUNIT",
+          "label": "Achievable value per unit ($)",
+          "value": 600000,
+          "unit": "USD",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "sellout / cap'd rental"
+        },
+        {
+          "key": "HARDPSF",
+          "label": "Hard cost ($/GBA SF)",
+          "value": 500.0,
+          "unit": "count/SF",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "AE-zone coastal"
+        },
+        {
+          "key": "GBAUNIT",
+          "label": "GBA per unit (SF)",
+          "value": 950,
+          "unit": "count/SF",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "gross buildable/unit"
+        },
+        {
+          "key": "SOFT",
+          "label": "Soft cost (% hard)",
+          "value": 0.2,
+          "unit": "ratio (0-1)",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "A&E, financing, fees"
+        },
+        {
+          "key": "PROFIT",
+          "label": "Developer profit (% GDV)",
+          "value": 0.15,
+          "unit": "ratio (0-1)",
+          "type": "number",
+          "confidence": "MODELED",
+          "drives": "required margin"
+        }
+      ]
+    }
+  ],
+  "assets": {
+    "shahidi": {
+      "label": "Shahidi Retail (Galleria Plaza)",
+      "workbook_tab": "Shahidi Retail",
+      "parcel_confidence": "VERIFIED",
+      "control_tab_inputs": [
+        {
+          "key": "PRICE",
+          "label": "Purchase price / basis",
+          "value": 17100000,
+          "unit": "USD",
+          "type": "number"
+        },
+        {
+          "key": "LANDSF",
+          "label": "Land (SF)",
+          "value": 67080,
+          "unit": "count/SF",
+          "type": "number"
+        },
+        {
+          "key": "GLAND_PSF",
+          "label": "Land value ($/SF)",
+          "value": 254.92,
+          "unit": "count/SF",
+          "type": "number"
+        },
+        {
+          "key": "MRENT",
+          "label": "Market rent ($/SF NNN)",
+          "value": 55.0,
+          "unit": "count/SF",
+          "type": "number"
+        },
+        {
+          "key": "OCC0",
+          "label": "In-place occupancy",
+          "value": 0.8317,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "STABOCC",
+          "label": "Stabilized occupancy",
+          "value": 0.95,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "INS",
+          "label": "Insurance ($/yr)",
+          "value": 65000,
+          "unit": "USD",
+          "type": "number"
+        },
+        {
+          "key": "CAM",
+          "label": "CAM ($/yr, recoverable)",
+          "value": 55000,
+          "unit": "USD",
+          "type": "number"
+        },
+        {
+          "key": "RM",
+          "label": "Repairs & maintenance ($/yr)",
+          "value": 40000,
+          "unit": "USD",
+          "type": "number"
+        },
+        {
+          "key": "MGMT",
+          "label": "Management fee (% EGR)",
+          "value": 0.04,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "GICAP",
+          "label": "Going-in cap",
+          "value": 0.06,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "EXITCAP",
+          "label": "Exit cap",
+          "value": 0.06,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "LTV",
+          "label": "Senior LTV",
+          "value": 0.65,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "RATE",
+          "label": "Senior rate",
+          "value": 0.0675,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        }
+      ],
+      "detail_inputs": {
+        "gla": 26272,
+        "occ0": 0.8317,
+        "land_sf": 67080,
+        "millage": 0.0191,
+        "base_rent": 55.0,
+        "market_rent": 55.0,
+        "rent_growth": 0.03,
+        "stab_occ": 0.95,
+        "credit_loss": 0.02,
+        "reassessed": 17100000,
+        "insurance": 65000,
+        "cam": 55000,
+        "rm": 40000,
+        "mgmt_pct": 0.04,
+        "exp_growth": 0.03,
+        "ti_psf": 30.0,
+        "lc_psf": 20.0,
+        "reserve_psf": 0.15,
+        "rollover_psf": 0.75,
+        "price": 17100000,
+        "closing_pct": 0.025,
+        "ltv": 0.65,
+        "loan_rate": 0.0675,
+        "amort": 30,
+        "goingin_cap": 0.06,
+        "exit_cap": 0.06,
+        "cost_sale": 0.02,
+        "hold": 5
+      },
+      "verified_facts": {
+        "name": "Shahidi Retail Center",
+        "addr": "2541–2595 E Sunrise Blvd, Fort Lauderdale, FL 33304",
+        "folio": "49-42-36-12-0070",
+        "owner": "SHAWNICK GALLERIA LLC",
+        "principal": "Esmail Shahidi (mgr) — Sunbiz L21000389291",
+        "gla": 26272,
+        "land_sf": 67080,
+        "land_ac": 1.54,
+        "year_built": "1960 (eff. 1980)",
+        "zoning": "B-1 (Boulevard Business) / FEMA AE",
+        "last_sale_date": "11/09/2021",
+        "last_sale": 17100000,
+        "tax_2024": 152766,
+        "tax_2025": 162366,
+        "just_2026": 8911690,
+        "millage": 0.0191,
+        "basis_land": 254.92,
+        "basis_bldg": 650.88,
+        "occ": 0.8317
+      }
+    },
+    "publix": {
+      "label": "Publix + Starbucks (sale-leaseback)",
+      "workbook_tab": "Publix & Starbucks",
+      "parcel_confidence": "VERIFIED",
+      "control_tab_inputs": [
+        {
+          "key": "PRICE",
+          "label": "SLB acquisition price (fee)",
+          "value": 25000000,
+          "unit": "USD",
+          "type": "number"
+        },
+        {
+          "key": "GLANDSF",
+          "label": "Land (SF)",
+          "value": 109791,
+          "unit": "count/SF",
+          "type": "number"
+        },
+        {
+          "key": "GLAND_PSF",
+          "label": "Land value ($/SF)",
+          "value": 227.75,
+          "unit": "count/SF",
+          "type": "number"
+        },
+        {
+          "key": "SLB_RENT",
+          "label": "Publix leaseback rent ($/SF NNN)",
+          "value": 22.0,
+          "unit": "count/SF",
+          "type": "number"
+        },
+        {
+          "key": "SLB_SF",
+          "label": "Publix leaseback SF",
+          "value": 34622,
+          "unit": "count/SF",
+          "type": "number"
+        },
+        {
+          "key": "SBUX_RENT",
+          "label": "Starbucks pad rent ($/SF NNN)",
+          "value": 60.0,
+          "unit": "count/SF",
+          "type": "number"
+        },
+        {
+          "key": "SBUX_SF",
+          "label": "Starbucks pad SF",
+          "value": 2200,
+          "unit": "count/SF",
+          "type": "number"
+        },
+        {
+          "key": "TERM",
+          "label": "Leaseback term / entitlement (yrs)",
+          "value": 4,
+          "unit": "years",
+          "type": "number"
+        },
+        {
+          "key": "OCC0",
+          "label": "In-place occupancy",
+          "value": 1.0,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "STABOCC",
+          "label": "Stabilized occupancy",
+          "value": 1.0,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "INS",
+          "label": "Insurance ($/yr)",
+          "value": 45000,
+          "unit": "USD",
+          "type": "number"
+        },
+        {
+          "key": "CAM",
+          "label": "CAM ($/yr, recoverable)",
+          "value": 35000,
+          "unit": "USD",
+          "type": "number"
+        },
+        {
+          "key": "RM",
+          "label": "Repairs & maintenance ($/yr)",
+          "value": 25000,
+          "unit": "USD",
+          "type": "number"
+        },
+        {
+          "key": "MGMT",
+          "label": "Management fee (% EGR)",
+          "value": 0.02,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "GICAP",
+          "label": "Going-in cap (reference)",
+          "value": 0.06,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "EXITCAP",
+          "label": "Exit cap",
+          "value": 0.0625,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "LTV",
+          "label": "Senior LTV (covered-land, conservative)",
+          "value": 0.45,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "RATE",
+          "label": "Senior rate",
+          "value": 0.0625,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        }
+      ],
+      "detail_inputs": {
+        "gla": 36822,
+        "occ0": 1.0,
+        "stab_occ": 1.0,
+        "market_rent": 24.27,
+        "rent_growth": 0.02,
+        "credit_loss": 0.01,
+        "millage": 0.0191,
+        "insurance": 45000,
+        "cam": 35000,
+        "rm": 25000,
+        "mgmt_pct": 0.02,
+        "exp_growth": 0.03,
+        "ti_psf": 0.0,
+        "lc_psf": 0.0,
+        "reserve_psf": 0.15,
+        "rollover_psf": 0.15,
+        "price": 25000000,
+        "closing_pct": 0.02,
+        "ltv": 0.45,
+        "loan_rate": 0.0625,
+        "amort": 30,
+        "goingin_cap": 0.06,
+        "exit_cap": 0.0625,
+        "cost_sale": 0.02,
+        "hold": 5,
+        "disc": 0.07,
+        "land_sf": 109791
+      },
+      "verified_facts": {
+        "name": "Publix + Starbucks",
+        "addr": "2501–2519 E Sunrise Blvd, Fort Lauderdale, FL 33304",
+        "folio": "49-42-36-12-0060",
+        "owner": "REAL SUB LLC (Publix real-estate entity, Lakeland FL)",
+        "principal": "Publix Super Markets — fee owner (NOT a seller)",
+        "gla": 36822,
+        "land_sf": 109791,
+        "land_ac": 2.52,
+        "year_built": "2011 (eff. 2012)",
+        "zoning": "B-1 (Boulevard Business) / FEMA AE",
+        "last_sale_date": "03/14/2025",
+        "last_sale": 25000000,
+        "tax_2024": 217404,
+        "tax_2025": 208467,
+        "just_2026": null,
+        "millage": 0.0191,
+        "basis_land": 227.75,
+        "basis_bldg": 678.94,
+        "occ": 1.0
+      }
+    },
+    "sunrise": {
+      "label": "Sunrise Plaza (Kar Luen)",
+      "workbook_tab": "Sunrise Plaza",
+      "parcel_confidence": "REPORTED",
+      "control_tab_inputs": [
+        {
+          "key": "PRICE",
+          "label": "Purchase price / basis",
+          "value": 8500000,
+          "unit": "USD",
+          "type": "number"
+        },
+        {
+          "key": "GLANDSF",
+          "label": "Land (SF)",
+          "value": 30928,
+          "unit": "count/SF",
+          "type": "number"
+        },
+        {
+          "key": "GLAND_PSF",
+          "label": "Land value ($/SF)",
+          "value": 248.0,
+          "unit": "count/SF",
+          "type": "number"
+        },
+        {
+          "key": "MRENT",
+          "label": "Market rent ($/SF NNN)",
+          "value": 34.0,
+          "unit": "count/SF",
+          "type": "number"
+        },
+        {
+          "key": "OCC0",
+          "label": "In-place occupancy",
+          "value": 0.801,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "STABOCC",
+          "label": "Stabilized occupancy",
+          "value": 0.95,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "INS",
+          "label": "Insurance ($/yr)",
+          "value": 40000,
+          "unit": "USD",
+          "type": "number"
+        },
+        {
+          "key": "CAM",
+          "label": "CAM ($/yr, recoverable)",
+          "value": 40000,
+          "unit": "USD",
+          "type": "number"
+        },
+        {
+          "key": "RM",
+          "label": "Repairs & maintenance ($/yr)",
+          "value": 30000,
+          "unit": "USD",
+          "type": "number"
+        },
+        {
+          "key": "MGMT",
+          "label": "Management fee (% EGR)",
+          "value": 0.04,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "GICAP",
+          "label": "Going-in cap",
+          "value": 0.075,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "EXITCAP",
+          "label": "Exit cap",
+          "value": 0.0775,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "LTV",
+          "label": "Senior LTV",
+          "value": 0.6,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "RATE",
+          "label": "Senior rate",
+          "value": 0.075,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        }
+      ],
+      "detail_inputs": {
+        "gla": 25105,
+        "occ0": 0.801,
+        "stab_occ": 0.95,
+        "market_rent": 34.0,
+        "rent_growth": 0.03,
+        "credit_loss": 0.03,
+        "millage": 0.0191,
+        "insurance": 40000,
+        "cam": 40000,
+        "rm": 30000,
+        "mgmt_pct": 0.04,
+        "exp_growth": 0.03,
+        "ti_psf": 30.0,
+        "lc_psf": 20.0,
+        "reserve_psf": 0.15,
+        "rollover_psf": 0.75,
+        "price": 8500000,
+        "closing_pct": 0.025,
+        "ltv": 0.6,
+        "loan_rate": 0.075,
+        "amort": 30,
+        "goingin_cap": 0.075,
+        "exit_cap": 0.0775,
+        "cost_sale": 0.02,
+        "hold": 5,
+        "disc": 0.09,
+        "land_sf": 30928
+      }
+    },
+    "office": {
+      "label": "Galleria Corporate Centre (office condo)",
+      "workbook_tab": "Office Condo",
+      "parcel_confidence": "REPORTED",
+      "control_tab_inputs": [
+        {
+          "key": "PRICE",
+          "label": "Acquisition basis",
+          "value": 21700000,
+          "unit": "USD",
+          "type": "number"
+        },
+        {
+          "key": "MRENT",
+          "label": "Market rent ($/SF MG)",
+          "value": 26.0,
+          "unit": "count/SF",
+          "type": "number"
+        },
+        {
+          "key": "OCC0",
+          "label": "In-place occupancy",
+          "value": 0.85,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "STABOCC",
+          "label": "Stabilized occupancy",
+          "value": 0.88,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "OPEX",
+          "label": "Office opex ex-taxes ($/SF, landlord)",
+          "value": 8.0,
+          "unit": "count/SF",
+          "type": "number"
+        },
+        {
+          "key": "MGMT",
+          "label": "Management fee (% EGR)",
+          "value": 0.03,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "GICAP",
+          "label": "Going-in cap",
+          "value": 0.08,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "EXITCAP",
+          "label": "Exit cap",
+          "value": 0.0825,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "LTV",
+          "label": "Senior LTV",
+          "value": 0.55,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "RATE",
+          "label": "Senior rate",
+          "value": 0.075,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        }
+      ],
+      "detail_inputs": {
+        "gla": 168807,
+        "occ0": 0.85,
+        "stab_occ": 0.88,
+        "market_rent": 26.0,
+        "rent_growth": 0.03,
+        "credit_loss": 0.03,
+        "millage": 0.0191,
+        "opex_psf": 8.0,
+        "mgmt_pct": 0.03,
+        "exp_growth": 0.03,
+        "reserve_psf": 0.2,
+        "price": 21700000,
+        "closing_pct": 0.02,
+        "ltv": 0.55,
+        "loan_rate": 0.075,
+        "amort": 30,
+        "goingin_cap": 0.08,
+        "exit_cap": 0.0825,
+        "cost_sale": 0.02,
+        "hold": 5,
+        "disc": 0.1,
+        "land_sf": null,
+        "sale_comp_psf": 300.0
+      }
+    },
+    "land": {
+      "label": "1040 Bayview (covered land)",
+      "workbook_tab": "Land",
+      "parcel_confidence": "REPORTED",
+      "control_tab_inputs": [
+        {
+          "key": "PRICE",
+          "label": "Acquisition basis (entitled land)",
+          "value": 13000000,
+          "unit": "USD",
+          "type": "number"
+        },
+        {
+          "key": "IOCC",
+          "label": "Interim office occupancy",
+          "value": 0.72,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "IRENT",
+          "label": "Interim office rent ($/SF MG)",
+          "value": 23.0,
+          "unit": "count/SF",
+          "type": "number"
+        },
+        {
+          "key": "IOPEX",
+          "label": "Interim office opex ($/SF)",
+          "value": 8.0,
+          "unit": "count/SF",
+          "type": "number"
+        },
+        {
+          "key": "IMGMT",
+          "label": "Management fee (% EGR)",
+          "value": 0.03,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "LTV",
+          "label": "Land loan LTV",
+          "value": 0.4,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        },
+        {
+          "key": "RATE",
+          "label": "Land loan rate",
+          "value": 0.085,
+          "unit": "ratio (0-1)",
+          "type": "number"
+        }
+      ],
+      "detail_inputs": {
+        "land_sf": 104108,
+        "office_sf": 84495,
+        "units": 259,
+        "commercial_sf": 8081,
+        "bcpa_value": 6685580,
+        "land_psf_low": 64.0,
+        "land_psf_base": 125.0,
+        "land_psf_high": 200.0,
+        "perunit_low": 40000,
+        "perunit_base": 55000,
+        "perunit_high": 70000,
+        "interim_occ": 0.72,
+        "interim_rent": 23.0,
+        "interim_opex_psf": 8.0,
+        "interim_mgmt": 0.03,
+        "millage": 0.0191,
+        "price": 13000000,
+        "closing_pct": 0.02,
+        "land_growth": 0.04,
+        "hold": 5,
+        "ltv": 0.4,
+        "loan_rate": 0.085,
+        "cost_sale": 0.02,
+        "disc": 0.1,
+        "exp_growth": 0.03,
+        "rev_per_unit_value": 600000,
+        "hard_cost_psf": 500.0,
+        "gba_per_unit": 950,
+        "soft_pct": 0.2,
+        "dev_profit": 0.15
+      }
+    }
+  },
+  "office_owner_roster": [
+    {
+      "unit_index": 1,
+      "owner": "Main Street Fund LLC — Grove Gate (Brad Weiss)",
+      "sf": 94381,
+      "original_basis": 10000000,
+      "bought": "09/2019",
+      "note": "57.4% bulk @ $103/SF; RESELLING units $270–381/SF · controls the condo board"
+    },
+    {
+      "unit_index": 2,
+      "owner": "P. Jorgensen Mgmt — Ste 805",
+      "sf": 1722,
+      "original_basis": 410000,
+      "bought": "11/2019",
+      "note": "$238/SF · ✅ Berger Commercial (prior owner Pelican Invest)"
+    },
+    {
+      "unit_index": 3,
+      "owner": "CU-11A owner",
+      "sf": 1867,
+      "original_basis": 515000,
+      "bought": "02/2025",
+      "note": "$276/SF closed · ✅ Elliman MLS A11538174"
+    },
+    {
+      "unit_index": 4,
+      "owner": "Unit 401 owner — Ste 401",
+      "sf": 682,
+      "original_basis": 260000,
+      "bought": "06/2024",
+      "note": "$381/SF closed · ✅ MLS A11438689"
+    },
+    {
+      "unit_index": 5,
+      "owner": "Merrimac Ventures — Motwani family",
+      "sf": 3000,
+      "original_basis": null,
+      "bought": "—",
+      "note": "Dev & Nitin Motwani (co-mgrs) · ✅ owner · SF est."
+    },
+    {
+      "unit_index": 6,
+      "owner": "Cosmo Int'l Fragrances — Marc Blaison",
+      "sf": 2000,
+      "original_basis": null,
+      "bought": "—",
+      "note": "owner-occupant · condo board president · SF est."
+    },
+    {
+      "unit_index": 7,
+      "owner": "Hublot of America — Ste 402",
+      "sf": 2000,
+      "original_basis": null,
+      "bought": "—",
+      "note": "Swiss watchmaker boutique · owner-occ · SF est."
+    },
+    {
+      "unit_index": 8,
+      "owner": "Other unit owners (~40 small units)",
+      "sf": 63155,
+      "original_basis": null,
+      "bought": "—",
+      "note": "⚠️ balance of the 42.6% — needs a BCPA folio pull to itemize"
+    }
+  ],
+  "market_research": {
+    "publix_rent_psf": 13.0,
+    "publix_pct_rent": 0.01,
+    "publix_cap": 0.06,
+    "publix_exit_cap": 0.0625,
+    "sbux_sf": 2200,
+    "sbux_rent_psf": 60.0,
+    "sbux_cap": 0.052,
+    "sbux_exit_cap": 0.055,
+    "retail_inline_rent": 36.0,
+    "retail_restaurant_rent": 45.0,
+    "strip_cap_stab": 0.065,
+    "strip_cap_valueadd": 0.075,
+    "office_rent_nnn": 20.0,
+    "office_rent_gross": 27.0,
+    "office_cap": 0.08,
+    "office_sale_psf": 200.0,
+    "land_psf_infill": 248.0,
+    "land_psf_bulk": 53.0,
+    "covered_land_cap": 0.045,
+    "debt_rate_stab": 0.065,
+    "debt_rate_valueadd": 0.09,
+    "ltv_stab": 0.65,
+    "dscr_min": 1.3,
+    "debt_yield_min": 0.08
+  },
+  "outputs": {
+    "Income Valuation": {
+      "PX_INCOME": "concluded income-based purchase price (as-is NOI ÷ blended cap)",
+      "ASIS_NOI": "consolidated as-is in-place NOI",
+      "STAB_NOI": "consolidated stabilized NOI",
+      "LOAN": "sized senior loan (lesser of LTV/DSCR/DY)",
+      "EQ_I": "sponsor equity at the income price",
+      "IRRL_I": "levered portfolio IRR at income price",
+      "IRRU_I": "unlevered portfolio IRR at income price",
+      "EML_I": "levered equity multiple at income price",
+      "DSCR_I": "year-1 DSCR at income price",
+      "BE_EXITCAP": "break-even exit cap (return of capital)",
+      "PREMIUM": "covered-land price − income price (dirt + optionality)",
+      "IRRL_H": "levered IRR at the covered-land price (negative by design)"
+    },
+    "Assemblage": {
+      "RAW_COST": "sum of per-asset control costs (sum-of-parts)",
+      "ACQ": "covered-land acquisition price (sum-of-parts × (1+premium))",
+      "TOT_NOI": "total in-place NOI across the block",
+      "BLEND_CAP2": "blended in-place cap (NOI ÷ control cost)",
+      "TOT_AC": "total land assembled (acres)",
+      "BLEND_LANDPSF": "blended land basis ($/SF)"
+    },
+    "Highest & Best Use": {
+      "SUM_PARTS": "sum-of-parts control cost",
+      "LAND_FRAG": "land value as fragmented parcels",
+      "LAND_ASM": "land value assembled (plottage)",
+      "PLOTTAGE": "plottage premium (assembled − fragmented)",
+      "LAND_ENTITLED": "post-Live-Local entitled land value",
+      "RESID": "redevelopment residual land value (negative → HOLD)"
+    },
+    "Office Condo": {
+      "BUYOUT_TOTAL": "full condo buy-out at unit-market $/SF",
+      "FRAG_PREM": "fragmentation premium (buy-out − income value)"
+    }
+  }
+}

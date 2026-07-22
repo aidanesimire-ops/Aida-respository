@@ -390,7 +390,9 @@ def build(s, regs):
             dsP = f"({loanP}*{R('MCONST')})"
             bal = f"({loanP}*(1+{R('MRATE')})^(12*{R('HOLD')})-({dsP}/12)*((1+{R('MRATE')})^(12*{R('HOLD')})-1)/{R('MRATE')})"
             eqP = f"({P}*(1+{R('CLOSE')})-{loanP})"
-            rev = f"({R('EXITNOI')}*(1+{R('GROW')})/{xc}*(1-{R('COS')}))"
+            # reversion anchored to the ACTUAL consolidated reversion (incl. land-value exits),
+            # scaled by exit cap — so the grid reproduces the headline levered multiple at base
+            rev = f"({R('REV_BASE')}*{R('SCAP')}/{xc})"
             s.put(r, 4 + j,
                   f"=({R('SUMOP5')}-{R('HOLD')}*{dsP}+{rev}-{bal})/{eqP}",
                   style="calc", fmt=F_MULT, align="center")
@@ -398,8 +400,9 @@ def build(s, regs):
     s.ws.conditional_formatting.add(f"D{s2_top}:H{r-1}", HEAT)
     r += 1
     s.put(r, L, "Note", style="note", align="left")
-    s.put(r, 4, "Sensitivity ② uses a blended exit cap on consolidated exit-year NOI and lesser-of debt sizing at each price; "
-                "operating cash flows are held at the underwritten level. Green = higher multiple.",
+    s.put(r, 4, "Sensitivity ② anchors the reversion to the ACTUAL consolidated exit proceeds (which include the Publix and Land "
+                "land-value exits, not just an income cap), scaled by exit cap, and sizes debt lesser-of at each price; operating "
+                "cash flows are held at the underwritten level. The base row/col reproduces the headline levered multiple. Green = higher.",
           style="note", align="left", merge=(r, 13)); r += 1
 
     # row anchor for the Scenarios tab

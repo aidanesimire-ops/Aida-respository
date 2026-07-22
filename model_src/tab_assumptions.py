@@ -15,6 +15,64 @@ from tab_land import A as LAND_A
 
 L = 2
 
+# ==== GLOBAL driver surface (data, not code) — the workbook builder AND the JSON
+# exporter both read this, so there is one source of truth for the global inputs.
+# each row: (name, label, default value, number format, confidence flag, drives/note)
+GLOBAL_SECTIONS = [
+    ("GLOBAL — VALUATION & HOLD  (→ Income Valuation)", [
+        ("CAP", "Blended going-in cap (as-is)", 0.0650, F_PCT2, "🔶", "income price = as-is NOI ÷ this"),
+        ("SCAP", "Blended stabilized / exit cap", 0.0675, F_PCT2, "🔶", "reversion & stabilized value"),
+        ("TYLD", "Target unlevered yield (DCF discount)", 0.085, F_PCT1, "🔶", "DCF value; NPV hurdle"),
+        ("GROW", "Blended NOI growth", 0.025, F_PCT1, "🔶", "reversion & sensitivities"),
+        ("HOLD", "Hold period (yrs)", 5, F_YR, "🔶", "exit year for all assets"),
+        ("COS", "Cost of sale at exit", 0.02, F_PCT1, "🔶", "net reversion"),
+    ]),
+    ("GLOBAL — SENIOR FINANCING  (→ Income Valuation)", [
+        ("LTV", "Max senior LTV", 0.60, F_PCT1, "🔶", "debt sizing constraint 1"),
+        ("DSCRMIN", "Min DSCR", 1.30, F_MULT, "🔶", "debt sizing constraint 2"),
+        ("DYMIN", "Min debt yield", 0.085, F_PCT1, "🔶", "debt sizing constraint 3"),
+        ("RATE", "Senior rate", 0.065, F_PCT2, "🔶", "debt service"),
+        ("AMORT", "Amortization (yrs)", 30, F_YR, "🔶", "mortgage constant"),
+    ]),
+    ("GLOBAL — ACQUISITION COSTS  (→ Income Valuation Sources & Uses)", [
+        ("DOCSTAMP", "Doc-stamp / transfer tax (% price)", 0.0070, F_PCT2, "🔶", "FL Broward $0.70/$100"),
+        ("TITLE", "Title insurance (% price)", 0.0050, F_PCT2, "🔶", "closing cost"),
+        ("LEGALDD", "Legal & due diligence (% price)", 0.0040, F_PCT2, "🔶", "closing cost"),
+        ("ORIG", "Loan origination (% loan)", 0.0100, F_PCT2, "🔶", "financing cost → equity"),
+    ]),
+    ("GLOBAL — PRIOR SALE / SELLER BASIS  (→ HBU acquisition history · Exec scorecard)", [
+        ("SHA_ACQ", "Shahidi — prior sale price", 17100000, F_ACCT, "✅", "Shawnick Galleria LLC, 11/2021 (disqualified deed)"),
+        ("SHA_ACQYR", "Shahidi — prior sale year", 2021, F_YR, "✅", "→ scorecard 'they paid' year"),
+        ("PUB_ACQ", "Publix — prior sale price", 25000000, F_ACCT, "✅", "REAL SUB LLC Trustee's Deed, 03/2025 ($679/SF)"),
+        ("PUB_ACQYR", "Publix — prior sale year", 2025, F_YR, "✅", "→ scorecard 'they paid' year"),
+        ("SUN_ACQ", "Sunrise Plaza — prior sale price", 128000, F_ACCT, "⚠️", "Kar Luen Inc, Oct 2000 — stale/nominal"),
+        ("SUN_ACQYR", "Sunrise Plaza — prior sale year", 2000, F_YR, "⚠️", "→ scorecard 'they paid' year"),
+        ("OFF_ACQ", "Office — Grove Gate bulk price (57.4%)", 10000000, F_ACCT, "⚠️", "from Intl Sunrise 09/2019 (~$103/SF)"),
+        ("OFF_ACQYR", "Office — bulk purchase year", 2019, F_YR, "⚠️", "→ scorecard 'they paid' year"),
+        ("LND_ACQYR", "1040 Bayview — JV formation year", 2014, F_YR, "⚠️", "Procacci JV; no clean arm's-length basis"),
+    ]),
+    ("GLOBAL — ASSEMBLAGE PREMIUM  (→ Assemblage / covered-land price)", [
+        ("PREM_LOW", "Assemblage premium — low", 0.15, F_PCT1, "🔶", "control-cost premium"),
+        ("PREM_BASE", "Assemblage premium — base", 0.20, F_PCT1, "🔶", "headline covered-land price"),
+        ("PREM_HIGH", "Assemblage premium — high", 0.25, F_PCT1, "🔶", "aggressive case"),
+    ]),
+    ("GLOBAL — LAND & REDEVELOPMENT (1040 Bayview)  (→ Land tab)", [
+        ("ELIFT", "Entitlement lift (% uplift post-Live Local approval)", 0.30, F_PCT1, "🔶", "assembled land value bump once entitled"),
+        ("LPSF_LOW", "Land value — low ($/SF)", 64.0, F_PSF, "🔶", "BCPA-implied floor"),
+        ("LPSF_BASE", "Land value — base ($/SF)", 125.0, F_PSF, "🔶", "mid-block corridor"),
+        ("LPSF_HIGH", "Land value — high ($/SF)", 200.0, F_PSF, "🔶", "toward hard-corner comps"),
+        ("UNIT_LOW", "Per entitled unit — low ($)", 40000, F_ACCT, "🔶", "259 units"),
+        ("UNIT_BASE", "Per entitled unit — base ($)", 55000, F_ACCT, "🔶", "entitled-land value"),
+        ("UNIT_HIGH", "Per entitled unit — high ($)", 70000, F_ACCT, "🔶", "strong entitlement"),
+        ("REVUNIT", "Achievable value per unit ($)", 600000, F_ACCT, "🔶", "sellout / cap'd rental"),
+        ("HARDPSF", "Hard cost ($/GBA SF)", 500.0, F_PSF, "🔶", "AE-zone coastal"),
+        ("GBAUNIT", "GBA per unit (SF)", 950, F_NUM, "🔶", "gross buildable/unit"),
+        ("SOFT", "Soft cost (% hard)", 0.20, F_PCT1, "🔶", "A&E, financing, fees"),
+        ("PROFIT", "Developer profit (% GDV)", 0.15, F_PCT1, "🔶", "required margin"),
+    ]),
+]
+
+
 # -------- per-asset input blocks (driver name, label, default, format) --------
 def _blocks():
     PI, KI, OA, LA = PUBLIX_CFG["inp"], KARLUEN_CFG["inp"], OFFICE_A, LAND_A
@@ -107,56 +165,10 @@ def build_inputs(s):
         s.put(r, 4, flag, style="calc", align="center")
         s.put(r, 5, note, style="note", align="left", merge=(r, 13)); r += 1
 
-    sect("GLOBAL — VALUATION & HOLD  (→ Income Valuation)")
-    inp("CAP", "Blended going-in cap (as-is)", 0.0650, F_PCT2, "🔶", "income price = as-is NOI ÷ this")
-    inp("SCAP", "Blended stabilized / exit cap", 0.0675, F_PCT2, "🔶", "reversion & stabilized value")
-    inp("TYLD", "Target unlevered yield (DCF discount)", 0.085, F_PCT1, "🔶", "DCF value; NPV hurdle")
-    inp("GROW", "Blended NOI growth", 0.025, F_PCT1, "🔶", "reversion & sensitivities")
-    inp("HOLD", "Hold period (yrs)", 5, F_YR, "🔶", "exit year for all assets")
-    inp("COS", "Cost of sale at exit", 0.02, F_PCT1, "🔶", "net reversion")
-
-    sect("GLOBAL — SENIOR FINANCING  (→ Income Valuation)")
-    inp("LTV", "Max senior LTV", 0.60, F_PCT1, "🔶", "debt sizing constraint 1")
-    inp("DSCRMIN", "Min DSCR", 1.30, F_MULT, "🔶", "debt sizing constraint 2")
-    inp("DYMIN", "Min debt yield", 0.085, F_PCT1, "🔶", "debt sizing constraint 3")
-    inp("RATE", "Senior rate", 0.065, F_PCT2, "🔶", "debt service")
-    inp("AMORT", "Amortization (yrs)", 30, F_YR, "🔶", "mortgage constant")
-
-    sect("GLOBAL — ACQUISITION COSTS  (→ Income Valuation Sources & Uses)")
-    inp("DOCSTAMP", "Doc-stamp / transfer tax (% price)", 0.0070, F_PCT2, "🔶", "FL Broward $0.70/$100")
-    inp("TITLE", "Title insurance (% price)", 0.0050, F_PCT2, "🔶", "closing cost")
-    inp("LEGALDD", "Legal & due diligence (% price)", 0.0040, F_PCT2, "🔶", "closing cost")
-    inp("ORIG", "Loan origination (% loan)", 0.0100, F_PCT2, "🔶", "financing cost → equity")
-
-    sect("GLOBAL — PRIOR SALE / SELLER BASIS  (→ HBU acquisition history · Exec scorecard)")
-    inp("SHA_ACQ", "Shahidi — prior sale price", 17100000, F_ACCT, "✅", "Shawnick Galleria LLC, 11/2021 (disqualified deed)")
-    inp("SHA_ACQYR", "Shahidi — prior sale year", 2021, F_YR, "✅", "→ scorecard 'they paid' year")
-    inp("PUB_ACQ", "Publix — prior sale price", 25000000, F_ACCT, "✅", "REAL SUB LLC Trustee's Deed, 03/2025 ($679/SF)")
-    inp("PUB_ACQYR", "Publix — prior sale year", 2025, F_YR, "✅", "→ scorecard 'they paid' year")
-    inp("SUN_ACQ", "Sunrise Plaza — prior sale price", 128000, F_ACCT, "⚠️", "Kar Luen Inc, Oct 2000 — stale/nominal")
-    inp("SUN_ACQYR", "Sunrise Plaza — prior sale year", 2000, F_YR, "⚠️", "→ scorecard 'they paid' year")
-    inp("OFF_ACQ", "Office — Grove Gate bulk price (57.4%)", 10000000, F_ACCT, "⚠️", "from Intl Sunrise 09/2019 (~$103/SF)")
-    inp("OFF_ACQYR", "Office — bulk purchase year", 2019, F_YR, "⚠️", "→ scorecard 'they paid' year")
-    inp("LND_ACQYR", "1040 Bayview — JV formation year", 2014, F_YR, "⚠️", "Procacci JV; no clean arm's-length basis")
-
-    sect("GLOBAL — ASSEMBLAGE PREMIUM  (→ Assemblage / covered-land price)")
-    inp("PREM_LOW", "Assemblage premium — low", 0.15, F_PCT1, "🔶", "control-cost premium")
-    inp("PREM_BASE", "Assemblage premium — base", 0.20, F_PCT1, "🔶", "headline covered-land price")
-    inp("PREM_HIGH", "Assemblage premium — high", 0.25, F_PCT1, "🔶", "aggressive case")
-
-    sect("GLOBAL — LAND & REDEVELOPMENT (1040 Bayview)  (→ Land tab)")
-    inp("ELIFT", "Entitlement lift (% uplift post-Live Local approval)", 0.30, F_PCT1, "🔶", "assembled land value bump once entitled")
-    inp("LPSF_LOW", "Land value — low ($/SF)", 64.0, F_PSF, "🔶", "BCPA-implied floor")
-    inp("LPSF_BASE", "Land value — base ($/SF)", 125.0, F_PSF, "🔶", "mid-block corridor")
-    inp("LPSF_HIGH", "Land value — high ($/SF)", 200.0, F_PSF, "🔶", "toward hard-corner comps")
-    inp("UNIT_LOW", "Per entitled unit — low ($)", 40000, F_ACCT, "🔶", "259 units")
-    inp("UNIT_BASE", "Per entitled unit — base ($)", 55000, F_ACCT, "🔶", "entitled-land value")
-    inp("UNIT_HIGH", "Per entitled unit — high ($)", 70000, F_ACCT, "🔶", "strong entitlement")
-    inp("REVUNIT", "Achievable value per unit ($)", 600000, F_ACCT, "🔶", "sellout / cap'd rental")
-    inp("HARDPSF", "Hard cost ($/GBA SF)", 500.0, F_PSF, "🔶", "AE-zone coastal")
-    inp("GBAUNIT", "GBA per unit (SF)", 950, F_NUM, "🔶", "gross buildable/unit")
-    inp("SOFT", "Soft cost (% hard)", 0.20, F_PCT1, "🔶", "A&E, financing, fees")
-    inp("PROFIT", "Developer profit (% GDV)", 0.15, F_PCT1, "🔶", "required margin")
+    for title, drivers in GLOBAL_SECTIONS:
+        sect(title)
+        for name, label, val, fmt, flag, note in drivers:
+            inp(name, label, val, fmt, flag, note)
     r += 1
 
     # -------- per-asset blocks --------

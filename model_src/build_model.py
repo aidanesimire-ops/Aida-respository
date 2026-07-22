@@ -4,7 +4,7 @@ Run:  python3 build_model.py
 """
 from openpyxl.utils import get_column_letter, column_index_from_string
 from mblib import new_book, add_sheet, NAVY, GOLD
-import tab_assumptions, tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_income, tab_scenarios, tab_hbu, tab_exec, tab_notes
+import tab_assumptions, tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_income, tab_scenarios, tab_hbu, tab_exec, tab_notes, tab_review
 import configs
 
 OUT = "../Shahidi_Assemblage_Model.xlsx"
@@ -87,6 +87,12 @@ def main():
     sh["Scenarios"] = add_sheet(wb, "Scenarios", tabcolor=GOLD)
     tab_scenarios.build(sh["Scenarios"], scen_regs)
 
+    # ---- review board (interactive sensitivities; links to income + assemblage + scenarios) ----
+    review_regs = dict(scen_regs)
+    review_regs["Scenarios"] = sh["Scenarios"].reg
+    sh["Review Board"] = add_sheet(wb, "Review Board", tabcolor=GOLD)
+    tab_review.build(sh["Review Board"], review_regs)
+
     # ---- highest & best use (links to assets + assemblage + assumptions) ----
     hbu_regs = dict(scen_regs)
     hbu_regs["Scenarios"] = sh["Scenarios"].reg
@@ -107,7 +113,7 @@ def main():
     tab_assumptions.build_index(sh["Assumptions"], all_regs, a_free)
 
     # ---- reorder ----
-    order = ["Executive Summary", "Assumptions", "Income Valuation", "Scenarios", "Assemblage",
+    order = ["Executive Summary", "Review Board", "Assumptions", "Income Valuation", "Scenarios", "Assemblage",
              "Highest & Best Use", "Shahidi Retail", "Publix & Starbucks", "Sunrise Plaza",
              "Office Condo", "Land", "Notes & Sources"]
     wb._sheets = [sh[t].ws for t in order]
