@@ -44,10 +44,64 @@ def _reprice():
         return json.load(f)
 
 
+def _high():
+    with open(os.path.join(PROC, "high_ticket_bundle.json")) as f:
+        return json.load(f)
+
+
+def _master():
+    with open(os.path.join(PROC, "master_bundle.json")) as f:
+        return json.load(f)
+
+
 def _wavg(rows, val, wt):
     num = sum((r[val] or 0) * (r[wt] or 0) for r in rows if r.get(val) is not None)
     den = sum((r[wt] or 0) for r in rows if r.get(val) is not None)
     return num / den if den else float("nan")
+
+
+MASTER_COLS = [
+    ("rank", "#", "0", 4),
+    ("neighborhood", "Neighborhood", None, 24),
+    ("geo_type", "Geography", None, 22),
+    ("norm_ppsf", "Normalized $/sqft", "$#,##0", 15),
+    ("vs_city_pct", "vs City", '+0"%";-0"%"', 9),
+    ("waterfront_ppsf", "Waterfront $/sqft", "$#,##0", 14),
+    ("dry_ppsf", "Dry $/sqft", "$#,##0", 11),
+    ("new_premium_pct", "New premium", '+0"%";-0"%"', 11),
+    ("median_sale_price", "Median sold $", "$#,##0", 14),
+    ("median_discount_pct", "Discount", '0.0"%"', 9),
+    ("dom", "Days on mkt", "0", 11),
+    ("appreciation_since_2020", "Apprec. since '20", '+0"%";-0"%"', 15),
+    ("failure_rate", "Fail rate", '0"%"', 9),
+    ("n_high_ticket", "Live ≥$1M", "#,##0", 10),
+    ("n_over_10m", "≥$10M", "#,##0", 8),
+    ("asking_ppsf", "Now asking $/sqft", "$#,##0", 15),
+    ("should_be_ppsf", "Should be (sold)", "$#,##0", 15),
+    ("suggested_adjust_pct", "Suggested reprice", '+0.0"%";-0.0"%"', 15),
+    ("ht_listed_total", "≥$1M listed at", "$#,##0", 16),
+    ("sold_n", "Sold", "#,##0", 7),
+]
+
+
+def master_sheet(wb, fmts, mb):
+    df = pd.DataFrame(mb["neighborhoods"])
+    m = mb["meta"]
+    ws = wb.add_worksheet("Master Ranking")
+    write_table(wb, ws, df, MASTER_COLS, fmts,
+                "Master — every neighborhood, most to least expensive, with suggested repricing",
+                f"{m['n_neighborhoods']} neighborhoods ranked by normalized $/sqft. "
+                f"{m['n_high_ticket_total']} live listings ≥$1M ({m['n_over_10m_total']} over $10M). "
+                "Suggested reprice = move current asking toward recent sold comps (negative = "
+                "reduce). All metrics normalized for size, type, waterfront, age & new construction.")
+    ws.hide_gridlines(2)
+    ws.freeze_panes(4, 2)
+    n = len(df)
+    ws.conditional_format(4, 3, 3 + n, 3, {"type": "3_color_scale",
+        "min_color": "#e8f1fc", "mid_color": "#86b6ef", "max_color": BLUE})     # norm ppsf
+    ws.conditional_format(4, 17, 3 + n, 17, {"type": "3_color_scale",
+        "min_color": "#d5473f", "mid_color": "#f0efec", "max_color": "#0f8a3c"})  # reprice
+    ws.conditional_format(4, 14, 3 + n, 14, {"type": "data_bar", "bar_color": "#eb6834"})  # >=10M
 
 
 def key_conclusions_sheet(wb, mm, red, tb, sb, rb=None):
@@ -622,6 +676,83 @@ def reprice_sheets(wb, fmts, rb):
         "min_color": "#0f8a3c", "mid_color": "#f0efec", "max_color": "#d5473f"})
 
 
+BN_COLS = [
+    ("neighborhood", "Neighborhood", None, 24),
+    ("band", "Price band", None, 12),
+    ("n_sold", "Sold", "#,##0", 7),
+    ("sold_ppsf", "Sold $/sqft", "$#,##0", 12),
+    ("n_live", "Live", "#,##0", 7),
+    ("ask_ppsf", "Asking $/sqft", "$#,##0", 13),
+    ("gap_pct", "Ask vs sold", '+0.0"%";-0.0"%"', 12),
+    ("verdict", "Verdict", None, 16),
+    ("median_sold_price", "Median sold $", "$#,##0", 15),
+]
+HT_COLS = [
+    ("band", "Band", None, 11),
+    ("address", "Address", None, 24),
+    ("neighborhood", "Neighborhood", None, 20),
+    ("geo_type", "Geography", None, 22),
+    ("ptype", "Type", None, 12),
+    ("sqft", "SqFt", "#,##0", 8),
+    ("list_price", "Current list", "$#,##0", 14),
+    ("ask_ppsf", "Ask $/sqft", "$#,##0", 11),
+    ("supported_ppsf", "Supported $/sqft", "$#,##0", 15),
+    ("suggested_list", "SUGGESTED LIST", "$#,##0", 16),
+    ("over_under_list", "Over/(under)", "$#,##0", 14),
+    ("gap_pct", "Gap", '+0.0"%";-0.0"%"', 9),
+    ("street_comps", "Comps", "#,##0", 7),
+    ("comp_confidence", "Confidence", None, 14),
+    ("verdict", "Verdict", None, 16),
+]
+HTBAND_COLS = [
+    ("band", "Price band", None, 12),
+    ("n", "Listings", "#,##0", 9),
+    ("median_ask_ppsf", "Median ask $/sqft", "$#,##0", 15),
+    ("median_supported_ppsf", "Median supported $/sqft", "$#,##0", 18),
+    ("total_list", "Total listed", "$#,##0", 16),
+    ("total_suggested", "Total suggested", "$#,##0", 16),
+    ("overpriced", "Overpriced", "#,##0", 10),
+    ("fairly_priced", "Fair", "#,##0", 8),
+    ("underpriced", "Underpriced", "#,##0", 11),
+    ("no_comps", "No comps", "#,##0", 9),
+]
+
+
+def high_ticket_sheets(wb, fmts, hb):
+    vfmt = _verdict_fmt(wb)
+    m = hb["meta"]
+
+    bn = pd.DataFrame(hb["band_neighborhood"])
+    ws = wb.add_worksheet("Band x Neighborhood")
+    if len(bn):
+        _write_verdict_table(wb, ws, bn, BN_COLS, fmts, vfmt,
+            "How each price band behaves WITHIN each neighborhood (>= $1M)",
+            "The core high-ticket view: what actually SOLD vs what's currently ASKED, per band, "
+            "per neighborhood. A band can be hot in one area and soft in another.")
+        ws.conditional_format(4, 6, 3 + len(bn), 6, {"type": "3_color_scale",
+            "min_color": "#0f8a3c", "mid_color": "#f0efec", "max_color": "#d5473f"})
+        ws.freeze_panes(4, 1)
+
+    ht = pd.DataFrame(hb["listings"])
+    ws2 = wb.add_worksheet("High-Ticket Underwriting")
+    _write_verdict_table(wb, ws2, ht, HT_COLS, fmts, vfmt,
+        f"Every live listing >= ${m['min_ticket']/1e6:.0f}M repriced ({m['n_listings']} listings)",
+        "Current list vs a SUGGESTED LIST (street-comp supported value). Comp-backed listed at "
+        f"${m['total_list']/1e9:.2f}B vs suggested ${m['total_suggested']/1e9:.2f}B "
+        f"({m['list_vs_suggested_pct']:+.0f}%). Confidence = how much sold data backs each figure; "
+        "'Low (no comps)' = pre-construction/unique, treat as a starting point.")
+    ws2.conditional_format(4, 11, 3 + len(ht), 11, {"type": "3_color_scale",
+        "min_color": "#0f8a3c", "mid_color": "#f0efec", "max_color": "#d5473f"})
+    ws2.freeze_panes(4, 2)
+
+    bands = pd.DataFrame(hb["bands"])
+    ws3 = wb.add_worksheet("Price Bands")
+    write_table(wb, ws3, bands, HTBAND_COLS, fmts,
+                "High-ticket price bands — the luxury market by tier",
+                "Median asking vs supported $/sqft and over/under counts, per price band.")
+    ws3.hide_gridlines(2)
+
+
 def main():
     b = _bundle()
     meta = b["meta"]
@@ -644,7 +775,17 @@ def main():
         key_conclusions_sheet(wb, mm, b, _time(), _street(), rb)
     except FileNotFoundError:
         pass
+    try:
+        master_sheet(wb, fmts, _master())
+    except FileNotFoundError:
+        pass
     readme_sheet(wb, meta)
+
+    # ---- HIGH-TICKET FOCUS (>= $1M) ----
+    try:
+        high_ticket_sheets(wb, fmts, _high())
+    except FileNotFoundError:
+        pass
 
     # ---- PRIMARY: MLS per-home layer ----
     mls_profiles_sheet(wb, mm)

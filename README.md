@@ -59,6 +59,7 @@ Or step by step:
 python analysis/normalize_ppsf.py   # Redfin layer  -> data/processed/*.csv, analysis_bundle.json
 python analysis/mls_normalize.py    # MLS per-home  -> data/processed/mls_*.csv, mls_bundle.json
 python analysis/street_underwrite.py# street-by-street value + deal underwriting -> street_bundle.json
+python analysis/high_ticket.py      # >=$1M underwriting + band x neighborhood -> high_ticket_bundle.json
 python analysis/reprice.py          # reprice live inventory vs should-be -> reprice_bundle.json
 python analysis/time_analysis.py    # 2020->now shifts -> data/processed/time_bundle.json
 python analysis/build_charts.py     # -> outputs/*.png

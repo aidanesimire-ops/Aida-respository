@@ -63,6 +63,27 @@ A derived classification (from the waterfront flag + subdivision name + MLS area
 
 Finger-isle (point-lot) waterfront runs about **2.2×** mainland-inland per foot — the single biggest geographic swing in the market.
 
+## High-ticket underwriting (≥ $1M)
+
+The luxury segment — **742 live listings ≥ $1M** (605 comp-backed). Comp-backed inventory is asking **+29% vs. supported value**. By band:
+
+| Price band | Live | Median ask $/sqft | Supported $/sqft | Over / Fair / Under |
+|--|--|--|--|--|
+| $1M–$2M | 320 | $700 | $606 | 161 / 56 / 53 |
+| $2M–$3M | 136 | $919 | $754 | 65 / 25 / 22 |
+| $3M–$5M | 143 | $1,171 | $899 | 71 / 20 / 25 |
+| $5M–$10M | 87 | $1,427 | $1,142 | 41 / 13 / 14 |
+| $10M+ | 56 | $2,376 | $1,414 | 31 / 7 / 1 |
+
+**The key pattern: the same band prices differently by neighborhood.** A few examples (what sold vs what's asked, per band):
+
+- **Coral Ridge:** $1M–$2M +24% (overpriced); $2M–$3M +26% (overpriced); $3M–$5M +13% (overpriced); $5M–$10M +0% (fairly).
+- **Rio Vista:** $1M–$2M +2% (fairly); $2M–$3M +22% (overpriced); $3M–$5M +2% (fairly); $5M–$10M +10% (fairly); $10M+ +48% (overpriced).
+- **Las Olas:** $1M–$2M +14% (overpriced); $2M–$3M +20% (overpriced); $3M–$5M +10% (fairly).
+- **Harbor Beach:** $1M–$2M +34% (overpriced); $3M–$5M +68% (overpriced); $5M–$10M +7% (fairly); $10M+ +34% (overpriced).
+
+The **Band × Neighborhood**, **High-Ticket Underwriting** (with a suggested list price per listing) and **Price Bands** tabs in the workbook carry the full detail; the dashboard has an interactive band-trend search.
+
 ## Neighborhood value ranking
 
 ![Top neighborhoods](outputs/chart_mls_ranking.png)

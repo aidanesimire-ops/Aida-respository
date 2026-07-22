@@ -1,0 +1,743 @@
+status,address,neighborhood,geo_type,ptype,sqft,waterfront,band,list_price,ask_ppsf,supported_ppsf,suggested_list,over_under_list,gap_pct,street_comps,comp_confidence,verdict
+Active,100 NE 5th St,North Lauderdale,Mainland inland,Single Family,672.0,False,$1M–$2M,1000000.0,1488.0,355.0,250000,750000.0,319.2,12,High,Overpriced
+Active,511 SE 5th Ave Unit#11,Nu River Landing,Intracoastal / canal waterfront,Condo,1233.0,True,$1M–$2M,1700000.0,1379.0,354.0,425000,1275000.0,289.5,73,High,Overpriced
+Active,300 NE 3rd Avenue Unit#2703s,Ombelle Fort Lauderdale,Downtown high-rise,Condo,1605.0,False,$1M–$2M,1815447.0,1131.0,325.0,525000,1290000.0,248.0,57,High,Overpriced
+Pending,300 NE 3rd Avenue Unit#3307s,Ombelle Fort Lauderdale,Downtown high-rise,Condo,1305.0,False,$1M–$2M,1230022.0,943.0,317.0,425000,805000.0,197.5,57,High,Overpriced
+Pending,505 NE 2nd Street Unit#17C,Viceroy Fort Lauderdale,Downtown high-rise,Condo,1268.0,False,$1M–$2M,1560000.0,1230.0,454.0,575000,985000.0,170.9,14,High,Overpriced
+Active,505 NE 2nd Street Unit#34F,Viceroy Fort Lauderdale,Downtown high-rise,Condo,1162.0,False,$1M–$2M,1430000.0,1231.0,459.0,525000,905000.0,168.2,14,High,Overpriced
+Pending,300 NE 3rd Avenue Unit#2803S,Ombelle Fort Lauderdale,Downtown high-rise,Condo,1527.0,False,$1M–$2M,1314072.0,861.0,330.0,500000,814000.0,160.9,57,High,Overpriced
+Pending,505 NE 2nd Street Unit#14C,Viceroy Fort Lauderdale,Downtown high-rise,Condo,1268.0,False,$1M–$2M,1500000.0,1183.0,454.0,575000,925000.0,160.6,14,High,Overpriced
+Active,3000 E Oakland Park Boulevard Unit#601,Waterside,Intracoastal / canal waterfront,Condo,1450.0,True,$1M–$2M,1674500.0,1155.0,445.0,650000,1024000.0,159.6,7,High,Overpriced
+Active,3000 E Oakland Park Boulevard Unit#1405,Waterside,Intracoastal / canal waterfront,Condo,1120.0,True,$1M–$2M,1336800.0,1194.0,468.0,525000,812000.0,155.1,7,High,Overpriced
+Active,401 N Birch Rd Unit#505,Tiffany House,Barrier island / beach,Condo,1284.0,False,$1M–$2M,1100000.0,857.0,342.0,450000,650000.0,150.6,32,High,Overpriced
+Active,401 N Birch Road Unit#703,Tiffany House,Barrier island / beach,Condo,1285.0,False,$1M–$2M,1100000.0,856.0,343.0,450000,650000.0,149.6,32,High,Overpriced
+Active,3000 E Oakland Park Boulevard Unit#1103,Waterside,Intracoastal / canal waterfront,Condo,1173.0,True,$1M–$2M,1359920.0,1159.0,465.0,550000,810000.0,149.2,7,High,Overpriced
+Active,401 N Birch Rd Unit#415,Tiffany House,Barrier island / beach,Condo,1293.0,False,$1M–$2M,1100000.0,851.0,354.0,450000,650000.0,140.4,32,High,Overpriced
+Active,401 N Birch Road Unit#504,Tiffany House,Barrier island / beach,Condo,1285.0,False,$1M–$2M,1050000.0,817.0,343.0,450000,600000.0,138.2,32,High,Overpriced
+Active,501 SE 6th Avenue Unit#611,Sixth Rio,Intracoastal / canal waterfront,Condo,1133.0,True,$1M–$2M,1445000.0,1275.0,539.0,600000,845000.0,136.5,0,Low (no comps),Insufficient comps
+Active,"511 SE 5 Ave Unit#8,9,11",Nuriver Landing Comm Cond Nuriver Landing,Intracoastal / canal waterfront,Condo,1361.0,True,$1M–$2M,1700000.0,1249.0,538.0,725000,975000.0,132.2,0,Low (no comps),Insufficient comps
+Pending,505 NE 2nd Street Unit#21G,Viceroy Fort Lauderdale,Downtown high-rise,Condo,1224.0,False,$1M–$2M,1290000.0,1054.0,456.0,550000,740000.0,131.1,14,High,Overpriced
+Active,3000 E Oakland Park Boulevard Unit#1409,Waterside,Intracoastal / canal waterfront,Condo,1118.0,True,$1M–$2M,1148540.0,1027.0,468.0,525000,624000.0,119.4,7,High,Overpriced
+Active,2417 NE 18th Ave,Middle River Manor,Intracoastal / canal waterfront,Single Family,1404.0,True,$1M–$2M,1400000.0,997.0,457.0,650000,750000.0,118.2,40,High,Overpriced
+Active,401 N Birch Rd Unit#502,Tiffany House,Barrier island / beach,Condo,1286.0,True,$1M–$2M,1250000.0,972.0,454.0,575000,675000.0,114.1,32,High,Overpriced
+Active,1313 NE 3rd St,Stranahans,Mainland inland,Single Family,1118.0,False,$1M–$2M,1120000.0,1002.0,497.0,550000,570000.0,101.6,9,High,Overpriced
+Active,918 SE 12th Street Unit#918,Rio South Townhomes,Mainland inland,Townhouse,2098.0,False,$1M–$2M,1289000.0,614.0,305.0,650000,639000.0,101.3,11,High,Overpriced
+Active,401 N Birch Road Unit#Th3,Tiffany House,Barrier island / beach,Condo,1631.0,False,$1M–$2M,1200000.0,736.0,366.0,600000,600000.0,101.1,32,High,Overpriced
+Active,100 E Las Olas Boulevard Unit#2802,Las Olas,Mainland inland,Condo,1404.0,False,$1M–$2M,1400000.0,997.0,498.0,700000,700000.0,100.2,48,High,Overpriced
+Active,77 S Birch Road Unit#7D,Portofino On Intracoas,Barrier island / beach,Condo,1580.0,True,$1M–$2M,1699000.0,1075.0,551.0,875000,824000.0,95.1,25,High,Overpriced
+Active,19 Port Side Dr Unit#19C,Portside Yacht Club,Intracoastal / canal waterfront,Townhouse,2203.0,True,$1M–$2M,1999999.0,908.0,468.0,1025000,975000.0,94.0,0,Low (no comps),Insufficient comps
+Active,912 SE 12th Street Unit#912,Rio South Townhomes,Mainland inland,Townhouse,2219.0,False,$1M–$2M,1269000.0,572.0,302.0,675000,594000.0,89.4,11,High,Overpriced
+Active,15 Port Side Dr Unit#15C,Portside Yacht Club,Intracoastal / canal waterfront,Condo,2226.0,True,$1M–$2M,1595000.0,717.0,380.0,850000,745000.0,88.7,0,Low (no comps),Insufficient comps
+Active,2417 NE 19th Avenue,Middle River Manor,Intracoastal / canal waterfront,Single Family,1776.0,True,$1M–$2M,1499000.0,844.0,449.0,800000,699000.0,88.0,17,High,Overpriced
+Pending,1720 NE 17th Avenue,Progresso,Mainland inland,Single Family,2380.0,False,$1M–$2M,1995000.0,838.0,447.0,1075000,920000.0,87.5,36,High,Overpriced
+Active,922 SE 12th Street Unit#922,Rio South Townhomes,Mainland inland,Townhouse,2202.0,False,$1M–$2M,1229000.0,558.0,303.0,675000,554000.0,84.2,11,High,Overpriced
+Active,2000 SW 18th Ave,Osceola Park,Mainland inland,Single Family,1468.0,False,$1M–$2M,1950000.0,1328.0,721.0,1050000,900000.0,84.2,15,High,Overpriced
+Active,1414 SE 12th Street Unit#3c,Hemingway Landings,Intracoastal / canal waterfront,Condo,2106.0,True,$1M–$2M,1499000.0,712.0,390.0,825000,674000.0,82.6,11,High,Overpriced
+Active,505 NE 2nd Street Unit#4A,Viceroy Fort Lauderdale,Downtown high-rise,Condo,1229.0,False,$1M–$2M,1020000.0,830.0,455.0,550000,470000.0,82.4,14,High,Overpriced
+Active,2720 NE 15th Street Unit#303,Rio Villas Coral Ridge,Intracoastal / canal waterfront,Condo,1618.0,True,$1M–$2M,1085000.0,671.0,370.0,600000,485000.0,81.4,17,High,Overpriced
+Active,100 E Las Olas Boulevard Unit#3804,Las Olas,Mainland inland,Condo,1867.0,False,$1M–$2M,1649000.0,883.0,487.0,900000,749000.0,81.3,48,High,Overpriced
+Active,1635 Seabreeze Boulevard,Harbor Beach,Barrier island / beach,Single Family,1584.0,False,$1M–$2M,1895000.0,1196.0,669.0,1050000,845000.0,78.8,6,High,Overpriced
+Active,347 N New River Drive Unit#Ph 6,Watergarden,Intracoastal / canal waterfront,Condo,1469.0,True,$1M–$2M,1695000.0,1154.0,647.0,950000,745000.0,78.4,31,High,Overpriced
+Active,1524 SE 12th Street Unit#6,La Casa Del Rio Vista Cond,Intracoastal / canal waterfront,Townhouse,1597.0,True,$1M–$2M,1159000.0,726.0,410.0,650000,509000.0,77.1,11,High,Overpriced
+Active,2845 NE 9th Street Unit#Ph5,Le Club International Cond,Barrier island / beach,Condo,2450.0,True,$1M–$2M,1825000.0,745.0,421.0,1025000,800000.0,77.0,28,High,Overpriced
+Active,925 NE 6th Street,Progresso,Mainland inland,Townhouse,2239.0,False,$1M–$2M,1325000.0,592.0,342.0,775000,550000.0,73.1,10,High,Overpriced
+Active,1710 S Ocean Lane Unit#202,Lago Mar North Lodge,Barrier island / beach,Condo,1498.0,True,$1M–$2M,1680000.0,1121.0,655.0,975000,705000.0,71.1,66,High,Overpriced
+Active,904 SE 12th Street,Everglade Land Sales Co,Mainland inland,Single Family,1379.0,False,$1M–$2M,1000000.0,725.0,424.0,575000,425000.0,71.0,11,High,Overpriced
+Active,3101 Bayshore Dr Unit#608,Fort Lauderdale Residence Ft Lauderdale Residence,Barrier island / beach,Condo,1214.0,False,$1M–$2M,1200000.0,988.0,582.0,700000,500000.0,69.8,83,High,Overpriced
+Pending,2431 NE 18th St,Livermore Estates Coral Ridge Villas,Mainland inland,Townhouse,2557.0,False,$1M–$2M,1750000.0,684.0,403.0,1025000,725000.0,69.7,21,High,Overpriced
+Pending,100 E Las Olas Boulevard Unit#3004,Las Olas,Mainland inland,Condo,1867.0,False,$1M–$2M,1549000.0,830.0,497.0,925000,624000.0,67.0,48,High,Overpriced
+Active,2845 NE 9th Street Unit#601,Le Club,Barrier island / beach,Condo,2095.0,True,$1M–$2M,1399000.0,668.0,404.0,850000,549000.0,65.3,28,High,Overpriced
+Active,2041 NE 30th Street,Coral Shores,Mainland inland,Single Family,1495.0,False,$1M–$2M,1260000.0,843.0,511.0,775000,485000.0,65.0,33,High,Overpriced
+Active,1680 S Ocean Ln Unit#251,Oceanage,Barrier island / beach,Condo,1273.0,False,$1M–$2M,1695000.0,1332.0,809.0,1025000,670000.0,64.6,66,High,Overpriced
+Active,545 S Fort Lauderdale Beach Boulevard Unit#1702,Illini Association,Barrier island / beach,Condo,1290.0,True,$1M–$2M,1350000.0,1047.0,638.0,825000,525000.0,64.1,20,High,Overpriced
+Active,2100 NE 24th St,Coral Point,Intracoastal / canal waterfront,Single Family,1685.0,True,$1M–$2M,1749000.0,1038.0,635.0,1075000,674000.0,63.5,13,High,Overpriced
+Active,804 NE 7th Street,Progresso,Mainland inland,Townhouse,2772.0,False,$1M–$2M,1475000.0,532.0,326.0,900000,575000.0,63.2,0,Low (no comps),Insufficient comps
+Active,1527 NE 15TH Avenue,Allenwood,Mainland inland,Townhouse,2775.0,False,$1M–$2M,1729000.0,623.0,384.0,1075000,654000.0,62.2,24,High,Overpriced
+Active,1525 NE 15TH Avenue,Allenwood,Mainland inland,Townhouse,2775.0,False,$1M–$2M,1729000.0,623.0,384.0,1075000,654000.0,62.2,24,High,Overpriced
+Active,101 S Fort Lauderdale Beach Boulevard Unit#1706,Las Olas,Barrier island / beach,Condo,1905.0,False,$1M–$2M,1695000.0,890.0,549.0,1050000,645000.0,62.1,20,High,Overpriced
+Pending,1135 NE 11th Ave,Progresso,Mainland inland,Townhouse,2434.0,False,$1M–$2M,1550000.0,637.0,397.0,975000,575000.0,60.5,18,High,Overpriced
+Active,516 Hendricks Isle Unit#4B,Aria,Intracoastal / canal waterfront,Condo,2104.0,True,$1M–$2M,1995000.0,948.0,592.0,1250000,745000.0,60.1,32,High,Overpriced
+Active,100 E Las Olas Boulevard Unit#2404,Las Olas,Downtown high-rise,Condo,1867.0,False,$1M–$2M,1475000.0,790.0,497.0,925000,550000.0,59.0,48,High,Overpriced
+Active,12 NE 26th St,Wilton Manors,Mainland inland,Single Family,1596.0,False,$1M–$2M,1299000.0,814.0,512.0,825000,474000.0,59.0,18,High,Overpriced
+Pending,2812 NW 12th Avenue,Jenada Isles,Mainland inland,Single Family,2155.0,False,$1M–$2M,1350000.0,626.0,396.0,850000,500000.0,58.1,6,High,Overpriced
+Active,2615 NE 26th Street,Coral Ridge Galt,Barrier island / beach,Single Family,1709.0,False,$1M–$2M,1349000.0,789.0,499.0,850000,499000.0,58.1,18,High,Overpriced
+Active,813 NE 17th St,Lauderdale Park,Mainland inland,Single Family,1587.0,False,$1M–$2M,1000000.0,630.0,399.0,625000,375000.0,57.9,11,High,Overpriced
+Active,1713 SW 5th St,Gill Isles,Finger-isle waterfront,Single Family,1532.0,True,$1M–$2M,1495000.0,976.0,620.0,950000,545000.0,57.4,6,High,Overpriced
+Active,1123 NE 12th Avenue Unit#A,Progresso,Mainland inland,Townhouse,2316.0,False,$1M–$2M,1299999.0,561.0,358.0,825000,475000.0,56.7,16,High,Overpriced
+Active,100 S Birch Road Unit#906,Jackson Tower Las Olas Con,Barrier island / beach,Condo,1958.0,False,$1M–$2M,1299000.0,663.0,426.0,825000,474000.0,55.6,25,High,Overpriced
+Active,3000 NE 21st Terrace,Coral Shores,Mainland inland,Single Family,1920.0,False,$1M–$2M,1400000.0,729.0,471.0,900000,500000.0,54.8,5,High,Overpriced
+Active,101 S Fort Lauderdale Beach Boulevard Unit#1107,Las Olas,Barrier island / beach,Condo,1905.0,False,$1M–$2M,1599000.0,839.0,549.0,1050000,549000.0,52.8,20,High,Overpriced
+Pending,1325 Guava Isle,South New River Isles,Finger-isle waterfront,Single Family,1360.0,True,$1M–$2M,1175000.0,864.0,566.0,775000,400000.0,52.7,7,High,Overpriced
+Active,153 N Seabreeze Boulevard Unit#1803,Selene,Barrier island / beach,Condo,1416.0,True,$1M–$2M,1999000.0,1412.0,925.0,1300000,699000.0,52.6,15,High,Overpriced
+Active,535 N Victoria Park Road,Victoria Park,Mainland inland,Single Family,1792.0,False,$1M–$2M,1389000.0,775.0,508.0,900000,489000.0,52.6,30,High,Overpriced
+Pending,153 N Seabreeze Boulevard Unit#Unit 1105s,Selene Oceanfront,Barrier island / beach,Condo,1890.0,False,$1M–$2M,1997500.0,1057.0,698.0,1325000,672000.0,51.4,15,High,Overpriced
+Active,100 S Birch Road Unit#1701a,Jackson Tower Las Olas Con,Barrier island / beach,Condo,1998.0,True,$1M–$2M,1695000.0,848.0,561.0,1125000,570000.0,51.2,25,High,Overpriced
+Pending,2200 S Ocean Lane Unit#909,Point Americas Phase Ii,Barrier island / beach,Condo,1765.0,True,$1M–$2M,1795000.0,1017.0,673.0,1200000,595000.0,51.1,66,High,Overpriced
+Pending,2889 NE 26th Street,Coral Ridge Galt,Barrier island / beach,Single Family,2122.0,False,$1M–$2M,1650000.0,778.0,518.0,1100000,550000.0,50.2,18,High,Overpriced
+Pending,153 N Seabreeze Boulevard Unit#1403-S,Selene Oceanfront,Barrier island / beach,Condo,1416.0,False,$1M–$2M,1500000.0,1059.0,705.0,1000000,500000.0,50.2,15,High,Overpriced
+Pending,2800 NE 29th Street,Coral Ridge Galt,Barrier island / beach,Single Family,1708.0,True,$1M–$2M,1875000.0,1098.0,741.0,1275000,600000.0,48.2,18,High,Overpriced
+Active,704 SE 8th Street,Rio Vista,Mainland inland,Single Family,2087.0,False,$1M–$2M,1950000.0,934.0,632.0,1325000,625000.0,47.8,0,Low (no comps),Insufficient comps
+Pending,1108 Tangelo Isle,South New River Isles,Finger-isle waterfront,Single Family,1080.0,True,$1M–$2M,1195000.0,1106.0,762.0,825000,370000.0,45.1,0,Low (no comps),Insufficient comps
+Active,1412 NE 15th Avenue,Progresso,Mainland inland,Single Family,2107.0,False,$1M–$2M,1025000.0,486.0,337.0,700000,325000.0,44.2,24,High,Overpriced
+Active,2100 S Ocean Lane Unit#1608,Point Americas,Barrier island / beach,Condo,1880.0,False,$1M–$2M,1349000.0,718.0,499.0,950000,399000.0,43.9,66,High,Overpriced
+Active,203 SW 10th Street,Lauderdale,Mainland inland,Townhouse,2560.0,False,$1M–$2M,1595000.0,623.0,434.0,1100000,495000.0,43.5,18,High,Overpriced
+Active,809 SW 10th Ter,Croissant Park,Mainland inland,Townhouse,2016.0,False,$1M–$2M,1190000.0,590.0,414.0,825000,365000.0,42.5,0,Low (no comps),Insufficient comps
+Active,645 NE 17th Way Unit#645,Seven Corners Townhomes,Mainland inland,Townhouse,3228.0,False,$1M–$2M,1699000.0,526.0,369.0,1200000,499000.0,42.5,44,High,Overpriced
+Active,101 S Fort Lauderdale Beach Boulevard Unit#1806,Las Olas,Barrier island / beach,Condo,1905.0,True,$1M–$2M,1945000.0,1021.0,723.0,1375000,570000.0,41.2,20,High,Overpriced
+Active,1710 S Ocean Lane Unit#201,Lago Mar North Lodge,Barrier island / beach,Condo,1444.0,True,$1M–$2M,1464999.0,1015.0,722.0,1050000,415000.0,40.6,66,High,Overpriced
+Active,1507 SE 15th Street Unit#202,Harbors Edge,Intracoastal / canal waterfront,Condo,2372.0,True,$1M–$2M,1899000.0,801.0,570.0,1350000,549000.0,40.5,45,High,Overpriced
+Pending,545 S Fort Lauderdale Beach Unit#701-702,Illini,Barrier island / beach,Condo,2150.0,True,$1M–$2M,1695000.0,788.0,562.0,1200000,495000.0,40.2,0,Low (no comps),Insufficient comps
+Active,700 NE 14th Ave Unit#311,Progresso,Mainland inland,Townhouse,2228.0,False,$1M–$2M,1295000.0,581.0,416.0,925000,370000.0,39.7,73,High,Overpriced
+Active,2200 S Ocean Ln Unit#2204,Point Americas Phase Point Americas,Barrier island / beach,Condo,2011.0,True,$1M–$2M,1699000.0,845.0,606.0,1225000,474000.0,39.4,66,High,Overpriced
+Active,2308 SE 18 St,Harbour Heights,Mainland inland,Single Family,1658.0,False,$1M–$2M,1575000.0,950.0,689.0,1150000,425000.0,37.9,0,Low (no comps),Insufficient comps
+Active,100 S Birch Road Unit#1004,Jackson Tower Las Olas Con,Barrier island / beach,Condo,1934.0,False,$1M–$2M,1125000.0,582.0,422.0,825000,300000.0,37.9,25,High,Overpriced
+Active,1301 Mandarin Isle,South New River Isles,Finger-isle waterfront,Single Family,1080.0,True,$1M–$2M,1149000.0,1064.0,774.0,825000,324000.0,37.5,5,High,Overpriced
+Pending,333 Las Olas Way Unit#2906,Las Olas,Downtown high-rise,Condo,1869.0,False,$1M–$2M,1250000.0,669.0,491.0,925000,325000.0,36.3,31,High,Overpriced
+Active,2200 S Ocean Ln Unit#2804,Point Americas,Barrier island / beach,Condo,2011.0,True,$1M–$2M,1795000.0,893.0,658.0,1325000,470000.0,35.7,66,High,Overpriced
+Active,2100 S Ocean Ln Unit#412,Point Americas,Barrier island / beach,Condo,1813.0,True,$1M–$2M,1625000.0,896.0,661.0,1200000,425000.0,35.6,66,High,Overpriced
+Pending,1300 Cordova Road,Lauderdale Harbors,Intracoastal / canal waterfront,Single Family,1916.0,True,$1M–$2M,1750000.0,913.0,674.0,1300000,450000.0,35.5,7,High,Overpriced
+Active,733 NE 4th Avenue Unit#733,Bamboo Flats,Downtown high-rise,Townhouse,2000.0,False,$1M–$2M,1095000.0,548.0,406.0,800000,295000.0,35.0,5,High,Overpriced
+Active,700 NE 14th Avenue Unit#312,Progresso,Mainland inland,Townhouse,2215.0,False,$1M–$2M,1190000.0,537.0,398.0,875000,315000.0,34.9,73,High,Overpriced
+Active,315 NE 15th Avenue,Victoria Park,Mainland inland,Townhouse,2854.0,False,$1M–$2M,1350000.0,473.0,351.0,1000000,350000.0,34.8,24,High,Overpriced
+Active,1180 N Federal Highway Unit#1203,Riva Residences,Intracoastal / canal waterfront,Condo,1738.0,True,$1M–$2M,1195000.0,688.0,511.0,900000,295000.0,34.6,21,High,Overpriced
+Pending,1122 NE 10th Ave Unit#A,Progresso,Mainland inland,Townhouse,2814.0,False,$1M–$2M,1495000.0,531.0,397.0,1125000,370000.0,33.8,21,High,Overpriced
+Active,411 N New River Dr Drive Unit#3605,Las Olas,Intracoastal / canal waterfront,Condo,1630.0,True,$1M–$2M,1350000.0,828.0,619.0,1000000,350000.0,33.8,0,Low (no comps),Insufficient comps
+Active,1321 CORDOVA Road,Lauderdale Harbors,Mainland inland,Single Family,1726.0,False,$1M–$2M,1285000.0,744.0,557.0,950000,335000.0,33.6,7,High,Overpriced
+Active,1617 NE 3rd Ct,Victoria Park,Mainland inland,Single Family,1628.0,False,$1M–$2M,1119000.0,687.0,515.0,850000,269000.0,33.4,0,Low (no comps),Insufficient comps
+Active,2100 S Ocean Lane Unit#1712,Point Americas,Barrier island / beach,Condo,1813.0,True,$1M–$2M,1595000.0,880.0,661.0,1200000,395000.0,33.1,66,High,Overpriced
+Active,2409 Bayview Dr,Coral Ridge Galt,Barrier island / beach,Single Family,2169.0,False,$1M–$2M,1499000.0,691.0,519.0,1125000,374000.0,33.1,24,High,Overpriced
+Active,2424 NE 18th Ave,Middle River Manor,Intracoastal / canal waterfront,Single Family,2023.0,True,$1M–$2M,1210000.0,598.0,450.0,900000,310000.0,32.9,40,High,Overpriced
+Active,1318 SE 12TH Way,Lauderdale Harbors,Intracoastal / canal waterfront,Single Family,1457.0,True,$1M–$2M,1495000.0,1026.0,774.0,1125000,370000.0,32.6,5,High,Overpriced
+Active,606 NE 14th Ave,Progresso,Mainland inland,Townhouse,3386.0,False,$1M–$2M,1449000.0,428.0,323.0,1100000,349000.0,32.5,73,High,Overpriced
+Active,1508 NE 30th Court,Coral Brook,Intracoastal / canal waterfront,Single Family,1832.0,True,$1M–$2M,1699000.0,927.0,702.0,1275000,424000.0,32.1,0,Low (no comps),Insufficient comps
+Pending,1122 NE 10th Ave Unit#B,Progresso,Mainland inland,Townhouse,2814.0,False,$1M–$2M,1475000.0,524.0,397.0,1125000,350000.0,32.0,21,High,Overpriced
+Active,8 Portside Drive Unit#8a,Portside Yacht Club,Intracoastal / canal waterfront,Townhouse,2813.0,True,$1M–$2M,1669000.0,593.0,450.0,1275000,394000.0,31.8,0,Low (no comps),Insufficient comps
+Active,2216 NE 18th Ave,Middle River Manor,Intracoastal / canal waterfront,Single Family,2768.0,True,$1M–$2M,1700000.0,614.0,466.0,1300000,400000.0,31.8,40,High,Overpriced
+Active,100 E Las Olas Blvd Unit#3201,Las Olas,Intracoastal / canal waterfront,Condo,2191.0,True,$1M–$2M,1790000.0,817.0,621.0,1350000,440000.0,31.6,48,High,Overpriced
+Active,1414 SE 12th St Unit#1B,Hemingway Landings,Intracoastal / canal waterfront,Condo,2120.0,True,$1M–$2M,1499000.0,707.0,540.0,1150000,349000.0,30.9,11,High,Overpriced
+Active,2611 SE 21 Street,Breakwater,Mainland inland,Single Family,1769.0,False,$1M–$2M,1695000.0,958.0,732.0,1300000,395000.0,30.9,0,Low (no comps),Insufficient comps
+Active,411 N New River Dr Drive Unit#1703,Las Olas,Downtown high-rise,Condo,2110.0,False,$1M–$2M,1295000.0,614.0,469.0,1000000,295000.0,30.9,0,Low (no comps),Insufficient comps
+Active,45 Hendricks Isle Unit#403,Hendricks,Finger-isle waterfront,Condo,2100.0,True,$1M–$2M,1699000.0,809.0,619.0,1300000,399000.0,30.7,32,High,Overpriced
+Active,1523 SE 2nd Court,Colee Hammock,Mainland inland,Single Family,1787.0,False,$1M–$2M,1395000.0,781.0,602.0,1075000,320000.0,29.7,8,High,Overpriced
+Active,1900 Bayview Drive,Coral Ridge,Mainland inland,Single Family,1711.0,False,$1M–$2M,1300000.0,760.0,587.0,1000000,300000.0,29.5,24,High,Overpriced
+Active,915 SE 2nd Court,Colee Hammock,Mainland inland,Townhouse,2561.0,False,$1M–$2M,1524900.0,595.0,460.0,1175000,350000.0,29.3,8,High,Overpriced
+Pending,608 SW 16th Ct,Lauderdale Pines,Mainland inland,Townhouse,2527.0,False,$1M–$2M,1269000.0,502.0,389.0,975000,294000.0,29.0,0,Low (no comps),Insufficient comps
+Active,915 W Las Olas Boulevard Unit#915,Waverly Place,Mainland inland,Townhouse,2560.0,False,$1M–$2M,1049000.0,410.0,318.0,825000,224000.0,28.9,40,High,Overpriced
+Active,347 N New River Dr E Unit#1904,Watergarden,Intracoastal / canal waterfront,Condo,1469.0,True,$1M–$2M,1175000.0,800.0,622.0,925000,250000.0,28.6,28,High,Overpriced
+Active,333 Las Olas Way Unit#1207,Las Olas,Intracoastal / canal waterfront,Condo,1522.0,True,$1M–$2M,1295000.0,851.0,663.0,1000000,295000.0,28.4,31,High,Overpriced
+Active,333 Las Olas Way Unit#2409,Las Olas,Intracoastal / canal waterfront,Condo,2141.0,True,$1M–$2M,1750000.0,817.0,637.0,1375000,375000.0,28.3,31,High,Overpriced
+Active,732 NE 15th Avenue,Victoria Park,Mainland inland,Townhouse,2456.0,False,$1M–$2M,1089000.0,443.0,346.0,850000,239000.0,28.0,24,High,Overpriced
+Pending,2043 NE 29th Street,Coral Shores,Mainland inland,Single Family,2038.0,False,$1M–$2M,1095000.0,537.0,421.0,850000,245000.0,27.6,18,High,Overpriced
+Active,1801 NE 13th St Unit#1829,Galleria Villages,Mainland inland,Townhouse,2036.0,False,$1M–$2M,1050000.0,516.0,405.0,825000,225000.0,27.4,0,Low (no comps),Insufficient comps
+Active,1704 SW 4th Court,Gill Isles,Finger-isle waterfront,Single Family,1462.0,True,$1M–$2M,1050000.0,718.0,564.0,825000,225000.0,27.3,5,High,Overpriced
+Active,610 W Las Olas Blvd Unit#2014N,Symphony North Symphony,Intracoastal / canal waterfront,Condo,1911.0,True,$1M–$2M,1199000.0,627.0,493.0,950000,249000.0,27.2,40,High,Overpriced
+Active,2125 NE 17th Ter,Middle River Manor,Intracoastal / canal waterfront,Single Family,1619.0,True,$1M–$2M,1650000.0,1019.0,802.0,1300000,350000.0,27.1,26,High,Overpriced
+Active,700 NE 14th Avenue Unit#208,Progresso,Mainland inland,Townhouse,2231.0,False,$1M–$2M,1174000.0,526.0,416.0,925000,249000.0,26.4,73,High,Overpriced
+Active,920 Intracoastal Drive Unit#1402,Aquablu,Intracoastal / canal waterfront,Condo,2136.0,True,$1M–$2M,1975000.0,925.0,732.0,1575000,400000.0,26.4,39,High,Overpriced
+Active,809 NE 16th Unit#15,Regency Park Townhomes,Mainland inland,Townhouse,2823.0,False,$1M–$2M,1948000.0,690.0,546.0,1550000,398000.0,26.4,0,Low (no comps),Insufficient comps
+Pending,1368 Bayview Drive,Dockside Grandeur,Intracoastal / canal waterfront,Townhouse,2882.0,True,$1M–$2M,1795000.0,623.0,496.0,1425000,370000.0,25.6,24,High,Overpriced
+Active,640 NE 8TH Avenue,Progresso,Mainland inland,Single Family,1784.0,False,$1M–$2M,1100000.0,617.0,492.0,875000,225000.0,25.4,44,High,Overpriced
+Active,516 Hendricks Isle Unit#2C,Aria Las Olas Aria,Intracoastal / canal waterfront,Condo,2394.0,True,$1M–$2M,1745000.0,729.0,583.0,1400000,345000.0,25.0,32,High,Overpriced
+Pending,648 NE 17th Avenue,Victoria Park,Mainland inland,Single Family,1888.0,False,$1M–$2M,1380000.0,731.0,585.0,1100000,280000.0,25.0,36,High,Overpriced
+Pending,2800 NE 21st Court,Coral Ridge,Mainland inland,Single Family,2124.0,False,$1M–$2M,1650000.0,777.0,622.0,1325000,325000.0,24.9,11,High,Overpriced
+Pending,1108 NW 29th Court,Jenada Isles,Mainland inland,Single Family,2226.0,False,$1M–$2M,1000000.0,449.0,365.0,800000,200000.0,23.0,0,Low (no comps),Insufficient comps
+Pending,2549 NE 27th Avenue,Coral Ridge Galt,Barrier island / beach,Single Family,1545.0,False,$1M–$2M,1235000.0,799.0,650.0,1000000,235000.0,22.9,0,Low (no comps),Insufficient comps
+Active,218 NE 15th Avenue Unit#218,Isles Enclave,Mainland inland,Townhouse,3500.0,False,$1M–$2M,1584000.0,453.0,369.0,1300000,284000.0,22.8,24,High,Overpriced
+Pending,910 SE 13th St,Everglade Land Sales Co None,Mainland inland,Townhouse,2619.0,False,$1M–$2M,1525000.0,582.0,475.0,1250000,275000.0,22.5,8,High,Overpriced
+Active,411 N New River Dr E Unit#3703,Las Olas,Intracoastal / canal waterfront,Condo,2110.0,True,$1M–$2M,1629000.0,772.0,635.0,1350000,279000.0,21.6,28,High,Overpriced
+Active,1321 NE 14th Avenue Unit#1321,Dua Lake Ridge West,Mainland inland,Townhouse,2351.0,False,$1M–$2M,1395000.0,593.0,489.0,1150000,245000.0,21.3,73,High,Overpriced
+Active,909 NE 16th Ave,Progresso,Mainland inland,Townhouse,2483.0,False,$1M–$2M,1399000.0,563.0,465.0,1150000,249000.0,21.1,73,High,Overpriced
+Pending,527 Orton Avenue Unit#302B,Terraces,Barrier island / beach,Condo,1775.0,True,$1M–$2M,1750000.0,986.0,814.0,1450000,300000.0,21.1,13,High,Overpriced
+Pending,2711 Mayan Dr,Harbor Beach,Barrier island / beach,Single Family,1846.0,False,$1M–$2M,1699000.0,920.0,762.0,1400000,299000.0,20.7,0,Low (no comps),Insufficient comps
+Active,30 Isle Of Venice Dr Unit#403,Aqualuna Las Olas Aqualuna,Intracoastal / canal waterfront,Condo,2590.0,True,$1M–$2M,1799000.0,695.0,580.0,1500000,299000.0,19.8,35,High,Overpriced
+Active,1627 Seabreeze Boulevard,Harbor Beach,Barrier island / beach,Single Family,2540.0,False,$1M–$2M,1999999.0,787.0,659.0,1675000,325000.0,19.4,6,High,Overpriced
+Active,2200 S Ocean Ln Unit#1405,Point America Point Americas,Barrier island / beach,Condo,2170.0,True,$1M–$2M,1595000.0,735.0,616.0,1325000,270000.0,19.3,66,High,Overpriced
+Active,2317 NE 12th Street,Beach Way Heights,Barrier island / beach,Single Family,2571.0,False,$1M–$2M,1795000.0,698.0,587.0,1500000,295000.0,18.9,5,High,Overpriced
+Active,843 SW 14th Court Unit#843,Esmonda Gardens,Mainland inland,Townhouse,4200.0,False,$1M–$2M,1777000.0,423.0,358.0,1500000,277000.0,18.2,4,High,Overpriced
+Active,3056 NE 14th Ave,Ocean Boulevard Park,Barrier island / beach,Single Family,2257.0,False,$1M–$2M,1080000.0,479.0,407.0,925000,155000.0,17.7,73,High,Overpriced
+Active,3121 NE 26th Street,Lauderdale Beach Ext,Barrier island / beach,Townhouse,2264.0,True,$1M–$2M,1495000.0,660.0,561.0,1275000,220000.0,17.6,18,High,Overpriced
+Active,1500 SE 12th St Unit#1A,Hemingway Landings,Intracoastal / canal waterfront,Condo,2288.0,True,$1M–$2M,1500000.0,656.0,559.0,1275000,225000.0,17.4,11,High,Overpriced
+Active,509 SW 11th Street,Lauderdale,Mainland inland,Townhouse,2265.0,False,$1M–$2M,1099000.0,485.0,415.0,950000,149000.0,16.9,11,High,Overpriced
+Active,151 N Seabreeze Boulevard Unit#903,Selene Oceanfront,Barrier island / beach,Condo,1680.0,True,$1M–$2M,1799000.0,1071.0,917.0,1550000,249000.0,16.8,15,High,Overpriced
+Active,3101 Bayshore Drive Unit#2105,Fort Lauderdale Residences,Barrier island / beach,Condo,1283.0,True,$1M–$2M,1250000.0,974.0,836.0,1075000,175000.0,16.5,83,High,Overpriced
+Pending,411 N New River Drive Unit#3402,Las Olas,Intracoastal / canal waterfront,Condo,1630.0,True,$1M–$2M,1249000.0,766.0,660.0,1075000,174000.0,16.1,31,High,Overpriced
+Active,2200 S Ocean Lane Unit#205,Point Americas Phase Ii,Barrier island / beach,Condo,2170.0,True,$1M–$2M,1549000.0,714.0,616.0,1325000,224000.0,15.9,66,High,Overpriced
+Active,2845 NE 9th Street Unit#906,Le Club International Cond,Barrier island / beach,Condo,2630.0,True,$1M–$2M,1250000.0,475.0,410.0,1075000,175000.0,15.9,28,High,Overpriced
+Active,1210 NE 11th Avenue,Progresso,Mainland inland,Townhouse,2932.0,False,$1M–$2M,1095000.0,373.0,323.0,950000,145000.0,15.5,18,High,Overpriced
+Active,1800 S Ocean Drive Unit#404,Townhouses Harbor Beach,Barrier island / beach,Condo,1790.0,True,$1M–$2M,1349000.0,754.0,654.0,1175000,174000.0,15.3,49,High,Overpriced
+Active,1808 Coral Ridge Dr,Livermore Estates,Mainland inland,Townhouse,3387.0,False,$1M–$2M,1865000.0,551.0,478.0,1625000,240000.0,15.3,4,High,Overpriced
+Active,1362 Bayview Drive,Grandeur,Mainland inland,Townhouse,2355.0,False,$1M–$2M,1150000.0,488.0,425.0,1000000,150000.0,14.8,24,High,Overpriced
+Active,656 NW 21st Street,Curva Del Rio,Intracoastal / canal waterfront,Single Family,2338.0,True,$1M–$2M,1799000.0,769.0,673.0,1575000,224000.0,14.3,5,High,Overpriced
+Active,648 NE 16th Terrace,Victoria Park,Mainland inland,Single Family,1428.0,False,$1M–$2M,1100000.0,770.0,674.0,950000,150000.0,14.2,30,High,Overpriced
+Active,700 NE 17th Way,Victoria Highlands Pla,Mainland inland,Single Family,1722.0,False,$1M–$2M,1100000.0,639.0,560.0,975000,125000.0,14.1,44,High,Overpriced
+Active,507 SW 11th Street,Tarpon River,Mainland inland,Townhouse,2265.0,False,$1M–$2M,1099000.0,485.0,425.0,975000,124000.0,14.1,11,High,Overpriced
+Active,2580 Manor Way,Altessa Wilton Manors,Mainland inland,Townhouse,2179.0,False,$1M–$2M,1043390.0,479.0,421.0,925000,118000.0,13.8,0,Low (no comps),Insufficient comps
+Active,1935 SE 25th Avenue,Harbour Heights,Mainland inland,Single Family,2169.0,False,$1M–$2M,1749999.0,807.0,714.0,1550000,200000.0,13.0,0,Low (no comps),Insufficient comps
+Active,636 NE 17th Ter,Victoria Park,Mainland inland,Single Family,1219.0,False,$1M–$2M,1150000.0,943.0,835.0,1025000,125000.0,12.9,26,High,Overpriced
+Active,101 S Fort Lauderdale Beach Boulevard Unit#1502,Las Olas,Barrier island / beach,Condo,2380.0,True,$1M–$2M,1975000.0,830.0,735.0,1750000,225000.0,12.9,20,High,Overpriced
+Active,1710 S Ocean Ln Unit#404,Lago Mar North Lodge Cond Lago Mar North Lodge,Barrier island / beach,Condo,1444.0,True,$1M–$2M,1075000.0,744.0,660.0,950000,125000.0,12.7,66,High,Overpriced
+Active,3101 Bayshore Dr Unit#805,Fort Lauderdale Residence Fort Lauderdale Residen,Barrier island / beach,Condo,1176.0,True,$1M–$2M,1020000.0,867.0,771.0,900000,120000.0,12.5,83,High,Overpriced
+Pending,347 N New River Drive Unit#1401,Watergarden,Intracoastal / canal waterfront,Condo,1615.0,True,$1M–$2M,1175000.0,728.0,651.0,1050000,125000.0,11.8,31,High,Overpriced
+Active,2100 S Ocean Lane Unit#1411,Point Americas,Barrier island / beach,Condo,1912.0,True,$1M–$2M,1400000.0,732.0,657.0,1250000,150000.0,11.4,66,High,Overpriced
+Pending,1109 SE 11th Court,Rio Vista,Mainland inland,Single Family,2668.0,False,$1M–$2M,1950000.0,731.0,656.0,1750000,200000.0,11.4,8,High,Overpriced
+Active,3101 BAYSHORE DR Unit#2306,Fort Lauderdale Residenc Residences Fort Lauderd,Barrier island / beach,Condo,1283.0,True,$1M–$2M,1098000.0,856.0,770.0,1000000,98000.0,11.2,83,High,Overpriced
+Active,1676 S Ocean Lane Unit#253,Oceanage,Barrier island / beach,Condo,1264.0,True,$1M–$2M,1500000.0,1187.0,1069.0,1350000,150000.0,11.0,66,High,Overpriced
+Active,17 SE 12th Avenue,Beverly Heights Na,Mainland inland,Townhouse,2509.0,False,$1M–$2M,1950000.0,777.0,701.0,1750000,200000.0,10.8,0,Low (no comps),Insufficient comps
+Active,1052 N Victoria Park Road,Lake Ridge,Mainland inland,Townhouse,2074.0,False,$1M–$2M,1175000.0,567.0,514.0,1075000,100000.0,10.3,30,High,Overpriced
+Active,1900 NE 16th Terrace,Poinsettia Heights,Mainland inland,Single Family,2000.0,False,$1M–$2M,1250000.0,625.0,567.0,1125000,125000.0,10.2,30,High,Overpriced
+Active,2046 NE 15th St,Lauder Gate Isles,Finger-isle waterfront,Single Family,2762.0,True,$1M–$2M,1999999.0,724.0,658.0,1825000,175000.0,10.0,17,High,Fairly priced
+Active,2836 NW 11th Avenue,Jenada Isles,Mainland inland,Single Family,2712.0,False,$1M–$2M,1125000.0,415.0,380.0,1025000,100000.0,9.2,0,Low (no comps),Insufficient comps
+Active,1625 SW 5th Ct,Gill Isles,Finger-isle waterfront,Single Family,1521.0,True,$1M–$2M,1000000.0,657.0,602.0,925000,75000.0,9.1,0,Low (no comps),Insufficient comps
+Active,2200 S Ocean Lane Unit#2805,Point Americas Phase Ii,Barrier island / beach,Condo,2170.0,True,$1M–$2M,1595000.0,735.0,676.0,1475000,120000.0,8.7,66,High,Fairly priced
+Active,3101 Bayshore Dr Unit#1102,Fort Lauderdale Residence Fort Lauderdale Res,Barrier island / beach,Condo,1329.0,True,$1M–$2M,1090000.0,820.0,759.0,1000000,90000.0,8.0,83,High,Fairly priced
+Pending,76 Isle Of Venice Dr Unit#H,Isles Venice Co Op Isles Venice,Finger-isle waterfront,Condo,2984.0,True,$1M–$2M,1599000.0,536.0,498.0,1475000,124000.0,7.6,35,High,Fairly priced
+Active,333 Las Olas Way Unit#2505,Las Olas,Intracoastal / canal waterfront,Condo,2129.0,True,$1M–$2M,1499000.0,704.0,656.0,1400000,99000.0,7.3,31,High,Fairly priced
+Active,2100 S Ocean Ln Unit#506,Point Americas,Barrier island / beach,Condo,2524.0,True,$1M–$2M,1795000.0,711.0,663.0,1675000,120000.0,7.2,66,High,Fairly priced
+Active,2100 S Ocean Lane Unit#2508,Point Americas,Barrier island / beach,Condo,1880.0,True,$1M–$2M,1325000.0,705.0,659.0,1250000,75000.0,7.0,66,High,Fairly priced
+Active,333 Las Olas Way Unit#3006,Las Olas,Intracoastal / canal waterfront,Condo,1869.0,True,$1M–$2M,1295000.0,693.0,649.0,1225000,70000.0,6.8,31,High,Fairly priced
+Active,905 Mandarin Isle,South New River Isles,Finger-isle waterfront,Single Family,1384.0,True,$1M–$2M,1075000.0,777.0,738.0,1025000,50000.0,5.3,5,High,Fairly priced
+Active,48 Hendricks Isle Unit#2 A-a,Meritage,Intracoastal / canal waterfront,Condo,2253.0,True,$1M–$2M,1495000.0,664.0,631.0,1425000,70000.0,5.2,32,High,Fairly priced
+Active,615 Bayshore Drive Unit#603,La Cascade,Barrier island / beach,Condo,2273.0,True,$1M–$2M,1695000.0,746.0,712.0,1625000,70000.0,4.8,83,High,Fairly priced
+Pending,1312 NE 16th ter,Fort Lauderdale Lake Ridge,Mainland inland,Townhouse,2594.0,False,$1M–$2M,1400000.0,540.0,517.0,1350000,50000.0,4.4,30,High,Fairly priced
+Active,2100 S Ocean Lane Unit#1202,Point Americas,Barrier island / beach,Condo,1879.0,True,$1M–$2M,1295000.0,689.0,661.0,1250000,45000.0,4.2,66,High,Fairly priced
+Active,105 NE 28th Ct,Sunset Manors Amen,Mainland inland,Single Family,2347.0,False,$1M–$2M,1450000.0,618.0,594.0,1400000,50000.0,4.0,0,Low (no comps),Insufficient comps
+Active,2514 NE 21ST Street Unit#A,Livermore Estates,Mainland inland,Townhouse,2450.0,False,$1M–$2M,1550000.0,633.0,610.0,1500000,50000.0,3.8,5,High,Fairly priced
+Active,104 NE 16th Ter,Victoria Park,Mainland inland,Townhouse,2901.0,False,$1M–$2M,1875000.0,646.0,624.0,1800000,75000.0,3.5,30,High,Fairly priced
+Active,320 SW 11 Unit#320,Tarpon River,Mainland inland,Townhouse,3578.0,False,$1M–$2M,1775000.0,496.0,482.0,1725000,50000.0,2.9,0,Low (no comps),Insufficient comps
+Active,347 N New River Drive Unit#Ph 4,Watergarden,Intracoastal / canal waterfront,Condo,1918.0,True,$1M–$2M,1295000.0,675.0,658.0,1250000,45000.0,2.6,31,High,Fairly priced
+Active,715 Bayshore Dr Unit#705,La Rive,Barrier island / beach,Condo,1733.0,True,$1M–$2M,1290000.0,744.0,725.0,1250000,40000.0,2.6,83,High,Fairly priced
+Active,2801 Coral Shores Dr,Coral Shores,Intracoastal / canal waterfront,Single Family,2307.0,True,$1M–$2M,1999000.0,866.0,844.0,1950000,49000.0,2.6,7,High,Fairly priced
+Active,1505 SW 23RD Street,River Oaks,Mainland inland,Single Family,2497.0,False,$1M–$2M,1100000.0,441.0,430.0,1075000,25000.0,2.6,30,High,Fairly priced
+Active,1698 S Ocean Ln Unit#171,Oceanage,Barrier island / beach,Condo,1264.0,False,$1M–$2M,1049000.0,830.0,810.0,1025000,24000.0,2.5,66,High,Fairly priced
+Active,551 N Fort Lauderdale Beach Blvd Unit#R201,Flb Condominium Resid Elliott,Barrier island / beach,Condo,1034.0,True,$1M–$2M,1574900.0,1523.0,1490.0,1550000,25000.0,2.2,78,High,Fairly priced
+Pending,904 Citrus Isle,South New River Isles,Finger-isle waterfront,Single Family,1296.0,True,$1M–$2M,1000000.0,772.0,758.0,975000,25000.0,1.8,0,Low (no comps),Insufficient comps
+Active,101 S Fort Lauderdale Beach Boulevard Unit#907,Las Olas,Barrier island / beach,Condo,1905.0,True,$1M–$2M,1399000.0,734.0,723.0,1375000,24000.0,1.5,20,High,Fairly priced
+Active,913 NE 15th Street,Lauderdale Park,Mainland inland,Single Family,2228.0,False,$1M–$2M,1149000.0,516.0,509.0,1125000,24000.0,1.4,17,High,Fairly priced
+Active,729 NE 17th Terrace,Victoria Park,Mainland inland,Single Family,2126.0,False,$1M–$2M,1699000.0,799.0,792.0,1675000,24000.0,0.9,26,High,Fairly priced
+Active,612 Bayshore Drive Unit#301,Wave On Bayshore,Barrier island / beach,Condo,1664.0,False,$1M–$2M,1090000.0,655.0,653.0,1075000,15000.0,0.3,83,High,Fairly priced
+Active,3036 NE 19 Street,Lauderdale Beach Ext,Barrier island / beach,Single Family,1917.0,False,$1M–$2M,1425000.0,743.0,742.0,1425000,0.0,0.1,0,Low (no comps),Insufficient comps
+Active,1916 NE 24th Street,Coral Point,Intracoastal / canal waterfront,Single Family,2450.0,True,$1M–$2M,1395000.0,569.0,569.0,1400000,-5000.0,0.0,13,High,Fairly priced
+Active,1437 SW 23rd Court,Marina Landings,Mainland inland,Single Family,2738.0,False,$1M–$2M,1280000.0,467.0,468.0,1275000,5000.0,-0.2,0,Low (no comps),Insufficient comps
+Active,133 Isle Of Venice Drive Unit#201,Aquavue Las Olas,Intracoastal / canal waterfront,Condo,2849.0,True,$1M–$2M,1800000.0,632.0,636.0,1800000,0.0,-0.6,35,High,Fairly priced
+Active,2501 NE 26th Terrace,Coral Ridge Galt,Barrier island / beach,Single Family,2163.0,False,$1M–$2M,1299900.0,601.0,605.0,1300000,-0.0,-0.7,5,High,Fairly priced
+Pending,1453 SW 23rd Court,Marina Landings,Mainland inland,Single Family,2751.0,False,$1M–$2M,1225000.0,445.0,450.0,1250000,-25000.0,-1.1,0,Low (no comps),Insufficient comps
+Pending,2525 NE 21st Court,Coral Ridge Galt,Barrier island / beach,Single Family,2995.0,False,$1M–$2M,1750000.0,584.0,591.0,1775000,-25000.0,-1.2,11,High,Fairly priced
+Active,333 Las Olas Way Unit#2506,Las Olas,Intracoastal / canal waterfront,Condo,1869.0,True,$1M–$2M,1195000.0,639.0,647.0,1200000,-5000.0,-1.2,31,High,Fairly priced
+Pending,41 NE 24th St,Petite,Mainland inland,Single Family,2211.0,False,$1M–$2M,1675000.0,758.0,769.0,1700000,-25000.0,-1.4,13,High,Fairly priced
+Active,809 NE 16th Avenue Unit#20,Regency Park Townhomes,Mainland inland,Townhouse,2823.0,False,$1M–$2M,1869000.0,662.0,672.0,1900000,-31000.0,-1.5,73,High,Fairly priced
+Active,100 NE 22nd Street,Petite,Mainland inland,Single Family,1851.0,False,$1M–$2M,1140000.0,616.0,626.0,1150000,-10000.0,-1.6,13,High,Fairly priced
+Active,1200 NE 2nd Street,Victoria Park,Mainland inland,Single Family,2441.0,False,$1M–$2M,1950000.0,799.0,815.0,2000000,-50000.0,-2.0,14,High,Fairly priced
+Active,1735 NE 23rd Avenue,Bal Harbour,Finger-isle waterfront,Single Family,2066.0,True,$1M–$2M,1750000.0,847.0,864.0,1775000,-25000.0,-2.0,0,Low (no comps),Insufficient comps
+Active,821 SW 1st Street,Sailboat Bend,Mainland inland,Townhouse,2723.0,False,$1M–$2M,1075000.0,395.0,403.0,1100000,-25000.0,-2.0,0,Low (no comps),Insufficient comps
+Active,2200 NE 32nd Avenue,Lauderdale Beach Ext,Barrier island / beach,Single Family,1735.0,False,$1M–$2M,1345000.0,775.0,796.0,1375000,-30000.0,-2.6,27,High,Fairly priced
+Pending,1009 Tequesta Street,Waverly Place,Mainland inland,Single Family,1942.0,False,$1M–$2M,1079000.0,556.0,573.0,1125000,-46000.0,-3.0,0,Low (no comps),Insufficient comps
+Active,21 NE 25th Street,Petite,Mainland inland,Single Family,2030.0,False,$1M–$2M,1299900.0,640.0,662.0,1350000,-50000.0,-3.3,8,High,Fairly priced
+Active,2001 N Ocean Boulevard Unit#Apt 1201,Vue,Barrier island / beach,Condo,1686.0,False,$1M–$2M,1295000.0,768.0,797.0,1350000,-55000.0,-3.6,147,High,Fairly priced
+Active,430 NE 7th Avenue Unit#430,Holmberg Mc Kees,Mainland inland,Townhouse,2920.0,False,$1M–$2M,1450000.0,497.0,517.0,1500000,-50000.0,-3.9,15,High,Fairly priced
+Pending,1434 SW 23rd Street,Marina Landings,Mainland inland,Single Family,2831.0,False,$1M–$2M,1249000.0,441.0,462.0,1300000,-51000.0,-4.5,30,High,Fairly priced
+Active,1508 NE 6th Street,Las Olas,Mainland inland,Single Family,1609.0,False,$1M–$2M,1199000.0,745.0,780.0,1250000,-51000.0,-4.5,10,High,Fairly priced
+Active,1020 SE 11th Street,Rio Vista,Mainland inland,Single Family,2321.0,False,$1M–$2M,1899000.0,818.0,857.0,2000000,-101000.0,-4.6,6,High,Fairly priced
+Pending,1704 SW 5th Ct,Gill Isles,Finger-isle waterfront,Single Family,2083.0,True,$1M–$2M,1200000.0,576.0,606.0,1250000,-50000.0,-5.0,0,Low (no comps),Insufficient comps
+Pending,2164 NE 25th Street,Coral Point,Intracoastal / canal waterfront,Single Family,1785.0,True,$1M–$2M,1199950.0,672.0,707.0,1250000,-50000.0,-5.0,8,High,Fairly priced
+Active,1004 Mandarin Isle,South New River Isles,Finger-isle waterfront,Single Family,1744.0,True,$1M–$2M,1100000.0,631.0,665.0,1150000,-50000.0,-5.1,5,High,Fairly priced
+Active,111 SE 8th Avenue Unit#Ph-1701,Venezia,Intracoastal / canal waterfront,Condo,2940.0,True,$1M–$2M,1655000.0,563.0,595.0,1750000,-95000.0,-5.4,7,High,Fairly priced
+Active,1421 SW 20th Court,River Oaks,Mainland inland,Single Family,2824.0,False,$1M–$2M,1275000.0,451.0,479.0,1350000,-75000.0,-5.8,0,Low (no comps),Insufficient comps
+Active,2572 NE 16 Avenue,Altessa Wilton Manors,Mainland inland,Townhouse,2374.0,False,$1M–$2M,1010040.0,425.0,452.0,1075000,-65000.0,-6.0,0,Low (no comps),Insufficient comps
+Pending,1516 SE 1st St,Colee Hammock,Downtown high-rise,Townhouse,3066.0,False,$1M–$2M,1725000.0,563.0,600.0,1850000,-125000.0,-6.2,10,High,Fairly priced
+Active,1 N Fort Lauderdale Beach Boulevard Unit#1709,Ritz Carlton,Barrier island / beach,Condo,818.0,True,$1M–$2M,1150000.0,1406.0,1504.0,1225000,-75000.0,-6.5,78,High,Fairly priced
+Active,1327 SW 21st Ct,River Oaks,Mainland inland,Single Family,2887.0,False,$1M–$2M,1250000.0,433.0,464.0,1350000,-100000.0,-6.7,0,Low (no comps),Insufficient comps
+Active,2100 S Ocean Ln Unit#2308,Point Americas,Barrier island / beach,Condo,1880.0,True,$1M–$2M,1150000.0,612.0,659.0,1250000,-100000.0,-7.1,66,High,Fairly priced
+Active,1449 SW 23rd Court,Marina Landings,Mainland inland,Single Family,2779.0,False,$1M–$2M,1199000.0,431.0,467.0,1300000,-101000.0,-7.7,0,Low (no comps),Insufficient comps
+Active,511 Bayshore Drive Unit#707,Bayshore Towers,Barrier island / beach,Condo,1705.0,True,$1M–$2M,1000000.0,587.0,636.0,1075000,-75000.0,-7.7,83,High,Fairly priced
+Active,3040 N Ocean Blvd Unit#N101,Thirty North Ocean Con Thirty Ocean,Barrier island / beach,Condo,2119.0,False,$1M–$2M,1900000.0,897.0,974.0,2050000,-150000.0,-7.9,147,High,Fairly priced
+Pending,906 NE 17TH TER,Victoria Park,Mainland inland,Townhouse,2623.0,False,$1M–$2M,1650000.0,629.0,684.0,1800000,-150000.0,-8.0,26,High,Fairly priced
+Active,1 N Fort Lauderdale Beach Blvd Unit#1605,Castillo Grand Hotel Resi Ritz Carlton,Barrier island / beach,Condo,832.0,True,$1M–$2M,1150000.0,1382.0,1502.0,1250000,-100000.0,-8.0,78,High,Fairly priced
+Pending,1004 SE 11th Street,Rio Vista,Mainland inland,Single Family,1891.0,False,$1M–$2M,1330000.0,703.0,766.0,1450000,-120000.0,-8.2,6,High,Fairly priced
+Pending,1314 NE 13th Avenue Unit#A-b,Holiday Heights,Mainland inland,Townhouse,2400.0,False,$1M–$2M,1299999.0,542.0,591.0,1425000,-125000.0,-8.3,15,High,Fairly priced
+Active,349 NE 29th Street,Tropical Manors,Intracoastal / canal waterfront,Single Family,2204.0,True,$1M–$2M,1295000.0,588.0,643.0,1425000,-130000.0,-8.6,18,High,Fairly priced
+Pending,1441 SW 23rd Court,Marina Landings,Mainland inland,Single Family,2779.0,False,$1M–$2M,1185000.0,426.0,467.0,1300000,-115000.0,-8.8,0,Low (no comps),Insufficient comps
+Pending,1328 SW 21st Court,River Oaks,Mainland inland,Single Family,3058.0,False,$1M–$2M,1340499.0,438.0,482.0,1475000,-135000.0,-9.1,0,Low (no comps),Insufficient comps
+Active,1717 NE 20th Avenue,Lauder Gate,Intracoastal / canal waterfront,Single Family,1620.0,True,$1M–$2M,1000000.0,617.0,684.0,1100000,-100000.0,-9.8,6,High,Fairly priced
+Active,1800 S Ocean Drive Unit#109,Townhouses Harbor Beach,Barrier island / beach,Townhouse,1904.0,True,$1M–$2M,1299000.0,682.0,757.0,1450000,-151000.0,-9.9,49,High,Fairly priced
+Active,424 Hendricks Isle Unit#6,Boathouse,Intracoastal / canal waterfront,Townhouse,2260.0,True,$1M–$2M,1295000.0,573.0,640.0,1450000,-155000.0,-10.5,32,High,Underpriced
+Active,1245 NE 17TH Way,Lake Ridge,Mainland inland,Single Family,2976.0,False,$1M–$2M,1299000.0,436.0,489.0,1450000,-151000.0,-10.8,44,High,Underpriced
+Active,3055 Harbor Drive Unit#1402,Harbourage Place,Finger-isle waterfront,Condo,3488.0,True,$1M–$2M,1795000.0,515.0,581.0,2050000,-255000.0,-11.4,0,Low (no comps),Insufficient comps
+Active,3100 NE 21st Street,Lauderdale Beach Ext,Barrier island / beach,Single Family,1939.0,False,$1M–$2M,1300000.0,670.0,757.0,1475000,-175000.0,-11.5,5,High,Underpriced
+Active,2821 N Ocean Boulevard Unit#503s,Sapphire Fort Lauderdale,Barrier island / beach,Condo,1888.0,False,$1M–$2M,1325000.0,702.0,797.0,1500000,-175000.0,-11.9,147,High,Underpriced
+Active,3030 N Ocean Boulevard Unit#S101,Thirty North Ocean Cond,Barrier island / beach,Condo,2373.0,False,$1M–$2M,1995000.0,841.0,957.0,2250000,-255000.0,-12.1,147,High,Underpriced
+Active,1216 SE 1st Street,Colee Hammock,Mainland inland,Single Family,2176.0,False,$1M–$2M,1450000.0,666.0,759.0,1650000,-200000.0,-12.3,10,High,Underpriced
+Active,551 N Fort Lauderdale Beach Blvd Unit#R2205,Flb Condominium Resid Elliott,Barrier island / beach,Condo,1113.0,True,$1M–$2M,1434900.0,1289.0,1477.0,1650000,-215000.0,-12.7,78,High,Underpriced
+Active,1413 NE 4th Court,Las Olas,Mainland inland,Single Family,1894.0,False,$1M–$2M,1295000.0,684.0,786.0,1500000,-205000.0,-13.0,0,Low (no comps),Insufficient comps
+Active,308 SW 14th Ct,Lauderdale,Mainland inland,Single Family,2440.0,False,$1M–$2M,1499000.0,614.0,708.0,1725000,-226000.0,-13.3,4,High,Underpriced
+Active,919 NE 17th Terrace Unit#A,Victoria Park,Mainland inland,Townhouse,2445.0,False,$1M–$2M,1595000.0,652.0,755.0,1850000,-255000.0,-13.6,26,High,Underpriced
+Active,907 NE 16th Avenue,Victoria Park,Mainland inland,Townhouse,2483.0,False,$1M–$2M,1350000.0,544.0,630.0,1575000,-225000.0,-13.7,73,High,Underpriced
+Active,615 Bayshore Drive Unit#301,La Cascade,Barrier island / beach,Condo,2274.0,True,$1M–$2M,1395000.0,613.0,712.0,1625000,-230000.0,-13.9,83,High,Underpriced
+Active,551 N Fort Lauderdale Beach Blvd Unit#R204,Flb Condominium Resid Ocean Resort Residences,Barrier island / beach,Condo,1061.0,True,$1M–$2M,1395000.0,1315.0,1533.0,1625000,-230000.0,-14.2,78,High,Underpriced
+Active,101 S Fort Lauderdale Beach Boulevard Unit#702,Las Olas,Barrier island / beach,Condo,2380.0,True,$1M–$2M,1499000.0,630.0,735.0,1750000,-251000.0,-14.3,20,High,Underpriced
+Active,3057 NE 16th Avenue,Coral Brook,Intracoastal / canal waterfront,Single Family,1810.0,True,$1M–$2M,1275000.0,704.0,823.0,1500000,-225000.0,-14.5,73,High,Underpriced
+Active,2112 Manatee Drive,Harbour Inlet,Mainland inland,Single Family,2875.0,False,$1M–$2M,1899000.0,661.0,777.0,2250000,-351000.0,-14.9,0,Low (no comps),Insufficient comps
+Active,2757 NE 14th Avenue,Middle River Estates,Intracoastal / canal waterfront,Single Family,1824.0,True,$1M–$2M,1199000.0,657.0,774.0,1400000,-201000.0,-15.1,73,High,Underpriced
+Active,2200 S OCEAN LN Unit#1501-2,Point Americas,Barrier island / beach,Condo,3644.0,True,$1M–$2M,1995000.0,547.0,645.0,2350000,-355000.0,-15.2,66,High,Underpriced
+Active,76 Isle Of Venice Drive Unit#G,Isles Venice Co Op,Finger-isle waterfront,Condo,3020.0,True,$1M–$2M,1395000.0,462.0,545.0,1650000,-255000.0,-15.2,35,High,Underpriced
+Active,301 Hendricks Isle Unit#10,Place Des Arts,Intracoastal / canal waterfront,Condo,4134.0,True,$1M–$2M,1999000.0,484.0,572.0,2350000,-351000.0,-15.4,32,High,Underpriced
+Active,705 SW 8th Terrace,Tarpon River,Mainland inland,Single Family,2458.0,False,$1M–$2M,1699000.0,691.0,831.0,2050000,-351000.0,-16.8,7,High,Underpriced
+Active,710 NE 3rd Ave,Flagler Heights Bamboo Flats,Mainland inland,Townhouse,2842.0,False,$1M–$2M,1095000.0,385.0,466.0,1325000,-230000.0,-17.4,57,High,Underpriced
+Active,1817 SE 25 Avenue,Harbour Heights,Mainland inland,Single Family,2529.0,False,$1M–$2M,1275000.0,504.0,619.0,1575000,-300000.0,-18.6,0,Low (no comps),Insufficient comps
+Active,2100 N Ocean Blvd Unit#12D,Palms Tower One,Barrier island / beach,Condo,2172.0,True,$1M–$2M,1690000.0,778.0,968.0,2100000,-410000.0,-19.6,147,High,Underpriced
+Active,805 SE 10th Street,Rio Vista,Mainland inland,Single Family,2408.0,False,$1M–$2M,1500000.0,623.0,778.0,1875000,-375000.0,-19.9,7,High,Underpriced
+Active,2831 N Ocean Boulevard Unit#303n,Sapphire Fort Lauderdale,Barrier island / beach,Condo,1888.0,False,$1M–$2M,1195000.0,633.0,797.0,1500000,-305000.0,-20.6,147,High,Underpriced
+Active,2021 SW 14th Terrace,River Oaks La Preserve,Intracoastal / canal waterfront,Single Family,2800.0,True,$1M–$2M,1599000.0,571.0,736.0,2050000,-451000.0,-22.4,0,Low (no comps),Insufficient comps
+Active,2056 NE 21st Court,South Coral Point,Intracoastal / canal waterfront,Single Family,2851.0,True,$1M–$2M,1595000.0,559.0,720.0,2050000,-455000.0,-22.4,11,High,Underpriced
+Active,1133 NE 18th Court,Lauderdale Park,Intracoastal / canal waterfront,Single Family,2576.0,True,$1M–$2M,1825000.0,708.0,914.0,2350000,-525000.0,-22.5,9,High,Underpriced
+Active,1620 S Ocean Ln Unit#236,Oceanage,Barrier island / beach,Condo,1273.0,True,$1M–$2M,1050000.0,825.0,1067.0,1350000,-300000.0,-22.7,66,High,Underpriced
+Active,301 Hendricks Isle Unit#6,Place Des Arts,Intracoastal / canal waterfront,Condo,3726.0,True,$1M–$2M,1695000.0,455.0,591.0,2200000,-505000.0,-23.0,32,High,Underpriced
+Active,111 SE 8th Avenue Unit#1501,Venezia,Intracoastal / canal waterfront,Condo,4120.0,True,$1M–$2M,1899000.0,461.0,607.0,2500000,-601000.0,-24.1,7,High,Underpriced
+Active,101 S Fort Lauderdale Beach Blvd Unit#308,Las Olas,Barrier island / beach,Condo,3080.0,True,$1M–$2M,1595000.0,518.0,692.0,2150000,-555000.0,-25.1,20,High,Underpriced
+Pending,110 Hendricks Isle Unit#13,Terraces Isles Cond Terraces Isles,Finger-isle waterfront,Condo,2600.0,True,$1M–$2M,1190000.0,458.0,615.0,1600000,-410000.0,-25.5,32,High,Underpriced
+Active,2100 N Ocean Blvd Unit#18D,Palms Tower One Palms,Barrier island / beach,Condo,2172.0,True,$1M–$2M,1545000.0,711.0,965.0,2100000,-555000.0,-26.3,147,High,Underpriced
+Active,1151 N Fort Lauderdale Beach Boulevard Unit#14D,Park Tower,Barrier island / beach,Condo,1700.0,True,$1M–$2M,1499900.0,882.0,1204.0,2050000,-550000.0,-26.7,78,High,Underpriced
+Active,2000 S Ocean Drive Unit#810,Everglades House,Barrier island / beach,Condo,2650.0,True,$1M–$2M,1150000.0,434.0,601.0,1600000,-450000.0,-27.8,49,High,Underpriced
+Active,3030 N Ocean Boulevard Unit#S104,Thirty North Ocrsn,Barrier island / beach,Condo,2140.0,False,$1M–$2M,1495000.0,699.0,969.0,2050000,-555000.0,-27.9,147,High,Underpriced
+Active,3030 N Ocean Boulevard Unit#S106,Thirty North Ocean,Barrier island / beach,Condo,2306.0,False,$1M–$2M,1595000.0,692.0,960.0,2200000,-605000.0,-27.9,147,High,Underpriced
+Pending,904 NE 17th Ter,Progresso,Mainland inland,Single Family,2623.0,False,$1M–$2M,1700000.0,648.0,904.0,2350000,-650000.0,-28.3,26,High,Underpriced
+Active,301 Hendricks Isle Unit#7,Place Des Arts,Intracoastal / canal waterfront,Condo,4445.0,True,$1M–$2M,1900000.0,427.0,603.0,2700000,-800000.0,-29.2,32,High,Underpriced
+Active,1709 SW 23rd St,River Oak,Mainland inland,Single Family,2508.0,False,$1M–$2M,1175000.0,469.0,671.0,1675000,-500000.0,-30.1,30,High,Underpriced
+Active,2100 N Ocean Blvd Unit#6C,Palms Tower One,Barrier island / beach,Condo,1604.0,True,$1M–$2M,1095000.0,683.0,990.0,1600000,-505000.0,-31.0,147,High,Underpriced
+Active,1500 NE 24th Street,Edgewater Estates,Intracoastal / canal waterfront,Single Family,2582.0,True,$1M–$2M,1275000.0,494.0,724.0,1875000,-600000.0,-31.8,13,High,Underpriced
+Active,216 SE 10th Street,Tarpon River,Intracoastal / canal waterfront,Single Family,2556.0,True,$1M–$2M,1425000.0,558.0,823.0,2100000,-675000.0,-32.2,7,High,Underpriced
+Active,101 S Fort Lauderdale Beach Boulevard Unit#705,Las Olas,Barrier island / beach,Condo,2950.0,True,$1M–$2M,1499000.0,508.0,762.0,2250000,-751000.0,-33.3,20,High,Underpriced
+Active,2100 S Ocean Lane Unit#101-102,Point Americas,Barrier island / beach,Condo,3003.0,True,$1M–$2M,1349000.0,449.0,677.0,2050000,-701000.0,-33.7,66,High,Underpriced
+Pending,629 Kensington Place,Tropical Gardens,Intracoastal / canal waterfront,Single Family,3678.0,True,$1M–$2M,1720000.0,468.0,711.0,2600000,-880000.0,-34.2,11,High,Underpriced
+Active,2100 N Ocean Blvd Unit#20D,Palms Tower One Palms,Barrier island / beach,Condo,2172.0,True,$1M–$2M,1375000.0,633.0,965.0,2100000,-725000.0,-34.4,147,High,Underpriced
+Active,2110 N Ocean Boulevard Unit#7b,Palms,Barrier island / beach,Condo,3205.0,True,$1M–$2M,1999000.0,624.0,986.0,3150000,-1151000.0,-36.7,147,High,Underpriced
+Active,800 SW 8th Ter,Tarpon River,Intracoastal / canal waterfront,Single Family,2340.0,True,$1M–$2M,1025000.0,438.0,696.0,1625000,-600000.0,-37.1,7,High,Underpriced
+Active,551 N Fort Lauderdale Beach Blvd Unit#H1705,Flb Condominium Hotel Ocean Resort Residences,Barrier island / beach,Condo,1113.0,True,$1M–$2M,1019000.0,916.0,1477.0,1650000,-631000.0,-38.0,78,High,Underpriced
+Active,819 SW 1st Street,Sailboat Bend,Mainland inland,Single Family,2723.0,False,$1M–$2M,1075000.0,395.0,658.0,1800000,-725000.0,-40.0,0,Low (no comps),Insufficient comps
+Active,1234 NE 17th Ter,Lake Ridge,Mainland inland,Single Family,2502.0,False,$1M–$2M,1565000.0,625.0,1093.0,2750000,-1185000.0,-42.8,26,High,Underpriced
+Pending,417 SW 15th St,Lauderdale,Mainland inland,Single Family,3050.0,False,$1M–$2M,1295000.0,425.0,764.0,2350000,-1055000.0,-44.4,0,Low (no comps),Insufficient comps
+Active,551 N Fort Lauderdale Beach Boulevard Unit#R1902,Ocean Resort Residences,Barrier island / beach,Condo,1590.0,True,$1M–$2M,1500000.0,943.0,1821.0,2900000,-1400000.0,-48.2,78,High,Underpriced
+Active,1319 NE 13th Ave,Holiday Heights,Mainland inland,Single Family,2496.0,False,$1M–$2M,1395000.0,559.0,1230.0,3050000,-1655000.0,-54.6,15,High,Underpriced
+Pending,2724 N Ocean Boulevard,Lauderdale Beach,Barrier island / beach,Single Family,2499.0,False,$1M–$2M,1999999.0,800.0,1805.0,4500000,-2500000.0,-55.7,147,High,Underpriced
+Active,701 N Fort Lauderdale Beach Blvd Unit#TH3,Paramount Ft Lauderdale Paramount,Intracoastal / canal waterfront,Townhouse,2408.0,True,$1M–$2M,1749000.0,726.0,1773.0,4250000,-2501000.0,-59.1,78,High,Underpriced
+Active,505 NE 2nd Street Unit#43C,Viceroy Fort Lauderdale,Downtown high-rise,Condo,1069.0,False,$2M–$3M,2205000.0,2063.0,479.0,500000,1705000.0,330.7,14,High,Overpriced
+Active,314 SW 12th Street,Croissant Park,Mainland inland,Single Family,1384.0,False,$2M–$3M,2500000.0,1806.0,444.0,625000,1875000.0,306.8,17,High,Overpriced
+Active,300 NE 3rd Avenue Unit#2809s,Ombelle Fort Lauderdale,Downtown high-rise,Condo,2081.0,False,$2M–$3M,2453717.0,1179.0,343.0,725000,1729000.0,243.7,57,High,Overpriced
+Active,1700 NE 18th St,Progresso,Mainland inland,Single Family,1323.0,False,$2M–$3M,2255000.0,1704.0,561.0,750000,1505000.0,203.7,21,High,Overpriced
+Active,505 NE 2nd Street Unit#15A,Viceroy Fort Lauderdale,Downtown high-rise,Condo,1649.0,False,$2M–$3M,2105000.0,1277.0,459.0,750000,1355000.0,178.2,14,High,Overpriced
+Active,350 SE 2nd Street Unit#GPH10,Las Olas,Mainland inland,Condo,3150.0,False,$2M–$3M,2950000.0,937.0,361.0,1125000,1825000.0,159.6,36,High,Overpriced
+Active,707 NE 7th Ave,Progresso,Mainland inland,Townhouse,3111.0,False,$2M–$3M,2100000.0,675.0,261.0,800000,1300000.0,158.6,15,High,Overpriced
+Active,501 SE 6th Avenue Unit#TH1,Sixth&Rio,Intracoastal / canal waterfront,Condo,1759.0,True,$2M–$3M,2300000.0,1308.0,516.0,900000,1400000.0,153.5,0,Low (no comps),Insufficient comps
+Active,100 E Las Olas Blvd Unit#4203,Las Olas,Downtown high-rise,Condo,2658.0,False,$2M–$3M,2880000.0,1084.0,481.0,1275000,1605000.0,125.4,48,High,Overpriced
+Active,1110 Seminole Drive Unit#201,Adagio On Bay,Intracoastal / canal waterfront,Condo,2870.0,True,$2M–$3M,2940000.0,1024.0,456.0,1300000,1640000.0,124.6,11,High,Overpriced
+Pending,527 Orton Avenue Unit#903C,Terraces,Barrier island / beach,Condo,2027.0,False,$2M–$3M,2595000.0,1280.0,599.0,1225000,1370000.0,113.7,13,High,Overpriced
+Active,534 HENDRICKS ISLE Unit#302,View Pointe,Intracoastal / canal waterfront,Condo,1376.0,True,$2M–$3M,2300000.0,1672.0,792.0,1100000,1200000.0,111.1,32,High,Overpriced
+Active,3305 NE 16th Court,Las Olas,Mainland inland,Single Family,1772.0,False,$2M–$3M,2795000.0,1577.0,782.0,1375000,1420000.0,101.7,7,High,Overpriced
+Active,153 N Seabreeze Unit#2503-S,Selene,Barrier island / beach,Condo,1416.0,True,$2M–$3M,2300000.0,1624.0,811.0,1150000,1150000.0,100.2,0,Low (no comps),Insufficient comps
+Active,534 HENDRICKS ISLE Unit#301,View Pointe,Intracoastal / canal waterfront,Condo,1760.0,True,$2M–$3M,2730000.0,1551.0,777.0,1375000,1355000.0,99.6,32,High,Overpriced
+Active,2711 NE 19th Street,Coral Ridge,Mainland inland,Single Family,2166.0,False,$2M–$3M,2590000.0,1196.0,610.0,1325000,1265000.0,96.1,11,High,Overpriced
+Active,1642 NE 19th Street,Poinsettia Heights,Mainland inland,Single Family,2715.0,False,$2M–$3M,2425000.0,893.0,469.0,1275000,1150000.0,90.4,11,High,Overpriced
+Pending,1532 SE 12th Street Unit#302,Vela Vista,Intracoastal / canal waterfront,Condo,3522.0,True,$2M–$3M,2395000.0,680.0,375.0,1325000,1070000.0,81.3,11,High,Overpriced
+Active,2009 Admirals Way,Harbour Heights,Mainland inland,Single Family,1805.0,False,$2M–$3M,2425000.0,1343.0,742.0,1350000,1075000.0,81.0,0,Low (no comps),Insufficient comps
+Active,1321 Mandarin Isle,South New River Isles,Finger-isle waterfront,Single Family,1847.0,True,$2M–$3M,2550000.0,1381.0,766.0,1425000,1125000.0,80.3,5,High,Overpriced
+Active,153 N Seabreeze Unit#403,Selene Oceanfront Res Selene,Barrier island / beach,Condo,1420.0,True,$2M–$3M,2000000.0,1408.0,811.0,1150000,850000.0,73.6,0,Low (no comps),Insufficient comps
+Active,3319 NE 18TH Street,Las Olas,Mainland inland,Single Family,2208.0,False,$2M–$3M,2400000.0,1087.0,631.0,1400000,1000000.0,72.3,21,High,Overpriced
+Active,41 Isle Of Venice Drive Unit#402,Aquamar Las Olas,Intracoastal / canal waterfront,Condo,2531.0,True,$2M–$3M,2695000.0,1065.0,623.0,1575000,1120000.0,70.9,35,High,Overpriced
+Active,3321 NE 16th Court,Las Olas,Mainland inland,Single Family,1896.0,False,$2M–$3M,2650000.0,1398.0,821.0,1550000,1100000.0,70.3,7,High,Overpriced
+Active,1110 NW 7th Avenue,Progresso,Mainland inland,Single Family,2844.0,False,$2M–$3M,2499999.0,879.0,525.0,1500000,1000000.0,67.4,21,High,Overpriced
+Active,545 S FORT LAUDERDALE BEACH Boulevard Unit#1703/1704,Illini,Barrier island / beach,Condo,2150.0,True,$2M–$3M,2199000.0,1023.0,613.0,1325000,874000.0,66.9,20,High,Overpriced
+Pending,151 N Seabreeze Boulevard Unit#2503-e,Selene Oceanfront,Barrier island / beach,Condo,1680.0,True,$2M–$3M,2599000.0,1547.0,934.0,1575000,1024000.0,65.6,15,High,Overpriced
+Active,1781 NE 18th Street,North Ridge,Mainland inland,Single Family,2434.0,False,$2M–$3M,2225000.0,914.0,575.0,1400000,825000.0,59.0,21,High,Overpriced
+Active,400 NW 24th St,Mickels Nd To Wilton,Mainland inland,Single Family,2630.0,False,$2M–$3M,2249000.0,855.0,560.0,1475000,774000.0,52.7,8,High,Overpriced
+Pending,3055 Harbor Drive Unit#1603,Harbourage Place,Finger-isle waterfront,Condo,3368.0,True,$2M–$3M,2795000.0,830.0,548.0,1850000,945000.0,51.5,0,Low (no comps),Insufficient comps
+Active,2200 S Ocean Ln Unit#2205,Point Americas,Barrier island / beach,Condo,2170.0,True,$2M–$3M,2200000.0,1014.0,671.0,1450000,750000.0,51.1,66,High,Overpriced
+Active,41 Isle Of Venice Drive Unit#Ph 502,Aquamar Las Olas,Intracoastal / canal waterfront,Condo,2531.0,True,$2M–$3M,2679999.0,1059.0,704.0,1775000,905000.0,50.4,35,High,Overpriced
+Active,101 S Fort Lauderdale Beach Boulevard Unit#1104,Las Olas,Barrier island / beach,Condo,2380.0,True,$2M–$3M,2599999.0,1092.0,735.0,1750000,850000.0,48.6,20,High,Overpriced
+Active,1507 SE 15th Street Unit#302,Harbors Edge,Intracoastal / canal waterfront,Condo,2372.0,True,$2M–$3M,2000000.0,843.0,570.0,1350000,650000.0,47.9,45,High,Overpriced
+Active,2500 Bayview Dr,Coral Ridge Galt,Barrier island / beach,Single Family,2309.0,True,$2M–$3M,2690000.0,1165.0,789.0,1825000,865000.0,47.7,24,High,Overpriced
+Active,1180 N Federal Hwy Unit#1501,Riva Residences,Intracoastal / canal waterfront,Condo,2407.0,True,$2M–$3M,2500000.0,1039.0,710.0,1700000,800000.0,46.3,40,High,Overpriced
+Active,3055 Harbor Dr Unit#1202,Harbourage Place,Finger-isle waterfront,Condo,3488.0,True,$2M–$3M,2950000.0,846.0,581.0,2050000,900000.0,45.6,0,Low (no comps),Insufficient comps
+Active,1032 SE 13th Terrace,Rio Vista,Mainland inland,Single Family,2320.0,False,$2M–$3M,2375000.0,1024.0,711.0,1650000,725000.0,44.0,5,High,Overpriced
+Active,1523 NE 17th Way,Progresso,Mainland inland,Single Family,2568.0,False,$2M–$3M,2345000.0,913.0,641.0,1650000,695000.0,42.4,44,High,Overpriced
+Active,153 N Seabreeze Boulevard Unit#1001,Selene Oceanfront,Barrier island / beach,Condo,2395.0,True,$2M–$3M,2999000.0,1252.0,880.0,2100000,899000.0,42.3,15,High,Overpriced
+Active,101 S Fort Lauderdale Beach Boulevard Unit#1501,Las Olas,Barrier island / beach,Condo,2950.0,True,$2M–$3M,2999900.0,1017.0,716.0,2100000,900000.0,42.0,20,High,Overpriced
+Active,326 Seven Isles Drive,Barcelona Isles,Mainland inland,Single Family,2372.0,False,$2M–$3M,2795000.0,1178.0,831.0,1975000,820000.0,41.8,0,Low (no comps),Insufficient comps
+Active,2417 SE 19th Place,Harbour Heights,Mainland inland,Single Family,2705.0,False,$2M–$3M,2400000.0,887.0,626.0,1700000,700000.0,41.7,0,Low (no comps),Insufficient comps
+Active,3305 NE 15th St,Las Olas,Mainland inland,Single Family,2909.0,False,$2M–$3M,2699000.0,928.0,656.0,1900000,799000.0,41.5,17,High,Overpriced
+Active,500 Hendricks Isle Unit#2S,Lumiere,Intracoastal / canal waterfront,Condo,2794.0,True,$2M–$3M,2999900.0,1074.0,760.0,2100000,900000.0,41.3,32,High,Overpriced
+Pending,829 Coconut Drive,Almeda,Intracoastal / canal waterfront,Single Family,3100.0,True,$2M–$3M,2899000.0,935.0,668.0,2050000,849000.0,40.0,0,Low (no comps),Insufficient comps
+Active,1617 SW 17th Ave,Bossert Isles,Finger-isle waterfront,Single Family,2500.0,True,$2M–$3M,2200000.0,880.0,635.0,1600000,600000.0,38.6,0,Low (no comps),Insufficient comps
+Active,160 Isle Of Venice Dr Unit#PH2,Isles Venice Marina Bay,Finger-isle waterfront,Condo,2918.0,True,$2M–$3M,2999000.0,1028.0,743.0,2150000,849000.0,38.4,35,High,Overpriced
+Active,160 Isle Of Venice Drive Unit#302,Marina Bay,Intracoastal / canal waterfront,Condo,2918.0,True,$2M–$3M,2995000.0,1026.0,743.0,2150000,845000.0,38.1,35,High,Overpriced
+Active,2701 NE 30th St,Coral Ridge Galt,Barrier island / beach,Single Family,2330.0,False,$2M–$3M,2099999.0,901.0,660.0,1550000,550000.0,36.5,33,High,Overpriced
+Active,615 Bayshore Drive Unit#402,La Cascade,Barrier island / beach,Condo,2395.0,True,$2M–$3M,2249000.0,939.0,694.0,1650000,599000.0,35.3,83,High,Overpriced
+Active,1708 NE 16th Avenue,Poinsettia Heights,Mainland inland,Single Family,2804.0,False,$2M–$3M,2375000.0,847.0,633.0,1775000,600000.0,33.8,73,High,Overpriced
+Active,153 N Seabreeze Boulevard Unit#504-s,Selene,Barrier island / beach,Condo,1707.0,True,$2M–$3M,2195000.0,1286.0,964.0,1650000,545000.0,33.4,15,High,Overpriced
+Active,19 Hendricks Isle,Reflections Las Olas,Intracoastal / canal waterfront,Townhouse,2420.0,True,$2M–$3M,2299999.0,950.0,714.0,1725000,575000.0,33.1,32,High,Overpriced
+Active,101 S Fort Lauderdale Beach Boulevard Unit#1404,Las Olas,Barrier island / beach,Condo,2378.0,True,$2M–$3M,2299000.0,967.0,735.0,1750000,549000.0,31.6,20,High,Overpriced
+Active,1015 B NE 3rd Street,Victoria Park,Mainland inland,Townhouse,3276.0,False,$2M–$3M,2200000.0,672.0,516.0,1700000,500000.0,30.2,0,Low (no comps),Insufficient comps
+Active,1700 NE 19th Street,Poinsettia Heights,Mainland inland,Single Family,2897.0,False,$2M–$3M,2599000.0,897.0,690.0,2000000,599000.0,30.0,11,High,Overpriced
+Active,209 N Birch Road Unit#1002,Alhambra Place,Barrier island / beach,Condo,3910.0,True,$2M–$3M,2099000.0,537.0,414.0,1625000,474000.0,29.7,32,High,Overpriced
+Active,1716 Middle River Drive,Coral Ridge,Mainland inland,Single Family,2840.0,False,$2M–$3M,2975000.0,1048.0,810.0,2300000,675000.0,29.4,33,High,Overpriced
+Active,153 N Seabreeze Boulevard Unit#1101 S,Selene Oceanfront,Barrier island / beach,Condo,2395.0,True,$2M–$3M,2799000.0,1169.0,906.0,2150000,649000.0,29.0,15,High,Overpriced
+Pending,1621 E Broward Boulevard,Victoria Park,Mainland inland,Townhouse,3227.0,False,$2M–$3M,2245000.0,696.0,541.0,1750000,495000.0,28.7,11,High,Overpriced
+Active,1321 Tangelo Isle,South New River Isles,Finger-isle waterfront,Single Family,2489.0,True,$2M–$3M,2950000.0,1185.0,930.0,2300000,650000.0,27.4,0,Low (no comps),Insufficient comps
+Active,1180 N Federal Hwy Unit#1002,Riva Residences,Intracoastal / canal waterfront,Condo,2251.0,True,$2M–$3M,2100000.0,933.0,739.0,1675000,425000.0,26.3,40,High,Overpriced
+Active,153 N Seabreeze Blvd Unit#401,Selene,Barrier island / beach,Condo,2395.0,True,$2M–$3M,2775000.0,1159.0,923.0,2200000,575000.0,25.6,15,High,Overpriced
+Active,1001 SE 10th Street,Rio Vista,Mainland inland,Single Family,2518.0,False,$2M–$3M,2295000.0,911.0,729.0,1825000,470000.0,25.0,7,High,Overpriced
+Active,1 N Fort Lauderdale Beach Blvd Unit#1806,Castillo Grand Residences Ritz Carlton Fort Lauder,Barrier island / beach,Condo,1971.0,False,$2M–$3M,2650000.0,1344.0,1075.0,2100000,550000.0,25.0,78,High,Overpriced
+Active,1521 NE 26th Ave Unit#B,Coral Ridge,Mainland inland,Townhouse,3403.0,False,$2M–$3M,2200000.0,646.0,522.0,1775000,425000.0,23.8,21,High,Overpriced
+Pending,2309 NE 12th Court,Beach Way Heights,Barrier island / beach,Single Family,3004.0,False,$2M–$3M,2395000.0,797.0,653.0,1950000,445000.0,22.1,0,Low (no comps),Insufficient comps
+Active,2200 N Ocean Blvd Unit#N206,Fort Lauderdale Beac Auberge Beach Residences,Barrier island / beach,Condo,2071.0,True,$2M–$3M,2790000.0,1347.0,1105.0,2300000,490000.0,21.9,147,High,Overpriced
+Active,2108 NE 24th St,Coral Point,Intracoastal / canal waterfront,Single Family,2824.0,True,$2M–$3M,2150000.0,761.0,627.0,1775000,375000.0,21.4,13,High,Overpriced
+Active,525 N Fort Lauderdale Beach Blvd Unit#1509,Four Seasons Four Seasons Residences,Barrier island / beach,Condo,1721.0,False,$2M–$3M,2750000.0,1598.0,1319.0,2250000,500000.0,21.2,78,High,Overpriced
+Active,3315 NE 17th Street,Las Olas,Mainland inland,Single Family,2856.0,False,$2M–$3M,2750000.0,963.0,806.0,2300000,450000.0,19.5,11,High,Overpriced
+Active,900 Intracoastal Drive Unit#Apt 701,Sunrise,Intracoastal / canal waterfront,Condo,2792.0,True,$2M–$3M,2975000.0,1066.0,896.0,2500000,475000.0,19.0,39,High,Overpriced
+Active,1413 NE 17th Way,Progresso,Mainland inland,Single Family,2923.0,False,$2M–$3M,2249999.0,770.0,651.0,1900000,350000.0,18.3,44,High,Overpriced
+Pending,1009 A NE 3rd Street,Stranahans,Mainland inland,Townhouse,3276.0,False,$2M–$3M,2200000.0,672.0,572.0,1875000,325000.0,17.5,0,Low (no comps),Insufficient comps
+Pending,1015 A NE 3rd Street,Stranahans,Mainland inland,Townhouse,3276.0,False,$2M–$3M,2200000.0,672.0,572.0,1875000,325000.0,17.5,0,Low (no comps),Insufficient comps
+Pending,1003 A NE 3rd Street,Stranahans,Mainland inland,Townhouse,3276.0,False,$2M–$3M,2200000.0,672.0,572.0,1875000,325000.0,17.5,0,Low (no comps),Insufficient comps
+Pending,1731 NE 23rd Avenue,Bal Harbour,Finger-isle waterfront,Single Family,2357.0,True,$2M–$3M,2599000.0,1103.0,939.0,2200000,399000.0,17.5,0,Low (no comps),Insufficient comps
+Active,715 Bayshore Drive Unit#902,La Rive,Barrier island / beach,Condo,3417.0,True,$2M–$3M,2850000.0,834.0,710.0,2450000,400000.0,17.5,83,High,Overpriced
+Active,1404 SE 2nd Court,Colee Hammock,Mainland inland,Single Family,3024.0,False,$2M–$3M,2799999.0,926.0,793.0,2400000,400000.0,16.8,8,High,Overpriced
+Active,153 N Seabreeze Boulevard Unit#2404-s,Selene Oceanfront Residen,Barrier island / beach,Condo,1707.0,True,$2M–$3M,2395000.0,1403.0,1240.0,2100000,295000.0,13.1,15,High,Overpriced
+Active,359 Poinciana Drive,Idlewyld,Mainland inland,Single Family,2344.0,False,$2M–$3M,2250000.0,960.0,866.0,2050000,200000.0,10.9,0,Low (no comps),Insufficient comps
+Active,920 Intracoastal Drive Unit#503,Aquablu,Intracoastal / canal waterfront,Condo,3258.0,True,$2M–$3M,2699000.0,828.0,747.0,2450000,249000.0,10.8,39,High,Overpriced
+Active,1 N Fort Lauderdale Beach Boulevard Unit#1807,Castillo Grand Residences,Barrier island / beach,Condo,2003.0,False,$2M–$3M,2350000.0,1173.0,1066.0,2150000,200000.0,10.0,78,High,Fairly priced
+Pending,1749 SE 9th Street,Rio Vista,Finger-isle waterfront,Single Family,2598.0,True,$2M–$3M,2500000.0,962.0,880.0,2300000,200000.0,9.3,9,High,Fairly priced
+Active,827 SE 2nd Ct,Colee Hammock,Mainland inland,Single Family,3592.0,False,$2M–$3M,2899000.0,807.0,741.0,2650000,249000.0,8.9,8,High,Fairly priced
+Active,920 Intracoastal Drive Unit#801,Aquablu,Intracoastal / canal waterfront,Condo,3200.0,True,$2M–$3M,2595000.0,811.0,748.0,2400000,195000.0,8.4,39,High,Fairly priced
+Active,2502 NE 6th Avenue,Wilton Manors,Mainland inland,Single Family,2862.0,False,$2M–$3M,2100000.0,734.0,682.0,1950000,150000.0,7.6,4,High,Fairly priced
+Active,1675 Coral Gardens Dr,Middle River Estates,Intracoastal / canal waterfront,Single Family,3611.0,True,$2M–$3M,2690000.0,745.0,704.0,2550000,140000.0,5.8,10,High,Fairly priced
+Pending,1201 Guava Isle,South New River Isles,Finger-isle waterfront,Single Family,2662.0,True,$2M–$3M,2700000.0,1014.0,980.0,2600000,100000.0,3.5,7,High,Fairly priced
+Active,421 SW 11th Street,Tarpon River,Mainland inland,Single Family,3430.0,False,$2M–$3M,2600000.0,758.0,744.0,2550000,50000.0,1.9,11,High,Fairly priced
+Active,801 NE 16th Ave,Progresso,Mainland inland,Single Family,3500.0,False,$2M–$3M,2899000.0,828.0,814.0,2850000,49000.0,1.7,73,High,Fairly priced
+Active,604 SW 7th St,Pinewood Place,Mainland inland,Single Family,3347.0,False,$2M–$3M,2499000.0,747.0,735.0,2450000,49000.0,1.6,0,Low (no comps),Insufficient comps
+Active,615 Bayshore Drive Unit#103,La Cascade,Intracoastal / canal waterfront,Townhouse,2526.0,True,$2M–$3M,2100000.0,831.0,819.0,2050000,50000.0,1.5,83,High,Fairly priced
+Active,1533 NE 16th Avenue,Poinsettia Heights,Mainland inland,Single Family,2542.0,False,$2M–$3M,2350000.0,924.0,933.0,2350000,0.0,-1.0,73,High,Fairly priced
+Active,1629 NE 1st Avenue,Placido Place,Mainland inland,Single Family,3037.0,False,$2M–$3M,2440000.0,803.0,812.0,2450000,-10000.0,-1.1,19,High,Fairly priced
+Active,1708 SE 11th Street,Rio Vista,Finger-isle waterfront,Single Family,2111.0,True,$2M–$3M,2495000.0,1182.0,1196.0,2500000,-5000.0,-1.2,6,High,Fairly priced
+Active,325 Bontona Ave,Venice,Finger-isle waterfront,Single Family,3673.0,True,$2M–$3M,2990000.0,814.0,827.0,3050000,-60000.0,-1.6,5,High,Fairly priced
+Active,3025 Center Avenue,Lauderdale Beach,Barrier island / beach,Single Family,2315.0,False,$2M–$3M,2249999.0,972.0,989.0,2300000,-50000.0,-1.7,6,High,Fairly priced
+Active,512 NE 12th Avenue,Halls,Mainland inland,Single Family,3722.0,False,$2M–$3M,2690000.0,723.0,739.0,2750000,-60000.0,-2.2,16,High,Fairly priced
+Active,2124 Coral Shores Drive,Coral Shores,Intracoastal / canal waterfront,Single Family,2580.0,True,$2M–$3M,2100000.0,814.0,833.0,2150000,-50000.0,-2.3,7,High,Fairly priced
+Active,1225 NE 4th Street,Victoria Park,Mainland inland,Single Family,3521.0,False,$2M–$3M,2795000.0,794.0,814.0,2850000,-55000.0,-2.5,6,High,Fairly priced
+Active,624 SW 8th Avenue,Tarpon River,Mainland inland,Single Family,3430.0,False,$2M–$3M,2600000.0,758.0,780.0,2700000,-100000.0,-2.8,0,Low (no comps),Insufficient comps
+Active,2601 NE 32nd Avenue,Lauderdale Beach Estates,Barrier island / beach,Townhouse,2562.0,True,$2M–$3M,2200000.0,859.0,893.0,2300000,-100000.0,-3.8,27,High,Fairly priced
+Active,1331 NE 16th Ter,Progresso,Mainland inland,Single Family,3438.0,False,$2M–$3M,2625000.0,764.0,797.0,2750000,-125000.0,-4.1,30,High,Fairly priced
+Pending,539 NE 10th Avenue,Holmberg Mc Kees,Mainland inland,Single Family,2776.0,False,$2M–$3M,2595000.0,935.0,982.0,2750000,-155000.0,-4.8,21,High,Fairly priced
+Active,618 NE 15th Avenue,Graceland Park,Mainland inland,Single Family,3741.0,False,$2M–$3M,2695000.0,720.0,761.0,2850000,-155000.0,-5.4,24,High,Fairly priced
+Active,1642 NE 8th Street,Macarthur Park,Mainland inland,Single Family,2780.0,False,$2M–$3M,2490000.0,896.0,957.0,2650000,-160000.0,-6.4,7,High,Fairly priced
+Active,821 SE 2nd Ct,Colee Hammock,Mainland inland,Single Family,3937.0,False,$2M–$3M,2999000.0,762.0,826.0,3250000,-251000.0,-7.7,8,High,Fairly priced
+Active,2100 N Ocean Blvd Unit#11B,Palms Tower One,Barrier island / beach,Condo,2623.0,True,$2M–$3M,2285000.0,871.0,945.0,2500000,-215000.0,-7.8,147,High,Fairly priced
+Pending,201 NE 27th Dr,Sunset Manors Amen,Mainland inland,Single Family,3000.0,False,$2M–$3M,2850000.0,950.0,1059.0,3200000,-350000.0,-10.3,12,High,Underpriced
+Active,69 Isle Of Venice Drive,Seaside Villas,Intracoastal / canal waterfront,Townhouse,3928.0,True,$2M–$3M,2499000.0,636.0,734.0,2900000,-401000.0,-13.4,35,High,Underpriced
+Active,1308 Avocado Isle,South New River Isles,Finger-isle waterfront,Single Family,3000.0,True,$2M–$3M,2999900.0,1000.0,1159.0,3500000,-500000.0,-13.7,5,High,Underpriced
+Active,59 Hendricks Isle,Laguna Del Sol,Finger-isle waterfront,Townhouse,3678.0,True,$2M–$3M,2490000.0,677.0,787.0,2900000,-410000.0,-14.0,32,High,Underpriced
+Pending,3325 NE 14th Court,Las Olas,Mainland inland,Single Family,3616.0,False,$2M–$3M,2600000.0,719.0,845.0,3050000,-450000.0,-14.9,5,High,Underpriced
+Active,2212 NE 17th Place,Bal Harbour,Finger-isle waterfront,Single Family,3400.0,True,$2M–$3M,2200000.0,647.0,763.0,2600000,-400000.0,-15.2,0,Low (no comps),Insufficient comps
+Active,2110 N Ocean Blvd Unit#21B,Palms,Barrier island / beach,Condo,2623.0,True,$2M–$3M,2095000.0,799.0,948.0,2500000,-405000.0,-15.7,147,High,Underpriced
+Active,2200 S Ocean Ln Unit#1501-1503,Point Americas,Barrier island / beach,Condo,4902.0,True,$2M–$3M,2795000.0,570.0,679.0,3350000,-555000.0,-16.1,66,High,Underpriced
+Active,1809 Coral Gardens Dr,Middle River Estates,Intracoastal / canal waterfront,Single Family,3669.0,True,$2M–$3M,2000000.0,545.0,656.0,2400000,-400000.0,-16.9,10,High,Underpriced
+Active,1524 Argyle Dr,River Highlands Amen,Intracoastal / canal waterfront,Single Family,4550.0,True,$2M–$3M,2950000.0,648.0,802.0,3650000,-700000.0,-19.2,0,Low (no comps),Insufficient comps
+Active,2800 E Sunrise Blvd Unit#PHG,Sunrise East,Barrier island / beach,Condo,4600.0,True,$2M–$3M,2295000.0,499.0,623.0,2850000,-555000.0,-19.9,49,High,Underpriced
+Pending,2015 NE 4th Ave,Wilton Manors First,Mainland inland,Single Family,3755.0,False,$2M–$3M,2275000.0,606.0,759.0,2850000,-575000.0,-20.2,5,High,Underpriced
+Active,2301 N Atlantic Boulevard,Lauderdale Beach,Barrier island / beach,Single Family,3400.0,False,$2M–$3M,2695000.0,793.0,1002.0,3400000,-705000.0,-20.9,0,Low (no comps),Insufficient comps
+Active,1343 Ponce De Leon Drive,Rio Vista,Finger-isle waterfront,Single Family,3083.0,True,$2M–$3M,2295000.0,744.0,962.0,2950000,-655000.0,-22.7,13,High,Underpriced
+Active,1115 SW 5th Pl,Riverside Amen,Intracoastal / canal waterfront,Single Family,4751.0,True,$2M–$3M,2895000.0,609.0,797.0,3800000,-905000.0,-23.6,4,High,Underpriced
+Active,1940 Harbourview Drive,Harbor Beach,Barrier island / beach,Single Family,4203.0,False,$2M–$3M,2679000.0,637.0,845.0,3550000,-871000.0,-24.6,4,High,Underpriced
+Active,1009 B NE 3rd Street,Victoria Park,Mainland inland,Single Family,3276.0,False,$2M–$3M,2200000.0,672.0,924.0,3050000,-850000.0,-27.3,0,Low (no comps),Insufficient comps
+Active,2100 N Ocean Boulevard Unit#16e,Palms Tower One,Barrier island / beach,Condo,4795.0,True,$2M–$3M,2995000.0,625.0,973.0,4650000,-1655000.0,-35.8,147,High,Underpriced
+Active,500 NE 14th Avenue,Las Olas,Mainland inland,Single Family,4036.0,False,$2M–$3M,2774999.0,688.0,1073.0,4350000,-1575000.0,-35.9,73,High,Underpriced
+Active,633 NE 20th Street,Letarte,Mainland inland,Single Family,4023.0,False,$2M–$3M,2399000.0,596.0,957.0,3850000,-1451000.0,-37.7,11,High,Underpriced
+Active,525 N Fort Lauderdale Beach Boulevard Unit#1607,Four Seasons,Barrier island / beach,Condo,1308.0,True,$2M–$3M,2700000.0,2064.0,3625.0,4750000,-2050000.0,-43.1,78,High,Underpriced
+Active,505 N Fort Lauderdale Beach Boulevard Unit#2500,Club Resort Residences,Barrier island / beach,Condo,2740.0,True,$2M–$3M,2100000.0,766.0,1406.0,3850000,-1750000.0,-45.5,78,High,Underpriced
+Pending,1325 NE 16th Ter,Lakeridge Poinsettiaheight,Mainland inland,Single Family,3430.0,False,$2M–$3M,2500000.0,729.0,1424.0,4900000,-2400000.0,-48.8,30,High,Underpriced
+Active,525 N Fort Lauderdale Beach Blvd Unit#1707,Four Seasons,Barrier island / beach,Condo,1458.0,True,$2M–$3M,2600000.0,1783.0,3656.0,5300000,-2700000.0,-51.2,78,High,Underpriced
+Active,701 N Fort Lauderdale Beach Boulevard Unit#1103,Paramount,Barrier island / beach,Condo,1751.0,True,$2M–$3M,2099000.0,1199.0,2481.0,4350000,-2251000.0,-51.7,78,High,Underpriced
+Active,701 N Fort Lauderdale Beach Boulevard Unit#805,Paramount,Barrier island / beach,Condo,2419.0,True,$2M–$3M,2375000.0,982.0,2490.0,6000000,-3625000.0,-60.6,78,High,Underpriced
+Active,505 NE 2nd Street Unit#34A,Viceroy Fort Lauderdale,Downtown high-rise,Condo,1069.0,False,$3M–$5M,3675000.0,3438.0,500.0,525000,3150000.0,587.6,14,High,Overpriced
+Active,505 NE 2nd Street Unit#29B,Viceroy Fort Lauderdale,Downtown high-rise,Condo,1069.0,False,$3M–$5M,3780000.0,3536.0,523.0,550000,3230000.0,576.1,14,High,Overpriced
+Active,801 Seabreeze Boulevard Unit#R 1604,St Regis Residences,Barrier island / beach,Condo,1561.0,False,$3M–$5M,3400000.0,2178.0,380.0,600000,2800000.0,473.2,6,High,Overpriced
+Active,801 Seabreeze Boulevard Unit#R 1509,St Regis Residences,Barrier island / beach,Condo,1343.0,True,$3M–$5M,3088900.0,2300.0,489.0,650000,2439000.0,370.3,6,High,Overpriced
+Active,505 NE 2nd Street Unit#43A,Viceroy Fort Lauderdale Viceroy,Downtown high-rise,Condo,2540.0,False,$3M–$5M,4200000.0,1654.0,449.0,1150000,3050000.0,268.4,14,High,Overpriced
+Active,505 NE 2nd Street Unit#38B,Viceroy Fort Lauderdale Viceroy,Downtown high-rise,Condo,2585.0,False,$3M–$5M,4410000.0,1706.0,468.0,1200000,3210000.0,264.5,14,High,Overpriced
+Pending,700 NE 20th Avenue,Victoria Highlands,Intracoastal / canal waterfront,Single Family,1808.0,True,$3M–$5M,4900000.0,2710.0,776.0,1400000,3500000.0,249.2,6,High,Overpriced
+Active,2321 SE 17th Street Unit#401,Harbor Beach,Barrier island / beach,Condo,2205.0,True,$3M–$5M,4999999.0,2268.0,730.0,1600000,3400000.0,210.7,14,High,Overpriced
+Active,501 SE 6th Avenue Unit#403,Sixth&Rio,Intracoastal / canal waterfront,Condo,2296.0,True,$3M–$5M,3200000.0,1394.0,506.0,1150000,2050000.0,175.5,0,Low (no comps),Insufficient comps
+Active,2311 SE 17th Street Unit#202,Habor Villa,Barrier island / beach,Condo,1645.0,True,$3M–$5M,3399000.0,2066.0,771.0,1275000,2124000.0,168.0,14,High,Overpriced
+Active,1545 SE 15th Unit#301,Lauderdale Harbours,Finger-isle waterfront,Condo,3555.0,True,$3M–$5M,3560000.0,1001.0,374.0,1325000,2235000.0,167.6,0,Low (no comps),Insufficient comps
+Active,428 NE 17th Ave,Victoria Park,Mainland inland,Single Family,1155.0,False,$3M–$5M,3225000.0,2792.0,1086.0,1250000,1975000.0,157.1,36,High,Overpriced
+Active,551 Bayshore Drive Unit#901C,Ritz Carlton Residences Rc Fort Lauderdale,Barrier island / beach,Condo,2400.0,True,$3M–$5M,3832000.0,1597.0,637.0,1525000,2307000.0,150.7,83,High,Overpriced
+Active,530 Birch Road Unit#601,Bungalow East,Barrier island / beach,Condo,2829.0,False,$3M–$5M,3029000.0,1071.0,432.0,1225000,1804000.0,147.9,0,Low (no comps),Insufficient comps
+Active,551 Bayshore Drive Unit#Villa 8,Ritz Carlton Ftl,Barrier island / beach,Condo,1860.0,True,$3M–$5M,3000000.0,1613.0,658.0,1225000,1775000.0,145.1,83,High,Overpriced
+Active,1180 N Federal Highway Unit#Ph-1606,Riva,Intracoastal / canal waterfront,Condo,4267.0,True,$3M–$5M,4995000.0,1171.0,493.0,2100000,2895000.0,137.5,21,High,Overpriced
+Active,551 Bayshore Drive Unit#507D,Ritz Carlton Ftl,Barrier island / beach,Condo,2940.0,True,$3M–$5M,4339000.0,1476.0,649.0,1900000,2439000.0,127.4,83,High,Overpriced
+Pending,87 Isle Of Venice Drive Unit#Ph 502s,Nurmi Isles,Mainland inland,Condo,2960.0,False,$3M–$5M,4200000.0,1419.0,629.0,1850000,2350000.0,125.6,35,High,Overpriced
+Pending,87 Isle Of Venice Drive Unit#Ph 501n,Nurmi Isles,Mainland inland,Condo,2960.0,False,$3M–$5M,4100000.0,1385.0,629.0,1850000,2250000.0,120.2,35,High,Overpriced
+Active,1200 Holiday Drive Unit#602,Coconut Grove Residences,Barrier island / beach,Condo,2654.0,True,$3M–$5M,3600000.0,1356.0,621.0,1650000,1950000.0,118.4,11,High,Overpriced
+Active,153  N Seabreeze Boulevard Unit#902,Selene Oceanfront Residenc Selene Oceanfront Residen,Barrier island / beach,Condo,3240.0,False,$3M–$5M,4448000.0,1373.0,631.0,2050000,2398000.0,117.6,15,High,Overpriced
+Active,1200 Holiday Drive Unit#1003,Coconut Grove Residences,Barrier island / beach,Condo,3200.0,True,$3M–$5M,3895000.0,1217.0,580.0,1850000,2045000.0,109.8,11,High,Overpriced
+Active,325 Coconut Isle Drive,Las Olas Isles,Finger-isle waterfront,Single Family,2450.0,True,$3M–$5M,3295000.0,1345.0,642.0,1575000,1720000.0,109.5,7,High,Overpriced
+Active,100 E Las Olas Boulevard Unit#4301,Las Olas,Mainland inland,Condo,3896.0,False,$3M–$5M,3900000.0,1001.0,478.0,1850000,2050000.0,109.4,48,High,Overpriced
+Active,1 Las Olas Circle Unit#1501,Venetian Condominium,Barrier island / beach,Condo,3425.0,True,$3M–$5M,4499000.0,1314.0,637.0,2200000,2299000.0,106.3,17,High,Overpriced
+Active,100 E Las Olas Boulevard Unit#4001,Las Olas,Downtown high-rise,Condo,3626.0,False,$3M–$5M,3299000.0,910.0,483.0,1750000,1549000.0,88.4,48,High,Overpriced
+Active,1050 Seminole Drive Unit#Phb,Villas Sunrise Bay Cond,Intracoastal / canal waterfront,Condo,4020.0,True,$3M–$5M,3195000.0,795.0,425.0,1700000,1495000.0,87.1,11,High,Overpriced
+Active,2832 NE 26th St,Coral Ridge Galt,Barrier island / beach,Single Family,2722.0,True,$3M–$5M,3397000.0,1248.0,677.0,1850000,1547000.0,84.3,18,High,Overpriced
+Active,3055 Harbor Dr Unit#2102,Harbourage Place,Finger-isle waterfront,Condo,4043.0,True,$3M–$5M,4495000.0,1112.0,608.0,2450000,2045000.0,82.9,0,Low (no comps),Insufficient comps
+Pending,2725 NE 28th Street,Coral Ridge Galt,Barrier island / beach,Single Family,3200.0,False,$3M–$5M,3599000.0,1125.0,622.0,2000000,1599000.0,80.9,30,High,Overpriced
+Active,153 N Seabreeze Unit#1901-s,Selene Oceanfront,Barrier island / beach,Condo,2315.0,True,$3M–$5M,3350000.0,1447.0,812.0,1875000,1475000.0,78.2,0,Low (no comps),Insufficient comps
+Active,87 Isle Of Venice Drive Unit#401n,Nurmi Isles,Finger-isle waterfront,Condo,2939.0,True,$3M–$5M,3944138.0,1342.0,757.0,2200000,1744000.0,77.3,35,High,Overpriced
+Active,87 Isle Of Venice Drive Unit#402s,Nurmi Isles,Finger-isle waterfront,Condo,2960.0,True,$3M–$5M,3972320.0,1342.0,757.0,2250000,1722000.0,77.3,35,High,Overpriced
+Active,1180 N Federal Hwy Unit#PH-1602,Riva Condominium Riva,Intracoastal / canal waterfront,Condo,3832.0,True,$3M–$5M,4897000.0,1278.0,722.0,2750000,2147000.0,77.0,40,High,Overpriced
+Active,2130 NE 15th St,Lauder Gate Isles,Finger-isle waterfront,Single Family,3150.0,True,$3M–$5M,3499000.0,1111.0,635.0,2000000,1499000.0,75.0,17,High,Overpriced
+Active,21 Isle Of Venice Drive Unit#301,Aquamar Las Olas,Intracoastal / canal waterfront,Condo,3308.0,True,$3M–$5M,3495000.0,1057.0,610.0,2000000,1495000.0,73.3,35,High,Overpriced
+Active,2311 Delmar Pl,Gould Isles,Intracoastal / canal waterfront,Single Family,2178.0,True,$3M–$5M,3750000.0,1722.0,999.0,2200000,1550000.0,72.4,4,High,Overpriced
+Active,87 Isle Of Venice Drive Unit#302s,Nurmi Isles,Finger-isle waterfront,Condo,2939.0,True,$3M–$5M,3827280.0,1302.0,757.0,2200000,1627000.0,72.0,35,High,Overpriced
+Active,87 Isle Of Venice Drive Unit#301n,Nurmi Isles,Finger-isle waterfront,Condo,2939.0,True,$3M–$5M,3800127.0,1293.0,757.0,2200000,1600000.0,70.8,35,High,Overpriced
+Active,411 N New River Drive Unit#PH 39A,Las Olas,Intracoastal / canal waterfront,Condo,3700.0,True,$3M–$5M,3975000.0,1074.0,630.0,2350000,1625000.0,70.5,31,High,Overpriced
+Active,500 Hendricks Isle Unit#4N,Lumiere,Intracoastal / canal waterfront,Condo,2941.0,True,$3M–$5M,3740000.0,1272.0,755.0,2200000,1540000.0,68.5,32,High,Overpriced
+Pending,1425 Middle River Drive,Coral Ridge,Intracoastal / canal waterfront,Single Family,3425.0,True,$3M–$5M,4475000.0,1307.0,781.0,2700000,1775000.0,67.3,33,High,Overpriced
+Active,87 Isle Of Venice Drive Unit#202s,Nurmi Isles,Finger-isle waterfront,Condo,2960.0,True,$3M–$5M,3726640.0,1259.0,757.0,2250000,1477000.0,66.3,35,High,Overpriced
+Active,87 Isle Of Venice Drive Unit#201n,Nurmi Isles,Finger-isle waterfront,Condo,2939.0,True,$3M–$5M,3700201.0,1259.0,757.0,2200000,1500000.0,66.3,35,High,Overpriced
+Active,151 N Seabreeze Boulevard Unit#1601-East,Selene Oceanfront Residenc Selene Oceanfront,Barrier island / beach,Condo,3122.0,True,$3M–$5M,4499900.0,1441.0,886.0,2750000,1750000.0,62.6,15,High,Overpriced
+Active,153 N Seabreeze Blvd Unit#1602,Selene Oceanfront Residenc,Barrier island / beach,Condo,3240.0,True,$3M–$5M,4599000.0,1419.0,875.0,2850000,1749000.0,62.2,15,High,Overpriced
+Active,500 Hendricks Isle Unit#4S,Lumiere,Intracoastal / canal waterfront,Condo,2811.0,True,$3M–$5M,3430000.0,1220.0,759.0,2150000,1280000.0,60.7,32,High,Overpriced
+Active,2701 N Atlantic Blvd,Lauderdale Beach,Barrier island / beach,Single Family,3084.0,False,$3M–$5M,4500000.0,1459.0,917.0,2850000,1650000.0,59.1,0,Low (no comps),Insufficient comps
+Active,500 Hendricks Isle Unit#3n,Lumiere,Intracoastal / canal waterfront,Condo,2941.0,True,$3M–$5M,3510000.0,1193.0,755.0,2200000,1310000.0,58.0,32,High,Overpriced
+Active,101 S Fort Lauderdale Beach Blvd Unit#2601,Las Olas,Barrier island / beach,Condo,4320.0,True,$3M–$5M,4750000.0,1100.0,706.0,3050000,1700000.0,55.8,20,High,Overpriced
+Active,449 Bontona Avenue,Venice,Finger-isle waterfront,Single Family,2440.0,True,$3M–$5M,3100000.0,1270.0,825.0,2000000,1100000.0,53.9,5,High,Overpriced
+Pending,417 NE 10th Ave,Holmberg Mc Kees,Mainland inland,Single Family,2019.0,False,$3M–$5M,3900000.0,1932.0,1263.0,2550000,1350000.0,53.0,21,High,Overpriced
+Active,2878 NE 26th Street,Coral Ridge Galt,Barrier island / beach,Single Family,3583.0,True,$3M–$5M,3495000.0,975.0,640.0,2300000,1195000.0,52.3,18,High,Overpriced
+Active,500 Hendricks Isle Unit#2N,Lumiere,Intracoastal / canal waterfront,Condo,2925.0,True,$3M–$5M,3350000.0,1145.0,755.0,2200000,1150000.0,51.7,32,High,Overpriced
+Active,500 Hendricks Isle Unit#3S,Lumiere,Intracoastal / canal waterfront,Condo,2811.0,True,$3M–$5M,3220000.0,1145.0,759.0,2150000,1070000.0,50.9,32,High,Overpriced
+Pending,435 Bayshore Drive Unit#602,Adagio Fort Lauderdale Bea,Barrier island / beach,Condo,2795.0,True,$3M–$5M,3195000.0,1143.0,767.0,2150000,1045000.0,49.0,83,High,Overpriced
+Active,151 N Seabreeze Blv Unit#E-2501,Selene Oceanfront Residen,Barrier island / beach,Condo,3112.0,True,$3M–$5M,4999000.0,1606.0,1087.0,3400000,1599000.0,47.7,0,Low (no comps),Insufficient comps
+Active,2200 S OCEAN LN Unit#3009-10,Point Americas,Barrier island / beach,Condo,3644.0,True,$3M–$5M,3500000.0,960.0,666.0,2450000,1050000.0,44.1,66,High,Overpriced
+Pending,2500 NE 14th Street,Beach Way Heights,Barrier island / beach,Single Family,2758.0,False,$3M–$5M,3250000.0,1178.0,831.0,2300000,950000.0,41.8,13,High,Overpriced
+Active,2421 NE 12th Street,Beach Way Heights,Barrier island / beach,Single Family,4670.0,False,$3M–$5M,3999999.0,857.0,614.0,2850000,1150000.0,39.6,5,High,Overpriced
+Active,2200 N Ocean Boulevard Unit#S706,Auberge Beach,Barrier island / beach,Condo,2792.0,True,$3M–$5M,3900000.0,1397.0,1003.0,2800000,1100000.0,39.3,147,High,Overpriced
+Active,325 Poinciana Drive,Idlewyld,Finger-isle waterfront,Single Family,2453.0,True,$3M–$5M,3495000.0,1425.0,1028.0,2500000,995000.0,38.6,0,Low (no comps),Insufficient comps
+Active,506 Victoria Terrace,Victoria Park,Intracoastal / canal waterfront,Single Family,5086.0,True,$3M–$5M,4995000.0,982.0,714.0,3650000,1345000.0,37.5,0,Low (no comps),Insufficient comps
+Active,151 N Seabreeze Boulevard Unit#E1504,Selene,Barrier island / beach,Condo,2901.0,True,$3M–$5M,3699000.0,1275.0,941.0,2750000,949000.0,35.5,15,High,Overpriced
+Active,435 Bayshore Drive Unit#302,Adagio Fort Lauderdale Bea,Barrier island / beach,Condo,2759.0,True,$3M–$5M,3250000.0,1178.0,889.0,2450000,800000.0,32.5,83,High,Overpriced
+Pending,2525 Barcelona Drive,Sea Isles,Finger-isle waterfront,Single Family,3124.0,True,$3M–$5M,4490000.0,1437.0,1089.0,3400000,1090000.0,32.0,0,Low (no comps),Insufficient comps
+Pending,1037 SE 12th Way,Rio Vista,Mainland inland,Single Family,3981.0,False,$3M–$5M,4795000.0,1204.0,919.0,3650000,1145000.0,31.0,5,High,Overpriced
+Pending,3321 NE 16th Pl,Las Olas,Mainland inland,Single Family,3747.0,False,$3M–$5M,3747000.0,1000.0,766.0,2850000,897000.0,30.5,13,High,Overpriced
+Active,2249 Lazy Lane,Lazy Lake,Intracoastal / canal waterfront,Single Family,4857.0,True,$3M–$5M,4500000.0,926.0,710.0,3450000,1050000.0,30.4,0,Low (no comps),Insufficient comps
+Active,2737 NE 18th Street,Coral Ridge,Mainland inland,Single Family,4770.0,False,$3M–$5M,4850000.0,1017.0,781.0,3700000,1150000.0,30.2,21,High,Overpriced
+Active,1036 SE 12th Way,Rio Vista,Mainland inland,Single Family,4003.0,False,$3M–$5M,3750000.0,937.0,726.0,2900000,850000.0,29.1,5,High,Overpriced
+Active,717 Solar Isle Drive,Las Olas Isles,Finger-isle waterfront,Single Family,4125.0,True,$3M–$5M,4395000.0,1065.0,834.0,3450000,945000.0,27.7,4,High,Overpriced
+Active,900 Intracoastal Drive Unit#602,Sage Intracoastal,Intracoastal / canal waterfront,Condo,3191.0,True,$3M–$5M,3715185.0,1164.0,923.0,2950000,765000.0,26.1,39,High,Overpriced
+Active,405 Bontona Ave,Venice,Finger-isle waterfront,Single Family,3342.0,True,$3M–$5M,3595000.0,1076.0,853.0,2850000,745000.0,26.1,5,High,Overpriced
+Pending,449 Isle Of Palms Drive,Stilwell Isles Pal,Finger-isle waterfront,Single Family,4251.0,True,$3M–$5M,4750000.0,1117.0,905.0,3850000,900000.0,23.4,4,High,Overpriced
+Active,1624 Middle River,Coral Ridge,Mainland inland,Single Family,3142.0,False,$3M–$5M,3900000.0,1241.0,1048.0,3300000,600000.0,18.4,0,Low (no comps),Insufficient comps
+Pending,151 N Seabreeze Blv Unit#E-701,Selene Oceanfront Residen,Barrier island / beach,Condo,3112.0,True,$3M–$5M,3999000.0,1285.0,1087.0,3400000,599000.0,18.2,0,Low (no comps),Insufficient comps
+Active,2500 Middle River Dr,Coral Ridge Galt,Barrier island / beach,Single Family,4325.0,False,$3M–$5M,3990000.0,923.0,790.0,3400000,590000.0,16.8,33,High,Overpriced
+Active,2415 Middle River Drive,Coral Ridge Galt,Barrier island / beach,Single Family,4121.0,True,$3M–$5M,4095000.0,994.0,857.0,3550000,545000.0,16.0,33,High,Overpriced
+Active,701 N Fort Lauderdale Beach Boulevard Unit#406,Paramount Ft Lauderdale Co,Barrier island / beach,Condo,2420.0,False,$3M–$5M,3150000.0,1302.0,1126.0,2700000,450000.0,15.6,78,High,Overpriced
+Active,1518 E Lake Drive,Harbor Beach,Barrier island / beach,Single Family,3781.0,False,$3M–$5M,3995000.0,1057.0,916.0,3450000,545000.0,15.4,4,High,Overpriced
+Active,2719 NE 19th Street,Coral Ridge,Mainland inland,Single Family,4284.0,False,$3M–$5M,3400000.0,794.0,689.0,2950000,450000.0,15.2,11,High,Overpriced
+Pending,508 NE 9th Avenue,Holmberg Mc Kees,Mainland inland,Single Family,3986.0,False,$3M–$5M,3999900.0,1003.0,875.0,3500000,500000.0,14.6,28,High,Overpriced
+Active,450 Victoria Terrace,Victoria Park,Intracoastal / canal waterfront,Single Family,4042.0,True,$3M–$5M,4395000.0,1087.0,975.0,3950000,445000.0,11.5,0,Low (no comps),Insufficient comps
+Active,151 N Seabreeze Boulevard Unit#1101-e,Selene Oceanfront Residen,Barrier island / beach,Condo,3122.0,True,$3M–$5M,4299000.0,1377.0,1239.0,3850000,449000.0,11.1,15,High,Overpriced
+Active,1644 NE 4th Court,Victoria Park,Mainland inland,Single Family,3193.0,False,$3M–$5M,3195000.0,1001.0,911.0,2900000,295000.0,9.9,0,Low (no comps),Insufficient comps
+Active,170 Isle Of Venice Drive,Nurmi Isles,Finger-isle waterfront,Townhouse,4070.0,True,$3M–$5M,3200000.0,786.0,726.0,2950000,250000.0,8.3,35,High,Fairly priced
+Pending,719 SW 11th Street,Croissant Park,Mainland inland,Single Family,4676.0,False,$3M–$5M,3350000.0,716.0,665.0,3100000,250000.0,7.7,11,High,Fairly priced
+Active,321 Hendricks Isle,Victoria Isles,Finger-isle waterfront,Townhouse,3395.0,True,$3M–$5M,3600000.0,1060.0,986.0,3350000,250000.0,7.5,32,High,Fairly priced
+Active,323 Hendricks Isle,Victoria Isles,Finger-isle waterfront,Townhouse,3395.0,True,$3M–$5M,3600000.0,1060.0,986.0,3350000,250000.0,7.5,32,High,Fairly priced
+Active,20 NE 24th Street,Lazy Lake,Intracoastal / canal waterfront,Single Family,3550.0,True,$3M–$5M,4000000.0,1127.0,1060.0,3750000,250000.0,6.3,13,High,Fairly priced
+Active,1550 Ponce De Leon Drive,Rio Vista,Mainland inland,Single Family,4040.0,False,$3M–$5M,4895000.0,1212.0,1145.0,4650000,245000.0,5.9,13,High,Fairly priced
+Active,2225 NE 19th St,North Bal Harbour,Finger-isle waterfront,Single Family,3258.0,True,$3M–$5M,4100000.0,1258.0,1193.0,3900000,200000.0,5.4,11,High,Fairly priced
+Active,2832 NE 24th Ct,Coral Ridge Galt,Barrier island / beach,Single Family,3500.0,True,$3M–$5M,4395000.0,1256.0,1198.0,4200000,195000.0,4.8,0,Low (no comps),Insufficient comps
+Active,2406 NE 13th Court,Beach Way Heights,Barrier island / beach,Single Family,4595.0,False,$3M–$5M,4975000.0,1083.0,1033.0,4750000,225000.0,4.8,0,Low (no comps),Insufficient comps
+Pending,1212 Avocado Isle,Citrus Isles,Finger-isle waterfront,Single Family,3250.0,True,$3M–$5M,3300000.0,1015.0,973.0,3150000,150000.0,4.3,5,High,Fairly priced
+Active,1630 SE 11th Street,Rio Vista,Finger-isle waterfront,Single Family,2545.0,True,$3M–$5M,3750000.0,1473.0,1419.0,3600000,150000.0,3.8,6,High,Fairly priced
+Pending,2221 NE 19th Street,North Bal Harbour,Finger-isle waterfront,Single Family,3258.0,True,$3M–$5M,3999000.0,1227.0,1189.0,3850000,149000.0,3.2,11,High,Fairly priced
+Active,153 N Seabreeze Boulevard Unit#901-s,Selene Oceanfront Residen,Barrier island / beach,Condo,2395.0,True,$3M–$5M,3099000.0,1294.0,1265.0,3050000,49000.0,2.3,15,High,Fairly priced
+Active,1329 SE 13th Terrace,Lauderdale Harbors,Mainland inland,Single Family,4061.0,False,$3M–$5M,3295000.0,811.0,805.0,3250000,45000.0,0.7,5,High,Fairly priced
+Active,801 SE 11th Ct,Rio Vista,Mainland inland,Single Family,4390.0,False,$3M–$5M,4150000.0,945.0,964.0,4250000,-100000.0,-2.0,8,High,Fairly priced
+Active,2613 Center Ave,Lauderdale Beach,Barrier island / beach,Single Family,3039.0,False,$3M–$5M,4500000.0,1481.0,1516.0,4600000,-100000.0,-2.3,6,High,Fairly priced
+Pending,1316 N Rio Vista Boulevard,Rio Vista,Mainland inland,Single Family,3968.0,False,$3M–$5M,4395000.0,1108.0,1136.0,4500000,-105000.0,-2.5,0,Low (no comps),Insufficient comps
+Active,1329-2 SE 13th Terrace,Lauderdale Harbors,Mainland inland,Single Family,5518.0,False,$3M–$5M,4790000.0,868.0,899.0,4950000,-160000.0,-3.4,0,Low (no comps),Insufficient comps
+Active,701 N Fort Lauderdale Beach Boulevard Unit#902,Paramount Ft Lauderdale,Barrier island / beach,Condo,3204.0,True,$3M–$5M,4500000.0,1404.0,1457.0,4650000,-150000.0,-3.6,78,High,Fairly priced
+Active,1765 NE 6th Court,Victoria Park,Mainland inland,Single Family,3888.0,False,$3M–$5M,3449000.0,887.0,933.0,3650000,-201000.0,-4.9,0,Low (no comps),Insufficient comps
+Active,1016 SE 8th Street,Rio Vista,Mainland inland,Single Family,3907.0,False,$3M–$5M,4195000.0,1074.0,1138.0,4450000,-255000.0,-5.6,0,Low (no comps),Insufficient comps
+Pending,3304 NE 14th Court,Las Olas,Mainland inland,Single Family,3556.0,False,$3M–$5M,3575000.0,1005.0,1086.0,3850000,-275000.0,-7.5,5,High,Fairly priced
+Active,3209 NE 26th Street,Dolphin Isles,Mainland inland,Single Family,3418.0,False,$3M–$5M,3000000.0,878.0,953.0,3250000,-250000.0,-7.9,18,High,Fairly priced
+Active,1125 SE 9th Street,Rio Vista,Mainland inland,Single Family,3985.0,False,$3M–$5M,3995000.0,1003.0,1089.0,4350000,-355000.0,-7.9,9,High,Fairly priced
+Active,918 SE 8th Street,Rio Vista,Mainland inland,Single Family,3921.0,False,$3M–$5M,3449000.0,880.0,959.0,3750000,-301000.0,-8.2,0,Low (no comps),Insufficient comps
+Pending,804 N Rio Vista Boulevard,Rio Vista,Mainland inland,Single Family,3939.0,False,$3M–$5M,3195000.0,811.0,891.0,3500000,-305000.0,-9.0,0,Low (no comps),Insufficient comps
+Pending,701 N Fort Lauderdale Beach Blvd Unit#501,Paramount Ft Lauderdale Paramount Fort Lauderdale,Barrier island / beach,Condo,3214.0,True,$3M–$5M,4375000.0,1361.0,1497.0,4800000,-425000.0,-9.1,78,High,Fairly priced
+Pending,1609 SE 4th Street,Colee Hammock,Mainland inland,Single Family,4594.0,False,$3M–$5M,4749000.0,1034.0,1141.0,5200000,-451000.0,-9.4,14,High,Fairly priced
+Active,607 Intracoastal Drive,Sunrise Intracoastal,Mainland inland,Single Family,3920.0,False,$3M–$5M,3500000.0,893.0,995.0,3900000,-400000.0,-10.3,39,High,Underpriced
+Active,2625 NE 29th Court,Coral Ridge Galt,Barrier island / beach,Single Family,4752.0,False,$3M–$5M,4650000.0,979.0,1093.0,5200000,-550000.0,-10.4,8,High,Underpriced
+Active,1629 NE 6th Street,Victoria Park,Mainland inland,Single Family,4363.0,False,$3M–$5M,3850000.0,882.0,985.0,4300000,-450000.0,-10.5,10,High,Underpriced
+Active,1117 SE 9th St,Rio Vista,Mainland inland,Single Family,4487.0,False,$3M–$5M,3750000.0,836.0,958.0,4300000,-550000.0,-12.7,9,High,Underpriced
+Active,2611 Clematis Place,Idlewyld,Mainland inland,Single Family,4594.0,False,$3M–$5M,4700000.0,1023.0,1180.0,5400000,-700000.0,-13.3,0,Low (no comps),Insufficient comps
+Active,719 N Victoria Park Road,Victoria Highlands Pla,Mainland inland,Single Family,4051.0,False,$3M–$5M,3199000.0,790.0,921.0,3750000,-551000.0,-14.2,30,High,Underpriced
+Active,1625 SE 1st Street,Colee Hammock,Mainland inland,Single Family,4594.0,False,$3M–$5M,4499000.0,979.0,1142.0,5200000,-701000.0,-14.3,10,High,Underpriced
+Active,3017 N Atlantic Boulevard,Lauderdale Beach,Barrier island / beach,Single Family,4620.0,False,$3M–$5M,4900000.0,1061.0,1249.0,5800000,-900000.0,-15.1,0,Low (no comps),Insufficient comps
+Active,1201 Mandarin Isle,South New River Isles,Finger-isle waterfront,Single Family,3795.0,True,$3M–$5M,3350000.0,883.0,1055.0,4000000,-650000.0,-16.3,5,High,Underpriced
+Active,433 NE 11th Ave,Victoria Park,Mainland inland,Single Family,4361.0,False,$3M–$5M,3450000.0,791.0,954.0,4150000,-700000.0,-17.1,18,High,Underpriced
+Pending,1407 SE 9 Street,Rio Vista,Mainland inland,Single Family,3622.0,False,$3M–$5M,3395000.0,937.0,1145.0,4150000,-755000.0,-18.2,0,Low (no comps),Insufficient comps
+Active,607 NE 17th Avenue,Victoria Park,Mainland inland,Single Family,4694.0,False,$3M–$5M,3400000.0,724.0,899.0,4200000,-800000.0,-19.5,36,High,Underpriced
+Active,3325 NE 18th,Las Olas,Mainland inland,Single Family,5000.0,False,$3M–$5M,4800000.0,960.0,1222.0,6100000,-1300000.0,-21.4,0,Low (no comps),Insufficient comps
+Active,445 NE 11th Avenue,Halls,Mainland inland,Single Family,3407.0,False,$3M–$5M,3295000.0,967.0,1234.0,4200000,-905000.0,-21.6,18,High,Underpriced
+Active,720 SE 7th St,Rio Vista,Mainland inland,Single Family,4150.0,False,$3M–$5M,3400000.0,819.0,1064.0,4400000,-1000000.0,-23.0,23,High,Underpriced
+Active,1958 Harbourview Drive,Harbour Heights,Mainland inland,Single Family,4565.0,False,$3M–$5M,3250000.0,712.0,953.0,4350000,-1100000.0,-25.3,4,High,Underpriced
+Active,549 NE 10th Avenue,Holmberg Mc Kees,Mainland inland,Single Family,3880.0,False,$3M–$5M,3100000.0,799.0,1104.0,4300000,-1200000.0,-27.6,21,High,Underpriced
+Active,525 N Fort Lauderdale Beach Boulevard Unit#602,Four Seasons,Barrier island / beach,Condo,2034.0,False,$3M–$5M,4000000.0,1967.0,2770.0,5600000,-1600000.0,-29.0,78,High,Underpriced
+Active,525 N Fort Lauderdale Beach Boulevard Unit#1605,Four Seasons,Barrier island / beach,Condo,1794.0,False,$3M–$5M,3400000.0,1895.0,2728.0,4900000,-1500000.0,-30.5,78,High,Underpriced
+Pending,701 N Fort Lauderdale Beach Boulevard Unit#302,Paramount Ft Lauderdale,Barrier island / beach,Condo,3202.0,True,$3M–$5M,3195000.0,998.0,1457.0,4650000,-1455000.0,-31.5,78,High,Underpriced
+Active,728 NE 17th Terrace,Victoria Park,Mainland inland,Single Family,4104.0,False,$3M–$5M,3395000.0,827.0,1260.0,5200000,-1805000.0,-34.4,26,High,Underpriced
+Active,2200 N Ocean Boulevard Unit#S-906,Auberge Beach Residences,Barrier island / beach,Condo,2661.0,True,$3M–$5M,3700000.0,1390.0,2267.0,6000000,-2300000.0,-38.7,147,High,Underpriced
+Active,525 N Fort Lauderdale Beach Boulevard Unit#1903,Four Seasons,Barrier island / beach,Condo,2083.0,True,$3M–$5M,4500000.0,2160.0,3527.0,7300000,-2800000.0,-38.8,78,High,Underpriced
+Active,525 N Fort Lauderdale Beach Boulevard Unit#1505,Four Seasons,Barrier island / beach,Condo,1597.0,True,$3M–$5M,3895000.0,2439.0,4001.0,6400000,-2505000.0,-39.0,78,High,Underpriced
+Active,525 N Fort Lauderdale Beach Boulevard Unit#1101,Four Seasons,Barrier island / beach,Condo,2189.0,True,$3M–$5M,4650000.0,2124.0,3507.0,7700000,-3050000.0,-39.4,78,High,Underpriced
+Active,525 N Fort Lauderdale Beach Blvd Unit#702,Four Seasons,Barrier island / beach,Condo,2230.0,True,$3M–$5M,4595000.0,2061.0,3610.0,8000000,-3405000.0,-42.9,78,High,Underpriced
+Active,525 N Fort Lauderdale Beach Blvd Unit#802,Four Seasons,Barrier island / beach,Condo,2237.0,True,$3M–$5M,4495000.0,2009.0,3610.0,8100000,-3605000.0,-44.3,78,High,Underpriced
+Active,525 N Fort Lauderdale Beach Blvd Unit#1705,Four Seasons,Barrier island / beach,Condo,1948.0,True,$3M–$5M,3500000.0,1797.0,3572.0,7000000,-3500000.0,-49.7,78,High,Underpriced
+Active,525 N Fort Lauderdale Beach Boulevard Unit#1204,Four Seasons,Barrier island / beach,Condo,2069.0,True,$3M–$5M,3500000.0,1692.0,3645.0,7500000,-4000000.0,-53.6,78,High,Underpriced
+Active,801 Seabreeze Boulevard Unit#R 1501,St Regis Residences,Barrier island / beach,Condo,2278.0,True,$5M–$10M,5504582.0,2416.0,499.0,1125000,4380000.0,384.2,6,High,Overpriced
+Active,801 Seabreeze Boulevard Unit#601,St Regis Residences,Barrier island / beach,Condo,3550.0,True,$5M–$10M,8375350.0,2359.0,493.0,1750000,6625000.0,378.5,6,High,Overpriced
+Active,801 Seabreeze Boulevard Unit#1802,St Regis Residences,Barrier island / beach,Condo,2611.0,True,$5M–$10M,5770625.0,2210.0,490.0,1275000,4496000.0,351.0,6,High,Overpriced
+Active,534 HENDRICKS ISLE Unit#401,View Pointe,Intracoastal / canal waterfront,Condo,1760.0,True,$5M–$10M,5519500.0,3136.0,839.0,1475000,4044000.0,273.8,32,High,Overpriced
+Pending,2241 SE 17th Street Unit#Ph2,Azul Condominium,Intracoastal / canal waterfront,Condo,2878.0,True,$5M–$10M,7950000.0,2762.0,805.0,2300000,5650000.0,243.1,14,High,Overpriced
+Active,2241 SE 17 Street Unit#704,Azul,Intracoastal / canal waterfront,Condo,2718.0,True,$5M–$10M,5350000.0,1968.0,751.0,2050000,3300000.0,162.1,0,Low (no comps),Insufficient comps
+Active,2241 SE 17th Street Unit#601,Pier Sixty Six,Barrier island / beach,Condo,2878.0,True,$5M–$10M,5300000.0,1842.0,741.0,2150000,3150000.0,148.6,14,High,Overpriced
+Active,2200 Inlet Drive,Harbour Heights,Finger-isle waterfront,Single Family,3494.0,True,$5M–$10M,8900000.0,2547.0,1093.0,3800000,5100000.0,133.0,0,Low (no comps),Insufficient comps
+Active,534 HENDRICKS ISLE Unit#PH,View Pointe,Intracoastal / canal waterfront,Condo,3383.0,True,$5M–$10M,5890000.0,1741.0,772.0,2600000,3290000.0,125.5,32,High,Overpriced
+Active,1605 SE 9th Street,Rio Vista,Finger-isle waterfront,Single Family,3544.0,True,$5M–$10M,7775000.0,2194.0,984.0,3500000,4275000.0,123.0,9,High,Overpriced
+Active,151 N Seabreeze Boulevard Unit#Ph2601-e,Selene Oceanfront Residenc,Barrier island / beach,Condo,5183.0,True,$5M–$10M,9999000.0,1929.0,875.0,4550000,5449000.0,120.5,15,High,Overpriced
+Active,153 N Seabreeze Boulevard Unit#Ph 2601-s,Selene,Barrier island / beach,Condo,5435.0,True,$5M–$10M,9999000.0,1840.0,884.0,4800000,5199000.0,108.1,15,High,Overpriced
+Active,2701 Aqua Vista Boulevard,Sea Isles,Finger-isle waterfront,Single Family,4078.0,True,$5M–$10M,9250000.0,2268.0,1105.0,4500000,4750000.0,105.2,8,High,Overpriced
+Active,2200 N Ocean Blvd Unit#S1704/05,Fort Lauderdale Beach Auberge Beach Residences,Barrier island / beach,Condo,4498.0,True,$5M–$10M,9995000.0,2222.0,1084.0,4900000,5095000.0,105.0,147,High,Overpriced
+Active,816 Riviera Isle Drive,Riviera,Intracoastal / canal waterfront,Single Family,3775.0,True,$5M–$10M,9900000.0,2623.0,1287.0,4850000,5050000.0,103.8,6,High,Overpriced
+Active,2200 N Ocean Blvd Unit#N605,Fort Lauderdale Beac Auberge Beach,Barrier island / beach,Condo,3767.0,True,$5M–$10M,8150000.0,2164.0,1071.0,4050000,4100000.0,102.1,147,High,Overpriced
+Active,2200 N Ocean Blvd Unit#S2301,Fort Lauderdale Beac Auberge Beach,Barrier island / beach,Condo,4365.0,True,$5M–$10M,9500000.0,2176.0,1086.0,4750000,4750000.0,100.4,147,High,Overpriced
+Active,2815 NE 26th Pl,Coral Ridge Galt,Barrier island / beach,Single Family,2690.0,True,$5M–$10M,5450000.0,2026.0,1059.0,2850000,2600000.0,91.3,4,High,Overpriced
+Active,900 Intracoastal Drive Unit#2401,Sage Intracoastal,Intracoastal / canal waterfront,Condo,3216.0,True,$5M–$10M,5188355.0,1613.0,923.0,2950000,2238000.0,74.8,39,High,Overpriced
+Active,124 Hendricks Isle Unit#Ph401,One Residences,Intracoastal / canal waterfront,Condo,4456.0,True,$5M–$10M,5695000.0,1278.0,741.0,3300000,2395000.0,72.5,32,High,Overpriced
+Active,2200 N Ocean Blvd Unit#S1701,Auberge Residence And Spa,Barrier island / beach,Condo,3301.0,True,$5M–$10M,6399000.0,1939.0,1146.0,3800000,2599000.0,69.2,147,High,Overpriced
+Active,1349 Middle River Dr,Beach Way Heights,Barrier island / beach,Single Family,4711.0,True,$5M–$10M,5500000.0,1167.0,698.0,3300000,2200000.0,67.2,33,High,Overpriced
+Pending,2540 Mercedes Drive,Harbor Beach,Barrier island / beach,Single Family,3750.0,True,$5M–$10M,6800000.0,1813.0,1113.0,4150000,2650000.0,62.9,0,Low (no comps),Insufficient comps
+Active,633 4th Key Drive,Sunrise Key,Finger-isle waterfront,Single Family,3388.0,True,$5M–$10M,5395000.0,1592.0,1033.0,3500000,1895000.0,54.1,0,Low (no comps),Insufficient comps
+Active,2561 Lucille Dr,Lucille Isles,Intracoastal / canal waterfront,Single Family,5299.0,True,$5M–$10M,8950000.0,1689.0,1116.0,5900000,3050000.0,51.3,0,Low (no comps),Insufficient comps
+Active,333 Las Olas Way Unit#4206,Las Olas,Downtown high-rise,Condo,8329.0,False,$5M–$10M,5800000.0,696.0,464.0,3850000,1950000.0,50.0,31,High,Overpriced
+Active,500 Hendricks Isle Unit#PH,Lumiere,Intracoastal / canal waterfront,Condo,5914.0,True,$5M–$10M,6499500.0,1099.0,769.0,4550000,1950000.0,42.9,32,High,Overpriced
+Active,153 N Seabreeze Boulevard Unit#2202-S,Selene Oceanfront Residen,Barrier island / beach,Condo,3240.0,True,$5M–$10M,5399000.0,1666.0,1172.0,3800000,1599000.0,42.2,15,High,Overpriced
+Active,720 Isle Of Palms Drive,Las Olas Isles,Finger-isle waterfront,Single Family,8206.0,True,$5M–$10M,9500000.0,1158.0,815.0,6700000,2800000.0,42.1,4,High,Overpriced
+Active,2718 NE 17th Street,Coral Ridge,Intracoastal / canal waterfront,Single Family,5015.0,True,$5M–$10M,7100000.0,1416.0,1015.0,5100000,2000000.0,39.5,11,High,Overpriced
+Active,2200 N Ocean Boulevard Unit#N501,Auberge Beach,Barrier island / beach,Condo,3422.0,True,$5M–$10M,5445000.0,1591.0,1141.0,3900000,1545000.0,39.4,147,High,Overpriced
+Active,2870 NE 24th Place,Coral Ridge Galt,Barrier island / beach,Single Family,5003.0,True,$5M–$10M,7250000.0,1449.0,1055.0,5300000,1950000.0,37.3,0,Low (no comps),Insufficient comps
+Active,1032 SE 12th Way,Rio Vista,Mainland inland,Single Family,4516.0,False,$5M–$10M,5350000.0,1185.0,898.0,4050000,1300000.0,32.0,5,High,Overpriced
+Active,163 Nurmi Drive,Nurmi Isles,Finger-isle waterfront,Single Family,4279.0,True,$5M–$10M,6600000.0,1542.0,1173.0,5000000,1600000.0,31.5,4,High,Overpriced
+Active,1 N Fort Lauderdale Beach Boulevard Unit#Lp 2302,Ritz Carlton,Barrier island / beach,Condo,4056.0,True,$5M–$10M,6995000.0,1725.0,1344.0,5500000,1495000.0,28.3,78,High,Overpriced
+Active,2401 N Atlantic Boulevard,Lauderdale Beach,Barrier island / beach,Single Family,4283.0,False,$5M–$10M,5995000.0,1400.0,1096.0,4700000,1295000.0,27.7,0,Low (no comps),Insufficient comps
+Active,2809 NE 24th Pl,Coral Ridge Galt,Barrier island / beach,Single Family,4255.0,True,$5M–$10M,5599999.0,1316.0,1037.0,4400000,1200000.0,26.9,0,Low (no comps),Insufficient comps
+Active,1304 SW 9th Street,Riverside Amen,Intracoastal / canal waterfront,Single Family,5600.0,True,$5M–$10M,5950000.0,1062.0,849.0,4750000,1200000.0,25.1,12,High,Overpriced
+Active,2540 NE 22nd Terrace,North Bal Harbour,Finger-isle waterfront,Single Family,6273.0,True,$5M–$10M,7775000.0,1239.0,991.0,6200000,1575000.0,25.0,5,High,Overpriced
+Active,440 Mola Ave,Venice,Finger-isle waterfront,Single Family,6545.0,True,$5M–$10M,9200000.0,1406.0,1129.0,7400000,1800000.0,24.5,0,Low (no comps),Insufficient comps
+Active,2740 NE 17th Street,Coral Ridge,Intracoastal / canal waterfront,Single Family,6189.0,True,$5M–$10M,6300000.0,1018.0,826.0,5100000,1200000.0,23.2,11,High,Overpriced
+Active,334 Isle Of Capri Drive,Capri Venice,Finger-isle waterfront,Single Family,3298.0,True,$5M–$10M,5790000.0,1756.0,1434.0,4750000,1040000.0,22.5,0,Low (no comps),Insufficient comps
+Active,156 Fiesta Way,Nurmi Isles,Finger-isle waterfront,Single Family,6446.0,True,$5M–$10M,8999000.0,1396.0,1142.0,7400000,1599000.0,22.2,9,High,Overpriced
+Pending,425 Coral Way,Coral Isles Las Olas Isl,Finger-isle waterfront,Single Family,4119.0,True,$5M–$10M,5475000.0,1329.0,1123.0,4650000,825000.0,18.3,10,High,Overpriced
+Active,2317 Delmar Place,Gould Isles,Intracoastal / canal waterfront,Single Family,6138.0,True,$5M–$10M,8995000.0,1465.0,1245.0,7600000,1395000.0,17.7,4,High,Overpriced
+Active,2231 NE 15th Court,Bal Harbour St,Finger-isle waterfront,Single Family,6629.0,True,$5M–$10M,9700000.0,1463.0,1253.0,8300000,1400000.0,16.8,5,High,Overpriced
+Active,1319 Seminole Dr,Beach Way Heights,Barrier island / beach,Single Family,7325.0,True,$5M–$10M,7200000.0,983.0,863.0,6300000,900000.0,13.9,11,High,Overpriced
+Active,3318 NE 16th Pl,Las Olas,Mainland inland,Single Family,4644.0,False,$5M–$10M,5800000.0,1249.0,1105.0,5100000,700000.0,13.0,13,High,Overpriced
+Active,1607 SE 14th Street,Lauderdale Harbors Section,Intracoastal / canal waterfront,Single Family,5781.0,True,$5M–$10M,8650000.0,1496.0,1336.0,7700000,950000.0,12.0,8,High,Overpriced
+Active,168 Fiesta Way,Nurmi Isles,Finger-isle waterfront,Single Family,4632.0,True,$5M–$10M,5990000.0,1293.0,1157.0,5400000,590000.0,11.8,9,High,Overpriced
+Active,1212 E Lake Drive,Harbor Beach,Barrier island / beach,Single Family,5917.0,False,$5M–$10M,6150000.0,1039.0,933.0,5500000,650000.0,11.4,4,High,Overpriced
+Active,2627 NE 14th Street,Coral Ridge,Mainland inland,Single Family,6630.0,False,$5M–$10M,6499500.0,980.0,899.0,6000000,500000.0,9.0,13,High,Fairly priced
+Pending,2839 NE 26th Place,Coral Ridge Galt,Barrier island / beach,Single Family,6750.0,True,$5M–$10M,9975000.0,1478.0,1364.0,9200000,775000.0,8.4,4,High,Fairly priced
+Active,2863 NE 27th Street,Coral Ridge Galt,Barrier island / beach,Single Family,5628.0,True,$5M–$10M,8300000.0,1475.0,1365.0,7700000,600000.0,8.1,16,High,Fairly priced
+Active,1730 SE 13th Street,Lauderdale Harbors,Intracoastal / canal waterfront,Single Family,5950.0,True,$5M–$10M,8995000.0,1512.0,1421.0,8500000,495000.0,6.4,8,High,Fairly priced
+Active,2609 NE 27th Way,Coral Ridge,Mainland inland,Single Family,4714.0,False,$5M–$10M,5350000.0,1135.0,1081.0,5100000,250000.0,5.0,0,Low (no comps),Insufficient comps
+Active,1965 SE 21st Avenue,Harbour Heights,Finger-isle waterfront,Single Family,5565.0,True,$5M–$10M,6950000.0,1249.0,1191.0,6600000,350000.0,4.9,0,Low (no comps),Insufficient comps
+Active,701 Flamingo Drive,Riviera Isles,Finger-isle waterfront,Single Family,3664.0,True,$5M–$10M,5250000.0,1433.0,1394.0,5100000,150000.0,2.8,0,Low (no comps),Insufficient comps
+Active,511 San Marco Dr,Coral Isles,Finger-isle waterfront,Single Family,5288.0,True,$5M–$10M,6900000.0,1305.0,1271.0,6700000,200000.0,2.7,0,Low (no comps),Insufficient comps
+Active,620 Solar Isle Dr,Riviera Isles,Finger-isle waterfront,Single Family,3949.0,True,$5M–$10M,6900000.0,1747.0,1704.0,6700000,200000.0,2.5,4,High,Fairly priced
+Pending,1528 SE 11th Street,Rio Vista,Intracoastal / canal waterfront,Single Family,4935.0,True,$5M–$10M,8950000.0,1814.0,1778.0,8800000,150000.0,2.0,6,High,Fairly priced
+Active,2000 Harbourview Drive,Harbour Heights,Mainland inland,Single Family,4964.0,False,$5M–$10M,5995000.0,1208.0,1194.0,5900000,95000.0,1.2,4,High,Fairly priced
+Active,300 Royal Plaza Dr,Stilwell Isles,Finger-isle waterfront,Single Family,7674.0,True,$5M–$10M,9475000.0,1235.0,1235.0,9500000,-25000.0,0.0,6,High,Fairly priced
+Active,39 Pelican Drive,Pelican Isles,Finger-isle waterfront,Single Family,6642.0,True,$5M–$10M,8399000.0,1265.0,1269.0,8400000,-1000.0,-0.3,5,High,Fairly priced
+Active,1 N Fort Lauderdale Beach Boulevard Unit#1801 / 1808,Ritz Carlton,Barrier island / beach,Condo,3784.0,True,$5M–$10M,5400000.0,1427.0,1462.0,5500000,-100000.0,-2.4,78,High,Fairly priced
+Pending,2401 NE 13th Street,Beach Way Heights,Barrier island / beach,Single Family,5708.0,False,$5M–$10M,5250000.0,920.0,957.0,5500000,-250000.0,-3.9,0,Low (no comps),Insufficient comps
+Active,1701 SE 10th St,Rio Vista,Finger-isle waterfront,Single Family,4240.0,True,$5M–$10M,5000000.0,1179.0,1228.0,5200000,-200000.0,-4.0,7,High,Fairly priced
+Active,520 San Marco Drive,Coral Isles,Finger-isle waterfront,Single Family,6363.0,True,$5M–$10M,8950000.0,1407.0,1482.0,9400000,-450000.0,-5.1,0,Low (no comps),Insufficient comps
+Active,2010 Intracoastal Dr,Coral Ridge,Intracoastal / canal waterfront,Single Family,4991.0,True,$5M–$10M,9799000.0,1963.0,2116.0,10500000,-701000.0,-7.2,39,High,Fairly priced
+Active,540 Lido Dr,Coral Isles,Finger-isle waterfront,Single Family,5973.0,True,$5M–$10M,6895000.0,1154.0,1280.0,7600000,-705000.0,-9.8,0,Low (no comps),Insufficient comps
+Active,2856 NE 25th Street,Coral Ridge,Intracoastal / canal waterfront,Single Family,4795.0,True,$5M–$10M,5495000.0,1146.0,1272.0,6100000,-605000.0,-9.9,8,High,Fairly priced
+Active,7 Pelican Drive,Pelican Isles,Finger-isle waterfront,Single Family,6301.0,True,$5M–$10M,6900000.0,1095.0,1224.0,7700000,-800000.0,-10.5,5,High,Underpriced
+Active,704 Isle Of Palms Drive,Stilwell Isles Pa,Finger-isle waterfront,Single Family,6110.0,True,$5M–$10M,6495000.0,1063.0,1194.0,7300000,-805000.0,-11.0,4,High,Underpriced
+Pending,400 Coral Way,Coral Isles,Finger-isle waterfront,Single Family,6349.0,True,$5M–$10M,9399000.0,1480.0,1707.0,10750000,-1351000.0,-13.3,10,High,Underpriced
+Active,709 Isle Of Palms Dr,Stilwell Isles,Finger-isle waterfront,Single Family,7130.0,True,$5M–$10M,7999999.0,1122.0,1297.0,9200000,-1200000.0,-13.5,4,High,Underpriced
+Active,424 Coconut Isle Drive,Venice,Finger-isle waterfront,Single Family,5301.0,True,$5M–$10M,6495000.0,1225.0,1507.0,8000000,-1505000.0,-18.7,7,High,Underpriced
+Pending,441 Royal Plaza Drive,Stilwell Isles,Finger-isle waterfront,Single Family,6162.0,True,$5M–$10M,6475000.0,1051.0,1303.0,8000000,-1525000.0,-19.3,6,High,Underpriced
+Active,609 Poinciana Drive,Idlewyld,Finger-isle waterfront,Single Family,4539.0,True,$5M–$10M,5395000.0,1189.0,1476.0,6700000,-1305000.0,-19.4,0,Low (no comps),Insufficient comps
+Active,91 Fiesta Way,Nurmi Isles,Finger-isle waterfront,Single Family,6184.0,True,$5M–$10M,7450000.0,1205.0,1535.0,9500000,-2050000.0,-21.5,9,High,Underpriced
+Active,2406 Barcelona Drive,Sea Isles,Finger-isle waterfront,Single Family,5377.0,True,$5M–$10M,5495000.0,1022.0,1306.0,7000000,-1505000.0,-21.7,0,Low (no comps),Insufficient comps
+Active,2601 Delmar Pl,Gould Isles,Intracoastal / canal waterfront,Single Family,6019.0,True,$5M–$10M,6250000.0,1038.0,1328.0,8000000,-1750000.0,-21.8,4,High,Underpriced
+Active,310 SE 11th Ave,Himmarshee Park,Intracoastal / canal waterfront,Single Family,6058.0,True,$5M–$10M,5890000.0,972.0,1259.0,7600000,-1710000.0,-22.8,8,High,Underpriced
+Active,1500 SE 14th Street,Lauderdale Harbors,Intracoastal / canal waterfront,Single Family,5424.0,True,$5M–$10M,6999999.0,1291.0,1792.0,9700000,-2700000.0,-28.0,8,High,Underpriced
+Active,525 N Fort Lauderdale Beach Boulevard Unit#1801,Four Seasons,Barrier island / beach,Condo,2634.0,True,$5M–$10M,6750000.0,2563.0,3581.0,9400000,-2650000.0,-28.4,78,High,Underpriced
+Active,525 N Fort Lauderdale Beach Boulevard Unit#901,Four Seasons,Barrier island / beach,Condo,2184.0,True,$5M–$10M,5350000.0,2450.0,3507.0,7700000,-2350000.0,-30.1,78,High,Underpriced
+Active,2035 Intracoastal Drive,Coral Ridge,Mainland inland,Single Family,6147.0,False,$5M–$10M,6500000.0,1057.0,1615.0,9900000,-3400000.0,-34.6,39,High,Underpriced
+Active,1813 N Fort Lauderdale Beach Boulevard,Birch Park Finger Estates,Barrier island / beach,Single Family,4619.0,True,$5M–$10M,9495000.0,2056.0,3685.0,17000000,-7505000.0,-44.2,78,High,Underpriced
+Active,801 Seabreeze Blvd Unit#PH2406,St Regis Residences,Barrier island / beach,Condo,4982.0,True,$10M+,22000000.0,4416.0,486.0,2400000,19600000.0,808.6,6,High,Overpriced
+Active,801 Seabreeze Boulevard Unit#Ph 2302,St Regis Residences,Barrier island / beach,Condo,5777.0,True,$10M+,20500000.0,3549.0,456.0,2650000,17850000.0,678.3,6,High,Overpriced
+Active,100 E Las Olas Boulevard Unit#4603,Las Olas,Downtown high-rise,Condo,5281.0,False,$10M+,10990000.0,2081.0,512.0,2700000,8290000.0,306.4,48,High,Overpriced
+Active,2221 SE 17th St Unit#PH3,Pier Sixty Six,Intracoastal / canal waterfront,Condo,5349.0,True,$10M+,16000000.0,2991.0,742.0,3950000,12050000.0,303.1,14,High,Overpriced
+Active,2617 Aqua Vista Boulevard,Aqua Vista,Intracoastal / canal waterfront,Single Family,3192.0,True,$10M+,12900000.0,4041.0,1077.0,3450000,9450000.0,275.2,8,High,Overpriced
+Active,2500 Mercedes Dr,Harbor Beach,Barrier island / beach,Single Family,6250.0,True,$10M+,27500000.0,4400.0,1233.0,7700000,19800000.0,256.9,0,Low (no comps),Insufficient comps
+Active,733 Middle River Drive,Sunrise Intracoastal,Intracoastal / canal waterfront,Single Family,11838.0,True,$10M+,41900000.0,3539.0,1132.0,13500000,28400000.0,212.6,33,High,Overpriced
+Active,516 Mola Avenue,Venice,Finger-isle waterfront,Single Family,9995.0,True,$10M+,39999999.0,4002.0,1496.0,15000000,25000000.0,167.5,0,Low (no comps),Insufficient comps
+Active,513 Middle River Drive,Sunrise,Intracoastal / canal waterfront,Single Family,15079.0,True,$10M+,55000000.0,3647.0,1427.0,21500000,33500000.0,155.6,33,High,Overpriced
+Active,725 Middle River Dr,Sunrise,Intracoastal / canal waterfront,Single Family,11133.0,True,$10M+,33000000.0,2964.0,1167.0,13000000,20000000.0,154.0,33,High,Overpriced
+Active,101 S Fort Lauderdale Beach Boulevard Unit#2905,Las Olas,Barrier island / beach,Condo,5695.0,True,$10M+,11295000.0,1983.0,819.0,4650000,6645000.0,142.1,20,High,Overpriced
+Active,700 SW 12th Ave,Riverside Park,Intracoastal / canal waterfront,Single Family,6658.0,True,$10M+,13995000.0,2102.0,872.0,5800000,8195000.0,141.1,9,High,Overpriced
+Active,625 San Marco Drive,Coral Isles,Finger-isle waterfront,Single Family,10160.0,True,$10M+,44995000.0,4429.0,1866.0,19000000,25995000.0,137.4,0,Low (no comps),Insufficient comps
+Active,3036 N Atlantic Blvd,Lauderdale Beach,Barrier island / beach,Single Family,3672.0,True,$10M+,14400000.0,3922.0,1668.0,6100000,8300000.0,135.1,0,Low (no comps),Insufficient comps
+Active,2533 Aqua Vista Boulevard,Sea Isles,Finger-isle waterfront,Single Family,4667.0,True,$10M+,14995000.0,3213.0,1371.0,6400000,8595000.0,134.4,8,High,Overpriced
+Active,2200 N Ocean Boulevard Unit#S1604/1605,Auberge,Barrier island / beach,Condo,4498.0,True,$10M+,10995000.0,2444.0,1047.0,4700000,6295000.0,133.4,147,High,Overpriced
+Active,671 Middle River Drive,Sunrise,Intracoastal / canal waterfront,Single Family,9138.0,True,$10M+,21900000.0,2397.0,1039.0,9500000,12400000.0,130.7,33,High,Overpriced
+Active,815 Idlewyld Drive,Idlewyld,Finger-isle waterfront,Single Family,7666.0,True,$10M+,19950000.0,2602.0,1140.0,8700000,11250000.0,128.2,0,Low (no comps),Insufficient comps
+Active,2200 N Ocean Boulevard Unit#N1701/N1801,Auberge Beach,Barrier island / beach,Condo,5822.0,True,$10M+,13850000.0,2379.0,1128.0,6600000,7250000.0,110.9,147,High,Overpriced
+Active,2560 Del Lago Dr,Del Lago Isles,Finger-isle waterfront,Single Family,8725.0,True,$10M+,29995000.0,3438.0,1717.0,15000000,14995000.0,100.2,0,Low (no comps),Insufficient comps
+Active,525 Isle Of Capri Drive,Las Olas,Intracoastal / canal waterfront,Single Family,10000.0,True,$10M+,35000000.0,3500.0,1748.0,17500000,17500000.0,100.2,0,Low (no comps),Insufficient comps
+Active,5 Isla Bahia Drive,Harbor Beach,Barrier island / beach,Single Family,8923.0,True,$10M+,20000000.0,2241.0,1142.0,10250000,9750000.0,96.2,4,High,Overpriced
+Active,2716 Aqua Vista Boulevard,Sea Isles,Finger-isle waterfront,Single Family,10345.0,True,$10M+,28000000.0,2707.0,1411.0,14500000,13500000.0,91.8,8,High,Overpriced
+Active,701 N Fort Lauderdale Beach Boulevard Unit#A1,Paramount Ft Lauderdale Co,Barrier island / beach,Condo,5525.0,False,$10M+,12995000.0,2352.0,1237.0,6800000,6195000.0,90.1,78,High,Overpriced
+Active,2501 Del Lago Drive,Del Lago Isles,Finger-isle waterfront,Single Family,8343.0,True,$10M+,24950000.0,2991.0,1627.0,13500000,11450000.0,83.8,0,Low (no comps),Insufficient comps
+Active,1 Isla Bahia Drive,Harbor Beach,Barrier island / beach,Single Family,14000.0,True,$10M+,35900000.0,2564.0,1418.0,19750000,16150000.0,80.8,4,High,Overpriced
+Active,2430 Del Lago Drive,Del Lago Isles,Finger-isle waterfront,Single Family,10428.0,True,$10M+,24900000.0,2388.0,1356.0,14250000,10650000.0,76.1,0,Low (no comps),Insufficient comps
+Active,615 Idlewyld Drive,Idlewyld,Finger-isle waterfront,Single Family,5995.0,True,$10M+,11900000.0,1985.0,1163.0,7000000,4900000.0,70.7,0,Low (no comps),Insufficient comps
+Active,1822 SE 9th Street,Rio Vista,Intracoastal / canal waterfront,Single Family,8600.0,True,$10M+,20995000.0,2441.0,1516.0,13000000,7995000.0,61.0,9,High,Overpriced
+Active,23 Isla Bahia Dr,Isla Bahia,Finger-isle waterfront,Single Family,9135.0,True,$10M+,24900000.0,2726.0,1706.0,15500000,9400000.0,59.8,4,High,Overpriced
+Pending,1721 SE 11th Street,Rio Vista,Finger-isle waterfront,Single Family,7030.0,True,$10M+,19770000.0,2812.0,1766.0,12500000,7270000.0,59.2,6,High,Overpriced
+Active,1529 Middle River Drive,Coral Ridge,Intracoastal / canal waterfront,Single Family,6718.0,True,$10M+,11995000.0,1786.0,1186.0,8000000,3995000.0,50.6,33,High,Overpriced
+Active,1239 Middle River Dr,Beach Way Heights,Barrier island / beach,Single Family,9655.0,True,$10M+,15495000.0,1605.0,1069.0,10250000,5245000.0,50.1,33,High,Overpriced
+Active,400 Mola Avenue,Venice,Finger-isle waterfront,Single Family,6036.0,True,$10M+,12995000.0,2153.0,1461.0,8800000,4195000.0,47.4,0,Low (no comps),Insufficient comps
+Active,70 Isla Bahia Drive,Isla Bahia,Finger-isle waterfront,Single Family,7988.0,True,$10M+,18950000.0,2372.0,1626.0,13000000,5950000.0,45.9,4,High,Overpriced
+Active,1400 W Lake Dr,Lucille Isles,Intracoastal / canal waterfront,Single Family,10400.0,True,$10M+,29900000.0,2875.0,1998.0,20750000,9150000.0,43.9,0,Low (no comps),Insufficient comps
+Active,2893 NE 27th Street,Coral Ridge Galt,Barrier island / beach,Single Family,7500.0,True,$10M+,13500000.0,1800.0,1273.0,9500000,4000000.0,41.4,16,High,Overpriced
+Active,24 Fiesta Way,Nurmi Isles,Finger-isle waterfront,Single Family,6479.0,True,$10M+,12388000.0,1912.0,1384.0,9000000,3388000.0,38.2,9,High,Overpriced
+Active,1719 SE 10th Street,Rio Vista,Finger-isle waterfront,Single Family,7171.0,True,$10M+,12495000.0,1742.0,1302.0,9300000,3195000.0,33.8,7,High,Overpriced
+Active,2848 NE 26th Pl,Coral Ridge Galt,Barrier island / beach,Single Family,6274.0,True,$10M+,10500000.0,1674.0,1318.0,8300000,2200000.0,27.0,4,High,Overpriced
+Active,646 Flamingo Drive,Riviera,Intracoastal / canal waterfront,Single Family,6189.0,True,$10M+,12950000.0,2092.0,1669.0,10250000,2700000.0,25.3,0,Low (no comps),Insufficient comps
+Active,1918 Intracoastal Drive,Coral Ridge,Intracoastal / canal waterfront,Single Family,6567.0,True,$10M+,15995000.0,2436.0,1988.0,13000000,2995000.0,22.5,39,High,Overpriced
+Active,641 Flamingo Dr,Riviera,Intracoastal / canal waterfront,Single Family,5535.0,True,$10M+,11990000.0,2166.0,1797.0,9900000,2090000.0,20.5,0,Low (no comps),Insufficient comps
+Active,1313 Seabreeze Boulevard,Harbor Beach,Barrier island / beach,Single Family,9501.0,False,$10M+,10000000.0,1053.0,901.0,8600000,1400000.0,16.9,6,High,Overpriced
+Active,650 Royal Plaza Dr,Stilwell Isles,Finger-isle waterfront,Single Family,9252.0,True,$10M+,15950000.0,1724.0,1477.0,13750000,2200000.0,16.7,6,High,Overpriced
+Active,515 Lido Drive,Coral Isles,Finger-isle waterfront,Single Family,7877.0,True,$10M+,16750000.0,2126.0,1873.0,14750000,2000000.0,13.5,0,Low (no comps),Insufficient comps
+Active,1 N Fort Lauderdale Beach Blvd Unit#2102,Ritz Carlton,Barrier island / beach,Condo,7031.0,True,$10M+,10495000.0,1493.0,1395.0,9800000,695000.0,7.0,78,High,Fairly priced
+Active,441 Isle Of Palms Drive,Stilwell Isles Pal,Finger-isle waterfront,Single Family,9416.0,True,$10M+,15950000.0,1694.0,1599.0,15000000,950000.0,5.9,4,High,Fairly priced
+Active,1900 Intracoastal Drive,Coral Ridge,Intracoastal / canal waterfront,Single Family,6139.0,True,$10M+,12495000.0,2035.0,1976.0,12250000,245000.0,3.0,39,High,Fairly priced
+Active,111 Fiesta Way,Nurmi Isles,Finger-isle waterfront,Single Family,6303.0,True,$10M+,10200000.0,1618.0,1576.0,9900000,300000.0,2.7,9,High,Fairly priced
+Active,51 Isla Bahia Dr,Isla Bahia,Finger-isle waterfront,Single Family,11496.0,True,$10M+,17900000.0,1557.0,1556.0,18000000,-100000.0,0.1,4,High,Fairly priced
+Active,2437 Delmar Place,Gould Isles,Intracoastal / canal waterfront,Single Family,7393.0,True,$10M+,10495000.0,1420.0,1484.0,11000000,-505000.0,-4.3,4,High,Fairly priced
+Pending,119 N Gordon Road,Victoria Isles,Finger-isle waterfront,Single Family,6935.0,True,$10M+,10250000.0,1478.0,1589.0,11000000,-750000.0,-7.0,0,Low (no comps),Insufficient comps
+Active,2508 Delmar Place,Gould Isles,Intracoastal / canal waterfront,Single Family,6590.0,True,$10M+,10495000.0,1593.0,1742.0,11500000,-1005000.0,-8.6,4,High,Fairly priced
+Pending,340 San Marco Dr,Coral Isles,Finger-isle waterfront,Single Family,6936.0,True,$10M+,10999000.0,1586.0,1765.0,12250000,-1251000.0,-10.1,0,Low (no comps),Insufficient comps
+Active,525 N Fort Lauderdale Beach Boulevard Unit#2201,Four Seasons,Barrier island / beach,Condo,5766.0,True,$10M+,14995000.0,2601.0,3623.0,21000000,-6005000.0,-28.2,78,High,Underpriced

@@ -1,0 +1,149 @@
+neighborhood,band,n_sold,n_live,sold_ppsf,ask_ppsf,gap_pct,verdict,median_sold_price
+Aquablu,$1M–$2M,3,1,772.0,,,,1700000.0
+Aquablu,$2M–$3M,3,2,745.0,820.0,10.0,Overpriced,2375000.0
+Auberge Beach Residences,$2M–$3M,4,0,1238.0,,,,2300000.0
+Auberge Beach Residences,$3M–$5M,5,1,1363.0,,,,4250000.0
+Bal Harbour,$1M–$2M,3,1,644.0,,,,1295000.0
+Bal Harbour,$2M–$3M,2,2,878.0,875.0,-0.3,Fairly priced,2000000.0
+Beach Way Heights,$2M–$3M,2,1,1070.0,,,,2850000.0
+Beach Way Heights,$3M–$5M,1,3,,1083.0,,,3600000.0
+Beach Way Heights,$5M–$10M,4,3,985.0,983.0,-0.2,Fairly priced,6166500.0
+Breakwater,$1M–$2M,2,1,850.0,,,,1150000.0
+Breakwater,$2M–$3M,2,0,1722.0,,,,2900000.0
+Colee Hammock,$1M–$2M,13,4,682.0,630.0,-7.6,Fairly priced,1300000.0
+Colee Hammock,$2M–$3M,7,3,746.0,807.0,8.2,Fairly priced,2250000.0
+Colee Hammock,$3M–$5M,2,2,917.0,1006.0,9.8,Fairly priced,3400000.0
+Coral Isles,$2M–$3M,2,0,1964.0,,,,2962500.0
+Coral Isles,$3M–$5M,7,0,1097.0,,,,4150000.0
+Coral Isles,$5M–$10M,5,4,1423.0,1356.0,-4.7,Fairly priced,7250000.0
+Coral Isles,$10M+,1,3,,2126.0,,,13700000.0
+Coral Ridge,$1M–$2M,31,2,618.0,768.0,24.4,Overpriced,1450000.0
+Coral Ridge,$2M–$3M,8,3,831.0,1048.0,26.1,Overpriced,2387500.0
+Coral Ridge,$3M–$5M,18,4,1002.0,1129.0,12.7,Overpriced,3850000.0
+Coral Ridge,$5M–$10M,10,7,1130.0,1135.0,0.5,Fairly priced,5525000.0
+Coral Ridge,$10M+,1,3,,2035.0,,,10000000.0
+Coral Ridge Galt,$1M–$2M,51,7,620.0,778.0,25.5,Overpriced,1300000.0
+Coral Ridge Galt,$2M–$3M,20,2,880.0,1033.0,17.5,Overpriced,2525000.0
+Coral Ridge Galt,$3M–$5M,10,7,936.0,994.0,6.3,Fairly priced,3425000.0
+Coral Ridge Galt,$5M–$10M,2,5,1208.0,1475.0,22.2,Overpriced,7870000.0
+Coral Ridge Galt,$10M+,1,2,,1737.0,,,13900000.0
+Four Seasons,$2M–$3M,1,2,,1924.0,,,2550000.0
+Four Seasons,$3M–$5M,6,9,1774.0,2009.0,13.2,Overpriced,3925000.0
+Four Seasons,$5M–$10M,5,2,2130.0,2506.0,17.7,Overpriced,8126000.0
+Gould Isles,$5M–$10M,3,2,1268.0,1252.0,-1.3,Fairly priced,5975000.0
+Gould Isles,$10M+,1,2,,1506.0,,,27800000.0
+Halls,$1M–$2M,7,0,745.0,,,,1290000.0
+Halls,$2M–$3M,2,1,954.0,,,,2805000.0
+Harbor Beach,$1M–$2M,9,3,688.0,920.0,33.7,Overpriced,1650000.0
+Harbor Beach,$2M–$3M,4,1,955.0,,,,2145000.0
+Harbor Beach,$3M–$5M,11,2,987.0,1662.0,68.4,Overpriced,3550000.0
+Harbor Beach,$5M–$10M,4,2,1338.0,1426.0,6.6,Fairly priced,7342500.0
+Harbor Beach,$10M+,2,4,1799.0,2402.0,33.5,Overpriced,14300000.0
+Harbour Heights,$1M–$2M,9,3,699.0,807.0,15.5,Overpriced,1500000.0
+Harbour Heights,$2M–$3M,2,2,658.0,1115.0,69.3,Overpriced,2683500.0
+Harbour Heights,$3M–$5M,2,1,1100.0,,,,3982625.0
+Harbour Heights,$5M–$10M,0,3,,1249.0,,,
+Holmberg Mc Kees,$1M–$2M,7,1,703.0,,,,1300000.0
+Holmberg Mc Kees,$2M–$3M,2,1,854.0,,,,2800000.0
+Holmberg Mc Kees,$3M–$5M,1,3,,1003.0,,,3000000.0
+Idlewyld,$1M–$2M,6,0,706.0,,,,1575000.0
+Idlewyld,$2M–$3M,3,1,660.0,,,,2195000.0
+Idlewyld,$3M–$5M,4,2,977.0,1224.0,25.3,Overpriced,3700000.0
+Idlewyld,$10M+,2,2,1906.0,2294.0,20.3,Overpriced,12900000.0
+La Cascade,$1M–$2M,5,2,627.0,680.0,8.4,Fairly priced,1700000.0
+La Cascade,$2M–$3M,0,2,,885.0,,,
+Las Olas,$1M–$2M,66,25,678.0,772.0,13.9,Overpriced,1472500.0
+Las Olas,$2M–$3M,25,12,828.0,992.0,19.8,Overpriced,2200000.0
+Las Olas,$3M–$5M,5,7,911.0,1001.0,9.9,Fairly priced,4000000.0
+Las Olas,$5M–$10M,1,2,,972.0,,,5050000.0
+Las Olas,$10M+,0,3,,2081.0,,,
+Las Olas Isles,$2M–$3M,2,0,862.0,,,,2650000.0
+Las Olas Isles,$3M–$5M,4,2,1064.0,1205.0,13.3,Overpriced,4675000.0
+Las Olas Isles,$5M–$10M,3,1,1117.0,,,,6115000.0
+Lauderdale Beach,$1M–$2M,4,1,840.0,,,,1580000.0
+Lauderdale Beach,$2M–$3M,3,2,1040.0,882.0,-15.1,Underpriced,2600000.0
+Lauderdale Beach,$3M–$5M,3,3,1113.0,1459.0,31.1,Overpriced,4625000.0
+Lauderdale Beach,$5M–$10M,2,1,2168.0,,,,6250000.0
+Lauderdale Beach Ext,$1M–$2M,6,4,736.0,706.0,-4.1,Fairly priced,1565000.0
+Lauderdale Beach Ext,$2M–$3M,3,0,734.0,,,,2240000.0
+Lauderdale Harbors,$1M–$2M,8,3,807.0,913.0,13.1,Overpriced,1715000.0
+Lauderdale Harbors,$2M–$3M,9,0,940.0,,,,2625000.0
+Lauderdale Harbors,$3M–$5M,1,2,,840.0,,,3100000.0
+Lauderdale Harbors,$5M–$10M,3,2,1171.0,1402.0,19.7,Overpriced,6350000.0
+Middle River Estates,$1M–$2M,3,1,724.0,,,,1295000.0
+Middle River Estates,$2M–$3M,1,2,,645.0,,,2700000.0
+North Bal Harbour,$1M–$2M,3,0,537.0,,,,1665000.0
+North Bal Harbour,$2M–$3M,2,0,1072.0,,,,2618500.0
+North Bal Harbour,$3M–$5M,0,2,,1242.0,,,
+Nurmi Isles,$2M–$3M,4,0,1057.0,,,,2777100.0
+Nurmi Isles,$3M–$5M,4,9,904.0,1302.0,44.1,Overpriced,4373750.0
+Nurmi Isles,$5M–$10M,6,4,1152.0,1344.0,16.8,Overpriced,6200000.0
+Nurmi Isles,$10M+,3,2,1730.0,1765.0,2.0,Fairly priced,12200000.0
+Palms,$1M–$2M,5,1,577.0,,,,1200000.0
+Palms,$3M–$5M,2,0,900.0,,,,4000000.0
+Palms Tower One,$1M–$2M,1,2,,730.0,,,1125000.0
+Palms Tower One,$2M–$3M,0,2,,748.0,,,
+Paramount,$1M–$2M,3,0,774.0,,,,1450000.0
+Paramount,$2M–$3M,5,2,1204.0,1090.0,-9.4,Fairly priced,2300000.0
+Paramount,$3M–$5M,2,0,1308.0,,,,3855750.0
+Pelican Isles,$3M–$5M,2,0,1538.0,,,,4400000.0
+Pelican Isles,$5M–$10M,0,2,,1180.0,,,
+Poinsettia Heights,$1M–$2M,10,1,675.0,,,,1387500.0
+Poinsettia Heights,$2M–$3M,3,4,729.0,895.0,22.8,Overpriced,2150000.0
+Point Americas,$1M–$2M,9,11,662.0,711.0,7.4,Fairly priced,1420000.0
+Point Americas,$2M–$3M,1,2,,792.0,,,2700000.0
+Progresso,$1M–$2M,24,16,546.0,549.0,0.5,Fairly priced,1162500.0
+Progresso,$2M–$3M,3,7,742.0,828.0,11.6,Overpriced,2050000.0
+Rio Vista,$1M–$2M,28,5,720.0,731.0,1.6,Fairly priced,1425000.0
+Rio Vista,$2M–$3M,28,5,792.0,962.0,21.5,Overpriced,2653125.0
+Rio Vista,$3M–$5M,17,13,924.0,945.0,2.3,Fairly priced,3600000.0
+Rio Vista,$5M–$10M,6,4,1370.0,1500.0,9.5,Fairly priced,6725000.0
+Rio Vista,$10M+,3,3,1654.0,2441.0,47.6,Overpriced,11282000.0
+Ritz Carlton,$2M–$3M,3,0,1344.0,,,,2650000.0
+Ritz Carlton,$5M–$10M,0,2,,1576.0,,,
+Riverside Amen,$1M–$2M,2,0,634.0,,,,1725000.0
+Riverside Amen,$2M–$3M,2,1,628.0,,,,2067500.0
+Riviera,$3M–$5M,3,0,926.0,,,,3625000.0
+Riviera,$5M–$10M,3,1,1465.0,,,,7500000.0
+Riviera,$10M+,1,2,,2129.0,,,14400000.0
+Sea Isles,$5M–$10M,1,2,,1645.0,,,8200000.0
+Sea Isles,$10M+,1,2,,2960.0,,,19000000.0
+Selene,$1M–$2M,2,1,998.0,,,,1525000.0
+Selene,$2M–$3M,2,3,1127.0,1286.0,14.1,Overpriced,2130000.0
+Selene Oceanfront,$1M–$2M,1,3,,1059.0,,,1977000.0
+Selene Oceanfront,$2M–$3M,1,3,,1252.0,,,2100000.0
+Selene Oceanfront Residen,$1M–$2M,7,0,872.0,,,,1450000.0
+Selene Oceanfront Residen,$3M–$5M,2,4,1200.0,1336.0,11.3,Overpriced,3887500.0
+Seven Isles,$3M–$5M,4,0,1015.0,,,,3352500.0
+Seven Isles,$5M–$10M,4,0,1182.0,,,,7074000.0
+South New River Isles,$1M–$2M,14,6,735.0,820.0,11.6,Overpriced,1383000.0
+South New River Isles,$2M–$3M,1,4,,1100.0,,,2225000.0
+St Regis Residences,$3M–$5M,0,2,,2239.0,,,
+St Regis Residences,$5M–$10M,0,3,,2359.0,,,
+St Regis Residences,$10M+,0,2,,3982.0,,,
+Stilwell Isles,$3M–$5M,3,0,1119.0,,,,4000000.0
+Stilwell Isles,$5M–$10M,4,3,1182.0,1122.0,-5.1,Fairly priced,5947500.0
+Stranahans,$1M–$2M,7,1,596.0,,,,1075000.0
+Stranahans,$2M–$3M,1,3,,672.0,,,2520000.0
+Sunrise,$1M–$2M,2,0,709.0,,,,1587071.0
+Sunrise,$2M–$3M,2,1,836.0,,,,2437500.0
+Sunrise,$10M+,0,3,,2964.0,,,
+Sunrise Intracoastal,$2M–$3M,2,0,721.0,,,,2397500.0
+Sunrise Intracoastal,$5M–$10M,2,0,1144.0,,,,7400000.0
+Sunrise Key,$3M–$5M,2,0,1190.0,,,,4500000.0
+Sunrise Key,$10M+,2,0,3376.0,,,,22050000.0
+Tarpon River,$1M–$2M,6,5,432.0,496.0,14.7,Overpriced,1262500.0
+Tarpon River,$2M–$3M,1,2,,758.0,,,2400000.0
+Venice,$3M–$5M,5,2,853.0,1173.0,37.5,Overpriced,3500000.0
+Venice,$5M–$10M,5,2,1125.0,1316.0,16.9,Overpriced,6300000.0
+Venice,$10M+,1,2,,3078.0,,,23955000.0
+Viceroy Fort Lauderdale,$1M–$2M,0,5,,1183.0,,,
+Viceroy Fort Lauderdale,$2M–$3M,0,2,,1670.0,,,
+Viceroy Fort Lauderdale,$3M–$5M,0,2,,3487.0,,,
+Victoria Park,$1M–$2M,64,13,562.0,687.0,22.2,Overpriced,1350000.0
+Victoria Park,$2M–$3M,29,4,724.0,684.0,-5.5,Fairly priced,2495000.0
+Victoria Park,$3M–$5M,10,9,778.0,887.0,13.9,Overpriced,3050000.0
+View Pointe,$2M–$3M,0,2,,1612.0,,,
+View Pointe,$5M–$10M,0,2,,2438.0,,,
+Wilton Manors,$1M–$2M,7,1,677.0,,,,1390000.0
+Wilton Manors,$2M–$3M,4,1,852.0,,,,2676250.0

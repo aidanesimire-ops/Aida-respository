@@ -35,6 +35,7 @@ def main():
     tb = load("time_bundle.json")
     sb = load("street_bundle.json")
     rb = load("reprice_bundle.json")
+    hb = load("high_ticket_bundle.json")
     m = mls["meta"]
     pr = m["premiums"]
     nb = pd.DataFrame(mls["neighborhoods"])
@@ -127,6 +128,30 @@ def main():
             w(f"\nFinger-isle (point-lot) waterfront runs about "
               f"**{fi['median_ppsf']/ml['median_ppsf']:.1f}×** mainland-inland per foot — the "
               "single biggest geographic swing in the market.\n")
+
+    # ---------------- High-ticket ----------------
+    hm = hb["meta"]
+    w("## High-ticket underwriting (≥ $1M)\n")
+    w(f"The luxury segment — **{hm['n_listings']} live listings ≥ ${hm['min_ticket']/1e6:.0f}M** "
+      f"({hm['n_comp_backed']} comp-backed). Comp-backed inventory is asking "
+      f"**{hm['list_vs_suggested_pct']:+.0f}% vs. supported value**. By band:\n")
+    w("| Price band | Live | Median ask $/sqft | Supported $/sqft | Over / Fair / Under |\n|--|--|--|--|--|")
+    for bd in hb["bands"]:
+        w(f"| {bd['band']} | {bd['n']} | {usd(bd['median_ask_ppsf'])} | {usd(bd['median_supported_ppsf'])} "
+          f"| {bd['overpriced']} / {bd['fairly_priced']} / {bd['underpriced']} |")
+    w("\n**The key pattern: the same band prices differently by neighborhood.** A few examples "
+      "(what sold vs what's asked, per band):\n")
+    bn = pd.DataFrame(hb["band_neighborhood"])
+    for nbn in ["Coral Ridge", "Rio Vista", "Las Olas", "Harbor Beach"]:
+        g = bn[bn["neighborhood"] == nbn]
+        g = g[g["gap_pct"].notna()]
+        if len(g):
+            parts = "; ".join(f"{r['band']} {r['gap_pct']:+.0f}% ({r['verdict'].split()[0].lower()})"
+                              for _, r in g.iterrows())
+            w(f"- **{nbn}:** {parts}.")
+    w("\nThe **Band × Neighborhood**, **High-Ticket Underwriting** (with a suggested list price "
+      "per listing) and **Price Bands** tabs in the workbook carry the full detail; the dashboard "
+      "has an interactive band-trend search.\n")
 
     # ---------------- Rankings ----------------
     w("## Neighborhood value ranking\n")
