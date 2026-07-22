@@ -134,6 +134,7 @@ def build_inputs(s):
     inp("PREM_HIGH", "Assemblage premium — high", 0.25, F_PCT1, "🔶", "aggressive case")
 
     sect("GLOBAL — LAND & REDEVELOPMENT (1040 Bayview)  (→ Land tab)")
+    inp("ELIFT", "Entitlement lift (% uplift post-Live Local approval)", 0.30, F_PCT1, "🔶", "assembled land value bump once entitled")
     inp("LPSF_LOW", "Land value — low ($/SF)", 64.0, F_PSF, "🔶", "BCPA-implied floor")
     inp("LPSF_BASE", "Land value — base ($/SF)", 125.0, F_PSF, "🔶", "mid-block corridor")
     inp("LPSF_HIGH", "Land value — high ($/SF)", 200.0, F_PSF, "🔶", "toward hard-corner comps")

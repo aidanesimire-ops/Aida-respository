@@ -20,6 +20,15 @@ COMPONENTS = [
     ("Office Condo", "Galleria Corp Centre (full buy-out)", "BUYOUT_TOTAL", "buy out BOTH condo owners"),
     ("Land", "1040 Bayview (entitled land)", "CONCLUDED", "covered land · hold for redevelopment"),
 ]
+# acquisition history: (label, date, orig price, (sheet,our-price-cell) or None, verified, note)
+ACQ_HISTORY = [
+    ("Shahidi Retail — Shawnick Galleria LLC (Shahidi)", "11/09/2021", 17100000, ("Shahidi Retail", "PRICE"), True, "Special Warranty Deed (flagged disqualified sale)"),
+    ("Publix + Starbucks — REAL SUB LLC (Publix)", "03/14/2025", 25000000, ("Publix & Starbucks", "PRICE"), True, "Trustee's Deed · $679/SF bldg"),
+    ("Sunrise Plaza — Kar Luen Inc", "Oct 2000", 128000, ("Sunrise Plaza", "PRICE"), False, "stale/nominal — held since; no recent arm's-length"),
+    ("Office — Main St Fund LLC (57.4%)", "09/23/2019", 10000000, ("Office Condo", "BUYOUT1"), False, "96,930 SF + 2 parking lots (Daily Business Review)"),
+    ("Office — Intl Sunrise Partners (42.6%)", "2011", None, ("Office Condo", "BUYOUT2"), False, "condo-conversion sponsor (Bush Development)"),
+    ("1040 Bayview — Sunrise & Bayview Partners", "2014 (JV)", None, ("Land", "CONCLUDED"), False, "Procacci; BBX exited 2022; stale 1961 deed $801,933"),
+]
 # land parcels -> (label, land-SF cell, $/SF cell or None, land-value cell)
 LANDPARCELS = [
     ("Shahidi Retail", "Shahidi Retail", "LANDSF", "GLAND_PSF", "LANDVAL"),
@@ -63,6 +72,26 @@ def build(s, regs):
     s.put(r, 3, f"={s.reg['SUM_PARTS']}+{s.reg['ASM_PREM']}", style="grand", fmt=F_ACCT_TOP, align="right", name="ASM_TOTAL")
     s.put(r, 5, "total to control the whole block", style="note", align="left", merge=(r, 13)); r += 2
 
+    # ============ acquisition history / seller cost basis ============
+    s.section(r, L, 13, "ACQUISITION HISTORY  —  what each owner paid, and when  (seller basis = negotiation leverage)"); r += 1
+    s.put(r, L, "Component / owner", style="subhead", align="left")
+    s.put(r, 3, "Bought", style="subhead", align="center")
+    s.put(r, 4, "For", style="subhead", align="center")
+    s.put(r, 5, "Our modeled price", style="subhead", align="center")
+    s.put(r, 6, "note", style="subhead", align="left", merge=(r, 13)); r += 1
+    for label, date, price, ourcell, verified, note in ACQ_HISTORY:
+        st = "verified" if verified else "calc"
+        s.put(r, L, label, style=st, align="left")
+        s.put(r, 3, date, style=st, align="center")
+        s.put(r, 4, (price if price else "—"), style=st, fmt=(F_ACCT if price else None), align="right")
+        if ourcell:
+            sheet, cell = ourcell
+            s.put(r, 5, f"={x(sheet, cell)}", style="calc", color="008000", fmt=F_ACCT, align="right")
+        else:
+            s.put(r, 5, "—", style="note", align="right")
+        s.put(r, 6, note, style="note", align="left", merge=(r, 13)); r += 1
+    r += 1
+
     # ============ 2. land: regular parcels vs assembled ============
     s.section(r, L, 13, "②  LAND VALUE  —  as REGULAR (fragmented) parcels"); r += 1
     s.put(r, L, "Parcel", style="subhead", align="left")
@@ -103,6 +132,9 @@ def build(s, regs):
     kv("Implied assembled $/SF (base)", f"={s.reg['LAND_ASM']}/{s.reg['LAND_SF']}", F_PSF, note="vs. fragmented blend above")
     kv("PLOTTAGE PREMIUM (assembled − fragmented)", f"={s.reg['LAND_ASM']}-{s.reg['LAND_FRAG']}", F_ACCT_TOP, name="PLOTTAGE",
        note="the value created / cost incurred by assembling the hard-to-put-together block")
+    kv("Entitlement lift (post-Live Local approval)", f"={AS('ELIFT')}", F_PCT1, note="value bump once entitled for Live Local density")
+    kv("POST-APPROVAL assembled land value", f"={s.reg['LAND_ASM']}*(1+{AS('ELIFT')})", F_ACCT_TOP, name="LAND_ENTITLED", style="grand",
+       note="what the ENTITLED dirt is worth — the redevelopment upside the premium buys you the option on")
     r += 1
 
     # ============ 3. office condo full buy-out ============
