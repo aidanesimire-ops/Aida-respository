@@ -1,2 +1,88 @@
-# Aida-respository
-just for fun 
+# Fort Lauderdale — Neighborhood Price/SqFt Normalization
+
+Statistical normalization of the Fort Lauderdale residential market that turns raw,
+confounded price-per-square-foot into **clean, comparable $/sqft by neighborhood** — and
+the context to back it up in a homeowner conversation: waterfront vs dry-lot pricing,
+new-construction vs existing, implied land value, real list-to-sale discounts, market
+appreciation, listing failure rates, and live over/under-priced inventory.
+
+**Start here:** [`REPORT.md`](REPORT.md) (written analysis) ·
+[`outputs/Fort_Lauderdale_PPSF_Normalized.xlsx`](outputs/) (workbook) ·
+[`dashboard/index.html`](dashboard/index.html) (open in a browser).
+
+## Why raw $/sqft misleads
+
+A neighborhood can look cheap or expensive purely because its homes are bigger, older,
+newer, on the water, or a different property type. This project removes those confounders
+with a **per-home hedonic model** so what's left is the neighborhood's true price level.
+
+## Two data layers (cross-validated at r = 0.93)
+
+| Layer | Source | Gives us |
+|---|---|---|
+| **Primary** | User-provided Fort Lauderdale **MLS** exports — 12k+ listings across sold / expired / withdrawn / cancelled / temp-off / active / pending | Per-home hedonic normalized $/sqft, waterfront & new-construction premiums, real discounts, overpricing & live-listing flags |
+| **Context** | **Redfin Data Center** neighborhood tracker (2012–2026), public & free | Market appreciation index and days-on-market (the MLS export has no dates) |
+
+The two are built from different data with different methods and agree at **r = 0.93** —
+the main validation that the normalization is sound. Top sales were also spot-checked
+to the dollar against public records (e.g. 5 Harborage Isle, $70M).
+
+## The model
+
+```
+log(sale $/sqft) ~ living area + beds + baths + waterfront + pool
+                  + age + new construction + property type + NEIGHBORHOOD
+```
+
+**Normalized $/sqft** = the model's price for one *standardized* home (dry-lot, no pool,
+citywide-median size and age) placed in each neighborhood, so only location varies.
+Waterfront, pool, age and new-construction are reported separately as premiums. A second
+SFR-only model splits structure value from lot value to imply land $/sqft.
+
+## Run it
+
+```bash
+pip install -r requirements.txt
+python analysis/run_all.py          # runs the whole pipeline
+```
+
+Or step by step:
+
+```bash
+python analysis/normalize_ppsf.py   # Redfin layer  -> data/processed/*.csv, analysis_bundle.json
+python analysis/mls_normalize.py    # MLS per-home  -> data/processed/mls_*.csv, mls_bundle.json
+python analysis/build_charts.py     # -> outputs/*.png
+python analysis/build_excel.py      # -> outputs/Fort_Lauderdale_PPSF_Normalized.xlsx
+python analysis/build_dashboard.py  # -> dashboard/index.html (+ artifact.html)
+python analysis/build_report.py     # -> REPORT.md
+```
+
+Re-run any time you get fresh data — drop new MLS exports in `data/raw/mls/` (named by
+status) and re-run.
+
+## Layout
+
+```
+data/raw/mls/         seven MLS status exports (sold, expired, withdrawn, cancelled,
+                      temp_off, active_coming_soon, active_pending)
+data/raw/             redfin_fll_neighborhoods.tsv (filtered Redfin neighborhood data)
+data/processed/       cleaned data + normalized tables + JSON bundles
+analysis/             the pipeline (normalize_ppsf, mls_normalize, build_*)
+outputs/              charts (PNG) + the Excel workbook
+dashboard/            self-contained interactive dashboard
+REPORT.md             written analysis
+```
+
+## Honest limitations
+
+- **Lot geography** (point / corner / canal / ocean-access / no-fixed-bridges) is **not**
+  in the MLS export — only a Waterfront Y/N flag. Adding the MLS *Waterfront Description /
+  Lot Description / Dock* fields would sharpen the waterfront premium.
+- **No dates / days-on-market** in the MLS export; those come from the Redfin layer at the
+  neighborhood level. Adding *List/Close Date* columns would enable per-home time adjustment.
+- **Vacant land** isn't in the data (all rows are improved residential) — land value is
+  *implied* from lot size, not from land comps.
+- **Condo-level** flags are coarse (floor / view / renovation unobserved). Trust the
+  neighborhood aggregates over individual condo call-outs.
+
+These are neighborhood benchmarks and screening signals — **not per-home appraisals.**
