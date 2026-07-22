@@ -3,7 +3,6 @@ Active,513 Middle River Drive,Middle River Dr,Sunrise,Intracoastal / canal water
 Active,625 San Marco Drive,San Marco Dr,Coral Isles,Finger-isle waterfront,Single Family,10160.0,6,8.5,True,44995000.0,4429.0,1866.0,137.4
 Active,733 Middle River Drive,Middle River Dr,Sunrise Intracoastal,Intracoastal / canal waterfront,Single Family,11838.0,6,9.0,True,41900000.0,3539.0,1423.0,148.8
 Active,516 Mola Avenue,Mola Ave,Venice,Finger-isle waterfront,Single Family,9995.0,6,8.0,True,39999999.0,4002.0,1496.0,167.5
-Active,2300 Aqua Vista Blvd,Aqua Vista Blvd,Merritt Isles,Finger-isle waterfront,Single Family,8132.0,7,6.5,True,39995000.0,4918.0,1173.0,319.3
 Active,1 Isla Bahia Drive,Isla Bahia Dr,Harbor Beach,Barrier island / beach,Single Family,14000.0,6,10.5,True,35900000.0,2564.0,1425.0,79.9
 Active,525 Isle Of Capri Drive,Isle Of Capri Dr,Las Olas,Intracoastal / canal waterfront,Single Family,10000.0,7,8.5,True,35000000.0,3500.0,1748.0,100.2
 Active,725 Middle River Dr,Middle River Dr,Sunrise,Intracoastal / canal waterfront,Single Family,11133.0,7,9.5,True,33000000.0,2964.0,1467.0,102.0
@@ -40,7 +39,6 @@ Active,646 Flamingo Drive,Flamingo Dr,Riviera,Intracoastal / canal waterfront,Si
 Active,2617 Aqua Vista Boulevard,Aqua Vista Blvd,Aqua Vista,Intracoastal / canal waterfront,Single Family,3192.0,4,3.0,True,12900000.0,4041.0,1045.0,286.8
 Active,1900 Intracoastal Drive,Intracoastal Dr,Coral Ridge,Intracoastal / canal waterfront,Single Family,6139.0,5,6.0,True,12495000.0,2035.0,1355.0,50.2
 Active,1719 SE 10th Street,SE 10th St,Rio Vista,Finger-isle waterfront,Single Family,7171.0,5,6.0,True,12495000.0,1742.0,1206.0,44.5
-Active,628 Coral Way,Coral Way,Coral Isles,Finger-isle waterfront,Single Family,8365.0,6,7.5,True,12490000.0,1493.0,1447.0,3.2
 Active,24 Fiesta Way,Fiesta Way,Nurmi Isles,Finger-isle waterfront,Single Family,6479.0,6,5.5,True,12388000.0,1912.0,1457.0,31.2
 Active,1529 Middle River Drive,Middle River Dr,Coral Ridge,Intracoastal / canal waterfront,Single Family,6718.0,6,8.0,True,11995000.0,1786.0,1491.0,19.7
 Active,641 Flamingo Dr,Flamingo Dr,Riviera,Intracoastal / canal waterfront,Single Family,5535.0,6,8.0,True,11990000.0,2166.0,1797.0,20.6
@@ -167,7 +165,6 @@ Active,450 Victoria Terrace,Victoria Ter,Victoria Park,Intracoastal / canal wate
 Active,717 Solar Isle Drive,Solar Isle Dr,Las Olas Isles,Finger-isle waterfront,Single Family,4125.0,4,4.5,True,4395000.0,1065.0,815.0,30.7
 Active,551 Bayshore Drive Unit#507D,Bayshore Dr,Ritz Carlton Ftl,Barrier island / beach,Condo,2940.0,3,3.5,True,4339000.0,1476.0,559.0,163.8
 Active,151 N Seabreeze Boulevard Unit#1101-e,N Seabreeze Blvd,Selene Oceanfront Residen,Barrier island / beach,Condo,3122.0,3,4.0,True,4299000.0,1377.0,1086.0,26.8
-Active,528 NE 13th Ave,NE 13th Ave,Victoria Park,Mainland inland,Single Family,2532.0,6,7.5,False,4200000.0,1659.0,1145.0,44.9
 Active,505 NE 2nd Street Unit#43A,NE 2nd St,Viceroy Fort Lauderdale Viceroy,Downtown high-rise,Condo,2540.0,3,3.5,False,4200000.0,1654.0,421.0,293.0
 Active,1016 SE 8th Street,SE 8th St,Rio Vista,Mainland inland,Single Family,3907.0,5,5.5,False,4195000.0,1074.0,1138.0,-5.7
 Active,801 SE 11th Ct,SE 11th Ct,Rio Vista,Mainland inland,Single Family,4390.0,5,5.0,False,4150000.0,945.0,1083.0,-12.7
@@ -196,7 +193,6 @@ Active,2311 Delmar Pl,Delmar Pl,Gould Isles,Intracoastal / canal waterfront,Sing
 Active,1630 SE 11th Street,SE 11th St,Rio Vista,Finger-isle waterfront,Single Family,2545.0,4,4.0,True,3750000.0,1473.0,1163.0,26.7
 Active,1036 SE 12th Way,SE 12th Way,Rio Vista,Mainland inland,Single Family,4003.0,4,4.5,False,3750000.0,937.0,897.0,4.5
 Active,1117 SE 9th St,SE 9th St,Rio Vista,Mainland inland,Single Family,4487.0,6,4.0,False,3750000.0,836.0,999.0,-16.3
-Active,1205 Avocado Isle,Avocado Isle,South New River Isles,Finger-isle waterfront,Single Family,4311.0,6,5.0,True,3749990.0,870.0,1069.0,-18.6
 Active,500 Hendricks Isle Unit#4N,Hendricks Isle,Lumiere,Intracoastal / canal waterfront,Condo,2941.0,3,3.5,True,3740000.0,1272.0,746.0,70.5
 Active,87 Isle Of Venice Drive Unit#202s,Isle Of Venice Dr,Nurmi Isles,Finger-isle waterfront,Condo,2960.0,4,4.5,True,3726640.0,1259.0,752.0,67.5
 Active,900 Intracoastal Drive Unit#602,Intracoastal Dr,Sage Intracoastal,Intracoastal / canal waterfront,Condo,3191.0,4,4.5,True,3715185.0,1164.0,633.0,83.8
@@ -267,7 +263,6 @@ Active,1716 Middle River Drive,Middle River Dr,Coral Ridge,Mainland inland,Singl
 Active,900 Intracoastal Drive Unit#Apt 701,Intracoastal Dr,Sunrise,Intracoastal / canal waterfront,Condo,2792.0,3,3.5,True,2975000.0,1066.0,614.0,73.4
 Active,3055 Harbor Dr Unit#1202,Harbor Dr,Harbourage Place,Finger-isle waterfront,Condo,3488.0,3,3.5,True,2950000.0,846.0,581.0,45.5
 Active,350 SE 2nd Street Unit#GPH10,SE 2nd St,Las Olas,Mainland inland,Condo,3150.0,3,3.0,False,2950000.0,937.0,452.0,107.3
-Active,2500 NE 18th Avenue,NE 18th Ave,Middle River Manor,Intracoastal / canal waterfront,Single Family,2371.0,4,3.5,True,2950000.0,1244.0,920.0,35.2
 Active,1524 Argyle Dr,Argyle Dr,River Highlands Amen,Intracoastal / canal waterfront,Single Family,4550.0,7,7.0,True,2950000.0,648.0,802.0,-19.2
 Active,1321 Tangelo Isle,Tangelo Isle,South New River Isles,Finger-isle waterfront,Single Family,2489.0,3,3.5,True,2950000.0,1185.0,930.0,27.4
 Active,1110 Seminole Drive Unit#201,Seminole Dr,Adagio On Bay,Intracoastal / canal waterfront,Condo,2870.0,3,3.5,True,2940000.0,1024.0,514.0,99.1
@@ -326,8 +321,6 @@ Active,3319 NE 18TH Street,NE 18th St,Las Olas,Mainland inland,Single Family,220
 Active,2417 SE 19th Place,SE 19th Pl,Harbour Heights,Mainland inland,Single Family,2705.0,3,2.5,False,2400000.0,887.0,626.0,41.8
 Active,633 NE 20th Street,NE 20th St,Letarte,Mainland inland,Single Family,4023.0,3,3.5,False,2399000.0,596.0,593.0,0.6
 Active,153 N Seabreeze Boulevard Unit#2404-s,N Seabreeze Blvd,Selene Oceanfront Residen,Barrier island / beach,Condo,1707.0,2,2.5,True,2395000.0,1403.0,1087.0,29.1
-Active,2614 NE 15th Street,NE 15th St,Coral Ridge,Mainland inland,Single Family,2613.0,5,4.0,False,2395000.0,917.0,683.0,34.2
-Active,1180 N Federal Hwy Unit#1102,N Federal Hwy,Riva Condominium,Intracoastal / canal waterfront,Condo,2251.0,3,3.5,True,2395000.0,1064.0,536.0,98.5
 Active,701 N Fort Lauderdale Beach Boulevard Unit#805,N Fort Lauderdale Beach Blvd,Paramount,Barrier island / beach,Condo,2419.0,3,3.5,True,2375000.0,982.0,1121.0,-12.4
 Active,1708 NE 16th Avenue,NE 16th Ave,Poinsettia Heights,Mainland inland,Single Family,2804.0,4,4.0,False,2375000.0,847.0,514.0,64.7
 Active,1032 SE 13th Terrace,SE 13th Ter,Rio Vista,Mainland inland,Single Family,2320.0,4,4.0,False,2375000.0,1024.0,755.0,35.6
@@ -357,7 +350,6 @@ Active,2212 NE 17th Place,NE 17th Pl,Bal Harbour,Finger-isle waterfront,Single F
 Active,1521 NE 26th Ave Unit#B,NE 26th Ave,Coral Ridge,Mainland inland,Townhouse,3403.0,3,3.5,False,2200000.0,646.0,559.0,15.7
 Active,1009 B NE 3rd Street,B NE 3rd St,Victoria Park,Mainland inland,Single Family,3276.0,4,4.0,False,2200000.0,672.0,924.0,-27.3
 Active,1015 B NE 3rd Street,B NE 3rd St,Victoria Park,Mainland inland,Townhouse,3276.0,4,4.0,False,2200000.0,672.0,516.0,30.1
-Active,1412 SW 7th St,SW 7th St,Riverside Amen,Mainland inland,Single Family,2834.0,4,4.0,False,2200000.0,776.0,663.0,17.0
 Active,1617 SW 17th Ave,SW 17th Ave,Bossert Isles,Finger-isle waterfront,Single Family,2500.0,5,3.0,True,2200000.0,880.0,635.0,38.6
 Active,545 S FORT LAUDERDALE BEACH Boulevard Unit#1703/1704,S Fort Lauderdale Beach Blvd,Illini,Barrier island / beach,Condo,2150.0,4,3.0,True,2199000.0,1023.0,518.0,97.5
 Active,153 N Seabreeze Boulevard Unit#504-s,N Seabreeze Blvd,Selene,Barrier island / beach,Condo,1707.0,2,2.5,True,2195000.0,1286.0,845.0,52.1
@@ -392,7 +384,6 @@ Active,1200 NE 2nd Street,NE 2nd St,Victoria Park,Mainland inland,Single Family,
 Active,17 SE 12th Avenue,SE 12th Ave,Beverly Heights Na,Mainland inland,Townhouse,2509.0,4,4.5,False,1950000.0,777.0,701.0,10.9
 Active,2000 SW 18th Ave,SW 18th Ave,Osceola Park,Mainland inland,Single Family,1468.0,4,4.0,False,1950000.0,1328.0,721.0,84.3
 Active,704 SE 8th Street,SE 8th St,Rio Vista,Mainland inland,Single Family,2087.0,3,2.0,False,1950000.0,934.0,632.0,47.8
-Active,516 Hendricks Isle Unit#4a,Hendricks Isle,Aria Las Olas,Intracoastal / canal waterfront,Condo,3246.0,3,4.5,True,1949000.0,600.0,637.0,-5.7
 Active,809 NE 16th Unit#15,NE 16th,Regency Park Townhomes,Mainland inland,Townhouse,2823.0,4,4.5,False,1948000.0,690.0,546.0,26.3
 Active,101 S Fort Lauderdale Beach Boulevard Unit#1806,S Fort Lauderdale Beach Blvd,Las Olas,Barrier island / beach,Condo,1905.0,2,2.0,True,1945000.0,1021.0,611.0,67.0
 Active,3040 N Ocean Blvd Unit#N101,N Ocean Blvd,Thirty North Ocean Con Thirty Ocean,Barrier island / beach,Condo,2119.0,3,3.5,False,1900000.0,897.0,603.0,48.7
@@ -405,7 +396,6 @@ Active,1635 Seabreeze Boulevard,Seabreeze Blvd,Harbor Beach,Barrier island / bea
 Active,104 NE 16th Ter,NE 16th Ter,Victoria Park,Mainland inland,Townhouse,2901.0,4,4.5,False,1875000.0,646.0,530.0,22.0
 Active,809 NE 16th Avenue Unit#20,NE 16th Ave,Regency Park Townhomes,Mainland inland,Townhouse,2823.0,4,4.5,False,1869000.0,662.0,546.0,21.2
 Active,1808 Coral Ridge Dr,Coral Ridge Dr,Livermore Estates,Mainland inland,Townhouse,3387.0,4,4.5,False,1865000.0,551.0,470.0,17.0
-Active,800 SE 11TH Court,SE 11th Ct,Rio Vista,Mainland inland,Single Family,1787.0,4,2.5,False,1849000.0,1035.0,671.0,54.1
 Active,2845 NE 9th Street Unit#Ph5,NE 9th St,Le Club International Cond,Barrier island / beach,Condo,2450.0,2,3.5,True,1825000.0,745.0,645.0,15.4
 Active,1133 NE 18th Court,NE 18th Ct,Lauderdale Park,Intracoastal / canal waterfront,Single Family,2576.0,3,2.5,True,1825000.0,708.0,914.0,-22.5
 Active,300 NE 3rd Avenue Unit#2703s,NE 3rd Ave,Ombelle Fort Lauderdale,Downtown high-rise,Condo,1605.0,2,2.5,False,1815447.0,1131.0,309.0,266.6
@@ -421,7 +411,6 @@ Active,100 E Las Olas Blvd Unit#3201,E Las Olas Blvd,Las Olas,Intracoastal / can
 Active,843 SW 14th Court Unit#843,SW 14th Ct,Esmonda Gardens,Mainland inland,Townhouse,4200.0,4,3.5,False,1777000.0,423.0,365.0,15.8
 Active,320 SW 11 Unit#320,SW 11,Tarpon River,Mainland inland,Townhouse,3578.0,5,6.0,False,1775000.0,496.0,482.0,2.9
 Active,1735 NE 23rd Avenue,NE 23rd Ave,Bal Harbour,Finger-isle waterfront,Single Family,2066.0,3,2.0,True,1750000.0,847.0,864.0,-2.0
-Active,549 NE 12th Ave,NE 12th Ave,Victoria Park,Mainland inland,Single Family,1903.0,4,4.0,False,1750000.0,920.0,658.0,39.8
 Active,333 Las Olas Way Unit#2409,Las Olas Way,Las Olas,Intracoastal / canal waterfront,Condo,2141.0,2,2.5,True,1750000.0,817.0,617.0,32.4
 Active,1935 SE 25th Avenue,SE 25th Ave,Harbour Heights,Mainland inland,Single Family,2169.0,4,3.0,False,1749999.0,807.0,714.0,13.0
 Active,2100 NE 24th St,NE 24th St,Coral Point,Intracoastal / canal waterfront,Single Family,1685.0,3,3.0,True,1749000.0,1038.0,634.0,63.8
@@ -429,7 +418,6 @@ Active,701 N Fort Lauderdale Beach Blvd Unit#TH3,N Fort Lauderdale Beach Blvd,Pa
 Active,516 Hendricks Isle Unit#2C,Hendricks Isle,Aria Las Olas Aria,Intracoastal / canal waterfront,Condo,2394.0,2,2.0,True,1745000.0,729.0,576.0,26.5
 Active,1525 NE 15TH Avenue,NE 15th Ave,Allenwood,Mainland inland,Townhouse,2775.0,3,3.5,False,1729000.0,623.0,476.0,31.0
 Active,1527 NE 15TH Avenue,NE 15th Ave,Allenwood,Mainland inland,Townhouse,2775.0,3,3.5,False,1729000.0,623.0,476.0,31.0
-Active,804 NE 16th Ter,NE 16th Ter,Victoria Park,Mainland inland,Townhouse,2623.0,3,3.5,False,1725000.0,658.0,524.0,25.5
 Active,"511 SE 5 Ave Unit#8,9,11",SE 5 Ave,Nuriver Landing Comm Cond Nuriver Landing,Intracoastal / canal waterfront,Condo,1361.0,9,2.0,True,1700000.0,1249.0,538.0,132.3
 Active,2216 NE 18th Ave,NE 18th Ave,Middle River Manor,Intracoastal / canal waterfront,Single Family,2768.0,4,4.0,True,1700000.0,614.0,630.0,-2.6
 Active,511 SE 5th Ave Unit#11,SE 5th Ave,Nu River Landing,Intracoastal / canal waterfront,Condo,1233.0,0,0.0,True,1700000.0,1379.0,398.0,246.5
@@ -467,7 +455,6 @@ Active,919 NE 17th Terrace Unit#A,NE 17th Ter,Victoria Park,Mainland inland,Town
 Active,2056 NE 21st Court,NE 21st Ct,South Coral Point,Intracoastal / canal waterfront,Single Family,2851.0,3,4.0,True,1595000.0,559.0,759.0,-26.3
 Active,203 SW 10th Street,SW 10th St,Lauderdale,Mainland inland,Townhouse,2560.0,3,3.5,False,1595000.0,623.0,478.0,30.3
 Active,15 Port Side Dr Unit#15C,Port Side Dr,Portside Yacht Club,Intracoastal / canal waterfront,Condo,2226.0,2,2.5,True,1595000.0,717.0,380.0,88.6
-Active,712 SE 11th Court,SE 11th Ct,Rio Vista,Mainland inland,Single Family,1098.0,2,1.0,False,1590000.0,1448.0,642.0,125.7
 Active,218 NE 15th Avenue Unit#218,NE 15th Ave,Isles Enclave,Mainland inland,Townhouse,3500.0,4,4.0,False,1584000.0,453.0,458.0,-1.3
 Active,2308 SE 18 St,SE 18 St,Harbour Heights,Mainland inland,Single Family,1658.0,3,3.0,False,1575000.0,950.0,689.0,37.9
 Active,551 N Fort Lauderdale Beach Blvd Unit#R201,N Fort Lauderdale Beach Blvd,Flb Condominium Resid Elliott,Barrier island / beach,Condo,1034.0,2,2.0,True,1574900.0,1523.0,671.0,127.1
@@ -479,7 +466,6 @@ Active,915 SE 2nd Court,SE 2nd Ct,Colee Hammock,Mainland inland,Townhouse,2561.0
 Active,551 N Fort Lauderdale Beach Boulevard Unit#R1902,N Fort Lauderdale Beach Blvd,Ocean Resort Residences,Barrier island / beach,Condo,1590.0,3,3.5,True,1500000.0,943.0,820.0,15.0
 Active,1676 S Ocean Lane Unit#253,S Ocean Ln,Oceanage,Barrier island / beach,Condo,1264.0,2,2.0,True,1500000.0,1187.0,931.0,27.5
 Active,1500 SE 12th St Unit#1A,SE 12th St,Hemingway Landings,Intracoastal / canal waterfront,Condo,2288.0,3,3.5,True,1500000.0,656.0,629.0,4.2
-Active,1524 NE 18th Ave,NE 18th Ave,Lakeland,Intracoastal / canal waterfront,Single Family,2685.0,4,3.5,True,1500000.0,559.0,732.0,-23.7
 Active,805 SE 10th Street,SE 10th St,Rio Vista,Mainland inland,Single Family,2408.0,3,3.0,False,1500000.0,623.0,721.0,-13.6
 Active,1151 N Fort Lauderdale Beach Boulevard Unit#14D,N Fort Lauderdale Beach Blvd,Park Tower,Barrier island / beach,Condo,1700.0,2,2.0,True,1499900.0,882.0,542.0,62.7
 Active,101 S Fort Lauderdale Beach Boulevard Unit#705,S Fort Lauderdale Beach Blvd,Las Olas,Barrier island / beach,Condo,2950.0,3,4.0,True,1499000.0,508.0,644.0,-21.1
@@ -506,7 +492,6 @@ Active,501 SE 6th Avenue Unit#611,SE 6th Ave,Sixth Rio,Intracoastal / canal wate
 Active,551 N Fort Lauderdale Beach Blvd Unit#R2205,N Fort Lauderdale Beach Blvd,Flb Condominium Resid Elliott,Barrier island / beach,Condo,1113.0,2,2.0,True,1434900.0,1289.0,665.0,94.0
 Active,505 NE 2nd Street Unit#34F,NE 2nd St,Viceroy Fort Lauderdale,Downtown high-rise,Condo,1162.0,2,2.0,False,1430000.0,1231.0,430.0,185.9
 Active,3036 NE 19 Street,NE 19 St,Lauderdale Beach Ext,Barrier island / beach,Single Family,1917.0,3,2.5,False,1425000.0,743.0,742.0,0.2
-Active,1332 NE 16th Ter,NE 16th Ter,Progresso,Mainland inland,Single Family,2385.0,3,3.5,False,1425000.0,597.0,700.0,-14.7
 Active,216 SE 10th Street,SE 10th St,Tarpon River,Intracoastal / canal waterfront,Single Family,2556.0,4,3.0,True,1425000.0,558.0,762.0,-26.9
 Active,100 E Las Olas Boulevard Unit#2802,E Las Olas Blvd,Las Olas,Mainland inland,Condo,1404.0,2,2.5,False,1400000.0,997.0,600.0,66.1
 Active,2100 S Ocean Lane Unit#1411,S Ocean Ln,Point Americas,Barrier island / beach,Condo,1912.0,2,2.0,True,1400000.0,732.0,572.0,27.9
@@ -523,7 +508,6 @@ Active,76 Isle Of Venice Drive Unit#G,Isle Of Venice Dr,Isles Venice Co Op,Finge
 Active,1916 NE 24th Street,NE 24th St,Coral Point,Intracoastal / canal waterfront,Single Family,2450.0,3,2.0,True,1395000.0,569.0,568.0,0.3
 Active,1321 NE 14th Avenue Unit#1321,NE 14th Ave,Dua Lake Ridge West,Mainland inland,Townhouse,2351.0,4,3.0,False,1395000.0,593.0,462.0,28.5
 Active,535 N Victoria Park Road,N Victoria Park Rd,Victoria Park,Mainland inland,Single Family,1792.0,3,2.5,False,1389000.0,775.0,512.0,51.4
-Active,1423 SW 23rd Street,SW 23rd St,Marina Landings,Mainland inland,Single Family,2700.0,4,3.5,False,1380000.0,511.0,512.0,-0.1
 Active,2100 N Ocean Blvd Unit#20D,N Ocean Blvd,Palms Tower One Palms,Barrier island / beach,Condo,2172.0,3,2.5,True,1375000.0,633.0,597.0,6.0
 Active,3000 E Oakland Park Boulevard Unit#1103,E Oakland Park Blvd,Waterside,Intracoastal / canal waterfront,Condo,1173.0,2,2.0,True,1359920.0,1159.0,461.0,151.4
 Active,545 S Fort Lauderdale Beach Boulevard Unit#1702,S Fort Lauderdale Beach Blvd,Illini Association,Barrier island / beach,Condo,1290.0,2,2.0,True,1350000.0,1047.0,539.0,94.3
@@ -596,7 +580,6 @@ Active,1 N Fort Lauderdale Beach Blvd Unit#1605,N Fort Lauderdale Beach Blvd,Cas
 Active,2100 S Ocean Ln Unit#2308,S Ocean Ln,Point Americas,Barrier island / beach,Condo,1880.0,2,2.0,True,1150000.0,612.0,574.0,6.7
 Active,2000 S Ocean Drive Unit#810,S Ocean Dr,Everglades House,Barrier island / beach,Condo,2650.0,3,3.0,True,1150000.0,434.0,520.0,-16.5
 Active,1362 Bayview Drive,Bayview Dr,Grandeur,Mainland inland,Townhouse,2355.0,4,3.5,False,1150000.0,488.0,490.0,-0.3
-Active,2441 Bayview Dr,Bayview Dr,Coral Ridge Galt,Barrier island / beach,Single Family,1768.0,3,2.5,False,1150000.0,650.0,647.0,0.5
 Active,636 NE 17th Ter,NE 17th Ter,Victoria Park,Mainland inland,Single Family,1219.0,2,2.0,False,1150000.0,943.0,639.0,47.6
 Active,913 NE 15th Street,NE 15th St,Lauderdale Park,Mainland inland,Single Family,2228.0,4,3.5,False,1149000.0,516.0,670.0,-23.1
 Active,1301 Mandarin Isle,Mandarin Isle,South New River Isles,Finger-isle waterfront,Single Family,1080.0,2,2.0,True,1149000.0,1064.0,772.0,37.9
@@ -630,7 +613,6 @@ Active,1710 S Ocean Ln Unit#404,S Ocean Ln,Lago Mar North Lodge Cond Lago Mar No
 Active,821 SW 1st Street,SW 1st St,Sailboat Bend,Mainland inland,Townhouse,2723.0,3,3.5,False,1075000.0,395.0,403.0,-2.1
 Active,819 SW 1st Street,SW 1st St,Sailboat Bend,Mainland inland,Single Family,2723.0,3,3.5,False,1075000.0,395.0,658.0,-40.0
 Active,905 Mandarin Isle,Mandarin Isle,South New River Isles,Finger-isle waterfront,Single Family,1384.0,3,2.0,True,1075000.0,777.0,736.0,5.5
-Active,717 NW 30th St,NW 30th St,Jenada Villas,Intracoastal / canal waterfront,Single Family,2590.0,4,3.0,True,1070000.0,413.0,468.0,-11.8
 Active,1801 NE 13th St Unit#1829,NE 13th St,Galleria Villages,Mainland inland,Townhouse,2036.0,3,3.5,False,1050000.0,516.0,405.0,27.3
 Active,401 N Birch Road Unit#504,N Birch Rd,Tiffany House,Barrier island / beach,Condo,1285.0,2,2.0,False,1050000.0,817.0,511.0,60.0
 Active,1620 S Ocean Ln Unit#236,S Ocean Ln,Oceanage,Barrier island / beach,Condo,1273.0,2,2.0,True,1050000.0,825.0,930.0,-11.3
@@ -661,9 +643,7 @@ Active,2100 S Ocean Ln Unit#805,S Ocean Ln,Point Americas,Barrier island / beach
 Active,542 NE 17th Ave,NE 17th Ave,Victoria Park,Mainland inland,Townhouse,2284.0,3,3.0,False,995000.0,436.0,419.0,3.9
 Active,1112 NE 17th Way,NE 17th Way,Progresso,Mainland inland,Townhouse,2732.0,3,3.5,False,995000.0,364.0,315.0,15.5
 Active,1056 N Victoria Park Rd,N Victoria Park Rd,Progresso,Mainland inland,Townhouse,1988.0,3,3.5,False,995000.0,501.0,395.0,26.8
-Active,2740 NW 9th Lane,NW 9th Ln,Jenada Villas,Mainland inland,Single Family,2212.0,4,3.0,False,995000.0,450.0,396.0,13.7
 Active,807 SW 7th Avenue,SW 7th Ave,Tarpon River,Mainland inland,Townhouse,2378.0,3,2.5,False,995000.0,418.0,354.0,18.1
-Active,917 Mandarin Isle,Mandarin Isle,South New River Isles,Finger-isle waterfront,Single Family,1122.0,2,1.0,True,995000.0,887.0,658.0,34.8
 Active,1514 SW 4th Avenue Unit#1514,SW 4th Ave,Name,Mainland inland,Townhouse,2220.0,3,2.5,False,994100.0,448.0,514.0,-12.8
 Active,209 N Fort Lauderdale Beach Blvd Unit#6B,N Fort Lauderdale Beach Blvd,Seasons,Barrier island / beach,Condo,1450.0,2,2.0,True,990000.0,683.0,585.0,16.7
 Active,2299 NE 9th Avenue Unit#2299,NE 9th Ave,Wilton Manors Belle Isles,Mainland inland,Townhouse,1880.0,3,3.5,False,989000.0,526.0,365.0,44.3
@@ -680,7 +660,6 @@ Active,300 NE 3rd Avenue Unit#1211s,NE 3rd Ave,Ombelle Fort Lauderdale,Downtown 
 Active,1905 N Ocean Blvd Unit#PHA,N Ocean Blvd,Shore Club,Barrier island / beach,Condo,1500.0,2,2.0,True,965000.0,643.0,570.0,12.8
 Active,2540 Manor Way,Manor Way,Altessa Wilton Manors,Mainland inland,Townhouse,2046.0,3,3.0,False,961990.0,470.0,432.0,8.8
 Active,1101 Waverly Road,Waverly Rd,Waverly Place,Mainland inland,Townhouse,2779.0,3,3.5,False,959000.0,345.0,329.0,5.0
-Active,811 NE 17th Ct,NE 17th Ct,Lauderdale Park,Mainland inland,Single Family,1752.0,3,2.0,False,955000.0,545.0,479.0,13.9
 Active,1031 NE 13th Ave,NE 13th Ave,Progresso,Mainland inland,Townhouse,2680.0,4,3.5,False,950000.0,354.0,319.0,11.1
 Active,2011 N Ocean Boulevard Unit#1606,N Ocean Blvd,Vue,Barrier island / beach,Condo,1268.0,2,2.0,True,950000.0,749.0,645.0,16.2
 Active,2200 S Ocean Ln Unit#2903,S Ocean Ln,Point Americas Ii Point Americas,Barrier island / beach,Condo,1258.0,2,2.0,True,950000.0,755.0,558.0,35.4
@@ -704,17 +683,14 @@ Active,2100 S Ocean Ln Unit#808,S Ocean Ln,Point Americas,Barrier island / beach
 Active,1180 N Federal Highway Unit#707,N Federal Highway,Riva Condominium,Mainland inland,Condo,1617.0,2,2.5,False,929900.0,575.0,406.0,41.8
 Active,1043 N Victoria Park Road Unit#1-2,N Victoria Park Rd,Progresso,Mainland inland,Single Family,1498.0,4,4.0,False,929000.0,620.0,518.0,19.8
 Active,1118 NE 10th Ave,NE 10th Ave,Progresso,Mainland inland,Townhouse,1550.0,3,2.5,False,929000.0,599.0,384.0,56.2
-Active,2100 S Ocean Ln Unit#1409,S Ocean Ln,Point Americas Point America,Barrier island / beach,Condo,1513.0,2,2.0,True,925000.0,611.0,541.0,13.0
 Active,1315 NE 5th Ter,NE 5th Ter,Progresso,Mainland inland,Single Family,1780.0,4,3.0,False,925000.0,520.0,474.0,9.6
 Active,1516 SW 15th Terrace,SW 15th Ter,Shady Banks On New River,Mainland inland,Single Family,2292.0,4,3.0,False,925000.0,404.0,458.0,-11.9
 Active,513 NW 30th St,NW 30th St,March Estates Amen,Intracoastal / canal waterfront,Single Family,1325.0,3,2.0,True,919900.0,694.0,514.0,35.0
-Active,700 NE 14th Avenue Unit#206,NE 14th Ave,Progresso,Mainland inland,Townhouse,2076.0,3,4.0,False,915000.0,441.0,404.0,9.2
 Active,100 S Birch Road Unit#1403f,S Birch Rd,Jackson Tower Las Olas Con,Barrier island / beach,Condo,1722.0,2,2.0,True,900000.0,523.0,595.0,-12.2
 Active,2610 NE 11th Court,NE 11th Ct,Coral Ridge,Mainland inland,Townhouse,2048.0,3,3.5,False,900000.0,439.0,482.0,-8.7
 Active,2725 NE 21st Ave,NE 21st Ave,Coral Shores,Mainland inland,Single Family,1829.0,3,2.0,False,900000.0,492.0,482.0,2.2
 Active,347 N New River Drive Unit#1509,N New River Dr,Watergarden,Intracoastal / canal waterfront,Condo,1469.0,3,2.0,True,899000.0,612.0,607.0,0.9
 Active,215 N Birch Road Unit#A2,N Birch Rd,Versailles Co Op,Barrier island / beach,Condo,1448.0,2,2.0,True,899000.0,621.0,540.0,15.0
-Active,1 Las Olas Circle Unit#1117,Las Olas Cir,Venetian Condominium,Barrier island / beach,Condo,1350.0,2,2.0,True,899000.0,666.0,629.0,5.8
 Active,1180 N FEDERAL Highway Unit#809,N Federal Highway,Riva Condominium,Mainland inland,Condo,1404.0,2,2.0,False,899000.0,640.0,400.0,60.1
 Active,1617 NE 2nd Court,NE 2nd Ct,Victoria Park,Mainland inland,Townhouse,2652.0,4,3.5,False,899000.0,339.0,414.0,-18.1
 Active,2500 E Las Olas Boulevard Unit#1509,E Las Olas Blvd,Marine Tower,Mainland inland,Condo,1940.0,3,2.5,False,899000.0,463.0,293.0,58.4
@@ -777,7 +753,6 @@ Active,2706 NE 30th Pl Unit#2706,NE 30th Pl,Coral Ridge Galt,Barrier island / be
 Active,1777 NE 17th Street,NE 17th St,Progresso,Mainland inland,Single Family,1772.0,3,2.5,False,835000.0,471.0,457.0,3.1
 Active,2011 N Ocean Boulevard Unit#1406N,N Ocean Blvd,Vue,Barrier island / beach,Condo,1268.0,2,2.0,False,833900.0,658.0,489.0,34.5
 Active,347 N New River Dr Drive Unit#1004,N New River Dr Dr,Watergarden,Intracoastal / canal waterfront,Condo,1469.0,3,2.0,True,829000.0,564.0,607.0,-7.0
-Active,1600 SW 10th St,SW 10th St,Sherwood Forest,Mainland inland,Single Family,1453.0,4,2.0,False,829000.0,571.0,470.0,21.3
 Active,350 SE 2nd Street Unit#1870,SE 2nd St,Las Olas,Mainland inland,Condo,1650.0,3,2.0,False,825000.0,500.0,460.0,8.7
 Active,2625 NW 3rd Avenue,NW 3rd Ave,Babco Heights,Mainland inland,Single Family,1944.0,3,2.0,False,825000.0,424.0,373.0,13.8
 Active,606 SW 19th Street,SW 19th St,Pinehurst Pl Portio,Mainland inland,Single Family,1712.0,4,2.0,False,824900.0,482.0,441.0,9.2
@@ -792,7 +767,6 @@ Active,2500 Manor Way,Manor Way,Altessa Wilton Manors,Mainland inland,Townhouse,
 Active,333 Las Olas Way Unit#1508,Las Olas Way,Las Olas,Intracoastal / canal waterfront,Condo,1161.0,2,2.0,True,815000.0,702.0,646.0,8.6
 Active,2410 Manor Way,Manor Way,Altessa Wilton Manors,Mainland inland,Townhouse,1738.0,4,2.5,False,812340.0,467.0,420.0,11.4
 Active,2562 NE 16 Ave,NE 16 Ave,Altessa Wilton Manors,Mainland inland,Townhouse,1596.0,3,2.5,False,811940.0,509.0,432.0,17.7
-Active,1904 SW 28th St,SW 28th St,Clair Lake,Mainland inland,Single Family,2440.0,5,3.0,False,810500.0,332.0,316.0,5.1
 Active,3101 Bayshore Drive,Bayshore Dr,Fort Lauderdale Residence,Barrier island / beach,Condo,1176.0,2,2.0,True,810000.0,689.0,729.0,-5.5
 Active,3101 Bayshore Dr Unit#1704,Bayshore Dr,Fort Lauderdale Residence Residences,Barrier island / beach,Condo,1176.0,2,2.0,True,810000.0,689.0,665.0,3.6
 Active,1434 SW 4th Avenue Unit#1434,SW 4th Ave,Michelle Ii,Mainland inland,Townhouse,2120.0,4,3.5,False,805600.0,380.0,542.0,-29.9
@@ -870,7 +844,6 @@ Active,340 Sunset Dr Unit#1210,Sunset Dr,Essex Tower,Mainland inland,Condo,1610.
 Active,1623 NE 20th Street,NE 20th St,Poinsettia Heights,Mainland inland,Single Family,1597.0,2,2.0,False,749000.0,469.0,511.0,-8.2
 Active,657 NW 30th Court,NW 30th Ct,Boulevard Estates Amen,Mainland inland,Single Family,1414.0,3,2.0,False,749000.0,530.0,387.0,37.0
 Active,2936 NW 9th Terrace,NW 9th Ter,Jenada Villas,Mainland inland,Single Family,1894.0,3,3.0,False,749000.0,395.0,393.0,0.7
-Active,715 SW 4th Ave,SW 4th Ave,Tarpon River,Mainland inland,Townhouse,1396.0,3,3.0,False,749000.0,537.0,372.0,44.1
 Active,511 Bayshore Drive Unit#904,Bayshore Dr,Bayshore Towers,Barrier island / beach,Condo,1330.0,2,2.0,True,743500.0,559.0,541.0,3.2
 Active,1736 NE 17th St,NE 17th St,Progresso,Mainland inland,Single Family,1116.0,2,1.0,False,741000.0,664.0,448.0,48.3
 Active,401 N Birch Road Unit#413,N Birch Rd,Tiffany House,Barrier island / beach,Condo,826.0,1,1.0,False,740000.0,896.0,517.0,73.4
@@ -901,7 +874,6 @@ Active,812 NW 26th Street,NW 26th St,Babco Park,Mainland inland,Single Family,18
 Active,138 NE 29th Street,NE 29th St,Almar Estates,Mainland inland,Single Family,1260.0,2,2.0,False,699900.0,555.0,461.0,20.5
 Active,511 Bayshore Drive Unit#405,Bayshore Dr,Bayshore Towers,Barrier island / beach,Condo,1330.0,2,2.0,True,699000.0,526.0,541.0,-2.9
 Active,2800 E Sunrise Blvd Unit#7F,E Sunrise Blvd,Sunrise East,Barrier island / beach,Condo,1900.0,2,2.0,True,699000.0,368.0,540.0,-31.9
-Active,1 Las Olas Circle Unit#605,Las Olas Cir,Venetian Condominium,Barrier island / beach,Condo,1200.0,2,2.0,True,699000.0,582.0,639.0,-8.8
 Active,936 Intracoastal Drive Unit#11c,Intracoastal Dr,Corinthian,Intracoastal / canal waterfront,Condo,1500.0,2,2.0,True,699000.0,466.0,449.0,3.9
 Active,1406 NE 15th Street,NE 15th St,Verena Park,Mainland inland,Single Family,2273.0,3,2.0,False,699000.0,308.0,487.0,-36.8
 Active,2824 NW 6th Avenue,NW 6th Ave,Wilton Estates,Mainland inland,Single Family,1356.0,3,2.0,False,699000.0,515.0,386.0,33.5
@@ -927,7 +899,6 @@ Active,80 NE 26th Street,NE 26th St,Petite,Mainland inland,Single Family,1022.0,
 Active,1028 NW 8th Ave,NW 8th Ave,Progresso,Mainland inland,Single Family,1362.0,3,3.0,False,679900.0,499.0,664.0,-24.8
 Active,630 SE 15th St Unit#5,SE 15th St,Everglades Land Sales Co Harbor Vista,Mainland inland,Townhouse,1826.0,3,3.5,False,679900.0,372.0,393.0,-5.2
 Active,200 S Birch Road Unit#901,S Birch Rd,Leisure Beach,Barrier island / beach,Condo,756.0,2,1.0,True,679000.0,898.0,572.0,57.1
-Active,1812 SW 9th Street,SW 9th St,Riverside Park,Mainland inland,Single Family,1454.0,3,3.0,False,679000.0,467.0,462.0,1.1
 Active,3024 NE 5th Terrace Unit#10,NE 5th Ter,Villa Escondida,Mainland inland,Townhouse,1916.0,3,2.5,False,678900.0,354.0,339.0,4.5
 Active,310 SW 10th St,SW 10th St,Lauderdale,Mainland inland,Single Family,1488.0,4,2.0,False,678000.0,456.0,451.0,1.0
 Active,936 Intracoastal Dr Unit#4F,Intracoastal Dr,Corinthian On Intraco Corinthian,Intracoastal / canal waterfront,Condo,1500.0,2,2.0,True,675000.0,450.0,449.0,0.3
@@ -962,7 +933,6 @@ Active,1432 NE 2ND Avenue,NE 2nd Ave,Progresso,Mainland inland,Single Family,127
 Active,2417 NW 7th Avenue,NW 7th Ave,Hillbrook,Mainland inland,Single Family,1763.0,3,2.0,False,649000.0,368.0,435.0,-15.4
 Active,408 NW 21st St,NW 21st St,Meadowbrook,Mainland inland,Single Family,1559.0,3,2.0,False,649000.0,416.0,381.0,9.3
 Active,1813 SW 10th Court,SW 10th Ct,Riverside Park,Mainland inland,Single Family,1066.0,3,2.0,False,649000.0,609.0,445.0,36.9
-Active,200 SE 19th St,SE 19th St,Croissant Park,Mainland inland,Single Family,1134.0,3,2.0,False,649000.0,572.0,517.0,10.8
 Active,3000 Holiday Drive Unit#1505,Holiday Dr,Maya Marca,Barrier island / beach,Condo,1609.0,2,2.0,True,645000.0,401.0,531.0,-24.5
 Active,347 N New River Dr E Unit#2205,N New River Dr E,Watergarden,Intracoastal / canal waterfront,Condo,1080.0,2,2.0,True,640000.0,593.0,643.0,-7.8
 Active,2715 N Ocean Boulevard Unit#Ph D,N Ocean Blvd,Embassy Tower Ii Inc,Barrier island / beach,Condo,1200.0,2,2.0,False,639900.0,533.0,440.0,21.1
@@ -1092,7 +1062,6 @@ Active,2841 N Ocean Boulevard Unit#2008,N Ocean Blvd,Vantage View,Barrier island
 Active,1528 NE 1st Avenue,NE 1st Ave,Progresso,Mainland inland,Single Family,1108.0,3,2.0,False,534900.0,483.0,424.0,13.8
 Active,1141 SW 8th Ter,SW 8th Ter,Vinik,Mainland inland,Single Family,1122.0,2,2.0,False,534900.0,477.0,448.0,6.4
 Active,2024 NE 26th Drive,NE 26th Dr,Coral Gardens,Mainland inland,Single Family,1310.0,2,2.0,False,530000.0,405.0,491.0,-17.6
-Active,835 NE 19th Ave Unit#2,NE 19th Ave,Victoria Place Townhomes,Mainland inland,Townhouse,1224.0,2,2.5,False,529000.0,432.0,440.0,-1.8
 Active,918 NW 13th Ct,NW 13th Ct,Lauderdale Manors,Mainland inland,Single Family,1802.0,3,2.0,False,525000.0,291.0,325.0,-10.3
 Active,315 NE 3rd Avenue Unit#2108,NE 3rd Ave,Strada,Downtown high-rise,Condo,1151.0,2,2.0,False,525000.0,456.0,432.0,5.6
 Active,1101 SW 19th Avenue,SW 19th Ave,Riverside Park,Mainland inland,Single Family,1000.0,3,2.0,False,524888.0,525.0,409.0,28.4
@@ -1112,7 +1081,6 @@ Active,1508 SW 20th Ave,SW 20th Ave,Shady Banks,Mainland inland,Single Family,10
 Active,575 NE 7th Avenue Unit#4b,NE 7th Ave,East,Mainland inland,Townhouse,980.0,2,2.5,False,504990.0,515.0,425.0,21.2
 Active,551 N Fort Lauderdale Beach Blvd Unit#R1904,N Fort Lauderdale Beach Blvd,Flb Condominium Resid Elliott,Barrier island / beach,Condo,445.0,0,1.0,True,501900.0,1128.0,743.0,51.9
 Active,2500 E Las Olas Boulevard Unit#1806,E Las Olas Blvd,Marine Tower,Mainland inland,Condo,1896.0,3,2.5,False,500000.0,264.0,293.0,-10.1
-Active,1220 N Andrews Ave,N Andrews Ave,Progresso,Mainland inland,Single Family,1904.0,3,2.0,False,499999.0,263.0,409.0,-35.8
 Active,200 S Birch Road Unit#408,S Birch Rd,Leisure Beach,Barrier island / beach,Condo,756.0,2,1.0,False,499900.0,661.0,434.0,52.5
 Active,350 SE 2nd Street Unit#2280,SE 2nd St,Las Olas,Mainland inland,Condo,847.0,1,1.0,False,499000.0,589.0,488.0,20.7
 Active,551 N Fort Lauderdale Beach Blvd Unit#R1810,N Fort Lauderdale Beach Blvd,Flb Condominium Resid Conrad Fort Lauderdale,Barrier island / beach,Condo,579.0,0,1.0,True,499000.0,862.0,520.0,65.8
@@ -1145,7 +1113,6 @@ Active,340 Sunset Drive Unit#1803,Sunset Dr,Essex Tower,Mainland inland,Condo,12
 Active,1212 SE 2nd Ct Unit#301,SE 2nd Ct,Las Olas,Mainland inland,Condo,1218.0,2,2.0,False,489000.0,401.0,439.0,-8.5
 Active,1609 SW 28th St,SW 28th St,Edge On Th,Mainland inland,Townhouse,1377.0,3,2.5,False,489000.0,355.0,299.0,18.9
 Active,110 N Federal Highway Unit#1113,N Federal Highway,Waverly Las Olas,Mainland inland,Condo,1208.0,2,2.0,False,485000.0,401.0,391.0,2.7
-Active,1524 NW 12th Ter,NW 12th Ter,Lauderdale Villas,Mainland inland,Single Family,1224.0,3,2.0,False,485000.0,396.0,300.0,32.0
 Active,1237 SW 28th St,SW 28th St,Devonshire,Mainland inland,Single Family,695.0,2,2.0,False,485000.0,698.0,414.0,68.6
 Active,533 NE 3rd Avenue Unit#339,NE 3rd Ave,Sole Fort Lauderdale,Downtown high-rise,Condo,1270.0,2,2.0,False,485000.0,382.0,370.0,3.2
 Active,1606 SW 28th Court,SW 28th Ct,Reserve Edgewood,Mainland inland,Townhouse,1377.0,3,2.5,False,480000.0,349.0,299.0,16.7
@@ -1164,7 +1131,6 @@ Active,1345 SW 4th Court,SW 4th Ct,Village Sailboat Bend,Mainland inland,Townhou
 Active,511 SE 5 Avenue Unit#1409,SE 5 Ave,Nuriver Landing,Intracoastal / canal waterfront,Condo,1246.0,2,2.0,True,472000.0,379.0,507.0,-25.2
 Active,2130 NE 9th Avenue,NE 9th Ave,Wilton Pines Townhomes,Mainland inland,Townhouse,1292.0,2,2.5,False,471900.0,365.0,336.0,8.6
 Active,2100 S Ocean Drive Unit#11-L,S Ocean Dr,Sky Harbour East,Finger-isle waterfront,Condo,900.0,1,1.0,True,469000.0,521.0,545.0,-4.4
-Active,1336 NW 6th Ave,NW 6th Ave,Progresso,Mainland inland,Single Family,918.0,3,2.0,False,469000.0,511.0,443.0,15.2
 Active,533 NE 3rd Avenue Unit#227,NE 3rd Ave,Sole Fort Lauderdale Co,Downtown high-rise,Condo,1440.0,3,2.0,False,469000.0,326.0,332.0,-2.0
 Active,511 SE 5th Ave Unit#1408,SE 5th Ave,Nuriver Landing,Downtown high-rise,Condo,1246.0,2,2.0,False,469000.0,376.0,351.0,7.4
 Active,110 N Federal Hwy Unit#705,N Federal Hwy,Waverly Las Olas,Mainland inland,Condo,1350.0,2,2.0,False,465500.0,345.0,386.0,-10.6
@@ -1218,7 +1184,6 @@ Active,1700 SE 15th Street Unit#309,SE 15th St,Caravel Condominium Apartm,Intrac
 Active,615 NW 10th Ter Unit#1,NW 10th Ter,Progresso,Mainland inland,Townhouse,1056.0,3,2.5,False,434900.0,412.0,331.0,24.3
 Active,101 N Birch Road Unit#102,N Birch Rd,Harbor House North,Barrier island / beach,Condo,696.0,1,1.0,True,434000.0,624.0,585.0,6.6
 Active,3020 NE 32nd Avenue Unit#616,NE 32nd Ave,Tides Bridgeside Square,Barrier island / beach,Condo,815.0,1,1.0,True,430000.0,528.0,645.0,-18.2
-Active,864 NW 16th Ter,NW 16th Ter,Lincoln Park Sixth,Mainland inland,Single Family,1232.0,3,2.0,False,429999.0,349.0,336.0,3.8
 Active,1320 N Andrews Ave,N Andrews Ave,Progresso,Mainland inland,Single Family,858.0,2,1.0,False,429500.0,501.0,419.0,19.4
 Active,2715 N Ocean Boulevard Unit#7d,N Ocean Blvd,Embassy Towers,Barrier island / beach,Condo,1200.0,2,2.0,False,429000.0,358.0,440.0,-18.8
 Active,535 Hendricks Isle Unit#302,Hendricks Isle,Burton Point,Intracoastal / canal waterfront,Condo,700.0,1,1.5,True,429000.0,613.0,570.0,7.6
@@ -1333,7 +1298,6 @@ Active,1160 N Federal Highway Unit#1118,N Federal Highway,East Point Towers,Intr
 Active,1301 River Reach Drive Unit#306,River Reach Dr,River Reach,Intracoastal / canal waterfront,Condo,900.0,2,2.0,True,360000.0,400.0,306.0,30.9
 Active,1301 River Reach Drive Unit#515,River Reach Dr,River Reach,Intracoastal / canal waterfront,Condo,1250.0,2,2.0,True,360000.0,288.0,293.0,-1.8
 Active,2131 SE 10th Avenue Unit#1117,SE 10th Ave,Village East,Mainland inland,Condo,1054.0,2,2.0,False,359999.0,342.0,346.0,-1.4
-Active,3020 NE 32nd Ave Unit#721,NE 32nd Ave,Tides Bridgeside Squar,Barrier island / beach,Condo,720.0,1,1.0,False,359000.0,499.0,497.0,0.3
 Active,1101 River Reach Drive Unit#311,River Reach Dr,River Reach,Intracoastal / canal waterfront,Condo,1110.0,2,2.0,True,359000.0,323.0,306.0,5.7
 Active,1101 River Reach Drive Unit#205,River Reach Dr,River Reach,Intracoastal / canal waterfront,Condo,1110.0,2,2.0,True,359000.0,323.0,306.0,5.7
 Active,1201 River Reach Drive Unit#202,River Reach Dr,River Reach,Intracoastal / canal waterfront,Condo,1110.0,2,2.0,True,355000.0,320.0,305.0,4.9
@@ -1380,7 +1344,6 @@ Active,1501 E Broward Boulevard Unit#810,E Broward Blvd,Pine Crest Village,Mainl
 Active,511 SE 5th Avenue Unit#1118,SE 5th Ave,Nuriver Landing,Intracoastal / canal waterfront,Condo,634.0,0,1.0,True,330000.0,521.0,538.0,-3.3
 Active,505 N Fort Lauderdale Beach Blvd Unit#2205,N Fort Lauderdale Beach Blvd,Club Resort Residence Club,Barrier island / beach,Condo,906.0,1,1.5,False,329000.0,363.0,505.0,-28.2
 Active,1301 River Reach Dr Unit#106,River Reach Dr,River Reach,Intracoastal / canal waterfront,Condo,900.0,1,1.5,True,329000.0,366.0,302.0,21.1
-Active,1535 SE 15TH Street Unit#305,SE 15th St,Harbor View Apts,Intracoastal / canal waterfront,Condo,977.0,2,2.0,True,329000.0,337.0,419.0,-19.6
 Active,200 S Birch Road Unit#701,S Birch Rd,Leisure Beach,Barrier island / beach,Condo,756.0,2,1.0,True,328000.0,434.0,572.0,-24.1
 Active,1625 SE 10th Ave Unit#101,SE 10th Ave,Runaway Bay,Mainland inland,Condo,1040.0,2,2.0,False,327000.0,314.0,300.0,4.8
 Active,1940 NE 2nd Avenue Unit#106j,NE 2nd Ave,Manor Grove Village Four,Mainland inland,Condo,1200.0,2,2.0,False,325900.0,272.0,273.0,-0.5
@@ -1401,14 +1364,12 @@ Active,1750 E Las Olas Boulevard Unit#502,E Las Olas Blvd,Seventeen Fifty Las Ol
 Active,9 NE 19th Court Unit#212c,NE 19th Ct,Manor Grove Village One In,Mainland inland,Condo,1180.0,2,2.0,False,320000.0,271.0,271.0,0.0
 Active,1316 NW 3rd St,NW 3rd St,Seminole Forest Tango Village,Mainland inland,Townhouse,1250.0,2,2.5,False,320000.0,256.0,265.0,-3.3
 Active,1731 SE 15th St Unit#315,SE 15th St,Cromwell West,Intracoastal / canal waterfront,Condo,814.0,2,1.5,True,320000.0,393.0,392.0,0.2
-Active,520 SE 5th Ave Unit#2307,SE 5th Ave,Las Olas,Intracoastal / canal waterfront,Condo,816.0,1,1.0,True,320000.0,392.0,637.0,-38.5
 Active,3020 NE 32nd Avenue Unit#623,NE 32nd Ave,Tides Bridgeside Square,Barrier island / beach,Condo,720.0,1,1.0,False,319999.0,444.0,497.0,-10.6
 Active,550 Bayshore Drive Unit#102,Bayshore Dr,Bayshore Embassy,Barrier island / beach,Condo,680.0,1,1.0,False,319900.0,470.0,448.0,5.0
 Active,723 NW 15th Ter,NW 15th Ter,Carver Park,Mainland inland,Single Family,1408.0,3,1.5,False,319900.0,227.0,763.0,-70.2
 Active,1920 S Ocean Drive Unit#503,S Ocean Dr,Atlantic Towers Co Op,Barrier island / beach,Condo,805.0,1,1.0,False,319000.0,396.0,413.0,-4.2
 Active,1900 S Ocean Drive Unit#1702,S Ocean Dr,Breakwater Towers Co Op,Barrier island / beach,Condo,1036.0,2,2.0,False,319000.0,308.0,421.0,-26.9
 Active,3004 NE 5th Terrace Unit#206-c,NE 5th Ter,River Manor,Intracoastal / canal waterfront,Condo,1000.0,2,2.0,True,319000.0,319.0,345.0,-7.4
-Active,1455 Holly Heights Drive Unit#2,Holly Heights Dr,Fusion Gardens,Mainland inland,Condo,1012.0,2,2.0,False,318000.0,314.0,297.0,5.6
 Active,520 SE 5th Avenue Unit#3404,SE 5th Ave,Las Olas,Downtown high-rise,Condo,786.0,1,1.0,False,315000.0,401.0,486.0,-17.5
 Active,1920 S Ocean Drive Unit#306,S Ocean Dr,Atlantic Towers Co Op,Barrier island / beach,Condo,1329.0,3,3.0,False,314900.0,237.0,424.0,-44.1
 Active,2900 NE 30th St Unit#F2,NE 30th St,Lauderdale Tower,Mainland inland,Condo,730.0,1,1.0,False,313500.0,429.0,324.0,32.7
@@ -1477,7 +1438,6 @@ Active,900 NE 18th Avenue Unit#1407,NE 18th Ave,Victoria Park,Mainland inland,Co
 Active,1900 S OCEAN Drive Unit#710,S Ocean Dr,Breakwater Towers Co Op,Barrier island / beach,Condo,805.0,1,1.0,False,270000.0,335.0,415.0,-19.2
 Active,1900 S Ocean Drive Unit#910,S Ocean Dr,Breakwater Towers,Barrier island / beach,Condo,805.0,1,1.0,False,270000.0,335.0,281.0,19.3
 Active,2555 NE 11th Street Unit#302,NE 11th St,Horizon House,Mainland inland,Condo,970.0,2,1.0,False,270000.0,278.0,327.0,-14.9
-Active,1531 SE 15th St Unit#5,SE 15th St,Quarterdeck,Intracoastal / canal waterfront,Condo,1008.0,2,2.5,True,270000.0,268.0,417.0,-35.7
 Active,640 Tennis Club Drive Unit#103,Tennis Club Dr,Tennis Club Mc Loughlin Co,Mainland inland,Condo,1496.0,2,2.5,False,269999.0,180.0,224.0,-19.6
 Active,150 NE 15th Ave Unit#144,NE 15th Ave,Pine Crest Village Ii,Mainland inland,Condo,625.0,1,1.0,False,269500.0,431.0,344.0,25.3
 Active,505 N Fort Lauderdale Beach Boulevard Unit#2214,N Fort Lauderdale Beach Blvd,Club Resort Residences,Barrier island / beach,Condo,662.0,1,1.0,True,269000.0,406.0,672.0,-39.5
@@ -1511,7 +1471,6 @@ Active,1000 River Reach Drive Unit#212,River Reach Dr,River Reach,Intracoastal /
 Active,1350 River Reach Drive Unit#401,River Reach Dr,River Reach,Intracoastal / canal waterfront,Condo,900.0,1,1.5,True,257000.0,286.0,300.0,-4.7
 Active,1900 S Ocean Dr Unit#1406,S Ocean Dr,Breakwater Towers Co Op Breakwater Towers,Barrier island / beach,Condo,750.0,1,1.0,False,255000.0,340.0,419.0,-18.8
 Active,601 SE 5th Court Unit#108,SE 5th Ct,Riverview South,Mainland inland,Condo,620.0,2,1.0,False,255000.0,411.0,294.0,39.7
-Active,900 NE 18th Ave Unit#709,NE 18th Ave,Leisure Park Victoria Park Tower,Mainland inland,Condo,850.0,2,1.0,False,254950.0,300.0,325.0,-7.7
 Active,1531 SE 15th Street Unit#7,SE 15th St,Quarterdeck Condominium,Intracoastal / canal waterfront,Condo,1008.0,2,2.5,True,254000.0,252.0,408.0,-38.3
 Active,2015 SE 10th Ave Unit#130,SE 10th Ave,Village East,Downtown high-rise,Condo,794.0,1,1.0,False,254000.0,320.0,346.0,-7.5
 Active,505 N Fort Lauderdale Beach Boulevard Unit##221,N Fort Lauderdale Beach Blvd,Club Resort Residences,Barrier island / beach,Condo,978.0,1,1.5,True,250000.0,256.0,660.0,-61.3
@@ -1551,7 +1510,6 @@ Active,2829 NE 30th Street Unit#302,NE 30th St,Regency House Co Op,Mainland inla
 Active,1881 Middle River Dr Unit#704,Middle River Dr,Middle River Tower,Intracoastal / canal waterfront,Condo,800.0,1,1.5,True,239000.0,299.0,473.0,-36.8
 Active,1160 N Federal Hwy Unit#1018,N Federal Hwy,East Point Towers,Intracoastal / canal waterfront,Condo,1138.0,1,1.5,True,239000.0,210.0,221.0,-4.8
 Active,900 SW 12th Street Unit#206,SW 12th St,Rio Nuevo,Intracoastal / canal waterfront,Condo,1000.0,2,2.0,True,239000.0,239.0,335.0,-28.6
-Active,2445 SW 18th Ter Unit#107,SW 18th Ter,Marina Oaks,Mainland inland,Condo,858.0,2,2.0,False,239000.0,279.0,273.0,1.9
 Active,533 NE 3rd Avenue Unit#237,NE 3rd Ave,Sole Fort Lauderdale Co,Downtown high-rise,Condo,960.0,1,1.0,False,239000.0,249.0,341.0,-27.0
 Active,505 N Fort Lauderdale Beach Boulevard Unit#1403,N Fort Lauderdale Beach Blvd,Club Resort Residences,Barrier island / beach,Condo,584.0,0,1.0,True,238500.0,408.0,696.0,-41.3
 Active,2701 N Ocean Boulevard Unit#2f,N Ocean Blvd,Embassy Tower Inc,Barrier island / beach,Condo,900.0,1,1.0,False,235000.0,261.0,477.0,-45.3
@@ -1591,7 +1549,6 @@ Active,505 N Fort Lauderdale Beach Boulevard Unit#2314,N Fort Lauderdale Beach B
 Active,2900 NE 30 Street Unit#C5,NE 30 St,Lauderdale Tower,Intracoastal / canal waterfront,Condo,440.0,0,1.0,True,215000.0,489.0,508.0,-3.9
 Active,1800 N Andrews Avenue Unit#4B,N Andrews Ave,Drake Tower,Intracoastal / canal waterfront,Condo,850.0,1,1.5,True,214999.0,253.0,301.0,-15.8
 Active,1000 River Reach Drive Unit#406,River Reach Dr,River Reach,Intracoastal / canal waterfront,Condo,900.0,1,1.0,True,214999.0,239.0,289.0,-17.4
-Active,3040 NE 16th Ave Unit#104,NE 16th Ave,River Shores,Mainland inland,Condo,600.0,1,1.0,False,214990.0,358.0,230.0,55.8
 Active,1125 NE 16th Pl Unit#201,NE 16th Pl,Tudor Manor,Mainland inland,Condo,740.0,2,1.0,False,210000.0,284.0,263.0,8.0
 Active,2900 NE 30th Street Unit#B-2,NE 30th St,Lauderdale Tower,Intracoastal / canal waterfront,Condo,440.0,0,1.0,True,210000.0,477.0,464.0,2.9
 Active,2741 NE 8th Avenue Unit#14,NE 8th Ave,Wilton Commons Condominium,Mainland inland,Condo,600.0,2,1.0,False,210000.0,350.0,277.0,26.3
@@ -1616,7 +1573,6 @@ Active,119 NE 19th Court Unit#209g,NE 19th Ct,Manor Grove Village Two Co,Mainlan
 Active,3040 NE 16th Avenue Unit#A210,NE 16th Ave,River Shores,Mainland inland,Condo,600.0,1,1.0,False,195000.0,325.0,230.0,41.3
 Active,1001 SE 16th Street Unit#7,SE 16th St,Harbordale,Mainland inland,Condo,600.0,1,1.0,False,194700.0,324.0,299.0,8.5
 Active,1125 NE 16th Pl Unit#208,NE 16th Pl,Tudor Manor,Mainland inland,Condo,740.0,2,1.0,False,194000.0,262.0,434.0,-39.5
-Active,1100 NE 9th Ave Unit#105,NE 9th Ave,Southdale,Mainland inland,Condo,600.0,1,1.0,False,192000.0,320.0,193.0,66.1
 Active,609 NE 13th Ave Unit#302,NE 13th Ave,Park Place,Mainland inland,Condo,580.0,1,1.0,False,190000.0,328.0,352.0,-7.0
 Active,900 NE 18th Avenue Unit#409,NE 18th Ave,Victoria Park,Mainland inland,Condo,850.0,2,1.0,False,190000.0,224.0,322.0,-30.5
 Active,1901 N Andrews Ave Unit#100,N Andrews Ave,Woods Condominium,Mainland inland,Condo,685.0,1,1.0,False,190000.0,277.0,210.0,32.0
@@ -1651,7 +1607,6 @@ Active,900 NE 26 Street Unit#15,NE 26 St,Wilton Place,Mainland inland,Condo,636.
 Active,900 NE 18th Ave Unit#1103,NE 18th Ave,Victoria Park,Mainland inland,Condo,690.0,1,1.0,False,178000.0,258.0,337.0,-23.3
 Active,2400 NE 9th St Unit#603,NE 9th St,Ocean Sunrise Co Op Ocean Sunrise,Barrier island / beach,Condo,650.0,2,1.0,False,175000.0,269.0,355.0,-24.1
 Active,1125 SE 14th Pl Unit#21C,SE 14th Pl,Cliff Lake Villas Co Op Cliff Lake Villas,Mainland inland,Condo,600.0,1,1.0,False,174900.0,292.0,291.0,0.2
-Active,1100 NE 9th Ave Unit#305,NE 9th Ave,Southdale,Mainland inland,Condo,750.0,1,1.0,False,170000.0,227.0,281.0,-19.2
 Active,2670 E Sunrise Blvd Unit#1132,E Sunrise Blvd,Gallery One,Intracoastal / canal waterfront,Condo,643.0,1,1.0,True,169999.0,264.0,258.0,2.5
 Active,2624 NE 30th Pl Unit#101B,NE 30th Pl,Sutton Place,Mainland inland,Condo,567.0,1,1.0,False,169999.0,300.0,347.0,-13.5
 Active,2426 SE 17th Street Unit#307a,SE 17th St,Village Harbor Beach Co,Barrier island / beach,Condo,685.0,1,1.0,False,169900.0,248.0,431.0,-42.4
@@ -1730,7 +1685,6 @@ Pending,1300 Cordova Road,Cordova Rd,Lauderdale Harbors,Intracoastal / canal wat
 Pending,1516 SE 1st St,SE 1st St,Colee Hammock,Downtown high-rise,Townhouse,3066.0,5,4.0,False,1725000.0,563.0,611.0,-7.9
 Pending,629 Kensington Place,Kensington Pl,Tropical Gardens,Intracoastal / canal waterfront,Single Family,3678.0,4,3.5,True,1720000.0,468.0,684.0,-31.6
 Pending,2711 Mayan Dr,Mayan Dr,Harbor Beach,Barrier island / beach,Single Family,1846.0,3,2.0,False,1699000.0,920.0,762.0,20.7
-Pending,736 NE 17th Way,NE 17th Way,Victoria Highlands,Mainland inland,Single Family,3011.0,4,3.5,False,1688000.0,561.0,741.0,-24.4
 Pending,100 E Las Olas Boulevard Unit#3004,E Las Olas Blvd,Las Olas,Mainland inland,Condo,1867.0,2,3.0,False,1549000.0,830.0,598.0,38.8
 Pending,153 N Seabreeze Boulevard Unit#1403-S,N Seabreeze Blvd,Selene Oceanfront,Barrier island / beach,Condo,1416.0,2,2.5,False,1500000.0,1059.0,618.0,71.5
 Pending,1122 NE 10th Ave Unit#A,NE 10th Ave,Progresso,Mainland inland,Townhouse,2814.0,4,4.0,False,1495000.0,531.0,387.0,37.4
@@ -1767,7 +1721,6 @@ Pending,2001 N Ocean Boulevard Unit#702s,N Ocean Blvd,Vue,Barrier island / beach
 Pending,1 Las Olas Circle Unit#905,Las Olas Cir,Venetian,Barrier island / beach,Condo,1200.0,2,2.0,True,739000.0,616.0,559.0,10.2
 Pending,1004 SW 19th Street,SW 19th St,Reamen Yellowstone Pa,Mainland inland,Single Family,1984.0,4,2.0,False,724500.0,365.0,424.0,-13.8
 Pending,1503 NE 18th Avenue,NE 18th Ave,Progresso,Mainland inland,Single Family,2085.0,3,2.0,False,700000.0,336.0,394.0,-14.9
-Pending,1445 SW 11th Place,SW 11th Pl,Valentines,Mainland inland,Single Family,2107.0,3,2.5,False,699900.0,332.0,509.0,-34.8
 Pending,1127 N Victoria Park Road,N Victoria Park Rd,Progresso,Mainland inland,Townhouse,2102.0,2,2.5,False,699000.0,333.0,308.0,8.1
 Pending,444 NW 1st Avenue Unit#602,NW 1st Ave,Avenue Lofts Four,Downtown high-rise,Condo,1609.0,2,2.0,False,699000.0,434.0,389.0,11.8
 Pending,2001 NE 30th Street,NE 30th St,Coral Shores,Mainland inland,Single Family,1552.0,3,2.0,False,692000.0,446.0,450.0,-0.9
@@ -1825,7 +1778,6 @@ Pending,2900 NE 30th Street Unit#5a,NE 30th St,Lauderdale Tower,Intracoastal / c
 Pending,625 Antioch Avenue Unit#110,Antioch Ave,Harwick House Inc,Barrier island / beach,Condo,670.0,1,1.0,False,150000.0,224.0,449.0,-50.1
 Pending,340 San Marco Dr,San Marco Dr,Coral Isles,Finger-isle waterfront,Single Family,6936.0,5,6.5,True,10999000.0,1586.0,1765.0,-10.2
 Pending,119 N Gordon Road,N Gordon Rd,Victoria Isles,Finger-isle waterfront,Single Family,6935.0,6,6.5,True,10250000.0,1478.0,1589.0,-7.0
-Pending,4 Isla Bahia Drive,Isla Bahia Dr,Isla Bahia,Finger-isle waterfront,Single Family,5287.0,5,4.5,True,9900000.0,1873.0,1172.0,59.8
 Pending,1528 SE 11th Street,SE 11th St,Rio Vista,Intracoastal / canal waterfront,Single Family,4935.0,5,5.5,True,8950000.0,1814.0,1457.0,24.4
 Pending,2540 Mercedes Drive,Mercedes Dr,Harbor Beach,Barrier island / beach,Single Family,3750.0,4,4.5,True,6800000.0,1813.0,1113.0,63.0
 Pending,2401 NE 13th Street,NE 13th St,Beach Way Heights,Barrier island / beach,Single Family,5708.0,5,5.5,False,5250000.0,920.0,957.0,-3.9
@@ -1878,7 +1830,6 @@ Pending,608 SW 16th Ct,SW 16th Ct,Lauderdale Pines,Mainland inland,Townhouse,252
 Pending,1434 SW 23rd Street,SW 23rd St,Marina Landings,Mainland inland,Single Family,2831.0,4,3.5,False,1249000.0,441.0,464.0,-4.9
 Pending,300 NE 3rd Avenue Unit#3307s,NE 3rd Ave,Ombelle Fort Lauderdale,Downtown high-rise,Condo,1305.0,3,2.0,False,1230022.0,943.0,301.0,213.1
 Pending,1453 SW 23rd Court,SW 23rd Ct,Marina Landings,Mainland inland,Single Family,2751.0,4,3.0,False,1225000.0,445.0,450.0,-1.0
-Pending,1446 SW 23rd Street,SW 23rd St,Marina Landings,Mainland inland,Single Family,2751.0,4,3.5,False,1215000.0,442.0,466.0,-5.1
 Pending,2164 NE 25th Street,NE 25th St,Coral Point,Intracoastal / canal waterfront,Single Family,1785.0,3,2.0,True,1199950.0,672.0,595.0,13.0
 Pending,1108 Tangelo Isle,Tangelo Isle,South New River Isles,Finger-isle waterfront,Single Family,1080.0,3,2.0,True,1195000.0,1106.0,762.0,45.1
 Pending,1441 SW 23rd Court,SW 23rd Ct,Marina Landings,Mainland inland,Single Family,2779.0,4,3.5,False,1185000.0,426.0,467.0,-8.6
@@ -1924,7 +1875,6 @@ Pending,2217 NW 4th Avenue,NW 4th Ave,Hillbrook,Mainland inland,Single Family,13
 Pending,1033 NE 17th Way Unit#1204,NE 17th Way,Villa Medici,Mainland inland,Townhouse,2100.0,3,3.5,False,564900.0,269.0,270.0,-0.3
 Pending,810 SW 10th Terrace,SW 10th Ter,Almeda,Mainland inland,Single Family,2090.0,4,4.0,False,550000.0,263.0,488.0,-46.1
 Pending,3020 NE 32nd Avenue Unit#Ph11,NE 32nd Ave,Tides Bridgewater,Barrier island / beach,Condo,1170.0,2,2.0,True,549000.0,469.0,644.0,-27.2
-Pending,661 Kensington Pl Unit#101B,Kensington Pl,Townhouses Shores Wilton Manors,Intracoastal / canal waterfront,Condo,1250.0,2,1.5,True,549000.0,439.0,348.0,26.4
 Pending,600 W Las Olas Boulevard Unit#1601S,W Las Olas Blvd,Symphony,Intracoastal / canal waterfront,Condo,1000.0,2,2.0,True,549000.0,549.0,535.0,2.7
 Pending,1341 SE 10th Avenue,SE 10th Ave,Everglade Land Sales Co,Mainland inland,Single Family,900.0,2,1.0,False,549000.0,610.0,509.0,19.8
 Pending,555 NE 7th Avenue Unit#5a,NE 7th Ave,East Townhomes,Mainland inland,Townhouse,1204.0,2,2.5,False,539500.0,448.0,414.0,8.2

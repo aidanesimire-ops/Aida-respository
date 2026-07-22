@@ -4,7 +4,7 @@
 
 ## The short version
 
-- **4,535 closed sales** (out of **12,469** total listings across sold, expired, withdrawn, cancelled, temp-off, active and pending) were run through a per-home hedonic model that explains **70%** of price variation.
+- **4,535 closed sales** (out of **12,419** total listings across sold, expired, withdrawn, cancelled, temp-off, active and pending) were run through a per-home hedonic model that explains **70%** of price variation.
 - The model isolates location from everything else, so every neighborhood gets a clean, comparable **normalized $/sqft**. Citywide that standardized home is **$465/sqft**.
 - **What moves price, all else equal:** waterfront **+32%**, new construction **+15%**, a private pool **+10%**, and each decade of age **-3%**.
 - The market has appreciated **3.3×** since 2012 (quality-adjusted).
@@ -36,14 +36,16 @@ Across all files: **100%** of listings have an address, **~98%** have valid squa
 
 ![Price drivers](outputs/chart_premiums.png)
 
-| Driver | Effect on $/sqft |
-|---|---|
-| Waterfront (vs dry lot) | **+32%** |
-| New construction (≤6 yrs, net of age) | **+15%** |
-| Private pool | **+10%** |
-| Each extra bathroom | **+6%** |
-| Each decade of age | **-3%** |
-| Implied land value | **~$42/sqft of lot** |
+| Driver | Effect on $/sqft | 95% confidence |
+|---|---|---|
+| Waterfront (vs dry lot) | **+32%** | +29% to +35% |
+| New construction (≤6 yrs, net of age) | **+15%** | +11% to +20% |
+| Private pool | **+10%** | +6% to +13% |
+| Each extra bathroom | **+6%** | +5% to +8% |
+| Each decade of age | **-3%** | -4% to -3% |
+| Implied land value | **~$42/sqft of lot** | (SFR land model) |
+
+*Confidence intervals from the regression — every driver is statistically significant (none crosses zero).*
 
 ## Price by lot geography
 
@@ -156,7 +158,7 @@ The interactive dashboard lets you pull any neighborhood's price path against th
 
 ## Live opportunities
 
-Every active & pending listing was scored against its predicted value: **925 overpriced**, **459 fair**, **587 underpriced**. The single-family candidates trading furthest below model (verify condition on site — the model can't see renovations):
+Every active & pending listing was scored against its predicted value: **903 overpriced**, **445 fair**, **574 underpriced**. The single-family candidates trading furthest below model (verify condition on site — the model can't see renovations):
 
 | Neighborhood | List | SqFt | Ask $/sqft | Model $/sqft | Gap |
 |--|--|--|--|--|--|
@@ -164,14 +166,14 @@ Every active & pending listing was scored against its predicted value: **925 ove
 | Verena Park | $699,000 | 2,273 | $308 | $487 | -37% |
 | Osceola Park | $620,000 | 1,986 | $312 | $492 | -37% |
 | Dorsey Park Second | $259,900 | 1,272 | $204 | $319 | -36% |
-| Progresso | $499,999 | 1,904 | $263 | $409 | -36% |
 | Waverly Place | $600,000 | 2,498 | $240 | $369 | -35% |
-| Valentines | $699,900 | 2,107 | $332 | $509 | -35% |
 | Dorsey Park Th | $445,900 | 1,442 | $309 | $473 | -35% |
+| Dorsey Park Th | $459,900 | 1,600 | $287 | $435 | -34% |
+| Osceola Park | $385,000 | 1,229 | $313 | $474 | -34% |
 
 ## Street-by-street underwriting
 
-Value is resolved down to **274 individual streets** (≥4 closed comps each), each with its premium or discount vs. the surrounding neighborhood — so a prime waterfront block isn't valued like the dry street one over. **1,985 live listings** are underwritten against their own street's comps.
+Value is resolved down to **274 individual streets** (≥4 closed comps each), each with its premium or discount vs. the surrounding neighborhood — so a prime waterfront block isn't valued like the dry street one over. **1,935 live listings** are underwritten against their own street's comps.
 
 **Highest-value streets** (with premium vs. their neighborhood):
 
@@ -190,8 +192,8 @@ Value is resolved down to **274 individual streets** (≥4 closed comps each), e
 
 | Address | Street | Neighborhood | List | Ask $/sqft | Street value | Comps | Gap |
 |--|--|--|--|--|--|--|--|
-| 901 W Las Olas Boulevard | W Las Olas Blvd | Waverly Place | $600,000 | $240 | $367 | 40 | -35% |
 | 2035 Intracoastal Drive | Intracoastal Dr | Coral Ridge | $6,500,000 | $1,057 | $1,615 | 39 | -35% |
+| 901 W Las Olas Boulevard | W Las Olas Blvd | Waverly Place | $600,000 | $240 | $367 | 40 | -35% |
 | 728 NE 17th Terrace | NE 17th Ter | Victoria Park | $3,395,000 | $827 | $1,260 | 26 | -34% |
 | 629 Kensington Place | Kensington Pl | Tropical Gardens | $1,720,000 | $468 | $711 | 11 | -34% |
 | 1100 NW 19th Street | NW 19th St | Lauderdale Villas | $439,000 | $256 | $382 | 7 | -33% |

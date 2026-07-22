@@ -278,6 +278,11 @@ def load_clean() -> pd.DataFrame:
     # drop implausible ppsf (data errors) on whichever price defines the listing
     ppsf = df["sale_ppsf"].where(df["status"] == "Sold", df["ask_ppsf"])
     df = df[ppsf.between(PPSF_LO, PPSF_HI)]
+    # drop stale "active/pending" listings whose address has already closed
+    sold_addr = set(df.loc[df["status"] == "Sold", "address"].str.upper())
+    stale = df["status"].isin(["Active", "Pending"]) & df["address"].str.upper().isin(sold_addr)
+    df.attrs["stale_active"] = int(stale.sum())
+    df = df[~stale]
     return df.reset_index(drop=True)
 
 
@@ -595,6 +600,19 @@ def main():
     print(f"  premiums: waterfront {prem['waterfront_pct']}% | pool {prem['pool_pct']}% "
           f"| new-construction {prem['new_construction_pct']}% | +decade age {prem['age_per_decade_pct']}%")
 
+    # 95% confidence intervals on the headline premiums (statistical underwriting)
+    ci = mod.conf_int()
+
+    def _cipct(name, mult=1):
+        lo, hi = ci.loc[name]
+        return [round((np.exp(lo * mult) - 1) * 100, 1), round((np.exp(hi * mult) - 1) * 100, 1)]
+    prem_ci = {
+        "waterfront_pct": _cipct("wf"), "pool_pct": _cipct("pl"),
+        "new_construction_pct": _cipct("new"), "age_per_decade_pct": _cipct("age_i", 10),
+        "bath_pct": _cipct("baths_i"),
+    }
+    print(f"  waterfront 95% CI: {prem_ci['waterfront_pct'][0]}% .. {prem_ci['waterfront_pct'][1]}%")
+
     print("Fitting SFR structure-vs-land model ...")
     land_mod, land_elast, land_d = fit_land(sold)
     city_land = float(land_elast * land_d["sale_price"].median() / land_d["lot_sqft"].median())
@@ -684,9 +702,11 @@ def main():
             "standardized_home": {k: (int(v) if k == "sqft" else round(float(v), 1))
                                   for k, v in med.items()},
             "premiums": prem,
+            "premiums_ci95": prem_ci,
             "new_max_age": NEW_MAX_AGE,
             "filled_sqft": int(df.attrs.get("filled_sqft", 0)),
             "filled_year": int(df.attrs.get("filled_year", 0)),
+            "stale_active_dropped": int(df.attrs.get("stale_active", 0)),
             "status_counts": {k: int(v) for k, v in df["status"].value_counts().items()},
             "min_report_sold": MIN_REPORT_SOLD,
         },

@@ -94,14 +94,20 @@ def main():
     # ---------------- Price drivers chart ----------------
     w("## What drives value\n")
     w("![Price drivers](outputs/chart_premiums.png)\n")
-    w("| Driver | Effect on $/sqft |\n|---|---|")
-    w(f"| Waterfront (vs dry lot) | **{pct(pr['waterfront_pct'])}** |")
-    w(f"| New construction (≤6 yrs, net of age) | **{pct(pr['new_construction_pct'])}** |")
-    w(f"| Private pool | **{pct(pr['pool_pct'])}** |")
-    w(f"| Each extra bathroom | **{pct(pr['bath_pct'])}** |")
-    w(f"| Each decade of age | **{pct(pr['age_per_decade_pct'])}** |")
-    w(f"| Implied land value | **~${m['city_land_ppsf']:,.0f}/sqft of lot** |")
-    w("")
+    cis = m.get("premiums_ci95", {})
+
+    def cir(k):
+        r = cis.get(k)
+        return f"{r[0]:+.0f}% to {r[1]:+.0f}%" if r else "—"
+    w("| Driver | Effect on $/sqft | 95% confidence |\n|---|---|---|")
+    w(f"| Waterfront (vs dry lot) | **{pct(pr['waterfront_pct'])}** | {cir('waterfront_pct')} |")
+    w(f"| New construction (≤6 yrs, net of age) | **{pct(pr['new_construction_pct'])}** | {cir('new_construction_pct')} |")
+    w(f"| Private pool | **{pct(pr['pool_pct'])}** | {cir('pool_pct')} |")
+    w(f"| Each extra bathroom | **{pct(pr['bath_pct'])}** | {cir('bath_pct')} |")
+    w(f"| Each decade of age | **{pct(pr['age_per_decade_pct'])}** | {cir('age_per_decade_pct')} |")
+    w(f"| Implied land value | **~${m['city_land_ppsf']:,.0f}/sqft of lot** | (SFR land model) |")
+    w("\n*Confidence intervals from the regression — every driver is statistically "
+      "significant (none crosses zero).*\n")
 
     # ---------------- Geography ----------------
     if mls.get("geography"):

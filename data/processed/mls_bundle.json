@@ -1,7 +1,7 @@
 {
   "meta": {
     "source": "Fort Lauderdale MLS agent single-line export (user-provided)",
-    "n_listings": 12469,
+    "n_listings": 12419,
     "n_sold": 4535,
     "hedonic_r2": 0.695,
     "hedonic_n": 4527,
@@ -22,15 +22,38 @@
       "age_per_decade_pct": -3.43,
       "bath_pct": 6.5
     },
+    "premiums_ci95": {
+      "waterfront_pct": [
+        28.8,
+        35.0
+      ],
+      "pool_pct": [
+        6.5,
+        12.8
+      ],
+      "new_construction_pct": [
+        10.9,
+        20.0
+      ],
+      "age_per_decade_pct": [
+        -4.0,
+        -2.9
+      ],
+      "bath_pct": [
+        4.7,
+        8.3
+      ]
+    },
     "new_max_age": 6,
     "filled_sqft": 161,
     "filled_year": 44,
+    "stale_active_dropped": 50,
     "status_counts": {
       "Sold": 4535,
       "Expired": 3011,
       "Cancelled": 2671,
-      "Active": 1728,
-      "Pending": 290,
+      "Active": 1683,
+      "Pending": 285,
       "Withdrawn": 133,
       "TempOff": 101
     },
@@ -3591,9 +3614,9 @@
     }
   ],
   "live_flag_summary": {
-    "Overpriced": 925,
-    "Underpriced": 587,
-    "Fair": 459
+    "Overpriced": 903,
+    "Underpriced": 574,
+    "Fair": 445
   },
   "deals": [
     {
@@ -3646,18 +3669,6 @@
     },
     {
       "status": "Active",
-      "neighborhood": "Progresso",
-      "ptype": "Single Family",
-      "list_price": 499999.0,
-      "sqft": 1904.0,
-      "ask_ppsf": 263.0,
-      "pred_ppsf": 409.0,
-      "gap_pct": -35.8,
-      "waterfront": false,
-      "flag": "Underpriced"
-    },
-    {
-      "status": "Active",
       "neighborhood": "Waverly Place",
       "ptype": "Single Family",
       "list_price": 600000.0,
@@ -3665,18 +3676,6 @@
       "ask_ppsf": 240.0,
       "pred_ppsf": 369.0,
       "gap_pct": -34.9,
-      "waterfront": false,
-      "flag": "Underpriced"
-    },
-    {
-      "status": "Pending",
-      "neighborhood": "Valentines",
-      "ptype": "Single Family",
-      "list_price": 699900.0,
-      "sqft": 2107.0,
-      "ask_ppsf": 332.0,
-      "pred_ppsf": 509.0,
-      "gap_pct": -34.8,
       "waterfront": false,
       "flag": "Underpriced"
     },
@@ -3693,18 +3692,6 @@
       "flag": "Underpriced"
     },
     {
-      "status": "Pending",
-      "neighborhood": "Osceola Park",
-      "ptype": "Single Family",
-      "list_price": 385000.0,
-      "sqft": 1229.0,
-      "ask_ppsf": 313.0,
-      "pred_ppsf": 474.0,
-      "gap_pct": -33.9,
-      "waterfront": false,
-      "flag": "Underpriced"
-    },
-    {
       "status": "Active",
       "neighborhood": "Dorsey Park Th",
       "ptype": "Single Family",
@@ -3714,6 +3701,18 @@
       "pred_ppsf": 435.0,
       "gap_pct": -33.9,
       "waterfront": true,
+      "flag": "Underpriced"
+    },
+    {
+      "status": "Pending",
+      "neighborhood": "Osceola Park",
+      "ptype": "Single Family",
+      "list_price": 385000.0,
+      "sqft": 1229.0,
+      "ask_ppsf": 313.0,
+      "pred_ppsf": 474.0,
+      "gap_pct": -33.9,
+      "waterfront": false,
       "flag": "Underpriced"
     },
     {
@@ -3954,6 +3953,30 @@
       "pred_ppsf": 511.0,
       "gap_pct": -26.5,
       "waterfront": false,
+      "flag": "Underpriced"
+    },
+    {
+      "status": "Active",
+      "neighborhood": "Hendricks Heights",
+      "ptype": "Single Family",
+      "list_price": 889000.0,
+      "sqft": 2236.0,
+      "ask_ppsf": 398.0,
+      "pred_ppsf": 540.0,
+      "gap_pct": -26.4,
+      "waterfront": false,
+      "flag": "Underpriced"
+    },
+    {
+      "status": "Active",
+      "neighborhood": "South Coral Point",
+      "ptype": "Single Family",
+      "list_price": 1595000.0,
+      "sqft": 2851.0,
+      "ask_ppsf": 559.0,
+      "pred_ppsf": 759.0,
+      "gap_pct": -26.3,
+      "waterfront": true,
       "flag": "Underpriced"
     }
   ]

@@ -34,6 +34,133 @@ def _street():
         return json.load(f)
 
 
+def _time():
+    with open(os.path.join(PROC, "time_bundle.json")) as f:
+        return json.load(f)
+
+
+def _wavg(rows, val, wt):
+    num = sum((r[val] or 0) * (r[wt] or 0) for r in rows if r.get(val) is not None)
+    den = sum((r[wt] or 0) for r in rows if r.get(val) is not None)
+    return num / den if den else float("nan")
+
+
+def key_conclusions_sheet(wb, mm, red, tb, sb):
+    ws = wb.add_worksheet("Key Conclusions")
+    m, pr, ci = mm["meta"], mm["meta"]["premiums"], mm["meta"]["premiums_ci95"]
+    nbs = mm["neighborhoods"]
+    geo = {g["geo_type"]: g for g in mm["geography"]}
+    tmeta = tb["meta"]
+    top = sorted(nbs, key=lambda r: -r["norm_ppsf"])[:5]
+    aff = sorted(nbs, key=lambda r: r["norm_ppsf"])[:5]
+    disc = _wavg(nbs, "median_discount_pct", "sold_n")
+    fail = _wavg(nbs, "failure_rate", "sold_n")
+    fi = geo.get("Finger-isle waterfront", {}).get("median_ppsf")
+    inl = geo.get("Mainland inland", {}).get("median_ppsf")
+    streets = sb["streets"]
+    prime = max((s for s in streets if s["n_sold"] >= 5 and s["premium_vs_nbhd"] is not None),
+                key=lambda s: s["premium_vs_nbhd"], default=None)
+
+    def rng(c):
+        return f"95% CI {ci[c][0]:+.0f}% to {ci[c][1]:+.0f}%"
+
+    # (Conclusion, Figure, Underwriting/evidence, Confidence)
+    rows = [
+        ("Normalized citywide value",
+         f"${m['city_norm_ppsf']:,.0f}/sqft",
+         f"Per-home hedonic on {m['n_sold']:,} closed sales, R²={m['hedonic_r2']}. "
+         f"Cross-validated at r=0.93 against an independent Redfin estimate. "
+         "Figure is a standardized dry-lot home; drivers below are added on top.", "High"),
+        ("Waterfront is the biggest driver", f"+{pr['waterfront_pct']:.0f}%",
+         f"Per foot, all else equal. {rng('waterfront_pct')} — well clear of zero.", "High"),
+        ("New construction premium", f"+{pr['new_construction_pct']:.0f}%",
+         f"Homes ≤6 yrs old, net of the age gradient. {rng('new_construction_pct')}.", "High"),
+        ("Private pool premium", f"+{pr['pool_pct']:.0f}%",
+         f"{rng('pool_pct')}.", "High"),
+        ("Age depreciation", f"{pr['age_per_decade_pct']:.0f}% / decade",
+         f"Each decade older. {rng('age_per_decade_pct')}.", "High"),
+        ("Geography sets the tier",
+         f"Finger-isle ${fi:,.0f} vs inland ${inl:,.0f}/sqft" if fi and inl else "—",
+         f"Finger-isle (point-lot) waterfront runs ~{fi/inl:.1f}x mainland-inland per foot. "
+         "Derived lot-geography classification." if fi and inl else "", "High"),
+        ("Implied land value", f"~${m['city_land_ppsf']:,.0f}/sqft of lot",
+         f"From an SFR structure-vs-land model (lot elasticity {m['land_lot_elasticity']}, "
+         "R²=0.94). Vacant-land comps would refine it.", "Medium"),
+        ("Market up sharply since 2020",
+         f"+{tmeta['city_pct_since_2020']:.0f}% (${tmeta['city_2020_ppsf']:,.0f}→${tmeta['city_now_ppsf']:,.0f})",
+         "Citywide, homes-sold-weighted (Redfin monthly). Price at new highs.", "High"),
+        ("Price high, but market has slowed",
+         f"DOM {tmeta['fastest_dom']:.0f}→110+ days",
+         f"Days-on-market bottomed at {tmeta['fastest_dom']:.0f} in the 2022 frenzy "
+         "(homes at asking); buyers now negotiate ~6% off again. A real divergence.", "High"),
+        ("Typical list-to-sale discount", f"~{disc:.0f}% under ask",
+         "Actual closed list-vs-sale, sample-weighted across neighborhoods.", "High"),
+        ("Pricing right matters", f"~{fail:.0f}% of listings fail to sell",
+         "Share of listing attempts that ended without a sale (failed / failed+sold). "
+         "Many relist and eventually sell, so this measures attempt risk.", "Medium"),
+        ("Most valuable neighborhoods",
+         ", ".join(t["neighborhood"] for t in top[:3]),
+         "By normalized $/sqft: " + "; ".join(
+             f"{t['neighborhood']} ${t['norm_ppsf']:,.0f}" for t in top) + ".", "High"),
+        ("Most affordable neighborhoods",
+         ", ".join(a["neighborhood"] for a in aff[:3]),
+         "By normalized $/sqft: " + "; ".join(
+             f"{a['neighborhood']} ${a['norm_ppsf']:,.0f}" for a in aff) + ".", "High"),
+        ("Street-level value resolves the block",
+         f"{sb['meta']['n_streets']} streets"
+         + (f"; prime {prime['street']} +{prime['premium_vs_nbhd']:.0f}%" if prime else ""),
+         "Each street carries its premium/discount vs its neighborhood (≥4 comps). "
+         f"{sb['meta']['n_live_underwritten']:,} live listings underwritten vs street comps.",
+         "Medium"),
+        ("Comp-backed live opportunities", f"{len(sb['deals'])} SFR candidates",
+         "Active single-family listings asking below their street value (≥4 street comps, "
+         "bounded gap). Screening only — verify condition on site.", "Medium"),
+        ("Data validated & cleaned",
+         "100% addr · ~98% sqft/yr",
+         "Top sales match public records to the dollar (5 Harborage $70M, 84 Isla Bahia $34M). "
+         f"Recovered {m['filled_sqft']} sqft + {m['filled_year']} year values from peers; "
+         f"dropped {m.get('stale_active_dropped',0)} already-sold 'active' listings; MLS# unique "
+         "(no duplicates).", "High"),
+    ]
+
+    title = wb.add_format({"bold": True, "font_size": 16, "font_color": DARK})
+    sub = wb.add_format({"font_size": 10, "italic": True, "font_color": "#898781"})
+    hdr = wb.add_format({"bold": True, "font_color": "white", "bg_color": BLUE, "border": 1,
+                         "border_color": "white", "valign": "vcenter", "text_wrap": True})
+    idx = wb.add_format({"border": 1, "border_color": "#e1e0d9", "align": "center",
+                         "valign": "top", "font_color": "#898781"})
+    concl = wb.add_format({"bold": True, "border": 1, "border_color": "#e1e0d9",
+                           "valign": "top", "text_wrap": True})
+    figf = wb.add_format({"bold": True, "font_color": DARK, "border": 1,
+                          "border_color": "#e1e0d9", "valign": "top", "text_wrap": True})
+    ev = wb.add_format({"border": 1, "border_color": "#e1e0d9", "valign": "top",
+                        "text_wrap": True, "font_size": 10})
+    conf_fmt = {
+        "High": wb.add_format({"bold": True, "font_color": "#166b34", "bg_color": "#e4f3e9",
+                               "border": 1, "border_color": "white", "align": "center", "valign": "top"}),
+        "Medium": wb.add_format({"bold": True, "font_color": "#8a5a10", "bg_color": "#fbf1dd",
+                                 "border": 1, "border_color": "white", "align": "center", "valign": "top"}),
+    }
+    ws.write(0, 0, "Fort Lauderdale — Key Conclusions (underwritten)", title)
+    ws.write(1, 0, "Every headline finding with the evidence behind it. Details in the "
+             "following sheets. Not a per-home appraisal.", sub)
+    heads = ["#", "Conclusion", "Figure", "Underwriting — the evidence", "Confidence"]
+    widths = [4, 30, 22, 82, 12]
+    for c, (h, wd) in enumerate(zip(heads, widths)):
+        ws.write(3, c, h, hdr)
+        ws.set_column(c, c, wd)
+    for i, (c1, c2, c3, c4) in enumerate(rows):
+        r = 4 + i
+        ws.write_number(r, 0, i + 1, idx)
+        ws.write(r, 1, c1, concl)
+        ws.write(r, 2, c2, figf)
+        ws.write(r, 3, c3, ev)
+        ws.write(r, 4, c4, conf_fmt[c4])
+        ws.set_row(r, 15 * max(2, (len(c3) // 78 + 1)))
+    ws.freeze_panes(4, 0)
+    ws.hide_gridlines(2)
+
+
 # columns: (source_field, header, excel_num_format, width)
 HEADLINE_COLS = [
     ("value_rank", "Rank", "0", 6),
@@ -291,18 +418,24 @@ def mls_drivers_sheet(wb, mm):
     ws.write(0, 0, "What drives Fort Lauderdale home value", title)
     ws.write(1, 0, "Marginal effect on price per square foot, all else equal "
              f"(per-home hedonic, R²={meta['hedonic_r2']}).", sub)
+    ci = meta.get("premiums_ci95", {})
     ws.set_column(0, 0, 34)
-    ws.set_column(1, 1, 16)
+    ws.set_column(1, 1, 14)
+    ws.set_column(2, 2, 22)
     ws.write(3, 0, "Driver", hdr)
     ws.write(3, 1, "Effect", hdr)
-    rows = [("Waterfront (vs dry lot)", pr["waterfront_pct"]),
-            ("Private pool", pr["pool_pct"]),
-            ("New construction (<=6 yrs, net of age)", pr["new_construction_pct"]),
-            ("Each additional bathroom", pr["bath_pct"]),
-            ("Each decade of age", pr["age_per_decade_pct"])]
-    for i, (k, v) in enumerate(rows):
+    ws.write(3, 2, "95% confidence range", hdr)
+    cirf = wb.add_format({"border": 1, "border_color": "#e1e0d9", "align": "center"})
+    rows = [("Waterfront (vs dry lot)", pr["waterfront_pct"], "waterfront_pct"),
+            ("Private pool", pr["pool_pct"], "pool_pct"),
+            ("New construction (<=6 yrs, net of age)", pr["new_construction_pct"], "new_construction_pct"),
+            ("Each additional bathroom", pr["bath_pct"], "bath_pct"),
+            ("Each decade of age", pr["age_per_decade_pct"], "age_per_decade_pct")]
+    for i, (k, v, key) in enumerate(rows):
         ws.write(4 + i, 0, k, lab)
         ws.write_number(4 + i, 1, v / 100.0, val)
+        rr = ci.get(key)
+        ws.write(4 + i, 2, f"{rr[0]:+.0f}% to {rr[1]:+.0f}%" if rr else "—", cirf)
     r = 4 + len(rows) + 1
     txt = wb.add_format({"font_size": 10, "text_wrap": True, "valign": "top"})
     ws.write(r, 0, f"Size elasticity {pr['size_elasticity']} — a home twice as large sells "
@@ -397,6 +530,10 @@ def main():
     wb = wb_writer.book
     fmts = make_formats(wb)
 
+    try:
+        key_conclusions_sheet(wb, mm, b, _time(), _street())
+    except FileNotFoundError:
+        pass
     readme_sheet(wb, meta)
 
     # ---- PRIMARY: MLS per-home layer ----
