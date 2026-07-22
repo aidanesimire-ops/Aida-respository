@@ -118,28 +118,29 @@ def build(s, regs):
     s.put(r, L, "Value creation (lease-up NOI gain)", style="label", align="left")
     s.put(r, 3, f"={R('STAB_NOI')}-{R('ASIS_NOI')}", style="calc", fmt=F_ACCT, align="right"); r += 2
 
-    # ================= valuation assumptions =================
-    s.section(r, L, 13, "INCOME-VALUATION ASSUMPTIONS  —  🔵 blue inputs"); r += 1
-    def inp(name, label, val, fmt, note):
+    # ============ valuation assumptions (🟢 linked from the Assumptions control tab) ============
+    s.section(r, L, 13, "INCOME-VALUATION ASSUMPTIONS  —  🟢 linked from the Assumptions control tab (adjust there)"); r += 1
+    AS = regs["Assumptions"]
+    def alink(name, label, aname, fmt, note):
         nonlocal r
         s.put(r, L, label, style="label", align="left")
-        s.put(r, 3, val, style="input", fmt=fmt, align="right", name=name)
+        s.put(r, 3, f"='Assumptions'!{AS[aname]}", style="calc", color="008000", fmt=fmt, align="right", name=name)
         s.put(r, 4, note, style="note", align="left", merge=(r, 13)); r += 1
-    inp("CAP", "Blended going-in cap (as-is)", 0.0650, F_PCT2, "🔶 NOI-weighted retail/grocery/office")
-    inp("SCAP", "Blended stabilized / exit cap", 0.0675, F_PCT2, "🔶 going-in + 25 bps")
-    inp("TYLD", "Target unlevered yield (DCF discount)", 0.085, F_PCT1, "🔶 unlevered hurdle")
-    inp("GROW", "Blended NOI growth (for reversion/sens.)", 0.025, F_PCT1, "🔶")
-    inp("HOLD", "Hold period (yrs)", 5, F_YR, "🔶 assets exit together")
-    inp("COS", "Cost of sale at exit", 0.02, F_PCT1, "🔶")
-    inp("DOCSTAMP", "Doc-stamp / transfer tax (% price)", 0.0070, F_PCT2, "🔶 FL Broward $0.70/$100")
-    inp("TITLE", "Title insurance (% price)", 0.0050, F_PCT2, "🔶")
-    inp("LEGALDD", "Legal & due diligence (% price)", 0.0040, F_PCT2, "🔶")
-    inp("ORIG", "Loan origination fee (% loan)", 0.0100, F_PCT2, "🔶")
-    inp("LTV", "Max senior LTV", 0.60, F_PCT1, "🔶 constraint 1")
-    inp("DSCRMIN", "Min DSCR (sizing constraint)", 1.30, F_MULT, "🔶 constraint 2")
-    inp("DYMIN", "Min debt yield (sizing constraint)", 0.085, F_PCT1, "🔶 constraint 3")
-    inp("RATE", "Senior rate", 0.065, F_PCT2, "🔶")
-    inp("AMORT", "Amortization (yrs)", 30, F_YR, "🔶")
+    alink("CAP", "Blended going-in cap (as-is)", "CAP", F_PCT2, "🟢 Assumptions tab")
+    alink("SCAP", "Blended stabilized / exit cap", "SCAP", F_PCT2, "🟢 Assumptions tab")
+    alink("TYLD", "Target unlevered yield (DCF discount)", "TYLD", F_PCT1, "🟢 Assumptions tab")
+    alink("GROW", "Blended NOI growth", "GROW", F_PCT1, "🟢 Assumptions tab")
+    alink("HOLD", "Hold period (yrs)", "HOLD", F_YR, "🟢 Assumptions tab")
+    alink("COS", "Cost of sale at exit", "COS", F_PCT1, "🟢 Assumptions tab")
+    alink("DOCSTAMP", "Doc-stamp / transfer tax (% price)", "DOCSTAMP", F_PCT2, "🟢 Assumptions tab")
+    alink("TITLE", "Title insurance (% price)", "TITLE", F_PCT2, "🟢 Assumptions tab")
+    alink("LEGALDD", "Legal & due diligence (% price)", "LEGALDD", F_PCT2, "🟢 Assumptions tab")
+    alink("ORIG", "Loan origination fee (% loan)", "ORIG", F_PCT2, "🟢 Assumptions tab")
+    alink("LTV", "Max senior LTV", "LTV", F_PCT1, "🟢 Assumptions tab")
+    alink("DSCRMIN", "Min DSCR (sizing constraint)", "DSCRMIN", F_MULT, "🟢 Assumptions tab")
+    alink("DYMIN", "Min debt yield (sizing constraint)", "DYMIN", F_PCT1, "🟢 Assumptions tab")
+    alink("RATE", "Senior rate", "RATE", F_PCT2, "🟢 Assumptions tab")
+    alink("AMORT", "Amortization (yrs)", "AMORT", F_YR, "🟢 Assumptions tab")
     r += 1
 
     # helper: mortgage constant, sums

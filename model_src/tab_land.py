@@ -31,8 +31,10 @@ A = dict(
 )
 
 
-def build(s):
+def build(s, regs):
     a = A
+    def AS(name):   # link to the Assumptions control-panel cell
+        return f"'Assumptions'!{regs['Assumptions'][name]}"
     s.colw({"A": 2.5, "B": 36, "C": 14, "D": 13, "E": 13, "F": 13, "G": 12,
             "H": 12, "I": 12, "J": 12, "K": 12, "L": 12, "M": 12})
     r = 1
@@ -94,16 +96,16 @@ def build(s):
     s.put(r, 7, "Basis / note", style="subhead", align="left", merge=(r, 13)); r += 1
     # per-SF land
     s.put(r, L, "① Per SF of land", style="label", align="left")
-    s.put(r, 4, f"={R('LANDSF')}*{a['land_psf_low']}", style="calc", fmt=F_ACCT, align="right")
-    s.put(r, 5, f"={R('LANDSF')}*{a['land_psf_base']}", style="calc", fmt=F_ACCT_TOP, align="right", name="VAL_PSF")
-    s.put(r, 6, f"={R('LANDSF')}*{a['land_psf_high']}", style="calc", fmt=F_ACCT, align="right")
-    s.put(r, 7, f"${a['land_psf_low']:.0f} / ${a['land_psf_base']:.0f} / ${a['land_psf_high']:.0f} per land SF", style="note", align="left", merge=(r, 13)); r += 1
+    s.put(r, 4, f"={R('LANDSF')}*{AS('LPSF_LOW')}", style="calc", fmt=F_ACCT, align="right")
+    s.put(r, 5, f"={R('LANDSF')}*{AS('LPSF_BASE')}", style="calc", fmt=F_ACCT_TOP, align="right", name="VAL_PSF")
+    s.put(r, 6, f"={R('LANDSF')}*{AS('LPSF_HIGH')}", style="calc", fmt=F_ACCT, align="right")
+    s.put(r, 7, "land SF × $/SF (low/base/high on Assumptions tab)", style="note", align="left", merge=(r, 13)); r += 1
     # per unit
     s.put(r, L, "② Per entitled unit", style="label", align="left")
-    s.put(r, 4, f"={R('UNITS')}*{a['perunit_low']}", style="calc", fmt=F_ACCT, align="right")
-    s.put(r, 5, f"={R('UNITS')}*{a['perunit_base']}", style="calc", fmt=F_ACCT_TOP, align="right", name="VAL_UNIT")
-    s.put(r, 6, f"={R('UNITS')}*{a['perunit_high']}", style="calc", fmt=F_ACCT, align="right")
-    s.put(r, 7, f"259 units × ${a['perunit_low']//1000}k / ${a['perunit_base']//1000}k / ${a['perunit_high']//1000}k", style="note", align="left", merge=(r, 13)); r += 1
+    s.put(r, 4, f"={R('UNITS')}*{AS('UNIT_LOW')}", style="calc", fmt=F_ACCT, align="right")
+    s.put(r, 5, f"={R('UNITS')}*{AS('UNIT_BASE')}", style="calc", fmt=F_ACCT_TOP, align="right", name="VAL_UNIT")
+    s.put(r, 6, f"={R('UNITS')}*{AS('UNIT_HIGH')}", style="calc", fmt=F_ACCT, align="right")
+    s.put(r, 7, "units × $/unit (low/base/high on Assumptions tab)", style="note", align="left", merge=(r, 13)); r += 1
     # BCPA
     s.put(r, L, "③ BCPA market value (floor)", style="label", align="left")
     s.put(r, 4, f"={R('BCPA')}", style="calc", fmt=F_ACCT, align="right")
@@ -211,12 +213,12 @@ def build(s):
         s.put(r, 3, formula, style=("calc"), fmt=fmt, align="right", name=name, bold=(style == "sub"))
         if note: s.put(r, 4, note, style="note", align="left", merge=(r, 13))
         r += 1
-    rd("GDV", "Gross development value (259 units)", f"={R('UNITS')}*{a['rev_per_unit_value']}", F_ACCT_TOP,
-       note=f"259 × ${a['rev_per_unit_value']:,} achievable value/unit")
-    rd("GBA", "Buildable GBA (SF)", f"={R('UNITS')}*{a['gba_per_unit']}", F_NUM, note=f"{a['gba_per_unit']} GBA SF/unit")
-    rd("HARD", "Hard cost", f"=-{R('GBA')}*{a['hard_cost_psf']}", F_ACCT, note=f"${a['hard_cost_psf']:.0f}/SF (AE-zone coastal)")
-    rd("SOFT", "Soft cost", f"=-{R('GBA')}*{a['hard_cost_psf']}*{a['soft_pct']}", F_ACCT, note=f"{a['soft_pct']*100:.0f}% of hard")
-    rd("PROFIT", "Developer profit", f"=-{R('GDV')}*{a['dev_profit']}", F_ACCT, note=f"{a['dev_profit']*100:.0f}% of GDV")
+    rd("GDV", "Gross development value", f"={R('UNITS')}*{AS('REVUNIT')}", F_ACCT_TOP,
+       note="units × achievable value/unit (Assumptions tab)")
+    rd("GBA", "Buildable GBA (SF)", f"={R('UNITS')}*{AS('GBAUNIT')}", F_NUM, note="units × GBA/unit (Assumptions tab)")
+    rd("HARD", "Hard cost", f"=-{R('GBA')}*{AS('HARDPSF')}", F_ACCT, note="$/GBA SF (AE-zone coastal, Assumptions tab)")
+    rd("SOFT", "Soft cost", f"=-{R('GBA')}*{AS('HARDPSF')}*{AS('SOFT')}", F_ACCT, note="% of hard (Assumptions tab)")
+    rd("PROFIT", "Developer profit", f"=-{R('GDV')}*{AS('PROFIT')}", F_ACCT, note="% of GDV (Assumptions tab)")
     rd("RESID", "RESIDUAL LAND VALUE", f"={R('GDV')}+{R('HARD')}+{R('SOFT')}+{R('PROFIT')}", F_ACCT_TOP, style="sub")
     s.put(r, L, "Conclusion", style="warn", align="left")
     s.put(r, 3, "HOLD", style="warn", align="center")

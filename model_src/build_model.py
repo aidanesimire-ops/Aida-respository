@@ -4,7 +4,7 @@ Run:  python3 build_model.py
 """
 from openpyxl.utils import get_column_letter, column_index_from_string
 from mblib import new_book, add_sheet, NAVY, GOLD
-import tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_income, tab_scenarios, tab_exec, tab_notes
+import tab_assumptions, tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_income, tab_scenarios, tab_exec, tab_notes
 import configs
 
 OUT = "../Shahidi_Assemblage_Model.xlsx"
@@ -43,7 +43,12 @@ def main():
     wb = new_book()
     sh = {}
 
-    # ---- asset tabs first (populate registries) ----
+    # ---- assumptions control panel first (pure inputs, no deps) ----
+    sh["Assumptions"] = add_sheet(wb, "Assumptions", tabcolor=GOLD)
+    a_free = tab_assumptions.build_inputs(sh["Assumptions"])
+    A = {"Assumptions": sh["Assumptions"].reg}
+
+    # ---- asset tabs (populate registries) ----
     sh["Shahidi Retail"] = add_sheet(wb, "Shahidi Retail", tabcolor=NAVY)
     tab_shahidi.build(sh["Shahidi Retail"])
 
@@ -57,15 +62,16 @@ def main():
     tab_office.build(sh["Office Condo"])
 
     sh["Land"] = add_sheet(wb, "Land", tabcolor=NAVY)
-    tab_land.build(sh["Land"])
+    tab_land.build(sh["Land"], A)
 
-    # ---- assemblage HBU (links to assets) ----
+    # ---- assemblage HBU (links to assets + assumptions premium) ----
     asset_regs = {name: s.reg for name, s in sh.items()}
+    asm_regs = dict(asset_regs); asm_regs.update(A)
     sh["Assemblage"] = add_sheet(wb, "Assemblage", tabcolor=GOLD)
-    tab_assemblage.build(sh["Assemblage"], asset_regs)
+    tab_assemblage.build(sh["Assemblage"], asm_regs)
 
-    # ---- income valuation (links to assets + assemblage) ----
-    inc_regs = dict(asset_regs)
+    # ---- income valuation (links to assets + assemblage + assumptions) ----
+    inc_regs = dict(asm_regs)
     inc_regs["Assemblage"] = sh["Assemblage"].reg
     sh["Income Valuation"] = add_sheet(wb, "Income Valuation", tabcolor=GOLD)
     tab_income.build(sh["Income Valuation"], inc_regs)
@@ -86,9 +92,12 @@ def main():
     sh["Notes & Sources"] = add_sheet(wb, "Notes & Sources", tabcolor=GOLD)
     tab_notes.build(sh["Notes & Sources"])
 
-    # ---- reorder: Exec, Income, Scenarios, Assemblage(HBU), assets, Notes ----
-    order = ["Executive Summary", "Income Valuation", "Scenarios", "Assemblage", "Shahidi Retail",
-             "Publix & Starbucks", "Sunrise Plaza", "Office Condo", "Land", "Notes & Sources"]
+    # ---- append the live data-gap register to the Assumptions tab (needs all regs) ----
+    tab_assumptions.build_index(sh["Assumptions"], all_regs, a_free)
+
+    # ---- reorder: Exec, Assumptions, Income, Scenarios, Assemblage, assets, Notes ----
+    order = ["Executive Summary", "Assumptions", "Income Valuation", "Scenarios", "Assemblage",
+             "Shahidi Retail", "Publix & Starbucks", "Sunrise Plaza", "Office Condo", "Land", "Notes & Sources"]
     wb._sheets = [sh[t].ws for t in order]
     wb.active = 0
 

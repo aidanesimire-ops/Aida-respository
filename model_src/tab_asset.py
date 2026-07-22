@@ -83,6 +83,7 @@ def build(s, cfg):
 
     grp("Property & revenue")
     inp("GLA", "Rentable SF", "gla", F_NUM, cfg["src"]["gla"])
+    inp("GLANDSF", "Land (SF)", "land_sf", F_NUM, cfg["src"].get("land", "🔶 parcel land"))
     inp("OCC0", "In-place occupancy", "occ0", F_PCT1, cfg["src"]["occ0"])
     inp("STABOCC", "Stabilized occupancy", "stab_occ", F_PCT1, cfg["src"]["stab_occ"])
     inp("MRENT", "Market rent ($/SF NNN)", "market_rent", F_PSF, cfg["src"]["rent"])
@@ -112,6 +113,9 @@ def build(s, cfg):
     inp("COS", "Cost of sale at exit", "cost_sale", F_PCT1, "🔶")
     inp("HOLD", "Hold period (yrs)", "hold", F_YR, "🔶")
     inp("DISC", "Discount rate (NPV)", "disc", F_PCT1, "🔶")
+    s.put(r, L, "Land value ($/SF)", style="label", align="left")
+    s.put(r, 3, cfg.get("land_psf", 248), style="input", fmt=F_PSF, align="right", name="GLAND_PSF")
+    s.put(r, 4, "🔶 corridor land comp", style="note", align="left", merge=(r, 13)); r += 1
     r += 1
 
     g = s.reg
@@ -136,9 +140,9 @@ def build(s, cfg):
     der("EQ_REQ", "Total equity required", f"={R('TCB')}-{R('LOAN')}", F_ACCT_TOP)
     der("INCVAL", "Income value (Yr-1 NOI ÷ going-in cap)", "=0", F_ACCT_TOP, "computed below")
     incval_cell = R("INCVAL")
-    der("LANDVAL", "Land value (@ infill $/SF)",
-        f"={a['land_sf']}*{cfg.get('land_psf', 248)}", F_ACCT_TOP,
-        f"🔶 {a['land_sf']:,} land SF × ${cfg.get('land_psf',248)}/SF")
+    der("LANDVAL", "Land value (land SF × $/SF)",
+        f"={R('GLANDSF')}*{R('GLAND_PSF')}", F_ACCT_TOP,
+        "land SF × land $/SF (both blue inputs above)")
     r += 1
 
     # ---- cash flow ----

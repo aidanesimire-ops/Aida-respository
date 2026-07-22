@@ -240,10 +240,10 @@ def build(s):
         endc = spans.get(c, c)
         s.put(r, c, h, style="subhead", align="left" if c in (L, 9) else "center", merge=(r, endc) if endc != c else None)
     r += 1
-    for nm, sub, sf, pct, basis, note in OWNERS:
+    for i, (nm, sub, sf, pct, basis, note) in enumerate(OWNERS):
         s.put(r, L, nm, style="calc", align="left", merge=(r, 3))
-        s.put(r, 4, sf, style="calc", fmt=F_NUM, align="right")
-        s.put(r, 5, pct, style="calc", fmt=F_PCT1, align="right")
+        s.put(r, 4, sf, style="input", fmt=F_NUM, align="right", name=f"OWN{i+1}_SF")   # 🔵 adjustable
+        s.put(r, 5, f"={CL(4)}{r}/{R('GLA')}", style="calc", fmt=F_PCT1, align="right")
         s.put(r, 6, (basis if basis else "—"), style=("calc" if basis else "note"), fmt=(F_ACCT if basis else None), align="right")
         s.put(r, 7, f"={R('NOIPSF')}*{CL(4)}{r}/{R('GICAP')}", style="calc", fmt=F_ACCT, align="right")
         s.put(r, 8, f"={CL(4)}{r}*{R('SALEPSF')}", style="calc", fmt=F_ACCT, align="right")

@@ -180,8 +180,11 @@ def build(s):
     der("TCB", "Total cost basis (incl. initial leasing)",
         f"={R('PRICE')}*(1+{R('CLOSE')})+{R('INIT_LEASE')}", F_ACCT_TOP)
     der("EQ_REQ", "Total equity required", f"={R('TCB')}-{R('LOAN')}", F_ACCT_TOP)
-    der("LANDVAL", "Land value (@ $254.92/SF basis)", f"={R('LANDSF')}*254.92", F_ACCT_TOP,
-        "67,080 land SF × $254.92 (arm's-length basis)")
+    s.put(r, L, "Land value ($/SF)", style="label", align="left")
+    s.put(r, 3, 254.92, style="input", fmt=F_PSF, align="right", name="GLAND_PSF")
+    s.put(r, 4, "🔶 arm's-length basis ($254.92/SF)", style="note", align="left", merge=(r, 13)); r += 1
+    der("LANDVAL", "Land value (land SF × $/SF)", f"={R('LANDSF')}*{R('GLAND_PSF')}", F_ACCT_TOP,
+        "both blue inputs above")
     r += 1
 
     # ---------------------------------------------------------- 10-year cash flow

@@ -11,6 +11,8 @@ L = 2
 def CL(c): return get_column_letter(c)
 
 # per-asset land SF (verified BCPA facts; office is a condo -> no land parcel)
+LANDSFCELL = {"Shahidi Retail": "LANDSF", "Publix & Starbucks": "GLANDSF",
+              "Sunrise Plaza": "GLANDSF", "Office Condo": None, "Land": "LANDSF"}
 LANDSF = {"Shahidi Retail": 67080, "Publix & Starbucks": 109791,
           "Sunrise Plaza": 30928, "Office Condo": 0, "Land": 104108}
 GLA = {"Shahidi Retail": 26272, "Publix & Starbucks": 36822,
@@ -79,7 +81,10 @@ def build(s, regs):
         s.put(r, 3, f"={x(a, CONTROL[a])}", style="calc", color="008000", fmt=F_ACCT, align="right")
         s.put(r, 4, f"={x(a, NOICELL[a])}", style="calc", color="008000", fmt=F_ACCT, align="right")
         s.put(r, 5, f"={CL(4)}{r}/{CL(3)}{r}", style="calc", fmt=F_PCT2, align="right")
-        s.put(r, 6, LANDSF[a], style="verified", fmt=F_NUM, align="right")
+        if LANDSFCELL[a]:
+            s.put(r, 6, f"={x(a, LANDSFCELL[a])}", style="calc", color="008000", fmt=F_NUM, align="right")
+        else:
+            s.put(r, 6, 0, style="calc", fmt=F_NUM, align="right")   # office condo: no land parcel
         if LANDVALCELL[a]:
             s.put(r, 7, f"={x(a, LANDVALCELL[a])}", style="calc", color="008000", fmt=F_ACCT, align="right")
         else:
@@ -115,17 +120,23 @@ def build(s, regs):
     m("BLEND_CAP2", "Blended in-place cap (income ÷ cost)", f"={s.reg['TOT_NOI']}/{s.reg['RAW_COST']}", F_PCT2,
       "covered-land range ~3–5% — income covers carry, not a yield play")
     r += 1
-    # assemblage premium
+    # assemblage premium (rates live on the Assumptions tab)
+    pl = f"'Assumptions'!{regs['Assumptions']['PREM_LOW']}"
+    pb = f"'Assumptions'!{regs['Assumptions']['PREM_BASE']}"
+    ph = f"'Assumptions'!{regs['Assumptions']['PREM_HIGH']}"
     s.put(r, L, "Assemblage premium (to control holdouts)", style="subhead", align="left", merge=(r, 13)); r += 1
-    s.put(r, L, "  Low (15%)", style="label", align="left")
-    s.put(r, 3, f"={s.reg['RAW_COST']}*1.15", style="calc", fmt=F_ACCT, align="right", name="ACQ_LOW"); r += 1
-    s.put(r, L, "  Base (20%)", style="label_b", align="left")
-    s.put(r, 3, f"={s.reg['RAW_COST']}*1.20", style="calc", fmt=F_ACCT_TOP, align="right", name="ACQ_BASE", bold=True); r += 1
-    s.put(r, L, "  High (25%)", style="label", align="left")
-    s.put(r, 3, f"={s.reg['RAW_COST']}*1.25", style="calc", fmt=F_ACCT, align="right", name="ACQ_HIGH"); r += 1
+    s.put(r, L, "  Low", style="label", align="left")
+    s.put(r, 3, f"={s.reg['RAW_COST']}*(1+{pl})", style="calc", fmt=F_ACCT, align="right", name="ACQ_LOW")
+    s.put(r, 4, f"={pl}", style="calc", color="008000", fmt=F_PCT1, align="right"); r += 1
+    s.put(r, L, "  Base", style="label_b", align="left")
+    s.put(r, 3, f"={s.reg['RAW_COST']}*(1+{pb})", style="calc", fmt=F_ACCT_TOP, align="right", name="ACQ_BASE", bold=True)
+    s.put(r, 4, f"={pb}", style="calc", color="008000", fmt=F_PCT1, align="right"); r += 1
+    s.put(r, L, "  High", style="label", align="left")
+    s.put(r, 3, f"={s.reg['RAW_COST']}*(1+{ph})", style="calc", fmt=F_ACCT, align="right", name="ACQ_HIGH")
+    s.put(r, 4, f"={ph}", style="calc", color="008000", fmt=F_PCT1, align="right"); r += 1
     s.put(r, L, "TOTAL ASSEMBLAGE ACQUISITION COST (base)", style="grand", align="left")
     s.put(r, 3, f"={s.reg['ACQ_BASE']}", style="grand", fmt=F_ACCT_TOP, align="right", name="ACQ")
-    s.put(r, 4, "🔶 base 20% assemblage premium on the summed control cost", style="note", align="left", merge=(r, 13)); r += 2
+    s.put(r, 4, "🔶 base premium (Assumptions tab) on the summed control cost", style="note", align="left", merge=(r, 13)); r += 2
 
     # ---- HBU ----
     s.section(r, L, 13, "HIGHEST & BEST USE  —  redevelopment residual (Live Local) vs. hold"); r += 1
