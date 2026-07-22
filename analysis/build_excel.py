@@ -114,6 +114,203 @@ def master_sheet(wb, fmts, mb):
     ws.conditional_format(4, 14, 3 + n, 14, {"type": "data_bar", "bar_color": "#eb6834"})  # >=10M
 
 
+def _scen_seed(master):
+    """Pick a default neighborhood + its base price / sqft / DOM / appreciation."""
+    nbs = master["neighborhoods"]
+    pick = None
+    for want in ("Rio Vista", "Coral Ridge", "Las Olas"):
+        pick = next((n for n in nbs if n["neighborhood"] == want), None)
+        if pick:
+            break
+    if pick is None:
+        pick = max(nbs, key=lambda n: n.get("norm_ppsf") or 0)
+    ppsf = pick.get("norm_ppsf") or 500
+    price = pick.get("median_sale_price") or ppsf * 3000
+    sqft = round((price / ppsf) / 100) * 100 if ppsf else 3000
+    sqft = max(500, sqft)
+    price = round(price / 50000) * 50000
+    dom = pick.get("dom") or 90
+    a20 = pick.get("appreciation_since_2020")
+    apprec = ((1 + a20 / 100) ** (1 / 6) - 1) if a20 is not None else 0.04
+    return pick["neighborhood"], price, sqft, dom, round(apprec, 4)
+
+
+def _scen_compute(price, sqft, down, rate, amort, shift, pelast, cash,
+                  delast, basedom, apprec, hold, sell):
+    pf = 1 + (pelast / 100) * (shift / 100) * (1 - cash)
+    adjp = price * pf
+    effr = rate + shift / 10000.0
+    loan = adjp * (1 - down)
+    m, n = effr / 12.0, amort * 12
+    pay = loan * m / (1 - (1 + m) ** -n) if m > 0 else loan / n
+    ppsf = adjp / sqft if sqft else 0
+    dom = basedom * (1 + (delast / 100) * (shift / 100))
+    ctc = adjp * down + adjp * 0.03
+    k = hold * 12
+    remloan = (loan * ((1 + m) ** n - (1 + m) ** k) / ((1 + m) ** n - 1)
+               if m > 0 else loan * (1 - k / n))
+    exitv = adjp * (1 + apprec) ** hold
+    net = exitv - exitv * sell - remloan
+    eqm = net / ctc if ctc else 0
+    annr = ((net / ctc) ** (1 / hold) - 1) if (net > 0 and ctc > 0 and hold) else 0
+    return dict(pf=pf, adjp=adjp, effr=effr, loan=loan, pay=pay, ppsf=ppsf, dom=dom,
+                ctc=ctc, remloan=remloan, exitv=exitv, net=net, eqm=eqm, annr=annr)
+
+
+def scenario_sheet(wb, master):
+    """A fully live financing / capital-markets model: edit the yellow input cells and
+    every output + the sensitivity table recompute. Recreate for any asset class."""
+    ws = wb.add_worksheet("Scenario")
+    nb, price0, sqft0, dom0, apprec0 = _scen_seed(master)
+    down0, rate0, amort0, shift0 = 0.35, 0.07, 30, 0
+    pelast0, cash0, delast0, sell0, hold0 = -3, 0.45, 15, 0.06, 5
+
+    title = wb.add_format({"bold": True, "font_size": 16, "font_color": DARK})
+    sub = wb.add_format({"font_size": 10, "italic": True, "font_color": "#898781", "text_wrap": True})
+    grp = wb.add_format({"bold": True, "font_color": "white", "bg_color": BLUE, "border": 1,
+                         "border_color": "white"})
+    lab = wb.add_format({"border": 1, "border_color": "#e1e0d9", "valign": "vcenter"})
+    olab = wb.add_format({"border": 1, "border_color": "#e1e0d9", "valign": "vcenter", "bold": True})
+    hi = {"bg_color": "#fff7d6", "border": 1, "border_color": "#d9cf9a", "align": "right", "bold": True}
+    inp_money = wb.add_format({**hi, "num_format": "$#,##0"})
+    inp_num = wb.add_format({**hi, "num_format": "#,##0"})
+    inp_pct = wb.add_format({**hi, "num_format": "0%"})
+    inp_pct1 = wb.add_format({**hi, "num_format": "0.0%"})
+    inp_rate = wb.add_format({**hi, "num_format": "0.000%"})
+    inp_e = wb.add_format({**hi, "num_format": "0.0"})
+    outf = wb.add_format({"border": 1, "border_color": "#e1e0d9", "align": "right",
+                          "num_format": "$#,##0"})
+    outf_hi = wb.add_format({"border": 1, "border_color": "#e1e0d9", "align": "right",
+                             "num_format": "$#,##0", "bold": True, "font_color": DARK,
+                             "bg_color": "#eef5fc"})
+    outf_x = wb.add_format({"border": 1, "border_color": "#e1e0d9", "align": "right",
+                            "num_format": '0.00"×"', "bold": True})
+    outf_pct = wb.add_format({"border": 1, "border_color": "#e1e0d9", "align": "right",
+                              "num_format": "0.0%", "bold": True})
+    outf_n = wb.add_format({"border": 1, "border_color": "#e1e0d9", "align": "right",
+                            "num_format": "0"})
+    outf_r = wb.add_format({"border": 1, "border_color": "#e1e0d9", "align": "right",
+                            "num_format": "0.000%"})
+    outf_f = wb.add_format({"border": 1, "border_color": "#e1e0d9", "align": "right",
+                            "num_format": "0.000"})
+    thdr = wb.add_format({"bold": True, "font_color": "white", "bg_color": DARK, "border": 1,
+                          "border_color": "white", "align": "center", "valign": "vcenter",
+                          "text_wrap": True})
+
+    ws.set_column(0, 0, 30)
+    ws.set_column(1, 1, 15)
+    ws.set_column(2, 2, 3)
+    ws.set_column(3, 3, 26)
+    ws.set_column(4, 4, 16)
+    ws.write(0, 0, f"Deal scenario & financing — {nb} (edit the yellow cells)", title)
+    ws.write(1, 0, "A live model: change any yellow input and every output plus the sensitivity "
+             "table below recompute. Elasticities are yours to set — nothing is hard-coded, so "
+             "this recreates for any market or asset class. Seeded from the master ranking.", sub)
+    ws.set_row(1, 42)
+
+    v = _scen_compute(price0, sqft0, down0, rate0, amort0, shift0, pelast0, cash0,
+                      delast0, dom0, apprec0, hold0, sell0)
+
+    # ---- INPUTS (col A label / col B value, Excel rows are index+1) ----
+    ws.merge_range(3, 0, 3, 1, "DEAL", grp)
+    ws.write(4, 0, "Purchase price ($)", lab);       ws.write_number(4, 1, price0, inp_money)   # B5
+    ws.write(5, 0, "Size (sqft)", lab);              ws.write_number(5, 1, sqft0, inp_num)      # B6
+    ws.merge_range(6, 0, 6, 1, "FINANCING", grp)
+    ws.write(7, 0, "Down payment (%)", lab);         ws.write_number(7, 1, down0, inp_pct)      # B8
+    ws.write(8, 0, "Mortgage rate (%)", lab);        ws.write_number(8, 1, rate0, inp_rate)     # B9
+    ws.write(9, 0, "Amortization (yrs)", lab);       ws.write_number(9, 1, amort0, inp_num)     # B10
+    ws.merge_range(10, 0, 10, 1, "CAPITAL MARKETS & ASSUMPTIONS", grp)
+    ws.write(11, 0, "Rate shift (bps)", lab);        ws.write_number(11, 1, shift0, inp_e)      # B12
+    ws.write(12, 0, "Price sensitivity (%/+100bps)", lab); ws.write_number(12, 1, pelast0, inp_e)  # B13
+    ws.write(13, 0, "Cash-buyer share (%)", lab);    ws.write_number(13, 1, cash0, inp_pct)     # B14
+    ws.write(14, 0, "DOM sensitivity (%/+100bps)", lab);  ws.write_number(14, 1, delast0, inp_e)   # B15
+    ws.write(15, 0, "Base days on market", lab);     ws.write_number(15, 1, dom0, inp_num)      # B16
+    ws.write(16, 0, "Appreciation (%/yr)", lab);     ws.write_number(16, 1, apprec0, inp_pct1)  # B17
+    ws.write(17, 0, "Hold (yrs)", lab);              ws.write_number(17, 1, hold0, inp_num)     # B18
+    ws.write(18, 0, "Selling costs (%)", lab);       ws.write_number(18, 1, sell0, inp_pct1)    # B19
+
+    # ---- OUTPUTS (col D label / col E value) ----
+    ws.merge_range(3, 3, 3, 4, "LIVE OUTPUTS", grp)
+    ws.write(4, 3, "Price factor", olab)
+    ws.write_formula(4, 4, "=1+($B$13/100)*($B$12/100)*(1-$B$14)", outf_f, v["pf"])        # E5
+    ws.write(5, 3, "Adjusted market price", olab)
+    ws.write_formula(5, 4, "=$B$5*E5", outf_hi, v["adjp"])                                  # E6
+    ws.write(6, 3, "Adjusted $/sqft", olab)
+    ws.write_formula(6, 4, "=E6/$B$6", outf_hi, v["ppsf"])                                  # E7
+    ws.write(7, 3, "Effective mortgage rate", olab)
+    ws.write_formula(7, 4, "=$B$9+$B$12/10000", outf_r, v["effr"])                          # E8
+    ws.write(8, 3, "Loan amount", olab)
+    ws.write_formula(8, 4, "=E6*(1-$B$8)", outf, v["loan"])                                 # E9
+    ws.write(9, 3, "Monthly P&I", olab)
+    ws.write_formula(9, 4, "=E9*(E8/12)/(1-(1+E8/12)^-($B$10*12))", outf_hi, v["pay"])      # E10
+    ws.write(10, 3, "Projected days on market", olab)
+    ws.write_formula(10, 4, "=$B$16*(1+($B$15/100)*($B$12/100))", outf_n, v["dom"])         # E11
+    ws.write(11, 3, "Cash to close", olab)
+    ws.write_formula(11, 4, "=E6*$B$8+E6*0.03", outf, v["ctc"])                             # E12
+    ws.write(12, 3, "Remaining loan @ exit", olab)
+    ws.write_formula(12, 4, "=E9*((1+E8/12)^($B$10*12)-(1+E8/12)^($B$18*12))/((1+E8/12)^($B$10*12)-1)",
+                     outf, v["remloan"])                                                    # E13
+    ws.write(13, 3, "Exit value (@ hold)", olab)
+    ws.write_formula(13, 4, "=E6*(1+$B$17)^$B$18", outf, v["exitv"])                        # E14
+    ws.write(14, 3, "Net sale proceeds", olab)
+    ws.write_formula(14, 4, "=E14-E14*$B$19-E13", outf_hi, v["net"])                        # E15
+    ws.write(15, 3, "Equity multiple", olab)
+    ws.write_formula(15, 4, "=E15/E12", outf_x, v["eqm"])                                   # E16
+    ws.write(16, 3, "Annualized return", olab)
+    ws.write_formula(16, 4, "=(E15/E12)^(1/$B$18)-1", outf_pct, v["annr"])                  # E17
+
+    # ---- SENSITIVITY to rate shift ----
+    sr = 20
+    ws.write(sr, 0, "Sensitivity to rate shift", title)
+    sr += 1
+    for c, h in enumerate(["Rate shift (bps)", "Market price", "$/sqft", "Proj. DOM", "Monthly P&I"]):
+        ws.write(sr, c, h, thdr)
+    shifts = [-200, -100, -50, 0, 50, 100, 200]
+    for j, sh in enumerate(shifts):
+        r = sr + 1 + j
+        er = r + 1  # Excel row number
+        cv = _scen_compute(price0, sqft0, down0, rate0, amort0, sh, pelast0, cash0,
+                           delast0, dom0, apprec0, hold0, sell0)
+        ws.write_number(r, 0, sh, outf_n)
+        ws.write_formula(r, 1, f"=$B$5*(1+($B$13/100)*(A{er}/100)*(1-$B$14))", outf, cv["adjp"])
+        ws.write_formula(r, 2, f"=B{er}/$B$6", outf, cv["ppsf"])
+        ws.write_formula(r, 3, f"=$B$16*(1+($B$15/100)*(A{er}/100))", outf_n, cv["dom"])
+        ws.write_formula(
+            r, 4,
+            f"=(B{er}*(1-$B$8))*(($B$9+A{er}/10000)/12)/(1-(1+($B$9+A{er}/10000)/12)^-($B$10*12))",
+            outf, cv["pay"])
+    ws.conditional_format(sr + 1, 1, sr + len(shifts), 1,
+                          {"type": "3_color_scale", "min_color": "#f6b6b6",
+                           "mid_color": "#f0efec", "max_color": "#8fd48f"})
+
+    # ---- neighborhood seed reference (copy these into the inputs) ----
+    rr = sr + len(shifts) + 3
+    ws.write(rr, 0, "Seed figures by neighborhood — copy into the inputs above", title)
+    rr += 1
+    for c, h in enumerate(["Neighborhood", "Base price", "Base sqft", "Base DOM", "Apprec/yr"]):
+        ws.write(rr, c, h, thdr)
+    seedf_txt = wb.add_format({"border": 1, "border_color": "#e1e0d9"})
+    seedf_usd = wb.add_format({"border": 1, "border_color": "#e1e0d9", "num_format": "$#,##0", "align": "right"})
+    seedf_n = wb.add_format({"border": 1, "border_color": "#e1e0d9", "num_format": "#,##0", "align": "right"})
+    seedf_p = wb.add_format({"border": 1, "border_color": "#e1e0d9", "num_format": "0.0%", "align": "right"})
+    seed_rows = sorted([n for n in master["neighborhoods"] if n.get("norm_ppsf")],
+                       key=lambda n: -(n.get("norm_ppsf") or 0))
+    for j, n in enumerate(seed_rows):
+        r = rr + 1 + j
+        ppsf = n.get("norm_ppsf") or 0
+        pr = n.get("median_sale_price") or (ppsf * 3000)
+        sq = max(500, round((pr / ppsf) / 100) * 100) if ppsf else 3000
+        a20 = n.get("appreciation_since_2020")
+        ap = ((1 + a20 / 100) ** (1 / 6) - 1) if a20 is not None else 0.04
+        ws.write(r, 0, n["neighborhood"], seedf_txt)
+        ws.write_number(r, 1, round(pr / 50000) * 50000, seedf_usd)
+        ws.write_number(r, 2, sq, seedf_n)
+        ws.write_number(r, 3, n.get("dom") or 90, seedf_n)
+        ws.write_number(r, 4, round(ap, 4), seedf_p)
+    ws.freeze_panes(3, 0)
+    ws.hide_gridlines(2)
+
+
 def key_conclusions_sheet(wb, mm, red, tb, sb, rb=None):
     ws = wb.add_worksheet("Key Conclusions")
     m, pr, ci = mm["meta"], mm["meta"]["premiums"], mm["meta"]["premiums_ci95"]
@@ -958,6 +1155,81 @@ def comps_sheet(wb, fmts):
     ws.hide_gridlines(2)
 
 
+SHEET_INDEX = {
+    "Key Conclusions": ("Start here", "Every headline finding with the evidence behind it and a confidence rating."),
+    "Master Ranking": ("Start here", "All neighborhoods, most to least expensive, with suggested repricing and every core metric."),
+    "Scenario": ("Deal tools", "Live financing / capital-markets model — edit the yellow cells and watch price, $/sqft, DOM & returns move. Recreate for any asset class."),
+    "Read Me": ("Start here", "What 'normalized' means, the model, price drivers, validation and honest limits."),
+    "Band x Neighborhood": ("High-ticket (≥$1M)", "How each price band behaves WITHIN each neighborhood — sold vs asked, per band, per area."),
+    "High-Ticket Underwriting": ("High-ticket (≥$1M)", "Every live listing ≥$1M repriced to a suggested list, with comp confidence."),
+    "Underpriced + Why": ("High-ticket (≥$1M)", "Live listings asking below comp-supported value, ranked by dollar opportunity, with generated reasons."),
+    "Price Bands": ("High-ticket (≥$1M)", "The luxury market by tier — median asking vs supported $/sqft and over/under counts."),
+    "Absorption": ("High-ticket (≥$1M)", "Months of supply by price band and by band within each neighborhood."),
+    "Seller Prospects": ("Prospecting", "≥$1M owners who tried and couldn't (failed listings) — your listing-appointment pitch."),
+    "Overpriced Actives": ("Prospecting", "Currently overpriced live listings — tomorrow's expireds to approach for a reduction."),
+    "Teardown Land Plays": ("Prospecting", "Single-family listings where implied land value is most of the ask — redevelopment candidates."),
+    "Comps Drill-Down": ("High-ticket (≥$1M)", "The actual comparable sales behind each ≥$1M valuation — filter by listing to defend a number."),
+    "Neighborhood Profiles": ("Neighborhood detail", "Copy-ready, data-backed talking points for a homeowner conversation, one row per neighborhood."),
+    "Normalized Ranking": ("Neighborhood detail", "Per-home normalized $/sqft with waterfront / new / by-type / land angles for every neighborhood."),
+    "Price Drivers": ("Neighborhood detail", "Marginal effect of waterfront, pool, new construction, baths and age on $/sqft, with 95% ranges."),
+    "Live Deals": ("Neighborhood detail", "Live single-family listings priced below the per-home model."),
+    "Condo Repricing": ("Repricing", "Condo asking vs. recent SOLD comps per neighborhood, with a verdict."),
+    "Neighborhood Repricing": ("Repricing", "All-property asking vs. recent sold per neighborhood."),
+    "Repriced Inventory": ("Repricing", "Every live listing repriced to a should-be price vs its current list."),
+    "Street Value": ("Street level", "Sold $/sqft per street and its premium/discount vs the surrounding neighborhood."),
+    "Deal Underwriting": ("Street level", "Live single-family listings priced below their own street's comp value."),
+    "SFR Rankings (Redfin)": ("Redfin context", "Single-family normalized $/sqft ranking from the independent Redfin layer."),
+    "Condo Rankings": ("Redfin context", "Condo/co-op normalized $/sqft ranking (Redfin)."),
+    "Townhouse Rankings": ("Redfin context", "Townhouse normalized $/sqft ranking (Redfin)."),
+    "Buyer Leverage": ("Redfin context", "Where buyers have negotiating leverage (DOM + discount + price drops + supply)."),
+    "Appreciation": ("Redfin context", "Fastest-appreciating neighborhoods by annualized $/sqft growth."),
+    "Market Index": ("Redfin context", "Quality-adjusted citywide $/sqft appreciation index over time."),
+}
+
+
+def index_sheet(wb, ws):
+    """Populate the Index / table-of-contents sheet with links to every tab. Called
+    LAST, once all worksheets exist, so it can enumerate them in order."""
+    title = wb.add_format({"bold": True, "font_size": 18, "font_color": DARK})
+    sub = wb.add_format({"font_size": 10.5, "italic": True, "font_color": "#898781", "text_wrap": True})
+    grp = wb.add_format({"bold": True, "font_size": 12, "font_color": "white", "bg_color": DARK,
+                         "border": 1, "border_color": "white", "valign": "vcenter"})
+    link = wb.add_format({"font_color": BLUE, "bold": True, "underline": 1, "border": 1,
+                          "border_color": "#e1e0d9", "valign": "vcenter"})
+    desc = wb.add_format({"font_size": 10, "text_wrap": True, "valign": "vcenter",
+                          "border": 1, "border_color": "#e1e0d9", "font_color": "#4a5c6b"})
+    ws.set_column(0, 0, 34)
+    ws.set_column(1, 1, 92)
+    ws.write(0, 0, "Fort Lauderdale — Deal Dashboard", title)
+    ws.write(1, 0, "Market intelligence, normalized. Click any tab below to jump to it. New to the "
+             "workbook? Start with Key Conclusions and the Master Ranking; underwrite a deal in "
+             "Scenario. Re-run analysis/run_all.py on fresh MLS exports to rebuild everything.", sub)
+    ws.set_row(1, 44)
+    names = [w.name for w in wb.worksheets() if w.name != "Index"]
+    # keep worksheet creation order, but group with headers
+    seen_groups, r = set(), 3
+    order = ["Start here", "Deal tools", "High-ticket (≥$1M)", "Prospecting",
+             "Repricing", "Neighborhood detail", "Street level", "Redfin context", "Other"]
+    grouped = {g: [] for g in order}
+    for nm in names:
+        g, d = SHEET_INDEX.get(nm, ("Other", ""))
+        grouped[g].append((nm, d))
+    for g in order:
+        rows = grouped[g]
+        if not rows:
+            continue
+        ws.merge_range(r, 0, r, 1, g, grp)
+        ws.set_row(r, 20)
+        r += 1
+        for nm, d in rows:
+            ws.write_url(r, 0, f"internal:'{nm}'!A1", link, nm)
+            ws.write(r, 1, d, desc)
+            ws.set_row(r, 28)
+            r += 1
+    ws.hide_gridlines(2)
+    ws.set_zoom(110)
+
+
 def main():
     b = _bundle()
     meta = b["meta"]
@@ -972,6 +1244,9 @@ def main():
     wb = wb_writer.book
     fmts = make_formats(wb)
 
+    # Index is created FIRST so it lands as tab #1, but populated LAST (needs all sheets).
+    ws_index = wb.add_worksheet("Index")
+
     try:
         try:
             rb = _reprice()
@@ -981,7 +1256,9 @@ def main():
     except FileNotFoundError:
         pass
     try:
-        master_sheet(wb, fmts, _master())
+        _mb = _master()
+        master_sheet(wb, fmts, _mb)
+        scenario_sheet(wb, _mb)
     except FileNotFoundError:
         pass
     readme_sheet(wb, meta)
@@ -1068,6 +1345,7 @@ def main():
 
     market_index_sheet(wb, fmts, b["market_index"])
 
+    index_sheet(wb, ws_index)
     wb_writer.close()
     print("Wrote", XLSX)
 

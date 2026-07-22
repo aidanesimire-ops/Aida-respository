@@ -8,9 +8,17 @@ appreciation, listing failure rates, live over/under-priced inventory, and
 **street-by-street value** — each street's premium vs. its neighborhood, with live
 listings underwritten against their own street's comps.
 
+It also ships as a **deal dashboard**: a live financing / capital-markets scenario model
+(in both the HTML dashboard and an editable Excel tab) where you set the assumptions —
+down payment, mortgage rate, a rate shift, price/DOM elasticities, cash-buyer share,
+appreciation, hold — and watch sale price, $/sqft, days-on-market, cash-to-close and
+hold-period returns recompute. Nothing is hard-coded, so the same tool recreates for
+other markets and asset classes.
+
 **Start here:** [`REPORT.md`](REPORT.md) (written analysis) ·
-[`outputs/Fort_Lauderdale_PPSF_Normalized.xlsx`](outputs/) (workbook) ·
-[`dashboard/index.html`](dashboard/index.html) (open in a browser).
+[`outputs/Fort_Lauderdale_PPSF_Normalized.xlsx`](outputs/) (workbook — open the **Index**
+tab for a linked table of contents) · [`dashboard/index.html`](dashboard/index.html)
+(open in a browser — use the sticky section nav to jump around).
 
 ## Why raw $/sqft misleads
 

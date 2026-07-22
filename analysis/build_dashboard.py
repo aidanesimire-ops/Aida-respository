@@ -26,6 +26,13 @@ with open(os.path.join(PROC, "street_bundle.json")) as f:
     STREET = json.load(f)
 with open(os.path.join(PROC, "reprice_bundle.json")) as f:
     REPRICE = json.load(f)
+with open(os.path.join(PROC, "master_bundle.json")) as f:
+    _MASTER = json.load(f)
+# compact scenario seed: neighborhood -> base ppsf / dom / appreciation / median price
+SCEN = {r["neighborhood"]: {
+    "ppsf": r.get("norm_ppsf"), "dom": r.get("dom"),
+    "apprec": r.get("appreciation_since_2020"), "price": r.get("median_sale_price")}
+    for r in _MASTER["neighborhoods"]}
 with open(os.path.join(PROC, "absorption_bundle.json")) as f:
     ABSORB = json.load(f)
 with open(os.path.join(PROC, "seller_bundle.json")) as f:
@@ -127,6 +134,24 @@ h1.fl-title{font-size:clamp(26px,4vw,42px);line-height:1.06;margin:0;font-weight
 .opp-reasons{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px}
 .opp-reasons li{position:relative;padding-left:16px;font-size:13px;color:var(--ink-2);line-height:1.4}
 .opp-reasons li:before{content:"";position:absolute;left:3px;top:7px;width:5px;height:5px;border-radius:50%;background:var(--good)}
+.scn-grid{display:grid;grid-template-columns:340px 1fr;gap:22px}
+@media(max-width:820px){.scn-grid{grid-template-columns:1fr}}
+.scn-group{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--accent);margin:14px 0 6px;border-bottom:1px solid var(--line);padding-bottom:4px}
+.scn-inputs label{display:grid;grid-template-columns:1fr auto;align-items:center;gap:6px;
+  font-size:12.5px;color:var(--ink-2);margin:7px 0}
+.scn-inputs input[type=number],.scn-inputs select{border:1px solid var(--line);background:var(--surface);
+  color:var(--ink);border-radius:8px;padding:6px 8px;font-size:13px;width:120px;text-align:right}
+.scn-inputs select{width:100%;grid-column:1/3;text-align:left}
+.scn-inputs input[type=range]{grid-column:1/3;width:100%;accent-color:var(--accent)}
+.scn-inputs .rv{font-weight:700;color:var(--ink)}
+.scn-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.scn-tile{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+.scn-tile.hi{border-left:3px solid var(--accent)}
+.scn-tile .t{font-size:11.5px;color:var(--ink-2);font-weight:600}
+.scn-tile .v{font-size:22px;font-weight:700;margin-top:3px;letter-spacing:-.01em}
+.scn-tile .s{font-size:11.5px;color:var(--muted);margin-top:2px}
+.scn-tile .v.up{color:var(--good)}.scn-tile .v.down{color:var(--neg)}
 .geot .g-t{font-size:11.5px;color:var(--ink-2);font-weight:600}
 .geot .g-v{font-size:19px;font-weight:700;margin-top:2px}
 .geot .g-n{font-size:11px;color:var(--muted)}
@@ -189,6 +214,16 @@ footer.fl-foot{color:var(--muted);font-size:12px;margin-top:8px;text-align:cente
   border-top:1px solid var(--line);padding-top:16px}
 footer.fl-foot a{color:var(--accent)}
 .note-line{font-size:11.5px;color:var(--muted);margin-top:10px}
+html{scroll-behavior:smooth}
+.fl-nav{position:sticky;top:0;z-index:15;display:flex;gap:6px;overflow-x:auto;
+  padding:9px 0;margin:2px 0 4px;background:var(--sand);border-bottom:1px solid var(--line);
+  scrollbar-width:thin;-webkit-overflow-scrolling:touch}
+.fl-nav a{white-space:nowrap;font-size:12.5px;font-weight:600;color:var(--ink-2);
+  text-decoration:none;padding:6px 12px;border-radius:999px;border:1px solid var(--line);
+  background:var(--surface);flex:0 0 auto}
+.fl-nav a:hover{border-color:var(--accent);color:var(--accent)}
+.fl-nav a.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.card,.kpis,.grid2{scroll-margin-top:62px}
 </style>
 
 <div class="fl-root"><div class="fl-wrap">
@@ -201,9 +236,53 @@ footer.fl-foot a{color:var(--accent)}
     <button class="fl-toggle" id="themeBtn" type="button">Toggle theme</button>
   </header>
 
+  <nav class="fl-nav" id="secNav" aria-label="Jump to section">
+    <a href="#scenario">Deal scenario</a>
+    <a href="#highticket">High-ticket bands</a>
+    <a href="#absorption">Absorption</a>
+    <a href="#underpriced">Underpriced</a>
+    <a href="#sellers">Seller prospects</a>
+    <a href="#trends">Since 2020</a>
+    <a href="#ranking">Ranking</a>
+    <a href="#repricing">Repricing</a>
+    <a href="#streets">Street-by-street</a>
+    <a href="#drivers-sec">Price drivers</a>
+  </nav>
+
   <section class="kpis" id="kpis"></section>
 
-  <div class="card">
+  <div class="card" id="scenario">
+    <h2>Deal scenario &amp; financing <span style="font-weight:400;color:var(--muted);font-size:13px">— control the assumptions, watch price / DOM / $/sqft move</span></h2>
+    <p class="cap">A live sensitivity model. Pick a neighborhood to seed today's numbers, then adjust financing and capital-markets assumptions. The elasticities are yours to set — nothing is hard-coded, so this recreates for any market or asset class.</p>
+    <div class="scn-grid">
+      <div class="scn-inputs">
+        <div class="scn-group">Deal</div>
+        <label>Neighborhood<select id="scNb"></select></label>
+        <label>Purchase price ($)<input id="scPrice" type="number" step="50000"></label>
+        <label>Size (sqft)<input id="scSqft" type="number" step="100"></label>
+        <div class="scn-group">Financing</div>
+        <label>Down payment <span class="rv" id="scDownV"></span><input id="scDown" type="range" min="0" max="100" step="5" value="35"></label>
+        <label>Mortgage rate <span class="rv" id="scRateV"></span><input id="scRate" type="range" min="3" max="10" step="0.125" value="7"></label>
+        <label>Amortization (yrs)<input id="scAmort" type="number" value="30" step="5"></label>
+        <div class="scn-group">Capital markets &amp; assumptions</div>
+        <label>Rate shift (bps) <span class="rv" id="scShiftV"></span><input id="scShift" type="range" min="-200" max="200" step="25" value="0"></label>
+        <label>Price sensitivity (%/+100bps)<input id="scPElast" type="number" value="-3" step="0.5"></label>
+        <label>Cash-buyer share <span class="rv" id="scCashV"></span><input id="scCash" type="range" min="0" max="100" step="5" value="45"></label>
+        <label>DOM sensitivity (%/+100bps)<input id="scDElast" type="number" value="15" step="1"></label>
+        <label>Appreciation (%/yr)<input id="scApprec" type="number" value="4" step="0.5"></label>
+        <label>Hold (yrs)<input id="scHold" type="number" value="5" step="1"></label>
+        <label>Selling costs (%)<input id="scSell" type="number" value="6" step="0.5"></label>
+      </div>
+      <div class="scn-out">
+        <div class="scn-tiles" id="scTiles"></div>
+        <div style="font-size:12px;font-weight:600;color:var(--ink-2);margin:4px 0 6px">Sensitivity to rate shift</div>
+        <div class="tbl-scroll"><table class="fl" id="scSens"><thead></thead><tbody></tbody></table></div>
+        <p class="note-line" id="scNote"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="drivers-sec">
     <h2>What drives value — the per-home model</h2>
     <p class="cap">Marginal effect on price per square foot, holding size, type and neighborhood constant. Estimated from actual closed sales.</p>
     <div class="drivers" id="drivers"></div>
@@ -211,7 +290,7 @@ footer.fl-foot a{color:var(--accent)}
     <div class="geostrip" id="geostrip"></div>
   </div>
 
-  <div class="card">
+  <div class="card" id="highticket">
     <h2>High-ticket (≥$1M) — band trends by neighborhood <span style="font-weight:400;color:var(--muted);font-size:13px" id="htSummary"></span></h2>
     <p class="cap">The same price band behaves differently by neighborhood — what actually <em>sold</em> vs what's currently <em>asked</em>, per band, per area. Search a neighborhood to see its band-by-band pattern.</p>
     <div class="geostrip" id="htBands"></div>
@@ -219,7 +298,7 @@ footer.fl-foot a{color:var(--accent)}
     <div class="tbl-scroll"><table class="fl" id="htTbl"><thead></thead><tbody></tbody></table></div>
   </div>
 
-  <div class="card">
+  <div class="card" id="absorption">
     <h2>Absorption — months of supply by band &amp; neighborhood</h2>
     <p class="cap">How hard it is to sell at each level. &lt;6 mo = seller's market · 6–12 balanced · 12–24 buyer's · &gt;24 deep buyer's. Search a neighborhood for its band-level absorption.</p>
     <div class="geostrip" id="absBands"></div>
@@ -227,7 +306,7 @@ footer.fl-foot a{color:var(--accent)}
     <div class="tbl-scroll"><table class="fl" id="absTbl"><thead></thead><tbody></tbody></table></div>
   </div>
 
-  <div class="card">
+  <div class="card" id="underpriced">
     <h2>Underpriced opportunities — where the market is mispriced, and why <span style="font-weight:400;color:var(--muted);font-size:13px" id="upSummary"></span></h2>
     <p class="cap">Live listings asking below comp-supported value, ranked by dollar opportunity. Each reason is generated from the data — verify condition on site.</p>
     <div class="controls" style="margin-bottom:12px">
@@ -243,7 +322,7 @@ footer.fl-foot a{color:var(--accent)}
     <div id="upList"></div>
   </div>
 
-  <div class="card">
+  <div class="card" id="sellers">
     <h2>Seller prospects — owners to call for a listing <span style="font-weight:400;color:var(--muted);font-size:13px" id="slSummary"></span></h2>
     <p class="cap">≥$1M owners who tried and couldn't (expired/withdrawn/cancelled), plus overpriced actives. What they asked, what comps support, and the number that moves it.</p>
     <div class="controls" style="margin-bottom:10px">
@@ -271,7 +350,7 @@ footer.fl-foot a{color:var(--accent)}
     </div>
   </div>
 
-  <div class="card">
+  <div class="card" id="trends">
     <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px">
       <h2>The market since 2020 <span style="font-weight:400;color:var(--muted);font-size:13px" id="timeSummary"></span></h2>
     </div>
@@ -293,7 +372,7 @@ footer.fl-foot a{color:var(--accent)}
     </div>
   </div>
 
-  <div class="card">
+  <div class="card" id="ranking">
     <div class="controls">
       <div class="seg" id="basisSeg" role="group" aria-label="Property basis">
         <button data-b="all" aria-pressed="true">All</button>
@@ -323,7 +402,7 @@ footer.fl-foot a{color:var(--accent)}
     <p class="note-line" id="noteLine"></p>
   </div>
 
-  <div class="card">
+  <div class="card" id="repricing">
     <h2>Repricing — is each neighborhood priced right? <span style="font-weight:400;color:var(--muted);font-size:13px" id="repriceSummary"></span></h2>
     <p class="cap">Current asking vs. what it <em>should</em> be (median recent sold comps per neighborhood). Verdict from asking vs sold.</p>
     <div class="controls" style="margin-bottom:10px">
@@ -339,7 +418,7 @@ footer.fl-foot a{color:var(--accent)}
     <div class="tbl-scroll"><table class="fl" id="repInvTbl"><thead></thead><tbody></tbody></table></div>
   </div>
 
-  <div class="card">
+  <div class="card" id="streets">
     <h2>Street-by-street underwriting <span style="font-weight:400;color:var(--muted);font-size:13px" id="streetSummary"></span></h2>
     <p class="cap">Value per street (≥4 closed comps) and its premium/discount vs the surrounding neighborhood. Search a street or neighborhood.</p>
     <div class="controls" style="margin-bottom:12px">
@@ -367,6 +446,7 @@ footer.fl-foot a{color:var(--accent)}
 <script id="under-data" type="application/json">__UNDER_JSON__</script>
 <script id="absorb-data" type="application/json">__ABSORB_JSON__</script>
 <script id="seller-data" type="application/json">__SELLER_JSON__</script>
+<script id="scen-data" type="application/json">__SCEN_JSON__</script>
 <script>
 (function(){
 "use strict";
@@ -666,6 +746,74 @@ function renderUW(){
 }
 $("#streetSearch").addEventListener("input",e=>{state.streetQ=e.target.value;renderStreets();renderUW();});
 
+// ---------- deal scenario & financing ----------
+const SCN=JSON.parse(document.getElementById("scen-data").textContent);
+const gv=id=>parseFloat($(id).value)||0;
+function scenAt(shiftBps,p){
+  const pElast=gv("#scPElast"),cash=gv("#scCash"),dElast=gv("#scDElast"),
+        rate=gv("#scRate"),down=gv("#scDown"),amort=gv("#scAmort"),sqft=gv("#scSqft")||1,
+        baseDom=(SCN[$("#scNb").value]||{}).dom||90;
+  const pf=1+(pElast/100)*(shiftBps/100)*(1-cash/100);
+  const price=p*pf, rt=rate+shiftBps/100, loan=price*(1-down/100),
+        m=rt/100/12, n=amort*12;
+  const pay=m>0?loan*m/(1-Math.pow(1+m,-n)):loan/n;
+  return {price,ppsf:price/sqft,dom:baseDom*(1+(dElast/100)*(shiftBps/100)),rate:rt,pay,loan};
+}
+function scCalc(){
+  $("#scDownV").textContent=gv("#scDown").toFixed(0)+"%";
+  $("#scRateV").textContent=gv("#scRate").toFixed(3).replace(/0+$/,"").replace(/\.$/,"")+"%";
+  $("#scShiftV").textContent=(gv("#scShift")>=0?"+":"")+gv("#scShift")+"bps";
+  $("#scCashV").textContent=gv("#scCash").toFixed(0)+"%";
+  const price=gv("#scPrice"),shift=gv("#scShift"),down=gv("#scDown"),
+        apprec=gv("#scApprec"),hold=gv("#scHold"),sell=gv("#scSell"),
+        amort=gv("#scAmort"),rate=gv("#scRate");
+  const c=scenAt(shift,price);
+  const cashToClose=price*down/100+price*0.03;
+  const n=amort*12,k=hold*12,m=rate/100/12;
+  const remLoan=m>0?c.loan*(Math.pow(1+m,n)-Math.pow(1+m,k))/(Math.pow(1+m,n)-1):c.loan*(1-k/n);
+  const exit=c.price*Math.pow(1+apprec/100,hold);
+  const net=exit-exit*sell/100-remLoan;
+  const annR=cashToClose>0?(Math.pow(net/cashToClose,1/hold)-1)*100:0;
+  const dpx=(c.price/price-1)*100;
+  const tile=(t,v,s,cls)=>`<div class="scn-tile${cls&&cls.hi?' hi':''}"><div class="t">${t}</div>`
+    +`<div class="v ${cls&&cls.dir||''}">${v}</div><div class="s">${s||""}</div></div>`;
+  $("#scTiles").innerHTML=[
+    tile("Adjusted market price",usd(c.price),`${dpx>=0?"+":""}${dpx.toFixed(1)}% vs base`,{hi:1,dir:dpx>0?"up":dpx<0?"down":""}),
+    tile("Adjusted $/sqft",usd(c.ppsf),`base ${usd(price/(gv("#scSqft")||1))}`,{hi:1}),
+    tile("Projected days on market",Math.round(c.dom),`at ${c.rate.toFixed(2)}% rate`,{hi:1}),
+    tile("Monthly P&I",usd(c.pay),`loan ${usd(c.loan)}`),
+    tile("Cash to close",usd(cashToClose),`${down}% down + ~3% costs`),
+    tile(`Exit value (${hold}y @ ${apprec}%)`,usd(exit),`after ${sell}% sell costs`),
+    tile("Equity multiple",(net/cashToClose).toFixed(2)+"×",`net ${usd(net)}`,{dir:net>cashToClose?"up":"down"}),
+    tile("Annualized return",annR.toFixed(1)+"%",`on ${usd(cashToClose)} equity`,{dir:annR>0?"up":"down"}),
+  ].join("");
+  const shifts=[-200,-100,-50,0,50,100,200];
+  $("#scSens thead").innerHTML="<tr><th class='l'>Rate shift</th><th>Mkt price</th><th>$/sqft</th><th>Proj. DOM</th><th>Monthly P&amp;I</th></tr>";
+  $("#scSens tbody").innerHTML=shifts.map(sh=>{const x=scenAt(sh,price);
+    const hl=sh===shift?' style="background:var(--accent-soft)"':'';
+    return `<tr${hl}><td class="l tnum">${sh>=0?"+":""}${sh}bps</td><td class="tnum">${usd(x.price)}</td>`
+      +`<td class="tnum">${usd(x.ppsf)}</td><td class="tnum">${Math.round(x.dom)}</td><td class="tnum">${usd(x.pay)}</td></tr>`;}).join("");
+  $("#scNote").textContent="Price sensitivity is dampened by the cash-buyer share (cash buyers ignore rates). "
+    +"Set the elasticities to your own read — defaults are conservative and FL luxury is historically rate-insensitive (prices rose through the 2022–24 rate hikes).";
+}
+function scSeed(){
+  const s=SCN[$("#scNb").value]||{};
+  const sqft=Math.max(500,Math.round((s.price&&s.ppsf?s.price/s.ppsf:3000)/100)*100);
+  $("#scSqft").value=sqft;
+  $("#scPrice").value=Math.round((s.price||(s.ppsf||500)*sqft)/50000)*50000;
+  if(s.apprec!=null)$("#scApprec").value=((Math.pow(1+s.apprec/100,1/6)-1)*100).toFixed(1);
+  scCalc();
+}
+function scInit(){
+  $("#scNb").innerHTML=Object.keys(SCN).sort().map(n=>`<option>${n}</option>`).join("");
+  const def=["Rio Vista","Coral Ridge","Las Olas"].find(n=>n in SCN)||Object.keys(SCN)[0];
+  $("#scNb").value=def;
+  $("#scNb").addEventListener("change",scSeed);
+  ["#scPrice","#scSqft","#scDown","#scRate","#scAmort","#scShift","#scPElast","#scCash",
+   "#scDElast","#scApprec","#scHold","#scSell"].forEach(id=>$(id).addEventListener("input",scCalc));
+  scSeed();
+}
+
 // ---------- absorption ----------
 let absQ="";
 function absBands(){
@@ -837,6 +985,23 @@ $("#themeBtn").addEventListener("click",()=>{const cur=document.documentElement.
 matchMedia("(prefers-color-scheme:dark)").addEventListener("change",renderAll);
 window.addEventListener("resize",()=>{clearTimeout(window._rz);window._rz=setTimeout(renderAll,150);});
 renderAll();
+scInit();
+
+// ---------- section nav scrollspy ----------
+(function(){
+  const links=[...document.querySelectorAll("#secNav a")];
+  const map={}; links.forEach(a=>{const el=document.querySelector(a.getAttribute("href"));
+    if(el)map[a.getAttribute("href").slice(1)]=a;});
+  const targets=Object.keys(map).map(id=>document.getElementById(id)).filter(Boolean);
+  if(!("IntersectionObserver"in window)||!targets.length)return;
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{if(en.isIntersecting){
+      links.forEach(a=>a.classList.remove("on"));
+      const a=map[en.target.id]; if(a){a.classList.add("on");
+        a.scrollIntoView({block:"nearest",inline:"nearest"});}}});
+  },{rootMargin:"-60px 0px -70% 0px",threshold:0});
+  targets.forEach(t=>io.observe(t));
+})();
 })();
 </script>
 """
@@ -852,7 +1017,8 @@ def build():
              .replace("__HIGH_JSON__", json.dumps(HIGH, separators=(",", ":")))
              .replace("__UNDER_JSON__", json.dumps(UNDER, separators=(",", ":")))
              .replace("__ABSORB_JSON__", json.dumps(ABSORB, separators=(",", ":")))
-             .replace("__SELLER_JSON__", json.dumps(SELLER, separators=(",", ":"))))
+             .replace("__SELLER_JSON__", json.dumps(SELLER, separators=(",", ":")))
+             .replace("__SCEN_JSON__", json.dumps(SCEN, separators=(",", ":"))))
     standalone = (
         "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"
         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
