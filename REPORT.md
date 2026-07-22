@@ -92,13 +92,13 @@ See the **Seller Prospects** and **Overpriced Actives** tabs.
 
 ## Teardown / land plays
 
-**51 single-family listings** (4 waterfront) where the implied land value is the bulk of the ask — redevelopment candidates. Top of the list:
+**55 single-family listings** (5 waterfront) where the implied land value is the bulk of the ask — redevelopment candidates. Top of the list:
 
+- **805 SE 10th Street (Rio Vista)** — $1,500,000, land ~$1,650,000 (110% of ask) on a 9,375 sqft lot.
+- **815 SE 7th Street (Rio Vista)** — $990,000, land ~$1,082,000 (109% of ask) on a 6,150 sqft lot.
 - **1708 NW 15th St (Lauderdale Manors)** — $155,000, land ~$146,000 (94% of ask) on a 8,622 sqft lot.
 - **2711 Mayan Dr (Harbor Beach)** — $1,699,000, land ~$1,466,000 (86% of ask) on a 17,553 sqft lot.
-- **1908 NE 26th Street (Coral Point)** — $560,000, land ~$426,000 (76% of ask) on a 8,616 sqft lot.
-- **205 NE 16th Ter (Victoria Park)** — $950,000, land ~$726,000 (76% of ask) on a 7,536 sqft lot.
-- **805 SE 10th Street (Rio Vista)** — $1,500,000, land ~$1,118,000 (75% of ask) on a 9,375 sqft lot.
+- **1109 SE 11th Court (Rio Vista)** — $1,950,000, land ~$1,540,000 (79% of ask) on a 8,750 sqft lot.
 
 See the **Teardown / Land Plays** tab. Confirm zoning & buildable area.
 

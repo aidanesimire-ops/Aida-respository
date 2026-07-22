@@ -15,6 +15,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 STEPS = [
     ("Redfin neighborhood normalization", "normalize_ppsf.py"),
     ("MLS per-home hedonic + profiles", "mls_normalize.py"),
+    ("Land & dock comps (+ commercial land)", "land_analysis.py"),
+    ("Residential-income / multifamily comps", "income_analysis.py"),
     ("Street-by-street underwriting", "street_underwrite.py"),
     ("High-ticket underwriting (>=$1M)", "high_ticket.py"),
     ("Underpriced opportunities + reasons", "underpriced.py"),

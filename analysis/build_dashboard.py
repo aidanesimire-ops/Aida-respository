@@ -43,6 +43,22 @@ with open(os.path.join(PROC, "underpriced_bundle.json")) as f:
     _UP = json.load(f)
 UNDER = {"meta": _UP["meta"], "by_band": _UP["by_band"],
          "listings": _UP["listings"][:200]}   # trim payload; full set in the CSV/Excel
+with open(os.path.join(PROC, "land_bundle.json")) as f:
+    _LAND = json.load(f)
+# trim land payload: keep aggregates + a capped inventory/sales tail
+LAND = {"meta": _LAND["meta"], "by_neighborhood": _LAND["by_neighborhood"],
+        "geography": _LAND["geography"], "by_zoning": _LAND["by_zoning"],
+        "acreage": _LAND["acreage"],
+        "docks": {**{k: v for k, v in _LAND["docks"].items() if k != "sales"},
+                  "sales": _LAND["docks"]["sales"][:15]},
+        "commercial": ({**{k: v for k, v in _LAND["commercial"].items() if k not in ("sales", "actives")},
+                        "sales": _LAND["commercial"]["sales"][:14]} if _LAND.get("commercial") else None),
+        "implied_vs_actual": _LAND["implied_vs_actual"],
+        "actives": _LAND["actives"][:80]}
+with open(os.path.join(PROC, "income_bundle.json")) as f:
+    _INC = json.load(f)
+INCOME = {"meta": _INC["meta"], "by_neighborhood": _INC["by_neighborhood"],
+          "by_tier": _INC["by_tier"], "actives": _INC["actives"][:80]}
 with open(os.path.join(PROC, "high_ticket_bundle.json")) as f:
     _HT = json.load(f)
 # trim listings out of the dashboard payload (they live in the Excel tab); keep the
@@ -240,6 +256,8 @@ html{scroll-behavior:smooth}
     <a href="#scenario">Deal scenario</a>
     <a href="#highticket">High-ticket bands</a>
     <a href="#absorption">Absorption</a>
+    <a href="#land">Land &amp; docks</a>
+    <a href="#multifamily">Multifamily</a>
     <a href="#underpriced">Underpriced</a>
     <a href="#sellers">Seller prospects</a>
     <a href="#trends">Since 2020</a>
@@ -304,6 +322,28 @@ html{scroll-behavior:smooth}
     <div class="geostrip" id="absBands"></div>
     <div class="controls" style="margin:14px 0 10px"><input class="search" id="absSearch" type="search" placeholder="Search neighborhood (e.g. Rio Vista, Coral Ridge)…" aria-label="Search absorption"></div>
     <div class="tbl-scroll"><table class="fl" id="absTbl"><thead></thead><tbody></tbody></table></div>
+  </div>
+
+  <div class="card" id="land">
+    <h2>Land &amp; docks — comp-backed lot value <span style="font-weight:400;color:var(--muted);font-size:13px" id="landSummary"></span></h2>
+    <p class="cap">Vacant-land sales turn the previously <em>implied</em> land value into real comps: land $/sqft by neighborhood, the lot factors that drive it (waterfront, corner, size, zoning), the dock market, and commercial/development parcels. The RLD export spans South Florida — Fort Lauderdale rows are flagged.</p>
+    <div style="font-size:12px;font-weight:600;color:var(--ink-2);margin:2px 0 6px">Lot geography <span style="font-weight:400;color:var(--muted)">— median land $/ft²</span></div>
+    <div class="geostrip" id="landGeo"></div>
+    <div style="font-size:12px;font-weight:600;color:var(--ink-2);margin:14px 0 6px">Zoning / density &amp; the size gradient</div>
+    <div class="geostrip" id="landZone"></div>
+    <div class="controls" style="margin:14px 0 10px"><input class="search" id="landSearch" type="search" placeholder="Search neighborhood…" aria-label="Search land"></div>
+    <div class="tbl-scroll"><table class="fl" id="landTbl"><thead></thead><tbody></tbody></table></div>
+    <div style="font-size:12px;font-weight:600;color:var(--ink-2);margin:18px 0 6px">Docks &amp; commercial / development land</div>
+    <div class="geostrip" id="landDock"></div>
+  </div>
+
+  <div class="card" id="multifamily">
+    <h2>Multifamily / income — $/unit &amp; $/sqft <span style="font-weight:400;color:var(--muted);font-size:13px" id="mfSummary"></span></h2>
+    <p class="cap">Small multifamily (duplex / triplex / quad) trades on price-per-unit and $/sqft. Medians by neighborhood and building size, with active listings scored against recent closed comps. Price-comp layer — cap rate &amp; GRM need a rent roll.</p>
+    <div style="font-size:12px;font-weight:600;color:var(--ink-2);margin:2px 0 6px">By building size <span style="font-weight:400;color:var(--muted)">— median $/unit</span></div>
+    <div class="geostrip" id="mfTiers"></div>
+    <div class="controls" style="margin:14px 0 10px"><input class="search" id="mfSearch" type="search" placeholder="Search neighborhood…" aria-label="Search multifamily"></div>
+    <div class="tbl-scroll"><table class="fl" id="mfTbl"><thead></thead><tbody></tbody></table></div>
   </div>
 
   <div class="card" id="underpriced">
@@ -446,6 +486,8 @@ html{scroll-behavior:smooth}
 <script id="under-data" type="application/json">__UNDER_JSON__</script>
 <script id="absorb-data" type="application/json">__ABSORB_JSON__</script>
 <script id="seller-data" type="application/json">__SELLER_JSON__</script>
+<script id="land-data" type="application/json">__LAND_JSON__</script>
+<script id="income-data" type="application/json">__INCOME_JSON__</script>
 <script id="scen-data" type="application/json">__SCEN_JSON__</script>
 <script>
 (function(){
@@ -459,6 +501,8 @@ const HT=JSON.parse(document.getElementById("high-data").textContent);
 const UP=JSON.parse(document.getElementById("under-data").textContent);
 const ABS=JSON.parse(document.getElementById("absorb-data").textContent);
 const SL=JSON.parse(document.getElementById("seller-data").textContent);
+const LAND=JSON.parse(document.getElementById("land-data").textContent);
+const INCOME=JSON.parse(document.getElementById("income-data").textContent);
 const M=MLS.meta, NB=MLS.neighborhoods;
 function mktColor(m){return {"Seller's market":"var(--neg)","Balanced":"var(--ink-2)",
   "Buyer's market":"var(--good)","Deep buyer's market":"var(--good)"}[m]||"var(--ink-2)";}
@@ -841,6 +885,85 @@ function absTable(){
 }
 $("#absSearch").addEventListener("input",e=>{absQ=e.target.value;absTable();});
 
+// ---------- land & docks ----------
+const LM=LAND.meta;
+$("#landSummary").textContent=`· FLL land $${LM.fll_land_ppsf}/ft² (wf $${LM.fll_waterfront_ppsf} vs dry $${LM.fll_dry_ppsf}) · ${LM.n_sold.toLocaleString()} comps · ${LM.n_dock_sold} dock sales`;
+function landStrips(){
+  $("#landGeo").innerHTML=(LAND.geography||[]).map(g=>
+    `<div class="geot${/Waterfront/.test(g.geo)?' wet':''}"><div class="g-t">${g.geo}</div>`
+    +`<div class="g-v tnum">${usd(g.land_ppsf)}<span style="font-size:11px;color:var(--muted)">/ft²</span></div>`
+    +`<div class="g-n">${g.n} sold · ${g.scope}</div></div>`).join("");
+  const zones=(LAND.by_zoning||[]).map(z=>
+    `<div class="geot"><div class="g-t">${z.density}</div>`
+    +`<div class="g-v tnum">${usd(z.land_ppsf)}<span style="font-size:11px;color:var(--muted)">/ft²</span></div>`
+    +`<div class="g-n">${z.n} sold</div></div>`).join("");
+  const acr=(LAND.acreage||[]).slice(0,4).map(a=>
+    `<div class="geot"><div class="g-t">${a.band}</div>`
+    +`<div class="g-v tnum">${usd(a.land_ppsf)}<span style="font-size:11px;color:var(--muted)">/ft²</span></div>`
+    +`<div class="g-n">$${(a.per_acre||0).toLocaleString()}/ac · ${a.n}</div></div>`).join("");
+  $("#landZone").innerHTML=zones+acr;
+  const d=LAND.docks, c=LAND.commercial;
+  let dh=`<div class="geot wet"><div class="g-t">Docks / dockominiums</div>`
+    +`<div class="g-v tnum">${usd(d.median_sold)}</div>`
+    +`<div class="g-n">${d.n_sold} sold · $${(d.min_sold||0).toLocaleString()}–$${(d.max_sold||0).toLocaleString()}</div></div>`;
+  if(c)dh+=`<div class="geot"><div class="g-t">Commercial / dev land</div>`
+    +`<div class="g-v tnum">${usd(c.median_ppsf_sold)}<span style="font-size:11px;color:var(--muted)">/ft²</span></div>`
+    +`<div class="g-n">${c.n_sold} sold · $${(c.per_acre_sold||0).toLocaleString()}/ac · ${c.n_active} live</div></div>`;
+  const iva=(LAND.implied_vs_actual||[])[0];
+  if(iva)dh+=`<div class="geot"><div class="g-t">Implied vs actual (${iva.neighborhood})</div>`
+    +`<div class="g-v tnum">${usd(iva.actual_ppsf)}</div>`
+    +`<div class="g-n">hedonic $${iva.implied_ppsf} → comps ${iva.gap_pct>=0?"+":""}${iva.gap_pct}%</div></div>`;
+  $("#landDock").innerHTML=dh;
+}
+let landQ="";
+const LDCOLS=[
+  {k:"neighborhood",t:"Neighborhood",l:1,f:r=>`<span class="nbh">${r.neighborhood}</span>${r.in_improved?' <span class="basis">FLL</span>':''}`},
+  {k:"n_sold",t:"Sold",f:r=>`<span class="tnum">${r.n_sold}</span>`},
+  {k:"land_ppsf",t:"Land $/ft²",f:r=>`<span class="tnum">${usd(r.land_ppsf)}</span>`},
+  {k:"per_acre",t:"$/acre",f:r=>`<span class="tnum">${usd(r.per_acre)}</span>`},
+  {k:"waterfront_share",t:"WF",f:r=>`<span class="tnum wf">${Math.round((r.waterfront_share||0)*100)}%</span>`},
+  {k:"median_price",t:"Median price",f:r=>`<span class="tnum">${usd(r.median_price)}</span>`},
+  {k:"n_active",t:"Active",f:r=>`<span class="tnum">${r.n_active}</span>`},
+];
+function landTable(){
+  const q=landQ.toLowerCase();
+  let rows=LAND.by_neighborhood.filter(r=>!q||r.neighborhood.toLowerCase().includes(q));
+  if(!q)rows=rows.slice(0,40);
+  $("#landTbl thead").innerHTML="<tr>"+LDCOLS.map(c=>`<th class="${c.l?'l':''}">${c.t}</th>`).join("")+"</tr>";
+  $("#landTbl tbody").innerHTML=rows.map(r=>"<tr>"+LDCOLS.map(c=>`<td class="${c.l?'l':''}">${c.f(r)}</td>`).join("")+"</tr>").join("")
+    ||`<tr><td class="l" colspan="7" style="color:var(--muted)">No land comps match.</td></tr>`;
+}
+$("#landSearch").addEventListener("input",e=>{landQ=e.target.value;landTable();});
+
+// ---------- multifamily / income ----------
+const IM=INCOME.meta;
+$("#mfSummary").textContent=`· ${IM.n_sold} sold · median $${IM.median_ppu.toLocaleString()}/unit · $${IM.median_ppsf}/ft² · ${IM.n_over} over / ${IM.n_under} under on ask`;
+function mfStrips(){
+  $("#mfTiers").innerHTML=(INCOME.by_tier||[]).map(t=>
+    `<div class="geot"><div class="g-t">${t.tier}</div>`
+    +`<div class="g-v tnum">${usd(t.ppu)}</div>`
+    +`<div class="g-n">$${t.ppsf}/ft² · ${t.n} sold</div></div>`).join("");
+}
+let mfQ="";
+const MFCOLS=[
+  {k:"neighborhood",t:"Neighborhood",l:1,f:r=>`<span class="nbh">${r.neighborhood}</span>${r.in_improved?'':' <span class="basis">wider</span>'}`},
+  {k:"n_sold",t:"Sold",f:r=>`<span class="tnum">${r.n_sold}</span>`},
+  {k:"ppu",t:"$/unit",f:r=>`<span class="tnum">${usd(r.ppu)}</span>`},
+  {k:"ppsf",t:"$/ft²",f:r=>`<span class="tnum">${usd(r.ppsf)}</span>`},
+  {k:"median_units",t:"Units",f:r=>`<span class="tnum">${r.median_units||"—"}</span>`},
+  {k:"n_active",t:"Active",f:r=>`<span class="tnum">${r.n_active}</span>`},
+  {k:"gap_pct",t:"Ask vs sold",f:r=>r.gap_pct==null?"—":`<span class="tnum ${r.gap_pct>0?'neg':'pos'}">${pctS(r.gap_pct)}</span>`},
+  {k:"verdict",t:"Verdict",l:1,f:r=>r.verdict?vpill(r.verdict):"—"},
+];
+function mfTable(){
+  const q=mfQ.toLowerCase();
+  let rows=INCOME.by_neighborhood.filter(r=>!q||r.neighborhood.toLowerCase().includes(q));
+  $("#mfTbl thead").innerHTML="<tr>"+MFCOLS.map(c=>`<th class="${c.l?'l':''}">${c.t}</th>`).join("")+"</tr>";
+  $("#mfTbl tbody").innerHTML=rows.map(r=>"<tr>"+MFCOLS.map(c=>`<td class="${c.l?'l':''}">${c.f(r)}</td>`).join("")+"</tr>").join("")
+    ||`<tr><td class="l" colspan="8" style="color:var(--muted)">No multifamily comps match.</td></tr>`;
+}
+$("#mfSearch").addEventListener("input",e=>{mfQ=e.target.value;mfTable();});
+
 // ---------- seller prospects ----------
 $("#slSummary").textContent=`· ${SL.meta.n_failed} failed-listing owners, ${SL.meta.n_overpriced_active} overpriced actives`;
 let slType="failed", slQ="";
@@ -974,6 +1097,7 @@ $("#repSearch").addEventListener("input",e=>{state.repQ=e.target.value;renderRep
 function renderAll(){kpis();drivers();geostrip();lineChart();flags();barChart();renderTable();
   renderTime();movers();renderStreets();renderUW();renderRepFlags();renderRepNbhd();renderRepInv();
   htBands();htTable();absBands();absTable();slTable();renderUnder();
+  landStrips();landTable();mfStrips();mfTable();
   renderProfile(state.sel || (filtered()[0]||NB[0]||{}).neighborhood);}
 $("#basisSeg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
   state.basis=b.dataset.b;[...$("#basisSeg").children].forEach(x=>x.setAttribute("aria-pressed",x===b));
@@ -1018,6 +1142,8 @@ def build():
              .replace("__UNDER_JSON__", json.dumps(UNDER, separators=(",", ":")))
              .replace("__ABSORB_JSON__", json.dumps(ABSORB, separators=(",", ":")))
              .replace("__SELLER_JSON__", json.dumps(SELLER, separators=(",", ":")))
+             .replace("__LAND_JSON__", json.dumps(LAND, separators=(",", ":")))
+             .replace("__INCOME_JSON__", json.dumps(INCOME, separators=(",", ":")))
              .replace("__SCEN_JSON__", json.dumps(SCEN, separators=(",", ":"))))
     standalone = (
         "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"

@@ -1155,6 +1155,171 @@ def comps_sheet(wb, fmts):
     ws.hide_gridlines(2)
 
 
+def _blk_formats(wb):
+    return {
+        "title": wb.add_format({"bold": True, "font_size": 15, "font_color": DARK}),
+        "sub": wb.add_format({"font_size": 10, "italic": True, "font_color": "#898781", "text_wrap": True}),
+        "h2": wb.add_format({"bold": True, "font_size": 12, "font_color": BLUE}),
+        "hdr": wb.add_format({"bold": True, "font_color": "white", "bg_color": BLUE, "border": 1,
+                              "border_color": "white", "align": "center", "valign": "vcenter", "text_wrap": True}),
+        "txt": wb.add_format({"border": 1, "border_color": "#e1e0d9"}),
+        "txtb": wb.add_format({"border": 1, "border_color": "#e1e0d9", "bold": True}),
+        "usd": wb.add_format({"num_format": "$#,##0", "border": 1, "border_color": "#e1e0d9", "align": "right"}),
+        "num": wb.add_format({"num_format": "#,##0", "border": 1, "border_color": "#e1e0d9", "align": "center"}),
+        "pct": wb.add_format({"num_format": '0"%"', "border": 1, "border_color": "#e1e0d9", "align": "center"}),
+        "sgn": wb.add_format({"num_format": '+0"%";-0"%"', "border": 1, "border_color": "#e1e0d9", "align": "center"}),
+    }
+
+
+def _write_block(ws, r, headers, widths, rowdata, f):
+    for c, (h, wd) in enumerate(zip(headers, widths)):
+        ws.write(r, c, h, f["hdr"])
+        ws.set_column(c, c, wd)
+    for i, row in enumerate(rowdata):
+        for c, (val, kind) in enumerate(row):
+            fmt = f.get(kind, f["txt"])
+            if val is None or (isinstance(val, float) and pd.isna(val)):
+                ws.write(r + 1 + i, c, "", f["txt"])
+            elif kind in ("usd", "num", "pct", "sgn"):
+                ws.write_number(r + 1 + i, c, float(val), fmt)
+            else:
+                ws.write(r + 1 + i, c, str(val), fmt)
+    return r + 1 + len(rowdata)
+
+
+def land_comps_sheet(wb, lb):
+    f = _blk_formats(wb)
+    m = lb["meta"]
+    ws = wb.add_worksheet("Land Comps")
+    ws.write(0, 0, "Vacant-land comps by neighborhood — comp-backed land $/sqft", f["title"])
+    ws.write(1, 0, f"Fort Lauderdale land ${m['fll_land_ppsf']}/sqft (waterfront "
+             f"${m['fll_waterfront_ppsf']} vs dry ${m['fll_dry_ppsf']}, n={m['n_fll_sold']}). "
+             f"{m['n_sold']:,} sold land comps across South Florida; {m['n_neighborhoods']} "
+             "neighborhoods with ≥4. 'Market' flags true Fort Lauderdale vs the wider pull.", f["sub"])
+    ws.set_row(1, 30)
+    heads = ["Neighborhood", "Market", "Sold", "Land $/sqft", "$/sqft p25", "$/sqft p75",
+             "$/acre", "Median price", "WF %", "Active", "Active ask $/sqft"]
+    widths = [24, 16, 7, 12, 11, 11, 12, 14, 7, 8, 15]
+    rows = []
+    for r in lb["by_neighborhood"]:
+        rows.append([
+            (r["neighborhood"], "txtb"), ("Fort Lauderdale" if r["in_improved"] else "Wider S. Florida", "txt"),
+            (r["n_sold"], "num"), (r["land_ppsf"], "usd"), (r["ppsf_p25"], "usd"),
+            (r["ppsf_p75"], "usd"), (r["per_acre"], "usd"), (r["median_price"], "usd"),
+            (round(r["waterfront_share"] * 100), "pct"), (r["n_active"], "num"),
+            (r["active_ask_ppsf"], "usd")])
+    end = _write_block(ws, 3, heads, widths, rows, f)
+    ws.conditional_format(4, 3, end - 1, 3, {"type": "3_color_scale", "min_color": "#e8f1fc",
+        "mid_color": "#86b6ef", "max_color": BLUE})
+    # implied vs actual
+    if lb["implied_vs_actual"]:
+        r0 = end + 2
+        ws.write(r0, 0, "Implied (hedonic) vs actual (comps) land value", f["h2"])
+        iva = [[(x["neighborhood"], "txtb"), (x["implied_ppsf"], "usd"),
+                (x["actual_ppsf"], "usd"), (x["gap_pct"], "sgn")] for x in lb["implied_vs_actual"]]
+        _write_block(ws, r0 + 1, ["Neighborhood", "Implied $/sqft", "Actual $/sqft", "Actual vs implied"],
+                     [24, 14, 14, 15], iva, f)
+    # active land inventory
+    r1 = (end + 2) + (len(lb["implied_vs_actual"]) + 4 if lb["implied_vs_actual"] else 0)
+    ws.write(r1, 0, "Active land inventory (Fort Lauderdale first)", f["h2"])
+    act = [[(a["address"], "txtb"), (a["neighborhood"], "txt"), (a["price"], "usd"),
+            (a["lot_sqft"], "num"), (a["land_ppsf"], "usd"), ("Yes" if a["waterfront"] else "", "txt"),
+            (a["density"], "txt"), (a["geo"], "txt")] for a in lb["actives"][:60]]
+    _write_block(ws, r1 + 1, ["Address", "Neighborhood", "Price", "Lot sqft", "Ask $/sqft",
+                 "WF", "Density", "Geography"], [24, 20, 13, 10, 11, 5, 14, 26], act, f)
+    ws.hide_gridlines(2)
+
+
+def land_geo_sheet(wb, lb):
+    f = _blk_formats(wb)
+    ws = wb.add_worksheet("Land Geography & Docks")
+    ws.write(0, 0, "Land by geography, zoning & size — plus docks and commercial land", f["title"])
+    ws.write(1, 0, "The lot factors that set land value, now observed from real land sales "
+             "rather than inferred. Waterfront-vs-dry uses the Fort Lauderdale subset; finer "
+             "cuts, size and zoning use urban lots.", f["sub"])
+    ws.set_row(1, 30)
+    r = 3
+    ws.write(r, 0, "Lot geography — median land $/sqft", f["h2"]); r += 1
+    geo = [[(g["geo"], "txtb"), (g["land_ppsf"], "usd"), (g["n"], "num"), (g["scope"], "txt")]
+           for g in lb["geography"]]
+    r = _write_block(ws, r, ["Lot type", "Land $/sqft", "n", "Scope"], [16, 12, 7, 20], geo, f) + 2
+    ws.write(r, 0, "Zoning / density — higher density = more value per land sqft", f["h2"]); r += 1
+    zon = [[(z["density"], "txtb"), (z["land_ppsf"], "usd"), (z["n"], "num"), (z["median_price"], "usd")]
+           for z in lb["by_zoning"]]
+    r = _write_block(ws, r, ["Density", "Land $/sqft", "n", "Median price"], [18, 12, 7, 14], zon, f) + 2
+    ws.write(r, 0, "Size gradient — land $/sqft falls as lots get bigger", f["h2"]); r += 1
+    acr = [[(a["band"], "txtb"), (a["land_ppsf"], "usd"), (a["per_acre"], "usd"), (a["n"], "num")]
+           for a in lb["acreage"]]
+    r = _write_block(ws, r, ["Lot size", "Land $/sqft", "$/acre", "n"], [14, 12, 12, 7], acr, f) + 2
+    # docks
+    dk = lb["docks"]
+    ws.write(r, 0, f"Docks & dockominiums — {dk['n_sold']} sold "
+             f"(${(dk['min_sold'] or 0):,}–${(dk['max_sold'] or 0):,}, median ${(dk['median_sold'] or 0):,.0f})",
+             f["h2"]); r += 1
+    dks = [[(s["address"], "txtb"), (s["neighborhood"] or "—", "txt"), (s["area"], "txt"),
+            (s["price"], "usd"), ("Yes" if s["waterfront"] else "", "txt")] for s in dk["sales"]]
+    r = _write_block(ws, r, ["Dock / slip", "Neighborhood", "Area", "Sold price", "WF"],
+                     [24, 18, 8, 13, 5], dks, f) + 2
+    # commercial land
+    cm = lb.get("commercial")
+    if cm:
+        ws.write(r, 0, f"Commercial / development land — {cm['n_sold']} sold "
+                 f"(median ${cm['median_ppsf_sold']}/sqft, ${cm['per_acre_sold']:,}/acre), "
+                 f"{cm['n_active']} active", f["h2"]); r += 1
+        cms = [[(s["address"], "txtb"), (s["area"], "txt"), (s["price"], "usd"),
+                (s["lot_sqft"], "num"), (s["ppsf"], "usd"), (s["zoning"] or "—", "txt"),
+                (s["location"] or "—", "txt")] for s in cm["sales"]]
+        _write_block(ws, r, ["Address", "Area", "Sold price", "Lot sqft", "$/sqft", "Zoning", "Location"],
+                     [24, 8, 13, 10, 10, 12, 34], cms, f)
+    ws.hide_gridlines(2)
+
+
+def income_sheet(wb, ib):
+    f = _blk_formats(wb)
+    m = ib["meta"]
+    vfmt = _verdict_fmt(wb)
+    ws = wb.add_worksheet("Multifamily")
+    ws.write(0, 0, "Residential income (small multifamily) — $/unit & $/sqft comps", f["title"])
+    ws.write(1, 0, f"{m['n_sold']} sold ({m['n_fll_sold']} Fort Lauderdale). Median "
+             f"${m['median_ppu']:,}/unit, ${m['median_ppsf']}/sqft. {m['n_neighborhoods']} "
+             f"neighborhoods; {m['n_over']} asking over recent comps, {m['n_under']} under. "
+             "Price-comp layer — cap rate/GRM need a rent roll.", f["sub"])
+    ws.set_row(1, 30)
+    r = 3
+    heads = ["Neighborhood", "Sold", "$/unit", "$/sqft", "Median units", "Median price",
+             "WF %", "Active", "Active $/unit", "Ask vs sold", "Verdict"]
+    widths = [22, 7, 12, 10, 12, 14, 7, 8, 13, 12, 15]
+    rows = []
+    for x in ib["by_neighborhood"]:
+        rows.append([(x["neighborhood"], "txtb"), (x["n_sold"], "num"), (x["ppu"], "usd"),
+                     (x["ppsf"], "usd"), (x["median_units"], "num"), (x["median_price"], "usd"),
+                     (round(x["waterfront_share"] * 100), "pct"), (x["n_active"], "num"),
+                     (x["active_ppu"], "usd"), (x["gap_pct"], "sgn"), (x["verdict"] or "—", "txt")])
+    end = _write_block(ws, r, heads, widths, rows, f)
+    vcol = len(heads) - 1
+    for i, x in enumerate(ib["by_neighborhood"]):
+        if x["verdict"] in vfmt:
+            ws.write(r + 1 + i, vcol, x["verdict"], vfmt[x["verdict"]])
+    ws.conditional_format(r + 1, 2, end - 1, 2, {"type": "3_color_scale", "min_color": "#e8f1fc",
+        "mid_color": "#86b6ef", "max_color": BLUE})
+    # by tier
+    r2 = end + 2
+    ws.write(r2, 0, "By building size — $/unit and $/sqft", f["h2"]); r2 += 1
+    tier = [[(t["tier"], "txtb"), (t["n"], "num"), (t["ppu"], "usd"), (t["ppsf"], "usd"),
+             (t["median_price"], "usd")] for t in ib["by_tier"]]
+    r2 = _write_block(ws, r2, ["Unit tier", "n", "$/unit", "$/sqft", "Median price"],
+                      [16, 7, 12, 10, 14], tier, f) + 2
+    # active inventory repriced
+    ws.write(r2, 0, "Active multifamily — asking vs supported (neighborhood $/unit × units)", f["h2"]); r2 += 1
+    act = [[(a["address"], "txtb"), (a["neighborhood"], "txt"), (a["units"], "num"),
+            (a["price"], "usd"), (a["ppu"], "usd"), (a["supported_price"], "usd"),
+            (a["gap_pct"], "sgn"), (a["year_built"], "num"), ("Yes" if a["waterfront"] else "", "txt")]
+           for a in ib["actives"][:60]]
+    _write_block(ws, r2, ["Address", "Neighborhood", "Units", "List price", "$/unit",
+                 "Supported", "Gap", "Year", "WF"], [24, 20, 7, 13, 11, 13, 9, 8, 5], act, f)
+    ws.hide_gridlines(2)
+
+
 SHEET_INDEX = {
     "Key Conclusions": ("Start here", "Every headline finding with the evidence behind it and a confidence rating."),
     "Master Ranking": ("Start here", "All neighborhoods, most to least expensive, with suggested repricing and every core metric."),
@@ -1167,7 +1332,10 @@ SHEET_INDEX = {
     "Absorption": ("High-ticket (≥$1M)", "Months of supply by price band and by band within each neighborhood."),
     "Seller Prospects": ("Prospecting", "≥$1M owners who tried and couldn't (failed listings) — your listing-appointment pitch."),
     "Overpriced Actives": ("Prospecting", "Currently overpriced live listings — tomorrow's expireds to approach for a reduction."),
-    "Teardown Land Plays": ("Prospecting", "Single-family listings where implied land value is most of the ask — redevelopment candidates."),
+    "Teardown Land Plays": ("Prospecting", "Single-family listings where land value is most of the ask — redevelopment candidates (comp-backed where land sales exist)."),
+    "Land Comps": ("Real assets", "Comp-backed vacant-land $/sqft by neighborhood, active land inventory, and implied-vs-actual land value."),
+    "Land Geography & Docks": ("Real assets", "Land $/sqft by lot geography, zoning/density and size; plus boat-dock/dockominium sales and commercial-land comps."),
+    "Multifamily": ("Real assets", "Small-multifamily (duplex/tri/quad) $/unit & $/sqft comps by neighborhood and unit tier, with active inventory repriced."),
     "Comps Drill-Down": ("High-ticket (≥$1M)", "The actual comparable sales behind each ≥$1M valuation — filter by listing to defend a number."),
     "Neighborhood Profiles": ("Neighborhood detail", "Copy-ready, data-backed talking points for a homeowner conversation, one row per neighborhood."),
     "Normalized Ranking": ("Neighborhood detail", "Per-home normalized $/sqft with waterfront / new / by-type / land angles for every neighborhood."),
@@ -1208,7 +1376,7 @@ def index_sheet(wb, ws):
     names = [w.name for w in wb.worksheets() if w.name != "Index"]
     # keep worksheet creation order, but group with headers
     seen_groups, r = set(), 3
-    order = ["Start here", "Deal tools", "High-ticket (≥$1M)", "Prospecting",
+    order = ["Start here", "Deal tools", "High-ticket (≥$1M)", "Prospecting", "Real assets",
              "Repricing", "Neighborhood detail", "Street level", "Redfin context", "Other"]
     grouped = {g: [] for g in order}
     for nm in names:
@@ -1281,6 +1449,18 @@ def main():
             pass
     try:
         comps_sheet(wb, fmts)
+    except FileNotFoundError:
+        pass
+
+    # ---- REAL ASSETS: land, docks, commercial land, multifamily ----
+    try:
+        lb = _jload("land_bundle.json")
+        land_comps_sheet(wb, lb)
+        land_geo_sheet(wb, lb)
+    except FileNotFoundError:
+        pass
+    try:
+        income_sheet(wb, _jload("income_bundle.json"))
     except FileNotFoundError:
         pass
 

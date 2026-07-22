@@ -15,6 +15,18 @@ appreciation, hold — and watch sale price, $/sqft, days-on-market, cash-to-clo
 hold-period returns recompute. Nothing is hard-coded, so the same tool recreates for
 other markets and asset classes.
 
+**Multiple asset classes.** Beyond improved residential, three more comp layers are folded
+in from the same style of MLS exports:
+
+- **Vacant land & docks** — real land $/sqft by neighborhood (turning the previously
+  *implied* land value into comps), the lot factors that drive it (waterfront, corner,
+  cul-de-sac, size, zoning/density), and the boat-dock / dockominium market.
+- **Commercial / development land** — a thin but high-value Fort Lauderdale segment, with
+  the actual sold parcels listed.
+- **Small multifamily (residential income)** — duplex / triplex / quad **price-per-unit**
+  and **$/sqft** comps by neighborhood and unit tier, live listings scored against recent
+  closings. (Price-comp layer — cap rate / GRM need a rent roll.)
+
 **Start here:** [`REPORT.md`](REPORT.md) (written analysis) ·
 [`outputs/Fort_Lauderdale_PPSF_Normalized.xlsx`](outputs/) (workbook — open the **Index**
 tab for a linked table of contents) · [`dashboard/index.html`](dashboard/index.html)
@@ -66,6 +78,8 @@ Or step by step:
 ```bash
 python analysis/normalize_ppsf.py   # Redfin layer  -> data/processed/*.csv, analysis_bundle.json
 python analysis/mls_normalize.py    # MLS per-home  -> data/processed/mls_*.csv, mls_bundle.json
+python analysis/land_analysis.py    # vacant land + docks + commercial land -> land_bundle.json
+python analysis/income_analysis.py  # small-multifamily $/unit & $/sqft comps -> income_bundle.json
 python analysis/street_underwrite.py# street-by-street value + deal underwriting -> street_bundle.json
 python analysis/high_ticket.py      # >=$1M underwriting + band x neighborhood -> high_ticket_bundle.json
 python analysis/underpriced.py      # underpriced opportunities + reasons -> underpriced_bundle.json
@@ -94,6 +108,9 @@ status) and re-run.
 ```
 data/raw/mls/         seven MLS status exports (sold, expired, withdrawn, cancelled,
                       temp_off, active_coming_soon, active_pending)
+data/raw/land/        residential-land exports (active / failed / sold+pending)
+data/raw/commercial_land/  commercial / development land exports
+data/raw/income/      residential-income (small multifamily) exports
 data/raw/             redfin_fll_neighborhoods.tsv (filtered Redfin neighborhood data)
 data/processed/       cleaned data + normalized tables + JSON bundles
 analysis/             the pipeline (normalize_ppsf, mls_normalize, build_*)
@@ -110,8 +127,12 @@ REPORT.md             written analysis
   MLS *Waterfront Description / Lot Description / Dock* fields.
 - **No dates / days-on-market** in the MLS export; those come from the Redfin layer at the
   neighborhood level. Adding *List/Close Date* columns would enable per-home time adjustment.
-- **Vacant land** isn't in the data (all rows are improved residential) — land value is
-  *implied* from lot size, not from land comps.
+- **Vacant land** is now comp-backed where sales exist (the land layer); elsewhere land
+  value is still *implied* from lot size. The land export is a multi-county South Florida
+  pull, so genuine Fort Lauderdale land comps are thin — treat the FLL land figures as
+  directional and the wider set as context.
+- **Multifamily** is a price-comp layer only ($/unit, $/sqft) — cap rate and GRM need a
+  rent roll, which the export doesn't carry.
 - **Condo-level** flags are coarse (floor / view / renovation unobserved). Trust the
   neighborhood aggregates over individual condo call-outs.
 

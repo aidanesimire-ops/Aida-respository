@@ -65,6 +65,31 @@ dated aggregate, skip this layer — every consumer guards the missing bundle wi
 `FileNotFoundError` and degrades gracefully (you lose appreciation, DOM and the r≈0.93
 cross-check, not the core normalization).
 
+## Other asset-class exports (land, docks, multifamily)
+
+These share the status-in-`St`-column convention (CS=closed, PS=pending, A/AC=active,
+X/C/W/T=failed) and the `Subdivision Name` → neighborhood canonicalizer, but carry
+asset-specific columns.
+
+### Vacant / residential land + docks (`data/raw/land/`, `data/raw/commercial_land/`)
+`land_analysis.py` reads: `Address`, `Subdivision Name`, `Current Price`, `Sale Price`,
+`Total Acreage`, `Property SqFt` (lot sqft — falls back to acreage×43,560; values > 50 in
+the acreage field are treated as already-sqft), `Lot Description` (the geography vocabulary
+— "Corner Lot", "Cul-De-Sac", "Interior Lot", "East/West Of US 1", acreage bands),
+`ZN` + `Style of Property` (density class), `Waterfront Property (Y/N)`, `Type of Property`
+(dockominium flag). Commercial land (`commercial_land()`) has a different schema — no
+subdivision/waterfront; `Location`, `Land Improvements`, `For Lease` instead — and is a
+thin, comp-listed segment. **Guardrail:** a land export is often multi-county; the module
+isolates the target-market subset for headline medians and strips rural acreage (lots
+> ~1.4 acre) from the citywide/geography figures.
+
+### Residential income / small multifamily (`data/raw/income/`)
+`income_analysis.py` reads: `Address`, `Subdivision Name`, `Current Price`, `Sale Price`,
+`Total Units` (the $/unit denominator — recovered from the `Style ` income code I0N when
+blank), `SqFt LA`, `Year Built`, `#Parking Spaces`, `Waterfront Property (Y/N)`. Metrics are
+median **$/unit** and **$/sqft** by neighborhood and unit tier — there is no rent/NOI column,
+so cap rate and GRM are deliberately out of scope.
+
 ## Adapting to a different asset class
 
 The hedonic right-hand side is just a formula string in `fit_hedonic()`:

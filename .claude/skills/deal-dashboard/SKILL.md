@@ -99,6 +99,8 @@ deliverables never touch raw data.
 |---|---|---|
 | `normalize_ppsf.py` | `analysis_bundle.json` | Context-layer (Redfin) neighborhood hedonic, market index, time series |
 | `mls_normalize.py` | `mls_bundle.json`, `mls_all_valued.csv` | **Core** per-home hedonic: normalized $/sqft, premiums, geography, land value, per-listing valuations, profiles |
+| `land_analysis.py` | `land_bundle.json` | Vacant-land + dock + commercial-land comps: land $/sqft by neighborhood, lot geography, zoning/density, size gradient, implied-vs-actual |
+| `income_analysis.py` | `income_bundle.json` | Small-multifamily $/unit & $/sqft comps by neighborhood and unit tier, live repricing |
 | `street_underwrite.py` | `street_bundle.json` | Street-by-street value + live listings underwritten vs their own street's comps |
 | `high_ticket.py` | `high_ticket_bundle.json` | ≥ $1M underwriting; band × neighborhood matrix |
 | `underpriced.py` | `underpriced_bundle.json` | Underpriced opportunities with generated reasons |
@@ -113,6 +115,29 @@ deliverables never touch raw data.
 | `build_excel.py` | `outputs/*.xlsx` | Multi-tab workbook (Index, Key Conclusions, Master, **Scenario**, …) |
 | `build_dashboard.py` | `dashboard/index.html` | Self-contained interactive dashboard |
 | `build_report.py` | `REPORT.md` | Written analysis |
+
+## Multiple asset classes (same pattern, one dashboard)
+
+The improved-residential hedonic is the flagship, but the same export style (one file per
+status, `St` column = CS/PS/A/X/C/W/T) drops in for other asset classes, each as its own
+comp layer that shares the neighborhood canonicalizer:
+
+- **Vacant land & docks** (`land_analysis.py`) — land $/sqft by neighborhood, lot geography
+  (waterfront/corner/cul-de-sac/size), zoning/density, boat-dock/dockominium sales, and
+  commercial/development parcels. This turns the hedonic's *implied* land value into real
+  comps and cross-checks the two. Watch for **multi-market exports**: a "land" pull often
+  spans a whole region, so isolate the target market (neighborhoods present in the improved
+  layer) for the headline and label the rest as context — don't let rural acreage drag the
+  citywide median.
+- **Small multifamily / income** (`income_analysis.py`) — **price-per-unit** and **$/sqft**
+  by neighborhood and unit tier (duplex/triplex/quad), with live listings repriced against
+  recent closings. Recover missing unit counts from the income style code (I02/I03/I04).
+  No rent roll in a single-line export, so **cap rate & GRM are out of scope** here — say so.
+
+Each writes a `*_bundle.json` the builders pick up; each is guarded so a missing layer just
+drops its dashboard card / Excel tab. To add a **new** asset class, clone the closest of the
+two modules, remap the loader columns (`references/data_schema.md`), and register it in
+`run_all.py`, `build_dashboard.py` and `build_excel.py` next to the others.
 
 ## The core model (read `references/methodology.md` before changing it)
 
