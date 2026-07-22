@@ -48,6 +48,8 @@ PUBLIX_CFG = dict(
         closing_pct=0.02, ltv=0.45, loan_rate=0.0625, amort=30,
         goingin_cap=0.060, exit_cap=0.0625, cost_sale=0.02, hold=5, disc=0.07,
         land_sf=109791,
+        # sale-leaseback terms (hypothetical — Publix is a fee owner, not a seller)
+        slb_rent=22.00, slb_sf=34622, sbux_rent=60.00, sbux_sf=2200, term=4,
     ),
 )
 

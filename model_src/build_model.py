@@ -2,12 +2,60 @@
 build_model.py — assemble the full E Sunrise Blvd Assemblage underwriting workbook.
 Run:  python3 build_model.py
 """
+import json, os
 from openpyxl.utils import get_column_letter, column_index_from_string
 from mblib import new_book, add_sheet, NAVY, GOLD
-import tab_assumptions, tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_income, tab_scenarios, tab_hbu, tab_exec, tab_notes, tab_review
-import configs
+import tab_assumptions, tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_income, tab_scenarios, tab_hbu, tab_exec, tab_notes, tab_review, tab_capital
+import configs, data
 
 OUT = "../Shahidi_Assemblage_Model.xlsx"
+OVERRIDES = "../overrides.json"
+
+
+def _ov_value(entry):
+    """An override entry may be a bare value or {'value': x, 'status': '...'}."""
+    return entry["value"] if isinstance(entry, dict) and "value" in entry else entry
+
+
+def apply_overrides(path=OVERRIDES):
+    """Patch the default inputs with real/corrected data from overrides.json BEFORE
+    the workbook is built. Absent file (or absent key) → defaults are used unchanged,
+    so this can never break the build. This is the single fill-in-the-blanks surface:
+    drop a confirmed value in overrides.json, rerun build_model.py, and it flows through
+    every tab. Global drivers patch by name; per-asset inputs patch by dict key."""
+    if not os.path.exists(path):
+        return []
+    with open(path) as f:
+        ov = json.load(f)
+    applied = []
+
+    # global drivers (GLOBAL_SECTIONS is a list of (title, [(name,label,val,fmt,flag,note)...]))
+    g = ov.get("global", {})
+    if g:
+        new_sections = []
+        for title, drivers in tab_assumptions.GLOBAL_SECTIONS:
+            nd = []
+            for (name, label, val, fmt, flag, note) in drivers:
+                if name in g:
+                    val = _ov_value(g[name])
+                    f2 = g[name].get("confidence", flag) if isinstance(g[name], dict) else flag
+                    nd.append((name, label, val, fmt, f2, note)); applied.append(name)
+                else:
+                    nd.append((name, label, val, fmt, flag, note))
+            new_sections.append((title, nd))
+        tab_assumptions.GLOBAL_SECTIONS = new_sections
+
+    # per-asset inputs (mutate the source dicts in place — every tab reads the same object)
+    asset_dicts = {"shahidi": data.SH, "publix": configs.PUBLIX_CFG["inp"],
+                   "sunrise": configs.KARLUEN_CFG["inp"], "office": tab_office.A, "land": tab_land.A}
+    for asset, kv in ov.get("assets", {}).items():
+        d = asset_dicts.get(asset)
+        if not isinstance(d, dict) or not isinstance(kv, dict):
+            continue
+        for k, entry in kv.items():
+            if k in d:
+                d[k] = _ov_value(entry); applied.append(f"{asset}.{k}")
+    return applied
 
 
 def fit_row_heights(ws):
@@ -40,6 +88,9 @@ def fit_row_heights(ws):
 
 
 def main():
+    applied = apply_overrides()
+    if applied:
+        print(f"applied {len(applied)} override(s):", ", ".join(applied[:12]) + (" …" if len(applied) > 12 else ""))
     wb = new_book()
     sh = {}
 
@@ -99,8 +150,14 @@ def main():
     sh["Highest & Best Use"] = add_sheet(wb, "Highest & Best Use", tabcolor=GOLD)
     tab_hbu.build(sh["Highest & Best Use"], hbu_regs)
 
+    # ---- capital stack & affordability (links to income + assemblage) ----
+    cap_regs = dict(hbu_regs)
+    cap_regs["Highest & Best Use"] = sh["Highest & Best Use"].reg
+    sh["Capital Stack"] = add_sheet(wb, "Capital Stack", tabcolor=GOLD)
+    tab_capital.build(sh["Capital Stack"], cap_regs)
+
     # ---- executive summary (links to everything) ----
-    all_regs = dict(hbu_regs)
+    all_regs = dict(cap_regs)
     all_regs["Highest & Best Use"] = sh["Highest & Best Use"].reg
     sh["Executive Summary"] = add_sheet(wb, "Executive Summary", tabcolor=GOLD)
     tab_exec.build(sh["Executive Summary"], all_regs)
@@ -113,9 +170,9 @@ def main():
     tab_assumptions.build_index(sh["Assumptions"], all_regs, a_free)
 
     # ---- reorder ----
-    order = ["Executive Summary", "Review Board", "Assumptions", "Income Valuation", "Scenarios", "Assemblage",
-             "Highest & Best Use", "Shahidi Retail", "Publix & Starbucks", "Sunrise Plaza",
-             "Office Condo", "Land", "Notes & Sources"]
+    order = ["Executive Summary", "Review Board", "Capital Stack", "Assumptions", "Income Valuation",
+             "Scenarios", "Assemblage", "Highest & Best Use", "Shahidi Retail", "Publix & Starbucks",
+             "Sunrise Plaza", "Office Condo", "Land", "Notes & Sources"]
     wb._sheets = [sh[t].ws for t in order]
     wb.active = 0
 

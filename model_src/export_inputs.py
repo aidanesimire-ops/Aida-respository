@@ -10,7 +10,7 @@ SOURCE the workbook builder reads (tab_assumptions.GLOBAL_SECTIONS, the per-asse
 _blocks(), configs, data, the office roster, the land block), so it can never drift
 from the model. Regenerate it whenever inputs change; diff it in code review.
 """
-import json
+import json, os
 import tab_assumptions
 from tab_assumptions import GLOBAL_SECTIONS, _blocks
 from mblib import (F_ACCT, F_ACCT_TOP, F_PCT1, F_PCT2, F_MULT, F_PSF, F_NUM, F_NUM2, F_YR)
@@ -20,6 +20,59 @@ from tab_office import A as OFFICE_A, OWNERS
 from tab_land import A as LAND_A
 
 OUT = "../model_inputs.json"
+TEMPLATE = "../overrides.template.json"
+OVERRIDES = "../overrides.json"
+
+# The fill-in-the-blanks list: inputs we do NOT yet have solid data for, or that are
+# modeled and worth confirming. Each becomes an entry in overrides.json with its
+# current value + a status telling you what it is and where to get the real number.
+# scope is "global" (patch by driver name) or "asset:<name>" (patch by dict key).
+GAP_STATUS = [
+    ("global", "SUN_ACQ", "⚠️ REPORTED — Kar Luen last recorded sale (Oct 2000, stale/nominal). Get a recent basis/appraisal at BCPA / Clerk."),
+    ("global", "OFF_ACQ", "⚠️ REPORTED — Grove Gate bulk purchase 2019 (~$103/SF). Confirm at BCPA."),
+    ("global", "CAP", "🔶 MODELED — blended going-in cap. Set from an appraisal / broker BOV, or derive from the individual asset caps."),
+    ("global", "SCAP", "🔶 MODELED — blended stabilized / exit cap. Set from sale comps."),
+    ("global", "RATE", "🔶 MODELED — senior rate. Replace with a lender term sheet."),
+    ("global", "LTV", "🔶 MODELED — max senior LTV. Replace with a lender term sheet."),
+    ("global", "PREM_BASE", "🔶 MODELED — assemblage premium (base). Refine from holdout negotiations."),
+    ("global", "ELIFT", "🔶 MODELED — entitlement lift %. Confirm after Live Local approval."),
+    ("global", "LPSF_BASE", "🔶 MODELED — land $/SF (base). Confirm with recent land comps."),
+    ("global", "UNIT_BASE", "🔶 MODELED — value per entitled unit (base). Confirm with entitled-land comps."),
+    ("global", "REVUNIT", "🔶 MODELED — achievable value per finished unit. Confirm with sellout / rental comps."),
+    ("global", "HARDPSF", "🔶 MODELED — hard cost $/GBA SF (AE-zone coastal). Confirm with a GC / estimator."),
+    ("asset:sunrise", "price", "⚠️ REPORTED ~$8.5M — no recent arm's-length sale. VERIFY at BCPA / broker."),
+    ("asset:sunrise", "gla", "⚠️ REPORTED (LoopNet) — confirm building SF at BCPA."),
+    ("asset:sunrise", "land_sf", "⚠️ REPORTED — confirm land SF at BCPA."),
+    ("asset:sunrise", "occ0", "🔶 ESTIMATED occupancy — confirm from the actual rent roll."),
+    ("asset:sunrise", "market_rent", "🔶 ESTIMATED $/SF NNN — confirm from leases / corridor comps."),
+    ("asset:office", "gla", "⚠️ REPORTED ~168,807 SF — confirm at BCPA."),
+    ("asset:office", "occ0", "🔶 ESTIMATED occupancy — confirm from the rent roll."),
+    ("asset:office", "market_rent", "⚠️ REPORTED ~$26/SF Modified Gross — confirm from leases."),
+    ("asset:office", "opex_psf", "🔶 MODELED office opex $/SF — confirm from operating statements."),
+    ("asset:office", "sale_comp_psf", "⚠️ REPORTED ~$300/SF (historical) — confirm from recent unit sales."),
+    ("asset:office", "price", "🔶 MODELED income basis — confirm the underwritten target."),
+    ("asset:land", "price", "🔶 MODELED entitled-land basis — confirm the negotiated basis."),
+    ("asset:land", "land_sf", "⚠️ REPORTED — confirm at BCPA."),
+    ("asset:land", "office_sf", "⚠️ REPORTED — confirm existing office SF."),
+    ("asset:land", "units", "⚠️ REPORTED 259 entitled units — confirm the approval."),
+    ("asset:land", "bcpa_value", "⚠️ REPORTED BCPA market value — confirm at BCPA."),
+    ("asset:land", "interim_occ", "🔶 MODELED interim occupancy — confirm from the rent roll."),
+    ("asset:land", "interim_rent", "🔶 MODELED interim office rent — confirm from leases."),
+    ("asset:publix", "price", "✅ VERIFIED 2025 deed $25M — but the leaseback structure below is hypothetical."),
+    ("asset:publix", "slb_rent", "🔶 HYPOTHETICAL leaseback rent — Publix is a fee owner, not a seller. Confirm any real leaseback terms."),
+    ("asset:publix", "slb_sf", "🔶 Publix leaseback SF — confirm."),
+    ("asset:publix", "sbux_rent", "🔶 ESTIMATED Starbucks pad rent — confirm."),
+    ("asset:publix", "term", "🔶 ASSUMED leaseback / entitlement term (years) — confirm."),
+]
+
+_OVR_README = ("FILL-IN-THE-BLANKS for real data. Put a confirmed number in any 'value' "
+               "field, then rebuild: cd model_src && python3 build_model.py. The 'status' "
+               "text says what each field is and where to get it. Ratios are decimals "
+               "(0.065 = 6.5%). Unlisted or unchanged fields keep the model's current "
+               "assumption — nothing breaks if you leave a field alone. This file is yours: "
+               "regenerating overrides.template.json never overwrites it. Add any other "
+               "input here too — 'global' patches by driver name (see model_inputs.json), "
+               "'assets.<asset>' patches by input key.")
 
 # number-format string -> (unit label, json type)
 UNIT = {
@@ -175,5 +228,37 @@ def build():
           f"{sum(len(v) for v in OUTPUTS.values())} documented outputs")
 
 
+def _current_global(name):
+    for _title, drivers in GLOBAL_SECTIONS:
+        for (n, _l, v, *_rest) in drivers:
+            if n == name:
+                return v
+    return None
+
+
+def build_overrides():
+    """Emit overrides.template.json (always) and seed overrides.json (only if missing,
+    so a user's filled-in values are never clobbered)."""
+    asset_src = {"shahidi": SH, "publix": PUBLIX_CFG["inp"], "sunrise": KARLUEN_CFG["inp"],
+                 "office": OFFICE_A, "land": LAND_A}
+    doc = {"_README": _OVR_README, "global": {}, "assets": {}}
+    for scope, key, status in GAP_STATUS:
+        if scope == "global":
+            doc["global"][key] = {"value": _current_global(key), "status": status}
+        else:
+            asset = scope.split(":", 1)[1]
+            doc["assets"].setdefault(asset, {})[key] = {"value": asset_src[asset].get(key), "status": status}
+    with open(TEMPLATE, "w") as f:
+        json.dump(doc, f, indent=2, ensure_ascii=False)
+    seeded = False
+    if not os.path.exists(OVERRIDES):
+        with open(OVERRIDES, "w") as f:
+            json.dump(doc, f, indent=2, ensure_ascii=False)
+        seeded = True
+    n = len(GAP_STATUS)
+    print(f"wrote {TEMPLATE}: {n} fill-in fields" + (f"; seeded {OVERRIDES}" if seeded else f"; kept your {OVERRIDES}"))
+
+
 if __name__ == "__main__":
     build()
+    build_overrides()

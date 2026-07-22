@@ -54,19 +54,40 @@ ESTIMATED` (see `conventions.confidence`).
 can read a specific result without scraping the grid. The `outputs{}` block in the JSON lists
 the headline names.
 
-## Change an input
+## Fill in real data as you get it  ← the easy path
 
-The **Assumptions** tab is the single control surface — every blue cell drives the model by
-live cross-sheet link; changing one and reopening recalculates the whole workbook. In code:
+`overrides.json` is the fill-in-the-blanks surface. It ships pre-populated with every input we
+**don't have solid data for yet, or that's modeled and worth confirming** — each with its
+current value and a `status` telling you what it is and where to source the real number:
+
+```jsonc
+{ "assets": { "sunrise": {
+    "price": { "value": 8500000, "status": "⚠️ REPORTED ~$8.5M — VERIFY at BCPA / broker" } } },
+  "global": {
+    "RATE":  { "value": 0.065,   "status": "🔶 MODELED — replace with a lender term sheet" } } }
+```
+
+Put a confirmed number in any `value` field, then `python3 build_model.py` — it flows through
+every tab. Leave a field alone and the model keeps its current assumption; nothing breaks.
+`build_model.py` calls `apply_overrides()` **before** building, so `overrides.json` always wins
+over the coded defaults. Regenerating `overrides.template.json` (via `export_inputs.py`) never
+touches your `overrides.json`. `global` patches by driver name; `assets.<asset>` patches by
+input key — both keys are listed in `model_inputs.json`.
+
+## Change a default in code
+
+The **Assumptions** tab is also a live control surface — every blue cell drives the model by
+cross-sheet link, so editing a blue cell and reopening recalculates the workbook. To move a
+*default* in code:
 
 - **Global drivers** live in `tab_assumptions.GLOBAL_SECTIONS` (data, not code) — the workbook
-  builder *and* `export_inputs.py` both read it.
+  builder, `export_inputs.py`, and `apply_overrides()` all read it.
 - **Per-asset headline inputs** come from `tab_assumptions._blocks()`, sourced from `data.SH`,
-  `configs.PUBLIX_CFG` / `KARLUEN_CFG`, `tab_office.A`, `tab_land.A`.
+  `configs.PUBLIX_CFG` / `KARLUEN_CFG`, `tab_office.A`, `tab_land.A` (Publix leaseback terms too).
 - **Prior-sale basis** (what each owner paid) is a single source of truth in the global
   `PRIOR SALE / SELLER BASIS` section, linked by both the HBU history and the Exec scorecard.
 
-Edit the value, rebuild, re-export, re-validate.
+Edit the value, rebuild, re-export, re-validate. (For a one-off real value, prefer `overrides.json`.)
 
 ## Repoint at a NEW assemblage (template use)
 
@@ -77,16 +98,20 @@ Edit the value, rebuild, re-export, re-validate.
 4. Add/drop an asset via the component lists in `tab_hbu` / `tab_exec` / `tab_assemblage`.
 5. Rebuild → validate (0 errors) → export JSON → confirm ⚠️ REPORTED figures at the county.
 
+Or, for incremental real data on the current deal, just edit `overrides.json` and rebuild.
 See `../MODEL_AUDIT.md` for what is verified vs. modeled and the outstanding data gaps.
 
 ## Tabs
 
-`Executive Summary · Review Board · Assumptions · Income Valuation · Scenarios · Assemblage ·
-Highest & Best Use · Shahidi Retail · Publix & Starbucks · Sunrise Plaza · Office Condo · Land ·
-Notes & Sources`
+`Executive Summary · Review Board · Capital Stack · Assumptions · Income Valuation · Scenarios ·
+Assemblage · Highest & Best Use · Shahidi Retail · Publix & Starbucks · Sunrise Plaza ·
+Office Condo · Land · Notes & Sources`
 
 - **Review Board** — interactive, closed-form sensitivity grids + driver tornado; every grid is
   anchored to the actual consolidated reversion so the base reproduces the headline multiple.
+- **Capital Stack** — sandbox to flex leverage/rates/equity: the stack (senior/mezz/equity) at
+  each deal price, DSCR/debt-yield/LTC, GP/LP split, and affordability (max price + assemblage
+  capacity from the equity you have). Blue cells are a sandbox and don't disturb the model.
 - **Income Valuation** — consolidated cash flows; the single source of truth for portfolio returns
   (one IRR on combined cash flows — never averaged asset IRRs).
 

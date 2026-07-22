@@ -1,0 +1,155 @@
+{
+  "_README": "FILL-IN-THE-BLANKS for real data. Put a confirmed number in any 'value' field, then rebuild: cd model_src && python3 build_model.py. The 'status' text says what each field is and where to get it. Ratios are decimals (0.065 = 6.5%). Unlisted or unchanged fields keep the model's current assumption — nothing breaks if you leave a field alone. This file is yours: regenerating overrides.template.json never overwrites it. Add any other input here too — 'global' patches by driver name (see model_inputs.json), 'assets.<asset>' patches by input key.",
+  "global": {
+    "SUN_ACQ": {
+      "value": 128000,
+      "status": "⚠️ REPORTED — Kar Luen last recorded sale (Oct 2000, stale/nominal). Get a recent basis/appraisal at BCPA / Clerk."
+    },
+    "OFF_ACQ": {
+      "value": 10000000,
+      "status": "⚠️ REPORTED — Grove Gate bulk purchase 2019 (~$103/SF). Confirm at BCPA."
+    },
+    "CAP": {
+      "value": 0.065,
+      "status": "🔶 MODELED — blended going-in cap. Set from an appraisal / broker BOV, or derive from the individual asset caps."
+    },
+    "SCAP": {
+      "value": 0.0675,
+      "status": "🔶 MODELED — blended stabilized / exit cap. Set from sale comps."
+    },
+    "RATE": {
+      "value": 0.065,
+      "status": "🔶 MODELED — senior rate. Replace with a lender term sheet."
+    },
+    "LTV": {
+      "value": 0.6,
+      "status": "🔶 MODELED — max senior LTV. Replace with a lender term sheet."
+    },
+    "PREM_BASE": {
+      "value": 0.2,
+      "status": "🔶 MODELED — assemblage premium (base). Refine from holdout negotiations."
+    },
+    "ELIFT": {
+      "value": 0.3,
+      "status": "🔶 MODELED — entitlement lift %. Confirm after Live Local approval."
+    },
+    "LPSF_BASE": {
+      "value": 125.0,
+      "status": "🔶 MODELED — land $/SF (base). Confirm with recent land comps."
+    },
+    "UNIT_BASE": {
+      "value": 55000,
+      "status": "🔶 MODELED — value per entitled unit (base). Confirm with entitled-land comps."
+    },
+    "REVUNIT": {
+      "value": 600000,
+      "status": "🔶 MODELED — achievable value per finished unit. Confirm with sellout / rental comps."
+    },
+    "HARDPSF": {
+      "value": 500.0,
+      "status": "🔶 MODELED — hard cost $/GBA SF (AE-zone coastal). Confirm with a GC / estimator."
+    }
+  },
+  "assets": {
+    "sunrise": {
+      "price": {
+        "value": 8500000,
+        "status": "⚠️ REPORTED ~$8.5M — no recent arm's-length sale. VERIFY at BCPA / broker."
+      },
+      "gla": {
+        "value": 25105,
+        "status": "⚠️ REPORTED (LoopNet) — confirm building SF at BCPA."
+      },
+      "land_sf": {
+        "value": 30928,
+        "status": "⚠️ REPORTED — confirm land SF at BCPA."
+      },
+      "occ0": {
+        "value": 0.801,
+        "status": "🔶 ESTIMATED occupancy — confirm from the actual rent roll."
+      },
+      "market_rent": {
+        "value": 34.0,
+        "status": "🔶 ESTIMATED $/SF NNN — confirm from leases / corridor comps."
+      }
+    },
+    "office": {
+      "gla": {
+        "value": 168807,
+        "status": "⚠️ REPORTED ~168,807 SF — confirm at BCPA."
+      },
+      "occ0": {
+        "value": 0.85,
+        "status": "🔶 ESTIMATED occupancy — confirm from the rent roll."
+      },
+      "market_rent": {
+        "value": 26.0,
+        "status": "⚠️ REPORTED ~$26/SF Modified Gross — confirm from leases."
+      },
+      "opex_psf": {
+        "value": 8.0,
+        "status": "🔶 MODELED office opex $/SF — confirm from operating statements."
+      },
+      "sale_comp_psf": {
+        "value": 300.0,
+        "status": "⚠️ REPORTED ~$300/SF (historical) — confirm from recent unit sales."
+      },
+      "price": {
+        "value": 21700000,
+        "status": "🔶 MODELED income basis — confirm the underwritten target."
+      }
+    },
+    "land": {
+      "price": {
+        "value": 13000000,
+        "status": "🔶 MODELED entitled-land basis — confirm the negotiated basis."
+      },
+      "land_sf": {
+        "value": 104108,
+        "status": "⚠️ REPORTED — confirm at BCPA."
+      },
+      "office_sf": {
+        "value": 84495,
+        "status": "⚠️ REPORTED — confirm existing office SF."
+      },
+      "units": {
+        "value": 259,
+        "status": "⚠️ REPORTED 259 entitled units — confirm the approval."
+      },
+      "bcpa_value": {
+        "value": 6685580,
+        "status": "⚠️ REPORTED BCPA market value — confirm at BCPA."
+      },
+      "interim_occ": {
+        "value": 0.72,
+        "status": "🔶 MODELED interim occupancy — confirm from the rent roll."
+      },
+      "interim_rent": {
+        "value": 23.0,
+        "status": "🔶 MODELED interim office rent — confirm from leases."
+      }
+    },
+    "publix": {
+      "price": {
+        "value": 25000000,
+        "status": "✅ VERIFIED 2025 deed $25M — but the leaseback structure below is hypothetical."
+      },
+      "slb_rent": {
+        "value": 22.0,
+        "status": "🔶 HYPOTHETICAL leaseback rent — Publix is a fee owner, not a seller. Confirm any real leaseback terms."
+      },
+      "slb_sf": {
+        "value": 34622,
+        "status": "🔶 Publix leaseback SF — confirm."
+      },
+      "sbux_rent": {
+        "value": 60.0,
+        "status": "🔶 ESTIMATED Starbucks pad rent — confirm."
+      },
+      "term": {
+        "value": 4,
+        "status": "🔶 ASSUMED leaseback / entitlement term (years) — confirm."
+      }
+    }
+  }
+}

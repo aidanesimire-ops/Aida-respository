@@ -98,23 +98,23 @@ def _blocks():
     return [
         ("SHA", "Shahidi Retail (Galleria Plaza) — NNN retail  ✅ verified parcel", retail(sh, "Purchase price / basis", 254.92)),
         ("PUB", "Publix + Starbucks — SALE-LEASEBACK (acquire fee, lease back during entitlement)  ✅ verified parcel", [
-            ("PRICE", "SLB acquisition price (fee)", 25000000, F_ACCT_TOP),
+            ("PRICE", "SLB acquisition price (fee)", PI["price"], F_ACCT_TOP),
             ("GLANDSF", "Land (SF)", PI["land_sf"], F_NUM),
             ("GLAND_PSF", "Land value ($/SF)", PUBLIX_CFG["land_psf"], F_PSF),
-            ("SLB_RENT", "Publix leaseback rent ($/SF NNN)", 22.00, F_PSF),
-            ("SLB_SF", "Publix leaseback SF", 34622, F_NUM),
-            ("SBUX_RENT", "Starbucks pad rent ($/SF NNN)", 60.00, F_PSF),
-            ("SBUX_SF", "Starbucks pad SF", 2200, F_NUM),
-            ("TERM", "Leaseback term / entitlement (yrs)", 4, F_YR),
-            ("OCC0", "In-place occupancy", 1.00, F_PCT1),
-            ("STABOCC", "Stabilized occupancy", 1.00, F_PCT1),
+            ("SLB_RENT", "Publix leaseback rent ($/SF NNN)", PI["slb_rent"], F_PSF),
+            ("SLB_SF", "Publix leaseback SF", PI["slb_sf"], F_NUM),
+            ("SBUX_RENT", "Starbucks pad rent ($/SF NNN)", PI["sbux_rent"], F_PSF),
+            ("SBUX_SF", "Starbucks pad SF", PI["sbux_sf"], F_NUM),
+            ("TERM", "Leaseback term / entitlement (yrs)", PI["term"], F_YR),
+            ("OCC0", "In-place occupancy", PI["occ0"], F_PCT1),
+            ("STABOCC", "Stabilized occupancy", PI["stab_occ"], F_PCT1),
             ("INS", "Insurance ($/yr)", PI["insurance"], F_ACCT),
             ("CAM", "CAM ($/yr, recoverable)", PI["cam"], F_ACCT),
             ("RM", "Repairs & maintenance ($/yr)", PI["rm"], F_ACCT),
             ("MGMT", "Management fee (% EGR)", PI["mgmt_pct"], F_PCT1),
             ("GICAP", "Going-in cap (reference)", PI["goingin_cap"], F_PCT2),
             ("EXITCAP", "Exit cap", PI["exit_cap"], F_PCT2),
-            ("LTV", "Senior LTV (covered-land, conservative)", 0.45, F_PCT1),
+            ("LTV", "Senior LTV (covered-land, conservative)", PI["ltv"], F_PCT1),
             ("RATE", "Senior rate", PI["loan_rate"], F_PCT2),
         ]),
         ("SUN", "Sunrise Plaza (Kar Luen) — value-add retail  ⚠️ reported parcel", retail(ka, "Purchase price / basis", KARLUEN_CFG["land_psf"])),
@@ -220,6 +220,10 @@ def build_index(s, regs, start_row):
     s.put(r, 4, "Everything you tune is on THIS tab: global drivers up top, then a block per asset (price · rents · occupancy · operating "
                 "expenses · caps · debt). Standard modeling params (rent/expense growth, TI/LC, reserves, closing detail) remain blue on each "
                 "asset tab. ⚠️ = reported, verify at bcpa.net. Change any blue cell → the model recalculates.",
+          style="warn", align="left", merge=(r, 13)); r += 1
+    s.put(r, L, "Filling in real data", style="warn", align="left")
+    s.put(r, 4, "As you confirm real numbers, put them in overrides.json (pre-listed with every gap + where to source it) and rerun "
+                "build_model.py — the value flows through every tab. See the developer README and MODEL_AUDIT.md for the full data-gap list.",
           style="warn", align="left", merge=(r, 13)); r += 1
     s.freeze("C3")
     return s
