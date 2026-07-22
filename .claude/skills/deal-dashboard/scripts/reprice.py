@@ -21,19 +21,23 @@ neighborhood aggregate (where unit-level noise averages out) is the reliable rea
 from __future__ import annotations
 import json
 import os
+import sys
 
 import numpy as np
 import pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+from config import CFG
+
 ROOT = os.path.dirname(HERE)
 PROC = os.path.join(ROOT, "data", "processed")
 VALUED = os.path.join(PROC, "mls_all_valued.csv")
 
-BAND = 10          # +/- % around the model = "fairly priced"
-MIN_NBHD_LIVE = 3  # min live listings to score a neighborhood
-MIN_COMPS = 5      # min SOLD comps (neighborhood x type) for a reliable verdict
-MIN_NBHD_SOLD = 8  # min sold comps to score a neighborhood's market
+BAND = CFG.thr("verdict_cutoff_pct")   # +/- % around the model = "fairly priced"
+MIN_NBHD_LIVE = CFG.thr("min_nbhd_live")  # min live listings to score a neighborhood
+MIN_COMPS = CFG.thr("min_comps")       # min SOLD comps (neighborhood x type) for a verdict
+MIN_NBHD_SOLD = CFG.thr("min_nbhd_sold")  # min sold comps to score a neighborhood's market
 
 
 def verdict(gap, comps=None):

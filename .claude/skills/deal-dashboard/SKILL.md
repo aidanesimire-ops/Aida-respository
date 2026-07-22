@@ -67,8 +67,38 @@ layer, the pipeline still runs — you just lose the cross-check and the time se
 
 ```bash
 pip install -r requirements.txt
-python scripts/run_all.py        # runs the whole pipeline end to end
+python scripts/refresh.py         # discover data + rebuild everything (the front door)
+python scripts/refresh.py --check # validate data & column maps only, no rebuild
 ```
+
+`refresh.py` reports the files, row counts and status breakdown it found for each asset
+class and validates the column maps against the real export headers before building —
+catching a renamed column instead of silently dropping it. `run_all.py` still runs the
+raw pipeline if you want it.
+
+## Dynamic — config-driven, nothing hard-coded
+
+`config/deal_dashboard.yml` (loaded by `config.py`, whose built-in defaults reproduce the
+reference behaviour exactly) is the single control panel:
+
+- **`thresholds`** — comp minimums, price bands, high-ticket floor, verdict cutoffs,
+  absorption boundaries, age/size bounds. Every module reads these via `from config import
+  CFG` (`CFG.thr("high_ticket")`, `CFG.full_bands()`, …). Change a value, run `refresh.py`,
+  and the whole pipeline rebuilds against it.
+- **`assets`** — each asset class declares its `folder`, `status_from` (filename vs a
+  status column), `status_map`, and a `columns` map (canonical field → the raw column name
+  in *this* export). The loaders reference `CFG.cols("residential")["address"]`, so
+  onboarding a differently-named export is a config edit, not code. Deleting any line falls
+  back to the default — you only keep what you change.
+
+The **dashboard also ships a "Live assumptions" panel** (verdict cutoff, min comps,
+absorption boundaries) that recomputes every verdict, flag and market label **in the
+browser** with no rebuild — seeded from the same config values and persisted to
+localStorage. The split is deliberate: structural choices (price bands, hedonic premiums,
+new data) go through config + `refresh.py`; day-to-day screening what-ifs are live.
+
+When you adapt this skill, keep that architecture: read tunables from `CFG`, never
+re-hard-code them, and seed any new live control from the config default.
 
 `run_all.py` runs 16 stages in dependency order and writes everything to `data/processed/`,
 `outputs/` and `dashboard/`. Re-run any time fresh data arrives.

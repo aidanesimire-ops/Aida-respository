@@ -9,12 +9,25 @@ All data + CSS + JS inlined; no external requests.
 """
 import json
 import os
+import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+from config import CFG
+
 ROOT = os.path.dirname(HERE)
 PROC = os.path.join(ROOT, "data", "processed")
 DASH = os.path.join(ROOT, "dashboard")
 os.makedirs(DASH, exist_ok=True)
+
+# Live-assumption seed for the in-browser control panel (screening knobs only —
+# structural changes like price bands / hedonic premiums need config + refresh).
+ASSUMP = {
+    "verdictCut": CFG.thr("verdict_cutoff_pct"),
+    "incomeCut": CFG.thr("income")["verdict_cutoff_pct"],
+    "minComps": CFG.thr("min_comps"),
+    "absorption": CFG.thr("absorption"),
+}
 
 with open(os.path.join(PROC, "mls_bundle.json")) as f:
     MLS = json.load(f)
@@ -253,6 +266,7 @@ html{scroll-behavior:smooth}
   </header>
 
   <nav class="fl-nav" id="secNav" aria-label="Jump to section">
+    <a href="#assumptions">Assumptions</a>
     <a href="#scenario">Deal scenario</a>
     <a href="#highticket">High-ticket bands</a>
     <a href="#absorption">Absorption</a>
@@ -268,6 +282,19 @@ html{scroll-behavior:smooth}
   </nav>
 
   <section class="kpis" id="kpis"></section>
+
+  <div class="card" id="assumptions">
+    <h2>Live assumptions <span style="font-weight:400;color:var(--muted);font-size:13px">— tune the screening knobs; every verdict, flag &amp; market label recomputes in place</span></h2>
+    <p class="cap">These recompute the dashboard live in your browser — no rebuild. Structural changes (price bands, hedonic premiums, adding a data set) live in <code>config/deal_dashboard.yml</code>; run <code>python analysis/refresh.py</code> for those. Settings are remembered on this device.</p>
+    <div class="scn-inputs" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:4px 24px">
+      <label>Verdict cutoff (± % vs comps) <span class="rv" id="asCutV"></span><input id="asCut" type="range" min="2" max="25" step="1"></label>
+      <label>Min sold comps to show <span class="rv" id="asMinV"></span><input id="asMin" type="range" min="1" max="20" step="1"></label>
+      <label>Absorption — seller's &lt; (months)<input id="asAbsS" type="number" step="1"></label>
+      <label>Balanced &lt; (months)<input id="asAbsB" type="number" step="1"></label>
+      <label>Buyer's &lt; (months)<input id="asAbsY" type="number" step="1"></label>
+    </div>
+    <div class="controls" style="margin-top:10px"><button class="fl-toggle" id="asReset" type="button">Reset to config defaults</button><span class="note-line" id="asEcho" style="margin:0"></span></div>
+  </div>
 
   <div class="card" id="scenario">
     <h2>Deal scenario &amp; financing <span style="font-weight:400;color:var(--muted);font-size:13px">— control the assumptions, watch price / DOM / $/sqft move</span></h2>
@@ -488,6 +515,7 @@ html{scroll-behavior:smooth}
 <script id="seller-data" type="application/json">__SELLER_JSON__</script>
 <script id="land-data" type="application/json">__LAND_JSON__</script>
 <script id="income-data" type="application/json">__INCOME_JSON__</script>
+<script id="assump-data" type="application/json">__ASSUMP_JSON__</script>
 <script id="scen-data" type="application/json">__SCEN_JSON__</script>
 <script>
 (function(){
@@ -506,6 +534,22 @@ const INCOME=JSON.parse(document.getElementById("income-data").textContent);
 const M=MLS.meta, NB=MLS.neighborhoods;
 function mktColor(m){return {"Seller's market":"var(--neg)","Balanced":"var(--ink-2)",
   "Buyer's market":"var(--good)","Deep buyer's market":"var(--good)"}[m]||"var(--ink-2)";}
+// ---- live assumptions (screening knobs, recomputed in-browser) ----
+const AS_SEED=JSON.parse(document.getElementById("assump-data").textContent);
+function asLoad(){try{const s=JSON.parse(localStorage.getItem("fl_assump"));
+  if(s&&s.verdictCut!=null&&s.absorption)return s;}catch(e){}
+  return {verdictCut:AS_SEED.verdictCut, minComps:AS_SEED.minComps,
+          absorption:Object.assign({},AS_SEED.absorption)};}
+let AS=asLoad();
+function vdictLive(gap,comps){
+  if(gap==null)return null;
+  if(comps!=null&&comps<1)return "Insufficient comps";
+  const c=AS.verdictCut;
+  return gap>c?"Overpriced":(gap<-c?"Underpriced":"Fairly priced");}
+function mktLive(mos){
+  if(mos==null)return null; const a=AS.absorption;
+  return mos<a.sellers?"Seller's market":mos<a.balanced?"Balanced":
+         mos<a.buyers?"Buyer's market":"Deep buyer's market";}
 const $=s=>document.querySelector(s), tt=$("#tt");
 const usd=v=>v==null?"—":"$"+Math.round(v).toLocaleString();
 const pctS=v=>v==null?"—":(v>=0?"+":"")+v.toFixed(0)+"%";
@@ -861,11 +905,11 @@ function scInit(){
 // ---------- absorption ----------
 let absQ="";
 function absBands(){
-  $("#absBands").innerHTML=(ABS.by_band||[]).map(b=>
-    `<div class="geot"><div class="g-t">${b.band}</div>`
+  $("#absBands").innerHTML=(ABS.by_band||[]).map(b=>{const mk=mktLive(b.months_supply);
+    return `<div class="geot"><div class="g-t">${b.band}</div>`
     +`<div class="g-v tnum">${b.months_supply}<span style="font-size:12px;color:var(--muted)"> mo</span></div>`
-    +`<div class="g-n" style="color:${mktColor(b.market)}">${b.market}</div>`
-    +`<div class="g-n">${b.sold_2y} sold / ${b.active} live</div></div>`).join("");
+    +`<div class="g-n" style="color:${mktColor(mk)}">${mk||"—"}</div>`
+    +`<div class="g-n">${b.sold_2y} sold / ${b.active} live</div></div>`;}).join("");
 }
 const ABCOLS=[
   {k:"neighborhood",t:"Neighborhood",l:1,f:r=>`<span class="nbh">${r.neighborhood}</span>`},
@@ -873,7 +917,7 @@ const ABCOLS=[
   {k:"sold_2y",t:"Sold (2y)",f:r=>`<span class="tnum">${r.sold_2y}</span>`},
   {k:"active",t:"Active",f:r=>`<span class="tnum">${r.active}</span>`},
   {k:"months_supply",t:"Months supply",f:r=>`<span class="tnum">${r.months_supply==null?"—":r.months_supply}</span>`},
-  {k:"market",t:"Market",l:1,f:r=>`<span class="tnum" style="color:${mktColor(r.market)};font-weight:600">${r.market||"—"}</span>`},
+  {k:"market",t:"Market",l:1,f:r=>{const mk=mktLive(r.months_supply);return `<span class="tnum" style="color:${mktColor(mk)};font-weight:600">${mk||"—"}</span>`;}},
 ];
 function absTable(){
   const q=absQ.toLowerCase();
@@ -927,7 +971,7 @@ const LDCOLS=[
 ];
 function landTable(){
   const q=landQ.toLowerCase();
-  let rows=LAND.by_neighborhood.filter(r=>!q||r.neighborhood.toLowerCase().includes(q));
+  let rows=LAND.by_neighborhood.filter(r=>(r.n_sold>=AS.minComps)&&(!q||r.neighborhood.toLowerCase().includes(q)));
   if(!q)rows=rows.slice(0,40);
   $("#landTbl thead").innerHTML="<tr>"+LDCOLS.map(c=>`<th class="${c.l?'l':''}">${c.t}</th>`).join("")+"</tr>";
   $("#landTbl tbody").innerHTML=rows.map(r=>"<tr>"+LDCOLS.map(c=>`<td class="${c.l?'l':''}">${c.f(r)}</td>`).join("")+"</tr>").join("")
@@ -953,11 +997,11 @@ const MFCOLS=[
   {k:"median_units",t:"Units",f:r=>`<span class="tnum">${r.median_units||"—"}</span>`},
   {k:"n_active",t:"Active",f:r=>`<span class="tnum">${r.n_active}</span>`},
   {k:"gap_pct",t:"Ask vs sold",f:r=>r.gap_pct==null?"—":`<span class="tnum ${r.gap_pct>0?'neg':'pos'}">${pctS(r.gap_pct)}</span>`},
-  {k:"verdict",t:"Verdict",l:1,f:r=>r.verdict?vpill(r.verdict):"—"},
+  {k:"verdict",t:"Verdict",l:1,f:r=>{const v=vdictLive(r.gap_pct,r.n_sold);return v?vpill(v):"—";}},
 ];
 function mfTable(){
   const q=mfQ.toLowerCase();
-  let rows=INCOME.by_neighborhood.filter(r=>!q||r.neighborhood.toLowerCase().includes(q));
+  let rows=INCOME.by_neighborhood.filter(r=>(r.n_sold>=AS.minComps)&&(!q||r.neighborhood.toLowerCase().includes(q)));
   $("#mfTbl thead").innerHTML="<tr>"+MFCOLS.map(c=>`<th class="${c.l?'l':''}">${c.t}</th>`).join("")+"</tr>";
   $("#mfTbl tbody").innerHTML=rows.map(r=>"<tr>"+MFCOLS.map(c=>`<td class="${c.l?'l':''}">${c.f(r)}</td>`).join("")+"</tr>").join("")
     ||`<tr><td class="l" colspan="8" style="color:var(--muted)">No multifamily comps match.</td></tr>`;
@@ -1029,7 +1073,7 @@ const HTCOLS=[
   {k:"n_live",t:"Live",f:r=>`<span class="tnum">${r.n_live}</span>`},
   {k:"ask_ppsf",t:"Asking $/ft²",f:r=>`<span class="tnum">${usd(r.ask_ppsf)}</span>`},
   {k:"gap_pct",t:"Ask vs sold",f:r=>r.gap_pct==null?"—":`<span class="tnum ${r.gap_pct>0?'neg':'pos'}">${pctS(r.gap_pct)}</span>`},
-  {k:"verdict",t:"Verdict",l:1,f:r=>vpill(r.verdict)},
+  {k:"verdict",t:"Verdict",l:1,f:r=>vpill(vdictLive(r.gap_pct,r.n_sold))},
 ];
 function htTable(){
   const q=state.htQ.toLowerCase();
@@ -1052,13 +1096,14 @@ const RNCOLS=[
   {k:"sold_ppsf",t:"Should be (sold)",f:r=>`<span class="tnum">${usd(r.sold_ppsf)}</span>`},
   {k:"model_ppsf",t:"Model $/ft²",f:r=>`<span class="tnum" style="color:var(--muted)">${usd(r.model_ppsf)}</span>`},
   {k:"gap_pct",t:"Ask vs should-be",f:r=>`<span class="tnum ${r.gap_pct>0?'neg':'pos'}">${pctS(r.gap_pct)}</span>`},
-  {k:"verdict",t:"Verdict",l:1,f:r=>vpill(r.verdict)},
+  {k:"verdict",t:"Verdict",l:1,f:r=>vpill(vdictLive(r.gap_pct,r.n_sold_comps))},
   {k:"n_sold_comps",t:"Comps",f:r=>`<span class="tnum">${r.n_sold_comps}</span>`},
 ];
-function repData(){return state.repType==="condo"?REP.condos_by_nbhd:REP.by_nbhd;}
+function repData(){const d=state.repType==="condo"?REP.condos_by_nbhd:REP.by_nbhd;
+  return d.filter(r=>(r.n_sold_comps||0)>=AS.minComps);}
 function renderRepFlags(){
   const a=repData(),c={Overpriced:0,"Fairly priced":0,Underpriced:0};
-  a.forEach(r=>{if(r.verdict in c)c[r.verdict]++;});
+  a.forEach(r=>{const v=vdictLive(r.gap_pct,r.n_sold_comps);if(v in c)c[v]++;});
   $("#repFlags").innerHTML=
     `<div class="flagbox fb-over"><div class="n tnum">${c.Overpriced}</div><div class="t">Overpriced</div></div>`
    +`<div class="flagbox fb-fair"><div class="n tnum">${c["Fairly priced"]}</div><div class="t">Fairly priced</div></div>`
@@ -1078,7 +1123,7 @@ const RICOLS=[
   {k:"should_be_ppsf",t:"Should-be $/ft²",f:r=>`<span class="tnum">${usd(r.should_be_ppsf)}</span>`},
   {k:"should_be_price",t:"Should-be price",f:r=>`<span class="tnum">${usd(r.should_be_price)}</span>`},
   {k:"gap_pct",t:"Gap",f:r=>`<span class="tnum ${r.gap_pct>0?'neg':'pos'}">${pctS(r.gap_pct)}</span>`},
-  {k:"verdict",t:"Verdict",l:1,f:r=>vpill(r.verdict)},
+  {k:"verdict",t:"Verdict",l:1,f:r=>vpill(vdictLive(r.gap_pct,r.comps))},
 ];
 function renderRepInv(){
   const q=state.repQ.toLowerCase();
@@ -1110,6 +1155,29 @@ matchMedia("(prefers-color-scheme:dark)").addEventListener("change",renderAll);
 window.addEventListener("resize",()=>{clearTimeout(window._rz);window._rz=setTimeout(renderAll,150);});
 renderAll();
 scInit();
+
+// ---------- live assumptions controller ----------
+function asApply(){renderRepFlags();renderRepNbhd();renderRepInv();mfTable();htTable();
+  absBands();absTable();landTable();}
+function asSave(){try{localStorage.setItem("fl_assump",JSON.stringify(AS));}catch(e){}}
+function asSync(){
+  $("#asCut").value=AS.verdictCut; $("#asCutV").textContent="± "+AS.verdictCut+"%";
+  $("#asMin").value=AS.minComps; $("#asMinV").textContent=AS.minComps;
+  $("#asAbsS").value=AS.absorption.sellers; $("#asAbsB").value=AS.absorption.balanced;
+  $("#asAbsY").value=AS.absorption.buyers;
+  $("#asEcho").textContent=` verdict ±${AS.verdictCut}% · min ${AS.minComps} comps · absorption `
+    +`${AS.absorption.sellers}/${AS.absorption.balanced}/${AS.absorption.buyers} mo`;}
+function asInit(){
+  asSync();
+  $("#asCut").addEventListener("input",e=>{AS.verdictCut=+e.target.value;asSave();asSync();asApply();});
+  $("#asMin").addEventListener("input",e=>{AS.minComps=+e.target.value;asSave();asSync();asApply();});
+  const ab=(id,k)=>$(id).addEventListener("input",e=>{AS.absorption[k]=+e.target.value||0;asSave();asSync();asApply();});
+  ab("#asAbsS","sellers");ab("#asAbsB","balanced");ab("#asAbsY","buyers");
+  $("#asReset").addEventListener("click",()=>{AS={verdictCut:AS_SEED.verdictCut,
+    minComps:AS_SEED.minComps,absorption:Object.assign({},AS_SEED.absorption)};asSave();asSync();asApply();});
+  asApply();
+}
+asInit();
 
 // ---------- section nav scrollspy ----------
 (function(){
@@ -1144,6 +1212,7 @@ def build():
              .replace("__SELLER_JSON__", json.dumps(SELLER, separators=(",", ":")))
              .replace("__LAND_JSON__", json.dumps(LAND, separators=(",", ":")))
              .replace("__INCOME_JSON__", json.dumps(INCOME, separators=(",", ":")))
+             .replace("__ASSUMP_JSON__", json.dumps(ASSUMP, separators=(",", ":")))
              .replace("__SCEN_JSON__", json.dumps(SCEN, separators=(",", ":"))))
     standalone = (
         "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"

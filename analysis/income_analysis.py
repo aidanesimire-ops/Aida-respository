@@ -33,19 +33,22 @@ import pandas as pd
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import mls_normalize as M  # reuse _num + neighborhood canonicalization
+from config import CFG
 
 ROOT = os.path.dirname(HERE)
-RAWDIR = os.path.join(ROOT, "data", "raw", "income")
+RAWDIR = CFG.folder("income")
 PROC = os.path.join(ROOT, "data", "processed")
 os.makedirs(PROC, exist_ok=True)
 
-ST_GROUP = {"CS": "Sold", "PS": "Pending", "A": "Active", "AC": "Active",
-            "X": "Expired", "C": "Cancelled", "W": "Withdrawn", "T": "TempOff"}
+ST_GROUP = CFG.asset("income")["status_map"]
+_IC = CFG.cols("income")
 FAILED = {"Expired", "Withdrawn", "Cancelled", "TempOff"}
-MIN_NBHD_SOLD = 5
-THIS_YEAR = 2026
-PPU_LO, PPU_HI = 40_000, 3_000_000     # plausible $/unit band
-PPSF_LO, PPSF_HI = 60, 2000            # plausible $/sqft band
+_INC = CFG.thr("income")
+MIN_NBHD_SOLD = _INC["min_nbhd_sold"]
+THIS_YEAR = CFG.year
+PPU_LO, PPU_HI = _INC["ppu_bounds"]     # plausible $/unit band
+PPSF_LO, PPSF_HI = _INC["ppsf_bounds"]  # plausible $/sqft band
+VERDICT_CUT = _INC["verdict_cutoff_pct"]
 
 
 def _unit_tier(u):
@@ -69,21 +72,22 @@ def load_clean():
     for path in sorted(glob.glob(os.path.join(RAWDIR, "*.csv"))):
         frames.append(pd.read_csv(path))
     raw = pd.concat(frames, ignore_index=True)
+    C = _IC
     df = pd.DataFrame({
-        "status": raw["St"].map(ST_GROUP),
-        "mls": raw["MLS # Link"].astype(str),
-        "area": raw["Area"].map(lambda x: str(x).replace(".0", "") if pd.notna(x) else None),
-        "address": raw["Address"].astype(str).str.strip(),
-        "neighborhood": raw["Subdivision Name"].map(M._canon_neigh),
-        "list_price": raw["Current Price"].map(M._num),
-        "sale_price": raw["Sale Price"].map(M._num),
-        "units": raw["Total Units"].map(M._num),
-        "style": raw["Style "].astype(str).str.strip(),
-        "sqft": raw["SqFt LA"].map(M._num),
-        "year_built": raw["Year Built"].map(M._num),
-        "parking": raw["#Parking Spaces"].map(M._num),
-        "pool": raw["Pool YN"].astype(str).str.strip().str.lower().eq("yes"),
-        "waterfront": raw["Waterfront Property (Y/N)"].astype(str).str.strip().str.lower().eq("yes"),
+        "status": raw[CFG.asset("income")["status_column"]].map(ST_GROUP),
+        "mls": raw[C["mls"]].astype(str),
+        "area": raw[C["area"]].map(lambda x: str(x).replace(".0", "") if pd.notna(x) else None),
+        "address": raw[C["address"]].astype(str).str.strip(),
+        "neighborhood": raw[C["subdivision"]].map(M._canon_neigh),
+        "list_price": raw[C["list_price"]].map(M._num),
+        "sale_price": raw[C["sale_price"]].map(M._num),
+        "units": raw[C["units"]].map(M._num),
+        "style": raw[C["style"]].astype(str).str.strip(),
+        "sqft": raw[C["sqft"]].map(M._num),
+        "year_built": raw[C["year_built"]].map(M._num),
+        "parking": raw[C["parking"]].map(M._num),
+        "pool": raw[C["pool"]].astype(str).str.strip().str.lower().eq("yes"),
+        "waterfront": raw[C["waterfront"]].astype(str).str.strip().str.lower().eq("yes"),
     })
     df = df[df["status"].notna()].copy()
     # recover missing unit counts from the income style code (I02=2, I03=3, I04=4 ...)
@@ -146,7 +150,8 @@ def main():
         gap = round(100 * (ask_ppu / sold_ppu - 1)) if (ask_ppu and sold_ppu) else None
         verdict = None
         if gap is not None:
-            verdict = "Overpriced" if gap > 8 else "Underpriced" if gap < -8 else "Fairly priced"
+            verdict = ("Overpriced" if gap > VERDICT_CUT else
+                       "Underpriced" if gap < -VERDICT_CUT else "Fairly priced")
         by_nbhd.append({
             "neighborhood": nb, "n_sold": int(ns),
             "ppu": round(sold_ppu) if sold_ppu else None,

@@ -50,6 +50,7 @@ from __future__ import annotations
 
 import json
 import os
+import sys
 import warnings
 
 import numpy as np
@@ -61,6 +62,9 @@ warnings.filterwarnings("ignore")
 # Config
 # --------------------------------------------------------------------------- #
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+from config import CFG
+
 ROOT = os.path.dirname(HERE)
 RAW = os.path.join(ROOT, "data", "raw", "redfin_fll_neighborhoods.tsv")
 PROC = os.path.join(ROOT, "data", "processed")
@@ -73,7 +77,7 @@ MODEL_TYPES = ["Single Family Residential", "Condo/Co-op", "Townhouse"]
 HEADLINE_TYPE = "Single Family Residential"  # the "home" ranking most people mean
 
 REF_MONTHS = 12       # reference window = most recent N months (stabilises the "now")
-MIN_SAMPLE = 20       # min approx. transactions over the span to enter main ranking
+MIN_SAMPLE = CFG.thr("redfin_min_sample")  # min approx. transactions to enter main ranking
 CONF_HIGH = 120       # sample thresholds for the confidence tier label
 CONF_MED = 40
 

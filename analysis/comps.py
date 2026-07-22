@@ -12,17 +12,20 @@ Output: comps_flat.csv (one row per target-comp pair) + comps_bundle.json (keyed
 from __future__ import annotations
 import json
 import os
+import sys
 
 import numpy as np
 import pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+from config import CFG
+
 ROOT = os.path.dirname(HERE)
 PROC = os.path.join(ROOT, "data", "processed")
-MIN_TICKET = 1_000_000
+MIN_TICKET = CFG.thr("high_ticket")
 N_COMPS = 5
-EDGES = [0, 1e6, 2e6, 3e6, 5e6, 10e6, np.inf]
-LABELS = ["<$1M", "$1M–$2M", "$2M–$3M", "$3M–$5M", "$5M–$10M", "$10M+"]
+EDGES, LABELS = CFG.full_bands()
 
 
 def main():

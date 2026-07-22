@@ -19,21 +19,24 @@ pre-construction tower with no comps is marked Low, not silently trusted.
 from __future__ import annotations
 import json
 import os
+import sys
 
 import numpy as np
 import pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+from config import CFG
+
 ROOT = os.path.dirname(HERE)
 PROC = os.path.join(ROOT, "data", "processed")
 SRC = os.path.join(PROC, "street_active_deals.csv")
 VALUED = os.path.join(PROC, "mls_all_valued.csv")
-MIN_CELL = 2   # min sold or live in a (neighborhood, band) cell to report it
+MIN_CELL = CFG.thr("min_band_cell")   # min sold or live in a (neighborhood, band) cell
 
-MIN_TICKET = 1_000_000
-BAND_EDGES = [1e6, 2e6, 3e6, 5e6, 10e6, np.inf]
-BAND_LABELS = ["$1M–$2M", "$2M–$3M", "$3M–$5M", "$5M–$10M", "$10M+"]
-BAND = 10   # +/- % = fairly priced
+MIN_TICKET = CFG.thr("high_ticket")
+BAND_EDGES, BAND_LABELS = CFG.ht_bands()
+BAND = CFG.thr("verdict_cutoff_pct")   # +/- % = fairly priced
 
 
 def _round_list(v):

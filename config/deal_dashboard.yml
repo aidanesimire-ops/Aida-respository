@@ -1,0 +1,157 @@
+# ============================================================================
+# Deal Dashboard — control panel
+# ----------------------------------------------------------------------------
+# Edit any value, then rebuild everything with:   python analysis/refresh.py
+# Anything you delete falls back to the built-in default, so you only need to
+# keep the lines you actually change. Structural edits (thresholds, bands,
+# column maps) are applied on refresh; the dashboard also exposes the screening
+# knobs live in the browser (Assumptions panel) for what-if without a rebuild.
+# ============================================================================
+
+market:
+  name: Fort Lauderdale
+  this_year: 2026            # anchor year for property age
+
+thresholds:
+  # --- improved-residential hedonic ---
+  min_geo_sold: 10           # closed sales for a neighborhood to be its own model level
+  min_report_sold: 12        # closed sales to appear in the ranking
+  new_max_age: 6             # <= this many years old counts as "new construction"
+  ppsf_bounds: [40, 6000]    # plausible $/sqft; outside = data error, dropped
+
+  # --- luxury / high-ticket ---
+  high_ticket: 1000000       # underwrite every live listing at/above this
+  price_bands: [1000000, 2000000, 3000000, 5000000, 10000000]   # band edges
+  min_band_cell: 2           # min observations in a (neighborhood, band) cell
+
+  # --- repricing / verdicts ---
+  min_nbhd_live: 3           # min live listings to score a neighborhood
+  min_comps: 5               # min SOLD comps for a reliable listing verdict
+  min_nbhd_sold: 8           # min sold comps to score a neighborhood's market
+  verdict_cutoff_pct: 10     # +/- this % vs comps = over/under, else fairly priced
+
+  # --- prospecting ---
+  min_over_pct: 10           # min % over comps to make an overpricing story
+  max_over_pct: 60           # cap (above this is likely a data artifact)
+
+  # --- absorption (months of supply) verdict boundaries ---
+  absorption:
+    sellers: 6               # < 6 mo  = seller's market
+    balanced: 12             # 6-12    = balanced
+    buyers: 24               # 12-24   = buyer's ; > 24 = deep buyer's
+
+  # --- redfin context layer ---
+  redfin_min_sample: 20      # min approx. transactions to enter the Redfin ranking
+
+  # --- land ---
+  land:
+    min_nbhd_sold: 4         # land comps a neighborhood needs to be reported
+    ppsf_bounds: [0.2, 3000] # plausible land $/sqft
+    urban_sqft: 60000        # lots below this (~1.4 ac) = "urban"; strips rural acreage
+
+  # --- income / small multifamily ---
+  income:
+    min_nbhd_sold: 5
+    ppu_bounds: [40000, 3000000]   # plausible $/unit
+    ppsf_bounds: [60, 2000]        # plausible $/sqft
+    verdict_cutoff_pct: 8          # +/- this % vs comps = over/under on ask
+
+# ============================================================================
+# Data sources — one block per asset class.
+#   folder        : where to drop the CSV exports for this asset
+#   status_from   : "filename" (status = file name) or "column" (status in a field)
+#   status_column : which field carries the status code (when status_from: column)
+#   status_map    : raw status -> bucket (Sold / Pending / Active / Expired / ...)
+#   columns       : canonical field -> the raw column name in YOUR export
+# To onboard a differently-named export, just remap the column names here.
+# To add a NEW asset class, clone the closest block (land or income) and point a
+# new analysis module at it — see the deal-dashboard skill's data_schema.md.
+# ============================================================================
+
+assets:
+  residential:
+    folder: data/raw/mls
+    status_from: filename
+    status_map:
+      sold: Sold
+      expired: Expired
+      withdrawn: Withdrawn
+      cancelled: Cancelled
+      temp_off: TempOff
+      active_coming_soon: Active
+      active_pending: Pending
+    columns:
+      area: Area
+      address: Address
+      subdivision: Subdivision/Complex
+      list_price: List Price
+      sale_price: Sale Price
+      beds: "#Beds"
+      fbaths: "#FBaths"
+      hbaths: "#HBaths"
+      sqft: SqFt LA
+      ptype: Type of Property
+      year_built: Year Built
+      garage: "#Garage Spaces"
+      pool: Pool YN
+      waterfront: Waterfront Property (Y/N)
+      lot_sqft: Lot SqFt
+
+  land:
+    folder: data/raw/land
+    status_from: column
+    status_column: St
+    status_map: {CS: Sold, PS: Pending, A: Active, AC: Active, X: Expired, C: Cancelled, W: Withdrawn, T: TempOff}
+    columns:
+      mls: "MLS # Link"
+      area: Area
+      address: Address
+      subdivision: Subdivision Name
+      list_price: Current Price
+      sale_price: Sale Price
+      acre: Total Acreage
+      psqft: Property SqFt
+      lot_desc: Lot Description
+      zn: ZN
+      style: Style of Property
+      ptype: Type of Property
+      waterfront: Waterfront Property (Y/N)
+      road: Road Description
+
+  commercial_land:
+    folder: data/raw/commercial_land
+    status_from: column
+    status_column: St
+    status_map: {CS: Sold, PS: Pending, A: Active, AC: Active, X: Expired, C: Cancelled, W: Withdrawn, T: TempOff}
+    columns:
+      area: Area
+      address: Address
+      list_price: Current Price
+      sale_price: Sale Price
+      acre: Total Acreage
+      lotsf: Lot SqFt
+      location: Location
+      zn: ZN
+      style: Style of Property
+      ptype: Type of Property
+      for_lease: For Lease
+
+  income:
+    folder: data/raw/income
+    status_from: column
+    status_column: St
+    status_map: {CS: Sold, PS: Pending, A: Active, AC: Active, X: Expired, C: Cancelled, W: Withdrawn, T: TempOff}
+    columns:
+      mls: "MLS # Link"
+      area: Area
+      address: Address
+      subdivision: Subdivision Name
+      list_price: Current Price
+      sale_price: Sale Price
+      units: Total Units
+      style: "Style "
+      sqft: SqFt LA
+      year_built: Year Built
+      parking: "#Parking Spaces"
+      pool: Pool YN
+      waterfront: Waterfront Property (Y/N)

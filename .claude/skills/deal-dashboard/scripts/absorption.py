@@ -10,27 +10,31 @@ Output: absorption_by_band.csv, absorption_by_band_neighborhood.csv, absorption_
 from __future__ import annotations
 import json
 import os
+import sys
 
 import numpy as np
 import pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+from config import CFG
+
 ROOT = os.path.dirname(HERE)
 PROC = os.path.join(ROOT, "data", "processed")
 MONTHS = 24
-EDGES = [0, 1e6, 2e6, 3e6, 5e6, 10e6, np.inf]
-LABELS = ["<$1M", "$1M–$2M", "$2M–$3M", "$3M–$5M", "$5M–$10M", "$10M+"]
+EDGES, LABELS = CFG.full_bands()
+_ABS = CFG.thr("absorption")
 LIVE = {"Active", "Pending"}
 
 
 def market(mos):
     if mos is None or pd.isna(mos):
         return None
-    if mos < 6:
+    if mos < _ABS["sellers"]:
         return "Seller's market"
-    if mos < 12:
+    if mos < _ABS["balanced"]:
         return "Balanced"
-    if mos < 24:
+    if mos < _ABS["buyers"]:
         return "Buyer's market"
     return "Deep buyer's market"
 

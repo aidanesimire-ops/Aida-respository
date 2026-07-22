@@ -32,6 +32,7 @@ import glob
 import json
 import os
 import re
+import sys
 import warnings
 
 import numpy as np
@@ -40,23 +41,22 @@ import pandas as pd
 warnings.filterwarnings("ignore")
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+from config import CFG  # noqa: E402
+
 ROOT = os.path.dirname(HERE)
-RAWDIR = os.path.join(ROOT, "data", "raw", "mls")
+RAWDIR = CFG.folder("residential")
 PROC = os.path.join(ROOT, "data", "processed")
 os.makedirs(PROC, exist_ok=True)
 
-THIS_YEAR = 2026
-MIN_GEO_SOLD = 10      # min closed sales for a neighborhood to be its own model level
-MIN_REPORT_SOLD = 12   # min closed sales to appear in the neighborhood ranking
-NEW_MAX_AGE = 6        # <= this many years old counts as "new construction"
-PPSF_LO, PPSF_HI = 40, 6000     # plausible $/sqft band (drop data errors)
+THIS_YEAR = CFG.year
+MIN_GEO_SOLD = CFG.thr("min_geo_sold")      # closed sales for a neighborhood to be its own level
+MIN_REPORT_SOLD = CFG.thr("min_report_sold")  # closed sales to appear in the ranking
+NEW_MAX_AGE = CFG.thr("new_max_age")        # <= this many years old counts as "new construction"
+PPSF_LO, PPSF_HI = CFG.thr("ppsf_bounds")   # plausible $/sqft band (drop data errors)
 
-STATUS_GROUP = {
-    "sold": "Sold",
-    "expired": "Expired", "withdrawn": "Withdrawn",
-    "cancelled": "Cancelled", "temp_off": "TempOff",
-    "active_coming_soon": "Active", "active_pending": "Pending",
-}
+STATUS_GROUP = CFG.asset("residential")["status_map"]
+_COLS = CFG.cols("residential")
 FAILED = {"Expired", "Withdrawn", "Cancelled", "TempOff"}
 LIVE = {"Active", "Pending"}
 
@@ -238,25 +238,26 @@ def load_clean() -> pd.DataFrame:
         frames.append(d)
     raw = pd.concat(frames, ignore_index=True)
 
+    C = _COLS
     df = pd.DataFrame({
         "status": raw["status"],
-        "area": raw["Area"].map(lambda x: re.sub(r"\.0$", "", str(x)) if pd.notna(x) else None),
-        "address": raw["Address"].astype(str).str.strip(),
-        "street": raw["Address"].map(_street),
-        "sub_raw": raw["Subdivision/Complex"].astype(str).str.upper().str.strip(),
-        "neighborhood": raw["Subdivision/Complex"].map(_canon_neigh),
-        "list_price": raw["List Price"].map(_num),
-        "sale_price": raw["Sale Price"].map(_num),
-        "beds": pd.to_numeric(raw["#Beds"], errors="coerce"),
-        "fbaths": pd.to_numeric(raw["#FBaths"], errors="coerce"),
-        "hbaths": pd.to_numeric(raw["#HBaths"], errors="coerce"),
-        "sqft": raw["SqFt LA"].map(_num),
-        "ptype": raw["Type of Property"].map(_ptype),
-        "year_built": raw["Year Built"].map(_num),
-        "garage": pd.to_numeric(raw["#Garage Spaces"], errors="coerce"),
-        "pool": raw["Pool YN"].astype(str).str.strip().str.lower().eq("yes"),
-        "waterfront": raw["Waterfront Property (Y/N)"].astype(str).str.strip().str.lower().eq("yes"),
-        "lot_sqft": raw["Lot SqFt"].map(_num),
+        "area": raw[C["area"]].map(lambda x: re.sub(r"\.0$", "", str(x)) if pd.notna(x) else None),
+        "address": raw[C["address"]].astype(str).str.strip(),
+        "street": raw[C["address"]].map(_street),
+        "sub_raw": raw[C["subdivision"]].astype(str).str.upper().str.strip(),
+        "neighborhood": raw[C["subdivision"]].map(_canon_neigh),
+        "list_price": raw[C["list_price"]].map(_num),
+        "sale_price": raw[C["sale_price"]].map(_num),
+        "beds": pd.to_numeric(raw[C["beds"]], errors="coerce"),
+        "fbaths": pd.to_numeric(raw[C["fbaths"]], errors="coerce"),
+        "hbaths": pd.to_numeric(raw[C["hbaths"]], errors="coerce"),
+        "sqft": raw[C["sqft"]].map(_num),
+        "ptype": raw[C["ptype"]].map(_ptype),
+        "year_built": raw[C["year_built"]].map(_num),
+        "garage": pd.to_numeric(raw[C["garage"]], errors="coerce"),
+        "pool": raw[C["pool"]].astype(str).str.strip().str.lower().eq("yes"),
+        "waterfront": raw[C["waterfront"]].astype(str).str.strip().str.lower().eq("yes"),
+        "lot_sqft": raw[C["lot_sqft"]].map(_num),
     })
     # recover missing sqft / bad year from same-building peers before filtering
     df, n_fsq, n_fyr = _fill_from_subdivision(df)

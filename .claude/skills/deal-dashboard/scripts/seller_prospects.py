@@ -15,19 +15,22 @@ Output: seller_prospects_failed.csv, seller_prospects_overpriced_active.csv, sel
 from __future__ import annotations
 import json
 import os
+import sys
 
 import numpy as np
 import pandas as pd
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+from config import CFG
+
 ROOT = os.path.dirname(HERE)
 PROC = os.path.join(ROOT, "data", "processed")
-MIN_TICKET = 1_000_000
-MIN_NBHD_SOLD = 8
-MIN_OVER = 10          # >= this % over supported to count as an overpricing story
-MAX_OVER = 60          # beyond this the model can't value the property (trophy) -- skip
-EDGES = [0, 1e6, 2e6, 3e6, 5e6, 10e6, np.inf]
-LABELS = ["<$1M", "$1M–$2M", "$2M–$3M", "$3M–$5M", "$5M–$10M", "$10M+"]
+MIN_TICKET = CFG.thr("high_ticket")
+MIN_NBHD_SOLD = CFG.thr("min_nbhd_sold")
+MIN_OVER = CFG.thr("min_over_pct")     # >= this % over supported = overpricing story
+MAX_OVER = CFG.thr("max_over_pct")     # beyond this the model can't value it (trophy) -- skip
+EDGES, LABELS = CFG.full_bands()
 FAILED = {"Expired", "Withdrawn", "Cancelled", "TempOff"}
 
 

@@ -70,8 +70,35 @@ SFR-only model splits structure value from lot value to imply land $/sqft.
 
 ```bash
 pip install -r requirements.txt
-python analysis/run_all.py          # runs the whole pipeline
+python analysis/refresh.py          # discover data + rebuild everything (the front door)
+python analysis/refresh.py --check  # just validate data & column maps, no rebuild
 ```
+
+`refresh.py` reports what data it found for each asset class and checks your column
+maps against the actual export headers before building — so a renamed column is caught,
+not silently dropped. (`python analysis/run_all.py` still runs the raw 18-step pipeline
+if you prefer.)
+
+## Dynamic — config-driven & live
+
+Nothing is hard-coded. **[`config/deal_dashboard.yml`](config/deal_dashboard.yml)** is a
+single control panel for the whole model:
+
+- **Thresholds** — comp minimums, price bands, the high-ticket floor, verdict cutoffs,
+  absorption boundaries, age/size bounds. Change a value, run `refresh.py`, everything
+  downstream (bundles, Excel, dashboard, report) rebuilds.
+- **Data sources** — each asset class declares its `folder`, `status_map`, and a
+  `columns` map (canonical field → the raw column name in *your* export). Onboarding a
+  differently-named export is a config edit, not code. Adding a whole new asset class is
+  cloning one block and pointing an analysis module at it.
+
+Deleting any line falls back to the built-in default, so you only keep what you change.
+
+The **dashboard also carries a "Live assumptions" panel** — verdict cutoff, minimum comps,
+and absorption boundaries — that recomputes every verdict, flag and market label **in the
+browser, no rebuild.** Structural changes (price bands, hedonic premiums, new data) go
+through the config + `refresh.py`; day-to-day what-if screening is live. Settings persist
+per device.
 
 Or step by step:
 
@@ -113,7 +140,9 @@ data/raw/commercial_land/  commercial / development land exports
 data/raw/income/      residential-income (small multifamily) exports
 data/raw/             redfin_fll_neighborhoods.tsv (filtered Redfin neighborhood data)
 data/processed/       cleaned data + normalized tables + JSON bundles
-analysis/             the pipeline (normalize_ppsf, mls_normalize, build_*)
+config/               deal_dashboard.yml — the control panel (thresholds + data maps)
+analysis/             the pipeline; config.py (loads the YAML), refresh.py (front door),
+                      normalize_ppsf, mls_normalize, land_analysis, income_analysis, build_*
 outputs/              charts (PNG) + the Excel workbook
 dashboard/            self-contained interactive dashboard
 REPORT.md             written analysis

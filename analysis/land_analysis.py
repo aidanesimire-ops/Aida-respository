@@ -39,19 +39,21 @@ import pandas as pd
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import mls_normalize as M  # reuse _num + neighborhood canonicalization
+from config import CFG
 
 ROOT = os.path.dirname(HERE)
-RAWDIR = os.path.join(ROOT, "data", "raw", "land")
+RAWDIR = CFG.folder("land")
 PROC = os.path.join(ROOT, "data", "processed")
 os.makedirs(PROC, exist_ok=True)
 
-ST_GROUP = {"CS": "Sold", "PS": "Pending", "A": "Active", "AC": "Active",
-            "X": "Expired", "C": "Cancelled", "W": "Withdrawn", "T": "TempOff"}
+ST_GROUP = CFG.asset("land")["status_map"]
+_LC = CFG.cols("land")
 FAILED = {"Expired", "Withdrawn", "Cancelled", "TempOff"}
 LIVE = {"Active", "Pending"}
 
-MIN_NBHD_SOLD = 4          # land comps a neighborhood needs to be reported
-PPSF_LO, PPSF_HI = 0.2, 3000   # plausible land $/sqft band (drop data errors)
+_LAND = CFG.thr("land")
+MIN_NBHD_SOLD = _LAND["min_nbhd_sold"]          # land comps a neighborhood needs to be reported
+PPSF_LO, PPSF_HI = _LAND["ppsf_bounds"]         # plausible land $/sqft band (drop data errors)
 SQFT_PER_ACRE = 43560
 
 
@@ -121,23 +123,24 @@ def load_clean():
     for path in sorted(glob.glob(os.path.join(RAWDIR, "*.csv"))):
         frames.append(pd.read_csv(path))
     raw = pd.concat(frames, ignore_index=True)
+    C = _LC
     df = pd.DataFrame({
-        "status": raw["St"].map(ST_GROUP),
-        "mls": raw["MLS # Link"].astype(str),
-        "area": raw["Area"].map(lambda x: re.sub(r"\.0$", "", str(x)) if pd.notna(x) else None),
-        "address": raw["Address"].astype(str).str.strip(),
-        "neighborhood": raw["Subdivision Name"].map(M._canon_neigh),
-        "sub_raw": raw["Subdivision Name"].astype(str).str.upper().str.strip(),
-        "list_price": raw["Current Price"].map(M._num),
-        "sale_price": raw["Sale Price"].map(M._num),
-        "acre": raw["Total Acreage"].map(M._num),
-        "psqft": raw["Property SqFt"].map(M._num),
-        "lot_desc": raw["Lot Description"].astype(str),
-        "zn": raw["ZN"].astype(str),
-        "style": raw["Style of Property"].astype(str),
-        "ptype": raw["Type of Property"].astype(str),
-        "waterfront": raw["Waterfront Property (Y/N)"].astype(str).str.strip().str.lower().eq("yes"),
-        "road": raw["Road Description"].astype(str),
+        "status": raw[CFG.asset("land")["status_column"]].map(ST_GROUP),
+        "mls": raw[C["mls"]].astype(str),
+        "area": raw[C["area"]].map(lambda x: re.sub(r"\.0$", "", str(x)) if pd.notna(x) else None),
+        "address": raw[C["address"]].astype(str).str.strip(),
+        "neighborhood": raw[C["subdivision"]].map(M._canon_neigh),
+        "sub_raw": raw[C["subdivision"]].astype(str).str.upper().str.strip(),
+        "list_price": raw[C["list_price"]].map(M._num),
+        "sale_price": raw[C["sale_price"]].map(M._num),
+        "acre": raw[C["acre"]].map(M._num),
+        "psqft": raw[C["psqft"]].map(M._num),
+        "lot_desc": raw[C["lot_desc"]].astype(str),
+        "zn": raw[C["zn"]].astype(str),
+        "style": raw[C["style"]].astype(str),
+        "ptype": raw[C["ptype"]].astype(str),
+        "waterfront": raw[C["waterfront"]].astype(str).str.strip().str.lower().eq("yes"),
+        "road": raw[C["road"]].astype(str),
     })
     df = df[df["status"].notna()].copy()
     df["lot_sqft"] = [_lot_sqft(p, a) for p, a in zip(df["psqft"], df["acre"])]
@@ -156,7 +159,7 @@ def load_clean():
     return df.reset_index(drop=True)
 
 
-COMMDIR = os.path.join(ROOT, "data", "raw", "commercial_land")
+COMMDIR = CFG.folder("commercial_land")
 
 
 def _sanitize(o):
@@ -184,19 +187,20 @@ def commercial_land():
     if not paths:
         return None
     raw = pd.concat([pd.read_csv(p) for p in paths], ignore_index=True)
+    C = CFG.cols("commercial_land")
     d = pd.DataFrame({
-        "status": raw["St"].map(ST_GROUP),
-        "area": raw["Area"].map(lambda x: re.sub(r"\.0$", "", str(x)) if pd.notna(x) else None),
-        "address": raw["Address"].astype(str).str.strip(),
-        "list_price": raw["Current Price"].map(M._num),
-        "sale_price": raw["Sale Price"].map(M._num),
-        "acre": raw["Total Acreage"].map(M._num),
-        "lotsf": raw["Lot SqFt"].map(M._num),
-        "location": raw["Location"].astype(str).str.replace("nan", "", regex=False),
-        "zn": raw["ZN"].astype(str),
-        "style": raw["Style of Property"].astype(str),
-        "ptype": raw["Type of Property"].astype(str),
-        "for_lease": raw["For Lease"].astype(str).str.strip().str.lower().eq("yes"),
+        "status": raw[CFG.asset("commercial_land")["status_column"]].map(ST_GROUP),
+        "area": raw[C["area"]].map(lambda x: re.sub(r"\.0$", "", str(x)) if pd.notna(x) else None),
+        "address": raw[C["address"]].astype(str).str.strip(),
+        "list_price": raw[C["list_price"]].map(M._num),
+        "sale_price": raw[C["sale_price"]].map(M._num),
+        "acre": raw[C["acre"]].map(M._num),
+        "lotsf": raw[C["lotsf"]].map(M._num),
+        "location": raw[C["location"]].astype(str).str.replace("nan", "", regex=False),
+        "zn": raw[C["zn"]].astype(str),
+        "style": raw[C["style"]].astype(str),
+        "ptype": raw[C["ptype"]].astype(str),
+        "for_lease": raw[C["for_lease"]].astype(str).str.strip().str.lower().eq("yes"),
     })
     d = d[d["status"].notna()].copy()
     d["lot_sqft"] = [_lot_sqft(l, a) for l, a in zip(d["lotsf"], d["acre"])]
@@ -250,7 +254,7 @@ def main():
     failed = df[df["status"].isin(FAILED) & ~df["is_dock"]].copy()
     # "urban" = city-scale lots (< ~1.4 acre); strips the far-west rural acreage that
     # would otherwise drag the size/zoning gradients toward zero.
-    URBAN = 60000
+    URBAN = _LAND["urban_sqft"]
     urban = sold[sold["lot_sqft"] < URBAN]
     # The RLD export is a multi-county South Florida pull; only a fraction is Fort
     # Lauderdale proper. Isolate the FLL subset (neighborhoods in the improved layer)
