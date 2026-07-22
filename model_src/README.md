@@ -103,10 +103,14 @@ See `../MODEL_AUDIT.md` for what is verified vs. modeled and the outstanding dat
 
 ## Tabs
 
-`Executive Summary · Review Board · Capital Stack · Assumptions · Income Valuation · Scenarios ·
-Assemblage · Highest & Best Use · Shahidi Retail · Publix & Starbucks · Sunrise Plaza ·
+`Executive Summary · Deal Book · Review Board · Capital Stack · Assumptions · Income Valuation ·
+Scenarios · Assemblage · Highest & Best Use · Shahidi Retail · Publix & Starbucks · Sunrise Plaza ·
 Office Condo · Land · Notes & Sources`
 
+- **Deal Book** — the acquisition & execution package: deal-at-a-glance, per-owner acquisition
+  strategy (basis / structure / motivation / approach / contingency), whole-deal Sources & Uses to
+  control all five, financing & returns, a risk register, and an execution timeline. Numbers are
+  live-linked; deal intel is editable (`ACQ_STRATEGY` / `RISKS` / `TIMELINE` in `tab_dealbook.py`).
 - **Review Board** — interactive, closed-form sensitivity grids + driver tornado; every grid is
   anchored to the actual consolidated reversion so the base reproduces the headline multiple.
 - **Capital Stack** — sandbox to flex leverage/rates/equity: the stack (senior/mezz/equity) at
