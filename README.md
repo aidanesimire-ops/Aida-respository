@@ -4,7 +4,9 @@ Statistical normalization of the Fort Lauderdale residential market that turns r
 confounded price-per-square-foot into **clean, comparable $/sqft by neighborhood** — and
 the context to back it up in a homeowner conversation: waterfront vs dry-lot pricing,
 new-construction vs existing, implied land value, real list-to-sale discounts, market
-appreciation, listing failure rates, and live over/under-priced inventory.
+appreciation, listing failure rates, live over/under-priced inventory, and
+**street-by-street value** — each street's premium vs. its neighborhood, with live
+listings underwritten against their own street's comps.
 
 **Start here:** [`REPORT.md`](REPORT.md) (written analysis) ·
 [`outputs/Fort_Lauderdale_PPSF_Normalized.xlsx`](outputs/) (workbook) ·
@@ -56,6 +58,7 @@ Or step by step:
 ```bash
 python analysis/normalize_ppsf.py   # Redfin layer  -> data/processed/*.csv, analysis_bundle.json
 python analysis/mls_normalize.py    # MLS per-home  -> data/processed/mls_*.csv, mls_bundle.json
+python analysis/street_underwrite.py# street-by-street value + deal underwriting -> street_bundle.json
 python analysis/time_analysis.py    # 2020->now shifts -> data/processed/time_bundle.json
 python analysis/build_charts.py     # -> outputs/*.png
 python analysis/build_excel.py      # -> outputs/Fort_Lauderdale_PPSF_Normalized.xlsx

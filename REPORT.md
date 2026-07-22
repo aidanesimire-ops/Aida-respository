@@ -169,6 +169,38 @@ Every active & pending listing was scored against its predicted value: **925 ove
 | Valentines | $699,900 | 2,107 | $332 | $509 | -35% |
 | Dorsey Park Th | $445,900 | 1,442 | $309 | $473 | -35% |
 
+## Street-by-street underwriting
+
+Value is resolved down to **274 individual streets** (≥4 closed comps each), each with its premium or discount vs. the surrounding neighborhood — so a prime waterfront block isn't valued like the dry street one over. **1,985 live listings** are underwritten against their own street's comps.
+
+**Highest-value streets** (with premium vs. their neighborhood):
+
+| Street | Neighborhood | Sold $/sqft | vs Nbhd | Waterfront | Comps |
+|--|--|--|--|--|--|
+| Isla Bahia Dr | Isla Bahia | $1,491 | -1% | 100% | 4 |
+| Pelican Dr | Pelican Isles | $1,468 | -19% | 100% | 5 |
+| Solar Isle Dr | Riviera | $1,432 | +5% | 100% | 4 |
+| Delmar Pl | Gould Isles | $1,387 | +0% | 100% | 4 |
+| Nurmi Dr | Nurmi Isles | $1,362 | +27% | 100% | 4 |
+| Royal Palm Dr | Nurmi Isles | $1,232 | +15% | 100% | 5 |
+| Coral Way | Coral Isles | $1,224 | -4% | 100% | 10 |
+| Aqua Vista Blvd | Lauderdale Isles Re Amend | $1,192 | +5% | 100% | 8 |
+
+**Live listings priced below their street value** (screening candidates — verify condition):
+
+| Address | Street | Neighborhood | List | Ask $/sqft | Street value | Comps | Gap |
+|--|--|--|--|--|--|--|--|
+| 901 W Las Olas Boulevard | W Las Olas Blvd | Waverly Place | $600,000 | $240 | $367 | 40 | -35% |
+| 2035 Intracoastal Drive | Intracoastal Dr | Coral Ridge | $6,500,000 | $1,057 | $1,615 | 39 | -35% |
+| 728 NE 17th Terrace | NE 17th Ter | Victoria Park | $3,395,000 | $827 | $1,260 | 26 | -34% |
+| 629 Kensington Place | Kensington Pl | Tropical Gardens | $1,720,000 | $468 | $711 | 11 | -34% |
+| 1100 NW 19th Street | NW 19th St | Lauderdale Villas | $439,000 | $256 | $382 | 7 | -33% |
+| 533 NW 16th Avenue | NW 16th Ave | Dorsey Park Second | $530,000 | $376 | $559 | 5 | -33% |
+| 216 SE 10th Street | SE 10th St | Tarpon River | $1,425,000 | $558 | $823 | 7 | -32% |
+| 1500 NE 24th Street | NE 24th St | Edgewater Estates | $1,275,000 | $494 | $724 | 13 | -32% |
+
+The dashboard's street table is searchable by street or neighborhood, with the full underwriting list.
+
 ## Using this with homeowners
 
 Each neighborhood has an auto-generated profile (see the **Neighborhood Profiles** sheet and the dashboard). Example:

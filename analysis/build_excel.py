@@ -29,6 +29,11 @@ def _mls():
         return json.load(f)
 
 
+def _street():
+    with open(os.path.join(PROC, "street_bundle.json")) as f:
+        return json.load(f)
+
+
 # columns: (source_field, header, excel_num_format, width)
 HEADLINE_COLS = [
     ("value_rank", "Rank", "0", 6),
@@ -322,6 +327,62 @@ def mls_deals_sheet(wb, fmts, mm):
     ws.hide_gridlines(2)
 
 
+STREET_COLS = [
+    ("street", "Street", None, 22),
+    ("neighborhood", "Neighborhood", None, 22),
+    ("geo_type", "Geography", None, 24),
+    ("sold_ppsf", "Sold $/sqft", "$#,##0", 12),
+    ("model_ppsf", "Model $/sqft", "$#,##0", 12),
+    ("premium_vs_nbhd", "vs Neighborhood", '+0"%";-0"%"', 14),
+    ("waterfront_share", "Waterfront", "0%", 11),
+    ("median_price", "Median price", "$#,##0", 14),
+    ("n_sold", "Sold", "#,##0", 8),
+    ("n_active", "Active", "#,##0", 8),
+]
+DEAL_UW_COLS = [
+    ("address", "Address", None, 26),
+    ("street", "Street", None, 18),
+    ("neighborhood", "Neighborhood", None, 20),
+    ("ptype", "Type", None, 13),
+    ("sqft", "SqFt", "#,##0", 8),
+    ("list_price", "List price", "$#,##0", 13),
+    ("ask_ppsf", "Ask $/sqft", "$#,##0", 11),
+    ("street_value_ppsf", "Street value $/sqft", "$#,##0", 16),
+    ("street_comps", "Comps", "#,##0", 8),
+    ("gap_vs_street", "Gap vs street", '0.0"%"', 12),
+    ("flag", "Flag", None, 12),
+]
+
+
+def street_sheets(wb, fmts, sb):
+    st = pd.DataFrame(sb["streets"]).sort_values("sold_ppsf", ascending=False)
+    ws = wb.add_worksheet("Street Value")
+    write_table(wb, ws, st, STREET_COLS, fmts,
+                "Street-by-street value (>= {} closed sales)".format(sb["meta"]["min_street_sold"]),
+                "Sold $/sqft per street and its premium/discount vs the surrounding "
+                "neighborhood. Source: MLS closed sales.")
+    ws.hide_gridlines(2)
+    n = len(st)
+    ws.conditional_format(4, 3, 3 + n, 3, {"type": "3_color_scale",
+        "min_color": "#e8f1fc", "mid_color": "#86b6ef", "max_color": BLUE})
+    ws.conditional_format(4, 5, 3 + n, 5, {"type": "3_color_scale",
+        "min_color": "#e34948", "mid_color": "#f0efec", "max_color": "#0f8a3c"})
+
+    deals = pd.DataFrame(sb["deals"])
+    ws2 = wb.add_worksheet("Deal Underwriting")
+    if len(deals):
+        write_table(wb, ws2, deals, DEAL_UW_COLS, fmts,
+                    "Live single-family listings priced below their street value",
+                    "Asking $/sqft vs a street-comp-adjusted model value (>= {} comps on the "
+                    "street). Screening candidates — verify condition on site.".format(
+                        sb["meta"]["min_street_sold"]))
+        ws2.conditional_format(4, 9, 3 + len(deals), 9, {"type": "3_color_scale",
+            "min_color": "#0f8a3c", "mid_color": "#8fd48f", "max_color": "#eafaea"})
+    else:
+        ws2.write(0, 0, "No comp-backed single-family deal candidates right now.", fmts["title"])
+    ws2.hide_gridlines(2)
+
+
 def main():
     b = _bundle()
     meta = b["meta"]
@@ -343,6 +404,10 @@ def main():
     mls_ranking_sheet(wb, fmts, mm)
     mls_drivers_sheet(wb, mm)
     mls_deals_sheet(wb, fmts, mm)
+    try:
+        street_sheets(wb, fmts, _street())
+    except FileNotFoundError:
+        pass
 
     # ---- CONTEXT: Redfin time/appreciation layer ----
     ws = wb.add_worksheet("SFR Rankings (Redfin)")

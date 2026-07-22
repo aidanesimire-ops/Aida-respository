@@ -33,6 +33,7 @@ def main():
     mls = load("mls_bundle.json")
     red = load("analysis_bundle.json")
     tb = load("time_bundle.json")
+    sb = load("street_bundle.json")
     m = mls["meta"]
     pr = m["premiums"]
     nb = pd.DataFrame(mls["neighborhoods"])
@@ -200,6 +201,31 @@ def main():
             w(f"| {r['neighborhood']} | {usd(r['list_price'])} | {int(r['sqft']):,} | "
               f"{usd(r['ask_ppsf'])} | {usd(r['pred_ppsf'])} | {r['gap_pct']:.0f}% |")
     w("")
+
+    # ---------------- Street-by-street ----------------
+    w("## Street-by-street underwriting\n")
+    sm = sb["meta"]
+    w(f"Value is resolved down to **{sm['n_streets']} individual streets** (≥{sm['min_street_sold']} "
+      "closed comps each), each with its premium or discount vs. the surrounding neighborhood — so "
+      "a prime waterfront block isn't valued like the dry street one over. "
+      f"**{sm['n_live_underwritten']:,} live listings** are underwritten against their own street's "
+      "comps.\n")
+    st = sorted(sb["streets"], key=lambda x: -x["sold_ppsf"])[:8]
+    w("**Highest-value streets** (with premium vs. their neighborhood):\n")
+    w("| Street | Neighborhood | Sold $/sqft | vs Nbhd | Waterfront | Comps |\n|--|--|--|--|--|--|")
+    for r in st:
+        w(f"| {r['street']} | {r['neighborhood']} | {usd(r['sold_ppsf'])} | "
+          f"{pct(r['premium_vs_nbhd'])} | {round((r['waterfront_share'] or 0)*100)}% | {r['n_sold']} |")
+    if sb["deals"]:
+        w("\n**Live listings priced below their street value** (screening candidates — verify condition):\n")
+        w("| Address | Street | Neighborhood | List | Ask $/sqft | Street value | Comps | Gap |\n"
+          "|--|--|--|--|--|--|--|--|")
+        for d in sb["deals"][:8]:
+            w(f"| {d['address']} | {d['street']} | {d['neighborhood']} | {usd(d['list_price'])} | "
+              f"{usd(d['ask_ppsf'])} | {usd(d['street_value_ppsf'])} | {d['street_comps']} | "
+              f"{d['gap_vs_street']:.0f}% |")
+    w("\nThe dashboard's street table is searchable by street or neighborhood, with the full "
+      "underwriting list.\n")
 
     # ---------------- Talking points ----------------
     w("## Using this with homeowners\n")

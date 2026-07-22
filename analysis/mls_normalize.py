@@ -176,6 +176,33 @@ def _geo_type(waterfront, sub_raw, area, ptype):
     return "Mainland inland"
 
 
+_SUFFIX = {"BOULEVARD": "Blvd", "BLVD": "Blvd", "DRIVE": "Dr", "DR": "Dr",
+           "STREET": "St", "ST": "St", "AVENUE": "Ave", "AVE": "Ave", "LANE": "Ln",
+           "LN": "Ln", "COURT": "Ct", "CT": "Ct", "PLACE": "Pl", "PL": "Pl",
+           "TERRACE": "Ter", "TER": "Ter", "CIRCLE": "Cir", "CIR": "Cir",
+           "ROAD": "Rd", "RD": "Rd", "WAY": "Way", "TRAIL": "Trl", "PLAZA": "Plz",
+           "ISLE": "Isle", "KEY": "Key", "CAUSEWAY": "Cswy", "DRIVEWAY": "Dr"}
+_DIRS = {"N", "S", "E", "W", "NE", "NW", "SE", "SW"}
+
+
+def _street(addr):
+    """Normalise an address to a groupable street name (drop house #, unit)."""
+    if pd.isna(addr):
+        return None
+    s = re.split(r"\bunit\b|\bapt\b|#", str(addr), flags=re.I)[0]
+    s = re.sub(r"^\s*\d+[A-Za-z]?\s+", "", s)          # leading house number
+    toks = [t for t in re.sub(r"[^A-Za-z0-9 ]", " ", s).split() if t]
+    if not toks:
+        return None
+    out = []
+    for t in toks:
+        u = t.upper()
+        out.append(u if u in _DIRS else _SUFFIX.get(u, t.title()))
+    s = " ".join(out)
+    # fix ordinal casing: "25Th" -> "25th", "21St" -> "21st"
+    return re.sub(r"(\d)(St|Nd|Rd|Th)\b", lambda m: m.group(1) + m.group(2).lower(), s)
+
+
 def _fill_from_subdivision(df):
     """Recover missing sqft / bad year from same-building (subdivision) peers."""
     filled_sq = filled_yr = 0
@@ -214,6 +241,8 @@ def load_clean() -> pd.DataFrame:
     df = pd.DataFrame({
         "status": raw["status"],
         "area": raw["Area"].map(lambda x: re.sub(r"\.0$", "", str(x)) if pd.notna(x) else None),
+        "address": raw["Address"].astype(str).str.strip(),
+        "street": raw["Address"].map(_street),
         "sub_raw": raw["Subdivision/Complex"].astype(str).str.upper().str.strip(),
         "neighborhood": raw["Subdivision/Complex"].map(_canon_neigh),
         "list_price": raw["List Price"].map(_num),
@@ -424,6 +453,35 @@ def overpricing(df, sold, mod, smear, dmodel):
     return d
 
 
+def value_all_listings(df, sold, mod, smear, dmodel):
+    """Model value ($/sqft) for EVERY listing (sold + live + failed) -> street-level."""
+    geos = set(dmodel["geo"].cat.categories)
+    ptypes = dmodel["ptype"].cat.categories
+    d = df[df["sqft"].gt(0)].copy()
+    d["ltsqft"] = np.log(d["sqft"])
+    d["beds_i"] = d["beds"].fillna(sold["beds"].median())
+    d["baths_i"] = d["baths"].fillna(sold["baths"].median())
+    d["age_i"] = d["age"].fillna(sold["age"].median())
+    d["wf"] = d["waterfront"].astype(int)
+    d["pl"] = d["pool"].astype(int)
+    d["new"] = (d["age_i"] <= NEW_MAX_AGE).astype(int)
+    d = d[d["geo"].isin(geos) & d["ptype"].isin(ptypes)]
+    d["ptype"] = pd.Categorical(d["ptype"], categories=ptypes)
+    d["geo"] = pd.Categorical(d["geo"], categories=dmodel["geo"].cat.categories)
+    d["pred_ppsf"] = predict_ppsf(mod, smear, d)
+    d["actual_ppsf"] = np.where(d["status"] == "Sold", d["sale_ppsf"], d["ask_ppsf"])
+    d["gap_pct"] = (d["actual_ppsf"] / d["pred_ppsf"] - 1) * 100
+    d["price"] = np.where(d["status"] == "Sold", d["sale_price"], d["list_price"])
+    keep = ["status", "address", "street", "neighborhood", "geo_type", "ptype",
+            "sqft", "beds", "baths", "waterfront", "price", "actual_ppsf",
+            "pred_ppsf", "gap_pct"]
+    out = d[keep].copy()
+    out["actual_ppsf"] = out["actual_ppsf"].round(0)
+    out["pred_ppsf"] = out["pred_ppsf"].round(0)
+    out["gap_pct"] = out["gap_pct"].round(1)
+    return out
+
+
 def load_redfin_context():
     """Pull appreciation (CAGR) and days-on-market per neighborhood from the
     Redfin layer, if it has been generated, to enrich the talking points."""
@@ -605,6 +663,10 @@ def main():
     ntable.to_csv(os.path.join(PROC, "mls_normalized_neighborhoods.csv"))
     live_out.sort_values("gap_pct").to_csv(os.path.join(PROC, "mls_live_listings_flagged.csv"), index=False)
     df.to_csv(os.path.join(PROC, "mls_clean_all.csv"), index=False)
+    print("Valuing every listing for street-level underwriting ...")
+    valued = value_all_listings(df, sold, mod, smear, dmodel)
+    valued.to_csv(os.path.join(PROC, "mls_all_valued.csv"), index=False)
+    print(f"  {len(valued):,} listings valued (with street) -> mls_all_valued.csv")
     pd.DataFrame([{"neighborhood": p["neighborhood"], "headline": p["headline"],
                    "talking_points": " | ".join(p["talking_points"])} for p in profiles]
                  ).to_csv(os.path.join(PROC, "mls_neighborhood_profiles.csv"), index=False)

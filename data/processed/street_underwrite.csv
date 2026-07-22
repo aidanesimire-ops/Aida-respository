@@ -1,0 +1,275 @@
+street,neighborhood,geo_type,sold_ppsf,model_ppsf,premium_vs_nbhd,waterfront_share,median_price,n_sold,n_active
+Isla Bahia Dr,Isla Bahia,Finger-isle waterfront,1491.0,1308.0,-1.1,1.0,10768100,4,6
+Pelican Dr,Pelican Isles,Finger-isle waterfront,1468.0,1171.0,-18.7,1.0,5350000,5,2
+Solar Isle Dr,Riviera,Intracoastal / canal waterfront,1432.0,1210.0,5.4,1.0,4512500,4,2
+Delmar Pl,Gould Isles,Intracoastal / canal waterfront,1387.0,1612.0,0.0,1.0,6569723,4,5
+Nurmi Dr,Nurmi Isles,Finger-isle waterfront,1362.0,1078.0,27.2,1.0,6912500,4,1
+Royal Palm Dr,Nurmi Isles,Finger-isle waterfront,1232.0,1215.0,15.0,1.0,7300000,5,0
+Coral Way,Coral Isles,Finger-isle waterfront,1224.0,1252.0,-4.0,1.0,5225000,10,3
+Aqua Vista Blvd,Lauderdale Isles Re Amend,Finger-isle waterfront,1192.0,1279.0,4.9,1.0,8700000,8,5
+Royal Plz Dr,Stilwell Isles,Finger-isle waterfront,1158.0,1134.0,-2.0,1.0,4950000,6,3
+Grace Dr,Harbor Beach,Barrier island / beach,1139.0,1090.0,23.7,1.0,3300000,4,0
+Sea Island Dr,Seven Isles,Finger-isle waterfront,1138.0,1067.0,2.7,1.0,4370000,7,0
+SE 11th St,Rio Vista,Finger-isle waterfront,1123.0,1030.0,40.4,0.67,2704500,6,6
+Coconut Isle Dr,Venice,Finger-isle waterfront,1122.0,1098.0,-0.1,1.0,4800000,7,2
+N Seabreeze Blvd,Selene Oceanfront Residen,Barrier island / beach,1090.0,1028.0,18.7,0.93,2060000,15,19
+SE 14th St,Lauderdale Harbors,Intracoastal / canal waterfront,1067.0,863.0,24.1,0.75,1801000,8,3
+Isle Of Palms Dr,Stilwell Isles,Finger-isle waterfront,1060.0,1220.0,-10.3,1.0,6305000,4,5
+Castilla Isle,Lauderdale Shores Reamen,Intracoastal / canal waterfront,1028.0,1201.0,-17.3,1.0,4000000,7,0
+Fiesta Way,Nurmi Isles,Finger-isle waterfront,988.0,1193.0,-7.7,1.0,4247500,9,5
+E Lake Dr,Harbor Beach,Barrier island / beach,954.0,966.0,3.6,0.0,3708750,4,2
+Center Ave,Lauderdale Beach,Barrier island / beach,932.0,1052.0,-8.1,0.0,2217500,6,2
+SE 10th St,Rio Vista,Mainland inland,909.0,876.0,13.6,0.43,4050000,7,5
+Riviera Isle Dr,Riviera,Intracoastal / canal waterfront,882.0,1102.0,-35.2,0.67,2400000,6,1
+SE 13th St,Lauderdale Harbors,Intracoastal / canal waterfront,882.0,852.0,2.5,0.62,2322500,8,2
+Bontona Ave,Venice,Finger-isle waterfront,863.0,1075.0,-23.2,1.0,3500000,5,3
+Harbourview Dr,Harbour Heights,Finger-isle waterfront,854.0,1100.0,21.9,0.5,3647500,4,3
+Seminole Dr,Beach Way Heights,Intracoastal / canal waterfront,850.0,746.0,-16.5,1.0,2950000,11,4
+NE 25th Ct,Coral Ridge Galt,Barrier island / beach,844.0,942.0,20.4,0.5,3750000,4,0
+Coral Ridge Dr,Coral Ridge,Mainland inland,824.0,626.0,4.0,0.0,1532500,4,1
+Ponce De Leon Dr,Rio Vista,Mainland inland,815.0,875.0,1.9,0.46,2950000,13,2
+SE 6th St,Rio Vista,Mainland inland,801.0,778.0,0.1,0.0,2187500,4,0
+NE 22nd Ter,North Bal Harbour,Finger-isle waterfront,792.0,874.0,0.0,1.0,1665000,5,1
+NE 23rd St,Re Wilton Mano,Mainland inland,790.0,538.0,38.3,0.0,783000,4,0
+NE 15th Ter,Edgewater Estates,Intracoastal / canal waterfront,786.0,751.0,9.3,0.71,1225000,7,1
+N Fort Lauderdale Beach Blvd,Club Resort Residence,Barrier island / beach,783.0,666.0,130.0,0.86,832500,78,75
+S Fort Lauderdale Beach Blvd,Las Olas,Barrier island / beach,770.0,616.0,22.9,0.95,1730000,20,16
+SE 13th Ter,Lauderdale Harbors,Mainland inland,759.0,691.0,-11.7,0.0,1800000,5,2
+SE 9th St,Rio Vista,Mainland inland,749.0,834.0,-6.4,0.33,2999000,9,5
+NE 25th St,Coral Point,Mainland inland,749.0,604.0,30.5,0.5,1780000,8,3
+SE 7th St,Rio Vista,Mainland inland,743.0,702.0,-7.1,0.17,1160000,23,2
+Avocado Isle,South New River Isles,Finger-isle waterfront,739.0,668.0,3.4,1.0,1150000,5,3
+Orange Isle,Mrs Marshalls,Finger-isle waterfront,737.0,640.0,9.2,1.0,1220000,5,0
+Seabreeze Blvd,Harbor Beach,Barrier island / beach,732.0,752.0,-20.5,0.0,1756000,6,10
+Mango Isle,South New River Isles,Finger-isle waterfront,726.0,648.0,1.5,1.0,1215500,8,0
+NE 26th Pl,Coral Ridge Galt,Barrier island / beach,724.0,954.0,3.2,0.75,3225000,4,3
+Mandarin Isle,South New River Isles,Finger-isle waterfront,719.0,683.0,0.6,1.0,1009000,5,6
+Coral Shores Dr,Coral Shores,Intracoastal / canal waterfront,717.0,685.0,43.1,0.71,1000000,7,3
+NE 22nd St,Coral Point,Mainland inland,704.0,661.0,22.6,0.15,1375000,13,1
+SE 1st St,Colee Hammock,Mainland inland,668.0,686.0,-2.8,0.0,1352462,10,3
+NE 15th Ct,Bal Harbour St,Mainland inland,659.0,638.0,-19.8,0.2,1562000,5,1
+SE 11th Ct,Rio Vista,Mainland inland,657.0,678.0,-17.9,0.0,1047500,8,4
+Isle Of Venice Dr,Venice Isles Tower,Finger-isle waterfront,656.0,600.0,0.7,0.97,715000,35,27
+NE 5th St,Victoria Park,Mainland inland,654.0,590.0,10.8,0.0,1325000,12,3
+Las Olas Way,Las Olas,Intracoastal / canal waterfront,651.0,626.0,3.8,0.97,1150000,31,13
+NE 26th Ct,Sun Set Manors First,Mainland inland,649.0,520.0,23.7,0.25,817500,4,1
+NE 21st Ct,Coral Ridge Galt,Mainland inland,648.0,672.0,-7.6,0.0,1410000,11,4
+NE 26th Ave,Coral Ridge Galt,Mainland inland,643.0,632.0,-8.3,0.0,1400000,21,1
+NE 6th St,Victoria Park,Mainland inland,642.0,574.0,8.7,0.0,1562500,10,3
+NE 4th Pl,Victoria Park,Mainland inland,630.0,843.0,6.7,0.0,1647500,6,0
+SE 12th St,Vela Vista,Intracoastal / canal waterfront,629.0,451.0,-16.3,0.64,1375000,11,10
+Bayshore Dr,Bayshore Towers,Barrier island / beach,627.0,575.0,17.0,0.81,785000,83,44
+NE 8th St,Victoria Park,Mainland inland,627.0,594.0,6.3,0.0,1100000,7,1
+S Ocean Ln,Point Americas,Barrier island / beach,627.0,577.0,15.9,0.91,1013752,66,42
+NE 10th Ter,Amadale,Mainland inland,625.0,583.0,5.9,0.0,850000,5,0
+NE 20th St,Manor Grove,Mainland inland,619.0,705.0,89.3,0.36,1875000,11,2
+NE 14th St,Coral Ridge,Mainland inland,618.0,545.0,-22.1,0.38,1595000,13,3
+NE 11th Ave,Victoria Park,Mainland inland,618.0,590.0,4.7,0.0,1250000,18,7
+NE 29th Ct,Coral Shores,Mainland inland,616.0,642.0,23.0,0.0,1131250,8,1
+SE 11th Ave,Cole Hammock,Mainland inland,616.0,690.0,0.0,0.25,1787475,8,1
+N New River Dr,Watergarden,Intracoastal / canal waterfront,616.0,619.0,7.7,0.9,857000,31,14
+S Birch Rd,Jackson Tower Las Olas,Barrier island / beach,615.0,588.0,-9.3,0.72,1050000,25,21
+NE 10th Ave,Amadale,Mainland inland,609.0,530.0,3.2,0.0,1000000,21,8
+Middle River Dr,Coral Ridge,Mainland inland,606.0,661.0,-23.6,0.42,1530000,33,18
+NE 26th Ter,Coral Ridge Galt,Barrier island / beach,603.0,635.0,-14.0,0.0,1200000,5,1
+SW 12th Ave,Riverside Amen,Mainland inland,602.0,615.0,-3.2,0.0,880000,9,3
+NE 16th Ct,Miller Gardens,Mainland inland,599.0,507.0,6.7,0.0,675000,7,4
+Hendricks Isle,Burton Point,Intracoastal / canal waterfront,596.0,604.0,1.4,0.94,1367500,32,29
+NE 29th St,Coral Ridge Galt,Barrier island / beach,596.0,637.0,-14.9,0.56,1015000,18,7
+NE 4th St,Halls,Mainland inland,594.0,662.0,-23.7,0.0,1220000,6,1
+N New River Dr E,Watergarden,Intracoastal / canal waterfront,589.0,624.0,3.0,0.93,792500,28,4
+NE 28th Dr,Tropical Manors,Mainland inland,588.0,549.0,0.0,0.43,965000,7,2
+Bayview Dr,Coral Ridge Galt,Barrier island / beach,588.0,602.0,-16.0,0.5,1151500,24,7
+NE 20th Ave,Coral Point,Intracoastal / canal waterfront,586.0,615.0,2.0,0.67,1031750,6,3
+N Victoria Park Rd,Victoria Park,Mainland inland,584.0,574.0,-0.9,0.03,1135000,30,8
+NE 17th Ave,Victoria Park,Mainland inland,582.0,536.0,-1.4,0.11,900000,36,11
+Poinsettia Dr,Poinsettia Heights,Intracoastal / canal waterfront,576.0,593.0,10.0,0.5,1065000,6,0
+NE 17th St,Coral Ridge,Mainland inland,575.0,510.0,-27.5,0.27,800000,11,7
+NE 24th St,Coral Point,Intracoastal / canal waterfront,575.0,564.0,0.2,0.46,920000,13,7
+Guava Isle,South New River Isles,Finger-isle waterfront,574.0,683.0,-19.7,1.0,1028750,7,2
+Cordova Rd,Lauderdale Harbors,Intracoastal / canal waterfront,569.0,809.0,-33.8,0.57,1298000,7,2
+NE 6th Ln,Highland Estates,Mainland inland,565.0,468.0,17.3,0.0,617500,4,0
+NE 17th Ter,Progresso,Mainland inland,559.0,513.0,36.5,0.08,867500,26,13
+SW 5th Pl,Gill Isles,Finger-isle waterfront,558.0,692.0,3.5,1.0,1037500,4,1
+NE 21st St,Petite,Mainland inland,556.0,679.0,3.7,0.2,1390000,5,2
+NE 27th St,Middle River Estates,Mainland inland,555.0,542.0,0.7,0.12,802000,16,3
+Las Olas Cir,Venetian Condominium,Barrier island / beach,553.0,621.0,-1.2,0.94,775000,17,8
+NE 18th St,Coral Ridge,Mainland inland,546.0,467.0,-31.1,0.14,690000,21,10
+NW 22nd St,Hillbrook,Mainland inland,546.0,472.0,20.8,0.25,865000,4,0
+NE 15th St,Coral Ridge,Intracoastal / canal waterfront,546.0,537.0,-31.1,0.53,1075000,17,8
+SW 13th St,Croissant Park,Mainland inland,542.0,467.0,12.0,0.0,520000,5,0
+NE 13th Ave,Progresso,Mainland inland,540.0,453.0,31.9,0.0,1290000,15,7
+NE 14th Ct,Lauder Gate Isles,Mainland inland,536.0,641.0,-18.4,0.4,715000,5,3
+SE 12th Way,Lauderdale Harbors,Mainland inland,532.0,668.0,-38.1,0.2,1200000,5,4
+N Birch Rd,Tiffany House,Barrier island / beach,530.0,556.0,-38.0,0.47,530000,32,23
+Barbara Dr,Harbor Beach,Barrier island / beach,526.0,787.0,-42.9,0.25,1707500,4,0
+SE 2nd Ct,Colee Hammock,Mainland inland,524.0,486.0,-23.7,0.0,970000,8,8
+SW 5th St,Gill Isles,Finger-isle waterfront,524.0,578.0,-2.7,1.0,835000,6,1
+NE 27th Dr,Coral Estates,Mainland inland,518.0,507.0,6.3,0.17,799500,12,3
+NE 17th Way,Victoria Park,Mainland inland,514.0,516.0,-12.9,0.02,997000,44,12
+E Las Olas Blvd,Las Olas,Intracoastal / canal waterfront,510.0,558.0,-18.7,0.73,740000,48,22
+W Las Olas Blvd,Symphony,Intracoastal / canal waterfront,506.0,515.0,-0.5,0.9,629500,40,8
+Coral Gardens Dr,Coral Gardens,Intracoastal / canal waterfront,505.0,580.0,0.0,0.5,888154,10,2
+NE 26th St,Coral Ridge Galt,Mainland inland,505.0,516.0,-28.0,0.11,693000,18,9
+NE 9th Ter,Highland Estates,Mainland inland,504.0,470.0,4.7,0.0,569000,5,0
+NE 26th Dr,Coral Gardens,Mainland inland,502.0,513.0,-0.6,0.0,750000,11,1
+NE 16th Ter,Progresso,Mainland inland,494.0,444.0,20.6,0.0,900000,30,9
+SE 8th Ave,Venezia Las Olas,Intracoastal / canal waterfront,491.0,618.0,0.0,0.86,645000,7,2
+N Ocean Blvd,Berkley South,Barrier island / beach,491.0,493.0,63.7,0.41,630000,147,86
+NE 22nd Dr,Village Wilton Manors,Mainland inland,491.0,435.0,7.8,0.0,779000,5,2
+SW 15th Ter,Hendricks Heights,Mainland inland,488.0,436.0,22.5,0.0,642450,4,2
+SW 8th Ter,Seawanna,Mainland inland,485.0,447.0,13.6,0.43,627000,7,3
+SW 18th Ct,River Oaks,Mainland inland,484.0,441.0,17.2,0.0,670000,11,4
+NE 32nd Ave,Tides Bridgeside,Barrier island / beach,484.0,497.0,10.3,0.04,460000,27,15
+SE 2nd St,Las Olas,Mainland inland,483.0,488.0,-23.0,0.19,650000,36,12
+NE 6th Ave,Tropical Manors,Mainland inland,474.0,538.0,-19.5,0.0,684350,4,2
+NW 29th St,Jenada Villas,Mainland inland,472.0,391.0,24.9,0.0,600000,5,3
+SW 4th Ave,Esplanade,Mainland inland,468.0,380.0,1.2,0.4,615000,20,12
+SW 8th Way,Tarpon River,Intracoastal / canal waterfront,468.0,536.0,10.4,0.5,1103125,4,0
+NE 21st Ter,Coral Shores,Mainland inland,468.0,498.0,-6.6,0.4,863125,5,2
+SW 21st St,Rickel,Mainland inland,466.0,442.0,7.1,0.0,480000,4,4
+NW 5th Ave,Progresso,Mainland inland,466.0,428.0,13.8,0.0,525000,13,1
+NE 12th Ave,Victoria Park,Mainland inland,466.0,502.0,-21.1,0.0,1155000,16,4
+SW 4th Ct,Gill Isles,Mainland inland,465.0,456.0,-13.6,0.2,832500,5,3
+SW 16th St,Alta Vista Terrace,Mainland inland,464.0,445.0,-3.6,0.11,639000,9,0
+NE 12th St,Lake Ridge,Mainland inland,463.0,518.0,-12.3,0.0,850000,5,3
+SE 5th Ct,Rio Vista,Mainland inland,460.0,636.0,-42.5,0.0,950000,9,1
+NE 19th St,Poinsettia Heights,Mainland inland,454.0,476.0,-13.4,0.18,869000,11,6
+NW 6th Ave,Progresso,Mainland inland,454.0,431.0,11.0,0.0,535000,18,3
+NE 15th Ave,Victoria Park,Mainland inland,452.0,456.0,-23.5,0.12,837500,24,15
+NW 28th St,Wilton Estates,Mainland inland,448.0,406.0,-3.0,0.0,647500,5,0
+NE 32 Ave,Tides,Barrier island / beach,448.0,492.0,-5.9,0.0,455000,4,0
+SW 4th St,Sanford Adler,Mainland inland,448.0,490.0,0.0,0.38,637500,8,2
+NE 1st Ave,Progresso,Mainland inland,445.0,458.0,8.7,0.11,580000,19,3
+SW 20th St,Lauderdale,Mainland inland,444.0,416.0,-4.1,0.0,587500,8,4
+SE 4th St,Chateau Mar,Intracoastal / canal waterfront,444.0,550.0,-2.5,0.79,487500,14,4
+SW 14th Ct,Lauderdale,Mainland inland,442.0,418.0,-4.5,0.0,555000,4,3
+SW 12th Ct,Riverside Estates Nd,Mainland inland,442.0,447.0,4.7,0.09,615000,11,0
+SW 11th Ct,Croissant Park,Mainland inland,440.0,434.0,-9.1,0.44,665807,9,3
+Yacht Club Blvd,Sunrise Bay Club Co Op,Intracoastal / canal waterfront,440.0,445.0,-4.2,0.79,388750,14,1
+SW 9th St,Tarpon River,Mainland inland,438.0,444.0,3.4,0.0,713500,12,4
+Intracoastal Dr,Sunrise Tower,Intracoastal / canal waterfront,437.0,447.0,51.7,0.9,655000,39,23
+NE 1st St,Victoria Park,Mainland inland,436.0,432.0,-26.2,0.0,1127000,10,1
+SW 23rd St,Marina Landings,Mainland inland,436.0,462.0,-0.5,0.03,1185000,30,7
+NE 4th Ave,Bamboo Flats,Downtown high-rise,435.0,420.0,-2.8,0.0,725500,5,4
+NW 24th St,Mickels Nd To Wilton,Mainland inland,434.0,392.0,-11.3,0.0,867500,8,1
+SW 18th St,Croissant Park,Mainland inland,433.0,436.0,-10.5,0.0,515000,11,0
+SW 11th St,Lauderdale,Mainland inland,432.0,446.0,-6.7,0.0,625000,11,4
+NW 7th Pl,Lincoln Park First,Mainland inland,428.0,354.0,0.0,0.0,302450,4,1
+NE 16th St,Coral Ridge,Mainland inland,426.0,459.0,-46.2,0.2,648000,20,0
+NE 19th Ave,Middle River Manor,Mainland inland,421.0,535.0,-32.0,0.47,875000,17,2
+SW 14th St,Lauderdale,Mainland inland,420.0,457.0,-9.3,0.0,535000,5,0
+SW 22nd St,Lauderdale,Mainland inland,419.0,459.0,-9.5,0.0,440000,7,3
+NE 18th Ave,Victoria Park,Mainland inland,418.0,458.0,-29.2,0.28,803500,40,20
+SW 13th Ct,Hendricks Heights,Mainland inland,417.0,420.0,4.8,0.0,670000,6,1
+NE 2nd St,Nola Lofts,Mainland inland,417.0,415.0,9.0,0.0,854500,14,19
+NE 3rd St,Stranahans,Mainland inland,416.0,545.0,-30.2,0.0,1000000,9,1
+NW 8th Ave,Progresso,Mainland inland,416.0,403.0,1.6,0.0,453000,8,8
+SW 9th Ave,Isles View,Mainland inland,416.0,414.0,0.2,0.0,575000,10,3
+NW 4th Ave,Progresso,Mainland inland,412.0,432.0,0.6,0.0,445000,12,4
+SW 17th St,Croissant Park,Mainland inland,411.0,408.0,-15.1,0.2,663750,10,1
+NW 21st St,Meadowbrook,Mainland inland,409.0,378.0,-2.6,0.2,725000,5,2
+NE 30th St,Lauderdale Tower,Intracoastal / canal waterfront,409.0,455.0,3.2,0.55,390000,33,14
+NW 10th Pl,Lauderdale Manors,Mainland inland,408.0,340.0,21.8,0.0,319000,4,3
+SW 10th St,Lauderdale,Mainland inland,408.0,426.0,-11.8,0.06,705250,18,4
+SW 18th Ave,Robertson Park,Mainland inland,405.0,407.0,0.0,0.13,501000,15,1
+NE 7th Ave,Ellington,Mainland inland,404.0,446.0,-1.9,0.0,720000,15,7
+SW 5th Ave,Harbor Sound,Mainland inland,404.0,355.0,-4.3,0.0,758000,5,1
+SW 12 Ave,Riverside Landing,Mainland inland,402.0,331.0,-2.8,0.0,847500,4,0
+NW 7th Ave,Progresso,Mainland inland,401.0,417.0,-2.1,0.0,460000,21,6
+NW 1st Ave,Progresso,Mainland inland,398.0,398.0,-2.8,0.0,480187,32,4
+SW 19th St,Yellowstone Park Amen Pla,Mainland inland,398.0,420.0,-17.7,0.0,519000,8,5
+NE 12th Ter,Pointe Middle River,Intracoastal / canal waterfront,398.0,474.0,0.0,0.75,885000,4,2
+NW 9th Ter,Jenada Villas,Intracoastal / canal waterfront,396.0,432.0,4.9,0.5,612500,8,3
+SE 17th St,Port Residences,Intracoastal / canal waterfront,395.0,424.0,-2.0,0.71,565000,14,15
+NE 28th St,Coral Ridge Galt,Mainland inland,395.0,482.0,-43.7,0.17,599950,30,7
+NE 5th Ave,Marvilla Condominium,Mainland inland,394.0,306.0,1.2,0.0,348750,12,0
+NW 15th Way,Carver Park,Mainland inland,394.0,338.0,31.8,0.0,345000,7,2
+Sunset Dr,Essex Tower,Mainland inland,390.0,394.0,1.2,0.35,472800,26,17
+NE 17th Ct,Lauderdale Park,Mainland inland,389.0,426.0,-15.3,0.27,420000,15,2
+SW 19th Ave,Shady Banks,Mainland inland,388.0,431.0,-9.1,0.11,615000,9,2
+NW 17th Ave,Lincoln Park Sixth,Mainland inland,388.0,340.0,11.0,0.0,385000,5,5
+SW 16th Ter,Shady Banks On New River,Mainland inland,386.0,430.0,2.7,0.0,560000,4,1
+SW 13th Ave,Devonshire,Mainland inland,385.0,380.0,36.3,0.0,465000,5,0
+NW 3rd Ave,Progresso,Mainland inland,383.0,424.0,-6.5,0.0,502000,12,4
+NW 14th St,Lauderdale Manors,Mainland inland,382.0,332.0,14.0,0.0,359500,6,0
+Wilton Dr,Isles City Lofts,Mainland inland,382.0,303.0,-5.3,0.0,492500,6,2
+SE 5th Ave,Nuriver Landing,Intracoastal / canal waterfront,381.0,462.0,-11.8,0.51,429000,73,21
+N Federal Highway,Waverly Las Olas,Mainland inland,381.0,378.0,-0.5,0.48,490000,21,19
+NW 12th St,Lauderdale Manors,Mainland inland,381.0,334.0,13.7,0.0,354000,10,3
+SE 12th Ct,Lauderdale Harbors,Mainland inland,379.0,423.0,-55.9,0.38,775000,13,2
+NE 16th Ave,River Shores,Mainland inland,374.0,419.0,24.7,0.33,567000,73,25
+NE 9th Ave,Highland Estates,Mainland inland,374.0,374.0,-22.4,0.0,659900,28,10
+NW 12th Ave,Hillmont Hgts,Mainland inland,370.0,373.0,0.0,0.17,512500,6,3
+NW 30th St,Jenada Villas,Intracoastal / canal waterfront,367.0,468.0,-2.9,0.86,695000,7,3
+Holiday Dr,Maya Marca,Barrier island / beach,366.0,553.0,0.0,1.0,431000,11,4
+NW 7th Ter,Progresso,Mainland inland,366.0,464.0,-10.6,0.0,507500,10,5
+NW 2nd Ave,Progresso,Mainland inland,366.0,412.0,-10.6,0.0,470000,15,8
+NE 8th Ave,Wilton Village,Mainland inland,364.0,331.0,20.4,0.0,264250,44,16
+NE 20th Ct,Manor Grove Townhomes,Mainland inland,361.0,272.0,15.2,0.0,347000,15,3
+SE 16th Ct,Harbour Oaks,Mainland inland,356.0,393.0,21.9,0.0,450000,5,1
+NW 18th Ave,Lauderdale Manors,Mainland inland,356.0,344.0,6.3,0.0,400000,9,4
+NW 16th Ter,Lincoln Park Sixth,Mainland inland,350.0,340.0,0.0,0.0,317500,6,1
+S Ocean Dr,Breakwater Towers,Barrier island / beach,349.0,445.0,17.1,0.45,330000,49,44
+NE 9th St,Victoria Park,Mainland inland,349.0,374.0,-40.8,0.11,612437,28,11
+E Broward Blvd,Pine Crest Village,Mainland inland,349.0,370.0,2.5,0.0,442000,11,7
+NE 16th Pl,Placido Place,Mainland inland,347.0,448.0,-27.6,0.23,568000,13,5
+NE 14th Ave,Wilton Station,Mainland inland,345.0,353.0,6.2,0.14,538500,73,20
+Orton Ave,Britannia,Barrier island / beach,344.0,447.0,0.6,0.0,261000,13,7
+NW 26th St,Babco Park,Mainland inland,343.0,367.0,-10.3,0.0,666375,4,1
+NW 14th Way,First To Tuskegee Par,Mainland inland,342.0,352.0,7.7,0.0,285000,4,0
+NW 11th Pl,Lauderdale Manors,Mainland inland,339.0,334.0,1.2,0.0,424000,7,1
+N Ft Lauderdale Bch Blvd,Club Resort Residence,Barrier island / beach,339.0,368.0,-0.4,0.87,295000,15,9
+City View Dr,City View Townhomes,Downtown high-rise,337.0,444.0,3.1,0.0,460000,11,4
+SE 16th St,Harbor Vista,Mainland inland,336.0,347.0,-7.1,0.0,413500,4,1
+Kensington Pl,Cypress Cove,Intracoastal / canal waterfront,335.0,405.0,5.7,0.64,445000,11,2
+NW 13th Ave,First To Tuskegee Par,Mainland inland,334.0,484.0,5.5,0.0,475000,4,2
+NE 3rd Ave,Sole Fort Lauderdale,Downtown high-rise,333.0,350.0,5.7,0.02,360000,57,35
+SE 15th St,Marina Del Mar,Intracoastal / canal waterfront,332.0,385.0,14.1,0.84,280000,45,40
+NE 30th Pl,Coral Brook,Mainland inland,332.0,434.0,-35.4,0.25,696500,4,3
+SE 10th Ave,Village East,Mainland inland,330.0,346.0,-5.3,0.03,325000,37,15
+NW 16th Ave,Dorsey Park Second,Mainland inland,329.0,337.0,18.8,0.0,427000,5,1
+NW 10th Ave,Lauderdale Villas,Mainland inland,327.0,341.0,6.9,0.14,545000,7,5
+NW 16th St,Lauderdale Manors,Mainland inland,326.0,340.0,-2.8,0.0,385000,4,1
+NE 1st Ter,Manor Grove Village Two,Mainland inland,326.0,283.0,8.5,0.17,381500,6,1
+SW 28th St,Reserve Edgewood,Mainland inland,324.0,338.0,-0.2,0.0,535000,5,4
+NW 17th St,Gardenia Park,Mainland inland,322.0,378.0,0.5,0.0,590000,8,4
+NW 15th Ave,Lauderdale Manors,Mainland inland,322.0,322.0,-3.7,0.0,339500,14,1
+NW 13th St,Lauderdale Manors,Mainland inland,322.0,328.0,-3.9,0.0,430000,7,0
+NE 33rd Ave,White Egret,Barrier island / beach,321.0,426.0,0.0,0.23,345000,26,4
+NW 18th St,Lauderdale Villas,Mainland inland,321.0,320.0,4.9,0.0,419000,11,1
+NW 9th Ave,Jenada Villas,Mainland inland,319.0,390.0,-15.6,0.0,482450,8,3
+NW 15th St,Lauderdale Manors,Mainland inland,319.0,332.0,-4.8,0.0,356500,6,3
+SW 12th St,Rio Nuevo,Intracoastal / canal waterfront,315.0,308.0,8.6,0.88,310000,17,17
+NW 13th Ct,Lauderdale Manors,Mainland inland,312.0,333.0,-6.9,0.0,335000,5,5
+NE 8th Ter,Middle River Homes,Intracoastal / canal waterfront,312.0,336.0,1.1,0.5,245000,8,2
+NW 19th Ave,Dorsey Park Th,Mainland inland,308.0,344.0,1.5,0.0,363950,12,1
+NE 18th Ct,Camelot Shores,Intracoastal / canal waterfront,308.0,368.0,0.0,0.89,222222,9,1
+NW 11th St,Lauderdale Manor,Mainland inland,306.0,312.0,-5.6,0.0,379500,6,1
+N Federal Hwy,East Point Towers,Intracoastal / canal waterfront,305.0,374.0,42.5,0.53,400000,40,13
+NW 15th Ter,Lauderdale Manors,Mainland inland,299.0,338.0,-10.7,0.0,390000,7,5
+Holly Heights Dr,Fusion Gardens,Mainland inland,299.0,297.0,-2.4,0.0,265000,13,5
+Miami Rd,Harbordale,Mainland inland,299.0,306.0,-5.8,0.0,179350,6,1
+NW 14th Ct,Lauderdale Manors,Mainland inland,298.0,338.0,-10.9,0.0,345000,10,0
+E Sunrise Blvd,Gallery One,Intracoastal / canal waterfront,293.0,276.0,21.6,0.84,160000,49,29
+NE 5th Ter,River Manor,Mainland inland,286.0,300.0,2.5,0.33,267555,40,8
+NE 2nd Ave,Manor Grove Village Four,Mainland inland,282.0,281.0,6.8,0.0,305000,23,5
+SW 11th Pl,Valentines,Mainland inland,280.0,509.0,-14.8,0.0,588000,4,1
+SW 14th Ave,Grove River Oaks,Mainland inland,280.0,329.0,1.3,0.06,402500,18,1
+N Andrews Ave,Drake Tower,Mainland inland,276.0,300.0,8.9,0.38,221500,32,18
+E Oakland Park Blvd,Three Rivers East,Intracoastal / canal waterfront,272.0,368.0,1.5,0.71,173500,7,4
+N Andrews Sq,Hidden Harbor,Intracoastal / canal waterfront,271.0,276.0,5.0,1.0,264500,7,0
+NE 8th Ct,Gateway Arms,Mainland inland,269.0,344.0,0.0,0.0,215340,5,1
+N Dixie Highway,Wisteria Court,Mainland inland,268.0,302.0,14.3,0.25,285500,4,1
+NE 19th Ct,Manor Grove Village Two,Mainland inland,264.0,280.0,-12.3,0.07,242500,28,15
+SW 18th Ter,Marina Oaks,Mainland inland,264.0,273.0,1.7,0.15,230000,20,9
+River Reach Dr,River Reach,Intracoastal / canal waterfront,264.0,294.0,-1.1,0.84,306750,50,36
+NE 11th St,Horizon House,Mainland inland,262.0,347.0,6.7,0.0,222000,12,5
+NW 3rd Ter,Hidden Harbor,Intracoastal / canal waterfront,260.0,278.0,0.8,1.0,253500,4,0
+NW 11th Ct,Lauderdale Manors,Mainland inland,254.0,328.0,-24.0,0.0,337500,6,1
+N Dixie Hwy,Lauderdale Park,Mainland inland,250.0,385.0,-45.5,0.2,240000,5,1
+SW 13th Ter,Village Sailboat Bend,Mainland inland,241.0,271.0,-11.7,0.0,357500,14,1
+Antioch Ave,Beach Ridge Apts Co Op Beach Ridge,Barrier island / beach,240.0,405.0,2.6,0.0,200000,6,3
+NW 30th Ct,Wilton Shores,Intracoastal / canal waterfront,216.0,254.0,2.6,0.57,195000,14,7
+Tennis Club Dr,Lauderdale Tennis Club,Mainland inland,207.0,204.0,1.7,0.36,235000,25,10
+NW 19th St,Tennis Club Ii,Mainland inland,200.0,220.0,26.2,0.0,157000,7,5

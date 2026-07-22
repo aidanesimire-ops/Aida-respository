@@ -22,6 +22,8 @@ with open(os.path.join(PROC, "analysis_bundle.json")) as f:
     REDFIN = json.load(f)
 with open(os.path.join(PROC, "time_bundle.json")) as f:
     TIME = json.load(f)
+with open(os.path.join(PROC, "street_bundle.json")) as f:
+    STREET = json.load(f)
 
 INNER = r"""
 <style>
@@ -247,6 +249,17 @@ footer.fl-foot a{color:var(--accent)}
     <p class="note-line" id="noteLine"></p>
   </div>
 
+  <div class="card">
+    <h2>Street-by-street underwriting <span style="font-weight:400;color:var(--muted);font-size:13px" id="streetSummary"></span></h2>
+    <p class="cap">Value per street (≥4 closed comps) and its premium/discount vs the surrounding neighborhood. Search a street or neighborhood.</p>
+    <div class="controls" style="margin-bottom:12px">
+      <input class="search" id="streetSearch" type="search" placeholder="Search street or neighborhood…" aria-label="Search street">
+    </div>
+    <div class="tbl-scroll"><table class="fl" id="streetTbl"><thead></thead><tbody></tbody></table></div>
+    <div style="font-size:12px;font-weight:600;color:var(--ink-2);margin:18px 0 4px">Live single-family listings priced below their street value <span style="font-weight:400;color:var(--muted)">(underwritten vs ≥4 street comps — verify condition)</span></div>
+    <div class="tbl-scroll"><table class="fl" id="uwTbl"><thead></thead><tbody></tbody></table></div>
+  </div>
+
   <footer class="fl-foot">
     Normalized with a per-home hedonic model on <span id="fn"></span> closed MLS sales
     (cross-validated against <a href="https://www.redfin.com/news/data-center/" target="_blank" rel="noopener">Redfin</a> at r=0.93).
@@ -258,19 +271,21 @@ footer.fl-foot a{color:var(--accent)}
 <script id="mls-data" type="application/json">__MLS_JSON__</script>
 <script id="redfin-data" type="application/json">__REDFIN_JSON__</script>
 <script id="time-data" type="application/json">__TIME_JSON__</script>
+<script id="street-data" type="application/json">__STREET_JSON__</script>
 <script>
 (function(){
 "use strict";
 const MLS=JSON.parse(document.getElementById("mls-data").textContent);
 const RED=JSON.parse(document.getElementById("redfin-data").textContent);
 const TM=JSON.parse(document.getElementById("time-data").textContent);
+const ST=JSON.parse(document.getElementById("street-data").textContent);
 const M=MLS.meta, NB=MLS.neighborhoods;
 const $=s=>document.querySelector(s), tt=$("#tt");
 const usd=v=>v==null?"—":"$"+Math.round(v).toLocaleString();
 const pctS=v=>v==null?"—":(v>=0?"+":"")+v.toFixed(0)+"%";
 const cvar=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 let state={basis:"all", q:"", sort:{key:"norm_ppsf",dir:-1}, sel:null,
-           timeMetric:"ppsf", timeNb:""};
+           timeMetric:"ppsf", timeNb:"", streetQ:"", streetSort:{key:"sold_ppsf",dir:-1}};
 const PROFILES={}; (MLS.profiles||[]).forEach(p=>PROFILES[p.neighborhood]=p);
 function renderProfile(nb){const p=PROFILES[nb]; if(!p)return; state.sel=nb;
   $("#profName").textContent=nb;
@@ -498,8 +513,54 @@ $("#nbSelect").addEventListener("change",e=>{state.timeNb=e.target.value;
     [...$("#metricSeg").children].forEach(x=>x.setAttribute("aria-pressed",x.dataset.m==="ppsf"));}
   renderTime();});
 
+// ---------- street underwriting ----------
+$("#streetSummary").textContent=`· ${ST.meta.n_streets} streets · ${ST.meta.n_live_underwritten.toLocaleString()} live listings underwritten`;
+const SCOLS=[
+  {k:"street",t:"Street",l:1,f:r=>`<span class="nbh">${r.street}</span>`},
+  {k:"neighborhood",t:"Neighborhood",l:1,f:r=>`<span class="geo">${r.neighborhood}</span>`},
+  {k:"sold_ppsf",t:"Sold $/ft²",f:r=>`<span class="tnum">${usd(r.sold_ppsf)}</span>`},
+  {k:"premium_vs_nbhd",t:"vs Nbhd",f:r=>r.premium_vs_nbhd==null?"—":`<span class="tnum ${r.premium_vs_nbhd>=0?'pos':'neg'}">${pctS(r.premium_vs_nbhd)}</span>`},
+  {k:"waterfront_share",t:"WF",f:r=>`<span class="tnum wf">${Math.round((r.waterfront_share||0)*100)}%</span>`},
+  {k:"median_price",t:"Median price",f:r=>`<span class="tnum">${usd(r.median_price)}</span>`},
+  {k:"n_sold",t:"Sold",f:r=>`<span class="tnum">${r.n_sold}</span>`},
+  {k:"n_active",t:"Active",f:r=>`<span class="tnum">${r.n_active}</span>`},
+];
+function renderStreets(){
+  const q=state.streetQ.toLowerCase();
+  let rows=ST.streets.filter(r=>!q||r.street.toLowerCase().includes(q)||(r.neighborhood||"").toLowerCase().includes(q));
+  const sk=state.streetSort.key,dir=state.streetSort.dir;
+  rows=rows.slice().sort((a,b)=>{let x=a[sk],y=b[sk];
+    if(sk==="street"||sk==="neighborhood")return dir*(""+x).localeCompare(""+y);
+    x=x==null?-Infinity:x;y=y==null?-Infinity:y;return dir*(x-y);});
+  rows=rows.slice(0,120);
+  $("#streetTbl thead").innerHTML="<tr>"+SCOLS.map(c=>{const a=state.streetSort.key===c.k;
+    return `<th class="${c.l?'l':''}" data-k="${c.k}">${c.t} <span class="arw">${a?(dir<0?"▼":"▲"):""}</span></th>`;}).join("")+"</tr>";
+  $("#streetTbl tbody").innerHTML=rows.map(r=>"<tr>"+SCOLS.map(c=>`<td class="${c.l?'l':''}">${c.f(r)}</td>`).join("")+"</tr>").join("");
+  $("#streetTbl thead").querySelectorAll("th").forEach(th=>th.onclick=()=>{const k=th.dataset.k;
+    if(state.streetSort.key===k)state.streetSort.dir*=-1; else state.streetSort={key:k,dir:(k==="street"||k==="neighborhood"?1:-1)};
+    renderStreets();});
+}
+const UCOLS=[
+  {k:"address",t:"Address",l:1,f:r=>`<span class="nbh">${r.address}</span>`},
+  {k:"street",t:"Street",l:1,f:r=>`<span class="geo">${r.street}</span>`},
+  {k:"neighborhood",t:"Neighborhood",l:1,f:r=>`<span class="geo">${r.neighborhood}</span>`},
+  {k:"list_price",t:"List",f:r=>`<span class="tnum">${usd(r.list_price)}</span>`},
+  {k:"ask_ppsf",t:"Ask $/ft²",f:r=>`<span class="tnum">${usd(r.ask_ppsf)}</span>`},
+  {k:"street_value_ppsf",t:"Street value",f:r=>`<span class="tnum">${usd(r.street_value_ppsf)}</span>`},
+  {k:"street_comps",t:"Comps",f:r=>`<span class="tnum">${r.street_comps}</span>`},
+  {k:"gap_vs_street",t:"Gap",f:r=>`<span class="tnum" style="color:var(--good);font-weight:700">${r.gap_vs_street.toFixed(0)}%</span>`},
+];
+function renderUW(){
+  const q=state.streetQ.toLowerCase();
+  const rows=ST.deals.filter(r=>!q||(r.street||"").toLowerCase().includes(q)||(r.neighborhood||"").toLowerCase().includes(q)||(r.address||"").toLowerCase().includes(q));
+  $("#uwTbl thead").innerHTML="<tr>"+UCOLS.map(c=>`<th class="${c.l?'l':''}">${c.t}</th>`).join("")+"</tr>";
+  $("#uwTbl tbody").innerHTML=rows.map(r=>"<tr>"+UCOLS.map(c=>`<td class="${c.l?'l':''}">${c.f(r)}</td>`).join("")+"</tr>").join("")
+    ||`<tr><td class="l" colspan="8" style="color:var(--muted)">No comp-backed candidates match.</td></tr>`;
+}
+$("#streetSearch").addEventListener("input",e=>{state.streetQ=e.target.value;renderStreets();renderUW();});
+
 function renderAll(){kpis();drivers();geostrip();lineChart();flags();barChart();renderTable();
-  renderTime();movers();
+  renderTime();movers();renderStreets();renderUW();
   renderProfile(state.sel || (filtered()[0]||NB[0]||{}).neighborhood);}
 $("#basisSeg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
   state.basis=b.dataset.b;[...$("#basisSeg").children].forEach(x=>x.setAttribute("aria-pressed",x===b));
@@ -520,7 +581,8 @@ def build():
     inner = (INNER
              .replace("__MLS_JSON__", json.dumps(MLS, separators=(",", ":")))
              .replace("__REDFIN_JSON__", json.dumps(REDFIN, separators=(",", ":")))
-             .replace("__TIME_JSON__", json.dumps(TIME, separators=(",", ":"))))
+             .replace("__TIME_JSON__", json.dumps(TIME, separators=(",", ":")))
+             .replace("__STREET_JSON__", json.dumps(STREET, separators=(",", ":"))))
     standalone = (
         "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"
         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
