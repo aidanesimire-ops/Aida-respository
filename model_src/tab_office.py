@@ -32,7 +32,8 @@ OWNERS = [
 ]
 
 
-def build(s):
+def build(s, amap=None):
+    amap = amap or {}
     a = A
     s.colw({"A": 2.5, "B": 34, "C": 13, "D": 12, "E": 12, "F": 12, "G": 12,
             "H": 12, "I": 12, "J": 12, "K": 12, "L": 12, "M": 12})
@@ -63,8 +64,13 @@ def build(s):
     def inp(name, label, key, fmt, note):
         nonlocal r
         s.put(r, L, label, style="label", align="left")
-        s.put(r, 3, a[key], style="input", fmt=fmt, align="right", name=name)
-        s.put(r, 4, note, style="note", align="left", merge=(r, 13)); r += 1
+        if name in amap:
+            s.put(r, 3, f"='Assumptions'!{amap[name]}", style="calc", color="008000", fmt=fmt, align="right", name=name)
+            s.put(r, 4, "🟢 Assumptions", style="note", align="left", merge=(r, 13))
+        else:
+            s.put(r, 3, a[key], style="input", fmt=fmt, align="right", name=name)
+            s.put(r, 4, note, style="note", align="left", merge=(r, 13))
+        r += 1
     inp("GLA", "Rentable SF (both owners)", "gla", F_NUM, "⚠️ ~168,807 SF")
     inp("OCC0", "In-place occupancy", "occ0", F_PCT1, "🔶 office vacancy ~12%")
     inp("STABOCC", "Stabilized occupancy", "stab_occ", F_PCT1, "🔶")

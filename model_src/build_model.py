@@ -46,23 +46,28 @@ def main():
     # ---- assumptions control panel first (pure inputs, no deps) ----
     sh["Assumptions"] = add_sheet(wb, "Assumptions", tabcolor=GOLD)
     a_free = tab_assumptions.build_inputs(sh["Assumptions"])
-    A = {"Assumptions": sh["Assumptions"].reg}
+    areg = sh["Assumptions"].reg
+    A = {"Assumptions": areg}
 
-    # ---- asset tabs (populate registries) ----
+    def amap(prefix):
+        p = prefix + "_"
+        return {k[len(p):]: v for k, v in areg.items() if k.startswith(p)}
+
+    # ---- asset tabs (populate registries; each reads its block from Assumptions) ----
     sh["Shahidi Retail"] = add_sheet(wb, "Shahidi Retail", tabcolor=NAVY)
-    tab_shahidi.build(sh["Shahidi Retail"])
+    tab_shahidi.build(sh["Shahidi Retail"], amap("SHA"))
 
     sh["Publix & Starbucks"] = add_sheet(wb, "Publix & Starbucks", tabcolor=NAVY)
-    tab_asset.build(sh["Publix & Starbucks"], configs.PUBLIX_CFG)
+    tab_asset.build(sh["Publix & Starbucks"], configs.PUBLIX_CFG, amap("PUB"))
 
     sh["Sunrise Plaza"] = add_sheet(wb, "Sunrise Plaza", tabcolor=NAVY)
-    tab_asset.build(sh["Sunrise Plaza"], configs.KARLUEN_CFG)
+    tab_asset.build(sh["Sunrise Plaza"], configs.KARLUEN_CFG, amap("SUN"))
 
     sh["Office Condo"] = add_sheet(wb, "Office Condo", tabcolor=NAVY)
-    tab_office.build(sh["Office Condo"])
+    tab_office.build(sh["Office Condo"], amap("OFF"))
 
     sh["Land"] = add_sheet(wb, "Land", tabcolor=NAVY)
-    tab_land.build(sh["Land"], A)
+    tab_land.build(sh["Land"], A, amap("LND"))
 
     # ---- assemblage HBU (links to assets + assumptions premium) ----
     asset_regs = {name: s.reg for name, s in sh.items()}

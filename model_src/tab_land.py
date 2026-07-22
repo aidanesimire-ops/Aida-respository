@@ -31,7 +31,8 @@ A = dict(
 )
 
 
-def build(s, regs):
+def build(s, regs, amap=None):
+    amap = amap or {}
     a = A
     def AS(name):   # link to the Assumptions control-panel cell
         return f"'Assumptions'!{regs['Assumptions'][name]}"
@@ -63,8 +64,13 @@ def build(s, regs):
     def inp(name, label, key, fmt, note):
         nonlocal r
         s.put(r, L, label, style="label", align="left")
-        s.put(r, 3, a[key], style="input", fmt=fmt, align="right", name=name)
-        s.put(r, 4, note, style="note", align="left", merge=(r, 13)); r += 1
+        if name in amap:
+            s.put(r, 3, f"='Assumptions'!{amap[name]}", style="calc", color="008000", fmt=fmt, align="right", name=name)
+            s.put(r, 4, "🟢 Assumptions", style="note", align="left", merge=(r, 13))
+        else:
+            s.put(r, 3, a[key], style="input", fmt=fmt, align="right", name=name)
+            s.put(r, 4, note, style="note", align="left", merge=(r, 13))
+        r += 1
     inp("LANDSF", "Land (SF)", "land_sf", F_NUM, "⚠️ 2.39 ac")
     inp("OFFSF", "Existing office SF", "office_sf", F_NUM, "⚠️ 1967 bldg")
     inp("UNITS", "Entitled units", "units", F_NUM, "⚠️ approved 259")

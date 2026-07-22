@@ -14,7 +14,8 @@ def pc(y): return 3 + y
 def CL(c): return get_column_letter(c)
 
 
-def build(s, cfg):
+def build(s, cfg, amap=None):
+    amap = amap or {}
     a = cfg["inp"]
     s.colw({"A": 2.5, "B": 34, "C": 13, "D": 12, "E": 12, "F": 12, "G": 12,
             "H": 12, "I": 12, "J": 12, "K": 12, "L": 12, "M": 12})
@@ -78,8 +79,13 @@ def build(s, cfg):
     def inp(name, label, key, fmt, note):
         nonlocal r
         s.put(r, L, label, style="label", align="left")
-        s.put(r, 3, a[key], style="input", fmt=fmt, align="right", name=name)
-        s.put(r, 4, note, style="note", align="left", merge=(r, 13)); r += 1
+        if name in amap:
+            s.put(r, 3, f"='Assumptions'!{amap[name]}", style="calc", color="008000", fmt=fmt, align="right", name=name)
+            s.put(r, 4, "🟢 Assumptions", style="note", align="left", merge=(r, 13))
+        else:
+            s.put(r, 3, a[key], style="input", fmt=fmt, align="right", name=name)
+            s.put(r, 4, note, style="note", align="left", merge=(r, 13))
+        r += 1
 
     grp("Property & revenue")
     inp("GLA", "Rentable SF", "gla", F_NUM, cfg["src"]["gla"])
@@ -114,8 +120,13 @@ def build(s, cfg):
     inp("HOLD", "Hold period (yrs)", "hold", F_YR, "🔶")
     inp("DISC", "Discount rate (NPV)", "disc", F_PCT1, "🔶")
     s.put(r, L, "Land value ($/SF)", style="label", align="left")
-    s.put(r, 3, cfg.get("land_psf", 248), style="input", fmt=F_PSF, align="right", name="GLAND_PSF")
-    s.put(r, 4, "🔶 corridor land comp", style="note", align="left", merge=(r, 13)); r += 1
+    if "GLAND_PSF" in amap:
+        s.put(r, 3, f"='Assumptions'!{amap['GLAND_PSF']}", style="calc", color="008000", fmt=F_PSF, align="right", name="GLAND_PSF")
+        s.put(r, 4, "🟢 Assumptions", style="note", align="left", merge=(r, 13))
+    else:
+        s.put(r, 3, cfg.get("land_psf", 248), style="input", fmt=F_PSF, align="right", name="GLAND_PSF")
+        s.put(r, 4, "🔶 corridor land comp", style="note", align="left", merge=(r, 13))
+    r += 1
     r += 1
 
     g = s.reg

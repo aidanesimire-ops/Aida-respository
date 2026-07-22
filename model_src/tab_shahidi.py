@@ -32,7 +32,8 @@ ROLL = [
 VACANT_SF = 4422
 
 
-def build(s):
+def build(s, amap=None):
+    amap = amap or {}
     p = PARCELS["shahidi"]
     s.colw({"A": 2.5, "B": 34, "C": 13, "D": 12, "E": 12, "F": 12, "G": 12,
             "H": 12, "I": 12, "J": 12, "K": 12, "L": 12, "M": 12})
@@ -115,8 +116,13 @@ def build(s):
     def inp(name, label, val, fmt, note):
         nonlocal r
         s.put(r, L, label, style="label", align="left")
-        s.put(r, 3, val, style="input", fmt=fmt, align="right", name=name)
-        s.put(r, 4, note, style="note", align="left", merge=(r, 13)); r += 1
+        if name in amap:
+            s.put(r, 3, f"='Assumptions'!{amap[name]}", style="calc", color="008000", fmt=fmt, align="right", name=name)
+            s.put(r, 4, "🟢 Assumptions", style="note", align="left", merge=(r, 13))
+        else:
+            s.put(r, 3, val, style="input", fmt=fmt, align="right", name=name)
+            s.put(r, 4, note, style="note", align="left", merge=(r, 13))
+        r += 1
 
     grp("Property")
     inp("GLA", "GLA (SF)", SH["gla"], F_NUM, "✅ BCPA")
@@ -181,8 +187,13 @@ def build(s):
         f"={R('PRICE')}*(1+{R('CLOSE')})+{R('INIT_LEASE')}", F_ACCT_TOP)
     der("EQ_REQ", "Total equity required", f"={R('TCB')}-{R('LOAN')}", F_ACCT_TOP)
     s.put(r, L, "Land value ($/SF)", style="label", align="left")
-    s.put(r, 3, 254.92, style="input", fmt=F_PSF, align="right", name="GLAND_PSF")
-    s.put(r, 4, "🔶 arm's-length basis ($254.92/SF)", style="note", align="left", merge=(r, 13)); r += 1
+    if "GLAND_PSF" in amap:
+        s.put(r, 3, f"='Assumptions'!{amap['GLAND_PSF']}", style="calc", color="008000", fmt=F_PSF, align="right", name="GLAND_PSF")
+        s.put(r, 4, "🟢 Assumptions", style="note", align="left", merge=(r, 13))
+    else:
+        s.put(r, 3, 254.92, style="input", fmt=F_PSF, align="right", name="GLAND_PSF")
+        s.put(r, 4, "🔶 arm's-length basis ($254.92/SF)", style="note", align="left", merge=(r, 13))
+    r += 1
     der("LANDVAL", "Land value (land SF × $/SF)", f"={R('LANDSF')}*{R('GLAND_PSF')}", F_ACCT_TOP,
         "both blue inputs above")
     r += 1

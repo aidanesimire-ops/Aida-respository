@@ -29,9 +29,9 @@ def build(s):
     para("Institutional acquisition underwriting for a five-asset covered-land-play assemblage on the E Sunrise Blvd hard corner at the Galleria.")
     para("Two valuations of the same block are presented: (1) an INCOME basis — what the combined cash flows support — and (2) a HIGHEST-AND-")
     para("BEST-USE / covered-land basis — land value plus an assemblage premium to control every parcel. Only blue cells are inputs; change any")
-    para("blue cell and the entire workbook recalculates (full recalc on open). The ASSUMPTIONS tab is the control panel — every portfolio driver and")
-    para("data gap lives there or is indexed there; asset-specific rents & caps are blue on each asset tab. Order: Exec · Assumptions · Income ·")
-    para("Scenarios · Assemblage · the five asset tabs · Notes.")
+    para("blue cell and the entire workbook recalculates (full recalc on open). The ASSUMPTIONS tab is the single control surface — global drivers")
+    para("plus a block per asset (price · rents · occupancy · operating expenses · caps · debt). Standard modeling params (rent/expense growth,")
+    para("TI/LC, reserves, closing detail) stay blue on each asset tab. Order: Exec · Assumptions · Income · Scenarios · Assemblage · assets · Notes.")
     r += 1
 
     head("VALUATION METHODOLOGY")
