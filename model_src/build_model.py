@@ -4,7 +4,7 @@ Run:  python3 build_model.py
 """
 from openpyxl.utils import get_column_letter, column_index_from_string
 from mblib import new_book, add_sheet, NAVY, GOLD
-import tab_assumptions, tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_income, tab_scenarios, tab_exec, tab_notes
+import tab_assumptions, tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_income, tab_scenarios, tab_hbu, tab_exec, tab_notes
 import configs
 
 OUT = "../Shahidi_Assemblage_Model.xlsx"
@@ -87,9 +87,15 @@ def main():
     sh["Scenarios"] = add_sheet(wb, "Scenarios", tabcolor=GOLD)
     tab_scenarios.build(sh["Scenarios"], scen_regs)
 
+    # ---- highest & best use (links to assets + assemblage + assumptions) ----
+    hbu_regs = dict(scen_regs)
+    hbu_regs["Scenarios"] = sh["Scenarios"].reg
+    sh["Highest & Best Use"] = add_sheet(wb, "Highest & Best Use", tabcolor=GOLD)
+    tab_hbu.build(sh["Highest & Best Use"], hbu_regs)
+
     # ---- executive summary (links to everything) ----
-    all_regs = dict(scen_regs)
-    all_regs["Scenarios"] = sh["Scenarios"].reg
+    all_regs = dict(hbu_regs)
+    all_regs["Highest & Best Use"] = sh["Highest & Best Use"].reg
     sh["Executive Summary"] = add_sheet(wb, "Executive Summary", tabcolor=GOLD)
     tab_exec.build(sh["Executive Summary"], all_regs)
 
@@ -100,9 +106,10 @@ def main():
     # ---- append the live data-gap register to the Assumptions tab (needs all regs) ----
     tab_assumptions.build_index(sh["Assumptions"], all_regs, a_free)
 
-    # ---- reorder: Exec, Assumptions, Income, Scenarios, Assemblage, assets, Notes ----
+    # ---- reorder ----
     order = ["Executive Summary", "Assumptions", "Income Valuation", "Scenarios", "Assemblage",
-             "Shahidi Retail", "Publix & Starbucks", "Sunrise Plaza", "Office Condo", "Land", "Notes & Sources"]
+             "Highest & Best Use", "Shahidi Retail", "Publix & Starbucks", "Sunrise Plaza",
+             "Office Condo", "Land", "Notes & Sources"]
     wb._sheets = [sh[t].ws for t in order]
     wb.active = 0
 

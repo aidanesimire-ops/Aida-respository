@@ -20,8 +20,8 @@ ADDR = {"Shahidi Retail": "2541–2595 E Sunrise · 26,272 SF retail",
         "Sunrise Plaza": "2465–2485 E Sunrise · 25,105 SF retail",
         "Office Condo": "2455 E Sunrise · 168,807 SF office condo",
         "Land": "1040 Bayview Dr · 2.39 ac · 259 units entitled"}
-CONTROL = {"Shahidi Retail": "PRICE", "Publix & Starbucks": "LANDVAL",
-           "Sunrise Plaza": "PRICE", "Office Condo": "PRICE", "Land": "CONCLUDED"}
+CONTROL = {"Shahidi Retail": "PRICE", "Publix & Starbucks": "PRICE",
+           "Sunrise Plaza": "PRICE", "Office Condo": "BUYOUT_TOTAL", "Land": "CONCLUDED"}
 NOICELL = {"Shahidi Retail": "INPLACE_NOI", "Publix & Starbucks": "NOI1",
            "Sunrise Plaza": "NOI1", "Office Condo": "NOI1", "Land": "INOI"}
 
@@ -105,9 +105,13 @@ def build(s, regs):
         s.put(r, 3, formula, style="calc", color="008000", fmt=fmt, align="right")
         if note: s.put(r, 4, note, style="note", align="left", merge=(r, 13))
         r += 1
+    HB = "Highest & Best Use"
     kv("① Income-based price (assemblage cash flows)", f"={x(IV,'PX_INCOME')}", F_ACCT_TOP, note="direct cap on consolidated in-place NOI")
-    kv("② Covered-land / HBU price (control cost)", f"={x(A,'ACQ')}", F_ACCT_TOP, note="land value + 20% assemblage premium")
-    kv("Premium over income value (dirt + optionality)", f"={x(IV,'PREMIUM')}", F_ACCT_TOP, note="② − ① = the land / Live Local option cost")
+    kv("② Sum of the parts (priced independently)", f"={x(HB,'SUM_PARTS')}", F_ACCT_TOP, note="each component on its own")
+    kv("③ Covered-land / HBU price (assembled)", f"={x(A,'ACQ')}", F_ACCT_TOP, note="sum of parts + assemblage premium")
+    kv("Premium over income value (dirt + optionality)", f"={x(IV,'PREMIUM')}", F_ACCT_TOP, note="③ − ① = the land / Live Local option cost")
+    kv("Office condo FULL BUY-OUT (both owners)", f"={x('Office Condo','BUYOUT_TOTAL')}", F_ACCT_TOP, note="Main St 57.4% + Intl Sunrise 42.6% + premium")
+    kv("Land — fragmented vs. assembled (plottage)", f"={x(HB,'PLOTTAGE')}", F_ACCT_TOP, note="assembled land worth this much more than the parts")
     kv("Summed control cost (pre-premium)", f"={x(A,'RAW_COST')}", F_ACCT_TOP)
     kv("Total equity required (all assets, HBU)", f"={x(A,'TOT_EQ')}", F_ACCT_TOP)
     kv("Total in-place NOI", f"={x(A,'TOT_NOI')}", F_ACCT_TOP, note="covers debt service + taxes during hold")

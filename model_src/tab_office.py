@@ -263,6 +263,22 @@ def build(s, amap=None):
     s.put(r, 8, f"=SUM({CL(8)}{otot-2}:{CL(8)}{otot-1})", style="total", fmt=F_ACCT_TOP, align="right")
     s.put(r, 9, "buy out both to assemble", style="total", align="left", merge=(r, 13)); r += 2
 
+    # ---- full buy-out value (both owners) ----
+    s.section(r, L, 13, "FULL BUY-OUT VALUE  —  cost to acquire BOTH condo owners' positions"); r += 1
+    s.put(r, L, "Condo buyout premium (fractured ownership / holdout)", style="label", align="left")
+    s.put(r, 3, 0.12, style="input", fmt=F_PCT1, align="right", name="BUYOUT_PREM")
+    s.put(r, 4, "🔵 uplift over income value to get both owners to sell", style="note", align="left", merge=(r, 13)); r += 1
+    s.put(r, L, "Main Street Fund LLC (57.4%) — buyout", style="label", align="left")
+    s.put(r, 3, f"={CL(7)}{otot-2}*(1+{R('BUYOUT_PREM')})", style="calc", fmt=F_ACCT, align="right", name="BUYOUT1"); r += 1
+    s.put(r, L, "International Sunrise Partners LLC (42.6%) — buyout", style="label", align="left")
+    s.put(r, 3, f"={CL(7)}{otot-1}*(1+{R('BUYOUT_PREM')})", style="calc", fmt=F_ACCT, align="right", name="BUYOUT2"); r += 1
+    s.put(r, L, "FULL BUY-OUT VALUE (both owners)", style="grand", align="left")
+    s.put(r, 3, f"={R('BUYOUT1')}+{R('BUYOUT2')}", style="grand", fmt=F_ACCT_TOP, align="right", name="BUYOUT_TOTAL")
+    s.put(r, 4, "cost to control the whole building (income value + buyout premium)", style="note", align="left", merge=(r, 13)); r += 1
+    s.put(r, L, "  cross-check — income value (no premium)", style="note", align="left")
+    s.put(r, 3, f"={R('OWN_INCVAL')}", style="calc", fmt=F_ACCT, align="right")
+    s.put(r, 5, "vs. $300/SF sale comp (stale/high) shown in Returns above", style="note", align="left", merge=(r, 13)); r += 2
+
     # P&L
     s.section(r, L, 13, "PROFIT & LOSS STATEMENT  —  Year 1 vs. Stabilized (Yr 2)"); r += 1
     s.put(r, L, "$ / year", style="subhead", align="left")

@@ -20,7 +20,7 @@ GLA = {"Shahidi Retail": 26272, "Publix & Starbucks": 36822,
 
 # control-cost source cell per asset (covered-land control basis)
 CONTROL = {"Shahidi Retail": "PRICE", "Publix & Starbucks": "PRICE",
-           "Sunrise Plaza": "PRICE", "Office Condo": "PRICE", "Land": "CONCLUDED"}
+           "Sunrise Plaza": "PRICE", "Office Condo": "BUYOUT_TOTAL", "Land": "CONCLUDED"}
 NOICELL = {"Shahidi Retail": "INPLACE_NOI", "Publix & Starbucks": "NOI1",
            "Sunrise Plaza": "NOI1", "Office Condo": "NOI1", "Land": "INOI"}
 LANDVALCELL = {"Shahidi Retail": "LANDVAL", "Publix & Starbucks": "LANDVAL",

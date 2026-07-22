@@ -31,7 +31,8 @@ def build(s):
     para("BEST-USE / covered-land basis — land value plus an assemblage premium to control every parcel. Only blue cells are inputs; change any")
     para("blue cell and the entire workbook recalculates (full recalc on open). The ASSUMPTIONS tab is the single control surface — global drivers")
     para("plus a block per asset (price · rents · occupancy · operating expenses · caps · debt). Standard modeling params (rent/expense growth,")
-    para("TI/LC, reserves, closing detail) stay blue on each asset tab. Order: Exec · Assumptions · Income · Scenarios · Assemblage · assets · Notes.")
+    para("TI/LC, reserves, closing detail) stay blue on each asset tab. Order: Exec · Assumptions · Income · Scenarios · Assemblage · Highest & Best Use · assets · Notes.")
+    para("Each component is priced independently (asset tabs) and combined (Assemblage / Income / HBU). The HBU tab prices the land as regular fragmented parcels vs. an assembled superblock (plottage premium), and carries the office condo full buy-out.")
     r += 1
 
     head("VALUATION METHODOLOGY")
