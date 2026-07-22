@@ -57,6 +57,11 @@ python analysis/build_dashboard.py  # -> dashboard/index.html (+ artifact.html)
 python analysis/build_report.py     # -> REPORT.md
 ```
 
+**Public-data enrichment (optional):** `python analysis/enrich_public.py` geocodes every
+address and appends Census demographics, FEMA flood zones, and Broward County assessed
+land-vs-building values. It needs open outbound HTTPS — the environment this was built in
+blocks those hosts, so run it on a machine with normal network access.
+
 Re-run any time you get fresh data — drop new MLS exports in `data/raw/mls/` (named by
 status) and re-run.
 
@@ -75,9 +80,10 @@ REPORT.md             written analysis
 
 ## Honest limitations
 
-- **Lot geography** (point / corner / canal / ocean-access / no-fixed-bridges) is **not**
-  in the MLS export — only a Waterfront Y/N flag. Adding the MLS *Waterfront Description /
-  Lot Description / Dock* fields would sharpen the waterfront premium.
+- **Lot geography** is now *classified* (barrier-island / finger-isle point-lot /
+  Intracoastal-canal / downtown / mainland-inland) from the waterfront flag + subdivision +
+  MLS area — indicative, not surveyed. True point/corner/canal/ocean-access still needs the
+  MLS *Waterfront Description / Lot Description / Dock* fields.
 - **No dates / days-on-market** in the MLS export; those come from the Redfin layer at the
   neighborhood level. Adding *List/Close Date* columns would enable per-home time adjustment.
 - **Vacant land** isn't in the data (all rows are improved residential) — land value is

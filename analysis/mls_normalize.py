@@ -148,6 +148,57 @@ def _ptype(s):
     return None  # hotel/timeshare/lease/etc -> excluded
 
 
+# Derived lot-geography classification (indicative — from waterfront flag +
+# subdivision name + MLS area; the export has no true point/corner/canal field).
+FINGER_ISLE_KW = ("ISLE", "ISLES", "NURMI", "VENICE", "STILWELL", "IDLEWYLD",
+                  "HARBOUR", "HARBORAGE", "SUNRISE KEY", "BAY COLONY", "HENDRICKS",
+                  "ISLA BAHIA", "GORDON", "DEL LAGO", "LAGUNA", "SEA ISLAND",
+                  "ROYAL PLAZA", "FIESTA", "CORAL WAY", "SAN MARCO", "DESOTA")
+BEACH_KW = ("OCEAN", "BEACH", "GALT", "SEABREEZE", "BIRCH")
+DOWNTOWN_KW = ("LAS OLAS RIVER", "NURIVER", "STRADA", "OMBELLE", "NATIIVO",
+               "VICEROY", "ANDARE", "LAS OLAS GRAND", "AVENUE LOFTS", "NOLA",
+               "SYMPHONY", "ESPLANADE", "WATERGARDEN", "NEW RIVER")
+BEACH_AREAS = {"3130", "3160", "3170"}
+DOWNTOWN_AREAS = {"3700", "3800", "3810"}
+
+
+def _geo_type(waterfront, sub_raw, area, ptype):
+    s = "" if sub_raw is None else str(sub_raw).upper()
+    has = lambda kws: any(k in s for k in kws)  # noqa: E731
+    if waterfront and has(FINGER_ISLE_KW):
+        return "Finger-isle waterfront"
+    if has(BEACH_KW) or (area in BEACH_AREAS and ptype == "Condo"):
+        return "Barrier island / beach"
+    if waterfront:
+        return "Intracoastal / canal waterfront"
+    if ptype in ("Condo", "Townhouse") and (area in DOWNTOWN_AREAS or has(DOWNTOWN_KW)):
+        return "Downtown high-rise"
+    return "Mainland inland"
+
+
+def _fill_from_subdivision(df):
+    """Recover missing sqft / bad year from same-building (subdivision) peers."""
+    filled_sq = filled_yr = 0
+    valid_sq = df["sqft"] > 200
+    med = df[valid_sq].groupby("sub_raw")["sqft"].median()
+    cnt = df[valid_sq].groupby("sub_raw")["sqft"].count()
+    good = set(cnt[cnt >= 3].index)
+    need = ~valid_sq & df["sub_raw"].isin(good)
+    df.loc[need, "sqft"] = df.loc[need, "sub_raw"].map(med)
+    filled_sq = int(need.sum())
+
+    valid_yr = df["year_built"].between(1900, THIS_YEAR)
+    mode = df[valid_yr].groupby("sub_raw")["year_built"].agg(
+        lambda x: x.mode().iat[0] if len(x.mode()) else np.nan)
+    cnty = df[valid_yr].groupby("sub_raw")["year_built"].count()
+    goody = set(cnty[cnty >= 3].index)
+    needy = ~valid_yr & df["sub_raw"].isin(goody)
+    df.loc[needy, "year_built"] = df.loc[needy, "sub_raw"].map(mode)
+    filled_yr = int(needy.sum())
+    df["was_filled"] = need | needy
+    return df, filled_sq, filled_yr
+
+
 # --------------------------------------------------------------------------- #
 def load_clean() -> pd.DataFrame:
     frames = []
@@ -163,6 +214,7 @@ def load_clean() -> pd.DataFrame:
     df = pd.DataFrame({
         "status": raw["status"],
         "area": raw["Area"].map(lambda x: re.sub(r"\.0$", "", str(x)) if pd.notna(x) else None),
+        "sub_raw": raw["Subdivision/Complex"].astype(str).str.upper().str.strip(),
         "neighborhood": raw["Subdivision/Complex"].map(_canon_neigh),
         "list_price": raw["List Price"].map(_num),
         "sale_price": raw["Sale Price"].map(_num),
@@ -177,6 +229,12 @@ def load_clean() -> pd.DataFrame:
         "waterfront": raw["Waterfront Property (Y/N)"].astype(str).str.strip().str.lower().eq("yes"),
         "lot_sqft": raw["Lot SqFt"].map(_num),
     })
+    # recover missing sqft / bad year from same-building peers before filtering
+    df, n_fsq, n_fyr = _fill_from_subdivision(df)
+    df.attrs["filled_sqft"] = n_fsq
+    df.attrs["filled_year"] = n_fyr
+    df["geo_type"] = [_geo_type(w, s, a, p) for w, s, a, p in
+                      zip(df["waterfront"], df["sub_raw"], df["area"], df["ptype"])]
     df["baths"] = df["fbaths"].fillna(0) + 0.5 * df["hbaths"].fillna(0)
     yr = df["year_built"].where((df["year_built"] >= 1900) & (df["year_built"] <= THIS_YEAR))
     df["age"] = THIS_YEAR - yr
@@ -310,6 +368,7 @@ def normalized_table(df, sold, mod, dmodel, smear, land_elast):
 
         rows.append({
             "neighborhood": nb, "basis_type": basis,
+            "geo_type": g["geo_type"].mode().iat[0] if len(g["geo_type"].mode()) else None,
             "norm_ppsf": round(norm, 1),
             "sold_ppsf_median": round(float(g["sale_ppsf"].median()), 1),
             "sold_n": int(len(g)),
@@ -390,6 +449,8 @@ def build_profiles(ntable, prem, city, city_land, redfin_ctx):
                   f"{pos} (city ${city:,.0f}/sqft).")
         tp.append(f"Recent closed sales run a median ${r['median_sale_price']:,.0f} on about "
                   f"{r['median_sqft']:,} sqft (${r['sold_ppsf_median']:,.0f}/sqft actual).")
+        if r.get("geo_type"):
+            tp.append(f"Geography: predominantly {r['geo_type'].lower()}.")
         # property-type spread
         types = [("houses", r.get("house_ppsf"), r.get("n_house")),
                  ("condos", r.get("condo_ppsf"), r.get("n_condo")),
@@ -451,6 +512,8 @@ def main():
     df = load_clean()
     print(f"  {len(df):,} clean listings | statuses: "
           + ", ".join(f"{k}={v}" for k, v in df['status'].value_counts().items()))
+    print(f"  recovered from same-building peers: {df.attrs.get('filled_sqft',0)} sqft, "
+          f"{df.attrs.get('filled_year',0)} year-built")
     df = assign_geo(df)
     sold = df[df["status"] == "Sold"].copy()
     print(f"  {len(sold):,} closed sales feed the hedonic model")
@@ -519,6 +582,22 @@ def main():
                      & (live_out["gap_pct"].between(-38, -8))
                      ].sort_values("gap_pct").head(30)
 
+    print("Summarizing pricing by lot geography ...")
+    geo_summary = []
+    for gt, gg in sold.groupby("geo_type"):
+        wf = gg[gg["waterfront"]]
+        geo_summary.append({
+            "geo_type": gt,
+            "median_ppsf": round(float(gg["sale_ppsf"].median()), 1),
+            "waterfront_ppsf": round(float(wf["sale_ppsf"].median()), 1) if len(wf) >= 5 else None,
+            "n": int(len(gg)),
+            "waterfront_share": round(float(gg["waterfront"].mean()), 2),
+            "median_price": int(gg["sale_price"].median()),
+        })
+    geo_summary.sort(key=lambda x: -x["median_ppsf"])
+    for gsi in geo_summary:
+        print(f"    {gsi['geo_type']:32s} ${gsi['median_ppsf']:>7,.0f}/sqft  n={gsi['n']}")
+
     print("Generating per-neighborhood talking-point profiles ...")
     profiles = build_profiles(ntable, prem, city, city_land, load_redfin_context())
 
@@ -544,10 +623,13 @@ def main():
                                   for k, v in med.items()},
             "premiums": prem,
             "new_max_age": NEW_MAX_AGE,
+            "filled_sqft": int(df.attrs.get("filled_sqft", 0)),
+            "filled_year": int(df.attrs.get("filled_year", 0)),
             "status_counts": {k: int(v) for k, v in df["status"].value_counts().items()},
             "min_report_sold": MIN_REPORT_SOLD,
         },
         "neighborhoods": json.loads(ntable.reset_index().to_json(orient="records")),
+        "geography": geo_summary,
         "profiles": profiles,
         "live_flag_summary": {
             k: int(v) for k, v in live_out["flag"].value_counts().items()},

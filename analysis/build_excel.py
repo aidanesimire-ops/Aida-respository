@@ -199,6 +199,7 @@ MLS_COLS = [
     ("rank", "Rank", "0", 6),
     ("neighborhood", "Neighborhood", None, 26),
     ("basis_type", "Basis", None, 13),
+    ("geo_type", "Geography", None, 26),
     ("norm_ppsf", "Norm. $/sqft", "$#,##0", 13),
     ("vs_city_pct", "vs City", '+0"%";-0"%"', 9),
     ("sold_ppsf_median", "Median sold $/sqft", "$#,##0", 15),
@@ -239,9 +240,9 @@ def mls_ranking_sheet(wb, fmts, mm):
                 "columns are actual medians. Source: MLS closed sales.")
     ws.hide_gridlines(2)
     n = len(df)
-    ws.conditional_format(4, 3, 3 + n, 3, {"type": "3_color_scale",
+    ws.conditional_format(4, 4, 3 + n, 4, {"type": "3_color_scale",
         "min_color": "#e8f1fc", "mid_color": "#86b6ef", "max_color": BLUE})
-    ws.conditional_format(4, 9, 3 + n, 9, {"type": "3_color_scale",
+    ws.conditional_format(4, 10, 3 + n, 10, {"type": "3_color_scale",
         "min_color": "#eaf4fb", "mid_color": "#7fb6e0", "max_color": "#0d3b66"})
 
 

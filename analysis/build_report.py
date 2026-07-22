@@ -79,9 +79,15 @@ def main():
     w("| 5 Harborage Isle | $70.0M · 20,000 sqft · 2008 | $70M record sale (Sept 2024), 20,000 sqft ✓ |")
     w("| 84 Isla Bahia Dr | $34.0M · 11,714 sqft · 2021 | $34M (Apr 2026), 11,714 sqft, built 2021 ✓ |")
     w("| 2406 Laguna Dr | $26.0M · 10,646 sqft · 2021 | $26M (Dec 2025), ~10,700 sqft, Harbor Beach ✓ |")
-    w("\nAcross all files: **100%** of listings have an address, **~98%** have valid square "
-      "footage and year built. The pipeline automatically drops the ~3% of rows with corrupt "
-      "sqft/year before modeling.\n")
+    w(f"\nAcross all files: **100%** of listings have an address, **~98%** have valid square "
+      "footage and year built. Before modeling, the pipeline recovers "
+      f"**{m.get('filled_sqft',0)} missing square-footage** and **{m.get('filled_year',0)} bad "
+      "year-built** values from same-building/subdivision peers, and drops the small remainder "
+      "that can't be recovered.\n")
+    w("> **Public-data note:** Census, FEMA flood zones, and the Broward County Property "
+      "Appraiser (assessed land vs. building value) would add more context, but this session's "
+      "network policy blocks those hosts. `analysis/enrich_public.py` is included, ready to pull "
+      "them (geocode → ACS → FEMA → BCPA) in any environment with open network access.\n")
 
     # ---------------- Price drivers chart ----------------
     w("## What drives value\n")
@@ -94,6 +100,24 @@ def main():
     w(f"| Each decade of age | **{pct(pr['age_per_decade_pct'])}** |")
     w(f"| Implied land value | **~${m['city_land_ppsf']:,.0f}/sqft of lot** |")
     w("")
+
+    # ---------------- Geography ----------------
+    if mls.get("geography"):
+        w("## Price by lot geography\n")
+        w("![Geography](outputs/chart_geography.png)\n")
+        w("A derived classification (from the waterfront flag + subdivision name + MLS area — "
+          "indicative, since the export has no true point/corner/canal field) shows the water "
+          "tiers clearly:\n")
+        w("| Geography | Median $/sqft | Waterfront $/sqft | Sales |\n|--|--|--|--|")
+        for gsi in mls["geography"]:
+            w(f"| {gsi['geo_type']} | {usd(gsi['median_ppsf'])} | {usd(gsi.get('waterfront_ppsf'))} "
+              f"| {gsi['n']:,} |")
+        fi = next((x for x in mls["geography"] if x["geo_type"].startswith("Finger")), None)
+        ml = next((x for x in mls["geography"] if x["geo_type"].startswith("Mainland")), None)
+        if fi and ml:
+            w(f"\nFinger-isle (point-lot) waterfront runs about "
+              f"**{fi['median_ppsf']/ml['median_ppsf']:.1f}×** mainland-inland per foot — the "
+              "single biggest geographic swing in the market.\n")
 
     # ---------------- Rankings ----------------
     w("## Neighborhood value ranking\n")

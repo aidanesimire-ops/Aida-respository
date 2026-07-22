@@ -280,6 +280,29 @@ def chart_crosscheck(mb):
     plt.close(fig)
 
 
+def chart_geography(mb):
+    g = pd.DataFrame(mb["geography"]).sort_values("median_ppsf")
+    wet = {"Finger-isle waterfront", "Barrier island / beach",
+           "Intracoastal / canal waterfront"}
+    colors = [BLUE if t in wet else "#8a94a0" for t in g["geo_type"]]
+    fig, ax = plt.subplots(figsize=(10, 5.2))
+    ax.barh(g["geo_type"], g["median_ppsf"], color=colors, height=0.66, zorder=3)
+    for y, (v, n) in enumerate(zip(g["median_ppsf"], g["n"])):
+        ax.text(v + 8, y, f"${v:,.0f}  (n={n:,})", va="center", fontsize=9.5, color=INK2)
+    _style(ax, "x")
+    ax.set_xlim(0, g["median_ppsf"].max() * 1.22)
+    ax.xaxis.set_major_formatter(mticker.StrMethodFormatter("${x:,.0f}"))
+    ax.set_xlabel("Median sale $/sqft (closed homes)")
+    ax.set_title("Price by lot geography — the water tiers",
+                 fontsize=14, fontweight="bold", color=INK, pad=12, loc="left")
+    fig.text(0.01, 0.005, "Derived classification (waterfront flag + subdivision + MLS area) — "
+             "indicative, not an official survey. Blue = on water. Source: MLS closed sales.",
+             fontsize=8, color=MUTED)
+    fig.tight_layout(rect=(0, 0.03, 1, 1))
+    fig.savefig(os.path.join(OUT, "chart_geography.png"), dpi=150)
+    plt.close(fig)
+
+
 def main():
     b = load()
     chart_top_ppsf(b)
@@ -292,6 +315,7 @@ def main():
         chart_mls_ranking(mb)
         chart_premiums(mb)
         chart_crosscheck(mb)
+        chart_geography(mb)
     except FileNotFoundError:
         print("(mls_bundle.json not found — skipping MLS charts)")
     print("Charts written to outputs/:", ", ".join(sorted(

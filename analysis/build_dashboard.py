@@ -89,6 +89,14 @@ h1.fl-title{font-size:clamp(26px,4vw,42px);line-height:1.06;margin:0;font-weight
 .drv .d-lab{font-size:12px;color:var(--ink-2);font-weight:600}
 .drv .d-val{font-size:23px;font-weight:700;margin-top:3px;letter-spacing:-.01em}
 .up{color:var(--good)}.down{color:var(--neg)}
+.geo{font-size:11px;color:var(--ink-2)}
+.geostrip{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.geot{flex:1;min-width:150px;background:var(--surface-2);border:1px solid var(--line);
+  border-radius:10px;padding:10px 12px}
+.geot.wet{border-left:3px solid var(--accent)}
+.geot .g-t{font-size:11.5px;color:var(--ink-2);font-weight:600}
+.geot .g-v{font-size:19px;font-weight:700;margin-top:2px}
+.geot .g-n{font-size:11px;color:var(--muted)}
 .controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:16px}
 .seg{display:inline-flex;background:var(--surface-2);border:1px solid var(--line);
   border-radius:10px;padding:3px}
@@ -166,6 +174,8 @@ footer.fl-foot a{color:var(--accent)}
     <h2>What drives value — the per-home model</h2>
     <p class="cap">Marginal effect on price per square foot, holding size, type and neighborhood constant. Estimated from actual closed sales.</p>
     <div class="drivers" id="drivers"></div>
+    <div style="font-size:12px;font-weight:600;color:var(--ink-2);margin:16px 0 2px">Price by lot geography <span style="font-weight:400;color:var(--muted)">— median $/ft² (derived, indicative)</span></div>
+    <div class="geostrip" id="geostrip"></div>
   </div>
 
   <div class="grid2">
@@ -350,6 +360,7 @@ function barChart(){
 const COLS=[
   {k:"rank",t:"#",l:1,f:(r,i)=>`<span class="rank">${i+1}</span>`},
   {k:"neighborhood",t:"Neighborhood",l:1,f:r=>`<span class="nbh">${r.neighborhood}</span> <span class="basis">${r.basis_type==="Single Family"?"SFR":r.basis_type}</span>`},
+  {k:"geo_type",t:"Geography",l:1,f:r=>`<span class="geo">${r.geo_type||"—"}</span>`},
   {k:"norm_ppsf",t:"Norm. $/ft²",f:r=>`<span class="tnum">${usd(r.norm_ppsf)}</span>`},
   {k:"vs_city_pct",t:"vs City",f:r=>r.vs_city_pct==null?"—":`<span class="tnum ${r.vs_city_pct>=0?'pos':'neg'}">${pctS(r.vs_city_pct)}</span>`},
   {k:"sold_ppsf_median",t:"Median sold $/ft²",f:r=>`<span class="tnum">${usd(r.sold_ppsf_median)}</span>`},
@@ -382,7 +393,14 @@ function renderTable(){
     +`Standardized home ≈ ${M.standardized_home.sqft.toLocaleString()} ft², ${Math.round(M.standardized_home.age)} yrs old.`;
 }
 
-function renderAll(){kpis();drivers();lineChart();flags();barChart();renderTable();
+function geostrip(){
+  const wet=new Set(["Finger-isle waterfront","Barrier island / beach","Intracoastal / canal waterfront"]);
+  $("#geostrip").innerHTML=(MLS.geography||[]).map(g=>
+    `<div class="geot${wet.has(g.geo_type)?' wet':''}"><div class="g-t">${g.geo_type}</div>`
+    +`<div class="g-v tnum">${usd(g.median_ppsf)}</div><div class="g-n">${g.n.toLocaleString()} sales`
+    +`${g.waterfront_ppsf?` · WF ${usd(g.waterfront_ppsf)}`:''}</div></div>`).join("");
+}
+function renderAll(){kpis();drivers();geostrip();lineChart();flags();barChart();renderTable();
   renderProfile(state.sel || (filtered()[0]||NB[0]||{}).neighborhood);}
 $("#basisSeg").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
   state.basis=b.dataset.b;[...$("#basisSeg").children].forEach(x=>x.setAttribute("aria-pressed",x===b));
