@@ -1,0 +1,409 @@
+{
+  "meta": {
+    "asset_class": "Commercial (all types)",
+    "sources": [
+      "com_active.csv",
+      "com_cancelled.csv",
+      "com_closed_pending_rented.csv"
+    ],
+    "n_listings": 984,
+    "n_sale_comps": 331,
+    "n_closed": 69,
+    "n_lease": 521,
+    "hedonic_r2": 0.585,
+    "hedonic_n": 125,
+    "city_norm_ppsf": 182.0,
+    "closed_vs_listed_pct": -26.2,
+    "standardized_building": {
+      "sqft": 9828,
+      "age": 62
+    },
+    "asset_premium_pct": {
+      "Hotel": 55.6,
+      "Industrial": 11.3,
+      "Mixed Use": -28.3,
+      "Multifamily": -3.3,
+      "Office": -53.6,
+      "Restaurant": -26.0,
+      "Retail": -35.1
+    },
+    "status_counts": {
+      "Expired": 363,
+      "Active": 195,
+      "Cancelled": 154,
+      "Sold": 153,
+      "Rented": 84,
+      "UnderContract": 11,
+      "Withdrawn": 11,
+      "TempOff": 8,
+      "Pending": 5
+    },
+    "no_income_note": "MLS export carries no NOI / rent / cap / units \u2014 all income metrics are derived from editable assumptions (cre_assumptions)."
+  },
+  "submarkets": [
+    {
+      "submarket": "Area 3600",
+      "norm_ppsf": 268.0,
+      "sold_ppsf_median": 355.0,
+      "ask_ppsf_median": 249.0,
+      "median_price": 1799000,
+      "median_sqft": 12150,
+      "n": 15,
+      "n_sold": 4,
+      "n_live": 4,
+      "top_asset": "Retail",
+      "waterfront_share": 0.0,
+      "vs_city_pct": 47.3
+    },
+    {
+      "submarket": "Area 3810",
+      "norm_ppsf": 253.0,
+      "sold_ppsf_median": 127.0,
+      "ask_ppsf_median": 555.0,
+      "median_price": 3450000,
+      "median_sqft": 10126,
+      "n": 11,
+      "n_sold": 2,
+      "n_live": 5,
+      "top_asset": "Multifamily",
+      "waterfront_share": 0.0,
+      "vs_city_pct": 39.1
+    },
+    {
+      "submarket": "Area 3380",
+      "norm_ppsf": 242.0,
+      "sold_ppsf_median": 175.0,
+      "ask_ppsf_median": 300.0,
+      "median_price": 2100500,
+      "median_sqft": 8880,
+      "n": 18,
+      "n_sold": 6,
+      "n_live": 6,
+      "top_asset": "Commercial (other)",
+      "waterfront_share": 0.0,
+      "vs_city_pct": 33.0
+    },
+    {
+      "submarket": "Area 3370",
+      "norm_ppsf": 186.0,
+      "sold_ppsf_median": 177.0,
+      "ask_ppsf_median": 220.0,
+      "median_price": 1700000,
+      "median_sqft": 9612,
+      "n": 40,
+      "n_sold": 11,
+      "n_live": 5,
+      "top_asset": "Multifamily",
+      "waterfront_share": 0.0,
+      "vs_city_pct": 2.2
+    },
+    {
+      "submarket": "Area 3500",
+      "norm_ppsf": 173.0,
+      "sold_ppsf_median": 184.0,
+      "ask_ppsf_median": 168.0,
+      "median_price": 1328750,
+      "median_sqft": 6812,
+      "n": 10,
+      "n_sold": 4,
+      "n_live": 1,
+      "top_asset": "Commercial (other)",
+      "waterfront_share": 0.0,
+      "vs_city_pct": -4.9
+    },
+    {
+      "submarket": "Area 3800",
+      "norm_ppsf": 170.0,
+      "sold_ppsf_median": 130.0,
+      "ask_ppsf_median": 128.0,
+      "median_price": 1074500,
+      "median_sqft": 6950,
+      "n": 38,
+      "n_sold": 7,
+      "n_live": 11,
+      "top_asset": "Commercial (other)",
+      "waterfront_share": 0.05,
+      "vs_city_pct": -6.5
+    },
+    {
+      "submarket": "Area 3470",
+      "norm_ppsf": 153.0,
+      "sold_ppsf_median": 144.0,
+      "ask_ppsf_median": 168.0,
+      "median_price": 1895000,
+      "median_sqft": 13802,
+      "n": 21,
+      "n_sold": 4,
+      "n_live": 5,
+      "top_asset": "Multifamily",
+      "waterfront_share": 0.0,
+      "vs_city_pct": -15.9
+    },
+    {
+      "submarket": "Area 3460",
+      "norm_ppsf": 126.0,
+      "sold_ppsf_median": 137.0,
+      "ask_ppsf_median": 138.0,
+      "median_price": 1400000,
+      "median_sqft": 10125,
+      "n": 21,
+      "n_sold": 2,
+      "n_live": 3,
+      "top_asset": "Multifamily",
+      "waterfront_share": 0.0,
+      "vs_city_pct": -30.7
+    },
+    {
+      "submarket": "Area 3160",
+      "norm_ppsf": 99.0,
+      "sold_ppsf_median": 132.0,
+      "ask_ppsf_median": 200.0,
+      "median_price": 732500,
+      "median_sqft": 4500,
+      "n": 12,
+      "n_sold": 4,
+      "n_live": 1,
+      "top_asset": "Commercial (other)",
+      "waterfront_share": 0.08,
+      "vs_city_pct": -45.6
+    }
+  ],
+  "types": [
+    {
+      "asset_type": "Multifamily",
+      "median_ppsf": 177.0,
+      "sold_ppsf_median": 170.0,
+      "median_price": 1897500,
+      "median_sqft": 10126,
+      "n": 90,
+      "n_sold": 21,
+      "n_live": 16,
+      "assume_rent_psf": 18,
+      "assume_vacancy": 0.06,
+      "assume_opex_ratio": 0.42,
+      "assume_cap_rate": 0.055,
+      "typical_noi_psf": 9.81,
+      "typical_implied_cap": 0.0524
+    },
+    {
+      "asset_type": "Office",
+      "median_ppsf": 197.0,
+      "sold_ppsf_median": 68.0,
+      "median_price": 1200000,
+      "median_sqft": 6840,
+      "n": 29,
+      "n_sold": 3,
+      "n_live": 5,
+      "assume_rent_psf": 34,
+      "assume_vacancy": 0.15,
+      "assume_opex_ratio": 0.45,
+      "assume_cap_rate": 0.08,
+      "typical_noi_psf": 15.9,
+      "typical_implied_cap": 0.0906
+    },
+    {
+      "asset_type": "Retail",
+      "median_ppsf": 247.0,
+      "sold_ppsf_median": 295.0,
+      "median_price": 1990000,
+      "median_sqft": 8108,
+      "n": 25,
+      "n_sold": 6,
+      "n_live": 5,
+      "assume_rent_psf": 23,
+      "assume_vacancy": 0.08,
+      "assume_opex_ratio": 0.22,
+      "assume_cap_rate": 0.0675,
+      "typical_noi_psf": 16.5,
+      "typical_implied_cap": 0.0672
+    },
+    {
+      "asset_type": "Industrial",
+      "median_ppsf": 150.0,
+      "sold_ppsf_median": 177.0,
+      "median_price": 1737500,
+      "median_sqft": 11800,
+      "n": 34,
+      "n_sold": 11,
+      "n_live": 3,
+      "assume_rent_psf": 12,
+      "assume_vacancy": 0.05,
+      "assume_opex_ratio": 0.15,
+      "assume_cap_rate": 0.0625,
+      "typical_noi_psf": 9.69,
+      "typical_implied_cap": 0.0658
+    },
+    {
+      "asset_type": "Mixed Use",
+      "median_ppsf": 136.0,
+      "sold_ppsf_median": 96.0,
+      "median_price": 1200000,
+      "median_sqft": 8798,
+      "n": 33,
+      "n_sold": 5,
+      "n_live": 9,
+      "assume_rent_psf": 16,
+      "assume_vacancy": 0.1,
+      "assume_opex_ratio": 0.35,
+      "assume_cap_rate": 0.0675,
+      "typical_noi_psf": 9.36,
+      "typical_implied_cap": 0.0686
+    },
+    {
+      "asset_type": "Hotel",
+      "median_ppsf": 347.0,
+      "sold_ppsf_median": null,
+      "median_price": 8000000,
+      "median_sqft": 20004,
+      "n": 11,
+      "n_sold": 0,
+      "n_live": 2,
+      "assume_rent_psf": 100,
+      "assume_vacancy": 0.3,
+      "assume_opex_ratio": 0.62,
+      "assume_cap_rate": 0.085,
+      "typical_noi_psf": 26.6,
+      "typical_implied_cap": 0.0665
+    },
+    {
+      "asset_type": "Restaurant",
+      "median_ppsf": 365.0,
+      "sold_ppsf_median": 182.0,
+      "median_price": 2074250,
+      "median_sqft": 7167,
+      "n": 8,
+      "n_sold": 3,
+      "n_live": 1,
+      "assume_rent_psf": 33,
+      "assume_vacancy": 0.1,
+      "assume_opex_ratio": 0.2,
+      "assume_cap_rate": 0.065,
+      "typical_noi_psf": 23.76,
+      "typical_implied_cap": 0.0821
+    },
+    {
+      "asset_type": "Flex",
+      "median_ppsf": 345.0,
+      "sold_ppsf_median": null,
+      "median_price": 2198672,
+      "median_sqft": 6378,
+      "n": 3,
+      "n_sold": 0,
+      "n_live": 1,
+      "assume_rent_psf": 20,
+      "assume_vacancy": 0.08,
+      "assume_opex_ratio": 0.2,
+      "assume_cap_rate": 0.07,
+      "typical_noi_psf": 14.72,
+      "typical_implied_cap": 0.0427
+    },
+    {
+      "asset_type": "Special Purpose",
+      "median_ppsf": 319.0,
+      "sold_ppsf_median": null,
+      "median_price": 3247500,
+      "median_sqft": 12957,
+      "n": 2,
+      "n_sold": 0,
+      "n_live": 1,
+      "assume_rent_psf": 22,
+      "assume_vacancy": 0.15,
+      "assume_opex_ratio": 0.3,
+      "assume_cap_rate": 0.075,
+      "typical_noi_psf": 13.09,
+      "typical_implied_cap": 0.0522
+    },
+    {
+      "asset_type": "Commercial (other)",
+      "median_ppsf": 195.0,
+      "sold_ppsf_median": 178.0,
+      "median_price": 1757500,
+      "median_sqft": 8357,
+      "n": 96,
+      "n_sold": 20,
+      "n_live": 13,
+      "assume_rent_psf": 22,
+      "assume_vacancy": 0.12,
+      "assume_opex_ratio": 0.3,
+      "assume_cap_rate": 0.07,
+      "typical_noi_psf": 13.55,
+      "typical_implied_cap": 0.0644
+    }
+  ],
+  "assumptions": {
+    "by_type": {
+      "Multifamily": {
+        "rent_psf": 18,
+        "vacancy": 0.06,
+        "opex_ratio": 0.42,
+        "cap_rate": 0.055
+      },
+      "Office": {
+        "rent_psf": 34,
+        "vacancy": 0.15,
+        "opex_ratio": 0.45,
+        "cap_rate": 0.08
+      },
+      "Retail": {
+        "rent_psf": 23,
+        "vacancy": 0.08,
+        "opex_ratio": 0.22,
+        "cap_rate": 0.0675
+      },
+      "Industrial": {
+        "rent_psf": 12,
+        "vacancy": 0.05,
+        "opex_ratio": 0.15,
+        "cap_rate": 0.0625
+      },
+      "Mixed Use": {
+        "rent_psf": 16,
+        "vacancy": 0.1,
+        "opex_ratio": 0.35,
+        "cap_rate": 0.0675
+      },
+      "Hotel": {
+        "rent_psf": 100,
+        "vacancy": 0.3,
+        "opex_ratio": 0.62,
+        "cap_rate": 0.085
+      },
+      "Restaurant": {
+        "rent_psf": 33,
+        "vacancy": 0.1,
+        "opex_ratio": 0.2,
+        "cap_rate": 0.065
+      },
+      "Flex": {
+        "rent_psf": 20,
+        "vacancy": 0.08,
+        "opex_ratio": 0.2,
+        "cap_rate": 0.07
+      },
+      "Special Purpose": {
+        "rent_psf": 22,
+        "vacancy": 0.15,
+        "opex_ratio": 0.3,
+        "cap_rate": 0.075
+      },
+      "Commercial (other)": {
+        "rent_psf": 22,
+        "vacancy": 0.12,
+        "opex_ratio": 0.3,
+        "cap_rate": 0.07
+      }
+    },
+    "finance": {
+      "ltv": 0.6,
+      "rate": 0.0675,
+      "amort": 25,
+      "rate_shift_bps": 0,
+      "exit_cap_delta_bps": 25,
+      "rent_growth": 0.03,
+      "expense_growth": 0.025,
+      "hold": 5,
+      "sell_pct": 0.02,
+      "acq_pct": 0.02
+    }
+  }
+}

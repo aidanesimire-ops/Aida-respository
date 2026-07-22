@@ -1,0 +1,265 @@
+{
+  "meta": {
+    "sold_window_months": 18.0,
+    "absorption_note": "Months of supply = live / (closed per month); closed assumed to span 18 months (no dates in export \u2014 set CRE_SOLD_MONTHS)."
+  },
+  "by_type": [
+    {
+      "asset_type": "Commercial (other)",
+      "n": 96.0,
+      "n_sold": 20.0,
+      "n_live": 13.0,
+      "n_failed": 63.0,
+      "median_price": 1757500.0,
+      "median_ppsf": 194.5,
+      "sold_ppsf": 178.5,
+      "months_supply": 11.7
+    },
+    {
+      "asset_type": "Multifamily",
+      "n": 90.0,
+      "n_sold": 21.0,
+      "n_live": 16.0,
+      "n_failed": 53.0,
+      "median_price": 1897500.0,
+      "median_ppsf": 177.5,
+      "sold_ppsf": 170.0,
+      "months_supply": 13.7
+    },
+    {
+      "asset_type": "Industrial",
+      "n": 34.0,
+      "n_sold": 11.0,
+      "n_live": 3.0,
+      "n_failed": 20.0,
+      "median_price": 1737500.0,
+      "median_ppsf": 149.5,
+      "sold_ppsf": 177.0,
+      "months_supply": 4.9
+    },
+    {
+      "asset_type": "Mixed Use",
+      "n": 33.0,
+      "n_sold": 5.0,
+      "n_live": 9.0,
+      "n_failed": 19.0,
+      "median_price": 1200000.0,
+      "median_ppsf": 136.0,
+      "sold_ppsf": 96.0,
+      "months_supply": 32.4
+    },
+    {
+      "asset_type": "Office",
+      "n": 29.0,
+      "n_sold": 3.0,
+      "n_live": 5.0,
+      "n_failed": 21.0,
+      "median_price": 1200000.0,
+      "median_ppsf": 197.0,
+      "sold_ppsf": 68.0,
+      "months_supply": 30.0
+    },
+    {
+      "asset_type": "Retail",
+      "n": 25.0,
+      "n_sold": 6.0,
+      "n_live": 5.0,
+      "n_failed": 14.0,
+      "median_price": 1990000.0,
+      "median_ppsf": 247.0,
+      "sold_ppsf": 295.0,
+      "months_supply": 15.0
+    },
+    {
+      "asset_type": "Hotel",
+      "n": 11.0,
+      "n_sold": 0.0,
+      "n_live": 2.0,
+      "n_failed": 9.0,
+      "median_price": 8000000.0,
+      "median_ppsf": 347.0,
+      "sold_ppsf": null,
+      "months_supply": null
+    },
+    {
+      "asset_type": "Restaurant",
+      "n": 8.0,
+      "n_sold": 3.0,
+      "n_live": 1.0,
+      "n_failed": 4.0,
+      "median_price": 2074250.0,
+      "median_ppsf": 364.5,
+      "sold_ppsf": 182.0,
+      "months_supply": 6.0
+    },
+    {
+      "asset_type": "Flex",
+      "n": 3.0,
+      "n_sold": 0.0,
+      "n_live": 1.0,
+      "n_failed": 2.0,
+      "median_price": 2198672.0,
+      "median_ppsf": 345.0,
+      "sold_ppsf": null,
+      "months_supply": null
+    },
+    {
+      "asset_type": "Special Purpose",
+      "n": 2.0,
+      "n_sold": 0.0,
+      "n_live": 1.0,
+      "n_failed": 1.0,
+      "median_price": 3247500.0,
+      "median_ppsf": 319.0,
+      "sold_ppsf": null,
+      "months_supply": null
+    }
+  ],
+  "by_band": [
+    {
+      "price_band": "< $1M",
+      "n": 76.0,
+      "n_sold": 21.0,
+      "n_live": 11.0,
+      "n_failed": 44.0,
+      "median_price": 699500.0,
+      "median_ppsf": 127.0,
+      "sold_ppsf": 126.0,
+      "months_supply": 9.4
+    },
+    {
+      "price_band": "$1\u20132.5M",
+      "n": 143.0,
+      "n_sold": 34.0,
+      "n_live": 27.0,
+      "n_failed": 82.0,
+      "median_price": 1700000.0,
+      "median_ppsf": 169.0,
+      "sold_ppsf": 173.5,
+      "months_supply": 14.3
+    },
+    {
+      "price_band": "$2.5\u20135M",
+      "n": 72.0,
+      "n_sold": 13.0,
+      "n_live": 13.0,
+      "n_failed": 46.0,
+      "median_price": 3397500.0,
+      "median_ppsf": 214.5,
+      "sold_ppsf": 190.0,
+      "months_supply": 18.0
+    },
+    {
+      "price_band": "$5\u201310M",
+      "n": 28.0,
+      "n_sold": 1.0,
+      "n_live": 4.0,
+      "n_failed": 23.0,
+      "median_price": 6000000.0,
+      "median_ppsf": 324.5,
+      "sold_ppsf": 180.0,
+      "months_supply": 72.0
+    },
+    {
+      "price_band": "$10M+",
+      "n": 12.0,
+      "n_sold": 0.0,
+      "n_live": 1.0,
+      "n_failed": 11.0,
+      "median_price": 12450000.0,
+      "median_ppsf": 729.0,
+      "sold_ppsf": null,
+      "months_supply": null
+    }
+  ],
+  "absorption_by_submarket": [
+    {
+      "submarket": "Area 3700",
+      "n": 8.0,
+      "n_sold": 4.0,
+      "n_live": 0.0,
+      "n_failed": 4.0,
+      "median_price": 2049999.5,
+      "median_ppsf": 382.0,
+      "sold_ppsf": 328.0,
+      "months_supply": 0.0
+    },
+    {
+      "submarket": "Area 3160",
+      "n": 12.0,
+      "n_sold": 4.0,
+      "n_live": 1.0,
+      "n_failed": 7.0,
+      "median_price": 732500.0,
+      "median_ppsf": 190.5,
+      "sold_ppsf": 131.5,
+      "months_supply": 4.5
+    },
+    {
+      "submarket": "Area 3500",
+      "n": 10.0,
+      "n_sold": 4.0,
+      "n_live": 1.0,
+      "n_failed": 5.0,
+      "median_price": 1328750.0,
+      "median_ppsf": 171.0,
+      "sold_ppsf": 184.0,
+      "months_supply": 4.5
+    },
+    {
+      "submarket": "Area 3370",
+      "n": 40.0,
+      "n_sold": 11.0,
+      "n_live": 5.0,
+      "n_failed": 24.0,
+      "median_price": 1700000.0,
+      "median_ppsf": 142.5,
+      "sold_ppsf": 177.0,
+      "months_supply": 8.2
+    },
+    {
+      "submarket": "Area 3600",
+      "n": 15.0,
+      "n_sold": 4.0,
+      "n_live": 4.0,
+      "n_failed": 7.0,
+      "median_price": 1799000.0,
+      "median_ppsf": 280.0,
+      "sold_ppsf": 354.5,
+      "months_supply": 18.0
+    },
+    {
+      "submarket": "Area 3380",
+      "n": 18.0,
+      "n_sold": 6.0,
+      "n_live": 6.0,
+      "n_failed": 6.0,
+      "median_price": 2100500.0,
+      "median_ppsf": 284.0,
+      "sold_ppsf": 175.0,
+      "months_supply": 18.0
+    },
+    {
+      "submarket": "Area 3470",
+      "n": 21.0,
+      "n_sold": 4.0,
+      "n_live": 5.0,
+      "n_failed": 12.0,
+      "median_price": 1895000.0,
+      "median_ppsf": 168.0,
+      "sold_ppsf": 144.5,
+      "months_supply": 22.5
+    },
+    {
+      "submarket": "Area 3800",
+      "n": 38.0,
+      "n_sold": 7.0,
+      "n_live": 11.0,
+      "n_failed": 20.0,
+      "median_price": 1074500.0,
+      "median_ppsf": 134.5,
+      "sold_ppsf": 130.0,
+      "months_supply": 28.3
+    }
+  ]
+}

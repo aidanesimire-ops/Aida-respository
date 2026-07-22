@@ -1,0 +1,9 @@
+submarket,n_failed,n_sold,failure_rate_pct
+Area 3470,12,4,75.0
+Area 3800,20,7,74.1
+Area 3370,24,11,68.6
+Area 3160,7,4,63.6
+Area 3600,7,4,63.6
+Area 3500,5,4,55.6
+Area 3380,6,6,50.0
+Area 3700,4,4,50.0
