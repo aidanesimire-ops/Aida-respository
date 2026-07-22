@@ -6,7 +6,7 @@ debt, unlevered + levered returns (IRR/EM/NPV), and a P&L. Value is driven off
 the rent the asset produces (income approach) with a land-basis cross-check.
 """
 from openpyxl.utils import get_column_letter
-from mblib import (F_ACCT, F_ACCT_TOP, F_PCT1, F_PCT2, F_MULT, F_PSF, F_NUM, F_YR)
+from mblib import (F_ACCT, F_ACCT_TOP, F_PCT1, F_PCT2, F_MULT, F_PSF, F_NUM, F_NUM2, F_YR)
 
 L = 2
 ACQ = 3
@@ -194,10 +194,13 @@ def build(s, cfg, amap=None):
         s.put(rl, pc(y), f"={R('GLA')}*{CL(pc(y))}{rows['OCC']}", fmt=F_NUM, align="right")
     r += 1
     s.put(r, L, "REVENUE", style="subhead", align="left", merge=(r, 13)); r += 1
-    rb = cfrow("BASE", "Base rental income")
+    slb_term = cfg.get("slb_term") and "TERM" in amap
+    term_ref = f"'Assumptions'!{amap['TERM']}" if slb_term else None
+    rb = cfrow("BASE", "Base rental income" + (" (leaseback cliffs at term)" if slb_term else ""))
     for y in range(1, 11):
-        s.put(rb, pc(y), f"={CL(pc(y))}{rows['LEASED']}*{R('MRENT')}*(1+{R('RGROW')})^({y}-1)",
-              fmt=(F_ACCT_TOP if y == 1 else F_ACCT), align="right")
+        core = f"{CL(pc(y))}{rows['LEASED']}*{R('MRENT')}*(1+{R('RGROW')})^({y}-1)"
+        f = f"=IF({y}<={term_ref},{core},0)" if slb_term else f"={core}"
+        s.put(rb, pc(y), f, fmt=(F_ACCT_TOP if y == 1 else F_ACCT), align="right")
     r += 1
     rreco = cfrow("RECOV", "Recoverable opex (gross)")
     for y in range(1, 11):
@@ -275,11 +278,14 @@ def build(s, cfg, amap=None):
 
     # reversion & levered
     s.section(r, L, 13, "REVERSION, DEBT SERVICE  &  LEVERED CASH FLOW"); r += 1
-    rns = cfrow("NETSALE", "Net sale proceeds (exit year)")
+    exit_land = cfg.get("exit_land")
+    rns = cfrow("NETSALE", "Net sale — land value (covered-land exit)" if exit_land else "Net sale proceeds (exit year)")
     for y in range(1, 11):
-        s.put(rns, pc(y),
-              f"=IF({y}={R('HOLD')},({CL(pc(y))}{rows['NOI']}*(1+{R('RGROW')})/{R('EXITCAP')})*(1-{R('COS')}),0)",
-              fmt=F_ACCT, align="right")
+        if exit_land:
+            f = f"=IF({y}={R('HOLD')},{R('LANDVAL')}*(1-{R('COS')}),0)"
+        else:
+            f = f"=IF({y}={R('HOLD')},({CL(pc(y))}{rows['NOI']}*(1+{R('RGROW')})/{R('EXITCAP')})*(1-{R('COS')}),0)"
+        s.put(rns, pc(y), f, fmt=F_ACCT, align="right")
     r += 1
     rupcf = cfrow("PROJCF", "UNLEVERED PROJECT CASH FLOW", bold=True, top=True)
     s.put(rupcf, ACQ, f"={CL(ACQ)}{rows['UNCF']}", fmt=F_ACCT_TOP, align="right", bold=True)
@@ -349,6 +355,30 @@ def build(s, cfg, amap=None):
     ret("DSCR1", "Year-1 DSCR", f"={CL(pc(1))}{rows['NOI']}/{R('DS')}", F_MULT)
     ret("DY1", "Year-1 debt yield", f"={CL(pc(1))}{rows['NOI']}/{R('LOAN')}", F_PCT1)
     r += 1
+
+    # ---- sale-leaseback rent solver ----
+    if cfg.get("slb_solver"):
+        AL = lambda n: f"'Assumptions'!{amap[n]}"
+        s.section(r, L, 13, "SALE-LEASEBACK SOLVER  —  required Publix leaseback rent to hit a target"); r += 1
+        s.put(r, L, "Target Year-1 DSCR", style="label", align="left")
+        s.put(r, 3, 1.20, style="input", fmt=F_MULT, align="right", name="SLV_TDSCR")
+        s.put(r, 4, "🔵 your coverage target", style="note", align="left", merge=(r, 13)); r += 1
+        s.put(r, L, "Target going-in cap", style="label", align="left")
+        s.put(r, 3, 0.050, style="input", fmt=F_PCT2, align="right", name="SLV_TCAP")
+        s.put(r, 4, "🔵 your yield target", style="note", align="left", merge=(r, 13)); r += 1
+        s.put(r, L, "K = (1−credit)(1−mgmt)", style="label", align="left")
+        s.put(r, 3, f"=(1-{R('CLOSS')})*(1-{R('MGMT')})", style="calc", fmt=F_NUM2, align="right", name="SLV_K"); r += 1
+        s.put(r, L, "Recoverable opex (taxes+ins+CAM)", style="label", align="left")
+        s.put(r, 3, f"={R('PRICE')}*{R('MILL')}+{R('INS')}+{R('CAM')}", style="calc", fmt=F_ACCT, align="right", name="SLV_RECOV"); r += 1
+        base_d = f"(({R('SLV_TDSCR')}*{R('DS')}+{R('SLV_RECOV')}*{R('MGMT')}+{R('RM')})/{R('SLV_K')})"
+        base_c = f"(({R('SLV_TCAP')}*{R('PRICE')}+{R('SLV_RECOV')}*{R('MGMT')}+{R('RM')})/{R('SLV_K')})"
+        s.put(r, L, "→ Required leaseback rent for target DSCR", style="subtotal", align="left")
+        s.put(r, 3, f"=({base_d}-{AL('SBUX_SF')}*{AL('SBUX_RENT')})/{AL('SLB_SF')}", style="calc", fmt=F_PSF, align="right", bold=True, name="SLV_RENT_D")
+        s.put(r, 4, "$/SF NNN — set Publix leaseback rent (Assumptions) to this", style="note", align="left", merge=(r, 13)); r += 1
+        s.put(r, L, "→ Required leaseback rent for target cap", style="subtotal", align="left")
+        s.put(r, 3, f"=({base_c}-{AL('SBUX_SF')}*{AL('SBUX_RENT')})/{AL('SLB_SF')}", style="calc", fmt=F_PSF, align="right", bold=True, name="SLV_RENT_C")
+        s.put(r, 4, "$/SF NNN — set Publix leaseback rent (Assumptions) to this", style="note", align="left", merge=(r, 13)); r += 1
+        r += 1
 
     # P&L
     s.section(r, L, 13, "PROFIT & LOSS STATEMENT  —  Year 1 vs. Stabilized (Yr 2)"); r += 1

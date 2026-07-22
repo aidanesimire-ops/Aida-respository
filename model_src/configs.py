@@ -29,6 +29,9 @@ PUBLIX_CFG = dict(
     lease_note="100% occ · credit tenants · sale-leaseback",
     land_psf=227.75,   # Publix's actual land basis -> land value ties to $25M
     mrent_from_slb=True,   # blended rent computed from Publix leaseback + Starbucks pad (Assumptions tab)
+    slb_term=True,         # leaseback income cliffs at the entitlement term
+    exit_land=True,        # covered-land exit: reversion at land value, not income cap
+    slb_solver=True,       # add the leaseback-rent solver (target DSCR / cap)
     src=dict(
         gla="✅ BCPA (36,822 SF)", occ0="✅ fully occupied", stab_occ="🔶",
         rent="🔶 leaseback + pad", mill="✅ 2025",
