@@ -49,7 +49,9 @@ Fit R² = **0.585** (n=125); closed sales price about **-26%** vs live asks. Mar
 
 ## Repricing live inventory (at default assumptions)
 
-Of **56** live listings: **20 underpriced**, 10 fair, **26 overpriced** — on the income lens (asking vs value at assumed rents/cap). Below value = a higher implied cap = a buy. Note these flags **move as you change assumptions**.
+*Scope: 56 of 96 live for-sale listings have a usable building size; the rest (and 115 live lease listings) can't be priced and are excluded.*
+
+Of the **56** priced live listings: **20 underpriced**, 10 fair, **26 overpriced** — on the income lens (asking vs value at assumed rents/cap). Below value = a higher implied cap = a buy. Note these flags **move as you change assumptions**.
 
 
 **Top underpriced (income basis, default assumptions):**

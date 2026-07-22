@@ -80,8 +80,14 @@ def main():
 
     if reb:
         fc = reb["flag_counts"]
+        df_all = CRE.load_clean()
+        live_all = int(df_all["status"].isin(CRE.LIVE).sum())
+        live_sale = int((df_all["status"].isin(CRE.LIVE) & df_all["deal_kind"].eq("Sale")).sum())
         w("\n## Repricing live inventory (at default assumptions)\n")
-        w(f"Of **{reb['meta']['n_live']}** live listings: **{fc.get('Underpriced',0)} underpriced**, "
+        w(f"*Scope: {reb['meta']['n_live']} of {live_sale} live for-sale listings have a usable "
+          f"building size; the rest (and {live_all - live_sale} live lease listings) can't be priced "
+          f"and are excluded.*\n")
+        w(f"Of the **{reb['meta']['n_live']}** priced live listings: **{fc.get('Underpriced',0)} underpriced**, "
           f"{fc.get('Fair',0)} fair, **{fc.get('Overpriced',0)} overpriced** — on the income lens "
           f"(asking vs value at assumed rents/cap). Below value = a higher implied cap = a buy. "
           f"Note these flags **move as you change assumptions**.\n")

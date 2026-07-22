@@ -44,9 +44,15 @@ def main():
     recs = recs.where(pd.notna(recs), None)
     listings = recs.to_dict(orient="records")
 
+    df_all = CRE.load_clean()
+    live_all = int(df_all["status"].isin(CRE.LIVE).sum())
+    live_sale = int((df_all["status"].isin(CRE.LIVE) & df_all["deal_kind"].eq("Sale")).sum())
+    live_shown = sum(1 for l in listings if l["status"] in ("Active", "Pending", "UnderContract"))
+
     seed = SC.seed()
     DATA = {
         "meta": meta,
+        "coverage": {"live_all": live_all, "live_sale": live_sale, "live_shown": live_shown},
         "assumptions": {"by_type": A.DEFAULTS, "finance": A.FINANCE},
         "submarkets": master_b["submarkets"],
         "types": cre["types"],
@@ -173,7 +179,8 @@ input[type=number]{width:82px;text-align:right;background:var(--yellow);border-c
 
 <div class="card" id="inventory">
  <h2>Reprice live inventory</h2>
- <div class="sub" style="margin:6px 0 10px">Every active / pending listing on two lenses: <b>$/SqFt</b> vs comps, and <b>income</b> (asking vs value at your assumed rents &amp; cap). Below value = higher implied cap = a buy.</div>
+ <div class="sub" style="margin:6px 0 6px">Live for-sale listings <b>with a usable building size</b>, on two lenses: <b>$/SqFt</b> vs comps, and <b>income</b> (asking vs value at your assumed rents &amp; cap). Below value = higher implied cap = a buy.</div>
+ <div class="small muted" id="invCoverage" style="margin-bottom:8px"></div>
  <div class="flex" id="typeFilter" style="margin-bottom:10px"></div>
  <div class="scroll"><table id="invTable"></table></div>
 </div>
@@ -434,6 +441,10 @@ function header(){
   `${m.n_lease} lease listings · normalized $/SqFt R²=${m.hedonic_r2} · city ${usd(m.city_norm_ppsf)}/SqFt`;
  $("#banner").innerHTML="<b>No income in the source.</b> This BeachesMLS export has price, size, type, age &amp; location — but no NOI, rent, cap or unit counts. "+
   "Everything income-based here is built from the <b>editable assumptions</b> at the top and recomputes live. Treat it as a pricing &amp; screening tool, not an appraisal.";
+ const c=D.coverage;
+ $("#invCoverage").innerHTML=`Showing <b>${c.live_shown}</b> of ${c.live_sale} live for-sale listings — `+
+  `the other ${c.live_sale-c.live_shown} have no building SqFt in the export (can't be priced). `+
+  `${c.live_all-c.live_sale} additional live listings are leases, excluded here.`;
 }
 function toggleTheme(){const r=document.documentElement;const cur=r.getAttribute("data-theme")||
  (matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");
