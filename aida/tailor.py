@@ -1,108 +1,83 @@
-"""Tailor a cover letter to a specific posting.
+"""Produce a per-role cover letter.
 
-If ANTHROPIC_API_KEY is set and the `anthropic` package is installed, this uses
-Claude to write a genuinely role-specific letter. Otherwise it falls back to a
-solid template built from the profile + posting.
+Two modes:
+
+1.  Template mode (default, no API key): fills your base cover letter with the
+    company/role so every application has a targeted opening line. Fast and
+    free, but generic.
+2.  Claude mode (if ANTHROPIC_API_KEY is set): rewrites the letter to speak
+    directly to the posting. Uses the Anthropic Messages API.
+
+In practice the best tailoring happens in conversation with Claude — this
+module is the offline fallback so the tool still works on its own.
 """
 
 from __future__ import annotations
 
 import os
-import re
 
 from .models import JobPosting
 from .profile import Profile
 
-DEFAULT_MODEL = os.environ.get("AIDA_MODEL", "claude-opus-5")
-
-
-def _company_from(posting: JobPosting) -> str:
-    return posting.company or "your organization"
-
-
-def _template_letter(profile: Profile, posting: JobPosting) -> str:
-    company = _company_from(posting)
-    role = posting.title or "the position"
-    skills = ", ".join(profile.skills[:5]) if profile.skills else "real estate development and investment"
-    return f"""{profile.full_name}
-{profile.email} | {profile.phone} | {profile.location}
-
-Dear Hiring Manager,
-
-I am writing to apply for {role} at {company}. {profile.summary.strip()}
-
-Across my career I have led projects through every stage of the development
-lifecycle — acquisition analysis, financial modeling, investment underwriting,
-due diligence, financing, entitlement, and asset repositioning — working
-alongside developers, institutional investors, lenders, municipalities, and
-counsel. My strengths in {skills} map directly to what {company} is building,
-and I would bring disciplined analysis and accountable execution to the role
-from day one.
-
-I would welcome the chance to discuss how my background aligns with {company}'s
-goals. Thank you for your time and consideration.
-
-Sincerely,
-{profile.full_name}
-"""
-
-
-def _llm_letter(profile: Profile, posting: JobPosting) -> str:
-    import anthropic  # imported lazily
-
-    client = anthropic.Anthropic()
-    desc = (posting.description or "")[:6000]
-    system = (
-        "You write concise, specific, executive cover letters. One page max. "
-        "No clichés, no filler, no invented facts. Ground every claim in the "
-        "candidate's real background provided below. Match the letter to the "
-        "specific role and company. Return only the letter body text."
-    )
-    user = f"""Write a tailored cover letter.
-
-CANDIDATE:
-Name: {profile.full_name}
-Contact: {profile.email} | {profile.phone} | {profile.location}
-Title: {profile.current_title}
-Years experience: {profile.years_experience}
-Summary: {profile.summary}
-Key skills: {", ".join(profile.skills)}
-
-ROLE:
-Company: {_company_from(posting)}
-Title: {posting.title}
-Location: {posting.location}
-Posting:
-{desc}
-"""
-    msg = client.messages.create(
-        model=DEFAULT_MODEL,
-        max_tokens=1500,
-        system=system,
-        messages=[{"role": "user", "content": user}],
-    )
-    parts = [b.text for b in msg.content if getattr(b, "type", "") == "text"]
-    return "\n".join(parts).strip()
+BASE_OPENING = (
+    "Dear Hiring Manager,\n\n"
+    "I am excited to apply for the {title} role at {company}. As a real estate "
+    "development executive with nearly a decade of experience and $2B+ in "
+    "cumulative project capitalization — spanning underwriting, deal structuring, "
+    "entitlements, and asset repositioning — I believe my background maps "
+    "directly to what {company} is building."
+)
 
 
 def tailor_cover_letter(profile: Profile, posting: JobPosting) -> str:
-    """Return cover-letter text tailored to the posting.
+    company = posting.company or "your organization"
+    title = posting.title or "this position"
 
-    Prefers Claude when available; always falls back to the template so this
-    never blocks an application.
-    """
-    if os.environ.get("ANTHROPIC_API_KEY"):
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if api_key:
         try:
-            import anthropic  # noqa: F401
-            letter = _llm_letter(profile, posting)
-            if letter:
-                return letter
-        except Exception:
-            pass  # fall through to template
-    return _template_letter(profile, posting)
+            return _tailor_with_claude(profile, posting, api_key)
+        except Exception as exc:  # noqa: BLE001
+            print(f"[tailor] Claude tailoring failed ({exc}); using template.")
+
+    opening = BASE_OPENING.format(company=company, title=title)
+    body = (
+        "\n\nThroughout my career I have led projects across the full development "
+        "lifecycle — acquisition analysis, financial modeling, investment "
+        "underwriting, due diligence, financing, entitlement, and repositioning — "
+        "working with developers, institutional investors, lenders, and "
+        "municipalities. I combine market intelligence with disciplined financial "
+        "analysis to identify high-value opportunities, structure deals, and guide "
+        "capital-allocation decisions that maximize returns while managing risk.\n\n"
+        "My background is reinforced by executive education from the Harvard "
+        "Graduate School of Design, real estate broker licensure in three states, "
+        "LEED AP Neighborhood Development accreditation, and FINRA Series 66 & SIE. "
+        "I would welcome the chance to discuss how my experience can contribute to "
+        f"{company}'s goals.\n\n"
+        "Sincerely,\n"
+        f"{profile.full_name or 'Aida Nesimi'}"
+    )
+    return opening + body
 
 
-def slugify(text: str, maxlen: int = 60) -> str:
-    text = re.sub(r"[^\w\s-]", "", (text or "").lower())
-    text = re.sub(r"[\s_-]+", "-", text).strip("-")
-    return text[:maxlen] or "role"
+def _tailor_with_claude(profile: Profile, posting: JobPosting, api_key: str) -> str:
+    import anthropic  # imported lazily so the tool runs without it
+
+    client = anthropic.Anthropic(api_key=api_key)
+    prompt = (
+        "Write a concise, specific cover letter (max ~320 words) for this "
+        "candidate applying to the role below. Ground every claim in the "
+        "candidate summary; do not invent employers, titles, or facts. Return "
+        "only the letter text.\n\n"
+        f"CANDIDATE: {profile.full_name}\n"
+        f"SUMMARY: {profile.summary}\n\n"
+        f"ROLE: {posting.title}\n"
+        f"COMPANY: {posting.company}\n"
+        f"POSTING:\n{posting.description[:4000]}"
+    )
+    resp = client.messages.create(
+        model=os.environ.get("AIDA_MODEL", "claude-opus-5"),
+        max_tokens=1200,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    return "".join(b.text for b in resp.content if b.type == "text").strip()

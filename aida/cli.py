@@ -1,10 +1,10 @@
 """Command-line entry point.
 
-    python -m aida fetch  <url>            # pull + show the posting
-    python -m aida tailor <url>            # write a tailored cover letter -> outputs/
-    python -m aida apply  <url>            # fetch + tailor + fill the form (review mode)
-    python -m aida apply  <url> --submit   # ...and submit it
-    python -m aida list                    # show tracked applications
+    python -m aida init                     # check your setup
+    python -m aida apply <url>              # fill an application (review before submit)
+    python -m aida apply <url> --submit     # fill AND auto-submit (use with care)
+    python -m aida tailor <url>             # just write a tailored cover letter
+    python -m aida list                     # show the tracker
 """
 
 from __future__ import annotations
@@ -13,160 +13,128 @@ import argparse
 import os
 import sys
 
-from . import __version__
+from .fetcher import fetch
 from .models import ApplicationRecord, Status
 from .profile import Profile
-from .tailor import tailor_cover_letter, slugify
+from .tailor import tailor_cover_letter
 from .tracker import Tracker
 
-REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PROFILE_PATH = os.path.join(REPO_ROOT, "config", "profile.yaml")
-OUTPUT_DIR = os.path.join(REPO_ROOT, "outputs")
+DEFAULT_PROFILE = "private/profile.yaml"
+COVER_DIR = "private/cover_letters"
 
 
-def _load_profile() -> Profile:
-    return Profile.load(PROFILE_PATH)
-
-
-def _print_posting(p):
-    print(f"\n  {p.label()}")
-    print(f"  ATS:      {p.ats.value}")
-    print(f"  Location: {p.location or '—'}")
-    print(f"  Apply:    {p.apply_url}")
-    desc = (p.description or "").strip()
-    if desc:
-        print("\n  --- description (first 1200 chars) ---")
-        print("  " + desc[:1200].replace("\n", "\n  "))
-    print()
-
-
-def _save_cover_letter(profile: Profile, posting, text: str) -> str:
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-    name = f"cover-letter_{slugify(posting.company)}_{slugify(posting.title)}.txt"
-    path = os.path.join(OUTPUT_DIR, name)
-    with open(path, "w", encoding="utf-8") as f:
-        f.write(text)
-    return path
-
-
-def cmd_fetch(args):
-    from .fetcher import fetch
-    posting = fetch(args.url)
-    _print_posting(posting)
-
-
-def cmd_tailor(args):
-    from .fetcher import fetch
-    profile = _load_profile()
-    posting = fetch(args.url)
-    _print_posting(posting)
-    letter = tailor_cover_letter(profile, posting)
-    path = _save_cover_letter(profile, posting, letter)
-    print("  --- tailored cover letter ---\n")
-    print(letter)
-    print(f"\n  saved: {path}")
-    Tracker(os.path.join(REPO_ROOT, "applications.db")).upsert(
-        ApplicationRecord(
-            url=posting.url, company=posting.company, title=posting.title,
-            ats=posting.ats.value, status=Status.TAILORED.value,
-            cover_letter_path=path,
+def _load_profile(path: str) -> Profile:
+    if not os.path.exists(path):
+        sys.exit(
+            f"No profile at {path}.\n"
+            "Copy profile.example.yaml to private/profile.yaml and fill it in."
         )
-    )
+    return Profile.load(path)
 
 
-def cmd_apply(args):
-    from .fetcher import fetch
-    from .filler import fill_application
-    profile = _load_profile()
-    tracker = Tracker(os.path.join(REPO_ROOT, "applications.db"))
+def cmd_init(args) -> None:
+    print("Aida setup check")
+    print("-" * 40)
+    ok = True
+    if os.path.exists(args.profile):
+        profile = Profile.load(args.profile)
+        print(f"[ok] profile loaded: {profile.full_name or '(name missing)'}")
+        for key, path in profile.document_paths().items():
+            if path and os.path.exists(path):
+                print(f"[ok] {key}: {path}")
+            elif path:
+                print(f"[!!] {key}: path set but file NOT found -> {path}")
+            else:
+                print(f"[--] {key}: not set")
+    else:
+        ok = False
+        print(f"[!!] no profile at {args.profile}")
+    for mod in ("requests", "bs4", "yaml", "playwright"):
+        try:
+            __import__(mod)
+            print(f"[ok] dependency: {mod}")
+        except ImportError:
+            ok = False
+            print(f"[!!] missing dependency: {mod}")
+    print("-" * 40)
+    print("Ready." if ok else "Fix the [!!] items above, then re-run init.")
 
+
+def cmd_tailor(args) -> None:
+    profile = _load_profile(args.profile)
     posting = fetch(args.url)
-    _print_posting(posting)
-
+    print(f"Role: {posting.short()}")
     letter = tailor_cover_letter(profile, posting)
-    cover_path = _save_cover_letter(profile, posting, letter)
-    print(f"  tailored cover letter -> {cover_path}")
-
-    docs = profile.document_paths(REPO_ROOT)
-    print(f"  documents available to attach: {', '.join(docs) or 'NONE (add files to documents/)'}")
-
-    if not docs.get("resume"):
-        print("\n  WARNING: no resume found at the path in config/profile.yaml.")
-
-    print("\n  opening browser to fill the form"
-          + (" and SUBMIT" if args.submit else " (review mode — you submit)") + " ...")
-    result = fill_application(
-        profile, posting, REPO_ROOT,
-        cover_letter_text=letter,
-        submit=args.submit,
-        headless=args.headless,
-        screenshot_path=os.path.join(OUTPUT_DIR, f"form_{slugify(posting.company)}.png"),
-    )
-
-    print(f"\n  status: {result.get('status')}")
-    if result.get("error"):
-        print(f"  note:   {result['error']}")
-    for f in result.get("filled", []):
-        print(f"    filled: {f}")
-    for s in result.get("skipped", []):
-        print(f"    skipped: {s}")
-    if result.get("screenshot"):
-        print(f"  screenshot: {result['screenshot']}")
-
-    tracker.upsert(ApplicationRecord(
-        url=posting.url, company=posting.company, title=posting.title,
-        ats=posting.ats.value, status=result.get("status", Status.FILLED.value),
-        cover_letter_path=cover_path, screenshot_path=result.get("screenshot", ""),
-        notes="; ".join(result.get("skipped", [])),
+    os.makedirs(COVER_DIR, exist_ok=True)
+    safe = (posting.company or "job").lower().replace(" ", "_")[:40]
+    out = os.path.join(COVER_DIR, f"{safe}.txt")
+    with open(out, "w", encoding="utf-8") as fh:
+        fh.write(letter)
+    print(f"\n{letter}\n")
+    print(f"[saved] {out}")
+    Tracker().upsert(ApplicationRecord(
+        url=args.url, company=posting.company, title=posting.title,
+        ats=posting.ats.value, status=Status.TAILORED.value,
+        cover_letter_path=out,
     ))
 
 
-def cmd_list(args):
-    tracker = Tracker(os.path.join(REPO_ROOT, "applications.db"))
-    rows = tracker.all()
+def cmd_apply(args) -> None:
+    from .filler import fill_application  # lazy: only import Playwright when needed
+
+    profile = _load_profile(args.profile)
+    posting = fetch(args.url)
+    print(f"Role: {posting.short()}  [{posting.ats.value}]")
+    if args.submit:
+        print("!! --submit is ON: the form will be sent automatically.")
+    result = fill_application(posting, profile, submit=args.submit)
+    print(f"\nFilled {len(result.filled)} field(s); skipped {len(result.skipped)}.")
+    for line in result.filled:
+        print(f"  + {line}")
+    for line in result.skipped:
+        print(f"  - {line}")
+    Tracker().upsert(ApplicationRecord(
+        url=args.url, company=posting.company, title=posting.title,
+        ats=posting.ats.value, status=result.status,
+        screenshot_path=result.screenshot_path,
+        notes="auto-submitted" if result.submitted else "filled; reviewed manually",
+    ))
+    print(f"\nStatus: {result.status}")
+    if result.screenshot_path:
+        print(f"Screenshot: {result.screenshot_path}")
+
+
+def cmd_list(args) -> None:
+    rows = Tracker().all()
     if not rows:
-        print("  no applications tracked yet.")
+        print("No applications tracked yet.")
         return
-    print(f"\n  {len(rows)} tracked application(s):\n")
+    print(f"{'STATUS':<14} {'COMPANY':<24} {'TITLE':<34} UPDATED")
+    print("-" * 90)
     for r in rows:
-        print(f"  [{r.status:12}] {r.title or '—'} @ {r.company or '—'}")
-        print(f"               {r.url}")
-        if r.updated_at:
-            print(f"               updated {r.updated_at}")
-    print()
+        print(f"{r.status:<14} {r.company[:23]:<24} {r.title[:33]:<34} {r.updated_at}")
 
 
-def build_parser() -> argparse.ArgumentParser:
-    p = argparse.ArgumentParser(prog="aida", description="Personal job-application assistant.")
-    p.add_argument("--version", action="version", version=f"aida {__version__}")
-    sub = p.add_subparsers(dest="command", required=True)
+def main(argv=None) -> None:
+    parser = argparse.ArgumentParser(prog="aida", description="Personal job-application assistant")
+    parser.add_argument("--profile", default=DEFAULT_PROFILE, help="path to profile YAML")
+    sub = parser.add_subparsers(dest="command", required=True)
 
-    f = sub.add_parser("fetch", help="fetch and show a posting")
-    f.add_argument("url")
-    f.set_defaults(func=cmd_fetch)
+    sub.add_parser("init", help="check your setup").set_defaults(func=cmd_init)
 
-    t = sub.add_parser("tailor", help="write a tailored cover letter")
-    t.add_argument("url")
-    t.set_defaults(func=cmd_tailor)
+    p_apply = sub.add_parser("apply", help="fill an application in the browser")
+    p_apply.add_argument("url")
+    p_apply.add_argument("--submit", action="store_true", help="auto-submit (default: review first)")
+    p_apply.set_defaults(func=cmd_apply)
 
-    a = sub.add_parser("apply", help="fetch + tailor + fill the form")
-    a.add_argument("url")
-    a.add_argument("--submit", action="store_true", help="actually submit (default: review only)")
-    a.add_argument("--headless", action="store_true", help="run browser headless")
-    a.set_defaults(func=cmd_apply)
+    p_tailor = sub.add_parser("tailor", help="write a tailored cover letter")
+    p_tailor.add_argument("url")
+    p_tailor.set_defaults(func=cmd_tailor)
 
-    l = sub.add_parser("list", help="list tracked applications")
-    l.set_defaults(func=cmd_list)
-    return p
+    sub.add_parser("list", help="show tracked applications").set_defaults(func=cmd_list)
 
-
-def main(argv=None):
-    args = build_parser().parse_args(argv)
-    try:
-        args.func(args)
-    except (FileNotFoundError, RuntimeError) as e:
-        print(f"error: {e}", file=sys.stderr)
-        sys.exit(1)
+    args = parser.parse_args(argv)
+    args.func(args)
 
 
 if __name__ == "__main__":

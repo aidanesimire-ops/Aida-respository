@@ -1,71 +1,71 @@
-# Aida — personal job-application assistant
+# Aida — Personal Job-Application Assistant
 
-A tool that helps **Aida Nesimi** apply to jobs faster. You give it a job link;
-it pulls the posting, writes a cover letter tailored to that exact role, opens
-the application form in your browser, fills your details, and attaches your
-documents. By default it **stops so you can review before submitting**.
+A small tool that helps apply to jobs faster. It runs **on your own computer**,
+drives **your own browser**, fills application forms from your saved profile and
+documents, and pauses for you to review before anything is submitted.
 
-> **Important:** this runs on *your* computer and drives *your* browser. It can't
-> be run "for you" from the cloud — driving a browser requires being on the same
-> machine as the browser. Setup is a one-time ~10 minutes.
+## What it can and can't do (read this first)
 
-## What it does / doesn't do
+**It can:**
+- Read a job posting from a link (Greenhouse, Lever, and most public postings).
+- Write a cover letter tailored to that specific role.
+- Open the application page in a real browser and fill the fields it recognizes
+  (name, email, phone, LinkedIn, etc.).
+- Attach your resume, cover letter, recommendation letter, and work samples.
+- Keep a tracker (`applications.csv`) of everything, openable in Excel/Sheets.
 
-- ✅ Fetches and summarizes a posting (Greenhouse & Lever get clean structured data)
-- ✅ Writes a role-specific cover letter (uses Claude if `ANTHROPIC_API_KEY` is set, else a strong template)
-- ✅ Fills standard application fields and uploads your resume
-- ✅ Tracks every application so nothing slips
-- ✅ Review-before-submit by default; `--submit` when you want it to submit
-- ❌ No CAPTCHA-solving, no stealth/anti-bot tricks (those get accounts banned)
-- ❌ Can't reliably automate every site — some (heavy Workday/LinkedIn flows) it
-  fills what it can, screenshots, and hands off to you
+**It can't (by design or reality):**
+- **Be run from the cloud against your accounts.** It has to run locally,
+  because that's the only way it can use *your* logged-in browser sessions.
+- **Beat CAPTCHAs, login walls, or bot-detection.** On sites that use those
+  (many big boards), it fills what it can and hands off to you — it does not try
+  to evade detection, which is what gets accounts banned.
+- **Answer legal attestations for you.** Work authorization, sponsorship, and
+  EEO questions are left blank unless *you* set them in your profile.
 
-## One-time setup
+**Auto-submit is off by default.** `aida apply <url>` fills the form and waits
+for you to review and submit. Pass `--submit` only when you want it to click
+submit for you.
+
+## Setup (one time)
 
 ```bash
-# 1. Get the code
-git clone <this repo>            # or download it
-cd Aida-respository
-
-# 2. Install dependencies
-python3 -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 playwright install chromium
 
-# 3. Add your profile + documents
-cp config/profile.example.yaml config/profile.yaml   # then edit it
-#   (a real profile.yaml for Aida is already included and is gitignored)
-# put your files in documents/ — see documents/README.md for the names
-
-# 4. (Optional) Claude-written cover letters
-export ANTHROPIC_API_KEY=sk-ant-...     # Windows: set ANTHROPIC_API_KEY=...
+cp profile.example.yaml private/profile.yaml   # then edit it
+# put your resume/cover letter/etc. in private/documents/
+python -m aida init                            # verify everything is wired up
 ```
 
-## Daily use
+Your profile and documents live under `private/`, which is **gitignored** —
+nothing personal is ever committed.
+
+## Everyday use
 
 ```bash
-# See what a posting is before doing anything
-python -m aida fetch  "https://jobs.lever.co/acme/1234"
+# Just write a tailored cover letter for a posting
+python -m aida tailor "https://boards.greenhouse.io/acme/jobs/123"
 
-# Just write me a tailored cover letter for this role
-python -m aida tailor "https://boards.greenhouse.io/acme/jobs/5678"
+# Fill the application in your browser, then review + submit yourself
+python -m aida apply "https://jobs.lever.co/acme/abc-123"
 
-# Full run: fetch + tailor + fill the form, then let me review & submit
-python -m aida apply  "https://boards.greenhouse.io/acme/jobs/5678"
+# Fill AND auto-submit (use with care, only where you trust it)
+python -m aida apply "https://jobs.lever.co/acme/abc-123" --submit
 
-# Same, but submit automatically (only where the site allows it)
-python -m aida apply  "https://boards.greenhouse.io/acme/jobs/5678" --submit
-
-# What have I applied to?
+# See everything you've applied to
 python -m aida list
 ```
 
-Generated cover letters and form screenshots land in `outputs/` (gitignored).
-The application log lives in `applications.db` (gitignored).
+## Layout
 
-## Privacy
-
-`config/profile.yaml`, everything in `documents/`, `outputs/`, `applications.db`,
-and `.env` are all **gitignored** — your phone number, email, resume, and
-recommendation letter never get pushed to GitHub.
+```
+aida/            the tool (committed)
+  fetcher.py     read + parse a posting
+  tailor.py      write a cover letter
+  filler.py      drive the browser and fill the form
+  tracker.py     applications.csv read/write
+  cli.py         command-line interface
+profile.example.yaml   template (committed)
+private/         YOUR profile + documents + tracker (gitignored, never pushed)
+```

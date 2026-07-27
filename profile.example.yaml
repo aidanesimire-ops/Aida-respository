@@ -1,0 +1,44 @@
+# Copy this file to  private/profile.yaml  and fill it in.
+# private/ is gitignored, so your real details never get committed.
+
+first_name: ""
+last_name: ""
+email: ""
+phone: ""
+location: ""          # e.g. "Fort Lauderdale, FL"
+address: ""
+city: ""
+state: ""
+zip_code: ""
+country: "United States"
+
+linkedin: ""          # e.g. "https://linkedin.com/in/yourname"
+website: ""
+portfolio: ""
+
+current_title: ""
+current_company: ""
+years_experience: 0
+summary: ""           # a few sentences; used for Claude-tailored cover letters
+
+# Legal / screening — YOU set these. The tool never guesses attestations.
+work_authorized_us: null       # true / false
+requires_sponsorship: null     # true / false
+willing_to_relocate: null      # true / false
+desired_salary: ""
+notice_period: ""
+
+# Absolute paths to your documents on THIS computer.
+resume_path: ""
+cover_letter_path: ""
+recommendation_letter_path: ""
+case_study_path: ""
+development_plan_path: ""
+
+skills: []
+
+# Reusable answers to common free-text questions.
+# Key = a lowercase phrase that appears in the question.
+answers:
+  "why are you interested": ""
+  "why do you want to work here": ""

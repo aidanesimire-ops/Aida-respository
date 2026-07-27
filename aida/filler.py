@@ -1,183 +1,194 @@
-"""Drive a real browser to fill a job-application form.
+"""Drive a real browser to fill an application form.
 
-Uses Playwright. This runs on YOUR machine against YOUR logged-in browser
-session. It fills standard fields, attaches your documents, and by default
-STOPS so you can review before submitting. Pass submit=True to submit.
+Design principles:
+  * Runs a VISIBLE browser so you can watch, log in, and take over any time.
+  * Fills only what it can confidently match; leaves the rest for you.
+  * NEVER clicks submit unless you pass submit=True.
+  * Screenshots the filled form so there's always a record.
 
-No CAPTCHA-solving and no stealth/anti-detection tricks: those get accounts
-banned. On sites where honest automation can't complete the form, it fills what
-it can, screenshots the page, and hands off to you.
+This uses Playwright. Install once with:  playwright install chromium
 """
 
 from __future__ import annotations
 
 import os
-from typing import Optional
+import time
 
-from .models import JobPosting, ATS
+from .models import ATS, JobPosting, Status
 from .profile import Profile
 
-try:
-    from playwright.sync_api import sync_playwright
-except ImportError:  # pragma: no cover
-    sync_playwright = None
+# Field label/name substrings -> profile attribute name.
+TEXT_FIELD_MAP = {
+    "first name": "first_name",
+    "last name": "last_name",
+    "full name": "full_name",
+    "email": "email",
+    "phone": "phone",
+    "address": "address",
+    "city": "city",
+    "state": "state",
+    "zip": "zip_code",
+    "postal": "zip_code",
+    "linkedin": "linkedin",
+    "website": "website",
+    "portfolio": "portfolio",
+    "current company": "current_company",
+    "current title": "current_title",
+    "desired salary": "desired_salary",
+    "salary": "desired_salary",
+}
 
 
-# Common field name/label fragments -> profile value getter
-def _field_map(profile: Profile) -> list[tuple[list[str], str]]:
-    """Return [(selectors_or_label_fragments, value)] best-effort."""
-    return [
-        (["first_name", "first name", "firstname", "given name"], profile.first_name),
-        (["last_name", "last name", "lastname", "family name", "surname"], profile.last_name),
-        (["full name", "your name", 'name"', "name]"], profile.full_name),
-        (["email"], profile.email),
-        (["phone", "mobile", "telephone"], profile.phone),
-        (["linkedin"], profile.linkedin),
-        (["website", "portfolio", "personal site"], profile.website),
-        (["city", "location", "current location"], profile.location),
-    ]
+class FillResult:
+    def __init__(self):
+        self.filled: list[str] = []
+        self.skipped: list[str] = []
+        self.screenshot_path: str = ""
+        self.submitted: bool = False
+        self.status: str = Status.FILLED.value
 
 
-def _log(msg: str):
-    print(f"  {msg}")
+def _profile_value(profile: Profile, attr: str) -> str:
+    if attr == "full_name":
+        return profile.full_name
+    val = getattr(profile, attr, "")
+    return "" if val is None else str(val)
 
 
 def fill_application(
-    profile: Profile,
     posting: JobPosting,
-    repo_root: str,
-    cover_letter_text: str = "",
+    profile: Profile,
     submit: bool = False,
-    headless: bool = False,
-    screenshot_path: Optional[str] = None,
-) -> dict:
-    """Fill the application form. Returns a result dict.
+    screenshot_dir: str = "screenshots",
+) -> FillResult:
+    """Open the apply page and fill what we can. Returns a FillResult."""
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError as exc:  # pragma: no cover
+        raise RuntimeError(
+            "Playwright is required. Install with:\n"
+            "  pip install playwright\n"
+            "  playwright install chromium"
+        ) from exc
 
-    result = {status, screenshot, filled: [...], skipped: [...]}
-    """
-    if sync_playwright is None:
-        return {
-            "status": "needs_manual",
-            "error": "Playwright not installed. Run: pip install playwright && playwright install chromium",
-        }
-
-    docs = profile.document_paths(repo_root)
-    resume_path = docs.get("resume")
-    filled: list[str] = []
-    skipped: list[str] = []
-    apply_url = posting.apply_url or posting.url
+    result = FillResult()
+    os.makedirs(screenshot_dir, exist_ok=True)
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=headless)
+        browser = p.chromium.launch(headless=False)
         context = browser.new_context(accept_downloads=True)
         page = context.new_page()
-        page.goto(apply_url, wait_until="domcontentloaded", timeout=45000)
-        page.wait_for_timeout(1500)
+        page.goto(posting.apply_url or posting.url, wait_until="domcontentloaded")
+        page.wait_for_timeout(2500)
 
-        # 1) Standard text fields — try by name attr, id, and placeholder.
-        for fragments, value in _field_map(profile):
-            if not value:
-                continue
-            done = False
-            for frag in fragments:
-                for sel in (
-                    f'input[name*="{frag}" i]',
-                    f'input[id*="{frag}" i]',
-                    f'input[placeholder*="{frag}" i]',
-                    f'input[aria-label*="{frag}" i]',
-                ):
-                    try:
-                        loc = page.locator(sel).first
-                        if loc.count() and loc.is_visible():
-                            loc.fill(value, timeout=3000)
-                            filled.append(f"{fragments[0]} = {value}")
-                            done = True
-                            break
-                    except Exception:
-                        continue
-                if done:
-                    break
+        _fill_text_fields(page, profile, result)
+        _upload_documents(page, profile, result)
 
-        # 2) Resume upload — the most valuable single attachment.
-        if resume_path:
-            for sel in (
-                'input[type="file"][name*="resume" i]',
-                'input[type="file"][id*="resume" i]',
-                'input[type="file"]',
-            ):
-                try:
-                    fi = page.locator(sel).first
-                    if fi.count():
-                        fi.set_input_files(resume_path, timeout=5000)
-                        filled.append(f"resume -> {os.path.basename(resume_path)}")
-                        break
-                except Exception:
-                    continue
-            else:
-                skipped.append("resume upload (no file input found)")
-
-        # 3) Cover letter — paste text if there's a textarea for it.
-        if cover_letter_text:
-            for sel in (
-                'textarea[name*="cover" i]',
-                'textarea[id*="cover" i]',
-                'textarea[aria-label*="cover" i]',
-            ):
-                try:
-                    ta = page.locator(sel).first
-                    if ta.count() and ta.is_visible():
-                        ta.fill(cover_letter_text, timeout=3000)
-                        filled.append("cover letter (pasted)")
-                        break
-                except Exception:
-                    continue
-
-        page.wait_for_timeout(800)
-        shot = screenshot_path or "outputs/last_form.png"
-        os.makedirs(os.path.dirname(shot) or ".", exist_ok=True)
+        # Screenshot the filled state before doing anything irreversible.
+        safe = (posting.company or "job").lower().replace(" ", "_")[:40]
+        shot = os.path.join(screenshot_dir, f"{safe}_{int(time.time())}.png")
         try:
             page.screenshot(path=shot, full_page=True)
+            result.screenshot_path = shot
         except Exception:
-            shot = ""
+            pass
 
-        status = "filled"
         if submit:
-            clicked = False
-            for sel in (
-                'button:has-text("Submit Application")',
-                'button:has-text("Submit application")',
-                'button:has-text("Submit")',
-                'button[type="submit"]',
-                'input[type="submit"]',
-            ):
-                try:
-                    btn = page.locator(sel).first
-                    if btn.count() and btn.is_visible():
-                        btn.click(timeout=5000)
-                        clicked = True
-                        break
-                except Exception:
-                    continue
-            status = "submitted" if clicked else "filled"
-            page.wait_for_timeout(2500)
-            if clicked:
-                try:
-                    page.screenshot(path=shot, full_page=True)
-                except Exception:
-                    pass
+            result.submitted = _click_submit(page)
+            result.status = (
+                Status.SUBMITTED.value if result.submitted else Status.FILLED.value
+            )
+            page.wait_for_timeout(2000)
         else:
-            # Leave the browser open briefly so the user can take over.
-            if not headless:
-                _log("Form filled. Review it in the browser window, then submit yourself.")
-                _log("Closing this automated browser in 60s (your review copy stays in the screenshot).")
+            print(
+                "\n>>> Form filled. Review it in the browser window, finish any "
+                "remaining fields, then submit yourself.\n>>> Press Enter here "
+                "when you're done to close the browser..."
+            )
+            try:
+                input()
+            except EOFError:
                 page.wait_for_timeout(60000)
 
         context.close()
         browser.close()
 
-    return {
-        "status": status,
-        "screenshot": shot,
-        "filled": filled,
-        "skipped": skipped,
-    }
+    if not result.filled:
+        result.status = Status.NEEDS_MANUAL.value
+    return result
+
+
+def _fill_text_fields(page, profile: Profile, result: FillResult) -> None:
+    inputs = page.query_selector_all("input, textarea")
+    for el in inputs:
+        try:
+            itype = (el.get_attribute("type") or "text").lower()
+            if itype in ("hidden", "file", "checkbox", "radio", "submit", "button"):
+                continue
+            label = _label_for(page, el)
+            attr = _match_field(label)
+            if not attr:
+                continue
+            value = _profile_value(profile, attr)
+            if not value:
+                result.skipped.append(f"{label} (no profile value)")
+                continue
+            el.fill(value)
+            result.filled.append(f"{label} -> {value}")
+        except Exception:
+            continue
+
+
+def _label_for(page, el) -> str:
+    """Best-effort human label for a field."""
+    for attr in ("aria-label", "placeholder", "name", "id"):
+        val = el.get_attribute(attr)
+        if val:
+            return val.lower().replace("_", " ").replace("-", " ")
+    return ""
+
+
+def _match_field(label: str) -> str:
+    if not label:
+        return ""
+    for needle, attr in TEXT_FIELD_MAP.items():
+        if needle in label:
+            return attr
+    return ""
+
+
+def _upload_documents(page, profile: Profile, result: FillResult) -> None:
+    """Attach resume (and cover letter where a second upload exists)."""
+    file_inputs = page.query_selector_all("input[type=file]")
+    docs = profile.document_paths()
+    order = ["resume", "cover_letter", "recommendation_letter", "case_study"]
+    available = [(k, docs[k]) for k in order if docs.get(k) and os.path.exists(docs[k])]
+    for idx, el in enumerate(file_inputs):
+        if idx >= len(available):
+            break
+        key, path = available[idx]
+        try:
+            el.set_input_files(path)
+            result.filled.append(f"uploaded {key}: {os.path.basename(path)}")
+        except Exception:
+            result.skipped.append(f"{key} upload failed")
+
+
+def _click_submit(page) -> bool:
+    for selector in (
+        "button[type=submit]",
+        "input[type=submit]",
+        "button:has-text('Submit')",
+        "button:has-text('Submit application')",
+        "button:has-text('Apply')",
+    ):
+        try:
+            btn = page.query_selector(selector)
+            if btn and btn.is_visible():
+                btn.click()
+                page.wait_for_timeout(3000)
+                return True
+        except Exception:
+            continue
+    print("[filler] Could not find a submit button — submit manually.")
+    return False

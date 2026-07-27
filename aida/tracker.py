@@ -1,66 +1,63 @@
-"""A tiny SQLite-backed application tracker so nothing slips."""
+"""A tiny CSV-backed application tracker.
+
+CSV (not a database) on purpose: you can open it in Excel or Google Sheets
+any time, and it's trivial to eyeball what's been applied to.
+"""
 
 from __future__ import annotations
 
-import sqlite3
-from datetime import datetime, timezone
+import csv
+import datetime
+import os
 from typing import Optional
 
 from .models import ApplicationRecord
 
-
-def _now() -> str:
-    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+DEFAULT_PATH = "applications.csv"
 
 
 class Tracker:
-    def __init__(self, db_path: str = "applications.db"):
-        self.db_path = db_path
-        self._init()
+    def __init__(self, path: str = DEFAULT_PATH):
+        self.path = path
+        self._rows: dict[str, ApplicationRecord] = {}
+        self._load()
 
-    def _conn(self):
-        return sqlite3.connect(self.db_path)
-
-    def _init(self):
-        with self._conn() as c:
-            c.execute(
-                """
-                CREATE TABLE IF NOT EXISTS applications (
-                    url TEXT PRIMARY KEY,
-                    company TEXT, title TEXT, ats TEXT, status TEXT,
-                    cover_letter_path TEXT, screenshot_path TEXT, notes TEXT,
-                    created_at TEXT, updated_at TEXT
+    def _load(self) -> None:
+        if not os.path.exists(self.path):
+            return
+        with open(self.path, "r", newline="", encoding="utf-8") as fh:
+            for row in csv.DictReader(fh):
+                rec = ApplicationRecord(
+                    **{k: row.get(k, "") for k in ApplicationRecord.fields()}
                 )
-                """
-            )
+                self._rows[rec.url] = rec
 
-    def upsert(self, rec: ApplicationRecord):
-        with self._conn() as c:
-            existing = c.execute(
-                "SELECT created_at FROM applications WHERE url=?", (rec.url,)
-            ).fetchone()
-            rec.created_at = existing[0] if existing else _now()
-            rec.updated_at = _now()
-            c.execute(
-                """
-                INSERT INTO applications
-                    (url, company, title, ats, status, cover_letter_path,
-                     screenshot_path, notes, created_at, updated_at)
-                VALUES (:url,:company,:title,:ats,:status,:cover_letter_path,
-                        :screenshot_path,:notes,:created_at,:updated_at)
-                ON CONFLICT(url) DO UPDATE SET
-                    company=excluded.company, title=excluded.title, ats=excluded.ats,
-                    status=excluded.status, cover_letter_path=excluded.cover_letter_path,
-                    screenshot_path=excluded.screenshot_path, notes=excluded.notes,
-                    updated_at=excluded.updated_at
-                """,
-                rec.to_dict(),
-            )
+    def _now(self) -> str:
+        return datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
+
+    def upsert(self, record: ApplicationRecord) -> ApplicationRecord:
+        existing = self._rows.get(record.url)
+        if existing:
+            # Only overwrite non-empty incoming fields.
+            for f in ApplicationRecord.fields():
+                val = getattr(record, f)
+                if val not in ("", None):
+                    setattr(existing, f, val)
+            record = existing
+        record.updated_at = self._now()
+        self._rows[record.url] = record
+        self._save()
+        return record
+
+    def get(self, url: str) -> Optional[ApplicationRecord]:
+        return self._rows.get(url)
 
     def all(self) -> list[ApplicationRecord]:
-        with self._conn() as c:
-            c.row_factory = sqlite3.Row
-            rows = c.execute(
-                "SELECT * FROM applications ORDER BY updated_at DESC"
-            ).fetchall()
-        return [ApplicationRecord(**dict(r)) for r in rows]
+        return sorted(self._rows.values(), key=lambda r: r.updated_at, reverse=True)
+
+    def _save(self) -> None:
+        with open(self.path, "w", newline="", encoding="utf-8") as fh:
+            writer = csv.DictWriter(fh, fieldnames=ApplicationRecord.fields())
+            writer.writeheader()
+            for rec in self._rows.values():
+                writer.writerow({f: getattr(rec, f) for f in ApplicationRecord.fields()})

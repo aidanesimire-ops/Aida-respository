@@ -206,16 +206,10 @@ marimo/_static/
 marimo/_lsp/
 __marimo__/
 
-# ── Aida job-application tool: keep personal data OUT of git ──
-# your real contact info + answers (use profile.example.yaml as template)
-config/profile.yaml
-# your resume, cover letter, recommendation, etc.
-documents/*
-!documents/README.md
-# local application tracker
+# --- Aida job-application tool: keep personal data OUT of git ---
+# Your real profile, documents, and application tracker stay local-only.
+private/
+*.local.yaml
 applications.db
 applications.csv
-# generated cover letters, screenshots
-outputs/
-# secrets
-.env
+screenshots/

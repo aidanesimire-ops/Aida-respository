@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass, field
 from enum import Enum
-from typing import Optional
 
 
 class ATS(str, Enum):
+    """Applicant Tracking System behind a job posting."""
+
     GREENHOUSE = "greenhouse"
     LEVER = "lever"
     ASHBY = "ashby"
@@ -17,16 +18,20 @@ class ATS(str, Enum):
 
 
 class Status(str, Enum):
-    FETCHED = "fetched"          # posting pulled + parsed
-    TAILORED = "tailored"        # cover letter written
-    FILLED = "filled"            # form filled, awaiting your review
-    SUBMITTED = "submitted"      # application submitted
-    NEEDS_MANUAL = "needs_manual"  # site can't be automated safely
+    """Where an application is in the pipeline."""
+
+    FOUND = "found"            # link saved, nothing done yet
+    TAILORED = "tailored"      # cover letter / materials prepared
+    FILLED = "filled"          # form filled in browser, awaiting your review
+    SUBMITTED = "submitted"    # you (or --submit) sent it
+    NEEDS_MANUAL = "needs_manual"  # site can't be automated; do it by hand
     ERROR = "error"
 
 
 @dataclass
 class JobPosting:
+    """A parsed job posting."""
+
     url: str
     ats: ATS = ATS.UNKNOWN
     company: str = ""
@@ -35,24 +40,29 @@ class JobPosting:
     description: str = ""
     apply_url: str = ""
 
-    def label(self) -> str:
-        t = self.title or "Unknown role"
-        c = self.company or "Unknown company"
-        return f"{t} @ {c}"
+    def short(self) -> str:
+        title = self.title or "Unknown role"
+        company = self.company or "Unknown company"
+        return f"{title} @ {company}"
 
 
 @dataclass
 class ApplicationRecord:
+    """One row in the tracker."""
+
     url: str
     company: str = ""
     title: str = ""
+    status: str = Status.FOUND.value
     ats: str = ATS.UNKNOWN.value
-    status: str = Status.FETCHED.value
     cover_letter_path: str = ""
     screenshot_path: str = ""
     notes: str = ""
-    created_at: str = ""
-    updated_at: str = ""
+    updated_at: str = ""  # stamped by the tracker at write time
 
-    def to_dict(self) -> dict:
-        return asdict(self)
+    @classmethod
+    def fields(cls) -> list[str]:
+        return [
+            "url", "company", "title", "status", "ats",
+            "cover_letter_path", "screenshot_path", "notes", "updated_at",
+        ]
