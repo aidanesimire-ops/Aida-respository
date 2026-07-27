@@ -1,0 +1,55 @@
+# Aida job-application tool — profile template.
+# Copy this to config/profile.yaml and fill in real values.
+# config/profile.yaml is gitignored so your personal info never hits GitHub.
+
+first_name: "First"
+last_name: "Last"
+email: "you@example.com"
+phone: "(555) 555-5555"
+location: "City, ST"
+# Optional extra locations you'd accept:
+locations:
+  - "City, ST"
+linkedin: ""
+website: ""
+github: ""
+
+# Professional summary used when tailoring cover letters:
+current_title: ""
+years_experience: 0
+summary: ""
+
+# Work-authorization answers (verify these are correct for you):
+work_authorized_us: true          # legally authorized to work in the US
+requires_sponsorship: false       # need visa sponsorship now or in the future
+willing_to_relocate: true
+salary_expectation: ""            # leave blank to answer "Negotiable" / "Open"
+
+# Skills / keywords (help match and rank postings):
+skills: []
+
+# Documents to attach. Paths are relative to the repo root.
+# Put the actual files in documents/ (gitignored).
+documents:
+  resume: "documents/resume.pdf"
+  cover_letter: "documents/cover_letter.pdf"
+  # add any others you want available to attach:
+  # recommendation_letter: "documents/recommendation.pdf"
+
+# Default answers for common screening questions.
+# Keys are matched as case-insensitive substrings against the question text.
+default_answers:
+  "how did you hear": "Company website"
+  "authorized to work": "Yes"
+  "require sponsorship": "No"
+  "willing to relocate": "Yes"
+  "years of experience": "0"
+  "salary": "Negotiable"
+  "notice period": "2 weeks"
+
+# References (used only if an application explicitly asks):
+references:
+  - name: ""
+    title: ""
+    email: ""
+    phone: ""

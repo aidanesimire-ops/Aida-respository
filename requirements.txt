@@ -1,0 +1,10 @@
+# Core (needed to fetch postings and tailor letters)
+requests>=2.31
+beautifulsoup4>=4.12
+PyYAML>=6.0
+
+# Browser automation (needed for `aida apply` to fill forms)
+playwright>=1.40
+
+# Optional: Claude-written cover letters (set ANTHROPIC_API_KEY to enable)
+anthropic>=0.39
