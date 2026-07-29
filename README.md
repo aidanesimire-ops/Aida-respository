@@ -27,10 +27,19 @@ in from the same style of MLS exports:
   and **$/sqft** comps by neighborhood and unit tier, live listings scored against recent
   closings. (Price-comp layer — cap rate / GRM need a rent roll.)
 
-**Start here:** [`REPORT.md`](REPORT.md) (written analysis) ·
+**Start here:** [`USER_GUIDE.md`](USER_GUIDE.md) (which tool for which job + how to use it
+in your marketing) · [`REPORT.md`](REPORT.md) (written analysis) ·
 [`outputs/Fort_Lauderdale_PPSF_Normalized.xlsx`](outputs/) (workbook — open the **Index**
 tab for a linked table of contents) · [`dashboard/index.html`](dashboard/index.html)
-(open in a browser — use the sticky section nav to jump around).
+(open in a browser — the **Start here** card maps each job to a section).
+
+**For marketing:** the dashboard's **Marketing** card and the Excel **Marketing Kit** tab
+generate copy-ready content per neighborhood — a market-snapshot paragraph, a shareable
+stat, the CMA/pricing line, talking points, live buyer opportunities, and a prospect
+outreach line for every failed/overpriced listing. A **Model Accuracy** backtest (dashboard
+KPI + Excel tab) reports the model's out-of-sample error — your "data-backed pricing" proof.
+Want to sharpen it further? [`docs/DATA_TO_ADD.md`](docs/DATA_TO_ADD.md) lists the exact
+columns to add to your next export and what each unlocks.
 
 ## Why raw $/sqft misleads
 
@@ -116,6 +125,8 @@ python analysis/teardown.py         # land-play screen -> teardown_bundle.json
 python analysis/comps.py            # comps behind each valuation -> comps_bundle.json
 python analysis/reprice.py          # reprice live inventory vs should-be -> reprice_bundle.json
 python analysis/time_analysis.py    # 2020->now shifts -> data/processed/time_bundle.json
+python analysis/backtest.py         # out-of-sample model accuracy -> backtest_bundle.json
+python analysis/marketing.py        # copy-ready marketing content -> marketing_bundle.json
 python analysis/build_charts.py     # -> outputs/*.png
 python analysis/build_excel.py      # -> outputs/Fort_Lauderdale_PPSF_Normalized.xlsx
 python analysis/build_dashboard.py  # -> dashboard/index.html (+ artifact.html)

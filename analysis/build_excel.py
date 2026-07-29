@@ -1320,8 +1320,106 @@ def income_sheet(wb, ib):
     ws.hide_gridlines(2)
 
 
+def accuracy_sheet(wb, bt):
+    f = _blk_formats(wb)
+    o, m = bt["overall"], bt["meta"]
+    ws = wb.add_worksheet("Model Accuracy")
+    ws.write(0, 0, "Model accuracy — how close the pricing model actually gets", f["title"])
+    ws.write(1, 0, m["headline"] + "  This is out-of-sample: the model is repeatedly fit on "
+             f"{100 - 100 // m['n_folds']}% of sales and scored on the held-out rest it never "
+             "saw — an honest error you can quote, not an in-sample fit.", f["sub"])
+    ws.set_row(1, 42)
+    pct = wb.add_format({"num_format": '0"%"', "border": 1, "border_color": "#e1e0d9", "align": "center"})
+    r = _write_block(ws, 3, ["Metric", "Value"], [30, 18], [
+        [("Median absolute error", "txtb"), (o["mdape"] / 100, "pct")],
+        [("Typical dollar error (median)", "txtb"), (o["median_dollar_err"], "usd")],
+        [("Within ±10% of sale price", "txtb"), (o["within10"] / 100, "pct")],
+        [("Within ±20% of sale price", "txtb"), (o["within20"] / 100, "pct")],
+        [("Closed sales scored", "txtb"), (m["n_scored"], "num")],
+        [("Coverage of all sales", "txtb"), (m["coverage_pct"] / 100, "pct")],
+    ], {**f, "pct": pct}) + 2
+    ws.write(r, 0, "Accuracy by price band — tighter in the mid-market, looser in luxury", f["h2"])
+    r += 1
+    rows = [[(b["band"], "txtb"), (b["n"], "num"), (b["mdape"] / 100, "pct"),
+             (b["within10"] / 100, "pct"), (b["within20"] / 100, "pct")] for b in bt["by_band"]]
+    r = _write_block(ws, r, ["Price band", "n", "Median error", "Within ±10%", "Within ±20%"],
+                     [12, 7, 13, 12, 12], rows, {**f, "pct": pct}) + 2
+    ws.write(r, 0, "Accuracy by property type", f["h2"])
+    r += 1
+    rows = [[(p["ptype"], "txtb"), (p["n"], "num"), (p["mdape"] / 100, "pct"),
+             (p["within10"] / 100, "pct")] for p in bt["by_ptype"]]
+    _write_block(ws, r, ["Type", "n", "Median error", "Within ±10%"], [16, 7, 13, 12], rows,
+                 {**f, "pct": pct})
+    ws.hide_gridlines(2)
+
+
+def marketing_sheet(wb, mk):
+    ws = wb.add_worksheet("Marketing Kit")
+    title = wb.add_format({"bold": True, "font_size": 16, "font_color": DARK})
+    sub = wb.add_format({"font_size": 10, "italic": True, "font_color": "#898781", "text_wrap": True})
+    h2 = wb.add_format({"bold": True, "font_size": 12, "font_color": BLUE})
+    hdr = wb.add_format({"bold": True, "font_color": "white", "bg_color": BLUE, "border": 1,
+                         "border_color": "white", "valign": "vcenter", "align": "center", "text_wrap": True})
+    nb = wb.add_format({"bold": True, "border": 1, "border_color": "#e1e0d9", "valign": "top"})
+    body = wb.add_format({"border": 1, "border_color": "#e1e0d9", "valign": "top",
+                          "text_wrap": True, "font_size": 10})
+    ws.write(0, 0, "Marketing Kit — copy-ready, data-backed content", title)
+    ws.write(1, 0, "Paste these into emails, CMAs, postcards and posts. " + (mk["meta"].get("note") or ""),
+             sub)
+    ws.set_row(1, 28)
+    # market pulse + stat cards
+    ws.write(3, 0, "Citywide market pulse (for a monthly update email / reel)", h2)
+    ws.merge_range(4, 0, 4, 4, mk["market_pulse"], body)
+    ws.set_row(4, 60)
+    ws.write(6, 0, "Stat cards", h2)
+    for c, card in enumerate(mk["stat_cards"]):
+        ws.write(7, c, f"{card['value']}\n{card['label']}\n{card['note']}",
+                 wb.add_format({"border": 1, "border_color": "#e1e0d9", "valign": "top",
+                                "text_wrap": True, "align": "center", "font_size": 10}))
+    ws.set_row(7, 54)
+    # per-neighborhood content
+    r = 9
+    ws.write(r, 0, "By neighborhood — snapshot, shareable stat, and the CMA line", h2)
+    r += 1
+    heads = ["Neighborhood", "Market snapshot (email / CMA)", "Shareable stat (social)", "CMA / pricing line"]
+    widths = [20, 74, 40, 60]
+    for c, (hh, wd) in enumerate(zip(heads, widths)):
+        ws.write(r, c, hh, hdr)
+        ws.set_column(c, c, wd)
+    r += 1
+    for k in sorted(mk["neighborhoods"], key=lambda x: (x["rank"] or 999)):
+        if not k.get("snapshot"):
+            continue
+        ws.write(r, 0, k["neighborhood"], nb)
+        ws.write(r, 1, k["snapshot"], body)
+        ws.write(r, 2, k.get("shareable") or "", body)
+        ws.write(r, 3, k.get("cma_line") or "", body)
+        ws.set_row(r, 15 * max(3, len(k["snapshot"]) // 62 + 1))
+        r += 1
+    # prospect outreach lines
+    r += 1
+    ws.write(r, 0, f"Prospect outreach lines ({len(mk['prospects'])}) — open a listing conversation", h2)
+    r += 1
+    for c, hh in enumerate(["Address", "Neighborhood", "Asked", "Outreach message"]):
+        ws.write(r, c, hh, hdr)
+    ws.set_column(3, 3, 90)
+    r += 1
+    usd = wb.add_format({"num_format": "$#,##0", "border": 1, "border_color": "#e1e0d9", "valign": "top"})
+    for p in mk["prospects"]:
+        ws.write(r, 0, p["address"], nb)
+        ws.write(r, 1, p["neighborhood"], body)
+        ws.write_number(r, 2, p["asked"] or 0, usd)
+        ws.write(r, 3, p["line"], body)
+        ws.set_row(r, 15 * max(2, len(p["line"]) // 78 + 1))
+        r += 1
+    ws.freeze_panes(3, 0)
+    ws.hide_gridlines(2)
+
+
 SHEET_INDEX = {
     "Key Conclusions": ("Start here", "Every headline finding with the evidence behind it and a confidence rating."),
+    "Marketing Kit": ("Marketing & proof", "Copy-ready market snapshots, shareable stats, CMA lines, buyer opportunities and prospect outreach — per neighborhood. Paste into emails, CMAs, postcards, posts."),
+    "Model Accuracy": ("Marketing & proof", "Out-of-sample backtest of the pricing model — median error in $ and %, by band and type. Your \"data-backed pricing\" proof."),
     "Master Ranking": ("Start here", "All neighborhoods, most to least expensive, with suggested repricing and every core metric."),
     "Scenario": ("Deal tools", "Live financing / capital-markets model — edit the yellow cells and watch price, $/sqft, DOM & returns move. Recreate for any asset class."),
     "Read Me": ("Start here", "What 'normalized' means, the model, price drivers, validation and honest limits."),
@@ -1376,8 +1474,9 @@ def index_sheet(wb, ws):
     names = [w.name for w in wb.worksheets() if w.name != "Index"]
     # keep worksheet creation order, but group with headers
     seen_groups, r = set(), 3
-    order = ["Start here", "Deal tools", "High-ticket (≥$1M)", "Prospecting", "Real assets",
-             "Repricing", "Neighborhood detail", "Street level", "Redfin context", "Other"]
+    order = ["Start here", "Marketing & proof", "Deal tools", "High-ticket (≥$1M)",
+             "Prospecting", "Real assets", "Repricing", "Neighborhood detail", "Street level",
+             "Redfin context", "Other"]
     grouped = {g: [] for g in order}
     for nm in names:
         g, d = SHEET_INDEX.get(nm, ("Other", ""))
@@ -1461,6 +1560,16 @@ def main():
         pass
     try:
         income_sheet(wb, _jload("income_bundle.json"))
+    except FileNotFoundError:
+        pass
+
+    # ---- MARKETING & PROOF ----
+    try:
+        marketing_sheet(wb, _jload("marketing_bundle.json"))
+    except FileNotFoundError:
+        pass
+    try:
+        accuracy_sheet(wb, _jload("backtest_bundle.json"))
     except FileNotFoundError:
         pass
 

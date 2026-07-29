@@ -141,6 +141,8 @@ deliverables never touch raw data.
 | `reprice.py` | `reprice_bundle.json` | Reprice live inventory vs recent sold comps |
 | `time_analysis.py` | `time_bundle.json` | 20XX → now shifts from the context layer |
 | `master_summary.py` | `master_bundle.json` | Master ranked neighborhood sheet + suggested repricing |
+| `backtest.py` | `backtest_bundle.json` | Out-of-sample accuracy (k-fold CV): median error in $ and %, by band/type — the credibility figure |
+| `marketing.py` | `marketing_bundle.json` | Copy-ready content: per-neighborhood snapshot, shareable stat, CMA line, talking points, buyer opps, prospect outreach lines |
 | `build_charts.py` | `outputs/*.png` | Matplotlib charts |
 | `build_excel.py` | `outputs/*.xlsx` | Multi-tab workbook (Index, Key Conclusions, Master, **Scenario**, …) |
 | `build_dashboard.py` | `dashboard/index.html` | Self-contained interactive dashboard |
@@ -229,6 +231,25 @@ buildings. Rather than emit a confident-but-wrong number there, it flags low-con
 comp count. Preserve this. A dashboard that cries "underpriced!" on a $30M pre-construction
 penthouse with no comps destroys trust in the 200 solid mid-market calls next to it. See
 the "Comp-backed gating" section of `references/methodology.md`.
+
+## Make it usable & marketing-ready
+
+Two things turn the analysis into something the user actually operates:
+
+- **`marketing.py` → a Marketing Kit** (dashboard card with copy-to-clipboard buttons +
+  Excel "Marketing Kit" tab). It renders the numbers as *paste-ready prose* — a
+  market-snapshot paragraph, a shareable one-liner, the CMA/pricing sentence, talking
+  points, live buyer opportunities, and a per-prospect outreach message. This is where the
+  model earns its keep for an agent. Keep the copy defensible and labeled as screening
+  signal, never an appraisal.
+- **`backtest.py` → out-of-sample accuracy.** A k-fold CV that reports median error in real
+  $ and %, plus % within ±10/±20%, by band and type. It's the honest credibility figure
+  ("priced within ±X% out-of-sample") *and* a map of where the model is strong (mid-market)
+  vs. thin (trophy/condo). Surface it as a KPI, don't bury it.
+
+Also ship a plain-English **how-to** (a "Start here" card mapping each job → the right
+section, and a `USER_GUIDE.md`) and a **`DATA_TO_ADD.md`** that names the exact columns to
+add next and what each unlocks — so the user knows both how to use it and how to grow it.
 
 ## Outputs to hand the user
 

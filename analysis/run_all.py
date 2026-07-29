@@ -27,6 +27,8 @@ STEPS = [
     ("Reprice live inventory", "reprice.py"),
     ("Time analysis (2020 -> now)", "time_analysis.py"),
     ("Master ranked neighborhood summary", "master_summary.py"),
+    ("Model-accuracy backtest", "backtest.py"),
+    ("Marketing kit (copy-ready content)", "marketing.py"),
     ("Charts", "build_charts.py"),
     ("Excel workbook", "build_excel.py"),
     ("Interactive dashboard", "build_dashboard.py"),

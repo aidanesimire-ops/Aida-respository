@@ -72,6 +72,13 @@ with open(os.path.join(PROC, "income_bundle.json")) as f:
     _INC = json.load(f)
 INCOME = {"meta": _INC["meta"], "by_neighborhood": _INC["by_neighborhood"],
           "by_tier": _INC["by_tier"], "actives": _INC["actives"][:80]}
+with open(os.path.join(PROC, "marketing_bundle.json")) as f:
+    _MK = json.load(f)
+MARKETING = {"meta": _MK["meta"], "market_pulse": _MK["market_pulse"],
+             "stat_cards": _MK["stat_cards"], "neighborhoods": _MK["neighborhoods"],
+             "prospects": _MK["prospects"][:60]}
+with open(os.path.join(PROC, "backtest_bundle.json")) as f:
+    BACKTEST = json.load(f)
 with open(os.path.join(PROC, "high_ticket_bundle.json")) as f:
     _HT = json.load(f)
 # trim listings out of the dashboard payload (they live in the Excel tab); keep the
@@ -243,6 +250,22 @@ footer.fl-foot{color:var(--muted);font-size:12px;margin-top:8px;text-align:cente
   border-top:1px solid var(--line);padding-top:16px}
 footer.fl-foot a{color:var(--accent)}
 .note-line{font-size:11.5px;color:var(--muted);margin-top:10px}
+.howto{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:10px}
+.howto a{display:block;background:var(--surface-2);border:1px solid var(--line);border-radius:11px;
+  padding:11px 13px;text-decoration:none;color:var(--ink)}
+.howto a:hover{border-color:var(--accent)}
+.howto .j{font-weight:700;font-size:13.5px}
+.howto .w{font-size:11.5px;color:var(--ink-2);margin-top:2px}
+.mk-block{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;
+  padding:12px 15px;margin-bottom:10px}
+.mk-block .mk-h{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--accent);margin-bottom:6px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.mk-block p{margin:0;font-size:13.5px;color:var(--ink);line-height:1.5}
+.mk-block .tps{margin-top:0}
+.copybtn{border:1px solid var(--line);background:var(--surface);color:var(--ink-2);border-radius:8px;
+  padding:3px 11px;font-size:11.5px;cursor:pointer;font-weight:600;white-space:nowrap;flex:0 0 auto}
+.copybtn:hover{border-color:var(--accent);color:var(--accent)}
+.copybtn.ok{color:var(--good);border-color:var(--good)}
 html{scroll-behavior:smooth}
 .fl-nav{position:sticky;top:0;z-index:15;display:flex;gap:6px;overflow-x:auto;
   padding:9px 0;margin:2px 0 4px;background:var(--sand);border-bottom:1px solid var(--line);
@@ -266,6 +289,8 @@ html{scroll-behavior:smooth}
   </header>
 
   <nav class="fl-nav" id="secNav" aria-label="Jump to section">
+    <a href="#howto">Start here</a>
+    <a href="#marketing">Marketing</a>
     <a href="#assumptions">Assumptions</a>
     <a href="#scenario">Deal scenario</a>
     <a href="#highticket">High-ticket bands</a>
@@ -282,6 +307,29 @@ html{scroll-behavior:smooth}
   </nav>
 
   <section class="kpis" id="kpis"></section>
+
+  <div class="card" id="howto">
+    <h2>Start here <span style="font-weight:400;color:var(--muted);font-size:13px">— what to open for each job</span></h2>
+    <div class="howto" style="margin-top:8px">
+      <a href="#marketing"><div class="j">Talk to a homeowner</div><div class="w">Market snapshot + talking points to paste</div></a>
+      <a href="#repricing"><div class="j">Price a listing (CMA)</div><div class="w">Asking vs comps, suggested list + CMA line</div></a>
+      <a href="#sellers"><div class="j">Prospect for listings</div><div class="w">Owners to call + ready outreach lines</div></a>
+      <a href="#underpriced"><div class="j">Find a buyer a deal</div><div class="w">Underpriced, ranked by $ opportunity</div></a>
+      <a href="#absorption"><div class="j">Hot or cold market?</div><div class="w">Months of supply by band &amp; area</div></a>
+      <a href="#highticket"><div class="j">Underwrite luxury (≥$1M)</div><div class="w">Band trends within each neighborhood</div></a>
+      <a href="#scenario"><div class="j">Run the numbers</div><div class="w">Financing + rate/appreciation what-ifs</div></a>
+      <a href="#land"><div class="j">Land, docks &amp; multifamily</div><div class="w">The other asset classes</div></a>
+    </div>
+  </div>
+
+  <div class="card" id="marketing">
+    <h2>Marketing kit <span style="font-weight:400;color:var(--muted);font-size:13px">— copy-ready content: paste into emails, CMAs, postcards, posts</span></h2>
+    <p class="cap" id="mkNote"></p>
+    <div class="mk-block"><div class="mk-h">Citywide market pulse — for a monthly update <button class="copybtn" data-copy="pulse">Copy</button></div><p id="mkPulse"></p></div>
+    <div class="geostrip" id="mkCards"></div>
+    <div class="controls" style="margin:14px 0 10px"><select id="mkNb" class="search" style="flex:0 0 auto;min-width:220px" aria-label="Pick a neighborhood"></select></div>
+    <div id="mkContent"></div>
+  </div>
 
   <div class="card" id="assumptions">
     <h2>Live assumptions <span style="font-weight:400;color:var(--muted);font-size:13px">— tune the screening knobs; every verdict, flag &amp; market label recomputes in place</span></h2>
@@ -516,6 +564,8 @@ html{scroll-behavior:smooth}
 <script id="land-data" type="application/json">__LAND_JSON__</script>
 <script id="income-data" type="application/json">__INCOME_JSON__</script>
 <script id="assump-data" type="application/json">__ASSUMP_JSON__</script>
+<script id="marketing-data" type="application/json">__MARKETING_JSON__</script>
+<script id="backtest-data" type="application/json">__BACKTEST_JSON__</script>
 <script id="scen-data" type="application/json">__SCEN_JSON__</script>
 <script>
 (function(){
@@ -531,6 +581,8 @@ const ABS=JSON.parse(document.getElementById("absorb-data").textContent);
 const SL=JSON.parse(document.getElementById("seller-data").textContent);
 const LAND=JSON.parse(document.getElementById("land-data").textContent);
 const INCOME=JSON.parse(document.getElementById("income-data").textContent);
+const MKT=JSON.parse(document.getElementById("marketing-data").textContent);
+const BT=JSON.parse(document.getElementById("backtest-data").textContent);
 const M=MLS.meta, NB=MLS.neighborhoods;
 function mktColor(m){return {"Seller's market":"var(--neg)","Balanced":"var(--ink-2)",
   "Buyer's market":"var(--good)","Deep buyer's market":"var(--good)"}[m]||"var(--ink-2)";}
@@ -582,7 +634,7 @@ function kpis(){
     ["Citywide normalized", usd(M.city_norm_ppsf)+"/ft²", "standardized dry-lot home"],
     ["Waterfront premium", "+"+M.premiums.waterfront_pct+"%", "per-home, all else equal"],
     ["Appreciation", appr.toFixed(1)+"×", "since "+RED.meta.generated_span[0].slice(0,4)],
-    ["Model agreement", "r 0.93", "MLS vs Redfin, independent"],
+    ["Model accuracy", "±"+BT.overall.mdape+"%", "median, out-of-sample ("+BT.meta.n_scored.toLocaleString()+" sales)"],
   ];
   $("#kpis").innerHTML=rows.map(r=>`<div class="kpi"><div class="lab">${r[0]}</div>`
     +`<div class="val tnum fl-serif">${r[1]}</div><div class="note">${r[2]}</div></div>`).join("");
@@ -1008,6 +1060,46 @@ function mfTable(){
 }
 $("#mfSearch").addEventListener("input",e=>{mfQ=e.target.value;mfTable();});
 
+// ---------- marketing kit ----------
+const MKCOPY={};
+function copyText(txt,btn){
+  const done=()=>{const o=btn.textContent;btn.textContent="Copied!";btn.classList.add("ok");
+    setTimeout(()=>{btn.textContent=o;btn.classList.remove("ok");},1200);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,done);}
+  else{const t=document.createElement("textarea");t.value=txt;t.style.position="fixed";t.style.opacity="0";
+    document.body.appendChild(t);t.select();try{document.execCommand("copy");}catch(e){}document.body.removeChild(t);done();}}
+document.addEventListener("click",e=>{const b=e.target.closest(".copybtn");if(!b)return;
+  copyText(MKCOPY[b.dataset.copy]||"",b);});
+function mkCards(){
+  $("#mkCards").innerHTML=(MKT.stat_cards||[]).map(c=>
+    `<div class="geot"><div class="g-t">${c.label}</div><div class="g-v tnum">${c.value}</div>`
+    +`<div class="g-n">${c.note||""}</div></div>`).join("");}
+function mkRender(nb){
+  const k=MKT.neighborhoods.find(x=>x.neighborhood===nb); if(!k)return;
+  MKCOPY.snap=k.snapshot||""; MKCOPY.share=k.shareable||""; MKCOPY.cma=k.cma_line||"";
+  MKCOPY.tps=(k.talking_points||[]).map(t=>"• "+t).join("\n");
+  const blk=(h,key,html)=>`<div class="mk-block"><div class="mk-h">${h}`
+    +`<button class="copybtn" data-copy="${key}">Copy</button></div>${html}</div>`;
+  let out="";
+  if(k.snapshot)out+=blk("Market snapshot — email / CMA","snap",`<p>${k.snapshot}</p>`);
+  if(k.shareable)out+=blk("Shareable stat — social","share",`<p>${k.shareable}</p>`);
+  if(k.cma_line)out+=blk("CMA / pricing line","cma",`<p>${k.cma_line}</p>`);
+  if((k.talking_points||[]).length)out+=blk("Talking points","tps",
+    `<ul class="tps" style="margin-top:0">${k.talking_points.map(t=>`<li>${t}</li>`).join("")}</ul>`);
+  if((k.opportunities||[]).length){MKCOPY.opps=k.opportunities.map(o=>o.line).join("\n\n");
+    out+=blk("Live buyer opportunities here","opps",
+      `<ul class="opp-reasons">${k.opportunities.map(o=>`<li>${o.line}</li>`).join("")}</ul>`);}
+  $("#mkContent").innerHTML=out;}
+function mktInit(){
+  $("#mkNote").textContent=MKT.meta.note||"";
+  $("#mkPulse").textContent=MKT.market_pulse; MKCOPY.pulse=MKT.market_pulse;
+  mkCards();
+  const names=MKT.neighborhoods.filter(k=>k.snapshot)
+    .sort((a,b)=>(a.rank||999)-(b.rank||999)).map(k=>k.neighborhood);
+  $("#mkNb").innerHTML=names.map(n=>`<option>${n}</option>`).join("");
+  $("#mkNb").addEventListener("change",e=>mkRender(e.target.value));
+  if(names.length)mkRender(names[0]);}
+
 // ---------- seller prospects ----------
 $("#slSummary").textContent=`· ${SL.meta.n_failed} failed-listing owners, ${SL.meta.n_overpriced_active} overpriced actives`;
 let slType="failed", slQ="";
@@ -1155,6 +1247,7 @@ matchMedia("(prefers-color-scheme:dark)").addEventListener("change",renderAll);
 window.addEventListener("resize",()=>{clearTimeout(window._rz);window._rz=setTimeout(renderAll,150);});
 renderAll();
 scInit();
+mktInit();
 
 // ---------- live assumptions controller ----------
 function asApply(){renderRepFlags();renderRepNbhd();renderRepInv();mfTable();htTable();
@@ -1213,6 +1306,8 @@ def build():
              .replace("__LAND_JSON__", json.dumps(LAND, separators=(",", ":")))
              .replace("__INCOME_JSON__", json.dumps(INCOME, separators=(",", ":")))
              .replace("__ASSUMP_JSON__", json.dumps(ASSUMP, separators=(",", ":")))
+             .replace("__MARKETING_JSON__", json.dumps(MARKETING, separators=(",", ":")))
+             .replace("__BACKTEST_JSON__", json.dumps(BACKTEST, separators=(",", ":")))
              .replace("__SCEN_JSON__", json.dumps(SCEN, separators=(",", ":"))))
     standalone = (
         "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"

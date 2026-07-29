@@ -520,30 +520,31 @@ def build_profiles(ntable, prem, city, city_land, redfin_ctx):
         types = [("houses", r.get("house_ppsf"), r.get("n_house")),
                  ("condos", r.get("condo_ppsf"), r.get("n_condo")),
                  ("townhomes", r.get("townhouse_ppsf"), r.get("n_townhouse"))]
-        parts = [f"{lab} ${v:,.0f}/sqft" for lab, v, n in types if v and n and n >= 4]
+        parts = [f"{lab} ${v:,.0f}/sqft" for lab, v, n in types if pd.notna(v) and n and n >= 4]
         if len(parts) >= 2:
             tp.append("By property type: " + ", ".join(parts) + ".")
         # waterfront $/sqft (neighborhood-specific)
-        if r.get("waterfront_ppsf") and r.get("dry_ppsf"):
+        if pd.notna(r.get("waterfront_ppsf")) and pd.notna(r.get("dry_ppsf")):
             extra = (f" — about +{r['waterfront_premium_local_pct']:.0f}% for the water here"
-                     if r.get("waterfront_premium_local_pct") is not None else "")
+                     if pd.notna(r.get("waterfront_premium_local_pct")) else "")
             tp.append(f"Waterfront homes sell around ${r['waterfront_ppsf']:,.0f}/sqft vs "
                       f"${r['dry_ppsf']:,.0f}/sqft dry{extra}.")
-        elif r.get("waterfront_ppsf"):
+        elif pd.notna(r.get("waterfront_ppsf")):
             tp.append(f"Waterfront homes sell around ${r['waterfront_ppsf']:,.0f}/sqft here "
                       f"({r['waterfront_share']*100:.0f}% of sales are waterfront).")
-        elif r["waterfront_share"] >= 0.12:
+        elif pd.notna(r.get("waterfront_share")) and r["waterfront_share"] >= 0.12:
             tp.append(f"{r['waterfront_share']*100:.0f}% of sales are waterfront; waterfront is "
                       f"worth about +{prem['waterfront_pct']:.0f}% per foot citywide, all else equal.")
         # new vs existing
-        if r.get("new_premium_pct") is not None:
+        if (pd.notna(r.get("new_premium_pct")) and pd.notna(r.get("new_ppsf"))
+                and pd.notna(r.get("existing_ppsf"))):
             tp.append(f"New construction sells around ${r['new_ppsf']:,.0f}/sqft vs "
                       f"${r['existing_ppsf']:,.0f} for existing here — a +{r['new_premium_pct']:.0f}% new-build premium.")
         elif prem.get("new_construction_pct"):
             tp.append(f"Citywide, new construction carries roughly +{prem['new_construction_pct']:.0f}% "
                       f"per foot over comparable existing homes.")
         # implied land value
-        if r.get("implied_land_ppsf") and r.get("median_lot_sqft"):
+        if pd.notna(r.get("implied_land_ppsf")) and pd.notna(r.get("median_lot_sqft")):
             land_total = r["implied_land_ppsf"] * r["median_lot_sqft"]
             tp.append(f"On a typical {r['median_lot_sqft']:,} sqft lot the land alone is worth "
                       f"~${r['implied_land_ppsf']:,.0f}/sqft (~${land_total:,.0f}).")
