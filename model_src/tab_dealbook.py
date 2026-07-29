@@ -39,14 +39,14 @@ ACQ_STRATEGY = [
      "Value is UNVERIFIED — full DD + BCPA/Clerk confirmation before any hard money."),
     ("Office Condo", "Galleria Corp Centre — Grove Gate/Main St Fund (B. Weiss) + ~40 unit owners", "OFF_ACQ",
      ("Office Condo", "BUYOUT_TOTAL"), "Condo buy-out (every unit at unit-market $/SF)",
-     "Weiss controls 57.4% AND the board (3/5 seats) and is reselling units at $270–381/SF. The 42.6% balance is ~40 owners.",
+     "Weiss (Grove Gate) controls 57.4% (bought 2019 at ~$103/SF) AND the board; asking $367–475/SF on units. Grove Gate carries a 2021 Berkadia ~$24M bridge loan across a 3-property FL office portfolio incl. this one — levered, likely open to a portfolio-clearing price.",
      "Weiss first (via building attorney Neale Poller), then pick off holdouts; Merrimac/Motwani & Cosmo/Blaison are known owners.",
-     "Condo declaration termination / super-majority vote; fragmentation premium is already budgeted in the buy-out."),
-    ("Land", "1040 Bayview — Sunrise & Bayview Partners (Procacci)", None,
+     "Condo declaration termination / super-majority vote; confirm the recorded declaration; fragmentation premium is budgeted in the buy-out."),
+    ("Land", "1040 Bayview — Sunrise & Bayview Partners (Procacci)", "LND_ACQ",
      ("Land", "CONCLUDED"), "Forward purchase or JV",
-     "Actively entitling (259 units), NOT selling. Motive to engage = realize entitlement value without carrying redevelopment risk.",
-     "Approach for a JV or a forward take-out contingent on the entitlement; BBX already exited in 2022.",
-     "Not for sale today — structure as an option / JV; align on entitled-land basis."),
+     "Bought 2014 at ~$7.9M; BBX Capital exited its JV stake to Procacci in 2022. Actively entitling 'The Residences at Bayview' (259 units, case UDP-Z25002) — NOT selling; motive to engage = realize entitlement value without carrying redevelopment risk.",
+     "Approach for a JV or a forward take-out contingent on the entitlement; Procacci is the sole owner post-2022.",
+     "Not for sale today — structure as an option / JV; align on entitled-land basis vs. the $7.9M 2014 cost."),
 ]
 
 # ---- risk register: (risk, likelihood/impact, mitigant [editable]) ----

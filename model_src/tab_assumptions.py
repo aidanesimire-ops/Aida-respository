@@ -47,9 +47,10 @@ GLOBAL_SECTIONS = [
         ("PUB_ACQYR", "Publix — prior sale year", 2025, F_YR, "✅", "→ scorecard 'they paid' year"),
         ("SUN_ACQ", "Sunrise Plaza — prior sale price", 128000, F_ACCT, "⚠️", "Kar Luen Inc, Oct 2000 — stale/nominal"),
         ("SUN_ACQYR", "Sunrise Plaza — prior sale year", 2000, F_YR, "⚠️", "→ scorecard 'they paid' year"),
-        ("OFF_ACQ", "Office — Grove Gate bulk price (57.4%)", 10000000, F_ACCT, "⚠️", "from Intl Sunrise 09/2019 (~$103/SF)"),
-        ("OFF_ACQYR", "Office — bulk purchase year", 2019, F_YR, "⚠️", "→ scorecard 'they paid' year"),
-        ("LND_ACQYR", "1040 Bayview — JV formation year", 2014, F_YR, "⚠️", "Procacci JV; no clean arm's-length basis"),
+        ("OFF_ACQ", "Office — Grove Gate bulk price (57.4%)", 10000000, F_ACCT, "✅", "Main St Fund from Intl Sunrise 09/2019 (~$103/SF) — Daily Business Review"),
+        ("OFF_ACQYR", "Office — bulk purchase year", 2019, F_YR, "✅", "→ scorecard 'they paid' year"),
+        ("LND_ACQ", "1040 Bayview — prior sale price", 7900000, F_ACCT, "✅", "Procacci/BBX JV bought 2014 for ~$7.9–8.0M; BBX exited 2022 (Florida YIMBY)"),
+        ("LND_ACQYR", "1040 Bayview — prior sale year", 2014, F_YR, "✅", "→ scorecard 'they paid' year"),
     ]),
     ("GLOBAL — ASSEMBLAGE PREMIUM  (→ Assemblage / covered-land price)", [
         ("PREM_LOW", "Assemblage premium — low", 0.15, F_PCT1, "🔶", "control-cost premium"),

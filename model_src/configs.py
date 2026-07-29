@@ -32,6 +32,7 @@ PUBLIX_CFG = dict(
     slb_term=True,         # leaseback income cliffs at the entitlement term
     exit_land=True,        # covered-land exit: reversion at land value, not income cap
     slb_solver=True,       # add the leaseback-rent solver (target DSCR / cap)
+    dark_case=True,        # add the leaseback-vs-dark decision block (Publix won't lease back)
     src=dict(
         gla="✅ BCPA (36,822 SF)", occ0="✅ fully occupied", stab_occ="🔶",
         rent="🔶 leaseback + pad", mill="✅ 2025",

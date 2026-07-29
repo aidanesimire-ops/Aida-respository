@@ -248,8 +248,8 @@ def build(s, amap=None):
     # ---- per-owner roster & full buy-out at unit-market $/SF (condos trade above income value) ----
     s.section(r, L, 13, "OWNERS & FULL BUY-OUT  —  every identifiable owner; buy-out at UNIT-MARKET $/SF  (⚠️ BCPA blocked; balance grouped)"); r += 1
     s.put(r, L, "Buy-out $/SF (unit market)", style="label", align="left")
-    s.put(r, 3, 225, style="input", fmt=F_PSF, align="right", name="BUYOUT_PSF")
-    s.put(r, 4, "🔵 closed comps: 805 $238 · CU-11A $276 · 401 $381; Grove Gate resale ask ~$270–285 (bulk-discounted here)", style="note", align="left", merge=(r, 13)); r += 1
+    s.put(r, 3, 250, style="input", fmt=F_PSF, align="right", name="BUYOUT_PSF")
+    s.put(r, 4, "🔵 closed unit comps: Ste 805 $238 · #401 $381 (2024); Grove Gate asking $367–475/SF; $250 = a bulk buy-out discount to those", style="note", align="left", merge=(r, 13)); r += 1
     hdr = ["Owner / unit", "SF", "% bldg", "Orig basis", "Bought", "Income value", "Buy-out ($/SF)", "Note"]
     cols = [L, 4, 5, 6, 7, 8, 9, 10]
     spans = {2: 3, 10: 13}

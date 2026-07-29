@@ -45,14 +45,17 @@ def build(s, regs, amap=None):
 
     s.section(r, L, 13, "PROPERTY FACTS  —  ⚠️ REPORTED (LoopNet / Florida YIMBY / BBX / Procacci; BCPA blocked in build env)"); r += 1
     facts = [
-        ("Record owner", "Sunrise and Bayview Partners, LLC (Procacci Development affiliate; BBX exited 2022)"),
-        ("Land", "2.39 ac ≈ 104,108 SF — same plat block (49-42-36-12) as the assemblage"),
-        ("Existing improvement", "84,495 SF office building (built 1967) — a redevelopment site, not raw land"),
-        ("Zoning", "B-1 (Boulevard Business) / CB core commercial; active rezoning UDP-Z25002"),
-        ("Entitlement", "“The Residences at Bayview” — 259 units + 8,081 SF commercial, 8-story (81 ft)"),
-        ("BCPA market value", "≈ $6,685,580 (reported)"),
-        ("Status", "NOT listed — owner is entitling, not selling; a future assemblage/JV target"),
-        ("Covered-land thesis", "Interim office income covers carry; value is the entitled land + Live Local density optionality"),
+        ("Record owner", "Sunrise & Bayview Partners, LLC (Procacci Development; folio -0040). Bought 2014 ≈ $7.9–8.0M in a Procacci/BBX JV; BBX exited its stake to Procacci in 2022 — Procacci now sole owner"),
+        ("Land", "2.39 ac ≈ 103,982 SF (BCPA) — same plat block (49-42-36-12) as the assemblage"),
+        ("Existing improvement", "office building, built 1968 — leasable ≈ 84,495 SF (Redfin) / BCPA living area 101,803 SF; a redevelopment site, not raw land"),
+        ("Zoning", "B-1 (Boulevard Business) / CB core commercial; rezoning case UDP-Z25002 filed Oct 2025, under P&Z review"),
+        ("Entitlement (current)", "“The Residences at Bayview” — 259 units (247 market + 12 affordable @ ≤120% AMI), 8,081 SF commercial, 8 stories / 81 ft, 273,212 SF residential; MSA Architects, Lochrie & Chakas land-use counsel"),
+        ("Entitlement (prior)", "2023 Site Plan Level III (superseded): two towers, 14-story N / 10-story S, 180 units, 14,671 SF commercial, 505-space garage"),
+        ("Entitlement path", "City affordable-housing DENSITY BONUS via conventional rezoning (12 affordable units unlock the bonus) — NOT a Live Local approval"),
+        ("Live Local optionality", "The B-1 commercial site independently QUALIFIES for the Live Local Act (SB 102/328/1730): ≥40% units ≤120% AMI would unlock citywide-max density + tallest-within-1-mile height administratively — a separate, higher-density path"),
+        ("BCPA market value", "2015 assessed ≈ $8.25M (stale); current just value not confirmed (verify at BCPA)"),
+        ("Status", "NOT listed — owner is entitling, not selling; a JV / forward-purchase target"),
+        ("Covered-land thesis", "Interim office income covers carry; the value is the entitled land + the redevelopment/Live Local density option"),
     ]
     for lab, val in facts:
         s.put(r, L, lab, style="calc", align="left")
@@ -228,7 +231,9 @@ def build(s, regs, amap=None):
     rd("RESID", "RESIDUAL LAND VALUE", f"={R('GDV')}+{R('HARD')}+{R('SOFT')}+{R('PROFIT')}", F_ACCT_TOP, style="sub")
     s.put(r, L, "Conclusion", style="warn", align="left")
     s.put(r, 3, "HOLD", style="warn", align="center")
-    s.put(r, 4, "Residual < entitled-land basis → redevelopment does not pencil today; hold as covered land for Live Local optionality",
+    s.put(r, 4, "Residual < entitled-land basis at the modeled $500/SF hard cost → redevelopment does not pencil TODAY; hold as covered land. "
+                "But note: mid-2026 research puts defensible AE-coastal concrete at $300–450/SF — dial the hard cost toward that on the Assumptions "
+                "tab and the residual approaches break-even. The option is closer to the money than a single point implies.",
           style="warn", align="left", merge=(r, 13)); r += 1
 
     # row anchors for the consolidated income tab (land: interim NOI, no capital)

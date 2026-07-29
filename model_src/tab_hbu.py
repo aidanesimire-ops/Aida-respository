@@ -28,7 +28,7 @@ ACQ_HISTORY = [
     ("Sunrise Plaza — Kar Luen Inc", "Oct 2000", "SUN_ACQ", ("Sunrise Plaza", "PRICE"), False, "stale/nominal — held since; no recent arm's-length"),
     ("Office — Grove Gate bulk (57.4%)", "09/23/2019", "OFF_ACQ", ("Office Condo", "BUYOUT1"), False, "$103/SF from Intl Sunrise (dissolved 2020); now reselling units $270–381/SF"),
     ("Office — 42.6% individual owners", "2011→2026", None, None, False, "~40 small owners (Merrimac, Cosmo, Jorgensen, Hublot); un-itemizable without BCPA"),
-    ("1040 Bayview — Sunrise & Bayview Partners", "2014 (JV)", None, ("Land", "CONCLUDED"), False, "Procacci; BBX exited 2022; stale 1961 deed $801,933"),
+    ("1040 Bayview — Sunrise & Bayview Partners", "2014 (JV)", "LND_ACQ", ("Land", "CONCLUDED"), True, "Procacci/BBX bought 2014 ~$7.9M; BBX exited to Procacci 2022"),
 ]
 # land parcels -> (label, land-SF cell, $/SF cell or None, land-value cell)
 LANDPARCELS = [

@@ -3,11 +3,15 @@
   "global": {
     "SUN_ACQ": {
       "value": 128000,
-      "status": "⚠️ REPORTED — Kar Luen last recorded sale (Oct 2000, stale/nominal). Get a recent basis/appraisal at BCPA / Clerk."
+      "status": "⚠️ REPORTED — Kar Luen last recorded sale (Oct 2000, $128k — implausibly low, likely nominal). Get a recent basis/appraisal at BCPA / Clerk."
     },
     "OFF_ACQ": {
       "value": 10000000,
-      "status": "⚠️ REPORTED — Grove Gate bulk purchase 2019 (~$103/SF). Confirm at BCPA."
+      "status": "✅ VERIFIED — Main St Fund (Grove Gate) 57.4% / 96,930 SF for $10M, 09/23/2019 (Daily Business Review). Confirm current sub-folios at BCPA."
+    },
+    "LND_ACQ": {
+      "value": 7900000,
+      "status": "✅ VERIFIED — Procacci/BBX bought 2014 for ~$7.9–8.0M; BBX exited 2022 (Florida YIMBY). Confirm the recorded deed."
     },
     "CAP": {
       "value": 0.065,
@@ -76,7 +80,7 @@
     "office": {
       "gla": {
         "value": 168807,
-        "status": "⚠️ REPORTED ~168,807 SF — confirm at BCPA."
+        "status": "✅ VERIFIED 168,807 SF, 13-story (Avison Young / LoopNet). Confirm aggregate of Grove Gate sub-folios at BCPA."
       },
       "occ0": {
         "value": 0.85,
@@ -84,7 +88,7 @@
       },
       "market_rent": {
         "value": 26.0,
-        "status": "⚠️ REPORTED ~$26/SF Modified Gross — confirm from leases."
+        "status": "✅ ~$25–26/SF Modified Gross (LoopNet listing). Confirm from actual leases."
       },
       "opex_psf": {
         "value": 8.0,
@@ -110,15 +114,15 @@
       },
       "office_sf": {
         "value": 84495,
-        "status": "⚠️ REPORTED — confirm existing office SF."
+        "status": "⚠️ CONFLICT — 84,495 SF (Redfin, leasable) vs 101,803 SF (BCPA living area). Confirm rentable SF."
       },
       "units": {
         "value": 259,
-        "status": "⚠️ REPORTED 259 entitled units — confirm the approval."
+        "status": "✅ 259 units (247 market + 12 affordable), case UDP-Z25002 'The Residences at Bayview' (Florida YIMBY / City staff report). Confirm FINAL P&Z / Commission approval."
       },
       "bcpa_value": {
         "value": 6685580,
-        "status": "⚠️ REPORTED BCPA market value — confirm at BCPA."
+        "status": "⚠️ 2015 assessed ~$8.25M (stale mirror); current just value NOT confirmed — verify at BCPA."
       },
       "interim_occ": {
         "value": 0.72,

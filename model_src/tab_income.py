@@ -166,17 +166,32 @@ def build(s, regs):
 
     # ================= income valuation =================
     s.section(r, L, 13, "PURCHASE PRICE ON THE BASIS OF ASSEMBLAGE CASH FLOWS"); r += 1
-    der("VAL_ASIS", "① As-is value  (as-is NOI ÷ going-in cap)", f"={R('ASIS_NOI')}/{R('CAP')}", F_ACCT_TOP, "going-in income value")
-    der("VAL_STAB", "② Stabilized value  (stab NOI ÷ exit cap)", f"={R('STAB_NOI')}/{R('SCAP')}", F_ACCT_TOP, "post lease-up")
+    # ① sum of the parts: each asset valued at ITS OWN going-in cap → reconciles to the asset tabs.
+    #    (Land already carries its own income value; the four income assets = as-is NOI ÷ own cap.)
+    sop = "+".join([
+        f"({cell('Shahidi Retail','INPLACE_NOI')}/{cell('Shahidi Retail','GICAP')})",
+        f"({cell('Publix & Starbucks','AS_IS_NOI')}/{cell('Publix & Starbucks','GICAP')})",
+        f"({cell('Sunrise Plaza','AS_IS_NOI')}/{cell('Sunrise Plaza','GICAP')})",
+        f"({cell('Office Condo','AS_IS_NOI')}/{cell('Office Condo','GICAP')})",
+        f"{cell('Land','INCVAL')}",
+    ])
+    der("VAL_SOP", "① Sum of the parts  (each asset at its OWN going-in cap)", f"={sop}", F_ACCT_TOP,
+        "reconciles to the asset tabs — the concluded income basis")
+    der("DERIVED_CAP", "   → implied blended going-in cap", f"={R('ASIS_NOI')}/{R('VAL_SOP')}", F_PCT2,
+        "as-is NOI ÷ sum-of-parts value — the TRUE weighted cap (an output, not a guess)")
+    der("VAL_ASIS", "② At a single blended cap (input)", f"={R('ASIS_NOI')}/{R('CAP')}", F_ACCT_TOP,
+        "cross-check at the single blended-cap input — an alternative view, not the conclusion")
+    der("VAL_STAB", "③ Stabilized value  (stab NOI ÷ exit cap)", f"={R('STAB_NOI')}/{R('SCAP')}", F_ACCT_TOP, "post lease-up")
     # DCF valuation CF
     s.put(r, L, "Valuation CF (op CF ≤ hold + reversion)", style="label", align="left")
     for y in range(1, 11):
         s.put(r, pc(y), f"=IF({y}<={R('HOLD')},{CL(pc(y))}{op_row},0)+IF({y}={R('HOLD')},{CL(pc(y))}{rev_row},0)",
               style="calc", fmt=(F_ACCT_TOP if y == 1 else F_ACCT), align="right")
     valcf_row = r; r += 1
-    der("VAL_DCF", "③ DCF value  (PV @ target unlevered yield)",
+    der("VAL_DCF", "④ DCF value  (PV @ target unlevered yield)",
         f"=NPV({R('TYLD')},{CL(pc(1))}{valcf_row}:{CL(pc(10))}{valcf_row})", F_ACCT_TOP, "price where unlevered IRR = target")
-    der("PRICE", "CONCLUDED INCOME-BASED PURCHASE PRICE", f"={R('VAL_ASIS')}", F_ACCT_TOP, "🔶 as-is direct cap; ②/③ cross-check")
+    der("PRICE", "CONCLUDED INCOME-BASED PURCHASE PRICE", f"={R('VAL_SOP')}", F_ACCT_TOP,
+        "sum of the parts — each asset at its own cap; reconciles to the components")
     s.ws[f"B{r-1}"].font = s.ws[f"B{r-1}"].font.copy(bold=True)
     r += 1
 
@@ -315,8 +330,8 @@ def build(s, regs):
     der("EXIT_FWD", "Exit-year forward NOI (grown into sale)", f"={R('EXITNOI')}*(1+{R('GROW')})", F_ACCT_TOP)
     der("GROSS_EXIT", "Gross exit value (from consolidated reversion)", f"={R('REV_BASE')}/(1-{R('COS')})", F_ACCT_TOP)
     der("V_OPCF", "＋ Operating cash flow (Yr 1–hold)", f"={R('SUMOP5')}", F_ACCT)
-    der("V_NOIG", "＋ Value from NOI growth / lease-up", f"=({R('EXIT_FWD')}-{R('ASIS_NOI')})/{R('CAP')}", F_ACCT)
-    der("V_CAP", "＋/− Value from cap-rate movement", f"={R('GROSS_EXIT')}-{R('EXIT_FWD')}/{R('CAP')}", F_ACCT)
+    der("V_NOIG", "＋ Value from NOI growth / lease-up", f"=({R('EXIT_FWD')}-{R('ASIS_NOI')})/{R('DERIVED_CAP')}", F_ACCT)
+    der("V_CAP", "＋/− Value from cap-rate movement", f"={R('GROSS_EXIT')}-{R('EXIT_FWD')}/{R('DERIVED_CAP')}", F_ACCT)
     der("V_COS", "− Cost of sale at exit", f"=-{R('GROSS_EXIT')}*{R('COS')}", F_ACCT)
     der("V_CLOSE", "− Acquisition transaction costs", f"=-{R('PRICE')}*{R('CLOSE')}", F_ACCT)
     s.put(r, L, "UNLEVERED PROFIT (sum of the above)", style="subtotal", align="left")
@@ -405,8 +420,9 @@ def build(s, regs):
                 "cash flows are held at the underwritten level. The base row/col reproduces the headline levered multiple. Green = higher.",
           style="note", align="left", merge=(r, 13)); r += 1
 
-    # row anchor for the Scenarios tab
+    # row anchors for downstream tabs
     s.reg["ROW_OPCF"] = f"D{op_row}"
+    s.reg["ROW_LEVCF_I"] = f"C{li_row}"   # consolidated levered equity CF (income price): C=yr0, D..M=yrs
 
     s.freeze("C6")
     return s

@@ -5,7 +5,7 @@ Run:  python3 build_model.py
 import json, os
 from openpyxl.utils import get_column_letter, column_index_from_string
 from mblib import new_book, add_sheet, NAVY, GOLD
-import tab_assumptions, tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_income, tab_scenarios, tab_hbu, tab_exec, tab_notes, tab_review, tab_capital, tab_dealbook
+import tab_assumptions, tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_income, tab_scenarios, tab_hbu, tab_exec, tab_notes, tab_review, tab_capital, tab_dealbook, tab_partners
 import configs, data
 
 OUT = "../Shahidi_Assemblage_Model.xlsx"
@@ -160,6 +160,10 @@ def main():
     sh["Deal Book"] = add_sheet(wb, "Deal Book", tabcolor=GOLD)
     tab_dealbook.build(sh["Deal Book"], cap_regs)
 
+    # ---- partner returns (LP/GP waterfall + downside; links to income + scenarios) ----
+    sh["Partner Returns"] = add_sheet(wb, "Partner Returns", tabcolor=GOLD)
+    tab_partners.build(sh["Partner Returns"], cap_regs)
+
     # ---- executive summary (links to everything) ----
     all_regs = dict(cap_regs)
     all_regs["Highest & Best Use"] = sh["Highest & Best Use"].reg
@@ -174,9 +178,9 @@ def main():
     tab_assumptions.build_index(sh["Assumptions"], all_regs, a_free)
 
     # ---- reorder ----
-    order = ["Executive Summary", "Deal Book", "Review Board", "Capital Stack", "Assumptions",
-             "Income Valuation", "Scenarios", "Assemblage", "Highest & Best Use", "Shahidi Retail",
-             "Publix & Starbucks", "Sunrise Plaza", "Office Condo", "Land", "Notes & Sources"]
+    order = ["Executive Summary", "Deal Book", "Review Board", "Capital Stack", "Partner Returns",
+             "Assumptions", "Income Valuation", "Scenarios", "Assemblage", "Highest & Best Use",
+             "Shahidi Retail", "Publix & Starbucks", "Sunrise Plaza", "Office Condo", "Land", "Notes & Sources"]
     wb._sheets = [sh[t].ws for t in order]
     wb.active = 0
 

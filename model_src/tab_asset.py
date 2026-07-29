@@ -380,6 +380,38 @@ def build(s, cfg, amap=None):
         s.put(r, 4, "$/SF NNN — set Publix leaseback rent (Assumptions) to this", style="note", align="left", merge=(r, 13)); r += 1
         r += 1
 
+    # ---- Publix: leaseback vs dark (what if Publix won't lease back) ----
+    if cfg.get("dark_case"):
+        AL = lambda n: f"'Assumptions'!{amap[n]}"
+        s.section(r, L, 13, "PUBLIX: LEASEBACK vs DARK  —  the deal-critical question: what if Publix won't lease back"); r += 1
+        s.put(r, L, "Case", style="subhead", align="left")
+        s.put(r, 5, "Leaseback", style="subhead", align="center", merge=(r, 6))
+        s.put(r, 7, "Dark (Publix out)", style="subhead", align="center", merge=(r, 8))
+        s.put(r, 9, "note", style="subhead", align="left", merge=(r, 13)); r += 1
+        # dark case: Publix vacates; only the Starbucks pad remains (separate tenant), NNN on its share
+        sbux = f"({AL('SBUX_SF')}*{AL('SBUX_RENT')})"
+        recov = f"({R('PRICE')}*{R('MILL')}+{R('INS')}+{R('CAM')})"
+        occd = f"({AL('SBUX_SF')}/{R('GLA')})"
+        egrd = f"({sbux}+{recov}*{occd}-{sbux}*{R('CLOSS')})"
+        opex = f"({R('PRICE')}*{R('MILL')}+{R('INS')}+{R('CAM')}+{R('RM')})"
+        noid = f"({egrd}-{opex}-{egrd}*{R('MGMT')})"
+        s.put(r, L, "Year-1 NOI", style="label", align="left")
+        s.put(r, 5, f"={R('NOI1')}", style="calc", color="008000", fmt=F_ACCT_TOP, align="right", merge=(r, 6))
+        s.put(r, 7, f"={noid}", style="calc", fmt=F_ACCT_TOP, align="right", name="NOI_DARK", merge=(r, 8))
+        s.put(r, 9, "dark = Starbucks pad only; you carry Publix's taxes & insurance", style="note", align="left", merge=(r, 13)); r += 1
+        s.put(r, L, "Annual carry swing (leaseback − dark)", style="label", align="left")
+        s.put(r, 5, f"={R('NOI1')}-{R('NOI_DARK')}", style="calc", fmt=F_ACCT, align="right", name="DARK_SWING", merge=(r, 6))
+        s.put(r, 7, "per year of vacancy", style="note", align="left", merge=(r, 13)); r += 1
+        s.put(r, L, "Entitlement term (yrs)", style="label", align="left")
+        s.put(r, 5, f"={AL('TERM')}", style="calc", color="008000", fmt=F_YR, align="center", merge=(r, 6)); r += 1
+        s.put(r, L, "→ Extra equity to carry the dark center", style="subtotal", align="left")
+        s.put(r, 5, f"={R('DARK_SWING')}*{AL('TERM')}", style="calc", fmt=F_ACCT_TOP, align="right", bold=True, name="DARK_CARRY", merge=(r, 6))
+        s.put(r, 7, "cumulative over the entitlement term — funded by equity", style="warn", align="left", merge=(r, 13)); r += 1
+        s.put(r, L, "Deal note", style="warn", align="left")
+        s.put(r, 4, "The sale-leaseback is DEAL-CRITICAL — Publix is a fee owner, not a seller. Confirm leaseback appetite & rent BEFORE hard money. "
+                    "If it goes dark you fund the carry above and lean entirely on land value; the covered-land exit is unchanged.",
+              style="warn", align="left", merge=(r, 13)); r += 2
+
     # P&L
     s.section(r, L, 13, "PROFIT & LOSS STATEMENT  —  Year 1 vs. Stabilized (Yr 2)"); r += 1
     s.put(r, L, "$ / year", style="subhead", align="left")

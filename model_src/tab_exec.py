@@ -18,7 +18,7 @@ COMP = [
     ("Publix & Starbucks", "Publix + Starbucks (SLB)", "36,822 SF grocery+pad", "PRICE", "NOI1", "PUB_ACQ", "PUB_ACQYR"),
     ("Sunrise Plaza", "Sunrise Plaza (Kar Luen)", "25,105 SF retail", "PRICE", "NOI1", "SUN_ACQ", "SUN_ACQYR"),
     ("Office Condo", "Galleria Corp Centre (buy-out)", "168,807 SF office condo", "BUYOUT_TOTAL", "NOI1", "OFF_ACQ", "OFF_ACQYR"),
-    ("Land", "1040 Bayview (covered land)", "2.39 ac · 259 units", "CONCLUDED", "INOI", None, "LND_ACQYR"),
+    ("Land", "1040 Bayview (covered land)", "2.39 ac · 259 units", "CONCLUDED", "INOI", "LND_ACQ", "LND_ACQYR"),
 ]
 
 

@@ -95,14 +95,17 @@ def build(s):
     para("BCPA (bcpa.net) was blocked from the build environment; ⚠️ items were sourced from web mirrors of the tax roll and must be confirmed at the county before close.", style="warn")
     r += 1
 
-    head("KEY MARKET ASSUMPTIONS  (mid-2026, MODELED)")
+    head("KEY MARKET ASSUMPTIONS  (mid-2026 — sourced from the research sweep below)")
     for k, v in [
-        ("Retail rents", "in-line $32–55/SF NNN (Sunrise corridor $45–60); restaurant/end-cap $40–50/SF"),
-        ("Publix / Starbucks", "grocery ~$13/SF NNN, cap 6.0–6.75%; Starbucks pad ~$60/SF, cap 4.75–5.5%"),
-        ("Office", "small Class B/C ~$20–30/SF gross (~$15–24 NNN); cap 7.5–9.0%"),
-        ("Retail caps", "stabilized strip 6.25–6.75%; value-add 7.25–8.0%; exit = going-in +25 bps"),
-        ("Land", "Fort Lauderdale infill ~$248/SF (subject comps $228–255); Galleria bulk ~$53/SF"),
-        ("Senior debt", "stabilized 5.75–7.0%, 60–75% LTV, DSCR 1.25–1.40x, debt yield 7–10%"),
+        ("Retail rents", "Fort Lauderdale avg $34–36/SF NNN (Matthews Q3'25); Sunrise arterial strip ~$25–50/SF, premium space to $60; Las Olas $50–100+"),
+        ("Retail caps", "unanchored strip stabilized 6.25–7.5%, value-add 6.5–8.5% (Matthews); Broward retail vacancy ~3.7–3.9% (pricing power)"),
+        ("Publix / net lease", "Publix NNN 5.25–6.25% (anchored centers 5.5–5.8%); grocery base rent $8–14/SF NNN — our $22 leaseback is a bridge rate above market (Boulder Group, investmentgrade.com)"),
+        ("Starbucks pad", "~$60/SF NNN, 10% bumps/5yr, ~$2.0–2.5M/pad; cap ~5.2% (as low as 4.1–5.0% for drive-thru) — Boulder Group"),
+        ("Office", "Broward avg $40–42/SF gross (Class A $46; Class B ~$28); vacancy 12.3%; cap 8%+ (Class B/C double-digit 'commonplace') — Colliers 4Q25, CBRE"),
+        ("Land", "FL infill closed $129/SF & ~$38k/unit (Affiliated 2/24); asking to $316/SF & $61k/unit — subject $125/SF ≈ the closed comp"),
+        ("Construction (redev)", "AE-coastal concrete mid/high-rise $300–450/SF defensible; HVHZ premium 8–12% (RSMeans, RLB E-Q2'25, Multifamily.loans) — model's $500/SF is conservative"),
+        ("Insurance", "coastal Broward commercial 1.2–4.5% of value; within ~1 mi of water 2–3×; South FL premiums now rolling back −11% to −17% in 2026 (Bridgeway, Artemis)"),
+        ("Senior debt", "single-tenant net-lease STNL avg 6.55–6.80% (Boulder Q1'26); stabilized 5.75–7.0%, 60–75% LTV, DSCR 1.25–1.40×, debt yield 7–10%"),
         ("Covered-land cap", "in-place income cap ~3–5% — income covers carry, not a yield play"),
     ]:
         kv(k, v)

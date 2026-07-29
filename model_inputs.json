@@ -230,8 +230,8 @@
           "value": 10000000,
           "unit": "USD",
           "type": "number",
-          "confidence": "REPORTED",
-          "drives": "from Intl Sunrise 09/2019 (~$103/SF)"
+          "confidence": "VERIFIED",
+          "drives": "Main St Fund from Intl Sunrise 09/2019 (~$103/SF) — Daily Business Review"
         },
         {
           "key": "OFF_ACQYR",
@@ -239,17 +239,26 @@
           "value": 2019,
           "unit": "years",
           "type": "number",
-          "confidence": "REPORTED",
+          "confidence": "VERIFIED",
           "drives": "→ scorecard 'they paid' year"
         },
         {
+          "key": "LND_ACQ",
+          "label": "1040 Bayview — prior sale price",
+          "value": 7900000,
+          "unit": "USD",
+          "type": "number",
+          "confidence": "VERIFIED",
+          "drives": "Procacci/BBX JV bought 2014 for ~$7.9–8.0M; BBX exited 2022 (Florida YIMBY)"
+        },
+        {
           "key": "LND_ACQYR",
-          "label": "1040 Bayview — JV formation year",
+          "label": "1040 Bayview — prior sale year",
           "value": 2014,
           "unit": "years",
           "type": "number",
-          "confidence": "REPORTED",
-          "drives": "Procacci JV; no clean arm's-length basis"
+          "confidence": "VERIFIED",
+          "drives": "→ scorecard 'they paid' year"
         }
       ]
     },
