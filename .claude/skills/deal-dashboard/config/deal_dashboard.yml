@@ -57,6 +57,31 @@ thresholds:
     verdict_cutoff_pct: 8          # +/- this % vs comps = over/under on ask
 
 # ============================================================================
+# External cost benchmarks (South Florida / Broward, 2025-26).
+# These are SOURCED MARKET ESTIMATES, not from your MLS data — they power the
+# build-vs-buy / replacement-cost math and the "market realities" talking points.
+# Update them as costs move; sources are in docs/MARKET_REALITIES.md.
+# ============================================================================
+costs:
+  construction_psf:              # new custom, hard cost $/sqft
+    luxury: 600
+    high_end: 900
+    ultra_waterfront: 1500
+  construction_range_psf: [500, 2000]
+  rehab_psf:                     # high-end renovation $/sqft
+    high_end: 225
+    ultra: 400
+  rehab_range_psf: [150, 400]
+  soft_cost_pct: 25              # design/permits/GC/financing on top of hard cost
+  seawall_psf_lf: [300, 900]     # seawall replacement, $/linear foot
+  dock_build: [35000, 75000]     # typical residential dock build
+  boatlift_per_1000lb: 1000      # ~$1/lb (a 24,000-lb lift ≈ $38k)
+  insurance_annual:              # luxury waterfront carrying cost, $/yr
+    canal: [8000, 20000]
+    intracoastal: [12000, 30000]
+    oceanfront: [18000, 60000]
+
+# ============================================================================
 # Data sources — one block per asset class.
 #   folder        : where to drop the CSV exports for this asset
 #   status_from   : "filename" (status = file name) or "column" (status in a field)

@@ -28,6 +28,7 @@ STEPS = [
     ("Time analysis (2020 -> now)", "time_analysis.py"),
     ("Master ranked neighborhood summary", "master_summary.py"),
     ("Model-accuracy backtest", "backtest.py"),
+    ("Market context (costs + build-vs-buy)", "market_context.py"),
     ("Marketing kit (copy-ready content)", "marketing.py"),
     ("Charts", "build_charts.py"),
     ("Excel workbook", "build_excel.py"),

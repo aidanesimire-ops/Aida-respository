@@ -54,6 +54,23 @@ DEFAULTS = {
         "income": {"min_nbhd_sold": 5, "ppu_bounds": [40_000, 3_000_000],
                    "ppsf_bounds": [60, 2000], "verdict_cutoff_pct": 8},
     },
+    # ---- external cost benchmarks (South Florida / Broward, 2025-26) ----
+    # Sourced market estimates, NOT from the MLS data. Ranges [low, high] in $.
+    # Update as costs move; see docs/MARKET_REALITIES.md for sources.
+    "costs": {
+        "construction_psf": {"luxury": 600, "high_end": 900, "ultra_waterfront": 1500},
+        "construction_range_psf": [500, 2000],   # full custom span, verify per project
+        "rehab_psf": {"high_end": 225, "ultra": 400},
+        "rehab_range_psf": [150, 400],
+        "soft_cost_pct": 25,                      # design/permits/GC/financing on hard cost
+        "seawall_psf_lf": [300, 900],             # replacement, $/linear foot (FLL high end)
+        "dock_build": [35_000, 75_000],           # typical residential dock
+        "boatlift_per_1000lb": 1000,              # ~$1/lb (24k-lb lift ≈ $38k)
+        "insurance_annual": {                     # luxury waterfront carrying, $/yr
+            "canal": [8_000, 20_000],
+            "intracoastal": [12_000, 30_000],
+            "oceanfront": [18_000, 60_000]},
+    },
     "assets": {
         "residential": {
             "folder": "data/raw/mls",
@@ -149,6 +166,10 @@ class Config:
 
     def thr(self, key):
         return self._d["thresholds"][key]
+
+    @property
+    def costs(self):
+        return self._d.get("costs", {})
 
     @property
     def thresholds(self):

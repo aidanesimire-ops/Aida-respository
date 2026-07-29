@@ -79,6 +79,8 @@ MARKETING = {"meta": _MK["meta"], "market_pulse": _MK["market_pulse"],
              "prospects": _MK["prospects"][:60]}
 with open(os.path.join(PROC, "backtest_bundle.json")) as f:
     BACKTEST = json.load(f)
+with open(os.path.join(PROC, "context_bundle.json")) as f:
+    CONTEXT = json.load(f)
 with open(os.path.join(PROC, "high_ticket_bundle.json")) as f:
     _HT = json.load(f)
 # trim listings out of the dashboard payload (they live in the Excel tab); keep the
@@ -291,6 +293,7 @@ html{scroll-behavior:smooth}
   <nav class="fl-nav" id="secNav" aria-label="Jump to section">
     <a href="#howto">Start here</a>
     <a href="#marketing">Marketing</a>
+    <a href="#costs">Costs &amp; realities</a>
     <a href="#assumptions">Assumptions</a>
     <a href="#scenario">Deal scenario</a>
     <a href="#highticket">High-ticket bands</a>
@@ -318,6 +321,7 @@ html{scroll-behavior:smooth}
       <a href="#absorption"><div class="j">Hot or cold market?</div><div class="w">Months of supply by band &amp; area</div></a>
       <a href="#highticket"><div class="j">Underwrite luxury (≥$1M)</div><div class="w">Band trends within each neighborhood</div></a>
       <a href="#scenario"><div class="j">Run the numbers</div><div class="w">Financing + rate/appreciation what-ifs</div></a>
+      <a href="#costs"><div class="j">Costs &amp; build-vs-buy</div><div class="w">Construction, land, waterfront &amp; replacement cost</div></a>
       <a href="#land"><div class="j">Land, docks &amp; multifamily</div><div class="w">The other asset classes</div></a>
     </div>
   </div>
@@ -329,6 +333,19 @@ html{scroll-behavior:smooth}
     <div class="geostrip" id="mkCards"></div>
     <div class="controls" style="margin:14px 0 10px"><select id="mkNb" class="search" style="flex:0 0 auto;min-width:220px" aria-label="Pick a neighborhood"></select></div>
     <div id="mkContent"></div>
+  </div>
+
+  <div class="card" id="costs">
+    <h2>Costs &amp; market realities <span style="font-weight:400;color:var(--muted);font-size:13px">— what it costs to build, renovate, and hold; build-vs-buy per neighborhood</span></h2>
+    <p class="cap" id="cxNote"></p>
+    <div style="font-size:12px;font-weight:600;color:var(--ink-2);margin:2px 0 6px">Cost benchmarks <span style="font-weight:400;color:var(--muted)">— sourced South Florida / Broward estimates, editable in config</span></div>
+    <div class="geostrip" id="cxBench"></div>
+    <div style="font-size:12px;font-weight:600;color:var(--ink-2);margin:16px 0 6px">Market realities to know &amp; talk to</div>
+    <ul class="opp-reasons" id="cxFacts" style="gap:7px"></ul>
+    <div style="font-size:12px;font-weight:600;color:var(--ink-2);margin:16px 0 6px">Build-vs-buy by neighborhood <span style="font-weight:400;color:var(--muted)">— finished-product resale vs all-in replacement cost (land + construction + soft)</span></div>
+    <div class="controls" style="margin:0 0 10px"><input class="search" id="cxSearch" type="search" placeholder="Search neighborhood…" aria-label="Search build-vs-buy"></div>
+    <div class="tbl-scroll"><table class="fl" id="cxTbl"><thead></thead><tbody></tbody></table></div>
+    <p class="note-line" id="cxSrc"></p>
   </div>
 
   <div class="card" id="assumptions">
@@ -566,6 +583,7 @@ html{scroll-behavior:smooth}
 <script id="assump-data" type="application/json">__ASSUMP_JSON__</script>
 <script id="marketing-data" type="application/json">__MARKETING_JSON__</script>
 <script id="backtest-data" type="application/json">__BACKTEST_JSON__</script>
+<script id="context-data" type="application/json">__CONTEXT_JSON__</script>
 <script id="scen-data" type="application/json">__SCEN_JSON__</script>
 <script>
 (function(){
@@ -583,6 +601,7 @@ const LAND=JSON.parse(document.getElementById("land-data").textContent);
 const INCOME=JSON.parse(document.getElementById("income-data").textContent);
 const MKT=JSON.parse(document.getElementById("marketing-data").textContent);
 const BT=JSON.parse(document.getElementById("backtest-data").textContent);
+const CX=JSON.parse(document.getElementById("context-data").textContent);
 const M=MLS.meta, NB=MLS.neighborhoods;
 function mktColor(m){return {"Seller's market":"var(--neg)","Balanced":"var(--ink-2)",
   "Buyer's market":"var(--good)","Deep buyer's market":"var(--good)"}[m]||"var(--ink-2)";}
@@ -1086,6 +1105,9 @@ function mkRender(nb){
   if(k.cma_line)out+=blk("CMA / pricing line","cma",`<p>${k.cma_line}</p>`);
   if((k.talking_points||[]).length)out+=blk("Talking points","tps",
     `<ul class="tps" style="margin-top:0">${k.talking_points.map(t=>`<li>${t}</li>`).join("")}</ul>`);
+  if((k.cost_points||[]).length){MKCOPY.cost=k.cost_points.join("\n\n");
+    out+=blk("Costs & build-vs-buy","cost",
+      `<ul class="opp-reasons">${k.cost_points.map(t=>`<li>${t}</li>`).join("")}</ul>`);}
   if((k.opportunities||[]).length){MKCOPY.opps=k.opportunities.map(o=>o.line).join("\n\n");
     out+=blk("Live buyer opportunities here","opps",
       `<ul class="opp-reasons">${k.opportunities.map(o=>`<li>${o.line}</li>`).join("")}</ul>`);}
@@ -1099,6 +1121,48 @@ function mktInit(){
   $("#mkNb").innerHTML=names.map(n=>`<option>${n}</option>`).join("");
   $("#mkNb").addEventListener("change",e=>mkRender(e.target.value));
   if(names.length)mkRender(names[0]);}
+
+// ---------- costs & market realities ----------
+let cxQ="";
+function cxBench(){
+  const b=CX.benchmarks, tiles=[];
+  b.construction.forEach(c=>tiles.push([c.tier,"$"+c.psf+"/ft²","new construction, hard cost"]));
+  b.rehab.forEach(c=>tiles.push([c.tier,"$"+c.psf+"/ft²","renovation"]));
+  tiles.push(["Soft costs","+"+b.soft_cost_pct+"%","design / permits / GC / financing"]);
+  tiles.push(["Seawall","$"+b.seawall_psf_lf[0]+"–"+b.seawall_psf_lf[1],"per linear foot, replacement"]);
+  tiles.push(["New dock","$"+(b.dock_build[0]/1000)+"k–$"+(b.dock_build[1]/1000)+"k","typical residential"]);
+  tiles.push(["Boat lift","~$"+b.boatlift_per_1000lb+"/1,000 lb","24k-lb ≈ $38k"]);
+  const ins=b.insurance_annual;
+  tiles.push(["Insurance — canal","$"+(ins.canal[0]/1000)+"–"+(ins.canal[1]/1000)+"k/yr","luxury waterfront carry"]);
+  tiles.push(["Insurance — ocean","$"+(ins.oceanfront[0]/1000)+"–"+(ins.oceanfront[1]/1000)+"k/yr","direct oceanfront"]);
+  $("#cxBench").innerHTML=tiles.map(t=>
+    `<div class="geot"><div class="g-t">${t[0]}</div><div class="g-v tnum">${t[1]}</div>`
+    +`<div class="g-n">${t[2]}</div></div>`).join("");
+  $("#cxFacts").innerHTML=(CX.market_facts||[]).map(f=>
+    `<li>${f.fact} <span class="basis">${f.src}</span></li>`).join("");
+  $("#cxSrc").innerHTML="Sourced estimates — "+(CX.sources||[]).map(s=>
+    `<a href="${s.url}" target="_blank" rel="noopener">${s.label.split(" — ")[0]}</a>`).join(" · ");
+}
+const CXCOLS=[
+  {k:"neighborhood",t:"Neighborhood",l:1,f:r=>`<span class="nbh">${r.neighborhood}</span>`},
+  {k:"resale_psf",t:"Resale $/ft²",f:r=>`<span class="tnum">${usd(r.resale_psf)}</span> <span class="basis">${r.resale_basis}</span>`},
+  {k:"replacement_psf_typ",t:"Replace $/ft²",f:r=>`<span class="tnum">${usd(r.replacement_psf_typ)}</span>`},
+  {k:"land_ppsf",t:"Land $/ft²",f:r=>`<span class="tnum">${usd(r.land_ppsf)}</span> <span class="basis">${r.land_basis}</span>`},
+  {k:"premium_to_replacement_pct",t:"vs Replacement",f:r=>r.premium_to_replacement_pct==null?"—":`<span class="tnum ${r.premium_to_replacement_pct>=0?'neg':'pos'}">${pctS(r.premium_to_replacement_pct)}</span>`},
+  {k:"verdict",t:"Build vs buy",l:1,f:r=>{const v=r.verdict.split("—")[0].trim();
+    const c=v.startsWith("Above")?"var(--neg)":v.startsWith("Below")?"var(--good)":"var(--ink-2)";
+    return `<span style="color:${c};font-weight:600">${v}</span>`;}},
+];
+function cxTable(){
+  const q=cxQ.toLowerCase();
+  let rows=CX.neighborhoods.filter(r=>!q||r.neighborhood.toLowerCase().includes(q));
+  rows=rows.slice().sort((a,b)=>(a.rank||999)-(b.rank||999));
+  $("#cxTbl thead").innerHTML="<tr>"+CXCOLS.map(c=>`<th class="${c.l?'l':''}">${c.t}</th>`).join("")+"</tr>";
+  $("#cxTbl tbody").innerHTML=rows.map(r=>"<tr>"+CXCOLS.map(c=>`<td class="${c.l?'l':''}">${c.f(r)}</td>`).join("")+"</tr>").join("")
+    ||`<tr><td class="l" colspan="6" style="color:var(--muted)">No match.</td></tr>`;
+}
+function cxInit(){$("#cxNote").textContent=CX.meta.note||""; cxBench(); cxTable();
+  $("#cxSearch").addEventListener("input",e=>{cxQ=e.target.value;cxTable();});}
 
 // ---------- seller prospects ----------
 $("#slSummary").textContent=`· ${SL.meta.n_failed} failed-listing owners, ${SL.meta.n_overpriced_active} overpriced actives`;
@@ -1248,6 +1312,7 @@ window.addEventListener("resize",()=>{clearTimeout(window._rz);window._rz=setTim
 renderAll();
 scInit();
 mktInit();
+cxInit();
 
 // ---------- live assumptions controller ----------
 function asApply(){renderRepFlags();renderRepNbhd();renderRepInv();mfTable();htTable();
@@ -1308,6 +1373,7 @@ def build():
              .replace("__ASSUMP_JSON__", json.dumps(ASSUMP, separators=(",", ":")))
              .replace("__MARKETING_JSON__", json.dumps(MARKETING, separators=(",", ":")))
              .replace("__BACKTEST_JSON__", json.dumps(BACKTEST, separators=(",", ":")))
+             .replace("__CONTEXT_JSON__", json.dumps(CONTEXT, separators=(",", ":")))
              .replace("__SCEN_JSON__", json.dumps(SCEN, separators=(",", ":"))))
     standalone = (
         "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"

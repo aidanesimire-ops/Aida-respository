@@ -64,7 +64,7 @@ def _market_condition(nb, absorb):
     return phrase.get(dom)
 
 
-def neighborhood_kit(r, n_total, profiles, premiums, absorb, under_by_nb):
+def neighborhood_kit(r, n_total, profiles, premiums, absorb, under_by_nb, context_by_nb):
     nb = r["neighborhood"]
     norm, vs = r.get("norm_ppsf"), r.get("vs_city_pct")
     wf, dry = r.get("waterfront_ppsf"), r.get("dry_ppsf")
@@ -132,9 +132,12 @@ def neighborhood_kit(r, n_total, profiles, premiums, absorb, under_by_nb):
                      f"supported ({o['under_pct']:.0f}% under, ~{_usd(o['opportunity'])} "
                      "of value on paper). Verify condition.")})
 
+    # ---- cost / build-vs-buy talking points (from market_context) ----
+    cost_points = (context_by_nb.get(nb, {}) or {}).get("talking_points", [])
+
     return {"neighborhood": nb, "rank": r.get("rank"), "geo_type": r.get("geo_type"),
             "snapshot": snapshot, "cma_line": cma, "shareable": share,
-            "talking_points": tps, "opportunities": opps}
+            "talking_points": tps, "opportunities": opps, "cost_points": cost_points}
 
 
 def main():
@@ -145,8 +148,10 @@ def main():
     under = _load("underpriced_bundle.json")
     seller = _load("seller_bundle.json")
     back = _load("backtest_bundle.json")
+    context = _load("context_bundle.json")
     if not master or not mls:
         raise SystemExit("Run the pipeline first (needs master + mls bundles).")
+    context_by_nb = {c["neighborhood"]: c for c in (context or {}).get("neighborhoods", [])}
 
     profiles = {p["neighborhood"]: p for p in mls.get("profiles", [])}
     premiums = mls["meta"]["premiums"]
@@ -157,7 +162,7 @@ def main():
     for o in (under or {}).get("listings", []):
         under_by_nb.setdefault(o["neighborhood"], []).append(o)
 
-    kits = [neighborhood_kit(r, n_total, profiles, premiums, absorb, under_by_nb)
+    kits = [neighborhood_kit(r, n_total, profiles, premiums, absorb, under_by_nb, context_by_nb)
             for r in nbs]
 
     # ---- citywide market pulse ----

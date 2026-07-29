@@ -1416,10 +1416,64 @@ def marketing_sheet(wb, mk):
     ws.hide_gridlines(2)
 
 
+def costs_sheet(wb, cx):
+    f = _blk_formats(wb)
+    ws = wb.add_worksheet("Costs & Realities")
+    ws.write(0, 0, "Costs & market realities — build, renovate, hold, and build-vs-buy", f["title"])
+    ws.write(1, 0, cx["meta"].get("note", ""), f["sub"])
+    ws.set_row(1, 30)
+    b = cx["benchmarks"]
+    r = 3
+    ws.write(r, 0, "Cost benchmarks (sourced South Florida / Broward estimates — editable in config)", f["h2"])
+    r += 1
+    rows = [[(c["tier"], "txtb"), (c["psf"], "usd"), ("$/sqft — new construction, hard cost", "txt")]
+            for c in b["construction"]]
+    rows += [[(c["tier"], "txtb"), (c["psf"], "usd"), ("$/sqft — renovation", "txt")] for c in b["rehab"]]
+    rows += [
+        [("Soft costs", "txtb"), (b["soft_cost_pct"], "num"), ("% on top of hard cost (design/permits/GC/financing)", "txt")],
+        [("Seawall replacement", "txtb"), (b["seawall_psf_lf"][0], "usd"), (f"to ${b['seawall_psf_lf'][1]:,}/linear foot", "txt")],
+        [("New dock", "txtb"), (b["dock_build"][0], "usd"), (f"to ${b['dock_build'][1]:,} typical residential", "txt")],
+        [("Boat lift", "txtb"), (b["boatlift_per_1000lb"], "usd"), ("per 1,000 lb (~$38k for a 24k-lb lift)", "txt")],
+        [("Insurance — canal", "txtb"), (b["insurance_annual"]["canal"][0], "usd"), (f"to ${b['insurance_annual']['canal'][1]:,}/yr", "txt")],
+        [("Insurance — Intracoastal", "txtb"), (b["insurance_annual"]["intracoastal"][0], "usd"), (f"to ${b['insurance_annual']['intracoastal'][1]:,}/yr", "txt")],
+        [("Insurance — oceanfront", "txtb"), (b["insurance_annual"]["oceanfront"][0], "usd"), (f"to ${b['insurance_annual']['oceanfront'][1]:,}+/yr", "txt")],
+    ]
+    r = _write_block(ws, r, ["Item", "Figure", "Basis"], [26, 14, 52], rows, f) + 2
+    ws.write(r, 0, "Market realities to know & talk to", f["h2"])
+    r += 1
+    factf = wb.add_format({"border": 1, "border_color": "#e1e0d9", "valign": "top", "text_wrap": True, "font_size": 10})
+    srcf = wb.add_format({"border": 1, "border_color": "#e1e0d9", "valign": "top", "font_size": 9, "font_color": "#898781"})
+    ws.write(r, 0, "Reality", f["hdr"]); ws.write(r, 1, "Source", f["hdr"])
+    r += 1
+    for fact in cx["market_facts"]:
+        ws.write(r, 0, fact["fact"], factf)
+        ws.write(r, 1, fact["src"], srcf)
+        ws.set_row(r, 15 * max(2, len(fact["fact"]) // 60 + 1))
+        r += 1
+    r += 1
+    ws.write(r, 0, "Build-vs-buy by neighborhood — finished resale vs all-in replacement cost", f["h2"])
+    r += 1
+    bvb = [[(x["neighborhood"], "txtb"), (x["resale_psf"], "usd"), (x["replacement_psf_typ"], "usd"),
+            (x["land_ppsf"], "usd"), (x["build_total_lo"], "usd"), (x["build_total_hi"], "usd"),
+            (x["premium_to_replacement_pct"], "sgn"), (x["verdict"].split("—")[0].strip(), "txt")]
+           for x in sorted(cx["neighborhoods"], key=lambda z: (z.get("rank") or 999))]
+    _write_block(ws, r, ["Neighborhood", "Resale $/sqft", "Replace $/sqft", "Land $/sqft",
+                 "Build all-in (low)", "Build all-in (high)", "vs Replace", "Build vs buy"],
+                 [20, 13, 14, 11, 16, 16, 11, 30], bvb, f)
+    ws.set_column(0, 0, 20)
+    # sources footer
+    r2 = r + len(bvb) + 2
+    ws.write(r2, 0, "Sources", f["h2"])
+    for i, s in enumerate(cx.get("sources", [])):
+        ws.write_url(r2 + 1 + i, 0, s["url"], wb.add_format({"font_color": BLUE, "underline": 1}), s["label"])
+    ws.hide_gridlines(2)
+
+
 SHEET_INDEX = {
     "Key Conclusions": ("Start here", "Every headline finding with the evidence behind it and a confidence rating."),
     "Marketing Kit": ("Marketing & proof", "Copy-ready market snapshots, shareable stats, CMA lines, buyer opportunities and prospect outreach — per neighborhood. Paste into emails, CMAs, postcards, posts."),
     "Model Accuracy": ("Marketing & proof", "Out-of-sample backtest of the pricing model — median error in $ and %, by band and type. Your \"data-backed pricing\" proof."),
+    "Costs & Realities": ("Marketing & proof", "Construction, renovation, seawall, dock & insurance benchmarks; market realities with sources; and build-vs-buy (replacement cost) per neighborhood."),
     "Master Ranking": ("Start here", "All neighborhoods, most to least expensive, with suggested repricing and every core metric."),
     "Scenario": ("Deal tools", "Live financing / capital-markets model — edit the yellow cells and watch price, $/sqft, DOM & returns move. Recreate for any asset class."),
     "Read Me": ("Start here", "What 'normalized' means, the model, price drivers, validation and honest limits."),
@@ -1570,6 +1624,10 @@ def main():
         pass
     try:
         accuracy_sheet(wb, _jload("backtest_bundle.json"))
+    except FileNotFoundError:
+        pass
+    try:
+        costs_sheet(wb, _jload("context_bundle.json"))
     except FileNotFoundError:
         pass
 

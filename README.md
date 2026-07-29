@@ -41,6 +41,16 @@ KPI + Excel tab) reports the model's out-of-sample error — your "data-backed p
 Want to sharpen it further? [`docs/DATA_TO_ADD.md`](docs/DATA_TO_ADD.md) lists the exact
 columns to add to your next export and what each unlocks.
 
+**Costs & market realities (for ultra-luxury):** the dashboard's **Costs & realities** card
+and the Excel **Costs & Realities** tab carry sourced South-Florida benchmarks — new-
+construction and renovation $/sqft, seawall/dock/boat-lift costs, waterfront pricing
+convention (per linear foot, no-fixed-bridges premium), and luxury insurance carry — plus a
+**build-vs-buy (replacement-cost) read for every house-dominant neighborhood** (finished
+resale vs. land + construction + soft costs). All figures and their citations are in
+[`docs/MARKET_REALITIES.md`](docs/MARKET_REALITIES.md) and are editable under `costs:` in the
+config. (At current construction costs, most Fort Lauderdale neighborhoods trade *below*
+replacement — a strong "you're buying below what it costs to reproduce" talking point.)
+
 ## Why raw $/sqft misleads
 
 A neighborhood can look cheap or expensive purely because its homes are bigger, older,
@@ -126,6 +136,7 @@ python analysis/comps.py            # comps behind each valuation -> comps_bundl
 python analysis/reprice.py          # reprice live inventory vs should-be -> reprice_bundle.json
 python analysis/time_analysis.py    # 2020->now shifts -> data/processed/time_bundle.json
 python analysis/backtest.py         # out-of-sample model accuracy -> backtest_bundle.json
+python analysis/market_context.py   # costs + build-vs-buy per neighborhood -> context_bundle.json
 python analysis/marketing.py        # copy-ready marketing content -> marketing_bundle.json
 python analysis/build_charts.py     # -> outputs/*.png
 python analysis/build_excel.py      # -> outputs/Fort_Lauderdale_PPSF_Normalized.xlsx
