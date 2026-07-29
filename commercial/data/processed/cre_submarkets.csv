@@ -1,10 +1,10 @@
-submarket,norm_ppsf,sold_ppsf_median,ask_ppsf_median,median_price,median_sqft,n,n_sold,n_live,top_asset,waterfront_share,confidence,vs_city_pct
-Area 3600,268.0,355.0,249.0,1799000,12150,15,4,4,Retail,0.0,Med,47.3
-Area 3810,253.0,127.0,555.0,3450000,10126,11,2,5,Multifamily,0.0,Indicative,39.1
-Area 3380,242.0,175.0,300.0,2100500,8880,18,6,6,Commercial (other),0.0,Med,33.0
-Area 3370,186.0,177.0,220.0,1700000,9612,40,11,5,Multifamily,0.0,High,2.2
-Area 3500,173.0,184.0,168.0,1328750,6812,10,4,1,Commercial (other),0.0,Med,-4.9
-Area 3800,170.0,130.0,128.0,1074500,6950,38,7,11,Commercial (other),0.05,Med,-6.5
-Area 3470,153.0,144.0,168.0,1895000,13802,21,4,5,Multifamily,0.0,Med,-15.9
-Area 3460,126.0,137.0,138.0,1400000,10125,21,2,3,Multifamily,0.0,Indicative,-30.7
-Area 3160,99.0,132.0,200.0,732500,4500,12,4,1,Commercial (other),0.08,Med,-45.6
+submarket,norm_ppsf,sold_ppsf_median,ask_ppsf_median,median_price,median_sqft,n,n_sold,n_live,top_asset,waterfront_share,confidence,corridors,vs_city_pct
+Area 3600,268.0,355.0,249.0,1799000,12150,15,4,4,Retail,0.0,Med,SE 17th St · Federal Hwy,47.3
+Area 3810,253.0,127.0,555.0,3450000,10126,11,2,5,Multifamily,0.0,Indicative,Broward Blvd,39.1
+Area 3380,242.0,175.0,300.0,2100500,8880,18,6,6,Commercial (other),0.0,Med,Wilton Dr · Federal Hwy,33.0
+Area 3370,186.0,177.0,220.0,1700000,9612,40,11,5,Multifamily,0.0,High,Dixie Hwy · Oakland Park Blvd,2.2
+Area 3500,173.0,184.0,168.0,1328750,6812,10,4,1,Commercial (other),0.0,Med,Andrews Ave,-4.9
+Area 3800,170.0,130.0,128.0,1074500,6950,38,7,11,Commercial (other),0.05,Med,Andrews Ave · SE 17th St,-6.5
+Area 3470,153.0,144.0,168.0,1895000,13802,21,4,5,Multifamily,0.0,Med,Davie Blvd · Las Olas Blvd,-15.9
+Area 3460,126.0,137.0,138.0,1400000,10125,21,2,3,Multifamily,0.0,Indicative,Sunrise Blvd,-30.7
+Area 3160,99.0,132.0,200.0,732500,4500,12,4,1,Commercial (other),0.08,Med,Ocean Blvd · SE 17th St,-45.6

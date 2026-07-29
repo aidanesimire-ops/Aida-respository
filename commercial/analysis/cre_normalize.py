@@ -92,6 +92,7 @@ def submarket_table(s, mod, frame, smear, med):
             "top_asset": g["asset_type"].mode().iat[0] if len(g) else None,
             "waterfront_share": round(float(g["waterfront"].mean()), 2),
             "confidence": _conf(len(gsold)),
+            "corridors": CRE.corridor_hint(g["address"]),
         })
     t = pd.DataFrame(rows).set_index("submarket")
     city = float(np.average(t["norm_ppsf"], weights=t["n"]))

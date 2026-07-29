@@ -235,6 +235,30 @@ def price_band(p):
     return PRICE_BANDS[-1][0]
 
 
+# major Fort Lauderdale corridors -> canonical label (keyword matched against addresses)
+CORRIDORS = {
+    "federal": "Federal Hwy", "andrews": "Andrews Ave", "oakland park": "Oakland Park Blvd",
+    "las olas": "Las Olas Blvd", "sunrise": "Sunrise Blvd", "broward": "Broward Blvd",
+    "commercial blvd": "Commercial Blvd", "dixie": "Dixie Hwy", "state road 84": "SR-84",
+    "powerline": "Powerline Rd", "davie": "Davie Blvd", "17th": "SE 17th St",
+    "sistrunk": "Sistrunk Blvd", "wilton": "Wilton Dr", "ocean": "Ocean Blvd",
+    "miami road": "Miami Rd", "bayview": "Bayview Dr", "cordova": "Cordova Rd",
+}
+
+
+def corridor_hint(addresses, top=2):
+    """The dominant street corridors in a set of addresses — turns an MLS area code into a
+    place a broker recognizes."""
+    import collections
+    c = collections.Counter()
+    for a in addresses:
+        s = str(a).lower()
+        for kw, lab in CORRIDORS.items():
+            if kw in s:
+                c[lab] += 1
+    return " · ".join(lab for lab, _ in c.most_common(top))
+
+
 def usd(x):
     try:
         x = float(x)
