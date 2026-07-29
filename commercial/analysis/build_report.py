@@ -9,6 +9,7 @@ import pandas as pd
 import cre_common as CRE
 import cre_assumptions as A
 import cre_scenario as SC
+import market_context as MKT
 
 OUT = os.path.join(CRE.ROOT, "REPORT.md")
 
@@ -144,6 +145,39 @@ def main():
       f"{s['exit_cap']*100:.2f}% cap).\n")
     w("*Change the rent, cap, LTV, rate or hold and it all recomputes — this single seeded number "
       "is just a starting point.*\n")
+
+    # ---- market context (researched external benchmarks) ----
+    mk = MKT.to_dict()
+    w("\n## Market context — researched benchmarks\n")
+    w(f"External Broward / Fort Lauderdale benchmarks, {mk['as_of']} — the market backdrop to talk "
+      "to, and to sanity-check the assumptions against. Verify before quoting a specific deal.\n")
+    w("\n| Asset class | Market cap | Rent | Sale $/SF | Vacancy |")
+    w("|---|---|---|---|---|")
+    for a, b in mk["assets"].items():
+        w(f"| {a} | {b['cap']} | {b['rent']} | {b['sale_ppsf']} | {b['vacancy']} |")
+    w("\n**Costs & Florida realities (headline):**\n")
+    w(f"- Construction (hard): MF garden {mk['construction']['Multifamily — garden / wood (1–3 story)']}, "
+      f"mid-rise {mk['construction']['Multifamily — mid-rise podium (5-over-1)']}, "
+      f"industrial {mk['construction']['Industrial / warehouse (tilt-up)']}; "
+      f"{mk['adders']['HVHZ hurricane-code premium (Broward/Miami-Dade)']} HVHZ premium; "
+      f"soft costs {mk['adders']['Soft costs']}.\n")
+    w(f"- Value-add rehab: MF light {mk['rehab']['Multifamily — light reno (paint/floors/fixtures)']}, "
+      f"heavy {mk['rehab']['Multifamily — heavy / gut (systems)']}; office TI {mk['rehab']['Office tenant improvement (Miami)']}.\n")
+    w(f"- Land: commercial {mk['land']['Commercial land (small infill)']}; per-buildable-unit "
+      f"{mk['land']['Near-downtown per-unit land']} to {mk['land']['Waterfront luxury per-unit land']}.\n")
+    w(f"- Waterfront: {mk['waterfront']['Waterfront premium']}; priced {mk['waterfront']['Pricing convention']}; "
+      f"seawall {mk['waterfront']['Seawall cost']}.\n")
+    w(f"- Insurance: {mk['insurance']['MF insurance (Fort Lauderdale)']} — {mk['insurance']['Effect on value']}.\n")
+    w(f"- Incentives: {mk['incentives']['Live Local Act (SB 102)']}; {mk['incentives']['Opportunity Zones']}.\n")
+
+    w("\n### Neighborhood playbook (talking points by area)\n")
+    for area, ap in mk["area_to_profile"].items():
+        prof = mk["submarket_profiles"][ap["key"]]
+        w(f"- **{area} → {ap['key']}** ({prof['conf']}): {prof['blurb']} *Recent:* {prof['deals']} "
+          f"**Play:** {prof['angle']}")
+    w("\n*Sources: CBRE (Calum Weaver), Colliers, JLL, Matthews, Cushman & Wakefield, Yardi, The Real "
+      "Deal, Florida YIMBY, RSMeans/Turner/RLB, LandSearch, Holland & Knight, and others — full list on "
+      "the dashboard's Market context card and the Excel **Market** tab.*\n")
 
     w("\n## Honest limitations\n")
     w("- **No income in the source** — NOI/cap/returns are only as good as your assumptions. "

@@ -16,6 +16,7 @@ import xlsxwriter  # noqa: F401
 import cre_common as CRE
 import cre_assumptions as A
 import cre_scenario as SC
+import market_context as MKT
 
 OUT = os.path.join(CRE.ROOT, "outputs", "Commercial_Deal_Dashboard.xlsx")
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
@@ -235,6 +236,52 @@ def scenario_sheet(wb, f, seed):
         ws.write_formula(r, 3, f"=$E$21+(C{er}-$E$19)/$E$11", ox, em)
 
 
+def market_sheet(wb, f):
+    mk = MKT.to_dict()
+    ws = wb.add_worksheet("Market")
+    _head(ws, f, "Market context — researched benchmarks",
+          f"External Broward / Fort Lauderdale benchmarks, {mk['as_of']}. The market backdrop to "
+          "compare your data against — verify before quoting a specific deal.", 5)
+    ws.set_column(0, 0, 36)
+    ws.set_column(1, 5, 22)
+    r = 3
+    ws.write(r, 0, "Benchmarks by asset class", f["title"]); r += 1
+    for j, h in enumerate(["Asset type", "Cap", "Rent", "Sale $/SF", "Vacancy", "Trend"]):
+        ws.write(r, j, h, f["hdr"])
+    r += 1
+    for a, b in mk["assets"].items():
+        ws.write(r, 0, a, f["olab"]); ws.write(r, 1, b["cap"], f["txt"]); ws.write(r, 2, b["rent"], f["txt"])
+        ws.write(r, 3, b["sale_ppsf"], f["txt"]); ws.write(r, 4, b["vacancy"], f["txt"])
+        ws.write(r, 5, b["trend"], f["txt"]); ws.set_row(r, 30); r += 1
+    r += 1
+
+    def kv(title, obj, r):
+        ws.write(r, 0, title, f["title"]); r += 1
+        for k, v in obj.items():
+            ws.write(r, 0, k, f["olab"]); ws.merge_range(r, 1, r, 5, v, f["txt"]); r += 1
+        return r + 1
+
+    r = kv("Construction (hard $/SqFt)", mk["construction"], r)
+    r = kv("Renovation / rehab", mk["rehab"], r)
+    r = kv("Florida cost adders", mk["adders"], r)
+    r = kv("Land basis", mk["land"], r)
+    r = kv("Waterfront & dockage", mk["waterfront"], r)
+    r = kv("Insurance", mk["insurance"], r)
+    r = kv("Incentives", mk["incentives"], r)
+
+    ws.write(r, 0, "Neighborhood playbook", f["title"]); r += 1
+    for area, ap in mk["area_to_profile"].items():
+        prof = mk["submarket_profiles"][ap["key"]]
+        ws.write(r, 0, f"{area} → {ap['key']}", f["olab"])
+        ws.merge_range(r, 1, r, 5, f"{prof['blurb']}  RECENT: {prof['deals']}  PLAY: {prof['angle']}", f["txt"])
+        ws.set_row(r, 58); r += 1
+    r += 1
+    ws.write(r, 0, "Sources", f["title"]); r += 1
+    link = wb.add_format({"font_color": BLUE, "underline": 1})
+    for s in mk["sources"]:
+        ws.write_url(r, 0, s["url"], link, s["name"]); r += 1
+
+
 def index_sheet(wb, f, meta):
     ws = wb.add_worksheet("Index")
     ws.set_column(0, 0, 22); ws.set_column(1, 1, 86)
@@ -251,7 +298,8 @@ def index_sheet(wb, f, meta):
            ("Absorption", "Months of supply by submarket & type."),
            ("Prospects", "Failed listings + overpriced actives."),
            ("Comps", "The closed sales behind the numbers."),
-           ("Scenario", "Live underwriting — NOI built from assumptions.")]
+           ("Scenario", "Live underwriting — NOI built from assumptions."),
+           ("Market", "Researched benchmarks, costs & the neighborhood playbook.")]
     link = wb.add_format({"font_color": BLUE, "bold": True, "underline": 1, "border": 1, "border_color": "#e1e0d9"})
     for i, (name, desc) in enumerate(toc):
         r = 3 + i
@@ -374,6 +422,7 @@ def main():
 
     assumptions_seed = seed
     scenario_sheet(wb, f, assumptions_seed)
+    market_sheet(wb, f)
     wb.close()
     print(f"Workbook -> {os.path.relpath(OUT, CRE.ROOT)}")
 

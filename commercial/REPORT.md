@@ -109,6 +109,50 @@ The dashboard's **Underwrite a deal** card and the Excel **Scenario** tab build 
 *Change the rent, cap, LTV, rate or hold and it all recomputes — this single seeded number is just a starting point.*
 
 
+## Market context — researched benchmarks
+
+External Broward / Fort Lauderdale benchmarks, 2024–2025 (some Q1 2026); curated 2026-07-29 — the market backdrop to talk to, and to sanity-check the assumptions against. Verify before quoting a specific deal.
+
+
+| Asset class | Market cap | Rent | Sale $/SF | Vacancy |
+|---|---|---|---|---|
+| Multifamily | 4.7–5.4% (A ~4.74% · B ~4.92% · C ~5.38%); ~5.6% blended, Yardi ~6.3% | priced per unit; ~$359,437/unit avg (2025 YTD) | ~$300–450/SF on value-add product; per-unit is the metric | ~7.9% (buildings 50+ units, Q3 2025) |
+| Office | ~6.75–8.0% | $41.60/SF full-service overall (record high); Class A $46.74/SF; medical ~$34–36/SF | closed $196–442/SF (Plantation Place ~$196; Las Olas Centre trophy $442) | ~12.3% (Broward, Q4 2025) |
+| Retail | ~6.0–6.1% | $27.59/SF NNN Broward; Fort Lauderdale ~$36/SF; prime Las Olas/Downtown $50–75/SF | closed ~$391/SF (RK Centers, Riverbend, Dec 2025); listings avg ~$630/SF | ~3.8–3.9% (very tight) |
+| Industrial | ~6.0–6.3% (South FL) | ~$16/SF NNN (Fort Lauderdale ~$16.22); small-bay/flex $18–30/SF NNN | ~$150–300/SF (well-located Broward warehouse) | ~4.0–5.5% (rising on new supply) |
+| Hotel | ~7.8% | ADR $129 (summer trough) to ~$240 peak; per key ~$273,831 | priced per key (~$274K/key), not per SF | occupancy ~55% (summer) to 72–85% (peak/annual, destination-wide) |
+| Mixed Use | ~6.0–6.75% (blends retail/MF) | ground-floor retail $27–75/SF NNN + residential above | varies with the residential/retail split | tracks its retail (sub-4%) and MF (~8%) components |
+
+**Costs & Florida realities (headline):**
+
+- Construction (hard): MF garden $170–200/SF, mid-rise $200–275/SF, industrial $156–234/SF; +10–15% of construction cost HVHZ premium; soft costs 15–30% of hard costs.
+
+- Value-add rehab: MF light $15,000–25,000/unit, heavy $45,000–65,000+/unit; office TI ~$122/SF (Class A $135–150 · Class B $90–120).
+
+- Land: commercial ~$944/SF (avg parcel ~6,700 SF); ~$4.04M/acre; per-buildable-unit ~$38,000/unit (2125 S Andrews 'The Era', 400 units, 2024) to ~$420,000/unit (900 Intracoastal 'Sage', 44 units, 2024).
+
+- Waterfront: direct/unobstructed water access sells ~30–50% above comparable dry-lot; priced per linear foot of frontage, adjusted for depth, bridge clearance, seawall/dock; seawall ~$500–1,000/linear foot.
+
+- Insurance: ~$1,430/unit/yr (+53% YoY, 2024) — insurance ~7% of opex but ~17% of expense growth since 2019 → compresses NOI, expands caps; FL values −6.8%.
+
+- Incentives: by-right MF on commercial/industrial if ≥40% units ≤120% AMI; density = highest in jurisdiction, height = highest within 1 mi; 75–100% property-tax exemption on affordable units; Broward 30 tracts / Fort Lauderdale 10 — prime: Flagler Village, 13th St/Progresso, Sistrunk.
+
+
+### Neighborhood playbook (talking points by area)
+
+- **Area 3600 → 17th Street Causeway / Harbor Beach / SE** (High): The marine & yachting-services heart of the market — and increasingly a waterfront redevelopment target. *Recent:* The Quay (1515 SE 17th) — Related/BH/PEBB bought the ~7-acre waterfront marina/retail site for $48.5M (2024) and won approval for a 521-unit tower (40% workforce, Live Local). F3 Marina automated drystack completed. **Play:** Waterfront/marina redevelopment; dockage value; Live Local density on the water.
+- **Area 3810 → Sistrunk / Progresso / Northwest** (Med): A CRA-driven, largely opportunity-zone corridor where public subsidy is catalyzing affordable/workforce and mixed-use redevelopment. *Recent:* The Aldridge & The Laramore — ~$42M, 72-unit mixed-use with retail at 1204 Sistrunk. NPF-CRA plan runs to 2035 with construction/façade incentives. **Play:** Low basis vs downtown; land assembly on the OZ + CRA-incentive angle; Flagler Village spillover.
+- **Area 3380 → Wilton Manors** (High): A walkable, affluent arts-and-entertainment node (Wilton Drive) drawing its first mid-rise projects. *Recent:* Stiles bought the Shoppes of Wilton Manors (78,600 SF) for $27.6M (Dec 2024), pursuing an 82-unit rezoning; Kaplan's Generation proposes ~190 units. **Play:** Retail redevelopment; constrained supply; strong restaurant/retail demand.
+- **Area 3370 → Oakland Park** (High): One of Broward's fastest-emerging urban-infill submarkets, led by public placemaking. *Recent:* Culinary Arts District (NE 12th Ave) restaurant/distillery corridor; new City Hall mixed-use (2025); 6-acre Horizon redevelopment of the old City Hall site. **Play:** Infill mixed-use, older-industrial repositioning; CRA incentives; attractive basis.
+- **Area 3500 → Downtown / Flagler Village** (High): The region's most active development submarket — a former warehouse district now dense with high-rise multifamily, creative office and ground-floor retail. *Recent:* FAT Village — Hines/Urban Street ~$500M, ~600 units + the region's first mass-timber office, topping off 2025, delivery mid-2026. Gallery at Flagler Village (263 units) queued. Class A office asking low-$40s/SF. **Play:** Development & land assembly; Live Local density bonuses; office repositioning.
+- **Area 3800 → Downtown / Flagler Village** (High): The region's most active development submarket — a former warehouse district now dense with high-rise multifamily, creative office and ground-floor retail. *Recent:* FAT Village — Hines/Urban Street ~$500M, ~600 units + the region's first mass-timber office, topping off 2025, delivery mid-2026. Gallery at Flagler Village (263 units) queued. Class A office asking low-$40s/SF. **Play:** Development & land assembly; Live Local density bonuses; office repositioning.
+- **Area 3470 → Las Olas** (High): Broward's premier office / CBD address — law, finance and wealth-management tenancy. *Recent:* 2025 delivered the two largest office trades in a decade: Las Olas Centre I & II $208M (~$442/SF, Bradford Allen) and Bank of America Plaza at 401 E Las Olas ~$220M (Lone Star/Highline/Square2). **Play:** Trophy office, repositioning, ground-floor retail at $50–75/SF.
+- **Area 3460 → Sistrunk / Progresso / Northwest** (Med): A CRA-driven, largely opportunity-zone corridor where public subsidy is catalyzing affordable/workforce and mixed-use redevelopment. *Recent:* The Aldridge & The Laramore — ~$42M, 72-unit mixed-use with retail at 1204 Sistrunk. NPF-CRA plan runs to 2035 with construction/façade incentives. **Play:** Low basis vs downtown; land assembly on the OZ + CRA-incentive angle; Flagler Village spillover.
+- **Area 3160 → Fort Lauderdale Beach** (Med): The barrier-island beach market — hospitality, beachfront retail and boutique commercial/condo, where waterfront and ocean views drive a clear premium. *Recent:* Hotel product trades ~$274K/key with a beachfront ADR premium; retail/mixed commercial along the A1A / Ocean Blvd corridor. **Play:** Hospitality & beachfront retail; premium land; tourism demand.
+
+*Sources: CBRE (Calum Weaver), Colliers, JLL, Matthews, Cushman & Wakefield, Yardi, The Real Deal, Florida YIMBY, RSMeans/Turner/RLB, LandSearch, Holland & Knight, and others — full list on the dashboard's Market context card and the Excel **Market** tab.*
+
+
 ## Honest limitations
 
 - **No income in the source** — NOI/cap/returns are only as good as your assumptions. The tool makes them explicit and adjustable rather than hiding a guess.

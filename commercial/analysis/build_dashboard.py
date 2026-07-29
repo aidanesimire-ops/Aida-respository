@@ -22,6 +22,7 @@ import pandas as pd
 import cre_common as CRE
 import cre_assumptions as A
 import cre_scenario as SC
+import market_context as MKT
 
 DASHDIR = os.path.join(CRE.ROOT, "dashboard")
 os.makedirs(DASHDIR, exist_ok=True)
@@ -65,6 +66,8 @@ def main():
         "absorption": seg_b.get("absorption_by_submarket", []),
         "failure_type": pros_b.get("failure_rate_type", []),
         "market_rents": cre.get("market_rents", {}),
+        "market": MKT.to_dict(),
+        "area_corridors": {s["submarket"]: s.get("corridors") for s in cre["submarkets"]},
         "seed": SC.seed(),
         "asset_order": CRE.ASSET_ORDER,
     }
@@ -217,7 +220,7 @@ _BODY = r"""<div class="themeToggle" onclick="toggleTheme()">◐ theme</div>
  <a href="#answers">Answers</a><a href="#assumptions">Assumptions</a><a href="#financing">Financing</a>
  <a href="#overview">$/SqFt map</a><a href="#inventory">Reprice inventory</a>
  <a href="#underwrite">Underwrite</a><a href="#solver">Goal-seek</a>
- <a href="#absorption">Absorption</a><a href="#prospects">Prospects</a>
+ <a href="#market">Market context</a><a href="#absorption">Absorption</a><a href="#prospects">Prospects</a>
 </nav>
 
 <div class="card" id="answers">
@@ -316,6 +319,22 @@ _BODY = r"""<div class="themeToggle" onclick="toggleTheme()">◐ theme</div>
   <button class="btn" onclick="runSolve()" style="align-self:end">Solve</button>
  </div>
  <div class="solveOut" id="sOut">Set a target and press <b>Solve</b>. It reverse-solves on the deal currently in the Underwrite card.</div>
+</div>
+
+<div class="card" id="market">
+ <h2>Market context <span class="muted small">— researched benchmarks &amp; the neighborhood playbook, to talk like the expert in the room</span></h2>
+ <div class="sub" id="mktAsOf" style="margin:6px 0 12px"></div>
+ <h3>Benchmarks by asset class (Broward / Fort Lauderdale)</h3>
+ <div class="scroll"><table id="mktBench"></table></div>
+ <h3 style="margin-top:18px">Costs &amp; Florida realities</h3>
+ <div class="grid" style="grid-template-columns:repeat(3,1fr);gap:18px" id="mktCosts">
+  <div id="mktC1"></div><div id="mktC2"></div><div id="mktC3"></div>
+ </div>
+ <h3 style="margin-top:18px">Neighborhood playbook — what to say about each area</h3>
+ <div id="mktPlay"></div>
+ <details class="guide" style="margin-top:12px;border:none;box-shadow:none;padding:0;background:none">
+  <summary>Sources (researched 2024–2025)</summary><div id="mktSrc" class="small" style="margin-top:8px"></div>
+ </details>
 </div>
 
 <div class="card" id="absorption">
@@ -584,8 +603,36 @@ function renderDealSheet(){
   </div>
   ${comps.length?`<h3 style="font-size:12px;text-transform:uppercase;color:var(--muted);margin:14px 0 6px">Nearest closed comps</h3>
    <table><thead><tr><th>Address</th><th>SqFt</th><th>Price</th><th>$/SqFt</th></tr></thead><tbody>${compRows}</tbody></table>`:""}
-  <div class="muted small" style="margin-top:14px">Income figures are assumption-based (rents ${D.market_rents[type]?'anchored to lease comps':'assumed'}); verify rent roll &amp; T-12 before relying on them. Not an appraisal.</div>`;}
+  ${mktBlock()}
+  <div class="muted small" style="margin-top:14px">Income figures are assumption-based (rents ${D.market_rents[type]?'anchored to lease comps':'assumed'}); market backdrop is researched 2024–25 data. Verify rent roll &amp; T-12 before relying on them. Not an appraisal.</div>`;
+ function mktBlock(){const mk=D.market,ab=mk.assets[type],ap=mk.area_to_profile[sub],prof=ap?mk.submarket_profiles[ap.key]:null;
+  if(!ab)return"";
+  return `<div class="pitch" style="background:var(--bg);margin-top:12px"><b>Market backdrop —</b> ${type}: market cap ${ab.cap}; rent ${ab.rent}; vacancy ${ab.vacancy}.`+
+   (prof?`<br><b>${ap.key}:</b> ${prof.angle}`:"")+`</div>`;}}
 function printSheet(){renderDealSheet();window.print();}
+
+// ---------- market context ----------
+function renderMarket(){
+ const mk=D.market;
+ $("#mktAsOf").innerHTML=`External benchmarks as of <b>${mk.as_of}</b>. These are the market backdrop to compare your data against — verify before quoting a specific deal.`;
+ let h="<thead><tr><th>Asset type</th><th>Market cap</th><th>Rent</th><th>Sale $/SF</th><th>Vacancy</th><th>Trend</th></tr></thead><tbody>";
+ Object.keys(mk.assets).forEach(a=>{const b=mk.assets[a];
+  h+=`<tr><td><b>${a}</b></td><td>${b.cap}</td><td>${b.rent}</td><td>${b.sale_ppsf}</td><td>${b.vacancy}</td><td class="small muted">${b.trend}</td></tr>`;});
+ $("#mktBench").innerHTML=h+"</tbody>";
+ const dl=(title,obj)=>`<h3>${title}</h3>`+Object.entries(obj).map(([k,v])=>
+  `<div style="margin-bottom:6px;font-size:13px"><b>${k}</b><br><span class="muted">${v}</span></div>`).join("");
+ $("#mktC1").innerHTML=dl("Construction (hard $/SqFt)",mk.construction)+dl("Renovation / rehab",mk.rehab);
+ $("#mktC2").innerHTML=dl("Florida cost adders",mk.adders)+dl("Land basis",mk.land);
+ $("#mktC3").innerHTML=dl("Waterfront &amp; dockage",mk.waterfront)+dl("Insurance",mk.insurance)+dl("Incentives",mk.incentives);
+ // neighborhood playbook keyed to the user's own submarkets
+ let p="";
+ D.submarkets.forEach(s=>{const ap=mk.area_to_profile[s.submarket];if(!ap)return;
+  const prof=mk.submarket_profiles[ap.key],cor=D.area_corridors[s.submarket]||"";
+  p+=`<div class="ans" style="margin-bottom:10px"><div class="q">${s.submarket}${cor?" · "+cor:""} → ${ap.key} <span class="conf ${prof.conf==='High'?'hi':'lo'}">${prof.conf}</span></div>`+
+   `<div class="a" style="font-size:13.5px">${prof.blurb}<br><span class="muted"><b>Recent:</b> ${prof.deals}</span><br><b>The play:</b> ${prof.angle}</div></div>`;});
+ $("#mktPlay").innerHTML=p;
+ $("#mktSrc").innerHTML=mk.sources.map(s=>`<div style="margin-bottom:3px">• <a href="${s.url}" target="_blank" rel="noopener">${s.name}</a></div>`).join("");
+}
 
 // ---------- static tables ----------
 function renderAbs(){$("#absNote").textContent=window.__absnote||"Months of supply = live ÷ (closed per month); closed assumed to span a fixed window (no dates in export).";
@@ -630,7 +677,7 @@ function header(){const m=D.meta,c=D.coverage;
 function toggleTheme(){const r=document.documentElement,cur=r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");r.setAttribute("data-theme",cur==="dark"?"light":"dark");}
 
 ASM=JSON.parse(JSON.stringify(D.assumptions.by_type));
-header();initFin();renderAsm();renderSub();renderTypeFilter();fillSubFilter();renderAbs();renderFail();initUnderwrite();recompute();
+header();initFin();renderAsm();renderSub();renderTypeFilter();fillSubFilter();renderAbs();renderFail();renderMarket();initUnderwrite();recompute();
 </script>"""
 
 

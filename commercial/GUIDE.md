@@ -45,6 +45,18 @@ The **Answers** band at the top always shows, live: cheapest vs. priciest basis,
 highest-yield asset type at your assumptions, and where supply is tightest. The **$/SqFt map** and
 **Absorption** tables back it up.
 
+### 6. Sound like the expert in the room  → *Market context*
+The **Market context** card (and the Excel **Market** tab) carries researched 2024–25 benchmarks
+you can quote: cap rates, rents and sale $/SqFt by asset class; construction, rehab, land and
+**waterfront/dockage** costs; Florida realities (HVHZ code premium, **insurance ~$1,430/unit/yr**,
+flood zones, impact fees); and incentives (**Opportunity Zones, CRA, the Live Local Act**). The
+**Neighborhood playbook** gives 2–4 sentences and a recent deal for each of your submarkets —
+what's trading, who's developing, and the angle to pitch. Every deal sheet also prints a
+one-line market backdrop for its asset class and area.
+
+> These external benchmarks are a dated snapshot (curated from published brokerage research),
+> not a live feed — refresh them periodically and always verify before quoting a specific number.
+
 ## Making the numbers more real
 
 - **Use market rents.** On the Assumptions card, the *Mkt rent (comps)* column is the median asking
