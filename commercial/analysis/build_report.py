@@ -69,6 +69,23 @@ def main():
     w("\n*Defaults are calibrated so a typically-priced building of each type prices near its "
       "market cap, and are realistic South-Florida gross rents — starting points, not gospel.*\n")
 
+    mrc = meta.get("market_rent_lease_comps", 0)
+    have_mr = types[types["market_rent_psf"].notna()] if "market_rent_psf" in types.columns else pd.DataFrame()
+    if len(have_mr):
+        w(f"\n**Rents anchored to real lease comps.** From **{mrc}** lease listings we derive a median "
+          "asking rent $/SqFt per asset type — so the assumption isn't a pure guess where we have data:\n")
+        w("\n| Asset type | Assumed rent | Market rent (lease comps) | n |")
+        w("|---|---|---|---|")
+        for _, r in have_mr.iterrows():
+            w(f"| {r['asset_type']} | ${r['assume_rent_psf']:.0f} | ${r['market_rent_psf']:.0f} | "
+              f"{int(r['market_rent_n'])} |")
+        w("\n*In the dashboard, 'Use market rents' swaps these in with one click.*\n")
+    mfc = meta.get("mf_unit_coverage", {})
+    if mfc.get("parsed"):
+        w(f"\n**Multifamily $/unit.** Unit counts were parsed from addresses (e.g. \"Unit#1-28\") for "
+          f"**{mfc['parsed']} of {mfc['total']}** multifamily comps, enabling a per-door metric where "
+          "available (units aren't a field in the export).\n")
+
     w("## Submarkets, ranked (normalized $/SqFt)\n")
     w("| Submarket | Norm $/SqFt | vs city | Median price | Top type | Mo supply | Stance |")
     w("|---|---|---|---|---|---|---|")

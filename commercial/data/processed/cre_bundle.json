@@ -38,7 +38,12 @@
       "TempOff": 8,
       "Pending": 5
     },
-    "no_income_note": "MLS export carries no NOI / rent / cap / units \u2014 all income metrics are derived from editable assumptions (cre_assumptions)."
+    "no_income_note": "MLS export carries no NOI / rent / cap / units \u2014 income metrics are derived from assumptions, with rents anchored to lease comps where available and unit counts parsed from addresses.",
+    "market_rent_lease_comps": 244,
+    "mf_unit_coverage": {
+      "parsed": 30,
+      "total": 90
+    }
   },
   "submarkets": [
     {
@@ -53,6 +58,7 @@
       "n_live": 4,
       "top_asset": "Retail",
       "waterfront_share": 0.0,
+      "confidence": "Med",
       "vs_city_pct": 47.3
     },
     {
@@ -67,6 +73,7 @@
       "n_live": 5,
       "top_asset": "Multifamily",
       "waterfront_share": 0.0,
+      "confidence": "Indicative",
       "vs_city_pct": 39.1
     },
     {
@@ -81,6 +88,7 @@
       "n_live": 6,
       "top_asset": "Commercial (other)",
       "waterfront_share": 0.0,
+      "confidence": "Med",
       "vs_city_pct": 33.0
     },
     {
@@ -95,6 +103,7 @@
       "n_live": 5,
       "top_asset": "Multifamily",
       "waterfront_share": 0.0,
+      "confidence": "High",
       "vs_city_pct": 2.2
     },
     {
@@ -109,6 +118,7 @@
       "n_live": 1,
       "top_asset": "Commercial (other)",
       "waterfront_share": 0.0,
+      "confidence": "Med",
       "vs_city_pct": -4.9
     },
     {
@@ -123,6 +133,7 @@
       "n_live": 11,
       "top_asset": "Commercial (other)",
       "waterfront_share": 0.05,
+      "confidence": "Med",
       "vs_city_pct": -6.5
     },
     {
@@ -137,6 +148,7 @@
       "n_live": 5,
       "top_asset": "Multifamily",
       "waterfront_share": 0.0,
+      "confidence": "Med",
       "vs_city_pct": -15.9
     },
     {
@@ -151,6 +163,7 @@
       "n_live": 3,
       "top_asset": "Multifamily",
       "waterfront_share": 0.0,
+      "confidence": "Indicative",
       "vs_city_pct": -30.7
     },
     {
@@ -165,6 +178,7 @@
       "n_live": 1,
       "top_asset": "Commercial (other)",
       "waterfront_share": 0.08,
+      "confidence": "Med",
       "vs_city_pct": -45.6
     }
   ],
@@ -178,10 +192,13 @@
       "n": 90,
       "n_sold": 21,
       "n_live": 16,
+      "confidence": "High",
       "assume_rent_psf": 18,
       "assume_vacancy": 0.06,
       "assume_opex_ratio": 0.42,
       "assume_cap_rate": 0.055,
+      "market_rent_psf": null,
+      "market_rent_n": null,
       "typical_noi_psf": 9.81,
       "typical_implied_cap": 0.0524
     },
@@ -194,10 +211,13 @@
       "n": 29,
       "n_sold": 3,
       "n_live": 5,
+      "confidence": "Indicative",
       "assume_rent_psf": 34,
       "assume_vacancy": 0.15,
       "assume_opex_ratio": 0.45,
       "assume_cap_rate": 0.08,
+      "market_rent_psf": 17.0,
+      "market_rent_n": 41.0,
       "typical_noi_psf": 15.9,
       "typical_implied_cap": 0.0906
     },
@@ -210,10 +230,13 @@
       "n": 25,
       "n_sold": 6,
       "n_live": 5,
+      "confidence": "Med",
       "assume_rent_psf": 23,
       "assume_vacancy": 0.08,
       "assume_opex_ratio": 0.22,
       "assume_cap_rate": 0.0675,
+      "market_rent_psf": 28.0,
+      "market_rent_n": 59.0,
       "typical_noi_psf": 16.5,
       "typical_implied_cap": 0.0672
     },
@@ -226,10 +249,13 @@
       "n": 34,
       "n_sold": 11,
       "n_live": 3,
+      "confidence": "High",
       "assume_rent_psf": 12,
       "assume_vacancy": 0.05,
       "assume_opex_ratio": 0.15,
       "assume_cap_rate": 0.0625,
+      "market_rent_psf": 19.4,
+      "market_rent_n": 24.0,
       "typical_noi_psf": 9.69,
       "typical_implied_cap": 0.0658
     },
@@ -242,10 +268,13 @@
       "n": 33,
       "n_sold": 5,
       "n_live": 9,
+      "confidence": "Med",
       "assume_rent_psf": 16,
       "assume_vacancy": 0.1,
       "assume_opex_ratio": 0.35,
       "assume_cap_rate": 0.0675,
+      "market_rent_psf": 20.2,
+      "market_rent_n": 24.0,
       "typical_noi_psf": 9.36,
       "typical_implied_cap": 0.0686
     },
@@ -258,10 +287,13 @@
       "n": 11,
       "n_sold": 0,
       "n_live": 2,
+      "confidence": "Indicative",
       "assume_rent_psf": 100,
       "assume_vacancy": 0.3,
       "assume_opex_ratio": 0.62,
       "assume_cap_rate": 0.085,
+      "market_rent_psf": null,
+      "market_rent_n": null,
       "typical_noi_psf": 26.6,
       "typical_implied_cap": 0.0665
     },
@@ -274,10 +306,13 @@
       "n": 8,
       "n_sold": 3,
       "n_live": 1,
+      "confidence": "Indicative",
       "assume_rent_psf": 33,
       "assume_vacancy": 0.1,
       "assume_opex_ratio": 0.2,
       "assume_cap_rate": 0.065,
+      "market_rent_psf": 22.6,
+      "market_rent_n": 7.0,
       "typical_noi_psf": 23.76,
       "typical_implied_cap": 0.0821
     },
@@ -290,10 +325,13 @@
       "n": 3,
       "n_sold": 0,
       "n_live": 1,
+      "confidence": "Indicative",
       "assume_rent_psf": 20,
       "assume_vacancy": 0.08,
       "assume_opex_ratio": 0.2,
       "assume_cap_rate": 0.07,
+      "market_rent_psf": null,
+      "market_rent_n": null,
       "typical_noi_psf": 14.72,
       "typical_implied_cap": 0.0427
     },
@@ -306,10 +344,13 @@
       "n": 2,
       "n_sold": 0,
       "n_live": 1,
+      "confidence": "Indicative",
       "assume_rent_psf": 22,
       "assume_vacancy": 0.15,
       "assume_opex_ratio": 0.3,
       "assume_cap_rate": 0.075,
+      "market_rent_psf": 7.3,
+      "market_rent_n": 4.0,
       "typical_noi_psf": 13.09,
       "typical_implied_cap": 0.0522
     },
@@ -322,10 +363,13 @@
       "n": 96,
       "n_sold": 20,
       "n_live": 13,
+      "confidence": "High",
       "assume_rent_psf": 22,
       "assume_vacancy": 0.12,
       "assume_opex_ratio": 0.3,
       "assume_cap_rate": 0.07,
+      "market_rent_psf": 26.5,
+      "market_rent_n": 80.0,
       "typical_noi_psf": 13.55,
       "typical_implied_cap": 0.0644
     }
@@ -404,6 +448,36 @@
       "hold": 5,
       "sell_pct": 0.02,
       "acq_pct": 0.02
+    }
+  },
+  "market_rents": {
+    "Commercial (other)": {
+      "rate": 26.5,
+      "n": 80
+    },
+    "Industrial": {
+      "rate": 19.4,
+      "n": 24
+    },
+    "Mixed Use": {
+      "rate": 20.2,
+      "n": 24
+    },
+    "Office": {
+      "rate": 17.0,
+      "n": 41
+    },
+    "Restaurant": {
+      "rate": 22.6,
+      "n": 7
+    },
+    "Retail": {
+      "rate": 28.0,
+      "n": 59
+    },
+    "Special Purpose": {
+      "rate": 7.3,
+      "n": 4
     }
   }
 }

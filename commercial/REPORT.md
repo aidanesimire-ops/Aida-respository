@@ -33,6 +33,25 @@ Fit R² = **0.585** (n=125); closed sales price about **-26%** vs live asks. Mar
 
 *Defaults are calibrated so a typically-priced building of each type prices near its market cap, and are realistic South-Florida gross rents — starting points, not gospel.*
 
+
+**Rents anchored to real lease comps.** From **244** lease listings we derive a median asking rent $/SqFt per asset type — so the assumption isn't a pure guess where we have data:
+
+
+| Asset type | Assumed rent | Market rent (lease comps) | n |
+|---|---|---|---|
+| Office | $34 | $17 | 41 |
+| Retail | $23 | $28 | 59 |
+| Industrial | $12 | $19 | 24 |
+| Mixed Use | $16 | $20 | 24 |
+| Restaurant | $33 | $23 | 7 |
+| Special Purpose | $22 | $7 | 4 |
+| Commercial (other) | $22 | $26 | 80 |
+
+*In the dashboard, 'Use market rents' swaps these in with one click.*
+
+
+**Multifamily $/unit.** Unit counts were parsed from addresses (e.g. "Unit#1-28") for **30 of 90** multifamily comps, enabling a per-door metric where available (units aren't a field in the export).
+
 ## Submarkets, ranked (normalized $/SqFt)
 
 | Submarket | Norm $/SqFt | vs city | Median price | Top type | Mo supply | Stance |

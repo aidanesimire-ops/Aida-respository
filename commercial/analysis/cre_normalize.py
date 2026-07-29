@@ -28,6 +28,11 @@ MIN_GEO = 5          # non-failed sale rows a submarket needs for its own model 
 MIN_ASSET = 6        # rows an asset type needs before folding into Commercial (other)
 
 
+def _conf(n_sold):
+    """Confidence tier from closed-comp depth — keeps thin cells honest."""
+    return "High" if n_sold >= 8 else ("Med" if n_sold >= 4 else "Indicative")
+
+
 def _prep(d):
     d = d.copy()
     d["lsqft"] = np.log(d["sqft"].clip(lower=1))
@@ -86,6 +91,7 @@ def submarket_table(s, mod, frame, smear, med):
             "n_live": int(g["status"].isin(CRE.LIVE).sum()),
             "top_asset": g["asset_type"].mode().iat[0] if len(g) else None,
             "waterfront_share": round(float(g["waterfront"].mean()), 2),
+            "confidence": _conf(len(gsold)),
         })
     t = pd.DataFrame(rows).set_index("submarket")
     city = float(np.average(t["norm_ppsf"], weights=t["n"]))
@@ -93,7 +99,7 @@ def submarket_table(s, mod, frame, smear, med):
     return t.sort_values("norm_ppsf", ascending=False), city
 
 
-def type_table(s):
+def type_table(s, mkt_rents):
     """Median $/sqft by asset type (factual) + the default income assumptions and the
     income they imply on the type's typical deal. Medians, not per-type model predictions,
     which are unstable where an asset type has only a handful of closed sales."""
@@ -111,8 +117,11 @@ def type_table(s):
             "median_sqft": int(g["sqft"].median()),
             "n": int(len(g)), "n_sold": int(len(gsold)),
             "n_live": int(g["status"].isin(CRE.LIVE).sum()),
+            "confidence": _conf(len(gsold)),
             "assume_rent_psf": asm["rent_psf"], "assume_vacancy": asm["vacancy"],
             "assume_opex_ratio": asm["opex_ratio"], "assume_cap_rate": asm["cap_rate"],
+            "market_rent_psf": mkt_rents.get(at, {}).get("rate"),
+            "market_rent_n": mkt_rents.get(at, {}).get("n"),
             "typical_noi_psf": round(d["noi_psf"], 2),
             "typical_implied_cap": round(d["implied_cap"], 4),
         })
@@ -135,11 +144,12 @@ def value_all(s, mod, frame, smear):
     d["assumed_value"] = [x["value"] for x in inc]
     d["income_gap_pct"] = [x["value_gap"] * 100 for x in inc]
     keep = ["mls", "address", "submarket", "asset_type", "status", "deal_kind", "price",
-            "sqft", "ppsf", "pred_ppsf", "ppsf_gap_pct", "age", "year_built", "waterfront",
-            "bays", "zoning", "noi", "implied_cap", "market_cap", "assumed_value",
-            "income_gap_pct"]
+            "sqft", "units", "price_per_unit", "ppsf", "pred_ppsf", "ppsf_gap_pct", "age",
+            "year_built", "waterfront", "bays", "zoning", "noi", "implied_cap", "market_cap",
+            "assumed_value", "income_gap_pct"]
     out = d[keep].copy()
     out["price_band"] = out["price"].map(CRE.price_band)
+    out["price_per_unit"] = out["price_per_unit"].round(-2)
     for c in ("ppsf", "pred_ppsf", "assumed_value", "noi"):
         out[c] = out[c].round(0)
     for c in ("ppsf_gap_pct", "income_gap_pct"):
@@ -162,9 +172,15 @@ def main():
     print(f"  closed-vs-listed effect: {sold_gap:+.1f}% | size elasticity "
           f"{mod.params.get('lsqft', float('nan')):.3f}")
 
+    mkt_rents, n_lease_rated = CRE.market_rents(df)
+    mf = s[(s["asset_type"] == "Multifamily")]
+    mf_units = int(mf["units"].notna().sum())
+    print(f"  market rents from {n_lease_rated} lease comps ({len(mkt_rents)} types); "
+          f"parsed unit counts for {mf_units}/{len(mf)} multifamily comps")
+
     med = {"sqft": float(s["sqft"].median()), "age": float(s["age"].median())}
     subt, city = submarket_table(s, mod, frame, smear, med)
-    typt = type_table(s)
+    typt = type_table(s, mkt_rents)
     valued = value_all(s, mod, frame, smear)
 
     subt.to_csv(os.path.join(CRE.PROC, "cre_submarkets.csv"))
@@ -194,12 +210,16 @@ def main():
             "standardized_building": {"sqft": int(med["sqft"]), "age": int(med["age"])},
             "asset_premium_pct": asset_prem,
             "status_counts": {k: int(v) for k, v in df["status"].value_counts().items()},
-            "no_income_note": ("MLS export carries no NOI / rent / cap / units — all income "
-                               "metrics are derived from editable assumptions (cre_assumptions)."),
+            "no_income_note": ("MLS export carries no NOI / rent / cap / units — income "
+                               "metrics are derived from assumptions, with rents anchored to "
+                               "lease comps where available and unit counts parsed from addresses."),
+            "market_rent_lease_comps": n_lease_rated,
+            "mf_unit_coverage": {"parsed": mf_units, "total": int(len(mf))},
         },
         "submarkets": json.loads(subt.reset_index().to_json(orient="records")),
         "types": json.loads(typt.reset_index().to_json(orient="records")),
         "assumptions": {"by_type": A.DEFAULTS, "finance": A.FINANCE},
+        "market_rents": mkt_rents,
     }
     with open(os.path.join(CRE.PROC, "cre_bundle.json"), "w") as f:
         json.dump(bundle, f, indent=2)

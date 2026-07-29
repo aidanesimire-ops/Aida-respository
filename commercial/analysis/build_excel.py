@@ -87,9 +87,11 @@ def assumptions_sheet(wb, f, types):
     ipct2 = wb.add_format({**hi, "num_format": "0.00%"})
     ws.set_column(0, 0, 20); ws.set_column(1, 7, 13)
     heads = ["Asset type", "Median $/SqFt", "Rent $/SqFt", "Vacancy %", "Opex % EGI",
-             "Market cap %", "Implied cap"]
+             "Market cap %", "Implied cap", "Mkt rent (comps)", "Conf"]
     for j, h in enumerate(heads):
         ws.write(3, j, h, f["hdr"])
+    icfmt = wb.add_format({"border": 1, "border_color": "#e1e0d9", "num_format": "0.00%",
+                           "align": "right", "bold": True})
     for i, (_, r) in enumerate(types.iterrows()):
         rr = 4 + i
         er = rr + 1
@@ -101,9 +103,17 @@ def assumptions_sheet(wb, f, types):
         ws.write_number(rr, 5, float(r["assume_cap_rate"]), ipct2)
         # implied cap = rent*(1-vac)*(1-opex)/median_ppsf
         ic = float(r["assume_rent_psf"]) * (1 - r["assume_vacancy"]) * (1 - r["assume_opex_ratio"]) / max(float(r["median_ppsf"]), 1)
-        ws.write_formula(rr, 6, f"=C{er}*(1-D{er})*(1-E{er})/B{er}",
-                         wb.add_format({"border": 1, "border_color": "#e1e0d9",
-                                        "num_format": "0.00%", "align": "right", "bold": True}), ic)
+        ws.write_formula(rr, 6, f"=C{er}*(1-D{er})*(1-E{er})/B{er}", icfmt, ic)
+        mr = r.get("market_rent_psf")
+        if mr is not None and not pd.isna(mr):
+            ws.write_number(rr, 7, float(mr), f["usd"])
+        else:
+            ws.write(rr, 7, "—", f["cell"])
+        ws.write(rr, 8, r.get("confidence", "—"), f["cell"])
+    ws.set_column(7, 8, 14)
+    ws.write(4 + len(types) + 1, 0,
+             "'Mkt rent (comps)' is the median asking lease rate from the lease listings — where present, "
+             "consider replacing the assumed Rent $/SqFt with it.", f["sub"])
 
 
 def scenario_sheet(wb, f, seed):
@@ -308,8 +318,9 @@ def main():
     _head(ws, f, "Asset types — $/SqFt & assumed income", "Median $/SqFt (factual) + default assumptions.", 8)
     ws.set_column(0, 0, 18); ws.set_column(1, 9, 12)
     _table(ws, f, types.reset_index(),
-           [("asset_type", "Type", "txt"), ("median_ppsf", "Median $/SqFt", "usd"),
-            ("n", "n", "num"), ("n_sold", "Sold", "num"), ("assume_rent_psf", "Rent $/SqFt", "usd"),
+           [("asset_type", "Type", "txt"), ("confidence", "Conf", "txt"),
+            ("median_ppsf", "Median $/SqFt", "usd"), ("n", "n", "num"), ("n_sold", "Sold", "num"),
+            ("assume_rent_psf", "Rent $/SqFt", "usd"), ("market_rent_psf", "Mkt rent", "usd"),
             ("assume_vacancy", "Vac", "pct0"), ("assume_opex_ratio", "Opex", "pct0"),
             ("assume_cap_rate", "Mkt cap", "pct2"), ("typical_implied_cap", "Implied cap", "pct2")])
 

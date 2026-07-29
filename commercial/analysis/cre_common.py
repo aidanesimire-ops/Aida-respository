@@ -116,6 +116,47 @@ def _is_lease(prop_type):
     return "lease" in str(prop_type).lower()
 
 
+def _units_from_address(addr):
+    """Recover a whole-building unit count from a 'Unit#1-28' style range in the address."""
+    if pd.isna(addr):
+        return np.nan
+    m = re.search(r"unit\s*#?\s*(\d+)\s*[-–]\s*(\d+)", str(addr), re.I)
+    if m:
+        lo, hi = int(m.group(1)), int(m.group(2))
+        if hi > lo and (hi - lo + 1) <= 400:
+            return float(hi - lo + 1)
+    return np.nan
+
+
+def _lease_rate_psf(price, sqft):
+    """Normalize a messy lease 'price' to an annual $/SqFt rate, inferring the rate basis."""
+    if pd.isna(price) or pd.isna(sqft) or sqft < MIN_SQFT or price <= 0:
+        return np.nan
+    if price <= 100:                       # already quoted as $/SqFt/yr
+        r = price
+    else:
+        annual_total = price / sqft        # price is a full annual rent
+        monthly_total = price * 12 / sqft  # price is a monthly rent
+        if 4 <= annual_total <= 120:
+            r = annual_total
+        elif 4 <= monthly_total <= 120:
+            r = monthly_total
+        else:
+            return np.nan
+    return r if 3 <= r <= 200 else np.nan
+
+
+def market_rents(df: pd.DataFrame, min_n: int = 4):
+    """Median asking lease rate ($/SqFt/yr) by asset type (and type×submarket) from the
+    lease listings — turns assumed rents into data-derived market rents where we have comps."""
+    lease = df[df["deal_kind"].eq("Lease") & df["lease_rate_psf"].notna()]
+    by_type = {}
+    for at, g in lease.groupby("asset_type"):
+        if len(g) >= min_n:
+            by_type[at] = {"rate": round(float(g["lease_rate_psf"].median()), 1), "n": int(len(g))}
+    return by_type, int(len(lease))
+
+
 def load_clean() -> pd.DataFrame:
     files = sorted(glob.glob(os.path.join(RAWDIR, "*.csv")))
     frames = []
@@ -157,6 +198,10 @@ def load_clean() -> pd.DataFrame:
     df["year_built"] = yb
     df["age"] = THIS_YEAR - yb
     df["ppsf"] = df["price"] / df["sqft"]
+    df["units"] = raw["Address"].map(_units_from_address)
+    df["price_per_unit"] = np.where(df["units"].gt(0), df["price"] / df["units"], np.nan)
+    df["lease_rate_psf"] = [_lease_rate_psf(p, s) if k == "Lease" else np.nan
+                            for p, s, k in zip(df["current_price"], df["sqft"], df["deal_kind"])]
 
     # dedupe exact MLS duplicates (same listing across pulls), keep the most-progressed status
     prio = {"Sold": 0, "UnderContract": 1, "Pending": 2, "Active": 3, "Rented": 4,

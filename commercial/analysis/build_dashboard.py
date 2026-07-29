@@ -14,6 +14,7 @@ cap for a target cap rate, IRR, DSCR or cash-on-cash. Everything recomputes in t
 """
 from __future__ import annotations
 import json
+import math
 import os
 
 import pandas as pd
@@ -43,7 +44,8 @@ def main():
     master_b = _load("master_bundle.json") or {"submarkets": cre["submarkets"]}
 
     recs = valued[["mls", "address", "submarket", "asset_type", "status", "price", "sqft",
-                   "ppsf", "pred_ppsf", "ppsf_gap_pct", "price_band"]].copy()
+                   "units", "price_per_unit", "ppsf", "pred_ppsf", "ppsf_gap_pct", "year_built",
+                   "price_band"]].copy()
     recs = recs.where(pd.notna(recs), None)
     listings = recs.to_dict(orient="records")
 
@@ -62,10 +64,20 @@ def main():
         "segments": seg_b.get("by_type", []),
         "absorption": seg_b.get("absorption_by_submarket", []),
         "failure_type": pros_b.get("failure_rate_type", []),
+        "market_rents": cre.get("market_rents", {}),
         "seed": SC.seed(),
         "asset_order": CRE.ASSET_ORDER,
     }
-    data_json = json.dumps(DATA)
+    def _clean(o):
+        if isinstance(o, float):
+            return None if (math.isnan(o) or math.isinf(o)) else o
+        if isinstance(o, dict):
+            return {k: _clean(v) for k, v in o.items()}
+        if isinstance(o, list):
+            return [_clean(v) for v in o]
+        return o
+
+    data_json = json.dumps(_clean(DATA), allow_nan=False)
     script = _SCRIPT.replace("/*__DATA__*/", data_json)
 
     head = ('<!doctype html><html lang="en"><head><meta charset="utf-8">'
@@ -156,6 +168,31 @@ input[type=number]{width:88px;text-align:right;background:var(--yellow);border-c
 .solveOut{background:var(--accent-soft);border:1px solid var(--line);border-radius:11px;padding:14px 16px;margin-top:12px;font-size:15px}
 .themeToggle{position:fixed;top:9px;right:12px;z-index:30;cursor:pointer;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:5px 10px;font-size:12px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.guide summary{cursor:pointer;font-weight:650;font-size:14px;list-style:none}
+.guide summary::-webkit-details-marker{display:none}
+.guide summary::before{content:"▸ ";color:var(--accent)}
+.guide[open] summary::before{content:"▾ "}
+.guide ul{margin:10px 0 0;padding-left:0;list-style:none;display:grid;gap:8px}
+.guide li{padding-left:0}.guide b{color:var(--accent2)}
+.conf{font-size:10px;padding:1px 6px;border-radius:10px;border:1px solid var(--line);color:var(--muted);margin-left:5px}
+.conf.hi{color:var(--good);border-color:var(--good)}
+.conf.lo{color:var(--warn);border-color:var(--warn)}
+.sheet{border:2px solid var(--ink);border-radius:12px;padding:22px 24px;background:var(--card);max-width:820px}
+.sheet .sh-h{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:14px}
+.sheet h3{font-size:22px;text-transform:none;letter-spacing:-.01em;color:var(--ink);margin:0}
+.sheet .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}
+.sheet .kpi{border:1px solid var(--line);border-radius:8px;padding:9px 10px}
+.sheet .kpi .l{font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.sheet .kpi .n{font-size:17px;font-weight:650;font-variant-numeric:tabular-nums}
+.sheet .pitch{background:var(--accent-soft);border-radius:8px;padding:11px 13px;font-size:14px;margin:12px 0}
+@media print{
+ body{background:#fff}
+ .themeToggle,nav,.banner,.guide,#answers,#assumptions,#financing,#overview,#inventory,
+ #underwrite,#solver,#absorption,#prospects,header .sub,.wrap>.sub{display:none!important}
+ #dealsheet{display:block!important;margin:0;border:none;box-shadow:none;padding:0}
+ .sheet{border-color:#000;max-width:100%}
+ .card{border:none;box-shadow:none;padding:0;margin:0}
+}
 </style>"""
 
 _BODY = r"""<div class="themeToggle" onclick="toggleTheme()">◐ theme</div>
@@ -165,6 +202,17 @@ _BODY = r"""<div class="themeToggle" onclick="toggleTheme()">◐ theme</div>
  <div class="sub" id="subline"></div>
 </header>
 <div class="banner" id="banner"></div>
+<details class="guide card">
+ <summary>How to use this for marketing &amp; deals</summary>
+ <ul>
+  <li><b>Find sellers to call</b> → <a href="#prospects">Prospects</a> + the failed-listing screen: motivated owners whose deal stalled, with the overpricing that likely killed it. Great cold-call list.</li>
+  <li><b>Win a listing (seller pitch)</b> → load the property in <a href="#underwrite">Underwrite</a>, then <b>Print deal sheet</b> — a one-page "here's what the market says it's worth, and the price that sells" you can hand the owner.</li>
+  <li><b>Pitch a buyer</b> → <a href="#inventory">Reprice inventory</a>, filter to <b>Underpriced</b>, open a deal in Underwrite and print the sheet: implied cap, value, and projected return on your assumptions.</li>
+  <li><b>Price a deal / answer "what should I pay?"</b> → <a href="#solver">Goal-seek</a>: solve price for your target cap or IRR.</li>
+  <li><b>Pick a market</b> → the <a href="#answers">Answers</a> band names the cheapest basis, highest yield, and tightest supply, live.</li>
+  <li><b>Trust the numbers</b> → income figures use editable assumptions (rents anchored to real lease comps where the tag says "comps"); cells marked <span class="conf lo">Indicative</span> have few sales — verify before quoting.</li>
+ </ul>
+</details>
 <nav>
  <a href="#answers">Answers</a><a href="#assumptions">Assumptions</a><a href="#financing">Financing</a>
  <a href="#overview">$/SqFt map</a><a href="#inventory">Reprice inventory</a>
@@ -181,7 +229,11 @@ _BODY = r"""<div class="themeToggle" onclick="toggleTheme()">◐ theme</div>
  <h2>Income assumptions <span class="muted small">— the income the export doesn't give us. Edit any yellow cell; everything recomputes.</span></h2>
  <div class="sub" style="margin:6px 0 12px">Per asset class: market rent ($/SqFt/yr), vacancy, operating-expense ratio, market cap. Implied cap = NOI ÷ price on the type's median $/SqFt.</div>
  <div class="scroll"><table class="asm" id="asmTable"></table></div>
- <div class="flex" style="margin-top:10px"><button class="btn ghost" onclick="resetAll()">Reset to defaults</button></div>
+ <div class="flex" style="margin-top:10px">
+  <button class="btn" onclick="useMarketRents()">Use market rents (from lease comps)</button>
+  <button class="btn ghost" onclick="resetAll()">Reset to defaults</button>
+  <span class="muted small" id="mktRentNote"></span>
+ </div>
 </div>
 
 <div class="card" id="financing">
@@ -216,7 +268,7 @@ _BODY = r"""<div class="themeToggle" onclick="toggleTheme()">◐ theme</div>
   <input type="text" id="invSearch" placeholder="search address…" style="width:180px" oninput="renderInventory()">
   <select id="invSub" onchange="renderInventory()"></select>
   <select id="invFlag" onchange="renderInventory()">
-   <option value="All">All flags</option><option>Underpriced</option><option>Fair</option><option>Overpriced</option></select>
+   <option value="All">All flags</option><option>Underpriced</option><option>Fair</option><option>Overpriced</option><option>Check</option></select>
  </div>
  <div class="flex" id="typeFilter" style="margin-bottom:10px"></div>
  <div class="scroll"><table id="invTable"></table></div>
@@ -240,7 +292,14 @@ _BODY = r"""<div class="themeToggle" onclick="toggleTheme()">◐ theme</div>
   <div><h3>Sensitivity — exit cap</h3><div class="scroll"><table id="uSensCap"></table></div></div>
   <div><h3>Sensitivity — rent $/SqFt</h3><div class="scroll"><table id="uSensRent"></table></div></div>
  </div>
+ <div class="flex" style="margin-top:14px">
+  <button class="btn" onclick="printSheet()">🖨 Print deal sheet (PDF)</button>
+  <label class="small">for<select id="sheetAudience" onchange="renderDealSheet()"><option value="buyer">a buyer</option><option value="seller">the seller</option></select></label>
+ </div>
 </div>
+
+<div class="card" id="dealsheet"><div class="sheet" id="sheetBody"></div></div>
+
 
 <div class="card" id="solver">
  <h2>Goal-seek <span class="muted small">— reverse-solve one input to hit a target on the deal loaded above</span></h2>
@@ -300,6 +359,9 @@ function derive(price,sqft,type){const a=ASM[type]||ASM["Commercial (other)"];
  const egi=sqft*a.rent_psf*(1-a.vacancy),noi=egi*(1-a.opex_ratio);
  return{noi,impliedCap:price?noi/price:NaN,value:a.cap_rate?noi/a.cap_rate:NaN,
   gap:a.cap_rate?price/(noi/a.cap_rate)-1:NaN,marketCap:a.cap_rate};}
+// an implied cap outside a plausible band almost always means the listing's SqFt (or its
+// assumed rent) is off — flag it "Check" rather than calling it a screaming buy.
+const suspect=d=>!(d.impliedCap>0.005&&d.impliedCap<=0.15);
 
 function irr(cfs){const npv=r=>cfs.reduce((s,c,i)=>s+c/Math.pow(1+r,i),0);
  if(cfs.every(c=>c>=0)||cfs.every(c=>c<=0))return NaN;
@@ -328,13 +390,15 @@ function listingScen(l){const a=ASM[l.asset_type]||ASM["Commercial (other)"],f=r
 function renderAnswers(){
  const subs=D.submarkets.slice().sort((a,b)=>b.norm_ppsf-a.norm_ppsf);
  const cheap=subs[subs.length-1],rich=subs[0];
- const ty=D.types.map(t=>{const a=ASM[t.asset_type];const ic=t.median_ppsf?
-  t.median_ppsf*a.rent_psf*(1-a.vacancy)*(1-a.opex_ratio)/t.median_ppsf:NaN;return{...t,ic:a.rent_psf*(1-a.vacancy)*(1-a.opex_ratio)/t.median_ppsf};});
+ const ty=D.types.map(t=>{const a=ASM[t.asset_type];
+  return{...t,ic:t.median_ppsf?a.rent_psf*(1-a.vacancy)*(1-a.opex_ratio)/t.median_ppsf:NaN};})
+  .filter(t=>t.ic>0&&t.ic<=0.15);
  const bestYield=ty.slice().sort((a,b)=>b.ic-a.ic)[0];
  const live=D.listings.filter(isLive).map(l=>({l,d:derive(l.price,l.sqft,l.asset_type),s:listingScen(l)}));
- const under=live.filter(x=>x.d.gap<-0.10),over=live.filter(x=>x.d.gap>0.10);
+ const liveP=live.filter(x=>!suspect(x.d));
+ const under=liveP.filter(x=>x.d.gap<-0.10),over=liveP.filter(x=>x.d.gap>0.10);
  const topU=under.slice().sort((a,b)=>a.d.gap-b.d.gap)[0];
- const irrMed=med(live.map(x=>x.s.li)),cocMed=med(live.map(x=>x.s.coc1)),dscrMed=med(live.map(x=>x.s.dscr));
+ const irrMed=med(liveP.map(x=>x.s.li)),cocMed=med(liveP.map(x=>x.s.coc1)),dscrMed=med(liveP.map(x=>x.s.dscr));
  const abs=(D.absorption||[]).filter(r=>r.months_supply!=null).sort((a,b)=>a.months_supply-b.months_supply);
  const tight=abs[0],soft=abs[abs.length-1];
  const askMed=med(live.map(x=>x.l.ppsf));
@@ -358,33 +422,38 @@ function renderAnswers(){
 // ---------- assumptions (built once; only derived cell updates on edit) ----------
 function renderAsm(){
  let h="<thead><tr><th>Asset type</th><th>Median $/SqFt</th><th>#</th><th>Rent $/SqFt</th>"+
-  "<th>Vacancy %</th><th>Opex %</th><th>Market cap %</th><th>Implied cap*</th></tr></thead><tbody>";
+  "<th>Mkt rent (comps)</th><th>Vacancy %</th><th>Opex %</th><th>Market cap %</th><th>Implied cap*</th></tr></thead><tbody>";
  D.asset_order.filter(t=>ASM[t]).forEach(t=>{const a=ASM[t];const row=D.types.find(x=>x.asset_type===t)||{};
-  const mp=row.median_ppsf||0,noi=mp*a.rent_psf*(1-a.vacancy)*(1-a.opex_ratio),ic=mp?noi/mp:NaN;
+  const mp=row.median_ppsf||0,ic=mp?a.rent_psf*(1-a.vacancy)*(1-a.opex_ratio)/mp:NaN;
+  const mr=D.market_rents[t];
   h+=`<tr><td>${t}</td><td class="tnum">${mp?usd(mp):"—"}</td><td class="tnum">${row.n||"—"}</td>`+
    `<td><input type="number" step="1" value="${a.rent_psf}" oninput="setAsm('${t}','rent_psf',this.value,1)"></td>`+
+   `<td class="tnum small ${mr?'up':'muted'}">${mr?('$'+mr.rate+' · n='+mr.n):'—'}</td>`+
    `<td><input type="number" step="1" value="${(a.vacancy*100).toFixed(0)}" oninput="setAsm('${t}','vacancy',this.value,0.01)"></td>`+
    `<td><input type="number" step="1" value="${(a.opex_ratio*100).toFixed(0)}" oninput="setAsm('${t}','opex_ratio',this.value,0.01)"></td>`+
    `<td><input type="number" step="0.05" value="${(a.cap_rate*100).toFixed(2)}" oninput="setAsm('${t}','cap_rate',this.value,0.01)"></td>`+
    `<td class="tnum" id="ic-${t.replace(/\W/g,'')}">${pf(ic)}</td></tr>`;});
  $("#asmTable").innerHTML=h+"</tbody>";}
+function useMarketRents(){let n=0;Object.keys(D.market_rents||{}).forEach(t=>{if(ASM[t]){ASM[t].rent_psf=D.market_rents[t].rate;n++;}});
+ renderAsm();recompute();$("#mktRentNote").textContent=`Applied lease-comp rents to ${n} asset types; the rest keep your assumption (no lease comps).`;}
+const confBadge=c=>c?`<span class="conf ${c==='High'?'hi':c==='Indicative'?'lo':''}">${c}</span>`:"";
 function setAsm(t,k,val,mult){ASM[t][k]=parseFloat(val)*mult||0;
  const row=D.types.find(x=>x.asset_type===t)||{},a=ASM[t],mp=row.median_ppsf||0;
- const ic=mp?(mp*a.rent_psf*(1-a.vacancy)*(1-a.opex_ratio))/mp:NaN;
+ const ic=mp?a.rent_psf*(1-a.vacancy)*(1-a.opex_ratio)/mp:NaN;
  const cell=$("#ic-"+t.replace(/\W/g,''));if(cell)cell.textContent=pf(ic);
  recompute();}
 
 // ---------- overview ----------
 function renderSub(){const s=D.submarkets.slice().sort((a,b)=>b.norm_ppsf-a.norm_ppsf),mx=Math.max(...s.map(x=>x.norm_ppsf));
  let h="<thead><tr><th>Submarket</th><th>Norm $/SqFt</th><th>vs city</th><th>Median price</th><th>n</th><th>Top type</th></tr></thead><tbody>";
- s.forEach(r=>{h+=`<tr><td>${r.submarket}</td><td class="tnum">${usd(r.norm_ppsf)} <span class="bar" style="width:${38*r.norm_ppsf/mx}px"></span></td>`+
+ s.forEach(r=>{h+=`<tr><td>${r.submarket} ${confBadge(r.confidence)}</td><td class="tnum">${usd(r.norm_ppsf)} <span class="bar" style="width:${38*r.norm_ppsf/mx}px"></span></td>`+
   `<td class="tnum ${r.vs_city_pct>=0?'up':'down'}">${sg(r.vs_city_pct)}</td><td class="tnum">${usd(r.median_price)}</td>`+
   `<td class="tnum">${r.n}</td><td class="small">${r.top_asset||"—"}</td></tr>`;});
  $("#subTable").innerHTML=h+"</tbody>";}
 function renderTypes(){let h="<thead><tr><th>Asset type</th><th>Median $/SqFt</th><th>n</th><th>Rent</th><th>Implied cap</th><th>Market cap</th></tr></thead><tbody>";
  D.asset_order.filter(t=>D.types.find(x=>x.asset_type===t)).forEach(t=>{const r=D.types.find(x=>x.asset_type===t),a=ASM[t];
-  const ic=r.median_ppsf*a.rent_psf*(1-a.vacancy)*(1-a.opex_ratio)/r.median_ppsf;
-  h+=`<tr><td>${t}</td><td class="tnum">${usd(r.median_ppsf)}</td><td class="tnum">${r.n}</td>`+
+  const ic=r.median_ppsf?a.rent_psf*(1-a.vacancy)*(1-a.opex_ratio)/r.median_ppsf:NaN;
+  h+=`<tr><td>${t} ${confBadge(r.confidence)}</td><td class="tnum">${usd(r.median_ppsf)}</td><td class="tnum">${r.n}</td>`+
    `<td class="tnum">$${a.rent_psf}</td><td class="tnum ${ic>a.cap_rate?'up':'down'}">${pf(ic)}</td><td class="tnum">${pf(a.cap_rate)}</td></tr>`;});
  $("#typeTable").innerHTML=h+"</tbody>";}
 
@@ -401,10 +470,10 @@ function renderInventory(){
   .filter(l=>!q||((l.address||"")+l.mls).toLowerCase().includes(q))
   .map(l=>{const d=derive(l.price,l.sqft,l.asset_type),s=listingScen(l);
    return{...l,...d,income_gap:d.gap*100,irr:s.li,
-    flag:d.gap<-0.10?"Underpriced":d.gap>0.10?"Overpriced":"Fair"};})
+    flag:suspect(d)?"Check":d.gap<-0.10?"Underpriced":d.gap>0.10?"Overpriced":"Fair"};})
   .filter(r=>flagf==="All"||r.flag===flagf);
  const k=invSort.k;rows.sort((a,b)=>((a[k]==null||isNaN(a[k])?1e9:a[k])-(b[k]==null||isNaN(b[k])?1e9:b[k]))*invSort.dir);
- const fl=g=>g<-10?'<span class="pill u">Under</span>':g>10?'<span class="pill o">Over</span>':'<span class="pill f">Fair</span>';
+ const fl=f=>f==="Underpriced"?'<span class="pill u">Under</span>':f==="Overpriced"?'<span class="pill o">Over</span>':f==="Check"?'<span class="pill f" title="implied cap outside a plausible band — verify SqFt / rent">Check</span>':'<span class="pill f">Fair</span>';
  const th=(k,l)=>`<th style="cursor:pointer" onclick="sortInv('${k}')">${l}</th>`;
  let h="<thead><tr>"+th("address","Address")+th("asset_type","Type")+th("submarket","Area")+th("price","Asking")+
   th("ppsf","$/SqFt")+th("ppsf_gap_pct","vs comp")+th("impliedCap","Impl cap")+th("marketCap","Mkt cap")+
@@ -414,7 +483,7 @@ function renderInventory(){
   `<td class="tnum ${r.ppsf_gap_pct<0?'up':'down'}">${sg(r.ppsf_gap_pct)}</td>`+
   `<td class="tnum ${r.impliedCap>r.marketCap?'up':'down'}">${pf(r.impliedCap)}</td><td class="tnum">${pf(r.marketCap)}</td>`+
   `<td class="tnum">${usd(r.value)}</td><td class="tnum ${r.income_gap<0?'up':'down'}">${sg(r.income_gap)}</td>`+
-  `<td class="tnum ${r.irr>0.1?'up':r.irr<0?'down':''}">${p1(r.irr)}</td><td>${fl(r.income_gap)}</td></tr>`;});
+  `<td class="tnum ${r.irr>0.1?'up':r.irr<0?'down':''}">${p1(r.irr)}</td><td>${fl(r.flag)}</td></tr>`;});
  $("#invTable").innerHTML=h+"</tbody>"+(rows.length>140?`<caption class="muted small" style="caption-side:bottom;text-align:left;padding-top:6px">showing 140 of ${rows.length}</caption>`:"");}
 function sortInv(k){invSort.dir=(invSort.k===k?-invSort.dir:1);invSort.k=k;renderInventory();}
 
@@ -475,6 +544,49 @@ function runSolve(){const varName=$("#sVar").value,metric=$("#sMetric").value;
  $("#sOut").innerHTML=`To hit <b>${mlab} ${tlab}</b>, set <b>${vlab} = ${unit(x)}</b>.`+
   `<div class="muted small" style="margin-top:6px">Then: going-in cap ${pf(v.goin)} · DSCR ${v.dscr.toFixed(2)}× · Y1 CoC ${p1(v.coc1)} · ${v.hold}-yr IRR ${p1(v.li)} · EM ${v.em.toFixed(2)}× · value ${usd(value)}.</div>`;}
 
+// ---------- deal sheet (printable, marketing) ----------
+let curListing=null;
+function nearestComps(sub,type,sqft){
+ let pool=D.listings.filter(l=>l.status==="Sold"&&l.submarket===sub);
+ if(pool.length<3)pool=D.listings.filter(l=>l.status==="Sold"&&l.asset_type===type);
+ return pool.map(l=>({...l,d:Math.abs((l.sqft||0)-(sqft||0))})).sort((a,b)=>a.d-b.d).slice(0,3);}
+function renderDealSheet(){
+ const o=readScen(),v=scen(o),value=o.mcap?v.noi0/o.mcap:NaN,gap=value?o.price/value-1:NaN;
+ const l=curListing,type=$("#uType").value,aud=$("#sheetAudience").value;
+ const addr=l?(l.address||l.mls):"Custom deal",sub=l?l.submarket:"—";
+ const units=l&&l.units?l.units:null,ppu=units?o.price/units:null;
+ let date="";try{date=new Date().toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric"});}catch(e){}
+ const kpi=(l,n)=>`<div class="kpi"><div class="l">${l}</div><div class="n">${n}</div></div>`;
+ let pitch;
+ if(aud==="seller"){
+  pitch=gap>0.05?`Comparable buildings support about <b>${usd(value)}</b> at market rents (a ${pf(o.mcap)} cap). The current ask is ${sg(gap*100)} above that — pricing nearer ${usd(value)} typically clears faster.`
+   :gap<-0.05?`The market supports roughly <b>${usd(value)}</b> at a ${pf(o.mcap)} cap — above where this is positioned. There may be room to raise the ask.`
+   :`Priced in line with the market — about <b>${usd(value)}</b> at a ${pf(o.mcap)} cap.`;
+ }else{
+  pitch=gap<-0.08?`<b>Underpriced.</b> At market rents this underwrites to a ${pf(v.goin)} going-in cap and a ${p1(v.li)} ${v.hold}-yr levered IRR — roughly ${sg(gap*100)} below its ${usd(value)} value. Acquisition candidate.`
+   :gap>0.08?`Priced <b>above</b> value (${usd(value)}) on these assumptions — build negotiation room into any offer; it only pencils to ${p1(v.li)} IRR if rents and cap hold.`
+   :`Priced near value (${usd(value)}); underwrites to a ${pf(v.goin)} cap and ${p1(v.li)} IRR at ${$("#gLtv").value}% LTV.`;
+ }
+ const comps=l?nearestComps(sub,type,o.sqft):[];
+ const compRows=comps.map(c=>`<tr><td>${(c.address||c.mls).slice(0,30)}</td><td class="tnum">${(c.sqft||0).toLocaleString()}</td><td class="tnum">${usd(c.price)}</td><td class="tnum">${usd(c.ppsf)}</td></tr>`).join("");
+ $("#sheetBody").innerHTML=`
+  <div class="sh-h"><div><h3>${addr}</h3><div class="muted small">${type} · ${sub} · ${l?l.status:"custom"}</div></div>
+   <div class="muted small" style="text-align:right">Deal sheet<br>${date}</div></div>
+  <div class="kpis">
+   ${kpi("Price",usd(o.price))}${kpi("$/SqFt",usd(o.price/o.sqft))}${kpi("Size",Math.round(o.sqft).toLocaleString()+" SqFt")}
+   ${units?kpi("Units / $per unit",units+" · "+usd(ppu)):kpi("Year built",l&&l.year_built?l.year_built:"—")}
+   ${kpi("NOI (assumed)",usd(v.noi0))}${kpi("Going-in cap",pf(v.goin))}${kpi("Value @ mkt cap",usd(value))}${kpi("Ask vs value",sg(gap*100))}
+  </div>
+  <div class="pitch">${pitch}</div>
+  <div class="kpis" style="grid-template-columns:repeat(4,1fr)">
+   ${kpi("Financing",$("#gLtv").value+"% LTV @ "+$("#gRate").value+"%")}${kpi("DSCR",v.dscr.toFixed(2)+"×")}
+   ${kpi("Yr-1 cash-on-cash",p1(v.coc1))}${kpi(v.hold+"-yr levered IRR",p1(v.li))}
+  </div>
+  ${comps.length?`<h3 style="font-size:12px;text-transform:uppercase;color:var(--muted);margin:14px 0 6px">Nearest closed comps</h3>
+   <table><thead><tr><th>Address</th><th>SqFt</th><th>Price</th><th>$/SqFt</th></tr></thead><tbody>${compRows}</tbody></table>`:""}
+  <div class="muted small" style="margin-top:14px">Income figures are assumption-based (rents ${D.market_rents[type]?'anchored to lease comps':'assumed'}); verify rent roll &amp; T-12 before relying on them. Not an appraisal.</div>`;}
+function printSheet(){renderDealSheet();window.print();}
+
 // ---------- static tables ----------
 function renderAbs(){$("#absNote").textContent=window.__absnote||"Months of supply = live ÷ (closed per month); closed assumed to span a fixed window (no dates in export).";
  let h="<thead><tr><th>Submarket</th><th>Mo supply</th><th>Live</th><th>Sold</th><th>Failed</th></tr></thead><tbody>";
@@ -488,22 +600,28 @@ function renderFail(){let h="<thead><tr><th>Asset type</th><th>Failed</th><th>So
   `<td class="tnum ${r.failure_rate_pct>55?'down':''}">${r.failure_rate_pct==null?"—":r.failure_rate_pct.toFixed(0)+"%"}</td></tr>`;});$("#failTable").innerHTML=h+"</tbody>";}
 
 // ---------- init / recompute ----------
-function recompute(){renderTypes();renderAnswers();renderInventory();renderUnderwrite();}
+function recompute(){renderTypes();renderAnswers();renderInventory();renderUnderwrite();renderDealSheet();}
 function resetAll(){ASM=JSON.parse(JSON.stringify(D.assumptions.by_type));initFin();renderAsm();recompute();}
 function initFin(){const f=D.assumptions.finance;
  $("#gLtv").value=(f.ltv*100).toFixed(0);$("#gRate").value=(f.rate*100).toFixed(3).replace(/0+$/,'').replace(/\.$/,'');
  $("#gShift").value=f.rate_shift_bps;$("#gAmort").value=f.amort;$("#gExitDelta").value=f.exit_cap_delta_bps;
  $("#gRg").value=(f.rent_growth*100).toFixed(1);$("#gEg").value=(f.expense_growth*100).toFixed(1);
  $("#gHold").value=f.hold;$("#gSell").value=(f.sell_pct*100).toFixed(1);$("#gAcq").value=(f.acq_pct*100).toFixed(1);}
+function loadListing(l){$("#uType").value=l.asset_type;$("#uPrice").value=l.price;$("#uSqft").value=l.sqft;seedType(l.asset_type);curListing=l;}
 function initUnderwrite(){const s=D.seed;
  const opts=D.listings.filter(isLive).sort((a,b)=>b.price-a.price);
  $("#uPick").innerHTML='<option value="-1">— manual —</option>'+opts.map((l,i)=>`<option value="${i}">${(l.address||l.mls).slice(0,40)} · ${usd(l.price)} · ${l.asset_type}</option>`).join("");
  $("#uType").innerHTML=D.asset_order.filter(t=>ASM[t]).map(t=>`<option>${t}</option>`).join("");
- $("#uType").value=s.asset_type;$("#uPrice").value=s.price;$("#uSqft").value=s.sqft;seedType(s.asset_type);
- $("#uType").addEventListener("change",e=>{seedType(e.target.value);renderUnderwrite();});
- $("#uPick").addEventListener("change",e=>{const i=+e.target.value;if(i>=0){const l=opts[i];$("#uType").value=l.asset_type;$("#uPrice").value=l.price;$("#uSqft").value=l.sqft;seedType(l.asset_type);}renderUnderwrite();});
- ["uPrice","uSqft","uRent","uVac","uOpex","uCap","uExit"].forEach(id=>$("#"+id).addEventListener("input",renderUnderwrite));
- ["gLtv","gRate","gShift","gAmort","gExitDelta","gRg","gEg","gHold","gSell","gAcq"].forEach(id=>$("#"+id).addEventListener("input",()=>{renderAnswers();renderInventory();renderUnderwrite();}));}
+ // default to the largest CREDIBLE underpriced deal (plausible implied cap) so the deal sheet
+ // opens on a real, compelling — not artifact — listing
+ const scored=opts.map((l,i)=>({i,l,d:derive(l.price,l.sqft,l.asset_type)}))
+  .filter(x=>!suspect(x.d)&&x.d.gap<-0.05).sort((a,b)=>b.l.price-a.l.price);
+ if(scored.length){loadListing(scored[0].l);$("#uPick").value=scored[0].i;}
+ else{$("#uType").value=s.asset_type;$("#uPrice").value=s.price;$("#uSqft").value=s.sqft;seedType(s.asset_type);}
+ $("#uType").addEventListener("change",e=>{seedType(e.target.value);renderUnderwrite();renderDealSheet();});
+ $("#uPick").addEventListener("change",e=>{const i=+e.target.value;curListing=i>=0?opts[i]:null;if(i>=0)loadListing(opts[i]);renderUnderwrite();renderDealSheet();});
+ ["uPrice","uSqft","uRent","uVac","uOpex","uCap","uExit"].forEach(id=>$("#"+id).addEventListener("input",()=>{renderUnderwrite();renderDealSheet();}));
+ ["gLtv","gRate","gShift","gAmort","gExitDelta","gRg","gEg","gHold","gSell","gAcq"].forEach(id=>$("#"+id).addEventListener("input",()=>{renderAnswers();renderInventory();renderUnderwrite();renderDealSheet();}));}
 function header(){const m=D.meta,c=D.coverage;
  $("#subline").innerHTML=`${m.n_listings} listings · ${m.n_sale_comps} sale comps (${m.n_closed} closed) · ${m.n_lease} leases · $/SqFt R²=${m.hedonic_r2} · city ${usd(m.city_norm_ppsf)}/SqFt`;
  $("#banner").innerHTML="<b>No income in the source.</b> This BeachesMLS export has price, size, type, age &amp; location — but no NOI, rent, cap or unit counts. "+
