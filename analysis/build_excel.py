@@ -64,6 +64,13 @@ def _jload(name):
         return json.load(f)
 
 
+def _jload_opt(name):
+    try:
+        return _jload(name)
+    except FileNotFoundError:
+        return None
+
+
 def _wavg(rows, val, wt):
     num = sum((r[val] or 0) * (r[wt] or 0) for r in rows if r.get(val) is not None)
     den = sum((r[wt] or 0) for r in rows if r.get(val) is not None)
@@ -1502,8 +1509,98 @@ def leasing_sheet(wb, lz):
     ws.hide_gridlines(2)
 
 
+def _dominant_market(nb, absorb):
+    rows = [r for r in (absorb or {}).get("by_band_neighborhood", []) if r["neighborhood"] == nb]
+    c = {}
+    for r in rows:
+        if r.get("market"):
+            c[r["market"]] = c.get(r["market"], 0) + 1
+    return max(c, key=c.get) if c else None
+
+
+def neighborhood_systems_sheet(wb, mb, ctx, lease, absorb, mm):
+    """One row per neighborhood = the whole system: renormalized pricing (asking vs
+    should-be, adjusted up/down), value, waterfront, build-vs-buy, yield, market."""
+    ws = wb.add_worksheet("Neighborhood Pricing")
+    title = wb.add_format({"bold": True, "font_size": 15, "font_color": DARK})
+    sub = wb.add_format({"font_size": 10, "italic": True, "font_color": "#898781", "text_wrap": True})
+    hdr = wb.add_format({"bold": True, "font_color": "white", "bg_color": DARK, "border": 1,
+                         "border_color": "white", "align": "center", "valign": "vcenter", "text_wrap": True})
+    txt = wb.add_format({"border": 1, "border_color": "#e1e0d9"})
+    nbf = wb.add_format({"border": 1, "border_color": "#e1e0d9", "bold": True})
+    usd = wb.add_format({"num_format": "$#,##0", "border": 1, "border_color": "#e1e0d9", "align": "center"})
+    sgn = wb.add_format({"num_format": '+0.0"%";-0.0"%"', "border": 1, "border_color": "#e1e0d9", "align": "center"})
+    pct = wb.add_format({"num_format": '0.0"%"', "border": 1, "border_color": "#e1e0d9", "align": "center"})
+    up = wb.add_format({"bold": True, "font_color": "#0f8a3c", "border": 1, "border_color": "white", "align": "center"})
+    dn = wb.add_format({"bold": True, "font_color": "#b23b28", "border": 1, "border_color": "white", "align": "center"})
+    fl = wb.add_format({"bold": True, "font_color": "#52514e", "border": 1, "border_color": "white", "align": "center"})
+
+    cxb = {c["neighborhood"]: c for c in (ctx or {}).get("neighborhoods", [])}
+    lzb = {l["neighborhood"]: l for l in (lease or {}).get("neighborhoods", [])}
+    sqftb = {n["neighborhood"]: n.get("median_sqft") for n in (mm or {}).get("neighborhoods", [])}
+
+    ws.write(0, 0, "Neighborhood pricing & systems — every neighborhood, every metric, one row", title)
+    ws.write(1, 0, "Renormalized pricing (now-asking vs should-be, adjusted up or down) plus the full "
+             "system: value, waterfront, build-vs-buy, rental yield and market. Same content as the "
+             "per-neighborhood PDF reports. 'Action': Reduce = asking above comps, Raise = below.", sub)
+    ws.set_row(1, 30)
+    heads = ["#", "Neighborhood", "Geography", "Now asking $/ft²", "Should-be $/ft²", "Adjust",
+             "Action", "$ impact /home", "Normalized $/ft²", "vs City", "Waterfront $/ft²",
+             "Replace $/ft²", "vs Replace", "Est. rent/mo", "Gross yield", "Sell vs hold",
+             "Median sold $", "Discount", "Apprec '20", "Live ≥$1M"]
+    widths = [4, 22, 20, 14, 14, 9, 10, 13, 14, 8, 14, 12, 10, 12, 10, 30, 14, 9, 10, 9]
+    top = 3
+    for c, (h, wd) in enumerate(zip(heads, widths)):
+        ws.write(top, c, h, hdr)
+        ws.set_column(c, c, wd)
+    r = top
+    for m in mb["neighborhoods"]:
+        r += 1
+        nb = m["neighborhood"]
+        cx, lz = cxb.get(nb, {}), lzb.get(nb, {})
+        a, s, adj = m.get("asking_ppsf"), m.get("should_be_ppsf"), m.get("suggested_adjust_pct")
+        sqft = sqftb.get(nb)
+        impact = (s - a) * sqft if (a is not None and s is not None and sqft) else None
+        act = "Reduce" if (adj or 0) < -1 else "Raise" if (adj or 0) > 1 else "Hold" if adj is not None else "—"
+        actfmt = dn if act == "Reduce" else up if act == "Raise" else fl
+
+        def w(col, val, fmt):
+            if val is None:
+                ws.write(r, col, "", txt)
+            elif fmt in (usd, sgn, pct):
+                ws.write_number(r, col, float(val), fmt)
+            else:
+                ws.write(r, col, val, fmt)
+
+        w(0, m.get("rank"), txt); w(1, nb, nbf); w(2, m.get("geo_type") or "—", txt)
+        w(3, a, usd); w(4, s, usd)
+        ws.write_number(r, 5, adj, sgn) if adj is not None else ws.write(r, 5, "", txt)
+        ws.write(r, 6, act, actfmt)
+        w(7, impact, usd); w(8, m.get("norm_ppsf"), usd)
+        ws.write_number(r, 9, m.get("vs_city_pct"), sgn) if m.get("vs_city_pct") is not None else ws.write(r, 9, "", txt)
+        w(10, m.get("waterfront_ppsf"), usd)
+        w(11, cx.get("replacement_psf_typ"), usd)
+        ws.write_number(r, 12, cx["premium_to_replacement_pct"], sgn) if cx.get("premium_to_replacement_pct") is not None else ws.write(r, 12, "", txt)
+        w(13, lz.get("est_monthly_rent"), usd)
+        ws.write_number(r, 14, lz["gross_yield_pct"] / 100, pct) if lz.get("gross_yield_pct") is not None else ws.write(r, 14, "", txt)
+        ws.write(r, 15, (lz.get("verdict") or "—").split("—")[0].strip(), txt)
+        w(16, m.get("median_sale_price"), usd)
+        ws.write_number(r, 17, m.get("median_discount_pct"), pct) if m.get("median_discount_pct") is not None else ws.write(r, 17, "", txt)
+        ws.write_number(r, 18, m.get("appreciation_since_2020"), sgn) if m.get("appreciation_since_2020") is not None else ws.write(r, 18, "", txt)
+        w(19, m.get("n_high_ticket"), txt)
+    n = len(mb["neighborhoods"])
+    ws.conditional_format(top + 1, 5, top + n, 5, {"type": "3_color_scale",
+        "min_color": "#0f8a3c", "mid_color": "#f0efec", "max_color": "#d5473f"})   # adjust
+    ws.conditional_format(top + 1, 14, top + n, 14, {"type": "3_color_scale",
+        "min_color": "#f6b6b6", "mid_color": "#f0efec", "max_color": "#8fd48f"})   # yield
+    ws.freeze_panes(top + 1, 2)
+    ws.autofilter(top, 0, top + n, len(heads) - 1)
+    ws.hide_gridlines(2)
+
+
 SHEET_INDEX = {
     "Key Conclusions": ("Start here", "Every headline finding with the evidence behind it and a confidence rating."),
+    "Neighborhood Pricing": ("Start here", "THE consolidated view — one row per neighborhood: renormalized pricing (asking vs should-be, adjusted up/down), value, waterfront, build-vs-buy, yield & market. Same as the PDF reports."),
     "Leasing & Yield": ("Marketing & proof", "Estimated rent, rent $/sqft, gross yield, GRM and a sell-vs-hold verdict per neighborhood — the owner's rent-or-sell conversation."),
     "Marketing Kit": ("Marketing & proof", "Copy-ready market snapshots, shareable stats, CMA lines, buyer opportunities and prospect outreach — per neighborhood. Paste into emails, CMAs, postcards, posts."),
     "Model Accuracy": ("Marketing & proof", "Out-of-sample backtest of the pricing model — median error in $ and %, by band and type. Your \"data-backed pricing\" proof."),
@@ -1613,6 +1710,11 @@ def main():
     try:
         _mb = _master()
         master_sheet(wb, fmts, _mb)
+        try:
+            neighborhood_systems_sheet(wb, _mb, _jload_opt("context_bundle.json"),
+                                       _jload_opt("lease_bundle.json"), _jload_opt("absorption_bundle.json"), mm)
+        except Exception as e:  # noqa: BLE001 -- consolidated tab is best-effort
+            print("  (neighborhood systems tab skipped:", e, ")")
         scenario_sheet(wb, _mb)
     except FileNotFoundError:
         pass
