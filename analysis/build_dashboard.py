@@ -81,6 +81,8 @@ with open(os.path.join(PROC, "backtest_bundle.json")) as f:
     BACKTEST = json.load(f)
 with open(os.path.join(PROC, "context_bundle.json")) as f:
     CONTEXT = json.load(f)
+with open(os.path.join(PROC, "lease_bundle.json")) as f:
+    LEASE = json.load(f)
 with open(os.path.join(PROC, "high_ticket_bundle.json")) as f:
     _HT = json.load(f)
 # trim listings out of the dashboard payload (they live in the Excel tab); keep the
@@ -294,6 +296,7 @@ html{scroll-behavior:smooth}
     <a href="#howto">Start here</a>
     <a href="#marketing">Marketing</a>
     <a href="#costs">Costs &amp; realities</a>
+    <a href="#leasing">Leasing &amp; yield</a>
     <a href="#assumptions">Assumptions</a>
     <a href="#scenario">Deal scenario</a>
     <a href="#highticket">High-ticket bands</a>
@@ -322,6 +325,7 @@ html{scroll-behavior:smooth}
       <a href="#highticket"><div class="j">Underwrite luxury (≥$1M)</div><div class="w">Band trends within each neighborhood</div></a>
       <a href="#scenario"><div class="j">Run the numbers</div><div class="w">Financing + rate/appreciation what-ifs</div></a>
       <a href="#costs"><div class="j">Costs &amp; build-vs-buy</div><div class="w">Construction, land, waterfront &amp; replacement cost</div></a>
+      <a href="#leasing"><div class="j">Rent or sell?</div><div class="w">Rent, gross yield &amp; sell-vs-hold per area</div></a>
       <a href="#land"><div class="j">Land, docks &amp; multifamily</div><div class="w">The other asset classes</div></a>
     </div>
   </div>
@@ -346,6 +350,14 @@ html{scroll-behavior:smooth}
     <div class="controls" style="margin:0 0 10px"><input class="search" id="cxSearch" type="search" placeholder="Search neighborhood…" aria-label="Search build-vs-buy"></div>
     <div class="tbl-scroll"><table class="fl" id="cxTbl"><thead></thead><tbody></tbody></table></div>
     <p class="note-line" id="cxSrc"></p>
+  </div>
+
+  <div class="card" id="leasing">
+    <h2>Leasing &amp; yield <span style="font-weight:400;color:var(--muted);font-size:13px">— rent, gross yield &amp; the sell-vs-hold read per neighborhood</span></h2>
+    <p class="cap" id="lxNote"></p>
+    <ul class="opp-reasons" id="lxFacts" style="gap:7px;margin-bottom:12px"></ul>
+    <div class="controls" style="margin:0 0 10px"><input class="search" id="lxSearch" type="search" placeholder="Search neighborhood…" aria-label="Search leasing"></div>
+    <div class="tbl-scroll"><table class="fl" id="lxTbl"><thead></thead><tbody></tbody></table></div>
   </div>
 
   <div class="card" id="assumptions">
@@ -584,6 +596,7 @@ html{scroll-behavior:smooth}
 <script id="marketing-data" type="application/json">__MARKETING_JSON__</script>
 <script id="backtest-data" type="application/json">__BACKTEST_JSON__</script>
 <script id="context-data" type="application/json">__CONTEXT_JSON__</script>
+<script id="lease-data" type="application/json">__LEASE_JSON__</script>
 <script id="scen-data" type="application/json">__SCEN_JSON__</script>
 <script>
 (function(){
@@ -602,6 +615,7 @@ const INCOME=JSON.parse(document.getElementById("income-data").textContent);
 const MKT=JSON.parse(document.getElementById("marketing-data").textContent);
 const BT=JSON.parse(document.getElementById("backtest-data").textContent);
 const CX=JSON.parse(document.getElementById("context-data").textContent);
+const LX=JSON.parse(document.getElementById("lease-data").textContent);
 const M=MLS.meta, NB=MLS.neighborhoods;
 function mktColor(m){return {"Seller's market":"var(--neg)","Balanced":"var(--ink-2)",
   "Buyer's market":"var(--good)","Deep buyer's market":"var(--good)"}[m]||"var(--ink-2)";}
@@ -1108,6 +1122,8 @@ function mkRender(nb){
   if((k.cost_points||[]).length){MKCOPY.cost=k.cost_points.join("\n\n");
     out+=blk("Costs & build-vs-buy","cost",
       `<ul class="opp-reasons">${k.cost_points.map(t=>`<li>${t}</li>`).join("")}</ul>`);}
+  if(k.lease_line){MKCOPY.lease=k.lease_line;
+    out+=blk("Rent or sell?","lease",`<p>${k.lease_line}</p>`);}
   if((k.opportunities||[]).length){MKCOPY.opps=k.opportunities.map(o=>o.line).join("\n\n");
     out+=blk("Live buyer opportunities here","opps",
       `<ul class="opp-reasons">${k.opportunities.map(o=>`<li>${o.line}</li>`).join("")}</ul>`);}
@@ -1163,6 +1179,32 @@ function cxTable(){
 }
 function cxInit(){$("#cxNote").textContent=CX.meta.note||""; cxBench(); cxTable();
   $("#cxSearch").addEventListener("input",e=>{cxQ=e.target.value;cxTable();});}
+
+// ---------- leasing & yield ----------
+let lxQ="";
+const LXCOLS=[
+  {k:"neighborhood",t:"Neighborhood",l:1,f:r=>`<span class="nbh">${r.neighborhood}</span>`},
+  {k:"est_monthly_rent",t:"Est. rent/mo",f:r=>`<span class="tnum">${usd(r.est_monthly_rent)}</span>`},
+  {k:"rent_psf_yr",t:"Rent $/ft²/yr",f:r=>`<span class="tnum">${usd(r.rent_psf_yr)}</span>`},
+  {k:"sale_ppsf",t:"Sale $/ft²",f:r=>`<span class="tnum">${usd(r.sale_ppsf)}</span>`},
+  {k:"gross_yield_pct",t:"Gross yield",f:r=>r.gross_yield_pct==null?"—":`<span class="tnum" style="font-weight:700;color:${r.gross_yield_pct>=6?'var(--good)':r.gross_yield_pct<4?'var(--neg)':'var(--ink-2)'}">${r.gross_yield_pct}%</span>`},
+  {k:"grm",t:"GRM",f:r=>`<span class="tnum">${r.grm||"—"}</span>`},
+  {k:"verdict",t:"Sell vs hold",l:1,f:r=>`<span style="font-size:12px">${(r.verdict||"").split("—")[0].trim()}</span>`},
+];
+function lxTable(){
+  const q=lxQ.toLowerCase();
+  let rows=LX.neighborhoods.filter(r=>!q||r.neighborhood.toLowerCase().includes(q));
+  rows=rows.slice().sort((a,b)=>(a.rank||999)-(b.rank||999));
+  $("#lxTbl thead").innerHTML="<tr>"+LXCOLS.map(c=>`<th class="${c.l?'l':''}">${c.t}</th>`).join("")+"</tr>";
+  $("#lxTbl tbody").innerHTML=rows.map(r=>"<tr>"+LXCOLS.map(c=>`<td class="${c.l?'l':''}">${c.f(r)}</td>`).join("")+"</tr>").join("")
+    ||`<tr><td class="l" colspan="7" style="color:var(--muted)">No match.</td></tr>`;
+}
+function lxInit(){
+  $("#lxNote").textContent=LX.meta.note||"";
+  $("#lxFacts").innerHTML=(LX.facts||[]).map(f=>`<li>${f}</li>`).join("");
+  lxTable();
+  $("#lxSearch").addEventListener("input",e=>{lxQ=e.target.value;lxTable();});
+}
 
 // ---------- seller prospects ----------
 $("#slSummary").textContent=`· ${SL.meta.n_failed} failed-listing owners, ${SL.meta.n_overpriced_active} overpriced actives`;
@@ -1313,6 +1355,7 @@ renderAll();
 scInit();
 mktInit();
 cxInit();
+lxInit();
 
 // ---------- live assumptions controller ----------
 function asApply(){renderRepFlags();renderRepNbhd();renderRepInv();mfTable();htTable();
@@ -1374,6 +1417,7 @@ def build():
              .replace("__MARKETING_JSON__", json.dumps(MARKETING, separators=(",", ":")))
              .replace("__BACKTEST_JSON__", json.dumps(BACKTEST, separators=(",", ":")))
              .replace("__CONTEXT_JSON__", json.dumps(CONTEXT, separators=(",", ":")))
+             .replace("__LEASE_JSON__", json.dumps(LEASE, separators=(",", ":")))
              .replace("__SCEN_JSON__", json.dumps(SCEN, separators=(",", ":"))))
     standalone = (
         "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"

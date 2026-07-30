@@ -82,6 +82,24 @@ costs:
     oceanfront: [18000, 60000]
 
 # ============================================================================
+# Leasing / rental benchmarks (Fort Lauderdale, 2025-26).
+# Sourced estimates used for IMPLIED gross yield when there are no lease comps.
+# Drop MLS lease exports into data/raw/lease/ to replace these with real comps.
+# ============================================================================
+lease_benchmarks:
+  city_median_rent: 2750         # $/mo, all types
+  house_median_rent: 4000        # $/mo, single-family
+  city_rent_psf_yr: 33           # annual $/sqft
+  gross_yield_city_pct: 6.5
+  rent_psf_yr:                   # annual $/sqft by tier (implied-yield fallback)
+    standard: 33
+    luxury: 38
+    ultra_waterfront: 50
+  luxury_sf_lease_range: [8500, 79000]   # $/mo, 4BR to trophy
+  yield_hold: 6.0                # >= this gross yield % => rental-supported
+  yield_low: 4.0                 # < this % => yield-compressed (typical of luxury)
+
+# ============================================================================
 # Data sources — one block per asset class.
 #   folder        : where to drop the CSV exports for this asset
 #   status_from   : "filename" (status = file name) or "column" (status in a field)

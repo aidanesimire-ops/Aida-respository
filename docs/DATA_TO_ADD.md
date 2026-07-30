@@ -7,6 +7,24 @@ and run `python analysis/refresh.py`.
 
 ---
 
+## 0. Lease / rental exports  ⭐ makes the whole rent side real
+
+The dashboard now has a full **Leasing & Yield** layer, but with **no lease data yet it runs
+on sourced city benchmarks** (clearly flagged "estimate"). Drop your MLS **Residential Lease**
+exports into `data/raw/lease/` and it switches to real, per-neighborhood lease comps — actual
+rent $/sqft, gross yield, and sell-vs-hold by area.
+
+Pull the same status buckets you pulled for sales, but for the **Rental/Lease** property class:
+
+- **Leased/Rented (closed)** — the comps (their *Sale Price* field is the closed monthly rent)
+- **Active** rentals — current asking rents
+- (optionally expired/withdrawn/cancelled leases)
+
+Name the files by status or keep the `St` status column. Then map the columns in
+`config/deal_dashboard.yml` under `assets.lease.columns` (List Price = asking rent, Sale
+Price = leased rent, plus SqFt, Beds, Type, Subdivision, Waterfront) and run
+`python analysis/refresh.py`. Every neighborhood's yield becomes comp-backed.
+
 ## 1. Dates & price history  ⭐ biggest single win
 
 Add these to the **residential MLS export** (they're standard fields, almost certainly

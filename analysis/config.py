@@ -71,6 +71,20 @@ DEFAULTS = {
             "intracoastal": [12_000, 30_000],
             "oceanfront": [18_000, 60_000]},
     },
+    # ---- leasing / rental benchmarks (Fort Lauderdale, 2025-26) ----
+    # Sourced market estimates; used for implied gross yield when there are no lease
+    # comps. Replace with real lease comps by dropping MLS lease exports in the lease
+    # asset folder. Annual rent $/sqft by tier.
+    "lease_benchmarks": {
+        "city_median_rent": 2750,          # $/mo, all types
+        "house_median_rent": 4000,         # $/mo, single-family
+        "city_rent_psf_yr": 33,            # annual $/sqft
+        "gross_yield_city_pct": 6.5,
+        "rent_psf_yr": {"standard": 33, "luxury": 38, "ultra_waterfront": 50},
+        "luxury_sf_lease_range": [8_500, 79_000],   # $/mo, 4BR to trophy
+        "yield_hold": 6.0,                 # >= this % gross yield => rental-supported
+        "yield_low": 4.0,                  # < this % => yield-compressed (luxury)
+    },
     "assets": {
         "residential": {
             "folder": "data/raw/mls",
@@ -122,6 +136,22 @@ DEFAULTS = {
                 "sqft": "SqFt LA", "year_built": "Year Built", "parking": "#Parking Spaces",
                 "pool": "Pool YN", "waterfront": "Waterfront Property (Y/N)"},
         },
+        # Residential LEASE export. Prices are MONTHLY RENT (List Price = asking rent,
+        # Sale Price = leased/closed rent). Adjust status codes + column names to your
+        # actual lease export; leased+active are what the yield math needs.
+        "lease": {
+            "folder": "data/raw/lease",
+            "status_from": "column", "status_column": "St",
+            "status_map": {"CS": "Leased", "L": "Leased", "R": "Leased", "CL": "Leased",
+                           "PS": "Pending", "A": "Active", "AC": "Active",
+                           "X": "Expired", "C": "Cancelled", "W": "Withdrawn", "T": "TempOff"},
+            "columns": {
+                "area": "Area", "address": "Address", "subdivision": "Subdivision/Complex",
+                "list_price": "List Price", "sale_price": "Sale Price", "beds": "#Beds",
+                "fbaths": "#FBaths", "hbaths": "#HBaths", "sqft": "SqFt LA",
+                "ptype": "Type of Property", "year_built": "Year Built",
+                "pool": "Pool YN", "waterfront": "Waterfront Property (Y/N)"},
+        },
     },
 }
 
@@ -170,6 +200,10 @@ class Config:
     @property
     def costs(self):
         return self._d.get("costs", {})
+
+    @property
+    def lease_benchmarks(self):
+        return self._d.get("lease_benchmarks", {})
 
     @property
     def thresholds(self):

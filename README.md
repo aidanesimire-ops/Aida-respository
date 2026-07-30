@@ -137,12 +137,23 @@ python analysis/reprice.py          # reprice live inventory vs should-be -> rep
 python analysis/time_analysis.py    # 2020->now shifts -> data/processed/time_bundle.json
 python analysis/backtest.py         # out-of-sample model accuracy -> backtest_bundle.json
 python analysis/market_context.py   # costs + build-vs-buy per neighborhood -> context_bundle.json
+python analysis/leasing.py          # rent, gross yield & sell-vs-hold -> lease_bundle.json
 python analysis/marketing.py        # copy-ready marketing content -> marketing_bundle.json
 python analysis/build_charts.py     # -> outputs/*.png
 python analysis/build_excel.py      # -> outputs/Fort_Lauderdale_PPSF_Normalized.xlsx
 python analysis/build_dashboard.py  # -> dashboard/index.html (+ artifact.html)
 python analysis/build_report.py     # -> REPORT.md
+python analysis/build_neighborhood_reports.py   # -> outputs/neighborhood_reports.html
+node analysis/render_pdf.cjs        # -> outputs/Neighborhood_System_Reports.pdf
 ```
+
+**Downloadable reports.** `run_all.py` builds the per-neighborhood **system reports** HTML;
+`node analysis/render_pdf.cjs` renders it to
+[`outputs/Neighborhood_System_Reports.pdf`](outputs/) — a cover "renormalized pricing"
+table (now-asking vs should-be, adjusted up or down, per neighborhood) followed by one page
+per neighborhood as a complete system: pricing adjustment, normalized value, waterfront,
+build-vs-buy, leasing yield, market conditions, live opportunities and talking points. Pair
+it with the Excel workbook (open the **Index** tab).
 
 **Public-data enrichment (optional):** `python analysis/enrich_public.py` geocodes every
 address and appends Census demographics, FEMA flood zones, and Broward County assessed

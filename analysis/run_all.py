@@ -29,11 +29,13 @@ STEPS = [
     ("Master ranked neighborhood summary", "master_summary.py"),
     ("Model-accuracy backtest", "backtest.py"),
     ("Market context (costs + build-vs-buy)", "market_context.py"),
+    ("Leasing & yield (rent + sell-vs-hold)", "leasing.py"),
     ("Marketing kit (copy-ready content)", "marketing.py"),
     ("Charts", "build_charts.py"),
     ("Excel workbook", "build_excel.py"),
     ("Interactive dashboard", "build_dashboard.py"),
     ("Written report", "build_report.py"),
+    ("Per-neighborhood system reports (HTML)", "build_neighborhood_reports.py"),
 ]
 
 

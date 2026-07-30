@@ -1469,8 +1469,42 @@ def costs_sheet(wb, cx):
     ws.hide_gridlines(2)
 
 
+def leasing_sheet(wb, lz):
+    f = _blk_formats(wb)
+    m = lz["meta"]
+    ws = wb.add_worksheet("Leasing & Yield")
+    ws.write(0, 0, "Leasing & yield — rent, gross yield, and the sell-vs-hold read", f["title"])
+    src = (f"{m['n_lease_comps']} real lease comps" if m.get("has_lease_comps")
+           else "sourced rent benchmarks (drop MLS lease exports in data/raw/lease/ for real comps)")
+    ws.write(1, 0, f"City rent ~${m['city_median_rent']:,}/mo (houses ~${m['house_median_rent']:,}), "
+             f"~${m['city_rent_psf_yr']}/sqft/yr, ~{m['gross_yield_city_pct']}% gross yield at the median. "
+             f"Source: {src}. " + (m.get("note") or ""), f["sub"])
+    ws.set_row(1, 42)
+    r = 3
+    for fct in lz.get("facts", []):
+        ws.write(r, 0, "• " + fct, wb.add_format({"text_wrap": True, "valign": "top", "font_size": 10}))
+        ws.set_row(r, 15 * max(1, len(fct) // 95 + 1)); r += 1
+    r += 1
+    heads = ["Neighborhood", "Est. rent/mo", "Rent $/sqft/yr", "Sale $/sqft", "Gross yield",
+             "GRM", "Basis", "Sell vs hold"]
+    widths = [22, 13, 14, 12, 12, 8, 16, 52]
+    yv = wb.add_format({"num_format": '0.0"%"', "border": 1, "border_color": "#e1e0d9", "align": "center"})
+    rows = []
+    for x in lz["neighborhoods"]:
+        rows.append([(x["neighborhood"], "txtb"), (x["est_monthly_rent"], "usd"),
+                     (x["rent_psf_yr"], "usd"), (x["sale_ppsf"], "usd"),
+                     (x["gross_yield_pct"] / 100 if x["gross_yield_pct"] is not None else None, "y"),
+                     (x["grm"], "num"), (x["rent_basis"], "txt"), (x["verdict"], "txt")])
+    _write_block(ws, r, heads, widths, rows, {**f, "y": yv})
+    ws.conditional_format(r + 1, 4, r + len(rows), 4, {"type": "3_color_scale",
+        "min_color": "#f6b6b6", "mid_color": "#f0efec", "max_color": "#8fd48f"})
+    ws.freeze_panes(3, 0)
+    ws.hide_gridlines(2)
+
+
 SHEET_INDEX = {
     "Key Conclusions": ("Start here", "Every headline finding with the evidence behind it and a confidence rating."),
+    "Leasing & Yield": ("Marketing & proof", "Estimated rent, rent $/sqft, gross yield, GRM and a sell-vs-hold verdict per neighborhood — the owner's rent-or-sell conversation."),
     "Marketing Kit": ("Marketing & proof", "Copy-ready market snapshots, shareable stats, CMA lines, buyer opportunities and prospect outreach — per neighborhood. Paste into emails, CMAs, postcards, posts."),
     "Model Accuracy": ("Marketing & proof", "Out-of-sample backtest of the pricing model — median error in $ and %, by band and type. Your \"data-backed pricing\" proof."),
     "Costs & Realities": ("Marketing & proof", "Construction, renovation, seawall, dock & insurance benchmarks; market realities with sources; and build-vs-buy (replacement cost) per neighborhood."),
@@ -1628,6 +1662,10 @@ def main():
         pass
     try:
         costs_sheet(wb, _jload("context_bundle.json"))
+    except FileNotFoundError:
+        pass
+    try:
+        leasing_sheet(wb, _jload("lease_bundle.json"))
     except FileNotFoundError:
         pass
 
