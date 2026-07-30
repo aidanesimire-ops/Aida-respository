@@ -54,7 +54,7 @@ def _fmts(wb):
     return f
 
 
-def _table(ws, f, df, spec, start=3):
+def _table(ws, f, df, spec, start=3, autofilter=True):
     for j, (_, h, _) in enumerate(spec):
         ws.write(start, j, h, f["hdr"])
     for i, (_, row) in enumerate(df.iterrows()):
@@ -67,6 +67,8 @@ def _table(ws, f, df, spec, start=3):
                 ws.write_number(start + 1 + i, j, float(v), fmt)
             else:
                 ws.write(start + 1 + i, j, v, fmt)
+    if autofilter and len(df):
+        ws.autofilter(start, 0, start + len(df), len(spec) - 1)
     ws.freeze_panes(start + 1, 0)
 
 
@@ -283,36 +285,53 @@ def market_sheet(wb, f):
 
 
 def index_sheet(wb, f, meta):
-    ws = wb.add_worksheet("Index")
-    ws.set_column(0, 0, 22); ws.set_column(1, 1, 86)
+    ws = wb.add_worksheet("Start Here")
+    ws.hide_gridlines(2)
+    ws.set_column(0, 0, 24); ws.set_column(1, 1, 96)
     ws.write(0, 0, "Commercial Deal Dashboard — Fort Lauderdale", f["title"])
-    ws.merge_range(1, 0, 1, 1, f"Sources: {', '.join(meta['sources'])}. No income in source — "
-                   "income metrics are assumption-driven (see Assumptions tab). Click a tab.", f["sub"])
-    ws.set_row(1, 28)
-    toc = [("Key Conclusions", "Headline takeaways."),
-           ("Assumptions", "Editable income norms by asset type — the gap-fill."),
-           ("Submarkets", "Normalized $/SqFt by MLS area, ranked."),
-           ("Types", "$/SqFt + assumed income by asset class."),
-           ("Repricing", "Live inventory: $/SqFt & income mispricing."),
-           ("Opportunities", "Underpriced buy list (default assumptions)."),
-           ("Absorption", "Months of supply by submarket & type."),
+    ws.merge_range(1, 0, 1, 1, "Everything in one workbook. The MLS export has no income, so cap / "
+                   "rent / value figures are assumption- or comp-based — a screening & pitching tool, "
+                   "not an appraisal. Verify before quoting. Click any tab below.", f["sub"])
+    ws.set_row(1, 42)
+    ws.write(3, 0, "How to use it on a call", f["title"])
+    howto = [
+        "Call List — your prospect list: a ready opener to say, the value read, and owner-FAQ answers for each owner (motivated/failed first).",
+        "Neighborhoods — every submarket as a system: what it supports, rents, yield, supply, and the pitch angle.",
+        "Repricing — what each listing is GOING FOR vs what it SHOULD be — adjusted basis, up ▲ or down ▼, in % and $.",
+        "Opportunities / Prospects — the underpriced buys, and failed listings + overpriced actives to call.",
+        "Leasing — asking rents by type & submarket + data-derived cap rates. Comps — the closed sales behind every number.",
+        "Market — researched benchmarks + construction / land / waterfront / insurance costs + incentives (Live Local, OZ, CRA).",
+        "Assumptions / Scenario — tune the income assumptions (yellow cells) and underwrite a single deal.",
+    ]
+    for i, t in enumerate(howto):
+        ws.write(4 + i, 0, "•", f["olab"]); ws.write(4 + i, 1, t, f["txt"]); ws.set_row(4 + i, 28)
+    base = 4 + len(howto) + 1
+    ws.write(base, 0, "Tabs", f["title"])
+    toc = [("Key Takeaways", "The headlines in plain English."),
+           ("Call List", "Owners to cold-call — opener + value read + FAQ."),
+           ("Neighborhoods", "Every submarket as a system, side by side."),
+           ("Repricing", "Going-for vs should-be, adjusted basis up/down."),
+           ("Opportunities", "Underpriced buys."),
            ("Prospects", "Failed listings + overpriced actives."),
-           ("Comps", "The closed sales behind the numbers."),
-           ("Scenario", "Live underwriting — NOI built from assumptions."),
-           ("Market", "Researched benchmarks, costs & the neighborhood playbook."),
-           ("Leasing", "Asking rents by type/submarket + data-derived cap rates."),
-           ("Call List", "Owners to cold-call, motivated first.")]
+           ("Leasing", "Asking rents + data-derived cap rates."),
+           ("Comps", "Closed sales behind the numbers."),
+           ("Market", "Benchmarks, costs & the neighborhood playbook."),
+           ("Assumptions", "Editable income norms by asset type."),
+           ("Scenario", "Live single-deal underwriting."),
+           ("Types", "$/SqFt + assumed income by asset class."),
+           ("Absorption", "Months of supply by submarket & type.")]
     link = wb.add_format({"font_color": BLUE, "bold": True, "underline": 1, "border": 1, "border_color": "#e1e0d9"})
     for i, (name, desc) in enumerate(toc):
-        r = 3 + i
+        r = base + 1 + i
         ws.write_url(r, 0, f"internal:'{name}'!A1", link, name)
-        ws.write(r, 1, desc, f["txt"]); ws.set_row(r, 22)
+        ws.write(r, 1, desc, f["txt"]); ws.set_row(r, 20)
 
 
 def key_sheet(wb, f, meta, master, reb, pros, seed, v):
-    ws = wb.add_worksheet("Key Conclusions")
-    ws.set_column(0, 0, 3); ws.set_column(1, 1, 108)
-    ws.write(0, 1, "Key conclusions", f["title"])
+    ws = wb.add_worksheet("Key Takeaways")
+    ws.hide_gridlines(2)
+    ws.set_column(0, 0, 3); ws.set_column(1, 1, 112)
+    ws.write(0, 1, "Key takeaways", f["title"])
     subs = pd.DataFrame(master["submarkets"])
     top, bot = subs.iloc[0], subs.iloc[-1]
     lines = [
@@ -337,6 +356,86 @@ def key_sheet(wb, f, meta, master, reb, pros, seed, v):
         ws.write(2 + i, 0, "•", f["olab"]); ws.write(2 + i, 1, t, f["txt"]); ws.set_row(2 + i, 30)
 
 
+def callist_sheet(wb, f):
+    cb = _load("callsheets_bundle.json")
+    if not cb:
+        return
+    ws = wb.add_worksheet("Call List")
+    _head(ws, f, "Cold-call list — owners to work",
+          f"{cb['meta']['n']} owners · {cb['meta']['n_motivated']} motivated (came off-market) first. "
+          "Say the opener, use the value read, answer with the FAQ. Comp/assumption-based — verify before quoting.", 14)
+    rows = [{"n": i, "address": s["address"], "asset_type": s["asset_type"], "submarket": s["submarket"],
+             "status": s["status"], "motivated": "YES" if s["motivated"] else "",
+             "sqft": s["sqft"], "last_ask": s["last_ask"], "value": s["value"],
+             "comp_ppsf": s["comp_ppsf"], "implied_cap": s["implied_cap"], "lease_psf": s["lease_psf"],
+             "opener": s["opener"], "value_read": s["value_read"], "faq": "  •  ".join(s["faq"])}
+            for i, s in enumerate(cb["sheets"], 1)]
+    df = pd.DataFrame(rows)
+    ws.set_column(0, 0, 4); ws.set_column(1, 1, 26); ws.set_column(2, 3, 15); ws.set_column(4, 5, 11)
+    ws.set_column(6, 11, 11); ws.set_column(12, 12, 62); ws.set_column(13, 13, 48); ws.set_column(14, 14, 80)
+    _table(ws, f, df, [("n", "#", "num"), ("address", "Address", "txt"), ("asset_type", "Type", "txt"),
+                       ("submarket", "Area", "txt"), ("status", "Status", "txt"), ("motivated", "Motiv.", "txt"),
+                       ("sqft", "SqFt", "num"), ("last_ask", "Last ask", "usd"), ("value", "Comp value", "usd"),
+                       ("comp_ppsf", "Comp $/SF", "usd"), ("implied_cap", "Impl cap", "pct2"),
+                       ("lease_psf", "Lease $/SF", "usd"), ("opener", "Opener — say this", "txt"),
+                       ("value_read", "Value read", "txt"), ("faq", "If they ask…", "txt")])
+    good = wb.add_format({"font_color": GOOD, "bold": True})
+    ws.conditional_format(4, 5, 3 + len(df), 5, {"type": "text", "criteria": "containing", "value": "YES", "format": good})
+
+
+def neighborhoods_sheet(wb, f):
+    cre = _load("cre_bundle.json")
+    master = {s["submarket"]: s for s in (_load("master_bundle.json") or {"submarkets": []})["submarkets"]}
+    lb = _load("leases_bundle.json") or {"by_submarket": []}
+    lz = {r["submarket"]: r for r in lb["by_submarket"]}
+    rows = []
+    for s in sorted(cre["submarkets"], key=lambda x: -(x.get("norm_ppsf") or 0)):
+        sub = s["submarket"]; m = master.get(sub, {}); l = lz.get(sub, {})
+        prof_key, _ = MKT.AREA_TO_PROFILE.get(sub, (None, None))
+        rows.append({"submarket": sub, "corridors": s.get("corridors"), "profile": prof_key,
+                     "norm_ppsf": s.get("norm_ppsf"), "sold_ppsf": s.get("sold_ppsf_median"),
+                     "vs_city": s.get("vs_city_pct"), "lease_psf": l.get("lease_psf"),
+                     "gross_yield": l.get("gross_yield"), "months_supply": m.get("months_supply"),
+                     "failure": m.get("failure_rate_pct"), "under": m.get("live_underpriced"),
+                     "over": m.get("live_overpriced"), "stance": m.get("stance")})
+    ws = wb.add_worksheet("Neighborhoods")
+    _head(ws, f, "Neighborhoods — each submarket as a system",
+          "Normalized $/SqFt, rents, yield, supply and stance side by side. Per-area repricing detail is in "
+          "the Repricing tab and the Neighborhood Report PDF.", 12)
+    ws.set_column(0, 0, 14); ws.set_column(1, 1, 26); ws.set_column(2, 2, 24); ws.set_column(3, 12, 12)
+    _table(ws, f, pd.DataFrame(rows),
+           [("submarket", "Submarket", "txt"), ("corridors", "Corridors", "txt"), ("profile", "Profile", "txt"),
+            ("norm_ppsf", "Norm $/SF", "usd"), ("sold_ppsf", "Median sold $/SF", "usd"),
+            ("vs_city", "vs city %", "gap"), ("lease_psf", "Lease $/SF", "usd"),
+            ("gross_yield", "Gross yld", "pct2"), ("months_supply", "Mo supply", "num1"),
+            ("failure", "Fail %", "num1"), ("under", "Under", "num"), ("over", "Over", "num"),
+            ("stance", "Stance", "txt")])
+
+
+def repricing_sheet(wb, f):
+    v = pd.read_csv(os.path.join(CRE.PROC, "cre_all_valued.csv"))
+    d = v[v["status"].isin(list(CRE.LIVE) + ["Cancelled", "Expired", "Withdrawn", "TempOff"])].copy()
+    d = d[d["ppsf"].notna() & d["pred_ppsf"].notna() & d["ppsf"].gt(0)]
+    d["adjust_pct"] = (d["pred_ppsf"] / d["ppsf"] - 1) * 100
+    d["basis_delta"] = (d["pred_ppsf"] - d["ppsf"]) * d["sqft"].fillna(0)
+    d = d.sort_values("adjust_pct", ascending=False)
+    ws = wb.add_worksheet("Repricing")
+    _head(ws, f, "Repricing — going for vs. should be going for",
+          "Model $/SF = normalized value for that exact building (size/age/type removed). Adjust ▲ up = priced "
+          "below the market (room to raise / a buy); ▼ down = priced above. Live + failed listings.", 9)
+    ws.set_column(0, 0, 26); ws.set_column(1, 3, 13); ws.set_column(4, 9, 12)
+    _table(ws, f, d, [("address", "Address", "txt"), ("asset_type", "Type", "txt"), ("submarket", "Area", "txt"),
+                      ("status", "Status", "txt"), ("price", "Asking", "usd"), ("ppsf", "Going $/SF", "usd"),
+                      ("pred_ppsf", "Model $/SF", "usd"), ("adjust_pct", "Adjust %", "gap"),
+                      ("basis_delta", "Basis Δ $", "usd"), ("income_gap_pct", "Income gap %", "gap")])
+    good = wb.add_format({"font_color": GOOD, "bold": True})
+    bad = wb.add_format({"font_color": BAD, "bold": True})
+    lo, hi = 4, 3 + len(d)
+    for col in (7, 8):
+        ws.conditional_format(lo, col, hi, col, {"type": "cell", "criteria": ">", "value": 0, "format": good})
+        ws.conditional_format(lo, col, hi, col, {"type": "cell", "criteria": "<", "value": 0, "format": bad})
+
+
 def main():
     cre = _load("cre_bundle.json")
     meta = cre["meta"]
@@ -353,85 +452,34 @@ def main():
     f = _fmts(wb)
     index_sheet(wb, f, meta)
     key_sheet(wb, f, meta, master, reb, pros, seed, v)
-    assumptions_sheet(wb, f, types)
+    callist_sheet(wb, f)
+    neighborhoods_sheet(wb, f)
+    repricing_sheet(wb, f)
 
-    ws = wb.add_worksheet("Submarkets")
-    _head(ws, f, "Submarkets — normalized $/SqFt", "Size/age/type/closed-vs-listed removed.", 8)
-    ws.set_column(0, 0, 16); ws.set_column(1, 8, 13)
-    _table(ws, f, pd.DataFrame(master["submarkets"]),
-           [("submarket", "Submarket", "txt"), ("norm_ppsf", "Norm $/SqFt", "usd"),
-            ("vs_city_pct", "vs city %", "gap"), ("median_price", "Median price", "usd"),
-            ("top_asset", "Top type", "txt"), ("months_supply", "Mo supply", "num1"),
-            ("failure_rate_pct", "Fail %", "num1"), ("stance", "Stance", "txt")])
-
-    ws = wb.add_worksheet("Types")
-    _head(ws, f, "Asset types — $/SqFt & assumed income", "Median $/SqFt (factual) + default assumptions.", 8)
-    ws.set_column(0, 0, 18); ws.set_column(1, 9, 12)
-    _table(ws, f, types.reset_index(),
-           [("asset_type", "Type", "txt"), ("confidence", "Conf", "txt"),
-            ("median_ppsf", "Median $/SqFt", "usd"), ("n", "n", "num"), ("n_sold", "Sold", "num"),
-            ("assume_rent_psf", "Rent $/SqFt", "usd"), ("market_rent_psf", "Mkt rent", "usd"),
-            ("assume_vacancy", "Vac", "pct0"), ("assume_opex_ratio", "Opex", "pct0"),
-            ("assume_cap_rate", "Mkt cap", "pct2"), ("typical_implied_cap", "Implied cap", "pct2")])
-
-    if reb:
-        ws = wb.add_worksheet("Repricing")
-        _head(ws, f, "Repricing live inventory", "Income flags use DEFAULT assumptions — tune live in the dashboard.", 11)
-        ws.set_column(0, 0, 20); ws.set_column(1, 11, 12)
-        inv = pd.DataFrame(reb["inventory"])
-        _table(ws, f, inv, [("address", "Address", "txt"), ("submarket", "Area", "txt"),
-                            ("asset_type", "Type", "txt"), ("price", "Asking", "usd"),
-                            ("ppsf", "$/SqFt", "usd"), ("ppsf_gap_pct", "vs comp", "gap"),
-                            ("implied_cap", "Impl cap", "pct2"), ("market_cap", "Mkt cap", "pct2"),
-                            ("assumed_value", "Value", "usd"), ("income_gap_pct", "Gap", "gap"),
-                            ("flag", "Flag", "txt")])
-        if reb["opportunities"]:
-            ws = wb.add_worksheet("Opportunities")
-            _head(ws, f, "Underpriced opportunities", "Income basis, default assumptions. 'Why' explains each.", 7)
-            ws.set_column(0, 0, 22); ws.set_column(1, 5, 12); ws.set_column(6, 6, 58)
-            _table(ws, f, pd.DataFrame(reb["opportunities"]),
-                   [("address", "Address", "txt"), ("submarket", "Area", "txt"), ("asset_type", "Type", "txt"),
-                    ("price", "Asking", "usd"), ("assumed_value", "Value", "usd"),
-                    ("income_gap_pct", "Gap", "gap"), ("reason", "Why", "txt")])
-
-    if seg:
-        ws = wb.add_worksheet("Absorption")
-        _head(ws, f, "Absorption & segments", seg["meta"]["absorption_note"], 8)
-        ws.set_column(0, 0, 18); ws.set_column(1, 7, 12)
-        _table(ws, f, pd.DataFrame(seg["by_type"]),
-               [("asset_type", "Type", "txt"), ("n", "n", "num"), ("n_sold", "Sold", "num"),
-                ("n_live", "Live", "num"), ("median_ppsf", "Median $/SqFt", "usd"),
-                ("months_supply", "Mo supply", "num1")])
+    if reb and reb["opportunities"]:
+        ws = wb.add_worksheet("Opportunities")
+        _head(ws, f, "Underpriced opportunities", "The comp-backed buy list. 'Why' explains each.", 7)
+        ws.set_column(0, 0, 24); ws.set_column(1, 5, 12); ws.set_column(6, 6, 60)
+        _table(ws, f, pd.DataFrame(reb["opportunities"]),
+               [("address", "Address", "txt"), ("submarket", "Area", "txt"), ("asset_type", "Type", "txt"),
+                ("price", "Asking", "usd"), ("assumed_value", "Value", "usd"),
+                ("income_gap_pct", "Gap", "gap"), ("reason", "Why", "txt")])
 
     if pros:
         ws = wb.add_worksheet("Prospects")
-        _head(ws, f, "Prospecting", "Failed listings (motivated owners) + failure rate by type.", 7)
-        ws.set_column(0, 0, 20); ws.set_column(1, 6, 12)
+        _head(ws, f, "Prospects — failed listings & overpriced actives", "Motivated owners to call.", 7)
+        ws.set_column(0, 0, 22); ws.set_column(1, 6, 12)
         _table(ws, f, pd.DataFrame(pros["failed"]),
                [("address", "Address", "txt"), ("submarket", "Area", "txt"), ("asset_type", "Type", "txt"),
                 ("price", "Last ask", "usd"), ("ppsf", "$/SqFt", "usd"),
                 ("pred_ppsf", "Comp $/SqFt", "usd"), ("ppsf_gap_pct", "Overpricing", "gap")])
-
-    comps = _load("comps_bundle.json")
-    if comps and os.path.exists(os.path.join(CRE.PROC, "comps_flat.csv")):
-        ws = wb.add_worksheet("Comps")
-        _head(ws, f, "Closed comps", "The closed sales behind every $/SqFt number.", 8)
-        ws.set_column(0, 0, 22); ws.set_column(1, 8, 12)
-        _table(ws, f, pd.read_csv(os.path.join(CRE.PROC, "comps_flat.csv")),
-               [("address", "Address", "txt"), ("submarket", "Area", "txt"), ("asset_type", "Type", "txt"),
-                ("sqft", "SqFt", "num"), ("year_built", "Built", "num"), ("price", "Price", "usd"),
-                ("ppsf", "$/SqFt", "usd"), ("ppsf_gap_pct", "vs model", "gap")])
-
-    assumptions_seed = seed
-    scenario_sheet(wb, f, assumptions_seed)
-    market_sheet(wb, f)
 
     lb = _load("leases_bundle.json")
     if lb:
         ws = wb.add_worksheet("Leasing")
         _head(ws, f, "Leasing — asking rents & data-derived caps",
               f"{lb['meta']['n_lease_rated']} lease listings ({lb['meta']['n_active_lease']} active, "
-              f"{lb['meta']['n_leased']} leased). Implied cap = (lease÷sale) × (1−vac) × (1−opex).", 8)
+              f"{lb['meta']['n_leased']} leased). Implied cap = (lease÷sale gross yield) × (1−vac) × (1−opex).", 8)
         ws.set_column(0, 0, 18); ws.set_column(1, 8, 12)
         _table(ws, f, pd.DataFrame(lb["by_type"]),
                [("asset_type", "Type", "txt"), ("lease_psf", "Lease $/SF", "usd"),
@@ -448,20 +496,40 @@ def main():
                                 ("sale_psf", "Sale $/SF", "usd"), ("gross_yield", "Gross yld", "pct2")],
                    start=start)
 
-    if os.path.exists(os.path.join(CRE.PROC, "call_list.csv")):
-        ws = wb.add_worksheet("Call List")
-        _head(ws, f, "Cold-call list — owners to work",
-              "Motivated (failed) owners first. Full talking-point sheets in the Cold-Call PDF.", 6)
-        ws.set_column(0, 0, 26); ws.set_column(1, 4, 12); ws.set_column(5, 5, 70)
-        _table(ws, f, pd.read_csv(os.path.join(CRE.PROC, "call_list.csv")),
-               [("address", "Address", "txt"), ("asset_type", "Type", "txt"),
-                ("submarket", "Area", "txt"), ("status", "Status", "txt"),
-                ("last_ask", "Last ask", "usd"), ("value", "Comp value", "usd"),
-                ("implied_cap", "Impl cap", "pct2"), ("lease_psf", "Lease $/SF", "usd"),
-                ("opener", "Opener", "txt")])
+    if os.path.exists(os.path.join(CRE.PROC, "comps_flat.csv")):
+        ws = wb.add_worksheet("Comps")
+        _head(ws, f, "Closed comps", "The closed sales behind every $/SqFt number.", 8)
+        ws.set_column(0, 0, 24); ws.set_column(1, 8, 12)
+        _table(ws, f, pd.read_csv(os.path.join(CRE.PROC, "comps_flat.csv")),
+               [("address", "Address", "txt"), ("submarket", "Area", "txt"), ("asset_type", "Type", "txt"),
+                ("sqft", "SqFt", "num"), ("year_built", "Built", "num"), ("price", "Price", "usd"),
+                ("ppsf", "$/SqFt", "usd"), ("ppsf_gap_pct", "vs model", "gap")])
+
+    market_sheet(wb, f)
+    assumptions_sheet(wb, f, types)
+    scenario_sheet(wb, f, seed)
+
+    ws = wb.add_worksheet("Types")
+    _head(ws, f, "Asset types — $/SqFt & assumed income", "Median $/SqFt (factual) + default assumptions.", 10)
+    ws.set_column(0, 0, 18); ws.set_column(1, 10, 12)
+    _table(ws, f, types.reset_index(),
+           [("asset_type", "Type", "txt"), ("confidence", "Conf", "txt"),
+            ("median_ppsf", "Median $/SqFt", "usd"), ("n", "n", "num"), ("n_sold", "Sold", "num"),
+            ("assume_rent_psf", "Rent $/SqFt", "usd"), ("market_rent_psf", "Mkt rent", "usd"),
+            ("assume_vacancy", "Vac", "pct0"), ("assume_opex_ratio", "Opex", "pct0"),
+            ("assume_cap_rate", "Mkt cap", "pct2"), ("typical_implied_cap", "Implied cap", "pct2")])
+
+    if seg:
+        ws = wb.add_worksheet("Absorption")
+        _head(ws, f, "Absorption & segments", seg["meta"]["absorption_note"], 8)
+        ws.set_column(0, 0, 18); ws.set_column(1, 7, 12)
+        _table(ws, f, pd.DataFrame(seg["by_type"]),
+               [("asset_type", "Type", "txt"), ("n", "n", "num"), ("n_sold", "Sold", "num"),
+                ("n_live", "Live", "num"), ("median_ppsf", "Median $/SqFt", "usd"),
+                ("months_supply", "Mo supply", "num1")])
 
     wb.close()
-    print(f"Workbook -> {os.path.relpath(OUT, CRE.ROOT)}")
+    print(f"Workbook -> {os.path.relpath(OUT, CRE.ROOT)} ({len(wb.worksheets())} tabs)")
 
 
 if __name__ == "__main__":
