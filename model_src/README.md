@@ -103,10 +103,15 @@ See `../MODEL_AUDIT.md` for what is verified vs. modeled and the outstanding dat
 
 ## Tabs
 
-`Executive Summary · Deal Book · Review Board · Capital Stack · Assumptions · Income Valuation ·
-Scenarios · Assemblage · Highest & Best Use · Shahidi Retail · Publix & Starbucks · Sunrise Plaza ·
-Office Condo · Land · Notes & Sources`
+Grouped by reading section (tab colours match): **SEE** `Start Here · Executive Summary` · **MAKE**
+`Deal Book · Partner Returns` · **PLAY** `Review Board · Capital Stack` · **CHANGE** `Assumptions` ·
+**MATH** `Income Valuation · Scenarios · Assemblage · Highest & Best Use` · **ASSETS** `Shahidi · Publix &
+Starbucks · Sunrise Plaza · Office Condo · Land` · **SOURCES** `Notes & Sources`.
 
+- **Start Here** — the reading map: the deal in three lines, the four numbers that matter, and which tab
+  answers which question. The front door for anyone opening the workbook.
+- **Partner Returns** — the LP/GP equity waterfall (8% pref, 70/30 promote) on the consolidated levered
+  cash flow: LP vs GP IRR/multiple, the promote earned, and the LP's downside cushion.
 - **Deal Book** — the acquisition & execution package: deal-at-a-glance, per-owner acquisition
   strategy (basis / structure / motivation / approach / contingency), whole-deal Sources & Uses to
   control all five, financing & returns, a risk register, and an execution timeline. Numbers are

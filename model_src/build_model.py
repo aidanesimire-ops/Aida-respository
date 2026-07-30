@@ -5,7 +5,7 @@ Run:  python3 build_model.py
 import json, os
 from openpyxl.utils import get_column_letter, column_index_from_string
 from mblib import new_book, add_sheet, NAVY, GOLD
-import tab_assumptions, tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_income, tab_scenarios, tab_hbu, tab_exec, tab_notes, tab_review, tab_capital, tab_dealbook, tab_partners
+import tab_assumptions, tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_income, tab_scenarios, tab_hbu, tab_exec, tab_notes, tab_review, tab_capital, tab_dealbook, tab_partners, tab_starthere
 import configs, data
 
 OUT = "../Shahidi_Assemblage_Model.xlsx"
@@ -170,6 +170,11 @@ def main():
     sh["Executive Summary"] = add_sheet(wb, "Executive Summary", tabcolor=GOLD)
     tab_exec.build(sh["Executive Summary"], all_regs)
 
+    # ---- start here (the reading map; links to a few headline cells) ----
+    start_regs = dict(all_regs); start_regs["Partner Returns"] = sh["Partner Returns"].reg
+    sh["Start Here"] = add_sheet(wb, "Start Here", tabcolor=GOLD)
+    tab_starthere.build(sh["Start Here"], start_regs)
+
     # ---- notes / sources / methodology ----
     sh["Notes & Sources"] = add_sheet(wb, "Notes & Sources", tabcolor=GOLD)
     tab_notes.build(sh["Notes & Sources"])
@@ -178,15 +183,30 @@ def main():
     tab_assumptions.build_index(sh["Assumptions"], all_regs, a_free)
 
     # ---- reorder ----
-    order = ["Executive Summary", "Deal Book", "Review Board", "Capital Stack", "Partner Returns",
-             "Assumptions", "Income Valuation", "Scenarios", "Assemblage", "Highest & Best Use",
-             "Shahidi Retail", "Publix & Starbucks", "Sunrise Plaza", "Office Condo", "Land", "Notes & Sources"]
+    order = ["Start Here", "Executive Summary", "Deal Book", "Partner Returns", "Review Board",
+             "Capital Stack", "Assumptions", "Income Valuation", "Scenarios", "Assemblage",
+             "Highest & Best Use", "Shahidi Retail", "Publix & Starbucks", "Sunrise Plaza",
+             "Office Condo", "Land", "Notes & Sources"]
     wb._sheets = [sh[t].ws for t in order]
     wb.active = 0
+
+    # ---- tab colours grouped by reading section (makes the 17 tabs scannable) ----
+    C_SEE, C_MAKE, C_PLAY = GOLD, "2E7D74", "3B6EA5"
+    C_CTRL, C_MATH, C_REF = "C77D2E", "4A5A6A", "6B7280"
+    tabcolor = {
+        "Start Here": C_SEE, "Executive Summary": C_SEE,
+        "Deal Book": C_MAKE, "Partner Returns": C_MAKE,
+        "Review Board": C_PLAY, "Capital Stack": C_PLAY,
+        "Assumptions": C_CTRL,
+        "Income Valuation": C_MATH, "Scenarios": C_MATH, "Assemblage": C_MATH, "Highest & Best Use": C_MATH,
+        "Shahidi Retail": NAVY, "Publix & Starbucks": NAVY, "Sunrise Plaza": NAVY, "Office Condo": NAVY, "Land": NAVY,
+        "Notes & Sources": C_REF,
+    }
 
     # ---- print setup on every tab ----
     for t in order:
         ws = sh[t].ws
+        ws.sheet_properties.tabColor = tabcolor.get(t, GOLD)
         ws.page_setup.orientation = "landscape"
         ws.page_setup.fitToWidth = 1
         ws.page_setup.fitToHeight = 0

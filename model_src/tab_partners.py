@@ -119,18 +119,20 @@ def build(s, regs):
     gprange = f"{CL(ACQ)}{rows['GPCF']}:{CL(pc(10))}{rows['GPCF']}"
     lp1 = f"{CL(pc(1))}{rows['LPCF']}:{CL(pc(10))}{rows['LPCF']}"
     gp1 = f"{CL(pc(1))}{rows['GPCF']}:{CL(pc(10))}{rows['GPCF']}"
-    def three(label, flp, fgp, fpr, fmt):
+    def three(label, flp, fgp, fpr, fmt, names=(None, None, None)):
         nonlocal r
         s.put(r, L, label, style="label", align="left")
-        s.put(r, 5, flp, style="calc", fmt=fmt, align="right")
-        s.put(r, 7, fgp, style="calc", fmt=fmt, align="right")
-        s.put(r, 9, fpr, style="calc", color="008000", fmt=fmt, align="right", merge=(r, 10)); r += 1
+        s.put(r, 5, flp, style="calc", fmt=fmt, align="right", name=names[0])
+        s.put(r, 7, fgp, style="calc", fmt=fmt, align="right", name=names[1])
+        s.put(r, 9, fpr, style="calc", color="008000", fmt=fmt, align="right", name=names[2], merge=(r, 10)); r += 1
     s.put(r, L, "Metric", style="subhead", align="left")
     s.put(r, 5, "LP", style="subhead", align="center")
     s.put(r, 7, "GP / sponsor", style="subhead", align="center")
     s.put(r, 9, "Project", style="subhead", align="center", merge=(r, 10)); r += 1
-    three("IRR", f'=IFERROR(IRR({lprange}),"n/m")', f'=IFERROR(IRR({gprange}),"n/m")', f"={cell(IV,'IRRL_I')}", F_PCT1)
-    three("Equity multiple", f"=SUM({lp1})/({LP_SH}*{WF_EQ})", f"=SUM({gp1})/({GP_SH}*{WF_EQ})", f"={cell(IV,'EML_I')}", F_MULT)
+    three("IRR", f'=IFERROR(IRR({lprange}),"n/m")', f'=IFERROR(IRR({gprange}),"n/m")', f"={cell(IV,'IRRL_I')}", F_PCT1,
+          names=("LP_IRR", "GP_IRR", None))
+    three("Equity multiple", f"=SUM({lp1})/({LP_SH}*{WF_EQ})", f"=SUM({gp1})/({GP_SH}*{WF_EQ})", f"={cell(IV,'EML_I')}", F_MULT,
+          names=("LP_EM", "GP_EM", None))
     three("Equity invested", f"={LP_SH}*{WF_EQ}", f"={GP_SH}*{WF_EQ}", f"={WF_EQ}", F_ACCT)
     three("Total distributions", f"=SUM({lp1})", f"=SUM({gp1})", f"=SUM({CL(pc(1))}{rows['DIST']}:{CL(pc(10))}{rows['DIST']})", F_ACCT)
     s.put(r, L, "GP promote earned (carry above pro-rata)", style="label_b", align="left")
