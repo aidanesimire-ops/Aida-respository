@@ -1,0 +1,1196 @@
+{
+  "meta": {
+    "n_lease_listings": 521,
+    "n_lease_rated": 244,
+    "n_active_lease": 50,
+    "n_leased": 41,
+    "min_n": 3,
+    "note": "Lease $/SqFt/yr from listing rates (basis inferred). Implied cap = (lease\u00f7sale gross yield) \u00d7 (1\u2212vacancy) \u00d7 (1\u2212opex) \u2014 anchored to observed rents & prices; market-level proxy, not a per-deal cap."
+  },
+  "by_type": [
+    {
+      "asset_type": "Multifamily",
+      "lease_psf": 15.4,
+      "lease_p25": 13.7,
+      "lease_p75": 20.2,
+      "n_lease": 3,
+      "sale_psf": 177.0,
+      "gross_yield": 0.0869,
+      "implied_cap_data": 0.0474,
+      "assumed_cap": 0.055,
+      "n_active": 0,
+      "n_leased": 0
+    },
+    {
+      "asset_type": "Office",
+      "lease_psf": 17.0,
+      "lease_p25": 7.1,
+      "lease_p75": 25.0,
+      "n_lease": 41,
+      "sale_psf": 197.0,
+      "gross_yield": 0.0862,
+      "implied_cap_data": 0.0403,
+      "assumed_cap": 0.08,
+      "n_active": 12,
+      "n_leased": 0
+    },
+    {
+      "asset_type": "Retail",
+      "lease_psf": 28.0,
+      "lease_p25": 20.5,
+      "lease_p75": 40.0,
+      "n_lease": 59,
+      "sale_psf": 247.0,
+      "gross_yield": 0.1136,
+      "implied_cap_data": 0.0815,
+      "assumed_cap": 0.0675,
+      "n_active": 11,
+      "n_leased": 10
+    },
+    {
+      "asset_type": "Industrial",
+      "lease_psf": 19.4,
+      "lease_p25": 11.8,
+      "lease_p75": 20.0,
+      "n_lease": 24,
+      "sale_psf": 150.0,
+      "gross_yield": 0.1296,
+      "implied_cap_data": 0.1047,
+      "assumed_cap": 0.0625,
+      "n_active": 5,
+      "n_leased": 2
+    },
+    {
+      "asset_type": "Mixed Use",
+      "lease_psf": 20.2,
+      "lease_p25": 8.2,
+      "lease_p75": 28.3,
+      "n_lease": 24,
+      "sale_psf": 136.0,
+      "gross_yield": 0.1481,
+      "implied_cap_data": 0.0866,
+      "assumed_cap": 0.0675,
+      "n_active": 4,
+      "n_leased": 5
+    },
+    {
+      "asset_type": "Restaurant",
+      "lease_psf": 22.6,
+      "lease_p25": 9.2,
+      "lease_p75": 28.2,
+      "n_lease": 7,
+      "sale_psf": 365.0,
+      "gross_yield": 0.0619,
+      "implied_cap_data": 0.0446,
+      "assumed_cap": 0.065,
+      "n_active": 2,
+      "n_leased": 0
+    },
+    {
+      "asset_type": "Special Purpose",
+      "lease_psf": 7.3,
+      "lease_p25": 6.7,
+      "lease_p75": 9.1,
+      "n_lease": 4,
+      "sale_psf": 319.0,
+      "gross_yield": 0.0229,
+      "implied_cap_data": 0.0136,
+      "assumed_cap": 0.075,
+      "n_active": 0,
+      "n_leased": 0
+    },
+    {
+      "asset_type": "Commercial (other)",
+      "lease_psf": 26.5,
+      "lease_p25": 14.1,
+      "lease_p75": 34.2,
+      "n_lease": 80,
+      "sale_psf": 195.0,
+      "gross_yield": 0.1362,
+      "implied_cap_data": 0.0839,
+      "assumed_cap": 0.07,
+      "n_active": 16,
+      "n_leased": 24
+    }
+  ],
+  "by_submarket": [
+    {
+      "submarket": "Area 3700",
+      "corridors": "Federal Hwy \u00b7 Andrews Ave",
+      "lease_psf": 35.0,
+      "n_lease": 13,
+      "n_active": 6,
+      "n_leased": 0,
+      "sale_psf": 382.0,
+      "gross_yield": 0.0916
+    },
+    {
+      "submarket": "Area 3160",
+      "corridors": "Ocean Blvd \u00b7 Sunrise Blvd",
+      "lease_psf": 32.0,
+      "n_lease": 6,
+      "n_active": 0,
+      "n_leased": 2,
+      "sale_psf": 190.0,
+      "gross_yield": 0.1682
+    },
+    {
+      "submarket": "Area 3270",
+      "corridors": "Broward Blvd",
+      "lease_psf": 32.0,
+      "n_lease": 3,
+      "n_active": 0,
+      "n_leased": 0,
+      "sale_psf": 197.0,
+      "gross_yield": 0.1626
+    },
+    {
+      "submarket": "Area 3260",
+      "corridors": "Federal Hwy \u00b7 Sunrise Blvd",
+      "lease_psf": 30.0,
+      "n_lease": 23,
+      "n_active": 8,
+      "n_leased": 5,
+      "sale_psf": 238.0,
+      "gross_yield": 0.1261
+    },
+    {
+      "submarket": "Area 3280",
+      "corridors": "Cordova Rd \u00b7 Oakland Park Blvd",
+      "lease_psf": 29.5,
+      "n_lease": 18,
+      "n_active": 4,
+      "n_leased": 4,
+      "sale_psf": 324.0,
+      "gross_yield": 0.0912
+    },
+    {
+      "submarket": "Area 3400",
+      "corridors": "Sunrise Blvd",
+      "lease_psf": 28.0,
+      "n_lease": 3,
+      "n_active": 1,
+      "n_leased": 0,
+      "sale_psf": 148.0,
+      "gross_yield": 0.1896
+    },
+    {
+      "submarket": "Area 3370",
+      "corridors": "Oakland Park Blvd \u00b7 Dixie Hwy",
+      "lease_psf": 25.5,
+      "n_lease": 30,
+      "n_active": 7,
+      "n_leased": 8,
+      "sale_psf": 142.0,
+      "gross_yield": 0.179
+    },
+    {
+      "submarket": "Area 3150",
+      "corridors": "Davie Blvd \u00b7 Oakland Park Blvd",
+      "lease_psf": 25.0,
+      "n_lease": 5,
+      "n_active": 2,
+      "n_leased": 0,
+      "sale_psf": 209.0,
+      "gross_yield": 0.1195
+    },
+    {
+      "submarket": "Area 3360",
+      "corridors": "Federal Hwy \u00b7 Oakland Park Blvd",
+      "lease_psf": 25.0,
+      "n_lease": 5,
+      "n_active": 1,
+      "n_leased": 1,
+      "sale_psf": 144.0,
+      "gross_yield": 0.1739
+    },
+    {
+      "submarket": "Area 3480",
+      "corridors": "Federal Hwy",
+      "lease_psf": 24.7,
+      "n_lease": 3,
+      "n_active": 1,
+      "n_leased": 0,
+      "sale_psf": 272.0,
+      "gross_yield": 0.0908
+    },
+    {
+      "submarket": "Area 3470",
+      "corridors": "",
+      "lease_psf": 23.1,
+      "n_lease": 8,
+      "n_active": 0,
+      "n_leased": 2,
+      "sale_psf": 168.0,
+      "gross_yield": 0.1375
+    },
+    {
+      "submarket": "Area 3380",
+      "corridors": "Wilton Dr \u00b7 Federal Hwy",
+      "lease_psf": 23.0,
+      "n_lease": 18,
+      "n_active": 3,
+      "n_leased": 5,
+      "sale_psf": 284.0,
+      "gross_yield": 0.081
+    },
+    {
+      "submarket": "Area 3460",
+      "corridors": "",
+      "lease_psf": 20.0,
+      "n_lease": 15,
+      "n_active": 0,
+      "n_leased": 3,
+      "sale_psf": 138.0,
+      "gross_yield": 0.1446
+    },
+    {
+      "submarket": "Area 3450",
+      "corridors": "Oakland Park Blvd \u00b7 Wilton Dr",
+      "lease_psf": 20.0,
+      "n_lease": 11,
+      "n_active": 0,
+      "n_leased": 4,
+      "sale_psf": 110.0,
+      "gross_yield": 0.1811
+    },
+    {
+      "submarket": "Area 3390",
+      "corridors": "Andrews Ave \u00b7 Oakland Park Blvd",
+      "lease_psf": 20.0,
+      "n_lease": 3,
+      "n_active": 1,
+      "n_leased": 0,
+      "sale_psf": 114.0,
+      "gross_yield": 0.1759
+    },
+    {
+      "submarket": "Area 3560",
+      "corridors": "Broward Blvd",
+      "lease_psf": 18.0,
+      "n_lease": 11,
+      "n_active": 1,
+      "n_leased": 1,
+      "sale_psf": 216.0,
+      "gross_yield": 0.0835
+    },
+    {
+      "submarket": "Area 3250",
+      "corridors": "Oakland Park Blvd",
+      "lease_psf": 17.0,
+      "n_lease": 5,
+      "n_active": 3,
+      "n_leased": 0,
+      "sale_psf": 247.0,
+      "gross_yield": 0.0689
+    },
+    {
+      "submarket": "Area 3170",
+      "corridors": "SE 17th St",
+      "lease_psf": 13.4,
+      "n_lease": 3,
+      "n_active": 1,
+      "n_leased": 1,
+      "sale_psf": 1052.0,
+      "gross_yield": 0.0127
+    },
+    {
+      "submarket": "Area 3040",
+      "corridors": "",
+      "lease_psf": 11.6,
+      "n_lease": 3,
+      "n_active": 0,
+      "n_leased": 0,
+      "sale_psf": 594.0,
+      "gross_yield": 0.0195
+    },
+    {
+      "submarket": "Area 3800",
+      "corridors": "Andrews Ave \u00b7 SE 17th St",
+      "lease_psf": 11.4,
+      "n_lease": 22,
+      "n_active": 6,
+      "n_leased": 1,
+      "sale_psf": 134.0,
+      "gross_yield": 0.0848
+    },
+    {
+      "submarket": "Area 3490",
+      "corridors": "",
+      "lease_psf": 10.7,
+      "n_lease": 5,
+      "n_active": 1,
+      "n_leased": 0,
+      "sale_psf": 248.0,
+      "gross_yield": 0.0432
+    },
+    {
+      "submarket": "Area 3130",
+      "corridors": "Las Olas Blvd \u00b7 SR-84",
+      "lease_psf": 10.0,
+      "n_lease": 3,
+      "n_active": 1,
+      "n_leased": 0,
+      "sale_psf": 1181.0,
+      "gross_yield": 0.0085
+    },
+    {
+      "submarket": "Area 3500",
+      "corridors": "SE 17th St \u00b7 Andrews Ave",
+      "lease_psf": 8.2,
+      "n_lease": 5,
+      "n_active": 0,
+      "n_leased": 2,
+      "sale_psf": 171.0,
+      "gross_yield": 0.0479
+    },
+    {
+      "submarket": "Area 3600",
+      "corridors": "Andrews Ave",
+      "lease_psf": 8.2,
+      "n_lease": 3,
+      "n_active": 0,
+      "n_leased": 0,
+      "sale_psf": 280.0,
+      "gross_yield": 0.0293
+    }
+  ],
+  "submarket_x_type": [
+    {
+      "submarket": "Area 3150",
+      "asset_type": "Retail",
+      "lease_psf": 25.0,
+      "n": 3
+    },
+    {
+      "submarket": "Area 3160",
+      "asset_type": "Commercial (other)",
+      "lease_psf": 30.0,
+      "n": 5
+    },
+    {
+      "submarket": "Area 3260",
+      "asset_type": "Commercial (other)",
+      "lease_psf": 21.0,
+      "n": 13
+    },
+    {
+      "submarket": "Area 3260",
+      "asset_type": "Office",
+      "lease_psf": 17.0,
+      "n": 3
+    },
+    {
+      "submarket": "Area 3260",
+      "asset_type": "Retail",
+      "lease_psf": 45.0,
+      "n": 7
+    },
+    {
+      "submarket": "Area 3280",
+      "asset_type": "Commercial (other)",
+      "lease_psf": 20.8,
+      "n": 6
+    },
+    {
+      "submarket": "Area 3280",
+      "asset_type": "Office",
+      "lease_psf": 35.0,
+      "n": 8
+    },
+    {
+      "submarket": "Area 3360",
+      "asset_type": "Retail",
+      "lease_psf": 25.0,
+      "n": 3
+    },
+    {
+      "submarket": "Area 3370",
+      "asset_type": "Commercial (other)",
+      "lease_psf": 28.5,
+      "n": 8
+    },
+    {
+      "submarket": "Area 3370",
+      "asset_type": "Mixed Use",
+      "lease_psf": 29.0,
+      "n": 6
+    },
+    {
+      "submarket": "Area 3370",
+      "asset_type": "Retail",
+      "lease_psf": 24.5,
+      "n": 12
+    },
+    {
+      "submarket": "Area 3380",
+      "asset_type": "Commercial (other)",
+      "lease_psf": 33.0,
+      "n": 8
+    },
+    {
+      "submarket": "Area 3380",
+      "asset_type": "Mixed Use",
+      "lease_psf": 16.0,
+      "n": 3
+    },
+    {
+      "submarket": "Area 3380",
+      "asset_type": "Retail",
+      "lease_psf": 31.0,
+      "n": 4
+    },
+    {
+      "submarket": "Area 3450",
+      "asset_type": "Commercial (other)",
+      "lease_psf": 22.5,
+      "n": 6
+    },
+    {
+      "submarket": "Area 3450",
+      "asset_type": "Mixed Use",
+      "lease_psf": 6.1,
+      "n": 3
+    },
+    {
+      "submarket": "Area 3460",
+      "asset_type": "Commercial (other)",
+      "lease_psf": 19.8,
+      "n": 4
+    },
+    {
+      "submarket": "Area 3460",
+      "asset_type": "Industrial",
+      "lease_psf": 20.0,
+      "n": 3
+    },
+    {
+      "submarket": "Area 3460",
+      "asset_type": "Mixed Use",
+      "lease_psf": 23.0,
+      "n": 3
+    },
+    {
+      "submarket": "Area 3460",
+      "asset_type": "Retail",
+      "lease_psf": 30.0,
+      "n": 3
+    },
+    {
+      "submarket": "Area 3470",
+      "asset_type": "Industrial",
+      "lease_psf": 27.0,
+      "n": 4
+    },
+    {
+      "submarket": "Area 3490",
+      "asset_type": "Mixed Use",
+      "lease_psf": 28.0,
+      "n": 3
+    },
+    {
+      "submarket": "Area 3500",
+      "asset_type": "Commercial (other)",
+      "lease_psf": 18.6,
+      "n": 4
+    },
+    {
+      "submarket": "Area 3560",
+      "asset_type": "Industrial",
+      "lease_psf": 10.7,
+      "n": 4
+    },
+    {
+      "submarket": "Area 3700",
+      "asset_type": "Commercial (other)",
+      "lease_psf": 30.0,
+      "n": 6
+    },
+    {
+      "submarket": "Area 3700",
+      "asset_type": "Office",
+      "lease_psf": 52.0,
+      "n": 3
+    },
+    {
+      "submarket": "Area 3700",
+      "asset_type": "Retail",
+      "lease_psf": 35.0,
+      "n": 3
+    },
+    {
+      "submarket": "Area 3800",
+      "asset_type": "Commercial (other)",
+      "lease_psf": 35.0,
+      "n": 5
+    },
+    {
+      "submarket": "Area 3800",
+      "asset_type": "Office",
+      "lease_psf": 7.8,
+      "n": 14
+    }
+  ],
+  "comps": [
+    {
+      "mls": "A11844944",
+      "address": "2933 E Las Olas Blvd",
+      "submarket": "Area 3280",
+      "asset_type": "Restaurant",
+      "status": "Active",
+      "sqft": 5750.0,
+      "lease_rate_psf": 90.0,
+      "year_built": 1988.0,
+      "annual_rent_est": 517500.0
+    },
+    {
+      "mls": "A11971258",
+      "address": "2300 NE 6th Ave",
+      "submarket": "Area 3370",
+      "asset_type": "Mixed Use",
+      "status": "Active",
+      "sqft": 13683.0,
+      "lease_rate_psf": 70.0,
+      "year_built": 1972.0,
+      "annual_rent_est": 957800.0
+    },
+    {
+      "mls": "F10522678",
+      "address": "2217 Wilton Drive Unit#2217",
+      "submarket": "Area 3370",
+      "asset_type": "Retail",
+      "status": "Active",
+      "sqft": 48969.0,
+      "lease_rate_psf": 60.0,
+      "year_built": null,
+      "annual_rent_est": 2938100.0
+    },
+    {
+      "mls": "F10494001",
+      "address": "1930 E Sunrise Boulevard Unit#4",
+      "submarket": "Area 3260",
+      "asset_type": "Retail",
+      "status": "Rented",
+      "sqft": 17695.0,
+      "lease_rate_psf": 60.0,
+      "year_built": null,
+      "annual_rent_est": 1061700.0
+    },
+    {
+      "mls": "F10493998",
+      "address": "1930 E Sunrise Boulevard Unit#9",
+      "submarket": "Area 3260",
+      "asset_type": "Commercial (other)",
+      "status": "Rented",
+      "sqft": 2101.0,
+      "lease_rate_psf": 60.0,
+      "year_built": null,
+      "annual_rent_est": 126100.0
+    },
+    {
+      "mls": "F10500883",
+      "address": "801 N Federal Highway",
+      "submarket": "Area 3700",
+      "asset_type": "Commercial (other)",
+      "status": "Expired",
+      "sqft": 3435.0,
+      "lease_rate_psf": 60.0,
+      "year_built": null,
+      "annual_rent_est": 206100.0
+    },
+    {
+      "mls": "F10511719",
+      "address": "2262 Wilton Drive",
+      "submarket": "Area 3450",
+      "asset_type": "Retail",
+      "status": "Expired",
+      "sqft": 77828.0,
+      "lease_rate_psf": 55.0,
+      "year_built": null,
+      "annual_rent_est": 4280500.0
+    },
+    {
+      "mls": "F10322328",
+      "address": "801 N Federal Highway",
+      "submarket": "Area 3700",
+      "asset_type": "Commercial (other)",
+      "status": "Expired",
+      "sqft": 3435.0,
+      "lease_rate_psf": 55.0,
+      "year_built": null,
+      "annual_rent_est": 188900.0
+    },
+    {
+      "mls": "F10499862",
+      "address": "501 NE 5th Terrace Unit#700",
+      "submarket": "Area 3270",
+      "asset_type": "Retail",
+      "status": "Expired",
+      "sqft": 229140.0,
+      "lease_rate_psf": 55.0,
+      "year_built": null,
+      "annual_rent_est": 12602700.0
+    },
+    {
+      "mls": "A12046047",
+      "address": "721 NE 3rd Ave",
+      "submarket": "Area 3700",
+      "asset_type": "Office",
+      "status": "Active",
+      "sqft": 9368.0,
+      "lease_rate_psf": 52.0,
+      "year_built": 1987.0,
+      "annual_rent_est": 487100.0
+    },
+    {
+      "mls": "A12030462",
+      "address": "721 NE 3rd Ave Unit#A",
+      "submarket": "Area 3700",
+      "asset_type": "Office",
+      "status": "Active",
+      "sqft": 9368.0,
+      "lease_rate_psf": 52.0,
+      "year_built": 1987.0,
+      "annual_rent_est": 487100.0
+    },
+    {
+      "mls": "F10436905",
+      "address": "307 SW 5th Street",
+      "submarket": "Area 3470",
+      "asset_type": "Retail",
+      "status": "Rented",
+      "sqft": 14368.0,
+      "lease_rate_psf": 50.0,
+      "year_built": null,
+      "annual_rent_est": 718400.0
+    },
+    {
+      "mls": "F10503334",
+      "address": "545 NE 13th Street",
+      "submarket": "Area 3380",
+      "asset_type": "Retail",
+      "status": "Rented",
+      "sqft": 7246.0,
+      "lease_rate_psf": 50.0,
+      "year_built": null,
+      "annual_rent_est": 362300.0
+    },
+    {
+      "mls": "F10511728",
+      "address": "2211 Wilton Drive",
+      "submarket": "Area 3450",
+      "asset_type": "Commercial (other)",
+      "status": "Expired",
+      "sqft": 48969.0,
+      "lease_rate_psf": 50.0,
+      "year_built": null,
+      "annual_rent_est": 2448400.0
+    },
+    {
+      "mls": "F10501588",
+      "address": "2000 S Federal Highway Unit#D",
+      "submarket": "Area 3480",
+      "asset_type": "Retail",
+      "status": "Cancelled",
+      "sqft": 16875.0,
+      "lease_rate_psf": 50.0,
+      "year_built": null,
+      "annual_rent_est": 843800.0
+    },
+    {
+      "mls": "F10494020",
+      "address": "719 NE 2nd Avenue",
+      "submarket": "Area 3560",
+      "asset_type": "Retail",
+      "status": "Cancelled",
+      "sqft": 6375.0,
+      "lease_rate_psf": 50.0,
+      "year_built": null,
+      "annual_rent_est": 318800.0
+    },
+    {
+      "mls": "F10446634",
+      "address": "2136 E Oakland Park Boulevard Unit#2136",
+      "submarket": "Area 3370",
+      "asset_type": "Retail",
+      "status": "Cancelled",
+      "sqft": 3429.0,
+      "lease_rate_psf": 48.0,
+      "year_built": null,
+      "annual_rent_est": 164600.0
+    },
+    {
+      "mls": "F10409228",
+      "address": "235 S Fort Lauderdale Beach Boulevard",
+      "submarket": "Area 3280",
+      "asset_type": "Retail",
+      "status": "Cancelled",
+      "sqft": 10111.0,
+      "lease_rate_psf": 47.47,
+      "year_built": null,
+      "annual_rent_est": 480000.0
+    },
+    {
+      "mls": "F10505986",
+      "address": "3020 N Federal Highway Unit#6",
+      "submarket": "Area 3260",
+      "asset_type": "Retail",
+      "status": "Expired",
+      "sqft": 1000.0,
+      "lease_rate_psf": 46.8,
+      "year_built": null,
+      "annual_rent_est": 46800.0
+    },
+    {
+      "mls": "F10486226",
+      "address": "821 N Federal Highway",
+      "submarket": "Area 3700",
+      "asset_type": "Retail",
+      "status": "Active",
+      "sqft": 1720.0,
+      "lease_rate_psf": 45.0,
+      "year_built": null,
+      "annual_rent_est": 77400.0
+    },
+    {
+      "mls": "F10493990",
+      "address": "1948 E Sunrise Boulevard",
+      "submarket": "Area 3260",
+      "asset_type": "Retail",
+      "status": "Active",
+      "sqft": 3578.0,
+      "lease_rate_psf": 45.0,
+      "year_built": null,
+      "annual_rent_est": 161000.0
+    },
+    {
+      "mls": "F10486631",
+      "address": "702-704 NE 1st Avenue",
+      "submarket": "Area 3380",
+      "asset_type": "Commercial (other)",
+      "status": "Cancelled",
+      "sqft": 11156.0,
+      "lease_rate_psf": 45.0,
+      "year_built": null,
+      "annual_rent_est": 502000.0
+    },
+    {
+      "mls": "F10493994",
+      "address": "919 NE 20th",
+      "submarket": "Area 3260",
+      "asset_type": "Retail",
+      "status": "Rented",
+      "sqft": 10000.0,
+      "lease_rate_psf": 45.0,
+      "year_built": null,
+      "annual_rent_est": 450000.0
+    },
+    {
+      "mls": "F10436037",
+      "address": "603 NE 13th Street",
+      "submarket": "Area 3370",
+      "asset_type": "Retail",
+      "status": "Expired",
+      "sqft": 14491.0,
+      "lease_rate_psf": 40.0,
+      "year_built": null,
+      "annual_rent_est": 579600.0
+    },
+    {
+      "mls": "F10498148",
+      "address": "535 NE 13th Street Unit#2",
+      "submarket": "Area 3380",
+      "asset_type": "Commercial (other)",
+      "status": "Expired",
+      "sqft": 14491.0,
+      "lease_rate_psf": 40.0,
+      "year_built": null,
+      "annual_rent_est": 579600.0
+    },
+    {
+      "mls": "F10496808",
+      "address": "1416 NE 4th Avenue",
+      "submarket": "Area 3370",
+      "asset_type": "Retail",
+      "status": "Cancelled",
+      "sqft": 6248.0,
+      "lease_rate_psf": 40.0,
+      "year_built": null,
+      "annual_rent_est": 249900.0
+    },
+    {
+      "mls": "F10512095",
+      "address": "920 NE 13th Street",
+      "submarket": "Area 3560",
+      "asset_type": "Retail",
+      "status": "Expired",
+      "sqft": 35008.0,
+      "lease_rate_psf": 40.0,
+      "year_built": null,
+      "annual_rent_est": 1400300.0
+    },
+    {
+      "mls": "F10464702",
+      "address": "200 NE 3rd Avenue",
+      "submarket": "Area 3460",
+      "asset_type": "Commercial (other)",
+      "status": "Expired",
+      "sqft": 18349.0,
+      "lease_rate_psf": 40.0,
+      "year_built": null,
+      "annual_rent_est": 734000.0
+    },
+    {
+      "mls": "A11596374",
+      "address": "15 NW 9th Ave",
+      "submarket": "Area 3470",
+      "asset_type": "Industrial",
+      "status": "Sold",
+      "sqft": 7000.0,
+      "lease_rate_psf": 40.0,
+      "year_built": 1954.0,
+      "annual_rent_est": 280000.0
+    },
+    {
+      "mls": "F10322336",
+      "address": "416 SW 1st Avenue",
+      "submarket": "Area 3800",
+      "asset_type": "Commercial (other)",
+      "status": "Rented",
+      "sqft": 22799.0,
+      "lease_rate_psf": 40.0,
+      "year_built": null,
+      "annual_rent_est": 912000.0
+    },
+    {
+      "mls": "F10498150",
+      "address": "603 NE 13th Street Unit#C",
+      "submarket": "Area 3360",
+      "asset_type": "Commercial (other)",
+      "status": "Rented",
+      "sqft": 14491.0,
+      "lease_rate_psf": 40.0,
+      "year_built": null,
+      "annual_rent_est": 579600.0
+    },
+    {
+      "mls": "A12018487",
+      "address": "2300 NE 6th Ave",
+      "submarket": "Area 3370",
+      "asset_type": "Mixed Use",
+      "status": "Active",
+      "sqft": 13683.0,
+      "lease_rate_psf": 40.0,
+      "year_built": 1971.0,
+      "annual_rent_est": 547300.0
+    },
+    {
+      "mls": "F10435706",
+      "address": "1200 NE 7th Avenue Unit#1",
+      "submarket": "Area 3380",
+      "asset_type": "Commercial (other)",
+      "status": "Cancelled",
+      "sqft": 1276.0,
+      "lease_rate_psf": 39.5,
+      "year_built": null,
+      "annual_rent_est": 50400.0
+    },
+    {
+      "mls": "F10509142",
+      "address": "1429 NE 4th Avenue",
+      "submarket": "Area 3380",
+      "asset_type": "Retail",
+      "status": "Cancelled",
+      "sqft": 798.0,
+      "lease_rate_psf": 39.1,
+      "year_built": null,
+      "annual_rent_est": 31200.0
+    },
+    {
+      "mls": "F10541322",
+      "address": "905 Sunrise Lane",
+      "submarket": "Area 3160",
+      "asset_type": "Commercial (other)",
+      "status": "Rented",
+      "sqft": 1010.0,
+      "lease_rate_psf": 39.0,
+      "year_built": null,
+      "annual_rent_est": 39400.0
+    },
+    {
+      "mls": "F10556046",
+      "address": "3020 N Federal Highway Unit#6",
+      "submarket": "Area 3260",
+      "asset_type": "Retail",
+      "status": "Active",
+      "sqft": 1000.0,
+      "lease_rate_psf": 38.4,
+      "year_built": null,
+      "annual_rent_est": 38400.0
+    },
+    {
+      "mls": "F10556048",
+      "address": "3038 N Federal Highway Unit#1st Floor",
+      "submarket": "Area 3260",
+      "asset_type": "Retail",
+      "status": "Active",
+      "sqft": 1000.0,
+      "lease_rate_psf": 38.4,
+      "year_built": null,
+      "annual_rent_est": 38400.0
+    },
+    {
+      "mls": "A11870797",
+      "address": "905 Sunrise Ln",
+      "submarket": "Area 3160",
+      "asset_type": "Retail",
+      "status": "Expired",
+      "sqft": 1010.0,
+      "lease_rate_psf": 38.02,
+      "year_built": 1952.0,
+      "annual_rent_est": 38400.0
+    },
+    {
+      "mls": "F10511622",
+      "address": "900 NE 26th Avenue",
+      "submarket": "Area 3380",
+      "asset_type": "Commercial (other)",
+      "status": "Expired",
+      "sqft": 11743.0,
+      "lease_rate_psf": 38.0,
+      "year_built": null,
+      "annual_rent_est": 446200.0
+    },
+    {
+      "mls": "F10480162",
+      "address": "2455 E Sunrise Boulevard Unit#Penthouse",
+      "submarket": "Area 3260",
+      "asset_type": "Commercial (other)",
+      "status": "Expired",
+      "sqft": 12398.0,
+      "lease_rate_psf": 38.0,
+      "year_built": null,
+      "annual_rent_est": 471100.0
+    },
+    {
+      "mls": "F10440727",
+      "address": "1200 NE 7th Avenue Unit#3",
+      "submarket": "Area 3380",
+      "asset_type": "Mixed Use",
+      "status": "Rented",
+      "sqft": 1258.0,
+      "lease_rate_psf": 37.2,
+      "year_built": null,
+      "annual_rent_est": 46800.0
+    },
+    {
+      "mls": "A11998799",
+      "address": "2866 E Oakland Park Blvd",
+      "submarket": "Area 3280",
+      "asset_type": "Office",
+      "status": "Sold",
+      "sqft": 15010.0,
+      "lease_rate_psf": 36.0,
+      "year_built": 1966.0,
+      "annual_rent_est": 540400.0
+    },
+    {
+      "mls": "F10530751",
+      "address": "2101 N Andrews Avenue",
+      "submarket": "Area 3390",
+      "asset_type": "Commercial (other)",
+      "status": "Active",
+      "sqft": 84738.0,
+      "lease_rate_psf": 36.0,
+      "year_built": null,
+      "annual_rent_est": 3050600.0
+    },
+    {
+      "mls": "A11998806",
+      "address": "2876 E Oakland Park Blvd",
+      "submarket": "Area 3280",
+      "asset_type": "Office",
+      "status": "Active",
+      "sqft": 12250.0,
+      "lease_rate_psf": 36.0,
+      "year_built": 1963.0,
+      "annual_rent_est": 441000.0
+    },
+    {
+      "mls": "F10495690",
+      "address": "801 NE 2nd Avenue Unit#120",
+      "submarket": "Area 3810",
+      "asset_type": "Retail",
+      "status": "Rented",
+      "sqft": 11458.0,
+      "lease_rate_psf": 36.0,
+      "year_built": null,
+      "annual_rent_est": 412500.0
+    },
+    {
+      "mls": "A11998773",
+      "address": "2856 E Oakland Park Blvd",
+      "submarket": "Area 3280",
+      "asset_type": "Office",
+      "status": "Active",
+      "sqft": 7505.0,
+      "lease_rate_psf": 36.0,
+      "year_built": 1966.0,
+      "annual_rent_est": 270200.0
+    },
+    {
+      "mls": "A11350353",
+      "address": "1865 Cordova Rd Unit#B215",
+      "submarket": "Area 3280",
+      "asset_type": "Office",
+      "status": "Expired",
+      "sqft": 245865.0,
+      "lease_rate_psf": 35.0,
+      "year_built": 2005.0,
+      "annual_rent_est": 8605300.0
+    },
+    {
+      "mls": "A11350330",
+      "address": "1865 Cordova Rd Unit#B217",
+      "submarket": "Area 3280",
+      "asset_type": "Office",
+      "status": "Expired",
+      "sqft": 245865.0,
+      "lease_rate_psf": 35.0,
+      "year_built": 2005.0,
+      "annual_rent_est": 8605300.0
+    },
+    {
+      "mls": "F10421703",
+      "address": "700 N Andrews Avenue",
+      "submarket": "Area 3700",
+      "asset_type": "Retail",
+      "status": "Expired",
+      "sqft": 13720.0,
+      "lease_rate_psf": 35.0,
+      "year_built": null,
+      "annual_rent_est": 480200.0
+    },
+    {
+      "mls": "F10522748",
+      "address": "642 NE 3rd Avenue",
+      "submarket": "Area 3700",
+      "asset_type": "Commercial (other)",
+      "status": "Active",
+      "sqft": 7813.0,
+      "lease_rate_psf": 35.0,
+      "year_built": null,
+      "annual_rent_est": 273500.0
+    },
+    {
+      "mls": "F10518243",
+      "address": "1412 NE 4th Avenue",
+      "submarket": "Area 3370",
+      "asset_type": "Commercial (other)",
+      "status": "Rented",
+      "sqft": 6248.0,
+      "lease_rate_psf": 35.0,
+      "year_built": null,
+      "annual_rent_est": 218700.0
+    },
+    {
+      "mls": "F10523092",
+      "address": "907-911 NE 20th",
+      "submarket": "Area 3260",
+      "asset_type": "Commercial (other)",
+      "status": "Rented",
+      "sqft": 10000.0,
+      "lease_rate_psf": 35.0,
+      "year_built": null,
+      "annual_rent_est": 350000.0
+    },
+    {
+      "mls": "F10440891",
+      "address": "906 NE 26th Avenue",
+      "submarket": "Area 3260",
+      "asset_type": "Commercial (other)",
+      "status": "Expired",
+      "sqft": 10250.0,
+      "lease_rate_psf": 35.0,
+      "year_built": null,
+      "annual_rent_est": 358800.0
+    },
+    {
+      "mls": "A11647486",
+      "address": "350 SW 25th St",
+      "submarket": "Area 3490",
+      "asset_type": "Mixed Use",
+      "status": "Cancelled",
+      "sqft": 32680.0,
+      "lease_rate_psf": 35.0,
+      "year_built": 1987.0,
+      "annual_rent_est": 1143800.0
+    },
+    {
+      "mls": "F10419781",
+      "address": "1133 SE 4th Avenue",
+      "submarket": "Area 3800",
+      "asset_type": "Commercial (other)",
+      "status": "Cancelled",
+      "sqft": 7000.0,
+      "lease_rate_psf": 35.0,
+      "year_built": null,
+      "annual_rent_est": 245000.0
+    },
+    {
+      "mls": "A11350356",
+      "address": "1811 Cordova Rd Unit#1811",
+      "submarket": "Area 3280",
+      "asset_type": "Office",
+      "status": "Expired",
+      "sqft": 245865.0,
+      "lease_rate_psf": 35.0,
+      "year_built": 2005.0,
+      "annual_rent_est": 8605300.0
+    },
+    {
+      "mls": "F10440621",
+      "address": "201 SE 2nd Street",
+      "submarket": "Area 3800",
+      "asset_type": "Commercial (other)",
+      "status": "Cancelled",
+      "sqft": 6997.0,
+      "lease_rate_psf": 35.0,
+      "year_built": null,
+      "annual_rent_est": 244900.0
+    },
+    {
+      "mls": "F10494022",
+      "address": "700 N Andrews Avenue",
+      "submarket": "Area 3700",
+      "asset_type": "Retail",
+      "status": "Cancelled",
+      "sqft": 13720.0,
+      "lease_rate_psf": 35.0,
+      "year_built": null,
+      "annual_rent_est": 480200.0
+    },
+    {
+      "mls": "A11567376",
+      "address": "2852 E Oakland Park Blvd",
+      "submarket": "Area 3250",
+      "asset_type": "Retail",
+      "status": "Expired",
+      "sqft": 7505.0,
+      "lease_rate_psf": 35.0,
+      "year_built": 1963.0,
+      "annual_rent_est": 262700.0
+    },
+    {
+      "mls": "F10454187",
+      "address": "701 NW 5th Avenue Unit#1040",
+      "submarket": "Area 3460",
+      "asset_type": "Commercial (other)",
+      "status": "Cancelled",
+      "sqft": 60749.0,
+      "lease_rate_psf": 34.0,
+      "year_built": null,
+      "annual_rent_est": 2065500.0
+    }
+  ]
+}

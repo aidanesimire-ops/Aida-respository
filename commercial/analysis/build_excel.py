@@ -299,7 +299,9 @@ def index_sheet(wb, f, meta):
            ("Prospects", "Failed listings + overpriced actives."),
            ("Comps", "The closed sales behind the numbers."),
            ("Scenario", "Live underwriting — NOI built from assumptions."),
-           ("Market", "Researched benchmarks, costs & the neighborhood playbook.")]
+           ("Market", "Researched benchmarks, costs & the neighborhood playbook."),
+           ("Leasing", "Asking rents by type/submarket + data-derived cap rates."),
+           ("Call List", "Owners to cold-call, motivated first.")]
     link = wb.add_format({"font_color": BLUE, "bold": True, "underline": 1, "border": 1, "border_color": "#e1e0d9"})
     for i, (name, desc) in enumerate(toc):
         r = 3 + i
@@ -423,6 +425,41 @@ def main():
     assumptions_seed = seed
     scenario_sheet(wb, f, assumptions_seed)
     market_sheet(wb, f)
+
+    lb = _load("leases_bundle.json")
+    if lb:
+        ws = wb.add_worksheet("Leasing")
+        _head(ws, f, "Leasing — asking rents & data-derived caps",
+              f"{lb['meta']['n_lease_rated']} lease listings ({lb['meta']['n_active_lease']} active, "
+              f"{lb['meta']['n_leased']} leased). Implied cap = (lease÷sale) × (1−vac) × (1−opex).", 8)
+        ws.set_column(0, 0, 18); ws.set_column(1, 8, 12)
+        _table(ws, f, pd.DataFrame(lb["by_type"]),
+               [("asset_type", "Type", "txt"), ("lease_psf", "Lease $/SF", "usd"),
+                ("lease_p25", "P25", "usd"), ("lease_p75", "P75", "usd"), ("n_lease", "n", "num"),
+                ("sale_psf", "Sale $/SF", "usd"), ("gross_yield", "Gross yld", "pct2"),
+                ("implied_cap_data", "Implied cap", "pct2"), ("assumed_cap", "Assumed cap", "pct2")])
+        sub = pd.DataFrame(lb["by_submarket"])
+        if len(sub):
+            start = 3 + len(lb["by_type"]) + 3
+            ws.write(start - 1, 0, "Lease $/SqFt by submarket", f["title"])
+            _table(ws, f, sub, [("submarket", "Submarket", "txt"), ("corridors", "Corridors", "txt"),
+                                ("lease_psf", "Lease $/SF", "usd"), ("n_lease", "n", "num"),
+                                ("n_active", "Active", "num"), ("n_leased", "Leased", "num"),
+                                ("sale_psf", "Sale $/SF", "usd"), ("gross_yield", "Gross yld", "pct2")],
+                   start=start)
+
+    if os.path.exists(os.path.join(CRE.PROC, "call_list.csv")):
+        ws = wb.add_worksheet("Call List")
+        _head(ws, f, "Cold-call list — owners to work",
+              "Motivated (failed) owners first. Full talking-point sheets in the Cold-Call PDF.", 6)
+        ws.set_column(0, 0, 26); ws.set_column(1, 4, 12); ws.set_column(5, 5, 70)
+        _table(ws, f, pd.read_csv(os.path.join(CRE.PROC, "call_list.csv")),
+               [("address", "Address", "txt"), ("asset_type", "Type", "txt"),
+                ("submarket", "Area", "txt"), ("status", "Status", "txt"),
+                ("last_ask", "Last ask", "usd"), ("value", "Comp value", "usd"),
+                ("implied_cap", "Impl cap", "pct2"), ("lease_psf", "Lease $/SF", "usd"),
+                ("opener", "Opener", "txt")])
+
     wb.close()
     print(f"Workbook -> {os.path.relpath(OUT, CRE.ROOT)}")
 

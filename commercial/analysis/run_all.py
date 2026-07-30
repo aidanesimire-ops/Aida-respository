@@ -19,10 +19,13 @@ STEPS = [
     ("Segments & absorption", "bands.py"),
     ("Prospecting", "prospects.py"),
     ("Comps drill-down", "comps.py"),
+    ("Leasing layer + data-derived caps", "cre_leases.py"),
     ("Master ranked submarkets", "master_summary.py"),
+    ("Cold-call sheets", "callsheets.py"),
     ("Charts", "build_charts.py"),
     ("Excel workbook", "build_excel.py"),
     ("Interactive dashboard", "build_dashboard.py"),
+    ("Neighborhood systems report", "build_neighborhood_report.py"),
     ("Written report", "build_report.py"),
 ]
 
