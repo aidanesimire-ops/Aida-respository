@@ -83,16 +83,30 @@ def build(s, regs):
             s.put(r, 5, q, style="calc", align="left", merge=(r, 13)); r += 1
     r += 1
 
-    # ---------------- how to change a number ----------------
-    s.section(r, L, 13, "HOW TO CHANGE A NUMBER"); r += 1
-    for lab, txt in [
-        ("Change an assumption", "Go to the Assumptions tab and edit a BLUE cell — that's the only kind of cell you change. The whole model updates on its own."),
-        ("Fill in real data", "As you confirm real facts (a sale price, a rent, a lender rate), put them in the overrides.json file and rebuild — it flows into every tab. That file lists every gap and where to get it."),
-        ("Explore without committing", "The Review Board and Capital Stack tabs have their own blue 'sandbox' cells — play there freely; they don't disturb the model."),
+    # ---------------- play with it ----------------
+    s.section(r, L, 13, "PLAY WITH IT  —  it's a live model: change a BLUE cell and everything recalculates"); r += 1
+    s.put(r, L, "Open it in Excel or Google Sheets (a preview is read-only). Blue cells are the only ones you touch — the rest updates on its own.",
+          style="warn", align="left", merge=(r, 13)); r += 1
+    s.put(r, L, "To change…", style="subhead", align="left", merge=(r, 4))
+    s.put(r, 5, "Go here and edit the blue cell", style="subhead", align="left", merge=(r, 9))
+    s.put(r, 10, "…and watch this update", style="subhead", align="left", merge=(r, 13)); r += 1
+    for what, where, result in [
+        ("What you pay for an asset", "Assumptions → that asset's block → 'Purchase price / basis'", "income price, returns, Comps & Pricing"),
+        ("A cap rate", "Assumptions → 'Blended going-in cap' (or an asset's going-in / exit cap)", "the value and the price"),
+        ("Rents", "Assumptions → an asset's 'Market rent' (or the Publix leaseback rent)", "NOI → value → returns"),
+        ("How much you borrow", "Assumptions → 'Max senior LTV' and 'Senior rate'", "debt, equity, DSCR, returns"),
+        ("The assemblage premium", "Assumptions → 'Assemblage premium — base'", "the covered-land price"),
+        ("The office buy-out price", "Office Condo tab → 'Buy-out $/SF (unit market)'", "office price → covered-land"),
+        ("A sensitivity (without touching the model)", "Review Board → the blue axis cells on any grid", "the grid + driver tornado, live"),
+        ("What you can afford", "Capital Stack → 'Equity available'", "max price + assemblage capacity"),
     ]:
-        s.put(r, L, lab, style="label_b", align="left")
-        s.put(r, 3, txt, style="calc", align="left", merge=(r, 13)); r += 1
+        s.put(r, L, what, style="label_b", align="left", merge=(r, 4))
+        s.put(r, 5, where, style="calc", align="left", merge=(r, 9))
+        s.put(r, 10, result, style="note", align="left", merge=(r, 13)); r += 1
     r += 1
+    s.put(r, L, "Confirming real data", style="label_b", align="left", merge=(r, 4))
+    s.put(r, 5, "As you get real facts (a sale price, a rent, a lender quote), put them in the overrides.json file and rebuild — it lists every gap and where to source it. Or just edit the blue cell directly and keep the file.",
+          style="calc", align="left", merge=(r, 13)); r += 1
 
     # ---------------- colour legend ----------------
     s.section(r, L, 13, "THE COLOR CODE"); r += 1
