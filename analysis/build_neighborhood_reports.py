@@ -44,6 +44,11 @@ def esc(s):
     return html.escape(str(s)) if s is not None else ""
 
 
+def slugify(name):
+    keep = "".join(c if (c.isalnum() or c == " ") else " " for c in str(name))
+    return "-".join(keep.split()).lower() or "neighborhood"
+
+
 def dominant_market(nb, absorb):
     rows = [r for r in (absorb or {}).get("by_band_neighborhood", []) if r["neighborhood"] == nb]
     c = {}
@@ -88,6 +93,7 @@ def main():
                 + (f'<div class="ms">{esc(sub)}</div>' if sub else "") + "</div>")
 
     pages = []
+    nb_pages = []   # (slug, name, page_html) for the individual one-pagers
 
     # ===== cover / master summary =====
     head = (f'<div class="rpt cover"><div class="eyebrow">{esc(CFG.market["name"])} · '
@@ -214,6 +220,7 @@ def main():
                 + '<div class="pfoot">Comp-based screening signals — verify condition &amp; exact '
                 'comps before pricing. Cost/rent figures are sourced market estimates.</div></div>')
         pages.append(page)
+        nb_pages.append((slugify(nb), nb, page))
 
     css = """
 <style>
@@ -266,13 +273,23 @@ ul.opps li, ul.tps li { font-size: 11.5px; color: #33475a; margin-bottom: 3px; l
 .pfoot { margin-top: 14px; border-top: 1px solid #eee; padding-top: 6px; font-size: 9px; color: #a7b0ba; }
 </style>
 """
-    doc = ("<!doctype html><html><head><meta charset='utf-8'><title>Neighborhood System Reports</title>"
-           + css + "</head><body>" + "".join(pages) + "</body></html>")
+    def _doc(title, body):
+        return ("<!doctype html><html><head><meta charset='utf-8'><title>" + esc(title)
+                + "</title>" + css + "</head><body>" + body + "</body></html>")
+
     os.makedirs(OUT, exist_ok=True)
+    # combined book (cover + every neighborhood)
     path = os.path.join(OUT, "neighborhood_reports.html")
     with open(path, "w") as f:
-        f.write(doc)
-    print(f"Wrote {os.path.relpath(path, ROOT)} — cover + {len(pages) - 1} neighborhood pages. "
+        f.write(_doc("Neighborhood System Reports", "".join(pages)))
+    # individual one-pagers (one file per neighborhood)
+    indiv_dir = os.path.join(OUT, "neighborhoods")
+    os.makedirs(indiv_dir, exist_ok=True)
+    for slug, name, page in nb_pages:
+        with open(os.path.join(indiv_dir, slug + ".html"), "w") as f:
+            f.write(_doc(f"{name} — {CFG.market['name']}", page))
+    print(f"Wrote {os.path.relpath(path, ROOT)} (cover + {len(nb_pages)} pages) and "
+          f"{len(nb_pages)} individual one-pagers in outputs/neighborhoods/. "
           "Render to PDF: node analysis/render_pdf.cjs")
 
 
