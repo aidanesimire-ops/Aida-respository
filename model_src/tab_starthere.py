@@ -55,6 +55,7 @@ def build(s, regs):
     guide = [
         ("group", "① SEE THE DEAL", None),
         ("tab", "Executive Summary", "What's the whole deal, on one page?"),
+        ("tab", "Comps & Pricing", "What's each asset worth and what can I quote? — sourced comps + individual & assemblage pricing"),
         ("tab", "Start Here", "How do I read this? (you are here)"),
         ("group", "② MAKE THE DEAL", None),
         ("tab", "Deal Book", "Who do I buy from, at what price, and how? (per-owner strategy, sources & uses, risks, timeline)"),
