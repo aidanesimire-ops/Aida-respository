@@ -1,178 +1,149 @@
-# Model Audit — E Sunrise Blvd Assemblage
+# Institutional Audit — E Sunrise Blvd Assemblage
 
-**Prepared for:** DAWN RE Enterprises Corp. · **Date:** 2026-07-22 · **Status:** internal review
-**Workbook:** `Shahidi_Assemblage_Model.xlsx` (13 tabs) · **Engine:** `model_src/` (Python/openpyxl)
+**Prepared for:** DAWN RE Enterprises Corp. · **Purpose:** deal-readiness review · **Basis:** the 17-tab
+model as built (4,981 cells, 0 formula errors, headless-recalc verified). This supersedes the earlier audit.
 
-This is a back-to-basics review of the math, the formulas, and the facts. It states
-plainly what is built correctly, what is a modeling choice you should be aware of,
-what is a defect (and whether it is fixed), and — most importantly — **what data is
-still missing** before this is a decision-grade underwrite rather than a screening model.
+The goal here is the standard an LP's investment committee and a lender's credit desk would hold: not "does
+it compute" (it does), but "does it model the right thing, are the assumptions defensible, and will the
+numbers survive diligence." Read the verdict first.
 
 ---
 
-## 1. How this was verified
+## Verdict
 
-- **Headless recalculation** of every formula with the `formulas` engine (not Excel):
-  **4,335 cells solved, 0 formula errors.** (`python3 validate.py`.) This proves no
-  `#REF`/`#DIV0`/`#NUM` breaks — it does **not** prove the math models the right thing.
-- **Hand re-computation** of each asset's NOI, cap, reversion, and returns from the
-  raw inputs, checked against the recalc.
-- **Tie checks** on the integrity claims the model makes (below).
+**The engine is institutionally sound and every internal tie holds.** The issue is not arithmetic — it is
+**framing and a handful of assumption risks that change the story.**
 
-### Integrity checks that PASS (verified, not asserted)
+The one thing that must change before you show this to a partner: **returns are headlined at the income-value
+price ($65.1M), which is a valuation floor you cannot actually acquire at.** At the realistic acquisition cost
+(sum-of-parts ≈ $105.8M — what each owner will actually take), the levered IRR is **0.4% / 1.02×**, and at the
+covered-land price it is **negative**. This is a **land-appreciation / redevelopment play in which the income
+barely covers the carry** — not a 20% income deal. Underwrite and pitch it as that, and it is a credible,
+well-built covered-land bet. Pitch the $65M-price return and it fails diligence on the first question a buyer
+asks: *"can you actually buy it for that?"*
+
+---
+
+## 1. What is bankable — verified, not asserted
+
+Re-computed by hand and cross-checked against the recalc:
 
 | Check | Result |
 |---|---|
-| Sources & Uses balance (sources − uses) | **0.00** (ties to the penny) |
-| Consolidated as-is NOI = Σ each asset's as-is NOI | **$4,560,414 = $4,560,414** ✓ |
-| Debt sized to lesser-of LTV/DSCR/DY | LTV binds: **min($42.1M, $46.3M, $53.7M) = $42.1M** ✓ |
-| Return-attribution bridge = actual consolidated unlevered cash flow | **Δ = $0.00** (algebraically exact) ✓ |
-| Per-asset NOI (Shahidi $1.00M, Publix $0.83M, Office $1.81M, Land $0.43M) | reproduced by hand ✓ |
-| Break-even exit-cap formula (return-of-capital) | algebra confirmed correct ✓ |
-| Redevelopment residual (−$15.5M, HOLD) | reproduced by hand ✓ |
-| Office full buy-out (168,807 SF × $225) = $37.98M; fragmentation premium | reproduced ✓ |
+| Concluded income price = sum of each asset at its own cap (reconciles to the tabs) | $65,095,361 ✓ |
+| Implied blended going-in cap (now an **output**, not a guessed input) | 7.01% ✓ |
+| Return-attribution bridge = actual consolidated unlevered cash flow | **Δ = $0.00** ✓ |
+| Sources & Uses balance | **$0.00** ✓ |
+| Senior debt = lesser of LTV / DSCR / debt-yield (LTV-bound at income price) | $39.06M; DSCR 1.48× ✓ |
+| **LP/GP waterfall** — pref accrues 8% on unreturned capital; tiers reconcile; LP + GP = project | ✓ |
+| Waterfall directionality — LP 20.4% < project 23.1% < GP 40.6% (promote transfers return to GP) | ✓ |
+| GP promote = 30% × excess above pref ($33.6M) | $10.09M ✓ |
+| Redevelopment residual, office buy-out, plottage, break-even exit cap | reproduced ✓ |
 
-The core engine is sound. The findings below are about **methodology and inputs**, not broken cells.
-
----
-
-## 2. Findings — ranked
-
-### 🔴 F1 — The headline income price rests on one assumed blended cap, not the parts
-The concluded income price is `as-is NOI ÷ 6.5%` = **$70.2M**. But if you value **each
-asset at its own going-in cap** (Shahidi 6.0%, Publix 6.0%, Sunrise 7.5%, Office 8.0%,
-Land 8.0%) and sum, you get **$65.1M** — the headline is **+7.8% ($5.1M) richer** than
-the sum of the parts, purely because the single 6.5% blend is tighter than the
-asset-weighted average. **The blended cap is an independent input; it is not derived
-from, or reconciled to, the individual asset caps.**
-→ *Recommendation:* either (a) drive the blended cap from a weighted average of the
-asset caps, or (b) keep 6.5% as a deliberate "portfolio" view and show the $65.1M
-sum-of-parts income value next to it so the $5M gap is explicit. Right now a reviewer
-who sums the parts will not reproduce the headline.
-
-### 🟠 F2 — Levered-return sensitivity grids did not tie to the headline *(FIXED this turn)*
-The Income tab's Sensitivity ② (and the new Review Board grids) reconstructed the exit
-as `forward NOI ÷ exit cap`. But **two of five parcels exit at LAND VALUE** (Publix
-≈$24.5M, Land ≈$15.5M), so the real reversion is **$99M**, not the ~$54M an income-cap
-reversion implies. The grids therefore showed a base levered multiple of ~1.3× against a
-**true 2.31×** headline. Fixed by anchoring the grids to the actual consolidated
-reversion (`REV_BASE`), scaled by exit cap. The covered-land row now correctly reproduces
-the 0.81× HBU multiple, and the base case reproduces 2.31×.
-
-### 🟠 F3 — The Assemblage blended cap uses Year-1 pro-forma NOI, not as-is
-The Assemblage roll-up (`TOT_NOI`, `BLEND_CAP2` = 4.63%) uses each asset's **Year-1
-pro-forma NOI** (`NOI1`), which for Sunrise and Office already includes half of the
-lease-up ramp. On an as-is basis the blended cap is **~4.49%** (~14 bps lower). Small,
-but the "in-place cap" label overstates going-in income by ~$138k of NOI.
-→ *Recommendation:* switch the roll-up's NOI source to the as-is names for a true
-in-place cap, or relabel it "Year-1 pro-forma cap."
-
-### 🟠 F4 — Covered-land price produces a *negative* income return (by design — make sure it's understood)
-At the $121.9M covered-land price the income case returns **−4.4% levered IRR / 0.81×
-equity** — you lose ~19% of equity over the hold on current income alone. That is the
-covered-land thesis (you pay for dirt + optionality, not yield), and it is now stated on
-the Review Board. But it is the number a capital partner will challenge first: **the deal
-only works if land compounds at ≥ the break-even land CAGR** shown on the Income tab.
-
-### 🟡 F5 — Publix Year-5 books reimbursement income after the tenant has vacated
-The leaseback base rent correctly cliffs at the entitlement term (Year 4), but
-reimbursements, occupancy, and management fee continue through Year 5 (the hold year).
-After Publix vacates at Year 4 the center is dark, yet Year-5 NOI still includes NNN
-recoveries. Impact is small (the parcel exits at land value regardless), but Year-5
-NOI is modestly overstated.
-→ *Recommendation:* cliff reimbursements/occupancy at the term too, or set hold = term.
-
-### 🟡 F6 — Office control basis is dual ($21.7M income vs. $37.98M buy-out) — intentional, document it
-The office contributes **income cash flows built off a $21.7M basis** to the consolidated
-Income tab, but enters the covered-land assemblage at its **$37.98M full buy-out**
-(168,807 SF × $225/SF). Both are deliberate (income value vs. cost-to-control a fractured
-condo), and the income price keys off NOI not basis, so nothing double-counts. But the two
-numbers for "the office" should be labeled so no one reconciles them incorrectly.
-
-### 🟡 F7 — Assembled-land value excludes the office parcel's land
-Because the office is a condominium, the assemblage counts **zero land** for it and values
-the assembled dirt on the other four parcels only (7.16 ac). Buying out **every** unit does
-give you control of the land under the building (via the association), and that parcel sits
-on the hard corner — arguably the most valuable dirt in the block. The current treatment is
-**conservative** (understates assembled land), which is defensible, but it should be a
-stated choice, not a silent omission.
-
-### 🟡 F8 — Returns exclude any promote / GP-LP waterfall
-An 8% pref / 90-10 / 70-30 waterfall is defined in the code (`WF`) but **not wired into the
-returns**. All IRRs/multiples are project-level. Fine for screening; add the waterfall before
-you show LP-level economics.
-
-### 🟡 F9 — Property tax is modeled uniformly and to each asset's own price
-Every asset reassesses to its own purchase price at a flat 0.0191 millage. An actual
-assemblage reallocates basis across parcels, and Florida's non-homestead 10% assessment cap
-and any portability are not modeled. Reasonable for screening; refine with the county's
-actual TRIM data at diligence.
+The math you can rely on. The waterfall is a clean **European (whole-deal) pari-passu-pref-then-70/30-promote**
+structure — see §4 for what it does *not* yet model.
 
 ---
 
-## 3. Missing data — the foundational gaps
+## 2. The finding that reframes the deal 🔴
 
-The model **fills every gap with an adjustable assumption**, which is correct for a screen.
-But the following are the facts that must be obtained before this is decision-grade. Grouped
-by how much they move the answer.
+The model prices the block three ways and — correctly — shows the income return at two of them. The **third,
+and most important, price is missing from the returns: the price you will actually pay.**
 
-### A. Moves the valuation materially
-1. **Real leases / rent rolls (all assets).** There are no lease abstracts anywhere — every
-   `$/SF`, suite SF, expiration, renewal option, escalation, and recovery structure (NNN vs.
-   gross) is estimated from corridor comps and Yelp/LoopNet. No WALT, no rollover schedule,
-   no co-tenancy or kick-out clauses. **This is the single biggest gap.** Get estoppels /
-   the actual rent roll and T-12 operating statements in diligence.
-2. **Sunrise Plaza (Kar Luen) value.** The $8.5M is **reported/unverified** — the last
-   recorded sale is Oct 2000 for $128k (stale). Building SF (25,105), land SF (30,928),
-   occupancy (80.1%), and the entire tenant list are estimated. No arm's-length evidence.
-3. **Office condo per-unit roster.** ~57.4% (Grove Gate/Main Street Fund) is identified;
-   the **42.6% balance is ~40 individual owners grouped into one 63,155 SF line.** Exact
-   per-unit SF, ownership, and cost basis need a **BCPA folio pull** (blocked from this
-   build environment). Without it the buy-out is an aggregate, not a negotiation map.
-4. **Publix sale-leaseback is hypothetical.** Publix is a **fee owner, not a seller.** The
-   $25M is a verified 2025 deed, but the leaseback (would they do it? at what rent/term?) is
-   entirely modeled. The whole covered-land structure depends on Publix agreeing to lease back.
-5. **1040 Bayview entitlement + basis.** Land SF (104,108), office SF (84,495), the 259-unit
-   entitlement, and the $6.69M BCPA value are all **press-sourced** (Florida YIMBY, BBX,
-   Procacci). The $13M acquisition basis is modeled; the site is **not for sale.**
+| Purchase basis | Going-in cap | Yr-1 DSCR | Levered IRR | Equity multiple |
+|---|---|---|---|---|
+| Income value $65.1M — *a floor; not achievable for a fragmented assemblage* | 7.0% | 1.48× | **23.1%** | 2.63× |
+| **Sum-of-parts ≈ $105.8M — *the realistic acquisition cost*** | 4.3% | **1.25×** | **0.4%** | **1.02×** |
+| Covered-land $127.0M — *ceiling (sum-of-parts + 20% premium)* | 3.7% | ~1.0× | **≈ −4%** | <1× |
 
-### B. Moves the operating numbers
-6. **Operating statements (T-12s).** Insurance, CAM, R&M are estimates. **Florida AE-flood
-   insurance is a genuine wildcard** and can swing NOI meaningfully — get actual bindable quotes.
-7. **Actual debt quotes.** Rate, LTV, IO period, amortization, and recourse are modeled at
-   mid-2026 market. Get term sheets.
-8. **Property tax detail.** Actual TRIM notices, millage by parcel, and reassessment mechanics
-   (see F9).
+You cannot buy Publix ($25M fee), the office ($42M buy-out), or the land ($13M) at their income value — those
+prices already embed control premiums. So the blended purchase is **~$106M–$127M**, where the income return
+is **roughly zero-to-negative** and the DSCR is thin (1.25× falling toward 1.0×). **The return is entirely the
+dirt.** That is a legitimate covered-land thesis — but it must be stated, and the LP waterfall (which currently
+runs on the $65M floor, yielding LP 20.4%) should be re-based on the realistic price, where LP economics are far
+thinner.
 
-### C. Physical / legal diligence (none reflected yet)
-9. **Title** — liens, easements, encroachments, deed restrictions, and (critically) the office
-   **condo declaration** (does it permit a single-owner buy-out / termination? super-majority?).
-10. **Survey, Phase I ESA, Property Condition Assessment, flood elevation certificates.** The
-    AE flood zone is material to both insurance and redevelopment cost.
-11. **Entitlement specifics** — Live Local eligibility, approved density, height, parking,
-    concurrency, and impact fees. The redevelopment residual uses generic $500/SF hard cost,
-    $600k/unit value, 950 SF/unit — all modeled.
-12. **Assemblage / holdout reality** — the 15/20/25% premium is a placeholder; real holdout
-    leverage (who must sell, who can wait) is unknown until you approach owners.
-
-### What is genuinely VERIFIED today (✅)
-Shahidi and Publix parcel facts (BCPA/deed): folios, land/building SF, last-sale prices and
-dates, 2024–25 taxes. Ownership entities via Sunbiz/press. Everything else is ⚠️ reported or
-🔶 modeled — flagged as such on the **Data-Gap Register** (Assumptions tab) and the **Notes**
-tab, which is the correct posture for a screening model.
+→ **Fix (recommended, I can do it now):** add a **"realistic acquisition" returns column at sum-of-parts** as
+the primary case on Income Valuation, re-base the Partner Returns waterfall on it, and reframe Start Here / the
+Exec dashboard / the marketing page around "income covers the carry; the return is the land." This is the single
+highest-value change for making a real deal.
 
 ---
 
-## 4. Bottom line
+## 3. Assumption risks — ranked against the comps we now have
 
-- **The engine is trustworthy.** Cash flows, debt sizing, consolidation, the attribution
-  bridge, and the return math tie out exactly. Two grid bugs were found and one is now fixed.
-- **The answer is only as good as five reported facts** (Sunrise value, office roster, Publix
-  leaseback, Bayview entitlement, and — everywhere — real leases). Until those are confirmed,
-  treat the outputs as a **screen**, not an appraisal.
-- **Two methodology calls deserve a decision:** (F1) reconcile the blended cap to the parts,
-  and (F4) make the negative covered-land income return explicit to any capital partner.
+1. **🔴 Publix leaseback rent $22/SF vs. market $8–14/SF (grocery NNN).** Research (Boulder Group /
+   investmentgrade.com) puts grocery-anchor base rent at $8–14/SF. The model's $22 is a *bridge rate* set to
+   cover carry — 1.6–2.7× market. At a realistic $13/SF, Publix NOI falls ~$300k/yr and the "income covers the
+   carry" claim weakens materially. The **dark case** (Publix won't lease back at all → −$422k/yr, ~$5M extra
+   equity carry) is now modeled — good — but the *base* case should be stress-tested at market leaseback rent.
+2. **🟠 Office exit cap 8.25%.** Research: Fort Lauderdale Class B/C office caps are **8%+ and "double-digit
+   commonplace."** An 8.25% exit on a fractured Class B condo is optimistic; at 10% the office reversion drops
+   ~$3–4M. Flex it in the downside.
+3. **🟠 Office tax basis inconsistency.** The office income cash flow reassesses tax to its **$21.7M income
+   basis**, but you would pay **$42.2M** (the buy-out). Florida reassesses to price, so office taxes would ~2×,
+   cutting office NOI ~$0.4M/yr. The model understates office opex in the acquisition case.
+4. **🟠 Premium stacking.** The covered-land price adds a **20% assemblage premium on top of** a sum-of-parts
+   that already includes the office **fragmentation premium** ($42.2M buy-out vs ~$22M income value). Confirm
+   these two premiums are compensating different risks (intra-condo holdouts vs cross-parcel holdouts) and not
+   double-counting the same one.
+5. **🟡 Insurance likely light.** Coastal Broward commercial runs **1.2–4.5% of value** (2–3× within a mile of
+   water); the model carries flat ~$45–65k/asset (~0.2%). Passed through NNN on the retail, but it hits the
+   office (modified-gross) and land NOI directly. Get bindable quotes.
+6. **🟡 Assemblage premium (15/20/25%) has no transaction basis** — it is a placeholder. Tie it to holdout
+   reality once you've approached owners.
+7. **🟢 Well-supported by the research:** retail rents ($25–50/SF NNN on the corridor), strip caps (6.25–8.5%),
+   land basis ($125/SF ≈ the $129/SF closed comp), the office SF and Grove Gate 57.4%/$10M, and the Bayview
+   entitlement (259 units, UDP-Z25002). Construction at $500/SF is *conservative* vs the $300–450/SF AE-coastal
+   band — meaning the redevelopment residual is closer to break-even than the base case shows.
 
-*All ⚠️ items are county-confirmable. BCPA, the Broward Clerk, and Sunbiz were egress-blocked
-from the build environment, so reported data came from web mirrors and press and must be
-verified at the source before reliance.*
+---
+
+## 4. Model / methodology notes
+
+- **Waterfall is a screening structure.** European whole-deal, one 8% pref tier, then 70/30. It does **not**
+  model a GP catch-up, multiple IRR hurdles (e.g., 8% → 15% → higher promote), acquisition / asset-management /
+  disposition fees, or capital calls for interim shortfalls. Interim levered CF is currently **positive** every
+  year (+$1.4–2.4M) at the income price, so no calls arise there — but at the realistic price and thinner DSCR,
+  confirm that holds. Add the fee/catch-up tiers before an LP close.
+- **Reversion mixes exit types** — income assets sell at forward NOI ÷ exit cap; Publix and the land exit at
+  land value. That is correct for a covered-land play, but ~$40M of the $99M reversion is *land value*, so the
+  exit is a land-price bet, not a cap-rate bet. Frame it that way.
+- **Single 5-year hold, single exit.** No phasing, no partial sales, no refinance/recapitalization — reasonable
+  for a screen; a real covered-land hold is likely longer and lumpier.
+- **No entitlement probability or timing.** The premium is optionality on a redevelopment that (a) isn't the
+  current base case and (b) needs ~14% annual land appreciation to justify. A probability/timing overlay would
+  make the optionality honest.
+
+---
+
+## 5. Data that gates the deal (still outstanding)
+
+The four-agent research sweep confirmed folios, ownership, SF, sale prices, and the entitlement, and narrowed the
+comps — but the county portals (BCPA / Clerk / Sunbiz) were egress-blocked, and the following remain **required
+before hard money.** They are tracked with sources in `overrides.json`.
+
+1. **Publix leaseback appetite + terms** — binary; the thesis depends on it. A call to Publix RE (Lakeland).
+2. **The office condo declaration** — does it permit a single-owner buy-out / termination, and at what vote?
+   Plus the full per-unit BCPA folio roster (the 42.6% is ~40 owners, still grouped).
+3. **Real leases + T-12s** — every rent and expense is estimated; this is what diligence attacks first.
+4. **Current BCPA just values + tax bills** — none could be pulled; taxes drive NOI (see §3.3).
+5. **Bindable insurance quotes** (§3.5), a **lender term sheet**, and **final entitlement approval** status.
+
+Verified today (✅): Shahidi & Publix parcel facts and deeds; office 168,807 SF and Grove Gate's 57.4%/$10M;
+Bayview 259-unit case UDP-Z25002 and the $7.9M 2014 basis. Everything else is ⚠️ reported or 🔶 modeled.
+
+---
+
+## 6. Recommended fixes — in priority order
+
+1. **Re-base returns on the realistic (sum-of-parts) price** and reframe the whole story as a land play with the
+   income covering carry (§2). *Highest value; I can implement now.*
+2. **Stress Publix at market leaseback rent** ($13/SF) as the base, keep $22 as the upside (§3.1).
+3. **Reassess office tax to the $42.2M buy-out** in the acquisition case (§3.3).
+4. **Widen the office exit cap** toward 9–10% in the downside (§3.2).
+5. **Add waterfall fee + catch-up tiers** before an LP close (§4).
+6. **Add an entitlement probability/timing overlay** to the redevelopment upside (§4).
+
+Items 1–4 I can build immediately and they change the numbers a partner sees; 5–6 are for the LP-close version.
+Tell me which to implement and I'll do them and re-verify.
