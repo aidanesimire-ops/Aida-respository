@@ -1652,25 +1652,34 @@ def index_sheet(wb, ws):
     ws.set_column(0, 0, 34)
     ws.set_column(1, 1, 92)
     ws.write(0, 0, "Fort Lauderdale — Deal Dashboard", title)
-    ws.write(1, 0, "Market intelligence, normalized. Click any tab below to jump to it. New to the "
-             "workbook? Start with Key Conclusions and the Master Ranking; underwrite a deal in "
-             "Scenario. Re-run analysis/run_all.py on fresh MLS exports to rebuild everything.", sub)
+    ws.write(1, 0, "One workbook, everything inside. Click any row below to jump to that tab — tabs "
+             "are colour-coded by the coloured section headings here. New to it? Start with "
+             "Neighborhood Pricing (every neighborhood in one row) and Key Conclusions.", sub)
     ws.set_row(1, 44)
     names = [w.name for w in wb.worksheets() if w.name != "Index"]
-    # keep worksheet creation order, but group with headers
-    seen_groups, r = set(), 3
     order = ["Start here", "Marketing & proof", "Deal tools", "High-ticket (≥$1M)",
              "Prospecting", "Real assets", "Repricing", "Neighborhood detail", "Street level",
              "Redfin context", "Other"]
+    # a distinct tab colour per section, so the 30+ tabs read as coloured groups
+    GCOL = {"Start here": "#0d3b66", "Marketing & proof": "#0f8a3c", "Deal tools": "#e0623a",
+            "High-ticket (≥$1M)": "#7b4fa3", "Prospecting": "#c98a12", "Real assets": "#2a9d8f",
+            "Repricing": "#d5473f", "Neighborhood detail": "#1f6fb2", "Street level": "#8a5a10",
+            "Redfin context": "#8a94a0", "Other": "#8a94a0"}
+    grp_fmts = {g: wb.add_format({"bold": True, "font_size": 12, "font_color": "white",
+                                  "bg_color": GCOL[g], "border": 1, "border_color": "white",
+                                  "valign": "vcenter"}) for g in order}
     grouped = {g: [] for g in order}
+    sheet_group = {}
     for nm in names:
         g, d = SHEET_INDEX.get(nm, ("Other", ""))
         grouped[g].append((nm, d))
+        sheet_group[nm] = g
+    r = 3
     for g in order:
         rows = grouped[g]
         if not rows:
             continue
-        ws.merge_range(r, 0, r, 1, g, grp)
+        ws.merge_range(r, 0, r, 1, g, grp_fmts[g])
         ws.set_row(r, 20)
         r += 1
         for nm, d in rows:
@@ -1680,6 +1689,19 @@ def index_sheet(wb, ws):
             r += 1
     ws.hide_gridlines(2)
     ws.set_zoom(110)
+    ws.set_tab_color("#0d3b66")
+
+    # colour every sheet's tab by its section, and drop a "back to Index" link top-right
+    back = wb.add_format({"font_color": "#1f6fb2", "bold": True, "underline": 1})
+    for w in wb.worksheets():
+        if w.name == "Index":
+            continue
+        w.set_tab_color(GCOL.get(sheet_group.get(w.name, "Other"), "#8a94a0"))
+        try:
+            w.write_url("H1", "internal:'Index'!A1", back, "◄ Index")
+        except Exception:  # noqa: BLE001 -- never let a nav link break the build
+            pass
+    ws.activate()          # open the workbook on the Index tab
 
 
 def main():
