@@ -554,8 +554,9 @@ def guide_sheet(wb, f, meta):
     for term, desc in [
         ("1. Export", "From the MLS, export the properties as a CSV in the 'Agent Single Line — COM' layout "
          "(or any CSV with the columns below)."),
-        ("2. Replace the data", "Put your CSV(s) in  commercial/data/raw/  and delete the old ones (the tool reads "
-         "every CSV in that folder)."),
+        ("2. Add / replace the data", "Put your CSV(s) in  commercial/data/raw/. To fully replace, delete the old "
+         "files; to UPDATE OVER TIME just add the newer pull — the tool reads every CSV and, for any listing that "
+         "appears in more than one, keeps the most-progressed status and the NEWEST pull."),
         ("3. Run", "In a terminal from the commercial/ folder:  pip install -r requirements.txt   then   "
          "python analysis/run_all.py   (or double-click run.sh). ~30 seconds."),
         ("4. Open", "outputs/Commercial_Deal_Dashboard.xlsx  and  dashboard/index.html — everything is rebuilt on your data."),

@@ -226,7 +226,7 @@
     },
     {
       "submarket": "Area 3380",
-      "corridors": "Wilton Dr \u00b7 Federal Hwy",
+      "corridors": "Wilton Dr \u00b7 Andrews Ave",
       "lease_psf": 23.0,
       "n_lease": 18,
       "n_active": 3,
@@ -599,17 +599,6 @@
       "annual_rent_est": 206100.0
     },
     {
-      "mls": "F10511719",
-      "address": "2262 Wilton Drive",
-      "submarket": "Area 3450",
-      "asset_type": "Retail",
-      "status": "Expired",
-      "sqft": 77828.0,
-      "lease_rate_psf": 55.0,
-      "year_built": null,
-      "annual_rent_est": 4280500.0
-    },
-    {
       "mls": "F10322328",
       "address": "801 N Federal Highway",
       "submarket": "Area 3700",
@@ -619,6 +608,17 @@
       "lease_rate_psf": 55.0,
       "year_built": null,
       "annual_rent_est": 188900.0
+    },
+    {
+      "mls": "F10511719",
+      "address": "2262 Wilton Drive",
+      "submarket": "Area 3450",
+      "asset_type": "Retail",
+      "status": "Expired",
+      "sqft": 77828.0,
+      "lease_rate_psf": 55.0,
+      "year_built": null,
+      "annual_rent_est": 4280500.0
     },
     {
       "mls": "F10499862",
@@ -654,17 +654,6 @@
       "annual_rent_est": 487100.0
     },
     {
-      "mls": "F10436905",
-      "address": "307 SW 5th Street",
-      "submarket": "Area 3470",
-      "asset_type": "Retail",
-      "status": "Rented",
-      "sqft": 14368.0,
-      "lease_rate_psf": 50.0,
-      "year_built": null,
-      "annual_rent_est": 718400.0
-    },
-    {
       "mls": "F10503334",
       "address": "545 NE 13th Street",
       "submarket": "Area 3380",
@@ -674,6 +663,17 @@
       "lease_rate_psf": 50.0,
       "year_built": null,
       "annual_rent_est": 362300.0
+    },
+    {
+      "mls": "F10436905",
+      "address": "307 SW 5th Street",
+      "submarket": "Area 3470",
+      "asset_type": "Retail",
+      "status": "Rented",
+      "sqft": 14368.0,
+      "lease_rate_psf": 50.0,
+      "year_built": null,
+      "annual_rent_est": 718400.0
     },
     {
       "mls": "F10511728",
@@ -753,6 +753,17 @@
       "annual_rent_est": 77400.0
     },
     {
+      "mls": "F10493994",
+      "address": "919 NE 20th",
+      "submarket": "Area 3260",
+      "asset_type": "Retail",
+      "status": "Rented",
+      "sqft": 10000.0,
+      "lease_rate_psf": 45.0,
+      "year_built": null,
+      "annual_rent_est": 450000.0
+    },
+    {
       "mls": "F10493990",
       "address": "1948 E Sunrise Boulevard",
       "submarket": "Area 3260",
@@ -773,50 +784,6 @@
       "lease_rate_psf": 45.0,
       "year_built": null,
       "annual_rent_est": 502000.0
-    },
-    {
-      "mls": "F10493994",
-      "address": "919 NE 20th",
-      "submarket": "Area 3260",
-      "asset_type": "Retail",
-      "status": "Rented",
-      "sqft": 10000.0,
-      "lease_rate_psf": 45.0,
-      "year_built": null,
-      "annual_rent_est": 450000.0
-    },
-    {
-      "mls": "F10436037",
-      "address": "603 NE 13th Street",
-      "submarket": "Area 3370",
-      "asset_type": "Retail",
-      "status": "Expired",
-      "sqft": 14491.0,
-      "lease_rate_psf": 40.0,
-      "year_built": null,
-      "annual_rent_est": 579600.0
-    },
-    {
-      "mls": "F10498148",
-      "address": "535 NE 13th Street Unit#2",
-      "submarket": "Area 3380",
-      "asset_type": "Commercial (other)",
-      "status": "Expired",
-      "sqft": 14491.0,
-      "lease_rate_psf": 40.0,
-      "year_built": null,
-      "annual_rent_est": 579600.0
-    },
-    {
-      "mls": "F10496808",
-      "address": "1416 NE 4th Avenue",
-      "submarket": "Area 3370",
-      "asset_type": "Retail",
-      "status": "Cancelled",
-      "sqft": 6248.0,
-      "lease_rate_psf": 40.0,
-      "year_built": null,
-      "annual_rent_est": 249900.0
     },
     {
       "mls": "F10512095",
@@ -841,26 +808,37 @@
       "annual_rent_est": 734000.0
     },
     {
-      "mls": "A11596374",
-      "address": "15 NW 9th Ave",
-      "submarket": "Area 3470",
-      "asset_type": "Industrial",
-      "status": "Sold",
-      "sqft": 7000.0,
-      "lease_rate_psf": 40.0,
-      "year_built": 1954.0,
-      "annual_rent_est": 280000.0
-    },
-    {
-      "mls": "F10322336",
-      "address": "416 SW 1st Avenue",
-      "submarket": "Area 3800",
-      "asset_type": "Commercial (other)",
-      "status": "Rented",
-      "sqft": 22799.0,
+      "mls": "F10436037",
+      "address": "603 NE 13th Street",
+      "submarket": "Area 3370",
+      "asset_type": "Retail",
+      "status": "Expired",
+      "sqft": 14491.0,
       "lease_rate_psf": 40.0,
       "year_built": null,
-      "annual_rent_est": 912000.0
+      "annual_rent_est": 579600.0
+    },
+    {
+      "mls": "F10496808",
+      "address": "1416 NE 4th Avenue",
+      "submarket": "Area 3370",
+      "asset_type": "Retail",
+      "status": "Cancelled",
+      "sqft": 6248.0,
+      "lease_rate_psf": 40.0,
+      "year_built": null,
+      "annual_rent_est": 249900.0
+    },
+    {
+      "mls": "F10498148",
+      "address": "535 NE 13th Street Unit#2",
+      "submarket": "Area 3380",
+      "asset_type": "Commercial (other)",
+      "status": "Expired",
+      "sqft": 14491.0,
+      "lease_rate_psf": 40.0,
+      "year_built": null,
+      "annual_rent_est": 579600.0
     },
     {
       "mls": "F10498150",
@@ -883,6 +861,28 @@
       "lease_rate_psf": 40.0,
       "year_built": 1971.0,
       "annual_rent_est": 547300.0
+    },
+    {
+      "mls": "F10322336",
+      "address": "416 SW 1st Avenue",
+      "submarket": "Area 3800",
+      "asset_type": "Commercial (other)",
+      "status": "Rented",
+      "sqft": 22799.0,
+      "lease_rate_psf": 40.0,
+      "year_built": null,
+      "annual_rent_est": 912000.0
+    },
+    {
+      "mls": "A11596374",
+      "address": "15 NW 9th Ave",
+      "submarket": "Area 3470",
+      "asset_type": "Industrial",
+      "status": "Sold",
+      "sqft": 7000.0,
+      "lease_rate_psf": 40.0,
+      "year_built": 1954.0,
+      "annual_rent_est": 280000.0
     },
     {
       "mls": "F10435706",
@@ -984,26 +984,15 @@
       "annual_rent_est": 46800.0
     },
     {
-      "mls": "A11998799",
-      "address": "2866 E Oakland Park Blvd",
+      "mls": "A11998773",
+      "address": "2856 E Oakland Park Blvd",
       "submarket": "Area 3280",
       "asset_type": "Office",
-      "status": "Sold",
-      "sqft": 15010.0,
+      "status": "Active",
+      "sqft": 7505.0,
       "lease_rate_psf": 36.0,
       "year_built": 1966.0,
-      "annual_rent_est": 540400.0
-    },
-    {
-      "mls": "F10530751",
-      "address": "2101 N Andrews Avenue",
-      "submarket": "Area 3390",
-      "asset_type": "Commercial (other)",
-      "status": "Active",
-      "sqft": 84738.0,
-      "lease_rate_psf": 36.0,
-      "year_built": null,
-      "annual_rent_est": 3050600.0
+      "annual_rent_est": 270200.0
     },
     {
       "mls": "A11998806",
@@ -1017,6 +1006,28 @@
       "annual_rent_est": 441000.0
     },
     {
+      "mls": "F10530751",
+      "address": "2101 N Andrews Avenue",
+      "submarket": "Area 3390",
+      "asset_type": "Commercial (other)",
+      "status": "Active",
+      "sqft": 84738.0,
+      "lease_rate_psf": 36.0,
+      "year_built": null,
+      "annual_rent_est": 3050600.0
+    },
+    {
+      "mls": "A11998799",
+      "address": "2866 E Oakland Park Blvd",
+      "submarket": "Area 3280",
+      "asset_type": "Office",
+      "status": "Sold",
+      "sqft": 15010.0,
+      "lease_rate_psf": 36.0,
+      "year_built": 1966.0,
+      "annual_rent_est": 540400.0
+    },
+    {
       "mls": "F10495690",
       "address": "801 NE 2nd Avenue Unit#120",
       "submarket": "Area 3810",
@@ -1026,28 +1037,6 @@
       "lease_rate_psf": 36.0,
       "year_built": null,
       "annual_rent_est": 412500.0
-    },
-    {
-      "mls": "A11998773",
-      "address": "2856 E Oakland Park Blvd",
-      "submarket": "Area 3280",
-      "asset_type": "Office",
-      "status": "Active",
-      "sqft": 7505.0,
-      "lease_rate_psf": 36.0,
-      "year_built": 1966.0,
-      "annual_rent_est": 270200.0
-    },
-    {
-      "mls": "A11350353",
-      "address": "1865 Cordova Rd Unit#B215",
-      "submarket": "Area 3280",
-      "asset_type": "Office",
-      "status": "Expired",
-      "sqft": 245865.0,
-      "lease_rate_psf": 35.0,
-      "year_built": 2005.0,
-      "annual_rent_est": 8605300.0
     },
     {
       "mls": "A11350330",
@@ -1061,37 +1050,15 @@
       "annual_rent_est": 8605300.0
     },
     {
-      "mls": "F10421703",
-      "address": "700 N Andrews Avenue",
-      "submarket": "Area 3700",
+      "mls": "A11567376",
+      "address": "2852 E Oakland Park Blvd",
+      "submarket": "Area 3250",
       "asset_type": "Retail",
       "status": "Expired",
-      "sqft": 13720.0,
+      "sqft": 7505.0,
       "lease_rate_psf": 35.0,
-      "year_built": null,
-      "annual_rent_est": 480200.0
-    },
-    {
-      "mls": "F10522748",
-      "address": "642 NE 3rd Avenue",
-      "submarket": "Area 3700",
-      "asset_type": "Commercial (other)",
-      "status": "Active",
-      "sqft": 7813.0,
-      "lease_rate_psf": 35.0,
-      "year_built": null,
-      "annual_rent_est": 273500.0
-    },
-    {
-      "mls": "F10518243",
-      "address": "1412 NE 4th Avenue",
-      "submarket": "Area 3370",
-      "asset_type": "Commercial (other)",
-      "status": "Rented",
-      "sqft": 6248.0,
-      "lease_rate_psf": 35.0,
-      "year_built": null,
-      "annual_rent_est": 218700.0
+      "year_built": 1963.0,
+      "annual_rent_est": 262700.0
     },
     {
       "mls": "F10523092",
@@ -1116,26 +1083,26 @@
       "annual_rent_est": 358800.0
     },
     {
-      "mls": "A11647486",
-      "address": "350 SW 25th St",
-      "submarket": "Area 3490",
-      "asset_type": "Mixed Use",
-      "status": "Cancelled",
-      "sqft": 32680.0,
-      "lease_rate_psf": 35.0,
-      "year_built": 1987.0,
-      "annual_rent_est": 1143800.0
-    },
-    {
-      "mls": "F10419781",
-      "address": "1133 SE 4th Avenue",
-      "submarket": "Area 3800",
+      "mls": "F10522748",
+      "address": "642 NE 3rd Avenue",
+      "submarket": "Area 3700",
       "asset_type": "Commercial (other)",
-      "status": "Cancelled",
-      "sqft": 7000.0,
+      "status": "Active",
+      "sqft": 7813.0,
       "lease_rate_psf": 35.0,
       "year_built": null,
-      "annual_rent_est": 245000.0
+      "annual_rent_est": 273500.0
+    },
+    {
+      "mls": "F10518243",
+      "address": "1412 NE 4th Avenue",
+      "submarket": "Area 3370",
+      "asset_type": "Commercial (other)",
+      "status": "Rented",
+      "sqft": 6248.0,
+      "lease_rate_psf": 35.0,
+      "year_built": null,
+      "annual_rent_est": 218700.0
     },
     {
       "mls": "A11350356",
@@ -1160,6 +1127,50 @@
       "annual_rent_est": 244900.0
     },
     {
+      "mls": "F10421703",
+      "address": "700 N Andrews Avenue",
+      "submarket": "Area 3700",
+      "asset_type": "Retail",
+      "status": "Expired",
+      "sqft": 13720.0,
+      "lease_rate_psf": 35.0,
+      "year_built": null,
+      "annual_rent_est": 480200.0
+    },
+    {
+      "mls": "F10419781",
+      "address": "1133 SE 4th Avenue",
+      "submarket": "Area 3800",
+      "asset_type": "Commercial (other)",
+      "status": "Cancelled",
+      "sqft": 7000.0,
+      "lease_rate_psf": 35.0,
+      "year_built": null,
+      "annual_rent_est": 245000.0
+    },
+    {
+      "mls": "A11647486",
+      "address": "350 SW 25th St",
+      "submarket": "Area 3490",
+      "asset_type": "Mixed Use",
+      "status": "Cancelled",
+      "sqft": 32680.0,
+      "lease_rate_psf": 35.0,
+      "year_built": 1987.0,
+      "annual_rent_est": 1143800.0
+    },
+    {
+      "mls": "A11350353",
+      "address": "1865 Cordova Rd Unit#B215",
+      "submarket": "Area 3280",
+      "asset_type": "Office",
+      "status": "Expired",
+      "sqft": 245865.0,
+      "lease_rate_psf": 35.0,
+      "year_built": 2005.0,
+      "annual_rent_est": 8605300.0
+    },
+    {
       "mls": "F10494022",
       "address": "700 N Andrews Avenue",
       "submarket": "Area 3700",
@@ -1169,17 +1180,6 @@
       "lease_rate_psf": 35.0,
       "year_built": null,
       "annual_rent_est": 480200.0
-    },
-    {
-      "mls": "A11567376",
-      "address": "2852 E Oakland Park Blvd",
-      "submarket": "Area 3250",
-      "asset_type": "Retail",
-      "status": "Expired",
-      "sqft": 7505.0,
-      "lease_rate_psf": 35.0,
-      "year_built": 1963.0,
-      "annual_rent_est": 262700.0
     },
     {
       "mls": "F10454187",

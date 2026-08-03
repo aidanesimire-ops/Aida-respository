@@ -165,6 +165,7 @@ def load_clean() -> pd.DataFrame:
         if "St" not in d.columns or "Type of Property" not in d.columns:
             continue
         d["__src"] = os.path.basename(p)
+        d["__mtime"] = os.path.getmtime(p)   # newer pulls win on dedup -> update over time
         frames.append(d)
     if not frames:
         raise FileNotFoundError(f"No commercial MLS CSVs found in {RAWDIR}")
@@ -188,6 +189,7 @@ def load_clean() -> pd.DataFrame:
         "waterfront": raw["Waterfront Property (Y/N)"].astype(str).str.strip().str.lower().eq("yes"),
         "bays": raw["#Bays"].map(_num),
         "source_file": raw["__src"],
+        "_mtime": raw["__mtime"],
     })
     df["status"] = df["status"].fillna("Active")
     # deal price: final sale for closed, else current/asking
@@ -207,9 +209,13 @@ def load_clean() -> pd.DataFrame:
     prio = {"Sold": 0, "UnderContract": 1, "Pending": 2, "Active": 3, "Rented": 4,
             "Cancelled": 5, "Expired": 6, "Withdrawn": 7, "TempOff": 8}
     df["_prio"] = df["status"].map(prio).fillna(9)
-    df = df.sort_values("_prio").drop_duplicates(subset=["mls"], keep="first").drop(columns="_prio")
+    # keep the most-progressed status per listing; among ties, the NEWEST pull wins
+    df = (df.sort_values(["_prio", "_mtime"], ascending=[True, False])
+            .drop_duplicates(subset=["mls"], keep="first")
+            .drop(columns=["_prio", "_mtime"]))
 
     df.attrs["n_raw"] = int(len(raw))
+    df.attrs["sources"] = sorted(set(df["source_file"].dropna()))
     return df.reset_index(drop=True)
 
 

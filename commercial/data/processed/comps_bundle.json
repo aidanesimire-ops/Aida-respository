@@ -1147,20 +1147,6 @@
         "waterfront": false
       },
       {
-        "mls": "F10455487",
-        "address": "516 SW Flagler Avenue",
-        "submarket": "Area 3500",
-        "asset_type": "Commercial (other)",
-        "price_band": "$1\u20132.5M",
-        "sqft": 4250.0,
-        "year_built": 2003.0,
-        "price": 1262500.0,
-        "ppsf": 297.0,
-        "pred_ppsf": 272.0,
-        "ppsf_gap_pct": 9.4,
-        "waterfront": false
-      },
-      {
         "mls": "F10455464",
         "address": "515 SW 1st Avenue",
         "submarket": "Area 3500",
@@ -1172,6 +1158,20 @@
         "ppsf": 240.0,
         "pred_ppsf": 242.0,
         "ppsf_gap_pct": -0.8,
+        "waterfront": false
+      },
+      {
+        "mls": "F10455487",
+        "address": "516 SW Flagler Avenue",
+        "submarket": "Area 3500",
+        "asset_type": "Commercial (other)",
+        "price_band": "$1\u20132.5M",
+        "sqft": 4250.0,
+        "year_built": 2003.0,
+        "price": 1262500.0,
+        "ppsf": 297.0,
+        "pred_ppsf": 272.0,
+        "ppsf_gap_pct": 9.4,
         "waterfront": false
       },
       {
@@ -1531,20 +1531,6 @@
         "waterfront": false
       },
       {
-        "mls": "A11776976",
-        "address": "721 NW 3rd Ave",
-        "submarket": "Area 3810",
-        "asset_type": "Multifamily",
-        "price_band": "$1\u20132.5M",
-        "sqft": 13500.0,
-        "year_built": 1973.0,
-        "price": 1950000.0,
-        "ppsf": 144.0,
-        "pred_ppsf": 207.0,
-        "ppsf_gap_pct": -30.3,
-        "waterfront": false
-      },
-      {
         "mls": "F10543625",
         "address": "1007 SE 2nd Court",
         "submarket": "Area 3280",
@@ -1556,6 +1542,20 @@
         "ppsf": 355.0,
         "pred_ppsf": 253.0,
         "ppsf_gap_pct": 40.1,
+        "waterfront": false
+      },
+      {
+        "mls": "A11776976",
+        "address": "721 NW 3rd Ave",
+        "submarket": "Area 3810",
+        "asset_type": "Multifamily",
+        "price_band": "$1\u20132.5M",
+        "sqft": 13500.0,
+        "year_built": 1973.0,
+        "price": 1950000.0,
+        "ppsf": 144.0,
+        "pred_ppsf": 207.0,
+        "ppsf_gap_pct": -30.3,
         "waterfront": false
       },
       {

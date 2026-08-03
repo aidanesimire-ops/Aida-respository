@@ -96,10 +96,10 @@
           "ppsf": 190.0
         },
         {
-          "address": "2435 N Dixie Highway",
+          "address": "2435 N Dixie Hwy",
           "sqft": 11662,
-          "price": 1365000.0,
-          "ppsf": 117.0
+          "price": 1395000.0,
+          "ppsf": 120.0
         }
       ]
     },
@@ -284,7 +284,7 @@
       "address": "2000 S Federal Highway",
       "asset_type": "Retail",
       "submarket": "Area 3480",
-      "corridors": "Federal Hwy \u00b7 SE 17th St",
+      "corridors": "Federal Hwy \u00b7 SR-84",
       "status": "Cancelled",
       "motivated": true,
       "sqft": 16875,
@@ -297,7 +297,7 @@
       "market_cap": 0.0675,
       "lease_psf": 28.0,
       "annual_rent_est": 472500.0,
-      "opener": "Hi, I saw 2000 S Federal Highway came off the market \u2014 I cover Federal Hwy \u00b7 SE 17th St. Retail around here is trading near $127/SF and leasing around $28/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "opener": "Hi, I saw 2000 S Federal Highway came off the market \u2014 I cover Federal Hwy \u00b7 SR-84. Retail around here is trading near $127/SF and leasing around $28/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
       "value_read": "Comps put it around $2.14M (~$127/SF) \u2014 about a 4.0% cap at market rents. It should rent ~$28/SF \u2014 about $472K/yr gross.",
       "faq": [
         "What's it worth? Comps support ~$2.14M (~$127/SF). You were asking $7.00M.",
@@ -372,10 +372,10 @@
           "ppsf": 306.0
         },
         {
-          "address": "1085 SE 17th Street",
+          "address": "1085 SE 17th St",
           "sqft": 1200,
-          "price": 483600.0,
-          "ppsf": 403.0
+          "price": 675000.0,
+          "ppsf": 562.0
         }
       ]
     },
@@ -696,60 +696,10 @@
           "ppsf": 306.0
         },
         {
-          "address": "1085 SE 17th Street",
+          "address": "1085 SE 17th St",
           "sqft": 1200,
-          "price": 483600.0,
-          "ppsf": 403.0
-        }
-      ]
-    },
-    {
-      "address": "431 NW 1st Avenue",
-      "asset_type": "Commercial (other)",
-      "submarket": "Area 3810",
-      "corridors": "Broward Blvd",
-      "status": "Expired",
-      "motivated": true,
-      "sqft": 15937,
-      "year_built": null,
-      "last_ask": 5000000.0,
-      "ppsf": 314,
-      "comp_ppsf": 265,
-      "value": 4223000.0,
-      "implied_cap": 0.0432,
-      "market_cap": 0.07,
-      "lease_psf": 26.5,
-      "annual_rent_est": 422300.0,
-      "opener": "Hi, I saw 431 NW 1st Avenue came off the market \u2014 I cover Broward Blvd. Commercial around here is trading near $265/SF and leasing around $26/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $4.22M (~$265/SF) \u2014 about a 4.3% cap at market rents. It should rent ~$26/SF \u2014 about $422K/yr gross.",
-      "faq": [
-        "What's it worth? Comps support ~$4.22M (~$265/SF). You were asking $5.00M.",
-        "What does it rent for? ~$26/SF/yr \u2014 about $422K/yr gross on 15,937 SF.",
-        "What cap? ~4.3% implied from lease-vs-sale comps (market benchmark \u2014).",
-        "How's demand? A CRA-driven, largely opportunity-zone corridor where public subsidy is catalyzing affordable/workforce and mixed-use redevelopment.",
-        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
-      ],
-      "angle": "Low basis vs downtown; land assembly on the OZ + CRA-incentive angle; Flagler Village spillover.",
-      "recent_deal": "The Aldridge & The Laramore \u2014 ~$42M, 72-unit mixed-use with retail at 1204 Sistrunk. NPF-CRA plan runs to 2035 with construction/fa\u00e7ade incentives.",
-      "profile_key": "Sistrunk / Progresso / Northwest",
-      "comps": [
-        {
-          "address": "901 NE 30th Court",
-          "sqft": 16500,
-          "price": 1725000.0,
-          "ppsf": 105.0
-        },
-        {
-          "address": "2780 E Oakland Park Boulevard",
-          "sqft": 17001,
-          "price": 3450000.0,
-          "ppsf": 203.0
-        },
-        {
-          "address": "708 SE 17th Street",
-          "sqft": 12300,
-          "price": 1750000.0,
-          "ppsf": 142.0
+          "price": 675000.0,
+          "ppsf": 562.0
         }
       ]
     },
@@ -800,6 +750,56 @@
           "sqft": 6776,
           "price": 660000.0,
           "ppsf": 97.0
+        }
+      ]
+    },
+    {
+      "address": "431 NW 1st Avenue",
+      "asset_type": "Commercial (other)",
+      "submarket": "Area 3810",
+      "corridors": "Broward Blvd",
+      "status": "Expired",
+      "motivated": true,
+      "sqft": 15937,
+      "year_built": null,
+      "last_ask": 5000000.0,
+      "ppsf": 314,
+      "comp_ppsf": 265,
+      "value": 4223000.0,
+      "implied_cap": 0.0432,
+      "market_cap": 0.07,
+      "lease_psf": 26.5,
+      "annual_rent_est": 422300.0,
+      "opener": "Hi, I saw 431 NW 1st Avenue came off the market \u2014 I cover Broward Blvd. Commercial around here is trading near $265/SF and leasing around $26/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $4.22M (~$265/SF) \u2014 about a 4.3% cap at market rents. It should rent ~$26/SF \u2014 about $422K/yr gross.",
+      "faq": [
+        "What's it worth? Comps support ~$4.22M (~$265/SF). You were asking $5.00M.",
+        "What does it rent for? ~$26/SF/yr \u2014 about $422K/yr gross on 15,937 SF.",
+        "What cap? ~4.3% implied from lease-vs-sale comps (market benchmark \u2014).",
+        "How's demand? A CRA-driven, largely opportunity-zone corridor where public subsidy is catalyzing affordable/workforce and mixed-use redevelopment.",
+        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
+      ],
+      "angle": "Low basis vs downtown; land assembly on the OZ + CRA-incentive angle; Flagler Village spillover.",
+      "recent_deal": "The Aldridge & The Laramore \u2014 ~$42M, 72-unit mixed-use with retail at 1204 Sistrunk. NPF-CRA plan runs to 2035 with construction/fa\u00e7ade incentives.",
+      "profile_key": "Sistrunk / Progresso / Northwest",
+      "comps": [
+        {
+          "address": "901 NE 30th Court",
+          "sqft": 16500,
+          "price": 1725000.0,
+          "ppsf": 105.0
+        },
+        {
+          "address": "2780 E Oakland Park Boulevard",
+          "sqft": 17001,
+          "price": 3450000.0,
+          "ppsf": 203.0
+        },
+        {
+          "address": "708 SE 17th Street",
+          "sqft": 12300,
+          "price": 1750000.0,
+          "ppsf": 142.0
         }
       ]
     },
@@ -896,41 +896,12 @@
           "ppsf": 38.0
         },
         {
-          "address": "3015 N Ocean Boulevard Unit#C-101",
+          "address": "3015 N Ocean Boulevard Unit#C-105",
           "sqft": 1938,
-          "price": 185000.0,
-          "ppsf": 95.0
+          "price": 325000.0,
+          "ppsf": 168.0
         }
       ]
-    },
-    {
-      "address": "2648 NE 32nd Street",
-      "asset_type": "Hotel",
-      "submarket": "Area 3250",
-      "corridors": "Oakland Park Blvd",
-      "status": "Expired",
-      "motivated": true,
-      "sqft": 20004,
-      "year_built": 1959,
-      "last_ask": 4500000.0,
-      "ppsf": 225,
-      "comp_ppsf": 277,
-      "value": 5541000.0,
-      "implied_cap": 0.1182,
-      "market_cap": 0.085,
-      "lease_psf": null,
-      "annual_rent_est": null,
-      "opener": "Hi, I saw 2648 NE 32nd Street came off the market \u2014 I cover Oakland Park Blvd. Hotel around here is trading near $277/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $5.54M (~$277/SF) \u2014 about a 11.8% cap at market rents.",
-      "faq": [
-        "What's it worth? Comps support ~$5.54M (~$277/SF). You were asking $4.50M.",
-        "What cap? ~11.8% implied from lease-vs-sale comps (market benchmark ~7.8%).",
-        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
-      ],
-      "angle": null,
-      "recent_deal": null,
-      "profile_key": null,
-      "comps": []
     },
     {
       "address": "2817 E Oakland Park Boulevard",
@@ -980,6 +951,35 @@
           "ppsf": 142.0
         }
       ]
+    },
+    {
+      "address": "2648 NE 32nd Street",
+      "asset_type": "Hotel",
+      "submarket": "Area 3250",
+      "corridors": "Oakland Park Blvd",
+      "status": "Expired",
+      "motivated": true,
+      "sqft": 20004,
+      "year_built": 1959,
+      "last_ask": 4500000.0,
+      "ppsf": 225,
+      "comp_ppsf": 277,
+      "value": 5541000.0,
+      "implied_cap": 0.1182,
+      "market_cap": 0.085,
+      "lease_psf": null,
+      "annual_rent_est": null,
+      "opener": "Hi, I saw 2648 NE 32nd Street came off the market \u2014 I cover Oakland Park Blvd. Hotel around here is trading near $277/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $5.54M (~$277/SF) \u2014 about a 11.8% cap at market rents.",
+      "faq": [
+        "What's it worth? Comps support ~$5.54M (~$277/SF). You were asking $4.50M.",
+        "What cap? ~11.8% implied from lease-vs-sale comps (market benchmark ~7.8%).",
+        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
+      ],
+      "angle": null,
+      "recent_deal": null,
+      "profile_key": null,
+      "comps": []
     },
     {
       "address": "702-704 NE 1st Avenue",
@@ -1350,60 +1350,10 @@
           "ppsf": 190.0
         },
         {
-          "address": "2435 N Dixie Highway",
+          "address": "2435 N Dixie Hwy",
           "sqft": 11662,
-          "price": 1365000.0,
-          "ppsf": 117.0
-        }
-      ]
-    },
-    {
-      "address": "2905 NE 6th Avenue",
-      "asset_type": "Commercial (other)",
-      "submarket": "Area 3370",
-      "corridors": "Dixie Hwy \u00b7 Oakland Park Blvd",
-      "status": "Expired",
-      "motivated": true,
-      "sqft": 30093,
-      "year_built": 1973,
-      "last_ask": 3600000.0,
-      "ppsf": 120,
-      "comp_ppsf": 139,
-      "value": 4183000.0,
-      "implied_cap": 0.1133,
-      "market_cap": 0.07,
-      "lease_psf": 26.5,
-      "annual_rent_est": 797500.0,
-      "opener": "Hi, I saw 2905 NE 6th Avenue came off the market \u2014 I cover Dixie Hwy \u00b7 Oakland Park Blvd. Commercial around here is trading near $139/SF and leasing around $26/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $4.18M (~$139/SF) \u2014 about a 11.3% cap at market rents. It should rent ~$26/SF \u2014 about $797K/yr gross.",
-      "faq": [
-        "What's it worth? Comps support ~$4.18M (~$139/SF). You were asking $3.60M.",
-        "What does it rent for? ~$26/SF/yr \u2014 about $797K/yr gross on 30,093 SF.",
-        "What cap? ~11.3% implied from lease-vs-sale comps (market benchmark \u2014).",
-        "How's demand? One of Broward's fastest-emerging urban-infill submarkets, led by public placemaking.",
-        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
-      ],
-      "angle": "Infill mixed-use, older-industrial repositioning; CRA incentives; attractive basis.",
-      "recent_deal": "Culinary Arts District (NE 12th Ave) restaurant/distillery corridor; new City Hall mixed-use (2025); 6-acre Horizon redevelopment of the old City Hall site.",
-      "profile_key": "Oakland Park",
-      "comps": [
-        {
-          "address": "901 NE 30th Court",
-          "sqft": 16500,
-          "price": 1725000.0,
-          "ppsf": 105.0
-        },
-        {
-          "address": "2300 NE 6th Avenue",
-          "sqft": 13683,
-          "price": 2600000.0,
-          "ppsf": 190.0
-        },
-        {
-          "address": "2435 N Dixie Highway",
-          "sqft": 11662,
-          "price": 1365000.0,
-          "ppsf": 117.0
+          "price": 1395000.0,
+          "ppsf": 120.0
         }
       ]
     },
@@ -1457,6 +1407,56 @@
       ]
     },
     {
+      "address": "2905 NE 6th Avenue",
+      "asset_type": "Commercial (other)",
+      "submarket": "Area 3370",
+      "corridors": "Dixie Hwy \u00b7 Oakland Park Blvd",
+      "status": "Expired",
+      "motivated": true,
+      "sqft": 30093,
+      "year_built": 1973,
+      "last_ask": 3600000.0,
+      "ppsf": 120,
+      "comp_ppsf": 139,
+      "value": 4183000.0,
+      "implied_cap": 0.1133,
+      "market_cap": 0.07,
+      "lease_psf": 26.5,
+      "annual_rent_est": 797500.0,
+      "opener": "Hi, I saw 2905 NE 6th Avenue came off the market \u2014 I cover Dixie Hwy \u00b7 Oakland Park Blvd. Commercial around here is trading near $139/SF and leasing around $26/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $4.18M (~$139/SF) \u2014 about a 11.3% cap at market rents. It should rent ~$26/SF \u2014 about $797K/yr gross.",
+      "faq": [
+        "What's it worth? Comps support ~$4.18M (~$139/SF). You were asking $3.60M.",
+        "What does it rent for? ~$26/SF/yr \u2014 about $797K/yr gross on 30,093 SF.",
+        "What cap? ~11.3% implied from lease-vs-sale comps (market benchmark \u2014).",
+        "How's demand? One of Broward's fastest-emerging urban-infill submarkets, led by public placemaking.",
+        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
+      ],
+      "angle": "Infill mixed-use, older-industrial repositioning; CRA incentives; attractive basis.",
+      "recent_deal": "Culinary Arts District (NE 12th Ave) restaurant/distillery corridor; new City Hall mixed-use (2025); 6-acre Horizon redevelopment of the old City Hall site.",
+      "profile_key": "Oakland Park",
+      "comps": [
+        {
+          "address": "901 NE 30th Court",
+          "sqft": 16500,
+          "price": 1725000.0,
+          "ppsf": 105.0
+        },
+        {
+          "address": "2300 NE 6th Avenue",
+          "sqft": 13683,
+          "price": 2600000.0,
+          "ppsf": 190.0
+        },
+        {
+          "address": "2435 N Dixie Hwy",
+          "sqft": 11662,
+          "price": 1395000.0,
+          "ppsf": 120.0
+        }
+      ]
+    },
+    {
       "address": "2120 S Federal Hwy",
       "asset_type": "Retail",
       "submarket": "Area 3600",
@@ -1499,10 +1499,10 @@
           "ppsf": 306.0
         },
         {
-          "address": "1085 SE 17th Street",
+          "address": "1085 SE 17th St",
           "sqft": 1200,
-          "price": 483600.0,
-          "ppsf": 403.0
+          "price": 675000.0,
+          "ppsf": 562.0
         }
       ]
     },
@@ -1647,10 +1647,10 @@
           "ppsf": 306.0
         },
         {
-          "address": "1085 SE 17th Street",
+          "address": "1085 SE 17th St",
           "sqft": 1200,
-          "price": 483600.0,
-          "ppsf": 403.0
+          "price": 675000.0,
+          "ppsf": 562.0
         }
       ]
     },
@@ -1993,10 +1993,10 @@
           "ppsf": 190.0
         },
         {
-          "address": "2435 N Dixie Highway",
+          "address": "2435 N Dixie Hwy",
           "sqft": 11662,
-          "price": 1365000.0,
-          "ppsf": 117.0
+          "price": 1395000.0,
+          "ppsf": 120.0
         }
       ]
     },
@@ -2396,51 +2396,52 @@
       ]
     },
     {
-      "address": "15 NW 9th Ave",
-      "asset_type": "Industrial",
-      "submarket": "Area 3470",
-      "corridors": "Davie Blvd \u00b7 Las Olas Blvd",
+      "address": "2010 Wilton Dr",
+      "asset_type": "Restaurant",
+      "submarket": "Area 3380",
+      "corridors": "Wilton Dr \u00b7 Federal Hwy",
       "status": "Expired",
       "motivated": true,
-      "sqft": 7000,
-      "year_built": 1954,
+      "sqft": 7960,
+      "year_built": 2022,
       "last_ask": 2750000.0,
-      "ppsf": 393,
-      "comp_ppsf": 277,
-      "value": 1939000.0,
-      "implied_cap": null,
-      "market_cap": 0.0625,
-      "lease_psf": 19.4,
-      "annual_rent_est": 135800.0,
-      "opener": "Hi, I saw 15 NW 9th Ave came off the market \u2014 I cover Davie Blvd \u00b7 Las Olas Blvd. Industrial around here is trading near $277/SF and leasing around $19/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $1.94M (~$277/SF). It should rent ~$19/SF \u2014 about $136K/yr gross.",
+      "ppsf": 345,
+      "comp_ppsf": 272,
+      "value": 2165000.0,
+      "implied_cap": 0.0688,
+      "market_cap": 0.065,
+      "lease_psf": 22.6,
+      "annual_rent_est": 179900.0,
+      "opener": "Hi, I saw 2010 Wilton Dr came off the market \u2014 I cover Wilton Dr \u00b7 Federal Hwy. Restaurant/bar around here is trading near $272/SF and leasing around $23/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $2.17M (~$272/SF) \u2014 about a 6.9% cap at market rents. It should rent ~$23/SF \u2014 about $180K/yr gross.",
       "faq": [
-        "What's it worth? Comps support ~$1.94M (~$277/SF). You were asking $2.75M.",
-        "What does it rent for? ~$19/SF/yr \u2014 about $136K/yr gross on 7,000 SF.",
-        "How's demand? Broward's premier office / CBD address \u2014 law, finance and wealth-management tenancy.",
+        "What's it worth? Comps support ~$2.17M (~$272/SF). You were asking $2.75M.",
+        "What does it rent for? ~$23/SF/yr \u2014 about $180K/yr gross on 7,960 SF.",
+        "What cap? ~6.9% implied from lease-vs-sale comps (market benchmark \u2014).",
+        "How's demand? A walkable, affluent arts-and-entertainment node (Wilton Drive) drawing its first mid-rise projects.",
         "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
       ],
-      "angle": "Trophy office, repositioning, ground-floor retail at $50\u201375/SF.",
-      "recent_deal": "2025 delivered the two largest office trades in a decade: Las Olas Centre I & II $208M (~$442/SF, Bradford Allen) and Bank of America Plaza at 401 E Las Olas ~$220M (Lone Star/Highline/Square2).",
-      "profile_key": "Las Olas",
+      "angle": "Retail redevelopment; constrained supply; strong restaurant/retail demand.",
+      "recent_deal": "Stiles bought the Shoppes of Wilton Manors (78,600 SF) for $27.6M (Dec 2024), pursuing an 82-unit rezoning; Kaplan's Generation proposes ~190 units.",
+      "profile_key": "Wilton Manors",
       "comps": [
         {
-          "address": "1851 SW 2nd Ave Unit#8",
-          "sqft": 1488,
-          "price": 595000.0,
-          "ppsf": 400.0
+          "address": "2010 Wilton Dr",
+          "sqft": 7960,
+          "price": 2150000.0,
+          "ppsf": 270.0
         },
         {
-          "address": "1415 SW 1st Street Unit#1-8",
-          "sqft": 13802,
-          "price": 1550000.0,
-          "ppsf": 112.0
+          "address": "1129 NE 16th Avenue Unit#1-5",
+          "sqft": 6752,
+          "price": 1150000.0,
+          "ppsf": 170.0
         },
         {
-          "address": "828 NW 1st St",
-          "sqft": 13951,
-          "price": 2464500.0,
-          "ppsf": 177.0
+          "address": "1241 NE 16th Terrace",
+          "sqft": 11480,
+          "price": 1750000.0,
+          "ppsf": 152.0
         }
       ]
     },
@@ -2494,52 +2495,51 @@
       ]
     },
     {
-      "address": "2010 Wilton Dr",
-      "asset_type": "Restaurant",
-      "submarket": "Area 3380",
-      "corridors": "Wilton Dr \u00b7 Federal Hwy",
+      "address": "15 NW 9th Ave",
+      "asset_type": "Industrial",
+      "submarket": "Area 3470",
+      "corridors": "Davie Blvd \u00b7 Las Olas Blvd",
       "status": "Expired",
       "motivated": true,
-      "sqft": 7960,
-      "year_built": 2022,
+      "sqft": 7000,
+      "year_built": 1954,
       "last_ask": 2750000.0,
-      "ppsf": 345,
-      "comp_ppsf": 272,
-      "value": 2165000.0,
-      "implied_cap": 0.0688,
-      "market_cap": 0.065,
-      "lease_psf": 22.6,
-      "annual_rent_est": 179900.0,
-      "opener": "Hi, I saw 2010 Wilton Dr came off the market \u2014 I cover Wilton Dr \u00b7 Federal Hwy. Restaurant/bar around here is trading near $272/SF and leasing around $23/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $2.17M (~$272/SF) \u2014 about a 6.9% cap at market rents. It should rent ~$23/SF \u2014 about $180K/yr gross.",
+      "ppsf": 393,
+      "comp_ppsf": 277,
+      "value": 1939000.0,
+      "implied_cap": null,
+      "market_cap": 0.0625,
+      "lease_psf": 19.4,
+      "annual_rent_est": 135800.0,
+      "opener": "Hi, I saw 15 NW 9th Ave came off the market \u2014 I cover Davie Blvd \u00b7 Las Olas Blvd. Industrial around here is trading near $277/SF and leasing around $19/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $1.94M (~$277/SF). It should rent ~$19/SF \u2014 about $136K/yr gross.",
       "faq": [
-        "What's it worth? Comps support ~$2.17M (~$272/SF). You were asking $2.75M.",
-        "What does it rent for? ~$23/SF/yr \u2014 about $180K/yr gross on 7,960 SF.",
-        "What cap? ~6.9% implied from lease-vs-sale comps (market benchmark \u2014).",
-        "How's demand? A walkable, affluent arts-and-entertainment node (Wilton Drive) drawing its first mid-rise projects.",
+        "What's it worth? Comps support ~$1.94M (~$277/SF). You were asking $2.75M.",
+        "What does it rent for? ~$19/SF/yr \u2014 about $136K/yr gross on 7,000 SF.",
+        "How's demand? Broward's premier office / CBD address \u2014 law, finance and wealth-management tenancy.",
         "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
       ],
-      "angle": "Retail redevelopment; constrained supply; strong restaurant/retail demand.",
-      "recent_deal": "Stiles bought the Shoppes of Wilton Manors (78,600 SF) for $27.6M (Dec 2024), pursuing an 82-unit rezoning; Kaplan's Generation proposes ~190 units.",
-      "profile_key": "Wilton Manors",
+      "angle": "Trophy office, repositioning, ground-floor retail at $50\u201375/SF.",
+      "recent_deal": "2025 delivered the two largest office trades in a decade: Las Olas Centre I & II $208M (~$442/SF, Bradford Allen) and Bank of America Plaza at 401 E Las Olas ~$220M (Lone Star/Highline/Square2).",
+      "profile_key": "Las Olas",
       "comps": [
         {
-          "address": "2010 Wilton Dr",
-          "sqft": 7960,
-          "price": 2150000.0,
-          "ppsf": 270.0
+          "address": "1851 SW 2nd Ave Unit#8",
+          "sqft": 1488,
+          "price": 595000.0,
+          "ppsf": 400.0
         },
         {
-          "address": "1129 NE 16th Avenue Unit#1-5",
-          "sqft": 6752,
-          "price": 1150000.0,
-          "ppsf": 170.0
+          "address": "1415 SW 1st Street Unit#1-8",
+          "sqft": 13802,
+          "price": 1550000.0,
+          "ppsf": 112.0
         },
         {
-          "address": "1241 NE 16th Terrace",
-          "sqft": 11480,
-          "price": 1750000.0,
-          "ppsf": 152.0
+          "address": "828 NW 1st St",
+          "sqft": 13951,
+          "price": 2464500.0,
+          "ppsf": 177.0
         }
       ]
     },
@@ -2742,55 +2742,6 @@
       ]
     },
     {
-      "address": "2500 Wilton Dr",
-      "asset_type": "Special Purpose",
-      "submarket": "Area 3370",
-      "corridors": "Dixie Hwy \u00b7 Oakland Park Blvd",
-      "status": "Expired",
-      "motivated": true,
-      "sqft": 5664,
-      "year_built": 2011,
-      "last_ask": 2500000.0,
-      "ppsf": 441,
-      "comp_ppsf": 340,
-      "value": 1926000.0,
-      "implied_cap": null,
-      "market_cap": 0.075,
-      "lease_psf": 7.3,
-      "annual_rent_est": 41300.0,
-      "opener": "Hi, I saw 2500 Wilton Dr came off the market \u2014 I cover Dixie Hwy \u00b7 Oakland Park Blvd. Special-purpose around here is trading near $340/SF and leasing around $7/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $1.93M (~$340/SF). It should rent ~$7/SF \u2014 about $41K/yr gross.",
-      "faq": [
-        "What's it worth? Comps support ~$1.93M (~$340/SF). You were asking $2.50M.",
-        "What does it rent for? ~$7/SF/yr \u2014 about $41K/yr gross on 5,664 SF.",
-        "How's demand? One of Broward's fastest-emerging urban-infill submarkets, led by public placemaking.",
-        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
-      ],
-      "angle": "Infill mixed-use, older-industrial repositioning; CRA incentives; attractive basis.",
-      "recent_deal": "Culinary Arts District (NE 12th Ave) restaurant/distillery corridor; new City Hall mixed-use (2025); 6-acre Horizon redevelopment of the old City Hall site.",
-      "profile_key": "Oakland Park",
-      "comps": [
-        {
-          "address": "3031 NE 21st Ter Unit#1-7",
-          "sqft": 6003,
-          "price": 1200000.0,
-          "ppsf": 200.0
-        },
-        {
-          "address": "2420-2426 N Dixie Hwy",
-          "sqft": 6110,
-          "price": 1150000.0,
-          "ppsf": 188.0
-        },
-        {
-          "address": "2032 NE 26th Street Unit#1-6",
-          "sqft": 7004,
-          "price": 885000.0,
-          "ppsf": 126.0
-        }
-      ]
-    },
-    {
       "address": "1650 NE 26th Street",
       "asset_type": "Commercial (other)",
       "submarket": "Area 3280",
@@ -2836,6 +2787,55 @@
           "sqft": 5500,
           "price": 1780000.0,
           "ppsf": 324.0
+        }
+      ]
+    },
+    {
+      "address": "2500 Wilton Dr",
+      "asset_type": "Special Purpose",
+      "submarket": "Area 3370",
+      "corridors": "Dixie Hwy \u00b7 Oakland Park Blvd",
+      "status": "Expired",
+      "motivated": true,
+      "sqft": 5664,
+      "year_built": 2011,
+      "last_ask": 2500000.0,
+      "ppsf": 441,
+      "comp_ppsf": 340,
+      "value": 1926000.0,
+      "implied_cap": null,
+      "market_cap": 0.075,
+      "lease_psf": 7.3,
+      "annual_rent_est": 41300.0,
+      "opener": "Hi, I saw 2500 Wilton Dr came off the market \u2014 I cover Dixie Hwy \u00b7 Oakland Park Blvd. Special-purpose around here is trading near $340/SF and leasing around $7/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $1.93M (~$340/SF). It should rent ~$7/SF \u2014 about $41K/yr gross.",
+      "faq": [
+        "What's it worth? Comps support ~$1.93M (~$340/SF). You were asking $2.50M.",
+        "What does it rent for? ~$7/SF/yr \u2014 about $41K/yr gross on 5,664 SF.",
+        "How's demand? One of Broward's fastest-emerging urban-infill submarkets, led by public placemaking.",
+        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
+      ],
+      "angle": "Infill mixed-use, older-industrial repositioning; CRA incentives; attractive basis.",
+      "recent_deal": "Culinary Arts District (NE 12th Ave) restaurant/distillery corridor; new City Hall mixed-use (2025); 6-acre Horizon redevelopment of the old City Hall site.",
+      "profile_key": "Oakland Park",
+      "comps": [
+        {
+          "address": "3031 NE 21st Ter Unit#1-7",
+          "sqft": 6003,
+          "price": 1200000.0,
+          "ppsf": 200.0
+        },
+        {
+          "address": "2420-2426 N Dixie Hwy",
+          "sqft": 6110,
+          "price": 1150000.0,
+          "ppsf": 188.0
+        },
+        {
+          "address": "2032 NE 26th Street Unit#1-6",
+          "sqft": 7004,
+          "price": 885000.0,
+          "ppsf": 126.0
         }
       ]
     },
@@ -3186,35 +3186,6 @@
       ]
     },
     {
-      "address": "1210 NE 8th Ave",
-      "asset_type": "Flex",
-      "submarket": "Area 3560",
-      "corridors": "Broward Blvd \u00b7 Sunrise Blvd",
-      "status": "Withdrawn",
-      "motivated": true,
-      "sqft": 6378,
-      "year_built": 1967,
-      "last_ask": 2198672.0,
-      "ppsf": 345,
-      "comp_ppsf": 328,
-      "value": 2092000.0,
-      "implied_cap": 0.0427,
-      "market_cap": 0.07,
-      "lease_psf": null,
-      "annual_rent_est": null,
-      "opener": "Hi, I saw 1210 NE 8th Ave came off the market \u2014 I cover Broward Blvd \u00b7 Sunrise Blvd. Flex around here is trading near $328/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $2.09M (~$328/SF) \u2014 about a 4.3% cap at market rents.",
-      "faq": [
-        "What's it worth? Comps support ~$2.09M (~$328/SF). You were asking $2.20M.",
-        "What cap? ~4.3% implied from lease-vs-sale comps (market benchmark \u2014).",
-        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
-      ],
-      "angle": null,
-      "recent_deal": null,
-      "profile_key": null,
-      "comps": []
-    },
-    {
       "address": "1210 NE 8th Avenue",
       "asset_type": "Mixed Use",
       "submarket": "Area 3560",
@@ -3261,6 +3232,35 @@
           "ppsf": 72.0
         }
       ]
+    },
+    {
+      "address": "1210 NE 8th Ave",
+      "asset_type": "Flex",
+      "submarket": "Area 3560",
+      "corridors": "Broward Blvd \u00b7 Sunrise Blvd",
+      "status": "Withdrawn",
+      "motivated": true,
+      "sqft": 6378,
+      "year_built": 1967,
+      "last_ask": 2198672.0,
+      "ppsf": 345,
+      "comp_ppsf": 328,
+      "value": 2092000.0,
+      "implied_cap": 0.0427,
+      "market_cap": 0.07,
+      "lease_psf": null,
+      "annual_rent_est": null,
+      "opener": "Hi, I saw 1210 NE 8th Ave came off the market \u2014 I cover Broward Blvd \u00b7 Sunrise Blvd. Flex around here is trading near $328/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $2.09M (~$328/SF) \u2014 about a 4.3% cap at market rents.",
+      "faq": [
+        "What's it worth? Comps support ~$2.09M (~$328/SF). You were asking $2.20M.",
+        "What cap? ~4.3% implied from lease-vs-sale comps (market benchmark \u2014).",
+        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
+      ],
+      "angle": null,
+      "recent_deal": null,
+      "profile_key": null,
+      "comps": []
     },
     {
       "address": "325 NW 25 Street",
@@ -3454,10 +3454,10 @@
           "ppsf": 190.0
         },
         {
-          "address": "2435 N Dixie Highway",
+          "address": "2435 N Dixie Hwy",
           "sqft": 11662,
-          "price": 1365000.0,
-          "ppsf": 117.0
+          "price": 1395000.0,
+          "ppsf": 120.0
         }
       ]
     },
@@ -3661,55 +3661,6 @@
       ]
     },
     {
-      "address": "1091 NE 4th Avenue",
-      "asset_type": "Commercial (other)",
-      "submarket": "Area 3390",
-      "corridors": "Oakland Park Blvd \u00b7 SE 17th St",
-      "status": "Expired",
-      "motivated": true,
-      "sqft": 18100,
-      "year_built": null,
-      "last_ask": 1990000.0,
-      "ppsf": 110,
-      "comp_ppsf": 188,
-      "value": 3403000.0,
-      "implied_cap": 0.1233,
-      "market_cap": 0.07,
-      "lease_psf": 26.5,
-      "annual_rent_est": 479600.0,
-      "opener": "Hi, I saw 1091 NE 4th Avenue came off the market \u2014 I cover Oakland Park Blvd \u00b7 SE 17th St. Commercial around here is trading near $188/SF and leasing around $26/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $3.40M (~$188/SF) \u2014 about a 12.3% cap at market rents. It should rent ~$26/SF \u2014 about $480K/yr gross.",
-      "faq": [
-        "What's it worth? Comps support ~$3.40M (~$188/SF). You were asking $1.99M.",
-        "What does it rent for? ~$26/SF/yr \u2014 about $480K/yr gross on 18,100 SF.",
-        "What cap? ~12.3% implied from lease-vs-sale comps (market benchmark \u2014).",
-        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
-      ],
-      "angle": null,
-      "recent_deal": null,
-      "profile_key": null,
-      "comps": [
-        {
-          "address": "2780 E Oakland Park Boulevard",
-          "sqft": 17001,
-          "price": 3450000.0,
-          "ppsf": 203.0
-        },
-        {
-          "address": "901 NE 30th Court",
-          "sqft": 16500,
-          "price": 1725000.0,
-          "ppsf": 105.0
-        },
-        {
-          "address": "708 SE 17th Street",
-          "sqft": 12300,
-          "price": 1750000.0,
-          "ppsf": 142.0
-        }
-      ]
-    },
-    {
       "address": "2700 E Oakland Park Boulevard",
       "asset_type": "Retail",
       "submarket": "Area 3260",
@@ -3755,6 +3706,55 @@
           "sqft": 5625,
           "price": 1600000.0,
           "ppsf": 284.0
+        }
+      ]
+    },
+    {
+      "address": "1091 NE 4th Avenue",
+      "asset_type": "Commercial (other)",
+      "submarket": "Area 3390",
+      "corridors": "Oakland Park Blvd \u00b7 SE 17th St",
+      "status": "Expired",
+      "motivated": true,
+      "sqft": 18100,
+      "year_built": null,
+      "last_ask": 1990000.0,
+      "ppsf": 110,
+      "comp_ppsf": 188,
+      "value": 3403000.0,
+      "implied_cap": 0.1233,
+      "market_cap": 0.07,
+      "lease_psf": 26.5,
+      "annual_rent_est": 479600.0,
+      "opener": "Hi, I saw 1091 NE 4th Avenue came off the market \u2014 I cover Oakland Park Blvd \u00b7 SE 17th St. Commercial around here is trading near $188/SF and leasing around $26/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $3.40M (~$188/SF) \u2014 about a 12.3% cap at market rents. It should rent ~$26/SF \u2014 about $480K/yr gross.",
+      "faq": [
+        "What's it worth? Comps support ~$3.40M (~$188/SF). You were asking $1.99M.",
+        "What does it rent for? ~$26/SF/yr \u2014 about $480K/yr gross on 18,100 SF.",
+        "What cap? ~12.3% implied from lease-vs-sale comps (market benchmark \u2014).",
+        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
+      ],
+      "angle": null,
+      "recent_deal": null,
+      "profile_key": null,
+      "comps": [
+        {
+          "address": "2780 E Oakland Park Boulevard",
+          "sqft": 17001,
+          "price": 3450000.0,
+          "ppsf": 203.0
+        },
+        {
+          "address": "901 NE 30th Court",
+          "sqft": 16500,
+          "price": 1725000.0,
+          "ppsf": 105.0
+        },
+        {
+          "address": "708 SE 17th Street",
+          "sqft": 12300,
+          "price": 1750000.0,
+          "ppsf": 142.0
         }
       ]
     },
@@ -4253,6 +4253,55 @@
       ]
     },
     {
+      "address": "1620 NE 12th Terrace",
+      "asset_type": "Industrial",
+      "submarket": "Area 3360",
+      "corridors": "Oakland Park Blvd",
+      "status": "Expired",
+      "motivated": true,
+      "sqft": 11736,
+      "year_built": 1953,
+      "last_ask": 1800000.0,
+      "ppsf": 153,
+      "comp_ppsf": 263,
+      "value": 3087000.0,
+      "implied_cap": 0.0632,
+      "market_cap": 0.0625,
+      "lease_psf": 19.4,
+      "annual_rent_est": 227700.0,
+      "opener": "Hi, I saw 1620 NE 12th Terrace came off the market \u2014 I cover Oakland Park Blvd. Industrial around here is trading near $263/SF and leasing around $19/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $3.09M (~$263/SF) \u2014 about a 6.3% cap at market rents. It should rent ~$19/SF \u2014 about $228K/yr gross.",
+      "faq": [
+        "What's it worth? Comps support ~$3.09M (~$263/SF). You were asking $1.80M.",
+        "What does it rent for? ~$19/SF/yr \u2014 about $228K/yr gross on 11,736 SF.",
+        "What cap? ~6.3% implied from lease-vs-sale comps (market benchmark ~6.0\u20136.3% (South FL)).",
+        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
+      ],
+      "angle": null,
+      "recent_deal": null,
+      "profile_key": null,
+      "comps": [
+        {
+          "address": "1620 NE 12th Terrace Unit#1620-163",
+          "sqft": 11736,
+          "price": 1575244.0,
+          "ppsf": 134.0
+        },
+        {
+          "address": "2615 SW 2nd Ave",
+          "sqft": 10289,
+          "price": 1350000.0,
+          "ppsf": 131.0
+        },
+        {
+          "address": "701 NW 7th Terrace",
+          "sqft": 10125,
+          "price": 2050000.0,
+          "ppsf": 202.0
+        }
+      ]
+    },
+    {
       "address": "1100 NE 18th Court",
       "asset_type": "Multifamily",
       "submarket": "Area 3370",
@@ -4303,55 +4352,6 @@
       ]
     },
     {
-      "address": "1620 NE 12th Terrace",
-      "asset_type": "Industrial",
-      "submarket": "Area 3360",
-      "corridors": "Oakland Park Blvd",
-      "status": "Expired",
-      "motivated": true,
-      "sqft": 11736,
-      "year_built": 1953,
-      "last_ask": 1800000.0,
-      "ppsf": 153,
-      "comp_ppsf": 263,
-      "value": 3087000.0,
-      "implied_cap": 0.0632,
-      "market_cap": 0.0625,
-      "lease_psf": 19.4,
-      "annual_rent_est": 227700.0,
-      "opener": "Hi, I saw 1620 NE 12th Terrace came off the market \u2014 I cover Oakland Park Blvd. Industrial around here is trading near $263/SF and leasing around $19/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $3.09M (~$263/SF) \u2014 about a 6.3% cap at market rents. It should rent ~$19/SF \u2014 about $228K/yr gross.",
-      "faq": [
-        "What's it worth? Comps support ~$3.09M (~$263/SF). You were asking $1.80M.",
-        "What does it rent for? ~$19/SF/yr \u2014 about $228K/yr gross on 11,736 SF.",
-        "What cap? ~6.3% implied from lease-vs-sale comps (market benchmark ~6.0\u20136.3% (South FL)).",
-        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
-      ],
-      "angle": null,
-      "recent_deal": null,
-      "profile_key": null,
-      "comps": [
-        {
-          "address": "1620 NE 12th Terrace Unit#1620-163",
-          "sqft": 11736,
-          "price": 1575244.0,
-          "ppsf": 134.0
-        },
-        {
-          "address": "2615 SW 2nd Ave",
-          "sqft": 10289,
-          "price": 1350000.0,
-          "ppsf": 131.0
-        },
-        {
-          "address": "701 NW 7th Terrace",
-          "sqft": 10125,
-          "price": 2050000.0,
-          "ppsf": 202.0
-        }
-      ]
-    },
-    {
       "address": "505 SE 20th St Unit#1-5",
       "asset_type": "Multifamily",
       "submarket": "Area 3600",
@@ -4394,10 +4394,10 @@
           "ppsf": 142.0
         },
         {
-          "address": "1085 SE 17th Street",
+          "address": "1085 SE 17th St",
           "sqft": 1200,
-          "price": 483600.0,
-          "ppsf": 403.0
+          "price": 675000.0,
+          "ppsf": 562.0
         }
       ]
     },
@@ -4444,10 +4444,10 @@
           "ppsf": 190.0
         },
         {
-          "address": "2435 N Dixie Highway",
+          "address": "2435 N Dixie Hwy",
           "sqft": 11662,
-          "price": 1365000.0,
-          "ppsf": 117.0
+          "price": 1395000.0,
+          "ppsf": 120.0
         }
       ]
     },
@@ -4502,52 +4502,52 @@
       ]
     },
     {
-      "address": "511 SE 5th Ave Unit#11",
-      "asset_type": "Office",
-      "submarket": "Area 3800",
-      "corridors": "Andrews Ave \u00b7 SE 17th St",
+      "address": "2133 N Dixie Highway",
+      "asset_type": "Commercial (other)",
+      "submarket": "Area 3370",
+      "corridors": "Dixie Hwy \u00b7 Oakland Park Blvd",
       "status": "Expired",
       "motivated": true,
-      "sqft": 4340,
-      "year_built": 2005,
+      "sqft": 7497,
+      "year_built": 1962,
       "last_ask": 1700000.0,
-      "ppsf": 392,
-      "comp_ppsf": 166,
-      "value": 720000.0,
-      "implied_cap": 0.0406,
-      "market_cap": 0.08,
-      "lease_psf": 17.0,
-      "annual_rent_est": 73800.0,
-      "opener": "Hi, I saw 511 SE 5th Ave Unit#11 came off the market \u2014 I cover Andrews Ave \u00b7 SE 17th St. Office around here is trading near $166/SF and leasing around $17/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $720K (~$166/SF) \u2014 about a 4.1% cap at market rents. It should rent ~$17/SF \u2014 about $74K/yr gross.",
+      "ppsf": 227,
+      "comp_ppsf": 291,
+      "value": 2182000.0,
+      "implied_cap": 0.0598,
+      "market_cap": 0.07,
+      "lease_psf": 26.5,
+      "annual_rent_est": 198700.0,
+      "opener": "Hi, I saw 2133 N Dixie Highway came off the market \u2014 I cover Dixie Hwy \u00b7 Oakland Park Blvd. Commercial around here is trading near $291/SF and leasing around $26/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $2.18M (~$291/SF) \u2014 about a 6.0% cap at market rents. It should rent ~$26/SF \u2014 about $199K/yr gross.",
       "faq": [
-        "What's it worth? Comps support ~$720K (~$166/SF). You were asking $1.70M.",
-        "What does it rent for? ~$17/SF/yr \u2014 about $74K/yr gross on 4,340 SF.",
-        "What cap? ~4.1% implied from lease-vs-sale comps (market benchmark ~6.75\u20138.0%).",
-        "How's demand? The region's most active development submarket \u2014 a former warehouse district now dense with high-rise multifamily, creative office and ground-floor retail.",
+        "What's it worth? Comps support ~$2.18M (~$291/SF). You were asking $1.70M.",
+        "What does it rent for? ~$26/SF/yr \u2014 about $199K/yr gross on 7,497 SF.",
+        "What cap? ~6.0% implied from lease-vs-sale comps (market benchmark \u2014).",
+        "How's demand? One of Broward's fastest-emerging urban-infill submarkets, led by public placemaking.",
         "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
       ],
-      "angle": "Development & land assembly; Live Local density bonuses; office repositioning.",
-      "recent_deal": "FAT Village \u2014 Hines/Urban Street ~$500M, ~600 units + the region's first mass-timber office, topping off 2025, delivery mid-2026. Gallery at Flagler Village (263 units) queued. Class A office asking low-$40s/SF.",
-      "profile_key": "Downtown / Flagler Village",
+      "angle": "Infill mixed-use, older-industrial repositioning; CRA incentives; attractive basis.",
+      "recent_deal": "Culinary Arts District (NE 12th Ave) restaurant/distillery corridor; new City Hall mixed-use (2025); 6-acre Horizon redevelopment of the old City Hall site.",
+      "profile_key": "Oakland Park",
       "comps": [
         {
-          "address": "217 SE 10th St",
-          "sqft": 4633,
-          "price": 600000.0,
-          "ppsf": 130.0
+          "address": "2032 NE 26th Street Unit#1-6",
+          "sqft": 7004,
+          "price": 885000.0,
+          "ppsf": 126.0
         },
         {
-          "address": "1314 SE 1st Ave",
-          "sqft": 6250,
-          "price": 700000.0,
-          "ppsf": 112.0
+          "address": "2420-2426 N Dixie Hwy",
+          "sqft": 6110,
+          "price": 1150000.0,
+          "ppsf": 188.0
         },
         {
-          "address": "100 SE 20th Street",
-          "sqft": 6776,
-          "price": 660000.0,
-          "ppsf": 97.0
+          "address": "3031 NE 21st Ter Unit#1-7",
+          "sqft": 6003,
+          "price": 1200000.0,
+          "ppsf": 200.0
         }
       ]
     },
@@ -4602,52 +4602,52 @@
       ]
     },
     {
-      "address": "2133 N Dixie Highway",
-      "asset_type": "Commercial (other)",
-      "submarket": "Area 3370",
-      "corridors": "Dixie Hwy \u00b7 Oakland Park Blvd",
+      "address": "511 SE 5th Ave Unit#11",
+      "asset_type": "Office",
+      "submarket": "Area 3800",
+      "corridors": "Andrews Ave \u00b7 SE 17th St",
       "status": "Expired",
       "motivated": true,
-      "sqft": 7497,
-      "year_built": 1962,
+      "sqft": 4340,
+      "year_built": 2005,
       "last_ask": 1700000.0,
-      "ppsf": 227,
-      "comp_ppsf": 291,
-      "value": 2182000.0,
-      "implied_cap": 0.0598,
-      "market_cap": 0.07,
-      "lease_psf": 26.5,
-      "annual_rent_est": 198700.0,
-      "opener": "Hi, I saw 2133 N Dixie Highway came off the market \u2014 I cover Dixie Hwy \u00b7 Oakland Park Blvd. Commercial around here is trading near $291/SF and leasing around $26/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $2.18M (~$291/SF) \u2014 about a 6.0% cap at market rents. It should rent ~$26/SF \u2014 about $199K/yr gross.",
+      "ppsf": 392,
+      "comp_ppsf": 166,
+      "value": 720000.0,
+      "implied_cap": 0.0406,
+      "market_cap": 0.08,
+      "lease_psf": 17.0,
+      "annual_rent_est": 73800.0,
+      "opener": "Hi, I saw 511 SE 5th Ave Unit#11 came off the market \u2014 I cover Andrews Ave \u00b7 SE 17th St. Office around here is trading near $166/SF and leasing around $17/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $720K (~$166/SF) \u2014 about a 4.1% cap at market rents. It should rent ~$17/SF \u2014 about $74K/yr gross.",
       "faq": [
-        "What's it worth? Comps support ~$2.18M (~$291/SF). You were asking $1.70M.",
-        "What does it rent for? ~$26/SF/yr \u2014 about $199K/yr gross on 7,497 SF.",
-        "What cap? ~6.0% implied from lease-vs-sale comps (market benchmark \u2014).",
-        "How's demand? One of Broward's fastest-emerging urban-infill submarkets, led by public placemaking.",
+        "What's it worth? Comps support ~$720K (~$166/SF). You were asking $1.70M.",
+        "What does it rent for? ~$17/SF/yr \u2014 about $74K/yr gross on 4,340 SF.",
+        "What cap? ~4.1% implied from lease-vs-sale comps (market benchmark ~6.75\u20138.0%).",
+        "How's demand? The region's most active development submarket \u2014 a former warehouse district now dense with high-rise multifamily, creative office and ground-floor retail.",
         "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
       ],
-      "angle": "Infill mixed-use, older-industrial repositioning; CRA incentives; attractive basis.",
-      "recent_deal": "Culinary Arts District (NE 12th Ave) restaurant/distillery corridor; new City Hall mixed-use (2025); 6-acre Horizon redevelopment of the old City Hall site.",
-      "profile_key": "Oakland Park",
+      "angle": "Development & land assembly; Live Local density bonuses; office repositioning.",
+      "recent_deal": "FAT Village \u2014 Hines/Urban Street ~$500M, ~600 units + the region's first mass-timber office, topping off 2025, delivery mid-2026. Gallery at Flagler Village (263 units) queued. Class A office asking low-$40s/SF.",
+      "profile_key": "Downtown / Flagler Village",
       "comps": [
         {
-          "address": "2032 NE 26th Street Unit#1-6",
-          "sqft": 7004,
-          "price": 885000.0,
-          "ppsf": 126.0
+          "address": "217 SE 10th St",
+          "sqft": 4633,
+          "price": 600000.0,
+          "ppsf": 130.0
         },
         {
-          "address": "2420-2426 N Dixie Hwy",
-          "sqft": 6110,
-          "price": 1150000.0,
-          "ppsf": 188.0
+          "address": "1314 SE 1st Ave",
+          "sqft": 6250,
+          "price": 700000.0,
+          "ppsf": 112.0
         },
         {
-          "address": "3031 NE 21st Ter Unit#1-7",
-          "sqft": 6003,
-          "price": 1200000.0,
-          "ppsf": 200.0
+          "address": "100 SE 20th Street",
+          "sqft": 6776,
+          "price": 660000.0,
+          "ppsf": 97.0
         }
       ]
     },
@@ -4702,6 +4702,55 @@
       ]
     },
     {
+      "address": "2455 E Sunrise Boulevard Unit#Retail Portfolio Sale",
+      "asset_type": "Commercial (other)",
+      "submarket": "Area 3260",
+      "corridors": "Sunrise Blvd \u00b7 Oakland Park Blvd",
+      "status": "Expired",
+      "motivated": true,
+      "sqft": 12398,
+      "year_built": null,
+      "last_ask": 1600000.0,
+      "ppsf": 129,
+      "comp_ppsf": 230,
+      "value": 2852000.0,
+      "implied_cap": 0.105,
+      "market_cap": 0.07,
+      "lease_psf": 26.5,
+      "annual_rent_est": 328500.0,
+      "opener": "Hi, I saw 2455 E Sunrise Boulevard Unit#Retail Portfolio Sale came off the market \u2014 I cover Sunrise Blvd \u00b7 Oakland Park Blvd. Commercial around here is trading near $230/SF and leasing around $26/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $2.85M (~$230/SF) \u2014 about a 10.5% cap at market rents. It should rent ~$26/SF \u2014 about $329K/yr gross.",
+      "faq": [
+        "What's it worth? Comps support ~$2.85M (~$230/SF). You were asking $1.60M.",
+        "What does it rent for? ~$26/SF/yr \u2014 about $329K/yr gross on 12,398 SF.",
+        "What cap? ~10.5% implied from lease-vs-sale comps (market benchmark \u2014).",
+        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
+      ],
+      "angle": null,
+      "recent_deal": null,
+      "profile_key": null,
+      "comps": [
+        {
+          "address": "708 SE 17th Street",
+          "sqft": 12300,
+          "price": 1750000.0,
+          "ppsf": 142.0
+        },
+        {
+          "address": "2435 N Dixie Highway",
+          "sqft": 11662,
+          "price": 1365000.0,
+          "ppsf": 117.0
+        },
+        {
+          "address": "1515 NE 26th Street",
+          "sqft": 9998,
+          "price": 1765000.0,
+          "ppsf": 177.0
+        }
+      ]
+    },
+    {
       "address": "834 NW 10th Ter",
       "asset_type": "Industrial",
       "submarket": "Area 3460",
@@ -4748,55 +4797,6 @@
           "sqft": 11736,
           "price": 1575244.0,
           "ppsf": 134.0
-        }
-      ]
-    },
-    {
-      "address": "2455 E Sunrise Boulevard Unit#Retail Portfolio Sale",
-      "asset_type": "Commercial (other)",
-      "submarket": "Area 3260",
-      "corridors": "Sunrise Blvd \u00b7 Oakland Park Blvd",
-      "status": "Expired",
-      "motivated": true,
-      "sqft": 12398,
-      "year_built": null,
-      "last_ask": 1600000.0,
-      "ppsf": 129,
-      "comp_ppsf": 230,
-      "value": 2852000.0,
-      "implied_cap": 0.105,
-      "market_cap": 0.07,
-      "lease_psf": 26.5,
-      "annual_rent_est": 328500.0,
-      "opener": "Hi, I saw 2455 E Sunrise Boulevard Unit#Retail Portfolio Sale came off the market \u2014 I cover Sunrise Blvd \u00b7 Oakland Park Blvd. Commercial around here is trading near $230/SF and leasing around $26/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $2.85M (~$230/SF) \u2014 about a 10.5% cap at market rents. It should rent ~$26/SF \u2014 about $329K/yr gross.",
-      "faq": [
-        "What's it worth? Comps support ~$2.85M (~$230/SF). You were asking $1.60M.",
-        "What does it rent for? ~$26/SF/yr \u2014 about $329K/yr gross on 12,398 SF.",
-        "What cap? ~10.5% implied from lease-vs-sale comps (market benchmark \u2014).",
-        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
-      ],
-      "angle": null,
-      "recent_deal": null,
-      "profile_key": null,
-      "comps": [
-        {
-          "address": "708 SE 17th Street",
-          "sqft": 12300,
-          "price": 1750000.0,
-          "ppsf": 142.0
-        },
-        {
-          "address": "2435 N Dixie Highway",
-          "sqft": 11662,
-          "price": 1365000.0,
-          "ppsf": 117.0
-        },
-        {
-          "address": "1515 NE 26th Street",
-          "sqft": 9998,
-          "price": 1765000.0,
-          "ppsf": 177.0
         }
       ]
     },
@@ -4851,28 +4851,28 @@
       ]
     },
     {
-      "address": "824 NE 4th St Unit#1-6",
+      "address": "618 NE 14th Avenue",
       "asset_type": "Multifamily",
-      "submarket": "Area 3700",
-      "corridors": "Andrews Ave",
+      "submarket": "Area 3270",
+      "corridors": "Sunrise Blvd",
       "status": "Expired",
       "motivated": true,
-      "sqft": 6440,
-      "year_built": 1960,
+      "sqft": 9563,
+      "year_built": 1951,
       "last_ask": 1500000.0,
-      "ppsf": 233,
-      "comp_ppsf": 315,
-      "value": 2029000.0,
-      "implied_cap": 0.0421,
+      "ppsf": 157,
+      "comp_ppsf": 255,
+      "value": 2439000.0,
+      "implied_cap": 0.0626,
       "market_cap": 0.055,
       "lease_psf": 15.4,
-      "annual_rent_est": 99200.0,
-      "opener": "Hi, I saw 824 NE 4th St Unit#1-6 came off the market \u2014 I cover Andrews Ave. Multifamily around here is trading near $315/SF and leasing around $15/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $2.03M (~$315/SF) \u2014 about a 4.2% cap at market rents. It should rent ~$15/SF \u2014 about $99K/yr gross.",
+      "annual_rent_est": 147300.0,
+      "opener": "Hi, I saw 618 NE 14th Avenue came off the market \u2014 I cover Sunrise Blvd. Multifamily around here is trading near $255/SF and leasing around $15/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $2.44M (~$255/SF) \u2014 about a 6.3% cap at market rents. It should rent ~$15/SF \u2014 about $147K/yr gross.",
       "faq": [
-        "What's it worth? Comps support ~$2.03M (~$315/SF). You were asking $1.50M.",
-        "What does it rent for? ~$15/SF/yr \u2014 about $99K/yr gross on 6,440 SF.",
-        "What cap? ~4.2% implied from lease-vs-sale comps (market benchmark 4.7\u20135.4% (A ~4.74% \u00b7 B ~4.92% \u00b7 C ~5.38%); ~5.6% blended, Yardi ~6.3%).",
+        "What's it worth? Comps support ~$2.44M (~$255/SF). You were asking $1.50M.",
+        "What does it rent for? ~$15/SF/yr \u2014 about $147K/yr gross on 9,563 SF.",
+        "What cap? ~6.3% implied from lease-vs-sale comps (market benchmark 4.7\u20135.4% (A ~4.74% \u00b7 B ~4.92% \u00b7 C ~5.38%); ~5.6% blended, Yardi ~6.3%).",
         "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
       ],
       "angle": null,
@@ -4880,22 +4880,71 @@
       "profile_key": null,
       "comps": [
         {
-          "address": "201 SE 2nd Street",
-          "sqft": 6997,
-          "price": 3200000.0,
-          "ppsf": 457.0
-        },
-        {
-          "address": "412 N Andrews Ave",
-          "sqft": 5625,
-          "price": 1600000.0,
-          "ppsf": 284.0
+          "address": "1320 SW 26th St",
+          "sqft": 9445,
+          "price": 3000000.0,
+          "ppsf": 318.0
         },
         {
           "address": "735 & 745 NE & 745 5th Avenue Unit",
           "sqft": 10125,
           "price": 3767690.0,
           "ppsf": 372.0
+        },
+        {
+          "address": "1310 NE 30th St Unit#1-5",
+          "sqft": 11349,
+          "price": 1080000.0,
+          "ppsf": 95.0
+        }
+      ]
+    },
+    {
+      "address": "618 NE 14th Avenue",
+      "asset_type": "Multifamily",
+      "submarket": "Area 3270",
+      "corridors": "Sunrise Blvd",
+      "status": "Expired",
+      "motivated": true,
+      "sqft": 9563,
+      "year_built": 1951,
+      "last_ask": 1500000.0,
+      "ppsf": 157,
+      "comp_ppsf": 255,
+      "value": 2439000.0,
+      "implied_cap": 0.0626,
+      "market_cap": 0.055,
+      "lease_psf": 15.4,
+      "annual_rent_est": 147300.0,
+      "opener": "Hi, I saw 618 NE 14th Avenue came off the market \u2014 I cover Sunrise Blvd. Multifamily around here is trading near $255/SF and leasing around $15/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $2.44M (~$255/SF) \u2014 about a 6.3% cap at market rents. It should rent ~$15/SF \u2014 about $147K/yr gross.",
+      "faq": [
+        "What's it worth? Comps support ~$2.44M (~$255/SF). You were asking $1.50M.",
+        "What does it rent for? ~$15/SF/yr \u2014 about $147K/yr gross on 9,563 SF.",
+        "What cap? ~6.3% implied from lease-vs-sale comps (market benchmark 4.7\u20135.4% (A ~4.74% \u00b7 B ~4.92% \u00b7 C ~5.38%); ~5.6% blended, Yardi ~6.3%).",
+        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
+      ],
+      "angle": null,
+      "recent_deal": null,
+      "profile_key": null,
+      "comps": [
+        {
+          "address": "1320 SW 26th St",
+          "sqft": 9445,
+          "price": 3000000.0,
+          "ppsf": 318.0
+        },
+        {
+          "address": "735 & 745 NE & 745 5th Avenue Unit",
+          "sqft": 10125,
+          "price": 3767690.0,
+          "ppsf": 372.0
+        },
+        {
+          "address": "1310 NE 30th St Unit#1-5",
+          "sqft": 11349,
+          "price": 1080000.0,
+          "ppsf": 95.0
         }
       ]
     },
@@ -4950,28 +4999,28 @@
       ]
     },
     {
-      "address": "618 NE 14th Avenue",
+      "address": "824 NE 4th St Unit#1-6",
       "asset_type": "Multifamily",
-      "submarket": "Area 3270",
-      "corridors": "Sunrise Blvd",
+      "submarket": "Area 3700",
+      "corridors": "Andrews Ave",
       "status": "Expired",
       "motivated": true,
-      "sqft": 9563,
-      "year_built": 1951,
+      "sqft": 6440,
+      "year_built": 1960,
       "last_ask": 1500000.0,
-      "ppsf": 157,
-      "comp_ppsf": 255,
-      "value": 2439000.0,
-      "implied_cap": 0.0626,
+      "ppsf": 233,
+      "comp_ppsf": 315,
+      "value": 2029000.0,
+      "implied_cap": 0.0421,
       "market_cap": 0.055,
       "lease_psf": 15.4,
-      "annual_rent_est": 147300.0,
-      "opener": "Hi, I saw 618 NE 14th Avenue came off the market \u2014 I cover Sunrise Blvd. Multifamily around here is trading near $255/SF and leasing around $15/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $2.44M (~$255/SF) \u2014 about a 6.3% cap at market rents. It should rent ~$15/SF \u2014 about $147K/yr gross.",
+      "annual_rent_est": 99200.0,
+      "opener": "Hi, I saw 824 NE 4th St Unit#1-6 came off the market \u2014 I cover Andrews Ave. Multifamily around here is trading near $315/SF and leasing around $15/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $2.03M (~$315/SF) \u2014 about a 4.2% cap at market rents. It should rent ~$15/SF \u2014 about $99K/yr gross.",
       "faq": [
-        "What's it worth? Comps support ~$2.44M (~$255/SF). You were asking $1.50M.",
-        "What does it rent for? ~$15/SF/yr \u2014 about $147K/yr gross on 9,563 SF.",
-        "What cap? ~6.3% implied from lease-vs-sale comps (market benchmark 4.7\u20135.4% (A ~4.74% \u00b7 B ~4.92% \u00b7 C ~5.38%); ~5.6% blended, Yardi ~6.3%).",
+        "What's it worth? Comps support ~$2.03M (~$315/SF). You were asking $1.50M.",
+        "What does it rent for? ~$15/SF/yr \u2014 about $99K/yr gross on 6,440 SF.",
+        "What cap? ~4.2% implied from lease-vs-sale comps (market benchmark 4.7\u20135.4% (A ~4.74% \u00b7 B ~4.92% \u00b7 C ~5.38%); ~5.6% blended, Yardi ~6.3%).",
         "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
       ],
       "angle": null,
@@ -4979,71 +5028,22 @@
       "profile_key": null,
       "comps": [
         {
-          "address": "1320 SW 26th St",
-          "sqft": 9445,
-          "price": 3000000.0,
-          "ppsf": 318.0
+          "address": "201 SE 2nd Street",
+          "sqft": 6997,
+          "price": 3200000.0,
+          "ppsf": 457.0
+        },
+        {
+          "address": "412 N Andrews Ave",
+          "sqft": 5625,
+          "price": 1600000.0,
+          "ppsf": 284.0
         },
         {
           "address": "735 & 745 NE & 745 5th Avenue Unit",
           "sqft": 10125,
           "price": 3767690.0,
           "ppsf": 372.0
-        },
-        {
-          "address": "1310 NE 30th St Unit#1-5",
-          "sqft": 11349,
-          "price": 1080000.0,
-          "ppsf": 95.0
-        }
-      ]
-    },
-    {
-      "address": "618 NE 14th Avenue",
-      "asset_type": "Multifamily",
-      "submarket": "Area 3270",
-      "corridors": "Sunrise Blvd",
-      "status": "Expired",
-      "motivated": true,
-      "sqft": 9563,
-      "year_built": 1951,
-      "last_ask": 1500000.0,
-      "ppsf": 157,
-      "comp_ppsf": 255,
-      "value": 2439000.0,
-      "implied_cap": 0.0626,
-      "market_cap": 0.055,
-      "lease_psf": 15.4,
-      "annual_rent_est": 147300.0,
-      "opener": "Hi, I saw 618 NE 14th Avenue came off the market \u2014 I cover Sunrise Blvd. Multifamily around here is trading near $255/SF and leasing around $15/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $2.44M (~$255/SF) \u2014 about a 6.3% cap at market rents. It should rent ~$15/SF \u2014 about $147K/yr gross.",
-      "faq": [
-        "What's it worth? Comps support ~$2.44M (~$255/SF). You were asking $1.50M.",
-        "What does it rent for? ~$15/SF/yr \u2014 about $147K/yr gross on 9,563 SF.",
-        "What cap? ~6.3% implied from lease-vs-sale comps (market benchmark 4.7\u20135.4% (A ~4.74% \u00b7 B ~4.92% \u00b7 C ~5.38%); ~5.6% blended, Yardi ~6.3%).",
-        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
-      ],
-      "angle": null,
-      "recent_deal": null,
-      "profile_key": null,
-      "comps": [
-        {
-          "address": "1320 SW 26th St",
-          "sqft": 9445,
-          "price": 3000000.0,
-          "ppsf": 318.0
-        },
-        {
-          "address": "735 & 745 NE & 745 5th Avenue Unit",
-          "sqft": 10125,
-          "price": 3767690.0,
-          "ppsf": 372.0
-        },
-        {
-          "address": "1310 NE 30th St Unit#1-5",
-          "sqft": 11349,
-          "price": 1080000.0,
-          "ppsf": 95.0
         }
       ]
     },
@@ -5090,10 +5090,10 @@
           "ppsf": 142.0
         },
         {
-          "address": "1085 SE 17th Street",
+          "address": "1085 SE 17th St",
           "sqft": 1200,
-          "price": 483600.0,
-          "ppsf": 403.0
+          "price": 675000.0,
+          "ppsf": 562.0
         }
       ]
     },
@@ -5148,6 +5148,55 @@
       ]
     },
     {
+      "address": "1100 NE 18th Ct Unit#1-8",
+      "asset_type": "Multifamily",
+      "submarket": "Area 3420",
+      "corridors": "",
+      "status": "Cancelled",
+      "motivated": true,
+      "sqft": 9167,
+      "year_built": 1978,
+      "last_ask": 1400000.0,
+      "ppsf": 153,
+      "comp_ppsf": 262,
+      "value": 2402000.0,
+      "implied_cap": 0.0643,
+      "market_cap": 0.055,
+      "lease_psf": 15.4,
+      "annual_rent_est": 141200.0,
+      "opener": "Hi, I saw 1100 NE 18th Ct Unit#1-8 came off the market \u2014 I cover the area. Multifamily around here is trading near $262/SF and leasing around $15/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $2.40M (~$262/SF) \u2014 about a 6.4% cap at market rents. It should rent ~$15/SF \u2014 about $141K/yr gross.",
+      "faq": [
+        "What's it worth? Comps support ~$2.40M (~$262/SF). You were asking $1.40M.",
+        "What does it rent for? ~$15/SF/yr \u2014 about $141K/yr gross on 9,167 SF.",
+        "What cap? ~6.4% implied from lease-vs-sale comps (market benchmark 4.7\u20135.4% (A ~4.74% \u00b7 B ~4.92% \u00b7 C ~5.38%); ~5.6% blended, Yardi ~6.3%).",
+        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
+      ],
+      "angle": null,
+      "recent_deal": null,
+      "profile_key": null,
+      "comps": [
+        {
+          "address": "1320 SW 26th St",
+          "sqft": 9445,
+          "price": 3000000.0,
+          "ppsf": 318.0
+        },
+        {
+          "address": "735 & 745 NE & 745 5th Avenue Unit",
+          "sqft": 10125,
+          "price": 3767690.0,
+          "ppsf": 372.0
+        },
+        {
+          "address": "2032 NE 26th Street Unit#1-6",
+          "sqft": 7004,
+          "price": 885000.0,
+          "ppsf": 126.0
+        }
+      ]
+    },
+    {
       "address": "834 NW 10th Ter",
       "asset_type": "Industrial",
       "submarket": "Area 3460",
@@ -5194,55 +5243,6 @@
           "sqft": 11736,
           "price": 1575244.0,
           "ppsf": 134.0
-        }
-      ]
-    },
-    {
-      "address": "1100 NE 18th Ct Unit#1-8",
-      "asset_type": "Multifamily",
-      "submarket": "Area 3420",
-      "corridors": "",
-      "status": "Cancelled",
-      "motivated": true,
-      "sqft": 9167,
-      "year_built": 1978,
-      "last_ask": 1400000.0,
-      "ppsf": 153,
-      "comp_ppsf": 262,
-      "value": 2402000.0,
-      "implied_cap": 0.0643,
-      "market_cap": 0.055,
-      "lease_psf": 15.4,
-      "annual_rent_est": 141200.0,
-      "opener": "Hi, I saw 1100 NE 18th Ct Unit#1-8 came off the market \u2014 I cover the area. Multifamily around here is trading near $262/SF and leasing around $15/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $2.40M (~$262/SF) \u2014 about a 6.4% cap at market rents. It should rent ~$15/SF \u2014 about $141K/yr gross.",
-      "faq": [
-        "What's it worth? Comps support ~$2.40M (~$262/SF). You were asking $1.40M.",
-        "What does it rent for? ~$15/SF/yr \u2014 about $141K/yr gross on 9,167 SF.",
-        "What cap? ~6.4% implied from lease-vs-sale comps (market benchmark 4.7\u20135.4% (A ~4.74% \u00b7 B ~4.92% \u00b7 C ~5.38%); ~5.6% blended, Yardi ~6.3%).",
-        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
-      ],
-      "angle": null,
-      "recent_deal": null,
-      "profile_key": null,
-      "comps": [
-        {
-          "address": "1320 SW 26th St",
-          "sqft": 9445,
-          "price": 3000000.0,
-          "ppsf": 318.0
-        },
-        {
-          "address": "735 & 745 NE & 745 5th Avenue Unit",
-          "sqft": 10125,
-          "price": 3767690.0,
-          "ppsf": 372.0
-        },
-        {
-          "address": "2032 NE 26th Street Unit#1-6",
-          "sqft": 7004,
-          "price": 885000.0,
-          "ppsf": 126.0
         }
       ]
     },
@@ -5395,56 +5395,6 @@
       ]
     },
     {
-      "address": "1317 SE 4th Ave",
-      "asset_type": "Office",
-      "submarket": "Area 3800",
-      "corridors": "Andrews Ave \u00b7 SE 17th St",
-      "status": "Expired",
-      "motivated": true,
-      "sqft": 10500,
-      "year_built": 1958,
-      "last_ask": 1350000.0,
-      "ppsf": 129,
-      "comp_ppsf": 103,
-      "value": 1082000.0,
-      "implied_cap": 0.1236,
-      "market_cap": 0.08,
-      "lease_psf": 17.0,
-      "annual_rent_est": 178500.0,
-      "opener": "Hi, I saw 1317 SE 4th Ave came off the market \u2014 I cover Andrews Ave \u00b7 SE 17th St. Office around here is trading near $103/SF and leasing around $17/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $1.08M (~$103/SF) \u2014 about a 12.4% cap at market rents. It should rent ~$17/SF \u2014 about $178K/yr gross.",
-      "faq": [
-        "What's it worth? Comps support ~$1.08M (~$103/SF). You were asking $1.35M.",
-        "What does it rent for? ~$17/SF/yr \u2014 about $178K/yr gross on 10,500 SF.",
-        "What cap? ~12.4% implied from lease-vs-sale comps (market benchmark ~6.75\u20138.0%).",
-        "How's demand? The region's most active development submarket \u2014 a former warehouse district now dense with high-rise multifamily, creative office and ground-floor retail.",
-        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
-      ],
-      "angle": "Development & land assembly; Live Local density bonuses; office repositioning.",
-      "recent_deal": "FAT Village \u2014 Hines/Urban Street ~$500M, ~600 units + the region's first mass-timber office, topping off 2025, delivery mid-2026. Gallery at Flagler Village (263 units) queued. Class A office asking low-$40s/SF.",
-      "profile_key": "Downtown / Flagler Village",
-      "comps": [
-        {
-          "address": "215 SW 17th St",
-          "sqft": 7380,
-          "price": 505000.0,
-          "ppsf": 68.0
-        },
-        {
-          "address": "1133 SE 4th Avenue",
-          "sqft": 7000,
-          "price": 1400000.0,
-          "ppsf": 200.0
-        },
-        {
-          "address": "100 SE 20th Street",
-          "sqft": 6776,
-          "price": 660000.0,
-          "ppsf": 97.0
-        }
-      ]
-    },
-    {
       "address": "1124 NE 5th Avenue Unit#1-6",
       "asset_type": "Multifamily",
       "submarket": "Area 3370",
@@ -5495,6 +5445,56 @@
       ]
     },
     {
+      "address": "1317 SE 4th Ave",
+      "asset_type": "Office",
+      "submarket": "Area 3800",
+      "corridors": "Andrews Ave \u00b7 SE 17th St",
+      "status": "Expired",
+      "motivated": true,
+      "sqft": 10500,
+      "year_built": 1958,
+      "last_ask": 1350000.0,
+      "ppsf": 129,
+      "comp_ppsf": 103,
+      "value": 1082000.0,
+      "implied_cap": 0.1236,
+      "market_cap": 0.08,
+      "lease_psf": 17.0,
+      "annual_rent_est": 178500.0,
+      "opener": "Hi, I saw 1317 SE 4th Ave came off the market \u2014 I cover Andrews Ave \u00b7 SE 17th St. Office around here is trading near $103/SF and leasing around $17/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $1.08M (~$103/SF) \u2014 about a 12.4% cap at market rents. It should rent ~$17/SF \u2014 about $178K/yr gross.",
+      "faq": [
+        "What's it worth? Comps support ~$1.08M (~$103/SF). You were asking $1.35M.",
+        "What does it rent for? ~$17/SF/yr \u2014 about $178K/yr gross on 10,500 SF.",
+        "What cap? ~12.4% implied from lease-vs-sale comps (market benchmark ~6.75\u20138.0%).",
+        "How's demand? The region's most active development submarket \u2014 a former warehouse district now dense with high-rise multifamily, creative office and ground-floor retail.",
+        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
+      ],
+      "angle": "Development & land assembly; Live Local density bonuses; office repositioning.",
+      "recent_deal": "FAT Village \u2014 Hines/Urban Street ~$500M, ~600 units + the region's first mass-timber office, topping off 2025, delivery mid-2026. Gallery at Flagler Village (263 units) queued. Class A office asking low-$40s/SF.",
+      "profile_key": "Downtown / Flagler Village",
+      "comps": [
+        {
+          "address": "215 SW 17th St",
+          "sqft": 7380,
+          "price": 505000.0,
+          "ppsf": 68.0
+        },
+        {
+          "address": "1133 SE 4th Avenue",
+          "sqft": 7000,
+          "price": 1400000.0,
+          "ppsf": 200.0
+        },
+        {
+          "address": "100 SE 20th Street",
+          "sqft": 6776,
+          "price": 660000.0,
+          "ppsf": 97.0
+        }
+      ]
+    },
+    {
       "address": "1106 NE 5th Ave Unit#1-5",
       "asset_type": "Multifamily",
       "submarket": "Area 3370",
@@ -5537,10 +5537,10 @@
           "ppsf": 113.0
         },
         {
-          "address": "2435 N Dixie Highway",
+          "address": "2435 N Dixie Hwy",
           "sqft": 11662,
-          "price": 1365000.0,
-          "ppsf": 117.0
+          "price": 1395000.0,
+          "ppsf": 120.0
         }
       ]
     },
@@ -5686,10 +5686,10 @@
           "ppsf": 177.0
         },
         {
-          "address": "2435 N Dixie Highway",
+          "address": "2435 N Dixie Hwy",
           "sqft": 11662,
-          "price": 1365000.0,
-          "ppsf": 117.0
+          "price": 1395000.0,
+          "ppsf": 120.0
         }
       ]
     },
@@ -5894,100 +5894,52 @@
       ]
     },
     {
-      "address": "2001 W State Road 84 #418",
-      "asset_type": "Industrial",
-      "submarket": "Area 3580",
-      "corridors": "SR-84",
+      "address": "2600 N Andrews Ave",
+      "asset_type": "Mixed Use",
+      "submarket": "Area 3370",
+      "corridors": "Dixie Hwy \u00b7 Oakland Park Blvd",
       "status": "Expired",
       "motivated": true,
-      "sqft": 11800,
-      "year_built": 2024,
+      "sqft": 8798,
+      "year_built": 1971,
       "last_ask": 1200000.0,
-      "ppsf": 102,
-      "comp_ppsf": 265,
-      "value": 3127000.0,
-      "implied_cap": 0.0953,
-      "market_cap": 0.0625,
-      "lease_psf": 19.4,
-      "annual_rent_est": 228900.0,
-      "opener": "Hi, I saw 2001 W State Road 84 #418 came off the market \u2014 I cover SR-84. Industrial around here is trading near $265/SF and leasing around $19/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $3.13M (~$265/SF) \u2014 about a 9.5% cap at market rents. It should rent ~$19/SF \u2014 about $229K/yr gross.",
+      "ppsf": 136,
+      "comp_ppsf": 192,
+      "value": 1689000.0,
+      "implied_cap": 0.0686,
+      "market_cap": 0.0675,
+      "lease_psf": 20.2,
+      "annual_rent_est": 177700.0,
+      "opener": "Hi, I saw 2600 N Andrews Ave came off the market \u2014 I cover Dixie Hwy \u00b7 Oakland Park Blvd. Mixed-use around here is trading near $192/SF and leasing around $20/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $1.69M (~$192/SF) \u2014 about a 6.9% cap at market rents. It should rent ~$20/SF \u2014 about $178K/yr gross.",
       "faq": [
-        "What's it worth? Comps support ~$3.13M (~$265/SF). You were asking $1.20M.",
-        "What does it rent for? ~$19/SF/yr \u2014 about $229K/yr gross on 11,800 SF.",
-        "What cap? ~9.5% implied from lease-vs-sale comps (market benchmark ~6.0\u20136.3% (South FL)).",
+        "What's it worth? Comps support ~$1.69M (~$192/SF). You were asking $1.20M.",
+        "What does it rent for? ~$20/SF/yr \u2014 about $178K/yr gross on 8,798 SF.",
+        "What cap? ~6.9% implied from lease-vs-sale comps (market benchmark ~6.0\u20136.75% (blends retail/MF)).",
+        "How's demand? One of Broward's fastest-emerging urban-infill submarkets, led by public placemaking.",
         "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
       ],
-      "angle": null,
-      "recent_deal": null,
-      "profile_key": null,
+      "angle": "Infill mixed-use, older-industrial repositioning; CRA incentives; attractive basis.",
+      "recent_deal": "Culinary Arts District (NE 12th Ave) restaurant/distillery corridor; new City Hall mixed-use (2025); 6-acre Horizon redevelopment of the old City Hall site.",
+      "profile_key": "Oakland Park",
       "comps": [
-        {
-          "address": "1620 NE 12th Terrace Unit#1620-163",
-          "sqft": 11736,
-          "price": 1575244.0,
-          "ppsf": 134.0
-        },
-        {
-          "address": "2615 SW 2nd Ave",
-          "sqft": 10289,
-          "price": 1350000.0,
-          "ppsf": 131.0
-        },
-        {
-          "address": "701 NW 7th Terrace",
-          "sqft": 10125,
-          "price": 2050000.0,
-          "ppsf": 202.0
-        }
-      ]
-    },
-    {
-      "address": "2001 NW 21st Avenue",
-      "asset_type": "Commercial (other)",
-      "submarket": "Area 3560",
-      "corridors": "Broward Blvd \u00b7 Sunrise Blvd",
-      "status": "Expired",
-      "motivated": true,
-      "sqft": 8333,
-      "year_built": 1984,
-      "last_ask": 1200000.0,
-      "ppsf": 144,
-      "comp_ppsf": 285,
-      "value": 2375000.0,
-      "implied_cap": 0.0941,
-      "market_cap": 0.07,
-      "lease_psf": 26.5,
-      "annual_rent_est": 220800.0,
-      "opener": "Hi, I saw 2001 NW 21st Avenue came off the market \u2014 I cover Broward Blvd \u00b7 Sunrise Blvd. Commercial around here is trading near $285/SF and leasing around $26/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $2.38M (~$285/SF) \u2014 about a 9.4% cap at market rents. It should rent ~$26/SF \u2014 about $221K/yr gross.",
-      "faq": [
-        "What's it worth? Comps support ~$2.38M (~$285/SF). You were asking $1.20M.",
-        "What does it rent for? ~$26/SF/yr \u2014 about $221K/yr gross on 8,333 SF.",
-        "What cap? ~9.4% implied from lease-vs-sale comps (market benchmark \u2014).",
-        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
-      ],
-      "angle": null,
-      "recent_deal": null,
-      "profile_key": null,
-      "comps": [
-        {
-          "address": "1133 SE 4th Avenue",
-          "sqft": 7000,
-          "price": 1400000.0,
-          "ppsf": 200.0
-        },
-        {
-          "address": "201 SE 2nd Street",
-          "sqft": 6997,
-          "price": 3200000.0,
-          "ppsf": 457.0
-        },
         {
           "address": "2520 N Dixie Highway",
           "sqft": 9828,
           "price": 1115000.0,
           "ppsf": 113.0
+        },
+        {
+          "address": "1515 NE 26th Street",
+          "sqft": 9998,
+          "price": 1765000.0,
+          "ppsf": 177.0
+        },
+        {
+          "address": "2032 NE 26th Street Unit#1-6",
+          "sqft": 7004,
+          "price": 885000.0,
+          "ppsf": 126.0
         }
       ]
     },
@@ -6091,52 +6043,100 @@
       ]
     },
     {
-      "address": "2600 N Andrews Ave",
-      "asset_type": "Mixed Use",
-      "submarket": "Area 3370",
-      "corridors": "Dixie Hwy \u00b7 Oakland Park Blvd",
+      "address": "2001 NW 21st Avenue",
+      "asset_type": "Commercial (other)",
+      "submarket": "Area 3560",
+      "corridors": "Broward Blvd \u00b7 Sunrise Blvd",
       "status": "Expired",
       "motivated": true,
-      "sqft": 8798,
-      "year_built": 1971,
+      "sqft": 8333,
+      "year_built": 1984,
       "last_ask": 1200000.0,
-      "ppsf": 136,
-      "comp_ppsf": 192,
-      "value": 1689000.0,
-      "implied_cap": 0.0686,
-      "market_cap": 0.0675,
-      "lease_psf": 20.2,
-      "annual_rent_est": 177700.0,
-      "opener": "Hi, I saw 2600 N Andrews Ave came off the market \u2014 I cover Dixie Hwy \u00b7 Oakland Park Blvd. Mixed-use around here is trading near $192/SF and leasing around $20/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $1.69M (~$192/SF) \u2014 about a 6.9% cap at market rents. It should rent ~$20/SF \u2014 about $178K/yr gross.",
+      "ppsf": 144,
+      "comp_ppsf": 285,
+      "value": 2375000.0,
+      "implied_cap": 0.0941,
+      "market_cap": 0.07,
+      "lease_psf": 26.5,
+      "annual_rent_est": 220800.0,
+      "opener": "Hi, I saw 2001 NW 21st Avenue came off the market \u2014 I cover Broward Blvd \u00b7 Sunrise Blvd. Commercial around here is trading near $285/SF and leasing around $26/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $2.38M (~$285/SF) \u2014 about a 9.4% cap at market rents. It should rent ~$26/SF \u2014 about $221K/yr gross.",
       "faq": [
-        "What's it worth? Comps support ~$1.69M (~$192/SF). You were asking $1.20M.",
-        "What does it rent for? ~$20/SF/yr \u2014 about $178K/yr gross on 8,798 SF.",
-        "What cap? ~6.9% implied from lease-vs-sale comps (market benchmark ~6.0\u20136.75% (blends retail/MF)).",
-        "How's demand? One of Broward's fastest-emerging urban-infill submarkets, led by public placemaking.",
+        "What's it worth? Comps support ~$2.38M (~$285/SF). You were asking $1.20M.",
+        "What does it rent for? ~$26/SF/yr \u2014 about $221K/yr gross on 8,333 SF.",
+        "What cap? ~9.4% implied from lease-vs-sale comps (market benchmark \u2014).",
         "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
       ],
-      "angle": "Infill mixed-use, older-industrial repositioning; CRA incentives; attractive basis.",
-      "recent_deal": "Culinary Arts District (NE 12th Ave) restaurant/distillery corridor; new City Hall mixed-use (2025); 6-acre Horizon redevelopment of the old City Hall site.",
-      "profile_key": "Oakland Park",
+      "angle": null,
+      "recent_deal": null,
+      "profile_key": null,
       "comps": [
+        {
+          "address": "1133 SE 4th Avenue",
+          "sqft": 7000,
+          "price": 1400000.0,
+          "ppsf": 200.0
+        },
+        {
+          "address": "201 SE 2nd Street",
+          "sqft": 6997,
+          "price": 3200000.0,
+          "ppsf": 457.0
+        },
         {
           "address": "2520 N Dixie Highway",
           "sqft": 9828,
           "price": 1115000.0,
           "ppsf": 113.0
+        }
+      ]
+    },
+    {
+      "address": "2001 W State Road 84 #418",
+      "asset_type": "Industrial",
+      "submarket": "Area 3580",
+      "corridors": "SR-84",
+      "status": "Expired",
+      "motivated": true,
+      "sqft": 11800,
+      "year_built": 2024,
+      "last_ask": 1200000.0,
+      "ppsf": 102,
+      "comp_ppsf": 265,
+      "value": 3127000.0,
+      "implied_cap": 0.0953,
+      "market_cap": 0.0625,
+      "lease_psf": 19.4,
+      "annual_rent_est": 228900.0,
+      "opener": "Hi, I saw 2001 W State Road 84 #418 came off the market \u2014 I cover SR-84. Industrial around here is trading near $265/SF and leasing around $19/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $3.13M (~$265/SF) \u2014 about a 9.5% cap at market rents. It should rent ~$19/SF \u2014 about $229K/yr gross.",
+      "faq": [
+        "What's it worth? Comps support ~$3.13M (~$265/SF). You were asking $1.20M.",
+        "What does it rent for? ~$19/SF/yr \u2014 about $229K/yr gross on 11,800 SF.",
+        "What cap? ~9.5% implied from lease-vs-sale comps (market benchmark ~6.0\u20136.3% (South FL)).",
+        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
+      ],
+      "angle": null,
+      "recent_deal": null,
+      "profile_key": null,
+      "comps": [
+        {
+          "address": "1620 NE 12th Terrace Unit#1620-163",
+          "sqft": 11736,
+          "price": 1575244.0,
+          "ppsf": 134.0
         },
         {
-          "address": "1515 NE 26th Street",
-          "sqft": 9998,
-          "price": 1765000.0,
-          "ppsf": 177.0
+          "address": "2615 SW 2nd Ave",
+          "sqft": 10289,
+          "price": 1350000.0,
+          "ppsf": 131.0
         },
         {
-          "address": "2032 NE 26th Street Unit#1-6",
-          "sqft": 7004,
-          "price": 885000.0,
-          "ppsf": 126.0
+          "address": "701 NW 7th Terrace",
+          "sqft": 10125,
+          "price": 2050000.0,
+          "ppsf": 202.0
         }
       ]
     },
@@ -6177,16 +6177,16 @@
           "ppsf": 306.0
         },
         {
-          "address": "1085 SE 17th Street",
-          "sqft": 1200,
-          "price": 483600.0,
-          "ppsf": 403.0
-        },
-        {
           "address": "1085 SE 17th St",
           "sqft": 1200,
           "price": 675000.0,
           "ppsf": 562.0
+        },
+        {
+          "address": "1085 SE 17th Street",
+          "sqft": 1200,
+          "price": 483600.0,
+          "ppsf": 403.0
         }
       ]
     },
@@ -6219,16 +6219,16 @@
       "profile_key": null,
       "comps": [
         {
-          "address": "3015 N Ocean Boulevard Unit#C-101",
-          "sqft": 1938,
-          "price": 185000.0,
-          "ppsf": 95.0
-        },
-        {
           "address": "3015 N Ocean Boulevard Unit#C-105",
           "sqft": 1938,
           "price": 325000.0,
           "ppsf": 168.0
+        },
+        {
+          "address": "3015 N Ocean Boulevard Unit#C-101",
+          "sqft": 1938,
+          "price": 185000.0,
+          "ppsf": 95.0
         },
         {
           "address": "412 SE 13th Street",
@@ -6738,7 +6738,7 @@
       "address": "624 SW 24th Street",
       "asset_type": "Commercial (other)",
       "submarket": "Area 3480",
-      "corridors": "Federal Hwy \u00b7 SE 17th St",
+      "corridors": "Federal Hwy \u00b7 SR-84",
       "status": "Expired",
       "motivated": true,
       "sqft": 6325,
@@ -6751,7 +6751,7 @@
       "market_cap": 0.07,
       "lease_psf": 26.5,
       "annual_rent_est": 167600.0,
-      "opener": "Hi, I saw 624 SW 24th Street came off the market \u2014 I cover Federal Hwy \u00b7 SE 17th St. Commercial around here is trading near $329/SF and leasing around $26/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "opener": "Hi, I saw 624 SW 24th Street came off the market \u2014 I cover Federal Hwy \u00b7 SR-84. Commercial around here is trading near $329/SF and leasing around $26/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
       "value_read": "Comps put it around $2.08M (~$329/SF) \u2014 about a 8.7% cap at market rents. It should rent ~$26/SF \u2014 about $168K/yr gross.",
       "faq": [
         "What's it worth? Comps support ~$2.08M (~$329/SF). You were asking $990K.",
@@ -7024,10 +7024,10 @@
           "ppsf": 177.0
         },
         {
-          "address": "2435 N Dixie Highway",
+          "address": "2435 N Dixie Hwy",
           "sqft": 11662,
-          "price": 1365000.0,
-          "ppsf": 117.0
+          "price": 1395000.0,
+          "ppsf": 120.0
         }
       ]
     },
@@ -7231,54 +7231,6 @@
       ]
     },
     {
-      "address": "2011 W State Road 84 Unit#232-2",
-      "asset_type": "Industrial",
-      "submarket": "Area 3480",
-      "corridors": "Federal Hwy \u00b7 SE 17th St",
-      "status": "Expired",
-      "motivated": true,
-      "sqft": 2000,
-      "year_built": 2022,
-      "last_ask": 850000.0,
-      "ppsf": 425,
-      "comp_ppsf": 680,
-      "value": 1360000.0,
-      "implied_cap": null,
-      "market_cap": 0.0625,
-      "lease_psf": 19.4,
-      "annual_rent_est": 38800.0,
-      "opener": "Hi, I saw 2011 W State Road 84 Unit#232-2 came off the market \u2014 I cover Federal Hwy \u00b7 SE 17th St. Industrial around here is trading near $680/SF and leasing around $19/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
-      "value_read": "Comps put it around $1.36M (~$680/SF). It should rent ~$19/SF \u2014 about $39K/yr gross.",
-      "faq": [
-        "What's it worth? Comps support ~$1.36M (~$680/SF). You were asking $850K.",
-        "What does it rent for? ~$19/SF/yr \u2014 about $39K/yr gross on 2,000 SF.",
-        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
-      ],
-      "angle": null,
-      "recent_deal": null,
-      "profile_key": null,
-      "comps": [
-        {
-          "address": "130 SE 29th Street",
-          "sqft": 1671,
-          "price": 905000.0,
-          "ppsf": 542.0
-        },
-        {
-          "address": "708 Spangler Blvd Unit#BAY7",
-          "sqft": 1500,
-          "price": 895000.0,
-          "ppsf": 597.0
-        },
-        {
-          "address": "1851 SW 2nd Ave Unit#8",
-          "sqft": 1488,
-          "price": 595000.0,
-          "ppsf": 400.0
-        }
-      ]
-    },
-    {
       "address": "916 NW 9th Avenue",
       "asset_type": "Industrial",
       "submarket": "Area 3460",
@@ -7325,6 +7277,54 @@
           "sqft": 10125,
           "price": 2050000.0,
           "ppsf": 202.0
+        }
+      ]
+    },
+    {
+      "address": "2011 W State Road 84 Unit#232-2",
+      "asset_type": "Industrial",
+      "submarket": "Area 3480",
+      "corridors": "Federal Hwy \u00b7 SR-84",
+      "status": "Expired",
+      "motivated": true,
+      "sqft": 2000,
+      "year_built": 2022,
+      "last_ask": 850000.0,
+      "ppsf": 425,
+      "comp_ppsf": 680,
+      "value": 1360000.0,
+      "implied_cap": null,
+      "market_cap": 0.0625,
+      "lease_psf": 19.4,
+      "annual_rent_est": 38800.0,
+      "opener": "Hi, I saw 2011 W State Road 84 Unit#232-2 came off the market \u2014 I cover Federal Hwy \u00b7 SR-84. Industrial around here is trading near $680/SF and leasing around $19/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "value_read": "Comps put it around $1.36M (~$680/SF). It should rent ~$19/SF \u2014 about $39K/yr gross.",
+      "faq": [
+        "What's it worth? Comps support ~$1.36M (~$680/SF). You were asking $850K.",
+        "What does it rent for? ~$19/SF/yr \u2014 about $39K/yr gross on 2,000 SF.",
+        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
+      ],
+      "angle": null,
+      "recent_deal": null,
+      "profile_key": null,
+      "comps": [
+        {
+          "address": "130 SE 29th Street",
+          "sqft": 1671,
+          "price": 905000.0,
+          "ppsf": 542.0
+        },
+        {
+          "address": "708 Spangler Blvd Unit#BAY7",
+          "sqft": 1500,
+          "price": 895000.0,
+          "ppsf": 597.0
+        },
+        {
+          "address": "1851 SW 2nd Ave Unit#8",
+          "sqft": 1488,
+          "price": 595000.0,
+          "ppsf": 400.0
         }
       ]
     },
@@ -7382,7 +7382,7 @@
       "address": "223 SW 17th St",
       "asset_type": "Mixed Use",
       "submarket": "Area 3480",
-      "corridors": "Federal Hwy \u00b7 SE 17th St",
+      "corridors": "Federal Hwy \u00b7 SR-84",
       "status": "Expired",
       "motivated": true,
       "sqft": 7380,
@@ -7395,7 +7395,7 @@
       "market_cap": 0.0675,
       "lease_psf": 20.2,
       "annual_rent_est": 149100.0,
-      "opener": "Hi, I saw 223 SW 17th St came off the market \u2014 I cover Federal Hwy \u00b7 SE 17th St. Mixed-use around here is trading near $217/SF and leasing around $20/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
+      "opener": "Hi, I saw 223 SW 17th St came off the market \u2014 I cover Federal Hwy \u00b7 SR-84. Mixed-use around here is trading near $217/SF and leasing around $20/SF. I think it can be positioned to actually sell \u2014 got two minutes?",
       "value_read": "Comps put it around $1.60M (~$217/SF) \u2014 about a 8.1% cap at market rents. It should rent ~$20/SF \u2014 about $149K/yr gross.",
       "faq": [
         "What's it worth? Comps support ~$1.60M (~$217/SF). You were asking $849K.",
@@ -7577,7 +7577,7 @@
     {
       "address": "2455 E Sunrise Blvd Unit#CU9K-CU9M-CU9L",
       "asset_type": "Office",
-      "submarket": "Area 3350",
+      "submarket": "Area 3300",
       "corridors": "Sunrise Blvd",
       "status": "Expired",
       "motivated": true,
@@ -7626,7 +7626,7 @@
     {
       "address": "2455 E Sunrise Blvd Unit#CU9K-CU9M-CU9L",
       "asset_type": "Office",
-      "submarket": "Area 3300",
+      "submarket": "Area 3350",
       "corridors": "Sunrise Blvd",
       "status": "Expired",
       "motivated": true,
@@ -8344,16 +8344,16 @@
       "profile_key": null,
       "comps": [
         {
-          "address": "3015 N Ocean Boulevard Unit#C-101",
-          "sqft": 1938,
-          "price": 185000.0,
-          "ppsf": 95.0
-        },
-        {
           "address": "3015 N Ocean Boulevard Unit#C-105",
           "sqft": 1938,
           "price": 325000.0,
           "ppsf": 168.0
+        },
+        {
+          "address": "3015 N Ocean Boulevard Unit#C-101",
+          "sqft": 1938,
+          "price": 185000.0,
+          "ppsf": 95.0
         },
         {
           "address": "412 SE 13th Street",
@@ -8455,10 +8455,10 @@
           "ppsf": 306.0
         },
         {
-          "address": "1085 SE 17th Street",
+          "address": "1085 SE 17th St",
           "sqft": 1200,
-          "price": 483600.0,
-          "ppsf": 403.0
+          "price": 675000.0,
+          "ppsf": 562.0
         }
       ]
     },
@@ -8563,14 +8563,14 @@
       ]
     },
     {
-      "address": "101-105 SE 26 Street",
+      "address": "101-105 SE 26th Street",
       "asset_type": "Multifamily",
       "submarket": "Area 3570",
       "corridors": "",
       "status": "Active",
       "motivated": false,
       "sqft": 18898,
-      "year_built": 1975,
+      "year_built": 1972,
       "last_ask": 4000000.0,
       "ppsf": 212,
       "comp_ppsf": 178,
@@ -8579,7 +8579,7 @@
       "market_cap": 0.055,
       "lease_psf": 15.4,
       "annual_rent_est": 291000.0,
-      "opener": "Hi \u2014 you're on the market at 101-105 SE 26 Street for $4.00M ($212/SF). Comparable multifamily on the area has been closer to $178/SF; I have a read on where it clears and a few active buyers. Worth a quick call?",
+      "opener": "Hi \u2014 you're on the market at 101-105 SE 26th Street for $4.00M ($212/SF). Comparable multifamily on the area has been closer to $178/SF; I have a read on where it clears and a few active buyers. Worth a quick call?",
       "value_read": "Comps put it around $3.36M (~$178/SF) \u2014 about a 4.6% cap at market rents. It should rent ~$15/SF \u2014 about $291K/yr gross.",
       "faq": [
         "What's it worth? Comps support ~$3.36M (~$178/SF). You're listed at $4.00M.",
@@ -8612,14 +8612,14 @@
       ]
     },
     {
-      "address": "101-105 SE 26th Street",
+      "address": "101-105 SE 26 Street",
       "asset_type": "Multifamily",
       "submarket": "Area 3570",
       "corridors": "",
       "status": "Active",
       "motivated": false,
       "sqft": 18898,
-      "year_built": 1972,
+      "year_built": 1975,
       "last_ask": 4000000.0,
       "ppsf": 212,
       "comp_ppsf": 178,
@@ -8628,7 +8628,7 @@
       "market_cap": 0.055,
       "lease_psf": 15.4,
       "annual_rent_est": 291000.0,
-      "opener": "Hi \u2014 you're on the market at 101-105 SE 26th Street for $4.00M ($212/SF). Comparable multifamily on the area has been closer to $178/SF; I have a read on where it clears and a few active buyers. Worth a quick call?",
+      "opener": "Hi \u2014 you're on the market at 101-105 SE 26 Street for $4.00M ($212/SF). Comparable multifamily on the area has been closer to $178/SF; I have a read on where it clears and a few active buyers. Worth a quick call?",
       "value_read": "Comps put it around $3.36M (~$178/SF) \u2014 about a 4.6% cap at market rents. It should rent ~$15/SF \u2014 about $291K/yr gross.",
       "faq": [
         "What's it worth? Comps support ~$3.36M (~$178/SF). You're listed at $4.00M.",
@@ -8703,10 +8703,10 @@
           "ppsf": 190.0
         },
         {
-          "address": "2435 N Dixie Highway",
+          "address": "2435 N Dixie Hwy",
           "sqft": 11662,
-          "price": 1365000.0,
-          "ppsf": 117.0
+          "price": 1395000.0,
+          "ppsf": 120.0
         }
       ]
     },
@@ -8790,16 +8790,16 @@
       "profile_key": "Oakland Park",
       "comps": [
         {
-          "address": "2435 N Dixie Highway",
-          "sqft": 11662,
-          "price": 1365000.0,
-          "ppsf": 117.0
-        },
-        {
           "address": "2435 N Dixie Hwy",
           "sqft": 11662,
           "price": 1395000.0,
           "ppsf": 120.0
+        },
+        {
+          "address": "2435 N Dixie Highway",
+          "sqft": 11662,
+          "price": 1365000.0,
+          "ppsf": 117.0
         },
         {
           "address": "1515 NE 26th Street",
@@ -8958,6 +8958,55 @@
       ]
     },
     {
+      "address": "2745 E Oakland Park Boulevard",
+      "asset_type": "Commercial (other)",
+      "submarket": "Area 3250",
+      "corridors": "Oakland Park Blvd",
+      "status": "Active",
+      "motivated": false,
+      "sqft": 7503,
+      "year_built": 1960,
+      "last_ask": 2100000.0,
+      "ppsf": 280,
+      "comp_ppsf": 300,
+      "value": 2251000.0,
+      "implied_cap": 0.0484,
+      "market_cap": 0.07,
+      "lease_psf": 26.5,
+      "annual_rent_est": 198800.0,
+      "opener": "Hi \u2014 you're on the market at 2745 E Oakland Park Boulevard for $2.10M ($280/SF). Comparable commercial on Oakland Park Blvd has been closer to $300/SF; I have a read on where it clears and a few active buyers. Worth a quick call?",
+      "value_read": "Comps put it around $2.25M (~$300/SF) \u2014 about a 4.8% cap at market rents. It should rent ~$26/SF \u2014 about $199K/yr gross.",
+      "faq": [
+        "What's it worth? Comps support ~$2.25M (~$300/SF). You're listed at $2.10M.",
+        "What does it rent for? ~$26/SF/yr \u2014 about $199K/yr gross on 7,503 SF.",
+        "What cap? ~4.8% implied from lease-vs-sale comps (market benchmark \u2014).",
+        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
+      ],
+      "angle": null,
+      "recent_deal": null,
+      "profile_key": null,
+      "comps": [
+        {
+          "address": "1133 SE 4th Avenue",
+          "sqft": 7000,
+          "price": 1400000.0,
+          "ppsf": 200.0
+        },
+        {
+          "address": "201 SE 2nd Street",
+          "sqft": 6997,
+          "price": 3200000.0,
+          "ppsf": 457.0
+        },
+        {
+          "address": "100 SE 20th Street",
+          "sqft": 6776,
+          "price": 660000.0,
+          "ppsf": 97.0
+        }
+      ]
+    },
+    {
       "address": "1327 SE 2nd Ave",
       "asset_type": "Office",
       "submarket": "Area 3800",
@@ -8998,55 +9047,6 @@
           "sqft": 7000,
           "price": 1400000.0,
           "ppsf": 200.0
-        },
-        {
-          "address": "100 SE 20th Street",
-          "sqft": 6776,
-          "price": 660000.0,
-          "ppsf": 97.0
-        }
-      ]
-    },
-    {
-      "address": "2745 E Oakland Park Boulevard",
-      "asset_type": "Commercial (other)",
-      "submarket": "Area 3250",
-      "corridors": "Oakland Park Blvd",
-      "status": "Active",
-      "motivated": false,
-      "sqft": 7503,
-      "year_built": 1960,
-      "last_ask": 2100000.0,
-      "ppsf": 280,
-      "comp_ppsf": 300,
-      "value": 2251000.0,
-      "implied_cap": 0.0484,
-      "market_cap": 0.07,
-      "lease_psf": 26.5,
-      "annual_rent_est": 198800.0,
-      "opener": "Hi \u2014 you're on the market at 2745 E Oakland Park Boulevard for $2.10M ($280/SF). Comparable commercial on Oakland Park Blvd has been closer to $300/SF; I have a read on where it clears and a few active buyers. Worth a quick call?",
-      "value_read": "Comps put it around $2.25M (~$300/SF) \u2014 about a 4.8% cap at market rents. It should rent ~$26/SF \u2014 about $199K/yr gross.",
-      "faq": [
-        "What's it worth? Comps support ~$2.25M (~$300/SF). You're listed at $2.10M.",
-        "What does it rent for? ~$26/SF/yr \u2014 about $199K/yr gross on 7,503 SF.",
-        "What cap? ~4.8% implied from lease-vs-sale comps (market benchmark \u2014).",
-        "Why now? 1031 buyers are active, the Live Local Act unlocks density on commercial land, and rising insurance is nudging owners to test the market."
-      ],
-      "angle": null,
-      "recent_deal": null,
-      "profile_key": null,
-      "comps": [
-        {
-          "address": "1133 SE 4th Avenue",
-          "sqft": 7000,
-          "price": 1400000.0,
-          "ppsf": 200.0
-        },
-        {
-          "address": "201 SE 2nd Street",
-          "sqft": 6997,
-          "price": 3200000.0,
-          "ppsf": 457.0
         },
         {
           "address": "100 SE 20th Street",
@@ -9098,10 +9098,10 @@
           "ppsf": 270.0
         },
         {
-          "address": "1241 NE 16th Terrace",
-          "sqft": 11480,
-          "price": 1750000.0,
-          "ppsf": 152.0
+          "address": "1200 NE 7th Avenue Unit#1",
+          "sqft": 1276,
+          "price": 575000.0,
+          "ppsf": 451.0
         }
       ]
     },
@@ -9292,16 +9292,16 @@
           "ppsf": 38.0
         },
         {
-          "address": "3015 N Ocean Boulevard Unit#C-101",
-          "sqft": 1938,
-          "price": 185000.0,
-          "ppsf": 95.0
-        },
-        {
           "address": "3015 N Ocean Boulevard Unit#C-105",
           "sqft": 1938,
           "price": 325000.0,
           "ppsf": 168.0
+        },
+        {
+          "address": "3015 N Ocean Boulevard Unit#C-101",
+          "sqft": 1938,
+          "price": 185000.0,
+          "ppsf": 95.0
         }
       ]
     },
@@ -9408,7 +9408,7 @@
       "address": "1200 S Federal Hwy",
       "asset_type": "Retail",
       "submarket": "Area 3480",
-      "corridors": "Federal Hwy \u00b7 SE 17th St",
+      "corridors": "Federal Hwy \u00b7 SR-84",
       "status": "Active",
       "motivated": false,
       "sqft": 1833,
@@ -9421,7 +9421,7 @@
       "market_cap": 0.0675,
       "lease_psf": 28.0,
       "annual_rent_est": 51300.0,
-      "opener": "Hi \u2014 you're on the market at 1200 S Federal Hwy for $710K ($387/SF). Comparable retail on Federal Hwy \u00b7 SE 17th St has been closer to $413/SF; I have a read on where it clears and a few active buyers. Worth a quick call?",
+      "opener": "Hi \u2014 you're on the market at 1200 S Federal Hwy for $710K ($387/SF). Comparable retail on Federal Hwy \u00b7 SR-84 has been closer to $413/SF; I have a read on where it clears and a few active buyers. Worth a quick call?",
       "value_read": "Comps put it around $757K (~$413/SF) \u2014 about a 4.3% cap at market rents. It should rent ~$28/SF \u2014 about $51K/yr gross.",
       "faq": [
         "What's it worth? Comps support ~$757K (~$413/SF). You're listed at $710K.",

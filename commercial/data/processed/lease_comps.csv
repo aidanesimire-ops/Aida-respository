@@ -5,13 +5,13 @@ F10522678,2217 Wilton Drive Unit#2217,Area 3370,Retail,Active,48969.0,60.0,,2938
 F10494001,1930 E Sunrise Boulevard Unit#4,Area 3260,Retail,Rented,17695.0,60.0,,1061700.0
 F10493998,1930 E Sunrise Boulevard Unit#9,Area 3260,Commercial (other),Rented,2101.0,60.0,,126100.0
 F10500883,801 N Federal Highway,Area 3700,Commercial (other),Expired,3435.0,60.0,,206100.0
-F10511719,2262 Wilton Drive,Area 3450,Retail,Expired,77828.0,55.0,,4280500.0
 F10322328,801 N Federal Highway,Area 3700,Commercial (other),Expired,3435.0,55.0,,188900.0
+F10511719,2262 Wilton Drive,Area 3450,Retail,Expired,77828.0,55.0,,4280500.0
 F10499862,501 NE 5th Terrace Unit#700,Area 3270,Retail,Expired,229140.0,55.0,,12602700.0
 A12046047,721 NE 3rd Ave,Area 3700,Office,Active,9368.0,52.0,1987.0,487100.0
 A12030462,721 NE 3rd Ave Unit#A,Area 3700,Office,Active,9368.0,52.0,1987.0,487100.0
-F10436905,307 SW 5th Street,Area 3470,Retail,Rented,14368.0,50.0,,718400.0
 F10503334,545 NE 13th Street,Area 3380,Retail,Rented,7246.0,50.0,,362300.0
+F10436905,307 SW 5th Street,Area 3470,Retail,Rented,14368.0,50.0,,718400.0
 F10511728,2211 Wilton Drive,Area 3450,Commercial (other),Expired,48969.0,50.0,,2448400.0
 F10501588,2000 S Federal Highway Unit#D,Area 3480,Retail,Cancelled,16875.0,50.0,,843800.0
 F10494020,719 NE 2nd Avenue,Area 3560,Retail,Cancelled,6375.0,50.0,,318800.0
@@ -19,18 +19,18 @@ F10446634,2136 E Oakland Park Boulevard Unit#2136,Area 3370,Retail,Cancelled,342
 F10409228,235 S Fort Lauderdale Beach Boulevard,Area 3280,Retail,Cancelled,10111.0,47.47,,480000.0
 F10505986,3020 N Federal Highway Unit#6,Area 3260,Retail,Expired,1000.0,46.8,,46800.0
 F10486226,821 N Federal Highway,Area 3700,Retail,Active,1720.0,45.0,,77400.0
+F10493994,919 NE 20th,Area 3260,Retail,Rented,10000.0,45.0,,450000.0
 F10493990,1948 E Sunrise Boulevard,Area 3260,Retail,Active,3578.0,45.0,,161000.0
 F10486631,702-704 NE 1st Avenue,Area 3380,Commercial (other),Cancelled,11156.0,45.0,,502000.0
-F10493994,919 NE 20th,Area 3260,Retail,Rented,10000.0,45.0,,450000.0
-F10436037,603 NE 13th Street,Area 3370,Retail,Expired,14491.0,40.0,,579600.0
-F10498148,535 NE 13th Street Unit#2,Area 3380,Commercial (other),Expired,14491.0,40.0,,579600.0
-F10496808,1416 NE 4th Avenue,Area 3370,Retail,Cancelled,6248.0,40.0,,249900.0
 F10512095,920 NE 13th Street,Area 3560,Retail,Expired,35008.0,40.0,,1400300.0
 F10464702,200 NE 3rd Avenue,Area 3460,Commercial (other),Expired,18349.0,40.0,,734000.0
-A11596374,15 NW 9th Ave,Area 3470,Industrial,Sold,7000.0,40.0,1954.0,280000.0
-F10322336,416 SW 1st Avenue,Area 3800,Commercial (other),Rented,22799.0,40.0,,912000.0
+F10436037,603 NE 13th Street,Area 3370,Retail,Expired,14491.0,40.0,,579600.0
+F10496808,1416 NE 4th Avenue,Area 3370,Retail,Cancelled,6248.0,40.0,,249900.0
+F10498148,535 NE 13th Street Unit#2,Area 3380,Commercial (other),Expired,14491.0,40.0,,579600.0
 F10498150,603 NE 13th Street Unit#C,Area 3360,Commercial (other),Rented,14491.0,40.0,,579600.0
 A12018487,2300 NE 6th Ave,Area 3370,Mixed Use,Active,13683.0,40.0,1971.0,547300.0
+F10322336,416 SW 1st Avenue,Area 3800,Commercial (other),Rented,22799.0,40.0,,912000.0
+A11596374,15 NW 9th Ave,Area 3470,Industrial,Sold,7000.0,40.0,1954.0,280000.0
 F10435706,1200 NE 7th Avenue Unit#1,Area 3380,Commercial (other),Cancelled,1276.0,39.5,,50400.0
 F10509142,1429 NE 4th Avenue,Area 3380,Retail,Cancelled,798.0,39.1,,31200.0
 F10541322,905 Sunrise Lane,Area 3160,Commercial (other),Rented,1010.0,39.0,,39400.0
@@ -40,135 +40,135 @@ A11870797,905 Sunrise Ln,Area 3160,Retail,Expired,1010.0,38.02,1952.0,38400.0
 F10511622,900 NE 26th Avenue,Area 3380,Commercial (other),Expired,11743.0,38.0,,446200.0
 F10480162,2455 E Sunrise Boulevard Unit#Penthouse,Area 3260,Commercial (other),Expired,12398.0,38.0,,471100.0
 F10440727,1200 NE 7th Avenue Unit#3,Area 3380,Mixed Use,Rented,1258.0,37.2,,46800.0
-A11998799,2866 E Oakland Park Blvd,Area 3280,Office,Sold,15010.0,36.0,1966.0,540400.0
-F10530751,2101 N Andrews Avenue,Area 3390,Commercial (other),Active,84738.0,36.0,,3050600.0
-A11998806,2876 E Oakland Park Blvd,Area 3280,Office,Active,12250.0,36.0,1963.0,441000.0
-F10495690,801 NE 2nd Avenue Unit#120,Area 3810,Retail,Rented,11458.0,36.0,,412500.0
 A11998773,2856 E Oakland Park Blvd,Area 3280,Office,Active,7505.0,36.0,1966.0,270200.0
-A11350353,1865 Cordova Rd Unit#B215,Area 3280,Office,Expired,245865.0,35.0,2005.0,8605300.0
+A11998806,2876 E Oakland Park Blvd,Area 3280,Office,Active,12250.0,36.0,1963.0,441000.0
+F10530751,2101 N Andrews Avenue,Area 3390,Commercial (other),Active,84738.0,36.0,,3050600.0
+A11998799,2866 E Oakland Park Blvd,Area 3280,Office,Sold,15010.0,36.0,1966.0,540400.0
+F10495690,801 NE 2nd Avenue Unit#120,Area 3810,Retail,Rented,11458.0,36.0,,412500.0
 A11350330,1865 Cordova Rd Unit#B217,Area 3280,Office,Expired,245865.0,35.0,2005.0,8605300.0
-F10421703,700 N Andrews Avenue,Area 3700,Retail,Expired,13720.0,35.0,,480200.0
-F10522748,642 NE 3rd Avenue,Area 3700,Commercial (other),Active,7813.0,35.0,,273500.0
-F10518243,1412 NE 4th Avenue,Area 3370,Commercial (other),Rented,6248.0,35.0,,218700.0
+A11567376,2852 E Oakland Park Blvd,Area 3250,Retail,Expired,7505.0,35.0,1963.0,262700.0
 F10523092,907-911 NE 20th,Area 3260,Commercial (other),Rented,10000.0,35.0,,350000.0
 F10440891,906 NE 26th Avenue,Area 3260,Commercial (other),Expired,10250.0,35.0,,358800.0
-A11647486,350 SW 25th St,Area 3490,Mixed Use,Cancelled,32680.0,35.0,1987.0,1143800.0
-F10419781,1133 SE 4th Avenue,Area 3800,Commercial (other),Cancelled,7000.0,35.0,,245000.0
+F10522748,642 NE 3rd Avenue,Area 3700,Commercial (other),Active,7813.0,35.0,,273500.0
+F10518243,1412 NE 4th Avenue,Area 3370,Commercial (other),Rented,6248.0,35.0,,218700.0
 A11350356,1811 Cordova Rd Unit#1811,Area 3280,Office,Expired,245865.0,35.0,2005.0,8605300.0
 F10440621,201 SE 2nd Street,Area 3800,Commercial (other),Cancelled,6997.0,35.0,,244900.0
+F10421703,700 N Andrews Avenue,Area 3700,Retail,Expired,13720.0,35.0,,480200.0
+F10419781,1133 SE 4th Avenue,Area 3800,Commercial (other),Cancelled,7000.0,35.0,,245000.0
+A11647486,350 SW 25th St,Area 3490,Mixed Use,Cancelled,32680.0,35.0,1987.0,1143800.0
+A11350353,1865 Cordova Rd Unit#B215,Area 3280,Office,Expired,245865.0,35.0,2005.0,8605300.0
 F10494022,700 N Andrews Avenue,Area 3700,Retail,Cancelled,13720.0,35.0,,480200.0
-A11567376,2852 E Oakland Park Blvd,Area 3250,Retail,Expired,7505.0,35.0,1963.0,262700.0
 F10454187,701 NW 5th Avenue Unit#1040,Area 3460,Commercial (other),Cancelled,60749.0,34.0,,2065500.0
 F10447815,3015 N Ocean Boulevard Unit#C-115,Area 3160,Commercial (other),Expired,1938.0,33.9,,65700.0
 F10538013,3315 E Oakland Park Boulevard,Area 3250,Commercial (other),Active,9625.0,32.73,1970.0,315000.0
 F10512373,716-718 NE 2nd Avenue,Area 3560,Commercial (other),Expired,6738.0,32.0,,215600.0
-F10514310,1471 NE 26th Street,Area 3370,Retail,Cancelled,25944.0,32.0,,830200.0
 F10396985,1217 E Broward Boulevard,Area 3270,Commercial (other),Expired,6750.0,32.0,,216000.0
+F10514310,1471 NE 26th Street,Area 3370,Retail,Cancelled,25944.0,32.0,,830200.0
 A11723402,2400 E Oakland Park Blvd Unit#201,Area 3150,Restaurant,Sold,1053.0,31.91,1957.0,33600.0
 F10443466,2901 SW 3rd Avenue Unit#1B,Area 3500,Commercial (other),Expired,5170.0,30.17,,156000.0
 F10556047,3020 N Federal Highway Unit#6 - 2nd FLOOR,Area 3260,Commercial (other),Active,1000.0,30.0,,30000.0
-F10506005,3020 N Federal Highway Unit#6 - 2nd FLOOR,Area 3260,Commercial (other),Expired,1000.0,30.0,,30000.0
-F10453939,1881 NE 26th Street,Area 3370,Commercial (other),Expired,50854.0,30.0,,1525600.0
-A11543408,1408 NE 4th Ave,Area 3370,Mixed Use,Expired,12996.0,30.0,1961.0,389900.0
-F10550186,2150 S Andrews Avenue,Area 3800,Commercial (other),Active,45949.0,30.0,,1378500.0
 A11971615,993 W State Road 84 Unit#993,Area 3130,Retail,Expired,250328.0,30.0,1975.0,7509800.0
 F10502363,3015 N Ocean Boulevard,Area 3160,Commercial (other),Expired,104310.0,30.0,,3129300.0
+F10506005,3020 N Federal Highway Unit#6 - 2nd FLOOR,Area 3260,Commercial (other),Expired,1000.0,30.0,,30000.0
 A11552079,519 SE 32nd Ct,Area 3010,Industrial,Expired,38524.0,30.0,1987.0,1155700.0
-F10485519,612 NW 9th Avenue Unit#A-E,Area 3460,Retail,Expired,20250.0,30.0,,607500.0
-F10484007,777 E Oakland Park Boulevard,Area 3450,Commercial (other),Rented,23244.0,30.0,,697300.0
 F10494025,501 NW 7th Avenue,Area 3460,Retail,Rented,161456.0,30.0,,4843700.0
+F10485519,612 NW 9th Avenue Unit#A-E,Area 3460,Retail,Expired,20250.0,30.0,,607500.0
+A11543408,1408 NE 4th Ave,Area 3370,Mixed Use,Expired,12996.0,30.0,1961.0,389900.0
+F10453939,1881 NE 26th Street,Area 3370,Commercial (other),Expired,50854.0,30.0,,1525600.0
+F10550186,2150 S Andrews Avenue,Area 3800,Commercial (other),Active,45949.0,30.0,,1378500.0
 F10537813,1800 E Las Olas Boulevard Unit#2nd Floor,Area 3280,Commercial (other),Rented,15418.0,30.0,,462500.0
+F10484007,777 E Oakland Park Boulevard,Area 3450,Commercial (other),Rented,23244.0,30.0,,697300.0
 A11629439,925 W Broward Blvd,Area 3560,Mixed Use,Expired,26576.0,29.35,1979.0,780000.0
-F10530725,1101 NE 8th Avenue,Area 3370,Commercial (other),Pending,11893.0,29.0,,344900.0
+F10334215,1142 NE 4th Avenue,Area 3370,Commercial (other),Rented,12499.0,29.0,,362500.0
+F10491644,500 SE 15th Street Unit#106,Area 3280,Commercial (other),Rented,28600.0,29.0,,829400.0
 F10403204,200 Davie Boulevard,Area 3500,Commercial (other),Expired,9698.0,29.0,,281200.0
 F10455355,500 SE 15th Street Unit#106,Area 3280,Commercial (other),Expired,28600.0,29.0,,829400.0
-F10491644,500 SE 15th Street Unit#106,Area 3280,Commercial (other),Rented,28600.0,29.0,,829400.0
-F10334215,1142 NE 4th Avenue,Area 3370,Commercial (other),Rented,12499.0,29.0,,362500.0
+F10530725,1101 NE 8th Avenue,Area 3370,Commercial (other),Pending,11893.0,29.0,,344900.0
 A11865029,1217 E Broward Blvd,Area 3280,Office,Sold,6750.0,29.0,1958.0,195800.0
 F10425780,900 NE 13th Street,Area 3370,Mixed Use,Expired,22915.0,28.0,,641600.0
+A11521140,1395 W Sunrise Blvd,Area 3400,Retail,Expired,35604.0,28.0,2002.0,996900.0
 A12019845,1395 W Sunrise Blvd,Area 3400,Retail,Active,35604.0,28.0,2002.0,996900.0
 F10472004,3045 N Federal Highway Unit#60H,Area 3380,Commercial (other),Active,15109.0,28.0,,423100.0
-A11521140,1395 W Sunrise Blvd,Area 3400,Retail,Expired,35604.0,28.0,2002.0,996900.0
 F10455374,2132 E Oakland Park Boulevard,Area 3370,Commercial (other),Cancelled,3429.0,28.0,,96000.0
 A11768897,350 SW 25th St,Area 3490,Mixed Use,Cancelled,32680.0,28.0,1987.0,915000.0
 A11852410,15 NW 9th Ave,Area 3470,Industrial,Expired,7000.0,27.0,,189000.0
-A11975002,165 E Oakland Park Blvd Unit#165,Area 3770,Retail,Sold,51631.0,27.0,1981.0,1394000.0
 A11939037,15 NW 9th Ave,Area 3470,Industrial,Expired,7000.0,27.0,,189000.0
+A11975002,165 E Oakland Park Blvd Unit#165,Area 3770,Retail,Sold,51631.0,27.0,1981.0,1394000.0
 A11874384,1512 NE 4th Ave,Area 3370,Mixed Use,Active,6245.0,26.0,1981.0,162400.0
-A11810199,200 S Andrews Ave Unit#602,Area 3800,Office,Cancelled,3300.0,25.0,1986.0,82500.0
 A11985434,200 S Andrews Ave Unit#503,Area 3800,Office,Cancelled,2400.0,25.0,1986.0,60000.0
-A11592666,3038 N Federal Hwy Unit#C,Area 3360,Retail,Expired,1982.0,25.0,1960.0,49600.0
 A11900068,200 S Andrews Ave Unit#503,Area 3800,Office,Cancelled,2400.0,25.0,1986.0,60000.0
-A11716499,2455 E Sunrise Blvd Unit#CU9K-CU9M-CU9L,Area 3300,Office,Expired,6624.0,25.0,1973.0,165600.0
-A11703844,3038 N Federal Hwy Unit#C,Area 3360,Retail,Expired,1982.0,25.0,1960.0,49600.0
-A11625990,2455 E Sunrise Blvd Unit#CU9K-CU9M-CU9L,Area 3350,Office,Expired,6624.0,25.0,1973.0,165600.0
-A11811173,129-135 E Oakland Park Blvd Unit#129,Area 3370,Retail,Expired,51631.0,25.0,1981.0,1290800.0
+A11810199,200 S Andrews Ave Unit#602,Area 3800,Office,Cancelled,3300.0,25.0,1986.0,82500.0
 A11927961,2429 Davie Blvd,Area 3150,Retail,Expired,5947.0,25.0,1966.0,148700.0
-F10425925,1212 NE 26th Street,Area 3370,Multifamily,Expired,22859.0,25.0,,571500.0
-F10516746,634 NE 3rd Avenue,Area 3700,Commercial (other),Expired,45250.0,25.0,,1131200.0
-A12048526,200 S Andrews Ave Unit#503,Area 3800,Office,Active,2400.0,25.0,1986.0,60000.0
-F10498745,910 SE 17th Street,Area 3170,Commercial (other),Active,90168.0,25.0,,2254200.0
-F10453180,3015 N Ocean Boulevard Unit#C-126,Area 3160,Commercial (other),Rented,1938.0,25.0,,48400.0
 F10409244,612 NW 9th Avenue Unit#A-E,Area 3460,Retail,Rented,20250.0,25.0,,506200.0
-F10493993,915 NE 20th Unit#1,Area 3260,Retail,Active,10000.0,25.0,,250000.0
+F10516746,634 NE 3rd Avenue,Area 3700,Commercial (other),Expired,45250.0,25.0,,1131200.0
+A11716499,2455 E Sunrise Blvd Unit#CU9K-CU9M-CU9L,Area 3300,Office,Expired,6624.0,25.0,1973.0,165600.0
+A11592666,3038 N Federal Hwy Unit#C,Area 3360,Retail,Expired,1982.0,25.0,1960.0,49600.0
+A11703844,3038 N Federal Hwy Unit#C,Area 3360,Retail,Expired,1982.0,25.0,1960.0,49600.0
+F10425925,1212 NE 26th Street,Area 3370,Multifamily,Expired,22859.0,25.0,,571500.0
+A11811173,129-135 E Oakland Park Blvd Unit#129,Area 3370,Retail,Expired,51631.0,25.0,1981.0,1290800.0
+A11625990,2455 E Sunrise Blvd Unit#CU9K-CU9M-CU9L,Area 3350,Office,Expired,6624.0,25.0,1973.0,165600.0
 A12017741,2429 Davie Blvd Unit#Unit 1,Area 3150,Retail,Active,5947.0,25.0,1965.0,148700.0
+F10498745,910 SE 17th Street,Area 3170,Commercial (other),Active,90168.0,25.0,,2254200.0
+F10493993,915 NE 20th Unit#1,Area 3260,Retail,Active,10000.0,25.0,,250000.0
+A12048526,200 S Andrews Ave Unit#503,Area 3800,Office,Active,2400.0,25.0,1986.0,60000.0
+F10453180,3015 N Ocean Boulevard Unit#C-126,Area 3160,Commercial (other),Rented,1938.0,25.0,,48400.0
 A11910237,2901 SW 3rd Ave Unit#4,Area 3480,Industrial,Active,5170.0,24.75,2000.0,128000.0
 F10502365,3015 N Ocean Boulevard,Area 3160,Commercial (other),Expired,104310.0,24.73,,2580000.0
 A11727327,2010 NW 6th St,Area 3040,Restaurant,Sold,5200.0,24.52,,127500.0
 A12032885,200 S Andrews Ave Unit#500,Area 3800,Office,Active,182000.0,24.0,1986.0,4368000.0
 A11689903,79-199 E Oakland Park Blvd Unit#179-189,Area 3370,Retail,Sold,51631.0,24.0,1981.0,1239100.0
-F10550164,1100 NE 5th Terrace,Area 3380,Commercial (other),Active,9538.0,23.0,,219400.0
-F10424646,701 NW 5th Avenue Unit#1101,Area 3460,Mixed Use,Cancelled,60749.0,23.0,,1397200.0
 F10423474,701 NW 5th Avenue Unit#1131,Area 3460,Mixed Use,Cancelled,60749.0,23.0,,1397200.0
-F10494033,1100 NE 5th Terrace,Area 3380,Retail,Rented,9538.0,23.0,,219400.0
+F10424646,701 NW 5th Avenue Unit#1101,Area 3460,Mixed Use,Cancelled,60749.0,23.0,,1397200.0
 F10396947,522 NE 33rd Street Unit#541B,Area 3450,Commercial (other),Rented,47826.0,23.0,,1100000.0
+F10494033,1100 NE 5th Terrace,Area 3380,Retail,Rented,9538.0,23.0,,219400.0
+F10550164,1100 NE 5th Terrace,Area 3380,Commercial (other),Active,9538.0,23.0,,219400.0
 A11974673,89-99 E Oakland Park Blvd Unit#89-99,Area 3370,Retail,Active,51631.0,23.0,1981.0,1187500.0
 A11575411,2010 Wilton Dr,Area 3380,Restaurant,Expired,7960.0,22.61,2022.0,180000.0
 A11769815,2010 Wilton Dr,Area 3380,Retail,Expired,7960.0,22.61,1962.0,180000.0
 F10515307,511 NE 32nd Street Unit#541A,Area 3450,Commercial (other),Expired,47826.0,22.0,,1052200.0
-F10470696,1160 NE 24th Court,Area 3370,Retail,Expired,6821.0,21.0,,143200.0
 F10428945,2740 E Oakland Park Boulevard,Area 3260,Commercial (other),Expired,21745.0,21.0,,456600.0
+F10470696,1160 NE 24th Court,Area 3370,Retail,Expired,6821.0,21.0,,143200.0
 A11854739,925 W Broward Blvd,Area 3560,Mixed Use,Expired,26576.0,20.32,1979.0,540000.0
-F10500577,1717 N Andrews Avenue,Area 3390,Retail,Expired,84504.0,20.0,,1690100.0
 A12001188,3038 N Federal Hwy Unit#C,Area 3360,Retail,Expired,1982.0,20.0,1960.0,39600.0
-A11911232,809 NW 1st St,Area 3810,Industrial,Pending,14000.0,20.0,1958.0,280000.0
-F10528201,709 NW 8th Avenue,Area 3380,Industrial,Expired,8531.0,20.0,,170600.0
+F10487627,837 NW 8th Avenue,Area 3380,Industrial,Cancelled,10125.0,20.0,,202500.0
+F10453622,1164 E Oakland Park Boulevard,Area 3370,Commercial (other),Rented,33050.0,20.0,,661000.0
+F10487613,825 A/B NW A/b 8th Avenue,Area 3380,Commercial (other),Rented,10125.0,20.0,,202500.0
 A11814253,820 NW 10th Ter Unit#3,Area 3460,Industrial,Expired,13500.0,20.0,1958.0,270000.0
 A11814233,820 NW 10th Ter Unit#4,Area 3460,Industrial,Expired,13500.0,20.0,1958.0,270000.0
-F10487613,825 A/B NW A/b 8th Avenue,Area 3380,Commercial (other),Rented,10125.0,20.0,,202500.0
-F10453622,1164 E Oakland Park Boulevard,Area 3370,Commercial (other),Rented,33050.0,20.0,,661000.0
-F10487627,837 NW 8th Avenue,Area 3380,Industrial,Cancelled,10125.0,20.0,,202500.0
+F10500577,1717 N Andrews Avenue,Area 3390,Retail,Expired,84504.0,20.0,,1690100.0
+F10528201,709 NW 8th Avenue,Area 3380,Industrial,Expired,8531.0,20.0,,170600.0
+A11911232,809 NW 1st St,Area 3810,Industrial,Pending,14000.0,20.0,1958.0,280000.0
 F10525613,3046 NE 12th Terrace,Area 3332,Mixed Use,Rented,5760.0,20.0,,115200.0
 A11573726,141 NE 32nd St,Area 3450,Industrial,Expired,9500.0,20.0,1971.0,190000.0
-A11752931,3212 SE 6th Ave,Area 3100,Industrial,Cancelled,3050.0,19.67,1973.0,60000.0
 A11741277,3212 SE 6th Ave,Area 3100,Office,Cancelled,3050.0,19.67,1973.0,60000.0
+A11752931,3212 SE 6th Ave,Area 3100,Industrial,Cancelled,3050.0,19.67,1973.0,60000.0
 A11646613,1851 SW 2nd Ave Unit#8,Area 3470,Industrial,Expired,1499.0,19.21,1999.0,28800.0
 F10541766,3020 N Federal Highway Unit#12,Area 3260,Commercial (other),Rented,2000.0,19.2,,38400.0
 A12013293,2406 E Oakland Park Blvd,Area 3090,Office,Active,2020.0,19.01,1956.0,38400.0
 A11504856,216 NE 33rd St Unit#240 F,Area 3740,Industrial,Sold,3225.0,19.0,1975.0,61300.0
-F10523098,500 NE 3rd Avenue,Area 3700,Commercial (other),Expired,17625.0,18.0,,317200.0
 A11931699,1845 Cordova Rd Unit#203,Area 3280,Office,Cancelled,245865.0,18.0,2005.0,4425600.0
 F10448201,701 NW 5th Avenue Unit#1061,Area 3460,Mixed Use,Cancelled,60749.0,18.0,,1093500.0
+F10523098,500 NE 3rd Avenue,Area 3700,Commercial (other),Expired,17625.0,18.0,,317200.0
 F10461277,851-863 NE 30th Court,Area 3560,Industrial,Rented,13688.0,18.0,,246400.0
 A11958276,200 S Andrews Ave Unit#102,Area 3800,Retail,Active,1600.0,17.25,2007.0,27600.0
+A12009452,806 NW 8th Ave,Area 3280,Industrial,Active,13500.0,17.0,1983.0,229500.0
 A11592964,3038 N Federal Hwy Unit#D,Area 3260,Office,Expired,2150.0,17.0,1960.0,36600.0
-F10452752,3200A NE 33rd Street Unit#3200A,Area 3450,Commercial (other),Rented,47826.0,17.0,,813000.0
 A11703885,3038 N Federal Hwy Unit#D,Area 3260,Office,Expired,2150.0,17.0,1960.0,36600.0
 F10428941,2727 E Oakland Park Boulevard,Area 3250,Commercial (other),Expired,15005.0,17.0,,255100.0
-A12009452,806 NW 8th Ave,Area 3280,Industrial,Active,13500.0,17.0,1983.0,229500.0
+F10452752,3200A NE 33rd Street Unit#3200A,Area 3450,Commercial (other),Rented,47826.0,17.0,,813000.0
 F10538016,2050 E Oakland Park Boulevard,Area 3360,Commercial (other),Active,23658.0,16.23,,384000.0
-F10494021,540-550 W Sunrise Boulevard Unit#550,Area 3380,Mixed Use,Rented,38454.0,16.0,,615300.0
 A11806810,3031 NE 12th Ter,Area 3332,Industrial,Expired,13011.0,16.0,1956.0,208200.0
+F10494021,540-550 W Sunrise Boulevard Unit#550,Area 3380,Mixed Use,Rented,38454.0,16.0,,615300.0
 A11977108,608 SW 16th Ave Unit#1-4,Area 3470,Multifamily,Cancelled,7000.0,15.43,1970.0,108000.0
 F10556049,3038 N Federal Highway Unit#E - 2nd FL Office,Area 3260,Commercial (other),Active,1000.0,15.0,,15000.0
+F10504271,3038 N Federal Highway Unit#E - 2nd FL Office,Area 3260,Commercial (other),Expired,1000.0,15.0,,15000.0
 F10452759,3200B NE 32nd Street,Area 3450,Commercial (other),Rented,47826.0,15.0,,717400.0
 F10453747,3038 N Federal Highway Unit#2nd Floor Office,Area 3260,Commercial (other),Expired,1000.0,15.0,,15000.0
-F10504271,3038 N Federal Highway Unit#E - 2nd FL Office,Area 3260,Commercial (other),Expired,1000.0,15.0,,15000.0
 A11614871,1255 N flagler,Area 3370,Flex,Sold,3000.0,14.4,,43200.0
 F10551820,1130 Bayview Drive,Area 3260,Commercial (other),Active,17827.0,14.35,,255800.0
 A12031126,1207 SW 1st Ave,Area 3800,Mixed Use,Active,6750.0,14.0,1956.0,94500.0
-F10497691,1053 SE 17th Street,Area 3170,Commercial (other),Rented,2880.0,13.44,,38700.0
 A11782064,1053 SE 17th St,Area 3170,Retail,Sold,2880.0,13.44,1968.0,38700.0
+F10497691,1053 SE 17th Street,Area 3170,Commercial (other),Rented,2880.0,13.44,,38700.0
 F10487369,3045 N Federal Highway Unit#96,Area 3370,Retail,Rented,1700.0,13.41,,22800.0
 A11687065,2400 E Oakland Park Blvd Unit#201,Area 3150,Special Purpose,Cancelled,3599.0,13.34,1956.0,48000.0
 A11701414,101 NE 3rd Ave Unit#1500,Area 3560,Office,Expired,37500.0,13.0,1987.0,487500.0
