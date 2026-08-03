@@ -997,7 +997,7 @@
         {
           "key": "PRICE",
           "label": "Acquisition basis (entitled land)",
-          "value": 13000000,
+          "value": 24700000,
           "unit": "USD",
           "type": "number"
         },
@@ -1061,7 +1061,7 @@
         "interim_opex_psf": 8.0,
         "interim_mgmt": 0.03,
         "millage": 0.0191,
-        "price": 13000000,
+        "price": 24700000,
         "closing_pct": 0.02,
         "land_growth": 0.04,
         "hold": 5,

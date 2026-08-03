@@ -52,7 +52,7 @@ GAP_STATUS = [
     ("asset:office", "opex_psf", "🔶 MODELED office opex $/SF — confirm from operating statements."),
     ("asset:office", "sale_comp_psf", "⚠️ REPORTED ~$300/SF (historical) — confirm from recent unit sales."),
     ("asset:office", "price", "🔶 MODELED income basis — confirm the underwritten target."),
-    ("asset:land", "price", "🔶 MODELED entitled-land basis — confirm the negotiated basis."),
+    ("asset:land", "price", "⚠️ Bayview SOLD to Willow Bridge for $24.7M (~Aug 2026) — basis reset to that trade; now a JV target, not a fee purchase. Verify at the county."),
     ("asset:land", "land_sf", "⚠️ REPORTED — confirm at BCPA."),
     ("asset:land", "office_sf", "⚠️ CONFLICT — 84,495 SF (Redfin, leasable) vs 101,803 SF (BCPA living area). Confirm rentable SF."),
     ("asset:land", "units", "✅ 259 units (247 market + 12 affordable), case UDP-Z25002 'The Residences at Bayview' (Florida YIMBY / City staff report). Confirm FINAL P&Z / Commission approval."),

@@ -22,8 +22,8 @@ A = dict(
     # interim income (covered land)
     interim_occ=0.72, interim_rent=23.00, interim_opex_psf=8.00,
     interim_mgmt=0.03, millage=0.0191,
-    # hold
-    price=13000000, closing_pct=0.02, land_growth=0.04, hold=5,
+    # hold  (basis reset to the Willow Bridge trade: $24.7M / ~$95k per entitled unit, ~Aug 2026)
+    price=24700000, closing_pct=0.02, land_growth=0.04, hold=5,
     ltv=0.40, loan_rate=0.0850, cost_sale=0.02, disc=0.10, exp_growth=0.03,
     # redevelopment residual (flagged — AE zone, hard costs high)
     rev_per_unit_value=600000,       # achievable per-unit value (rental cap'd / condo)
@@ -39,9 +39,9 @@ def build(s, regs, amap=None):
     s.colw({"A": 2.5, "B": 36, "C": 14, "D": 13, "E": 13, "F": 13, "G": 12,
             "H": 12, "I": 12, "J": 12, "K": 12, "L": 12, "M": 12})
     r = 1
-    s.put(r, L, "1040 BAYVIEW  ·  COVERED-LAND / REDEVELOPMENT SITE", style="banner", align="left", merge=(r, 13)); s.rowh(r, 26); r += 1
-    s.put(r, L, "1040 Bayview Dr   |   Folio 49-42-36-12-0040   |   Sunrise & Bayview Partners LLC (Procacci) "
-                "· 2.39 ac · existing 84,495 SF office (1967) · entitled 259 units", style="banner_sub", align="left", merge=(r, 13)); s.rowh(r, 18); r += 2
+    s.put(r, L, "1040 BAYVIEW  ·  JV UPSIDE  (NOT in the 4-parcel core)", style="banner", align="left", merge=(r, 13)); s.rowh(r, 26); r += 1
+    s.put(r, L, "1040 Bayview Dr   |   Folio -0040   |   SOLD to WILLOW BRIDGE ~Aug 2026 for $24.7M (~$95k/entitled unit) · 2.39 ac · entitled 259 units "
+                "· modeled here as a JV-upside case only — the base assemblage is the four parcels DAWN RE can control", style="banner_sub", align="left", merge=(r, 13)); s.rowh(r, 30); r += 2
 
     s.section(r, L, 13, "PROPERTY FACTS  —  ⚠️ REPORTED (LoopNet / Florida YIMBY / BBX / Procacci; BCPA blocked in build env)"); r += 1
     facts = [

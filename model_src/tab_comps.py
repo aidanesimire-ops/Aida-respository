@@ -85,7 +85,7 @@ ASSETS = [
               "= $42.2M. The income value at an 8% cap is ~$22M — the ~$20M gap is the fragmentation premium to re-assemble the condo.",
     ),
     dict(
-        key="Land", title="⑤ 1040 BAYVIEW  —  covered land / “The Residences at Bayview”",
+        key="Land", title="⑤ 1040 BAYVIEW  —  JV UPSIDE  (sold to Willow Bridge; NOT in the 4-parcel core)",
         sub=[("Address / folio", "1040 Bayview Dr · folio -0040 · 2.39 ac (103,982 SF)", "✅"),
              ("⚠️ JUST SOLD", "Procacci → WILLOW BRIDGE for $24.7M (~Aug 2026) — parcel has traded; verify & re-approach", "📰"),
              ("Prior sale", "$7.9–8.0M · 2014 (Procacci/BBX JV)", "✅"),
@@ -160,12 +160,15 @@ def build(s, regs):
               color=(None if style == "grand" else ("008000" if link else None)), fmt=fmt, align="right", merge=(r, 6))
         s.put(r, 7, note, style="note", align="left", merge=(r, 13)); r += 1
     for a in ASSETS:
+        if a["key"] == "Land":
+            continue  # Bayview is a JV upside, not part of the 4-parcel core
         price_row("  " + a["key"], f"={cell(a['key'], a['price'][1])}", F_ACCT, "concluded individual price")
-    price_row("SUM OF THE PARTS — priced independently", f"={cell(A,'RAW_COST')}", F_ACCT_TOP, "what you pay buying each owner out", style="sub")
+    price_row("SUM OF THE PARTS — 4 parcels, priced independently", f"={cell(A,'RAW_COST')}", F_ACCT_TOP, "what you pay buying each owner out", style="sub")
     price_row("＋ Assemblage premium (to control the block)", f"={cell(A,'ACQ')}-{cell(A,'RAW_COST')}", F_ACCT, "hard-to-assemble · holdout risk (20% base)")
     price_row("COVERED-LAND PRICE — controlled as one block", f"={cell(A,'ACQ')}", F_ACCT_TOP, "the ceiling — highest & best use", style="grand")
     price_row("Income basis (what the rent supports)", f"={cell(IV,'PX_INCOME')}", F_ACCT_TOP, "valuation floor — direct-cap on the combined rent")
-    price_row("Post-approval entitled land (upside)", f"={cell(HB,'LAND_ENTITLED')}", F_ACCT, "once density is approved")
+    price_row("＋ Bayview JV (Willow Bridge) — upside", f"={cell('Land','CONCLUDED')}", F_ACCT, "adds ~2.39 ac & 259 entitled units IF a JV is struck — not in the core")
+    price_row("Post-approval entitled land (4-parcel core)", f"={cell(HB,'LAND_ENTITLED')}", F_ACCT, "once density is approved")
     r += 1
     s.put(r, L, "How to quote this", style="warn", align="left", merge=(r, 3))
     s.put(r, 4, "Quote ✅ items freely (public record). Attribute 📰/📊 to the named source and date, and say “reported / market” — "

@@ -17,8 +17,7 @@ COMPONENTS = [
     ("Shahidi Retail", "Shahidi Retail (Galleria Plaza)", "PRICE", "acquire fee · value-add retail"),
     ("Publix & Starbucks", "Publix + Starbucks", "PRICE", "sale-leaseback (acquire fee)"),
     ("Sunrise Plaza", "Sunrise Plaza (Kar Luen)", "PRICE", "acquire fee · restaurant value-add"),
-    ("Office Condo", "Galleria Corp Centre (full buy-out)", "BUYOUT_TOTAL", "buy out BOTH condo owners"),
-    ("Land", "1040 Bayview (entitled land)", "CONCLUDED", "covered land · hold for redevelopment"),
+    ("Office Condo", "Galleria Corp Centre (full buy-out)", "BUYOUT_TOTAL", "buy out every condo unit & terminate"),
 ]
 # acquisition history: (label, date, orig price, (sheet,our-price-cell) or None, verified, note)
 # price cell = an Assumptions input name (live link, single source of truth) or None
@@ -28,14 +27,13 @@ ACQ_HISTORY = [
     ("Sunrise Plaza — Kar Luen Inc", "Oct 2000", "SUN_ACQ", ("Sunrise Plaza", "PRICE"), False, "stale/nominal — held since; no recent arm's-length"),
     ("Office — Grove Gate bulk (57.4%)", "09/23/2019", "OFF_ACQ", ("Office Condo", "BUYOUT1"), False, "$103/SF from Intl Sunrise (dissolved 2020); now reselling units $270–381/SF"),
     ("Office — 42.6% individual owners", "2011→2026", None, None, False, "~40 small owners (Merrimac, Cosmo, Jorgensen, Hublot); un-itemizable without BCPA"),
-    ("1040 Bayview — Sunrise & Bayview Partners", "2014 (JV)", "LND_ACQ", ("Land", "CONCLUDED"), True, "Procacci/BBX bought 2014 ~$7.9M; BBX exited to Procacci 2022"),
+    ("1040 Bayview — SOLD to Willow Bridge (~Aug 2026)", "8/2026", "LND_ACQ", None, True, "Procacci sold entitled site $24.7M ≈ $95k/unit — now a JV target, not a fee purchase"),
 ]
 # land parcels -> (label, land-SF cell, $/SF cell or None, land-value cell)
 LANDPARCELS = [
     ("Shahidi Retail", "Shahidi Retail", "LANDSF", "GLAND_PSF", "LANDVAL"),
     ("Publix & Starbucks", "Publix + Starbucks", "GLANDSF", "GLAND_PSF", "LANDVAL"),
     ("Sunrise Plaza", "Sunrise Plaza (Kar Luen)", "GLANDSF", "GLAND_PSF", "LANDVAL"),
-    ("Land", "1040 Bayview", "LANDSF", None, "CONCLUDED"),
 ]
 
 

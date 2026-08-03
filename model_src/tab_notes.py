@@ -26,7 +26,7 @@ def build(s):
         s.put(r, 4, v, style="calc", align="left", merge=(r, 13)); r += 1
 
     head("PURPOSE  &  HOW TO USE THIS MODEL")
-    para("Institutional acquisition underwriting for a five-asset covered-land-play assemblage on the E Sunrise Blvd hard corner at the Galleria.")
+    para("Institutional underwriting for a four-parcel covered-land / redevelopment assemblage on the E Sunrise Blvd hard corner at the Galleria (a 5th parcel, 1040 Bayview, sold to Willow Bridge ~Aug 2026 and is modeled as a JV upside).")
     para("Two valuations of the same block are presented: (1) an INCOME basis — what the combined cash flows support — and (2) a HIGHEST-AND-")
     para("BEST-USE / covered-land basis — land value plus an assemblage premium to control every parcel. Only blue cells are inputs; change any")
     para("blue cell and the entire workbook recalculates (full recalc on open). The ASSUMPTIONS tab is the single control surface — global drivers")

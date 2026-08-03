@@ -24,7 +24,7 @@ def build(s, regs):
     # ---------------- the deal in three lines ----------------
     s.section(r, L, 13, "THE DEAL IN THREE LINES"); r += 1
     for lab, txt in [
-        ("What", "Acquire 5 contiguous assets on E Sunrise Blvd (~7.2 acres) and control the whole block — buy the income, control the dirt."),
+        ("What", "Acquire 4 contiguous parcels on E Sunrise Blvd and control the corner — buy the income, control the dirt. (Bayview, a 5th parcel, just sold to Willow Bridge — now a JV upside.)"),
         ("Price", "The rent supports about $65M (income basis); controlling the whole block costs about $127M (covered-land) — the gap is the land + density option."),
         ("Return", "At the income basis the LP earns ~20% IRR / 2.4×; the real upside is the entitled land you hold for redevelopment."),
     ]:

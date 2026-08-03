@@ -48,8 +48,11 @@ def build(s, regs):
 
     # ================= 1. SITE & PROGRAM =================
     s.section(r, L, 13, "①  THE SITE & THE PROGRAM  —  what gets built"); r += 1
-    inp("DEV_AC", "Developable land (acres)", 7.2, F_NUM2, "4 land parcels ≈ 7.16 ac; + ~2 ac if the office condo is terminated")
-    inp("DENS", "Density (units / acre)", 108, F_NUM, "🔵 codified base 60/ac; Bayview did 108/ac (city bonus); Galleria next door ≈140/ac (Live Local) → ~756–980 units")
+    inp("DEV_CORE_AC", "Core site — retail parcels + office footprint (ac)", 6.77, F_NUM2, "3 retail parcels 4.77 ac + office ~2.0 ac (buy out EVERY condo unit & terminate the condominium)")
+    inp("INCL_BAY", "Include Bayview JV?  (1 = yes, 0 = no)", 0, F_NUM, "🔵 Bayview SOLD to Willow Bridge (~Aug 2026) — only adds to the site via a JV")
+    inp("BAY_AC", "Bayview parcel (acres)", 2.39, F_NUM2, "🔵 Willow Bridge JV upside")
+    der("DEV_AC", "DEVELOPABLE LAND (acres)", f"={R('DEV_CORE_AC')}+{R('INCL_BAY')}*{R('BAY_AC')}", F_NUM2, "core (4 parcels + office) + Bayview JV toggle", style="sub", bold=True)
+    inp("DENS", "Density (units / acre)", 108, F_NUM, "🔵 codified base 60/ac; Bayview did 108/ac (city bonus); Galleria next door ≈140/ac (Live Local) → ~730–950 units")
     der("UNITS", "TOTAL UNITS", f"={R('DEV_AC')}*{R('DENS')}", F_NUM, "acres × density", style="sub", bold=True)
     inp("STORIES", "Height (stories)", 30, F_NUM, "🔵 Live Local height = tallest within 1 mi ≈ Selene 300 ft / Galleria 342 ft ≈ 30 stories")
     inp("NRSF_UNIT", "Avg net saleable/rentable SF per unit", 950, F_NUM, "🔵 mix of 1BR/2BR")
@@ -69,8 +72,8 @@ def build(s, regs):
 
     # ================= 2. DEVELOPMENT COST (TDC) =================
     s.section(r, L, 13, "②  TOTAL DEVELOPMENT COST  (TDC)  —  the full cost stack"); r += 1
-    inp("LAND", "Land basis (assemblage acquisition)", 105800000, F_ACCT_TOP, "🔵 sum-of-parts ≈ $105.8M; covered-land ≈ $127M — the RESIDUAL below tells you the MAX to pay")
-    s.put(r, L, "  (model: sum-of-parts / covered-land)", style="note", align="left")
+    inp("LAND", "Land basis (assemblage acquisition)", 92800000, F_ACCT_TOP, "🔵 4-parcel sum-of-parts ≈ $92.8M (covered-land ≈ $111M); + ~$24.7M if Bayview JV — the RESIDUAL below tells you the MAX to pay")
+    s.put(r, L, "  (model: 4-parcel sum-of-parts / covered-land)", style="note", align="left")
     s.put(r, 4, f"={cell(A,'RAW_COST')}", style="calc", color="008000", fmt=F_ACCT, align="right")
     s.put(r, 6, f"={cell(A,'ACQ')}", style="calc", color="008000", fmt=F_ACCT, align="right"); r += 1
     inp("EXIST_SF", "Existing building SF (to demolish)", 341501, F_NUM, "🔵 sum of the five buildings")

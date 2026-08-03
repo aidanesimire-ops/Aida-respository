@@ -28,7 +28,9 @@ LANDVALCELL = {"Shahidi Retail": "LANDVAL", "Publix & Starbucks": "LANDVAL",
 EQCELL = {"Shahidi Retail": "EQ_REQ", "Publix & Starbucks": "EQ_REQ",
           "Sunrise Plaza": "EQ_REQ", "Office Condo": "EQ_REQ", "Land": "EQ_ACQ"}
 
-ORDER = ["Shahidi Retail", "Publix & Starbucks", "Sunrise Plaza", "Office Condo", "Land"]
+# CORE assemblage = the four parcels DAWN RE controls. Bayview (the "Land" tab) sold
+# to Willow Bridge (~Aug 2026); it is modeled separately as a JV-upside, not in the base.
+ORDER = ["Shahidi Retail", "Publix & Starbucks", "Sunrise Plaza", "Office Condo"]
 LABEL = {"Shahidi Retail": "Shahidi Retail (Galleria Plaza)",
          "Publix & Starbucks": "Publix + Starbucks",
          "Sunrise Plaza": "Sunrise Plaza (Kar Luen)",
@@ -48,7 +50,7 @@ def build(s, regs):
             "H": 11, "I": 20, "J": 12, "K": 12, "L": 12, "M": 12})
     r = 1
     s.put(r, L, "THE ASSEMBLAGE  ·  COVERED LAND PLAY", style="banner", align="left", merge=(r, 13)); s.rowh(r, 26); r += 1
-    s.put(r, L, "E Sunrise Blvd @ the Galleria — five contiguous assets, plat block 49-42-36-12 · "
+    s.put(r, L, "E Sunrise Blvd @ the Galleria — four core parcels (Bayview, a 5th, sold to Willow Bridge → JV upside), plat block 49-42-36-12 · "
                 "buy the income, control the dirt · highest & best use = hold for Live Local density",
           style="banner_sub", align="left", merge=(r, 13)); s.rowh(r, 18); r += 2
 

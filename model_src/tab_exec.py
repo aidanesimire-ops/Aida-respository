@@ -18,7 +18,6 @@ COMP = [
     ("Publix & Starbucks", "Publix + Starbucks (SLB)", "36,822 SF grocery+pad", "PRICE", "NOI1", "PUB_ACQ", "PUB_ACQYR"),
     ("Sunrise Plaza", "Sunrise Plaza (Kar Luen)", "25,105 SF retail", "PRICE", "NOI1", "SUN_ACQ", "SUN_ACQYR"),
     ("Office Condo", "Galleria Corp Centre (buy-out)", "168,807 SF office condo", "BUYOUT_TOTAL", "NOI1", "OFF_ACQ", "OFF_ACQYR"),
-    ("Land", "1040 Bayview (covered land)", "2.39 ac · 259 units", "CONCLUDED", "INOI", "LND_ACQ", "LND_ACQYR"),
 ]
 
 
@@ -32,7 +31,7 @@ def build(s, regs):
     # ---------------- banner ----------------
     s.put(r, L, "DAWN RE ENTERPRISES CORP.  ·  EXECUTIVE DASHBOARD", style="banner", align="left", merge=(r, 13)); s.rowh(r, 24); r += 1
     s.put(r, L, "E SUNRISE BLVD ASSEMBLAGE  —  COVERED LAND PLAY", style="banner_sub", align="left", merge=(r, 13)); s.rowh(r, 18); r += 1
-    s.put(r, L, "Fort Lauderdale FL 33304 · Galleria hard corner · 5 contiguous assets · plat 49-42-36-12 · ~7.2 ac / 341,501 SF bldg · CONFIDENTIAL",
+    s.put(r, L, "Fort Lauderdale FL 33304 · Galleria hard corner · 4-parcel core (+ Bayview JV upside) · plat 49-42-36-12 · 341,501 SF existing · CONFIDENTIAL",
           style="kpi_note", align="left", merge=(r, 13)); s.rowh(r, 15); r += 2
 
     # ---------------- KPI strip (6 across) ----------------
@@ -93,7 +92,7 @@ def build(s, regs):
         s.put(r, 10, note, style="note", align="left", merge=(r, 13)); r += 1
     last = r - 1
     s.put(r, L, "ASSEMBLAGE — priced independently", style="total", align="left")
-    s.put(r, 3, "5 assets", style="total", align="left")
+    s.put(r, 3, "4 parcels", style="total", align="left")
     s.put(r, 4, "—", style="total", align="center")
     s.put(r, 5, "", style="total")
     s.put(r, 6, f"={x(A,'RAW_COST')}", style="total", fmt=F_ACCT_TOP, align="right")
@@ -129,7 +128,7 @@ def build(s, regs):
     s.section(r, L, 13, "THESIS  &  RECOMMENDATION"); r += 1
     for t in [
         "ACQUIRE & HOLD a covered land play on the Galleria hard corner. Buy/value each asset off the rent it produces; the blended in-place income",
-        "covers the carry while we control ~7.2 acres for eventual Live Local density. Structure Publix as a sale-leaseback (rent covers carry, then it",
+        "covers the carry while we control the four-parcel corner (+ the office footprint) for eventual Live Local density. Structure Publix as a sale-leaseback (rent covers carry, then it",
         "vacates for redevelopment) and buy out the fractured office condo through Grove Gate (Brad Weiss controls the majority + the board).",
         "Redevelopment does NOT pencil today (AE flood zone, coastal hard costs → negative residual) — the return is optionality on the dirt, paid for by the rent.",
     ]:

@@ -16,7 +16,9 @@ ACQ = 3
 def pc(y): return 3 + y
 def CL(c): return get_column_letter(c)
 
-ASSETS = ["Shahidi Retail", "Publix & Starbucks", "Sunrise Plaza", "Office Condo", "Land"]
+# CORE assemblage = the four parcels DAWN RE can control. Bayview (the "Land" tab)
+# sold to Willow Bridge (~Aug 2026) and is modeled separately as a JV-upside case.
+ASSETS = ["Shahidi Retail", "Publix & Starbucks", "Sunrise Plaza", "Office Condo"]
 LABEL = {"Shahidi Retail": "Shahidi Retail (Galleria Plaza)",
          "Publix & Starbucks": "Publix + Starbucks",
          "Sunrise Plaza": "Sunrise Plaza (Kar Luen)",
@@ -173,7 +175,6 @@ def build(s, regs):
         f"({cell('Publix & Starbucks','AS_IS_NOI')}/{cell('Publix & Starbucks','GICAP')})",
         f"({cell('Sunrise Plaza','AS_IS_NOI')}/{cell('Sunrise Plaza','GICAP')})",
         f"({cell('Office Condo','AS_IS_NOI')}/{cell('Office Condo','GICAP')})",
-        f"{cell('Land','INCVAL')}",
     ])
     der("VAL_SOP", "① Sum of the parts  (each asset at its OWN going-in cap)", f"={sop}", F_ACCT_TOP,
         "reconciles to the asset tabs — the concluded income basis")

@@ -42,11 +42,11 @@ ACQ_STRATEGY = [
      "Weiss (Grove Gate) controls 57.4% (bought 2019 at ~$103/SF) AND the board; asking $367–475/SF on units. Grove Gate carries a 2021 Berkadia ~$24M bridge loan across a 3-property FL office portfolio incl. this one — levered, likely open to a portfolio-clearing price.",
      "Weiss first (via building attorney Neale Poller), then pick off holdouts; Merrimac/Motwani & Cosmo/Blaison are known owners.",
      "Condo declaration termination / super-majority vote; confirm the recorded declaration; fragmentation premium is budgeted in the buy-out."),
-    ("Land", "1040 Bayview — Sunrise & Bayview Partners (Procacci)", "LND_ACQ",
-     ("Land", "CONCLUDED"), "Forward purchase or JV",
-     "Bought 2014 at ~$7.9M; BBX Capital exited its JV stake to Procacci in 2022. Actively entitling 'The Residences at Bayview' (259 units, case UDP-Z25002) — NOT selling; motive to engage = realize entitlement value without carrying redevelopment risk.",
-     "Approach for a JV or a forward take-out contingent on the entitlement; Procacci is the sole owner post-2022.",
-     "Not for sale today — structure as an option / JV; align on entitled-land basis vs. the $7.9M 2014 cost."),
+    ("Land", "1040 Bayview — JV UPSIDE (now WILLOW BRIDGE)", "LND_ACQ",
+     ("Land", "CONCLUDED"), "JV / not in the core",
+     "SOLD ~Aug 2026: Procacci sold the entitled site to Willow Bridge Property Co. for $24.7M (~$95k/entitled unit; RGA financed $14.5M). The parcel has changed hands — it is NO LONGER a fee purchase; it is a JV target with a new, well-capitalized owner.",
+     "Approach Willow Bridge for a JV / assemblage partnership — they hold entitled dirt, you hold the surrounding block; a combined site is worth more than either alone.",
+     "Bayview is OUTSIDE the 4-parcel base. Model it as upside only until a JV is agreed; verify the sale at the county."),
 ]
 
 # ---- risk register: (risk, likelihood/impact, mitigant [editable]) ----
@@ -112,7 +112,7 @@ def build(s, regs):
         s.put(r, 5, formula, style=("grand" if style == "grand" else "calc"),
               color=(None if style == "grand" else "008000") if link else None, fmt=fmt, align="right", merge=(r, 6))
         s.put(r, 7, note, style="note", align="left", merge=(r, 13)); r += 1
-    glance("What we control", f"={cell(A,'TOT_AC')}", "#,##0.0", "acres · 5 contiguous assets · Galleria hard corner · plat 49-42-36-12")
+    glance("What we control", f"={cell(A,'TOT_AC')}", "#,##0.0", "acres of fee land · 4 core parcels + office buy-out (Bayview = JV upside) · Galleria hard corner")
     glance("① Income basis (floor)", f"={cell(IV,'PX_INCOME')}", F_ACCT_TOP, "what the combined rent supports")
     glance("② Sum of the parts", f"={cell(HB,'SUM_PARTS')}", F_ACCT_TOP, "each component bought independently")
     glance("③ COVERED-LAND PRICE (the ask)", f"={ACQ}", F_ACCT_TOP, "control the whole block — sum-of-parts + assemblage premium", style="grand")
