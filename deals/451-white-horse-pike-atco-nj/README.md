@@ -10,7 +10,7 @@ Offered at **$1,600,000 / 8.25% cap** on $132,000 NOI.
 
 | File | What it is |
 |---|---|
-| **`451 White Horse Pike - IC Deck.pdf`** | **THE presentation document. 16 landscape slides in four parts, built to take a reader from cold to an approved offer.**<br>Part 1 decision · Part 2 asset and price · Part 3 return · Part 4 risk and execution. |
+| **`451 White Horse Pike - IC Deck.pdf`** | **THE presentation document. 17 landscape slides in four parts, built to take a reader from cold to an approved offer.**<br>Part 1 decision · Part 2 asset and price · Part 3 return · Part 4 risk and execution. |
 | `451 White Horse Pike - Full Analysis (backup).pdf` | 25-page diligence backup, not the presentation document. Four parts. Page 1 orients the reader — what the property is, the tenant, the lease, the ask — plus a contents map. §2–3 make the argument; §4–14 carry the detail. Every section starts on its own page and opens with a plain-English summary.** |
 | **`451 White Horse Pike - Acquisition Model.xlsx`** | **Live 14-tab model, 898 formulas. Change the offer price on `Assumptions` and everything recalculates.** |
 | `analysis.html` | The same analysis as a web page |
@@ -120,17 +120,19 @@ case is positive. At their $1.6M ask the floor case is −39.93% levered.
 
 ## Position: offering $1,100,000
 
-The analysis supports the offer. At $1.1M the going-in cap is **12.00%** ($250/SF),
-expected unlevered IRR is **12.0%**, and **no modelled scenario loses money** — the
-worst case (tenant fails, building goes dark, liquidate land and shell) still
-returns **+6.2%**. At the $1.6M ask that same scenario returns −1.4%.
+The analysis supports the offer. At $1.1M the **going-in cap rate is 12.00%** ($250/SF),
+and **no modelled case loses money on an unlevered basis** — the 10-year unlevered IRR
+runs from **6.13%** (floor: tenant fails, weak re-let) to **18.33%** (growth: land let
+and quality re-let), with the likeliest single outcome — the tenant renewing — at
+**14.95%**. At the $1.6M ask the same four cases run 0.31% to 12.25%.
 
 The offer sits at the market-rent capitalization value of $1,106,000, meaning the
 building is bought at its plain conventional-use worth and the cannabis premium,
 the renewal option and the excess land are unpaid-for upside.
 
-Practical ceiling **$1,250,000** (9.3% expected). Above $1,300,000 we would be
-paying more than the property is worth.
+Practical ceiling **$1,250,000** — base-case 10-yr unlevered IRR ~6%, renewal ~12.3%,
+and the point at which leverage stops adding return. Above $1,300,000 we would be paying
+more than the indicated value of $1,252,500.
 
 ## Headline findings
 
@@ -186,7 +188,7 @@ paying more than the property is worth.
   $55,000 to **$80,000** base.
 - **Land upside, excluded from every return figure:** ±2.48 developable acres
   (site coverage is only 3.2%). An outparcel ground lease plus a third-party EV
-  fast-charging licence adds **$100,000/yr** of NOI and about **$931,000** of
+  fast-charging licence adds **$100,000/yr** of NOI and about **$1.10M** of
   value net of cost — taking yield on cost to 21.1%. With a pad in place, even a
   dark building re-let at $18/SF still yields 16.3%.
   Gating item: confirm whether the lease demises the entire 3.13 AC to the
