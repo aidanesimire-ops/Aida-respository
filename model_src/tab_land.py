@@ -45,7 +45,8 @@ def build(s, regs, amap=None):
 
     s.section(r, L, 13, "PROPERTY FACTS  —  ⚠️ REPORTED (LoopNet / Florida YIMBY / BBX / Procacci; BCPA blocked in build env)"); r += 1
     facts = [
-        ("Record owner", "Sunrise & Bayview Partners, LLC (Procacci Development; folio -0040). Bought 2014 ≈ $7.9–8.0M in a Procacci/BBX JV; BBX exited its stake to Procacci in 2022 — Procacci now sole owner"),
+        ("⚠️ JUST TRADED (Aug 2026)", "Per The Real Deal, Procacci SOLD this entitled parcel to WILLOW BRIDGE PROPERTY CO. for $24.7M (~$95k per entitled unit; buyer financed $14.5M via RGA). This parcel appears to have changed hands — VERIFY, then re-approach as a JV with Willow Bridge or treat the block as four parcels."),
+        ("Prior owner", "Sunrise & Bayview Partners, LLC (Procacci; folio -0040). Bought 2014 ≈ $7.9–8.0M (Procacci/BBX JV); BBX exited to Procacci 2022; Procacci sold to Willow Bridge ~Aug 2026"),
         ("Land", "2.39 ac ≈ 103,982 SF (BCPA) — same plat block (49-42-36-12) as the assemblage"),
         ("Existing improvement", "office building, built 1968 — leasable ≈ 84,495 SF (Redfin) / BCPA living area 101,803 SF; a redevelopment site, not raw land"),
         ("Zoning", "B-1 (Boulevard Business) / CB core commercial; rezoning case UDP-Z25002 filed Oct 2025, under P&Z review"),
@@ -54,7 +55,7 @@ def build(s, regs, amap=None):
         ("Entitlement path", "City affordable-housing DENSITY BONUS via conventional rezoning (12 affordable units unlock the bonus) — NOT a Live Local approval"),
         ("Live Local optionality", "The B-1 commercial site independently QUALIFIES for the Live Local Act (SB 102/328/1730): ≥40% units ≤120% AMI would unlock citywide-max density + tallest-within-1-mile height administratively — a separate, higher-density path"),
         ("BCPA market value", "2015 assessed ≈ $8.25M (stale); current just value not confirmed (verify at BCPA)"),
-        ("Status", "NOT listed — owner is entitling, not selling; a JV / forward-purchase target"),
+        ("Status", "SOLD to Willow Bridge ~Aug 2026 at $24.7M / ~$95k per entitled unit — a live market comp for entitled land, and a changed counterparty for the assemblage"),
         ("Covered-land thesis", "Interim office income covers carry; the value is the entitled land + the redevelopment/Live Local density option"),
     ]
     for lab, val in facts:

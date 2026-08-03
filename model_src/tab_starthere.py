@@ -53,13 +53,13 @@ def build(s, regs):
     s.put(r, L, "Tab", style="subhead", align="left", merge=(r, 4))
     s.put(r, 5, "Answers the question…", style="subhead", align="left", merge=(r, 13)); r += 1
     guide = [
-        ("group", "① SEE THE DEAL", None),
+        ("group", "① SEE THE DEAL & THE VISION", None),
         ("tab", "Executive Summary", "What's the whole deal, on one page?"),
         ("tab", "Comps & Pricing", "What's each asset worth and what can I quote? — sourced comps + individual & assemblage pricing"),
+        ("tab", "Development Pro Forma", "What can be built here — density, product, cost, value? The redevelopment vision, quantified"),
         ("tab", "Start Here", "How do I read this? (you are here)"),
         ("group", "② MAKE THE DEAL", None),
         ("tab", "Deal Book", "Who do I buy from, at what price, and how? (per-owner strategy, sources & uses, risks, timeline)"),
-        ("tab", "Partner Returns", "How does the money split between me and my investors? (LP / GP waterfall)"),
         ("group", "③ PLAY WITH IT", None),
         ("tab", "Review Board", "How do the returns move if I change the key assumptions? (live sensitivities)"),
         ("tab", "Capital Stack", "How much can I borrow / afford, and how does the stack look? (leverage & equity)"),
@@ -70,6 +70,7 @@ def build(s, regs):
         ("tab", "Scenarios", "What do downside / base / upside look like?"),
         ("tab", "Assemblage", "How do the parts add up to the covered-land price?"),
         ("tab", "Highest & Best Use", "What's the land worth alone vs. assembled, and does redevelopment pencil?"),
+        ("tab", "Partner Returns", "If you raise LP equity: how the money splits (8% pref, promote)"),
         ("group", "⑥ THE ASSETS (one tab each)", None),
         ("tab", "Shahidi · Publix · Sunrise · Office · Land", "The full underwrite of each property — rent roll, cash flow, P&L."),
         ("group", "⑦ WHERE IT COMES FROM", None),

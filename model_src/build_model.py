@@ -5,7 +5,7 @@ Run:  python3 build_model.py
 import json, os
 from openpyxl.utils import get_column_letter, column_index_from_string
 from mblib import new_book, add_sheet, NAVY, GOLD
-import tab_assumptions, tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_income, tab_scenarios, tab_hbu, tab_exec, tab_notes, tab_review, tab_capital, tab_dealbook, tab_partners, tab_starthere, tab_comps
+import tab_assumptions, tab_shahidi, tab_asset, tab_office, tab_land, tab_assemblage, tab_income, tab_scenarios, tab_hbu, tab_exec, tab_notes, tab_review, tab_capital, tab_dealbook, tab_partners, tab_starthere, tab_comps, tab_devt
 import configs, data
 
 OUT = "../Shahidi_Assemblage_Model.xlsx"
@@ -168,6 +168,10 @@ def main():
     sh["Comps & Pricing"] = add_sheet(wb, "Comps & Pricing", tabcolor=GOLD)
     tab_comps.build(sh["Comps & Pricing"], cap_regs)
 
+    # ---- development pro forma (quantifying the vision; links to assemblage) ----
+    sh["Development Pro Forma"] = add_sheet(wb, "Development Pro Forma", tabcolor=GOLD)
+    tab_devt.build(sh["Development Pro Forma"], cap_regs)
+
     # ---- executive summary (links to everything) ----
     all_regs = dict(cap_regs)
     all_regs["Highest & Best Use"] = sh["Highest & Best Use"].reg
@@ -187,19 +191,20 @@ def main():
     tab_assumptions.build_index(sh["Assumptions"], all_regs, a_free)
 
     # ---- reorder ----
-    order = ["Start Here", "Executive Summary", "Comps & Pricing", "Deal Book", "Partner Returns",
-             "Review Board", "Capital Stack", "Assumptions", "Income Valuation", "Scenarios",
-             "Assemblage", "Highest & Best Use", "Shahidi Retail", "Publix & Starbucks",
+    order = ["Start Here", "Executive Summary", "Comps & Pricing", "Development Pro Forma", "Deal Book",
+             "Assumptions", "Income Valuation", "Scenarios", "Assemblage", "Highest & Best Use",
+             "Review Board", "Capital Stack", "Partner Returns", "Shahidi Retail", "Publix & Starbucks",
              "Sunrise Plaza", "Office Condo", "Land", "Notes & Sources"]
     wb._sheets = [sh[t].ws for t in order]
     wb.active = 0
 
     # ---- tab colours grouped by reading section (makes the 17 tabs scannable) ----
     C_SEE, C_MAKE, C_PLAY = GOLD, "2E7D74", "3B6EA5"
-    C_CTRL, C_MATH, C_REF = "C77D2E", "4A5A6A", "6B7280"
+    C_CTRL, C_MATH, C_REF, C_VISION = "C77D2E", "4A5A6A", "6B7280", "2E7D4F"
     tabcolor = {
         "Start Here": C_SEE, "Executive Summary": C_SEE, "Comps & Pricing": C_SEE,
-        "Deal Book": C_MAKE, "Partner Returns": C_MAKE,
+        "Development Pro Forma": C_VISION,
+        "Deal Book": C_MAKE, "Partner Returns": C_MATH,
         "Review Board": C_PLAY, "Capital Stack": C_PLAY,
         "Assumptions": C_CTRL,
         "Income Valuation": C_MATH, "Scenarios": C_MATH, "Assemblage": C_MATH, "Highest & Best Use": C_MATH,

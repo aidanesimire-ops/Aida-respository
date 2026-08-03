@@ -87,17 +87,18 @@ ASSETS = [
     dict(
         key="Land", title="⑤ 1040 BAYVIEW  —  covered land / “The Residences at Bayview”",
         sub=[("Address / folio", "1040 Bayview Dr · folio -0040 · 2.39 ac (103,982 SF)", "✅"),
-             ("Owner", "Sunrise & Bayview Partners (Procacci); BBX exited to Procacci 2022", "✅"),
+             ("⚠️ JUST SOLD", "Procacci → WILLOW BRIDGE for $24.7M (~Aug 2026) — parcel has traded; verify & re-approach", "📰"),
              ("Prior sale", "$7.9–8.0M · 2014 (Procacci/BBX JV)", "✅"),
-             ("Entitlement", "259 units (247 mkt + 12 aff), 8 stories · case UDP-Z25002 (in City review)", "📰")],
+             ("Entitlement", "259 units (247 mkt + 12 aff), 8 stories · case UDP-Z25002", "📰")],
         price=("Land", "CONCLUDED"), income=("Land", "INCVAL"),
         comps=[
+            ("SALE", "★ 1040 Bayview itself — 259-unit ENTITLED site, SOLD to Willow Bridge", "$24.7M · $236/SF · $95k/unit", "The Real Deal · ~8/2026", "📰"),
             ("SALE", "2125 S Andrews (Affiliated) — 400-unit approved site, CLOSED", "$15.2M · $129/SF · $38k/unit", "The Real Deal · 2/2024", "📰"),
             ("SALE", "707 SE Third (Benjamin Cos) — 542-unit site, ASKING", "$33M · $316/SF · $61k/unit", "The Real Deal · 2/2025", "⚠️"),
-            ("VALUE", "FL infill dev-land (sold / active per-unit)", "$91–117k / $129–162k", "Redfin / broker aggregate · 2025", "📊"),
         ],
-        concl="Priced at ~$13M (≈ $125/SF land, in line with the $129/SF closed comp; ~$50k/unit, above the $38k closed "
-              "comp but below asking). Seller's 2014 basis was $7.9M — real embedded gain / negotiation room.",
+        concl="THE PARCEL JUST TRADED: Procacci sold the entitled site to Willow Bridge for $24.7M (~$95k/entitled unit) in ~Aug 2026 — "
+              "so the model's $13M basis is stale, and the counterparty has changed. That $95k/unit is now your best entitled-land comp for the "
+              "whole assemblage. Re-approach as a JV with Willow Bridge, or underwrite the block as four parcels.",
     ),
 ]
 
