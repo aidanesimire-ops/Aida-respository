@@ -10,8 +10,8 @@ Offered at **$1,600,000 / 8.25% cap** on $132,000 NOI.
 
 | File | What it is |
 |---|---|
-| **`451 White Horse Pike - Acquisition Analysis.pdf`** | **9-page report. Page 1 is a standalone executive summary; §1–10 carry the full detail.** |
-| **`451 White Horse Pike - Acquisition Model.xlsx`** | **Live 11-tab model. Change the offer price on `Assumptions` and everything recalculates.** |
+| **`451 White Horse Pike - Acquisition Analysis.pdf`** | **20-page report in four parts. Page 1 orients the reader — what the property is, the tenant, the lease, the ask — plus a contents map. §2–3 make the argument; §4–14 carry the detail. Every section starts on its own page and opens with a plain-English summary.** |
+| **`451 White Horse Pike - Acquisition Model.xlsx`** | **Live 13-tab model, 862 formulas. Change the offer price on `Assumptions` and everything recalculates.** |
 | `analysis.html` | The same analysis as a web page |
 | `analysis-print.html` | Print source for the PDF |
 | `build_model.py` | Rebuilds the workbook from scratch |
@@ -30,7 +30,7 @@ The `.py` models are dependency-free (`python3 underwriting_model.py`); `build_m
 `Re-Rent Analysis` · `Re-Leasing Options` · `Land Upside` · `Financing` · `Stress Tests` ·
 `Lease Comps` · `Sale Comps` · `Risks & Diligence`
 
-853 formulas, zero errors; every headline figure independently verified against
+862 formulas, zero errors; every headline figure independently verified against
 `audit_consistency.py`. Blue cells are inputs; the yellow cell on `Assumptions` is the
 master lever (our offer price).
 
@@ -91,11 +91,20 @@ paying more than the property is worth.
 - **Exit:** re-letting to a non-cannabis covenant removes the financing
   constraint, widening the buyer pool from cash-only cannabis specialists to the
   whole institutional net-lease market — worth roughly 75–125 bps of exit cap.
+- **The listing agent's comps confirm our rent, not his price.** Five of the seven
+  he sent are build-to-suit deals where rent repays land *and* construction
+  (7 Brew reads as $303.92/SF on a 510 SF kiosk; ALDI as $12.96/SF on 19,054 SF)
+  — not comparable to re-letting a second-generation box. The two genuine
+  lettings, adjusted for size, location and term, indicate **$21.52 and $21.94**,
+  confirming the $22 base case. His build-to-suit pad rents ($155,000 for 7 Brew,
+  $157,659 for Wendy's) are, however, strong evidence for the outparcel: a ground
+  lease typically runs 40–55% of a BTS rent, so the pad estimate rose from
+  $55,000 to **$80,000** base.
 - **Land upside, excluded from every return figure:** ±2.48 developable acres
   (site coverage is only 3.2%). An outparcel ground lease plus a third-party EV
-  fast-charging licence conservatively adds **$75,000/yr** of NOI and about
-  **$661,000** of value net of cost — taking yield on cost to 18.8%. With a pad
-  in place, even a dark building re-let at $18/SF still yields 14.0%.
+  fast-charging licence adds **$100,000/yr** of NOI and about **$931,000** of
+  value net of cost — taking yield on cost to 21.1%. With a pad in place, even a
+  dark building re-let at $18/SF still yields 16.3%.
   Gating item: confirm whether the lease demises the entire 3.13 AC to the
   tenant, which would block development without their consent.
 

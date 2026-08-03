@@ -175,7 +175,7 @@ r += 1
 sechead(a, r, "LAND UPSIDE  (excluded from all base-case returns)", 4); r += 1
 colhead(a, r, ["Item", "Value", "Unit", "Source / note"]); r += 1
 for k, v, u, s, fmt in [
-    ("Outparcel ground rent — base", 55000, "$/yr", "Entitled pad land value $500k-$800k at an 8-9% ground-lease yield", CUR),
+    ("Outparcel ground rent — base", 80000, "$/yr", "Benchmarked to the listing agent's own build-to-suit comps: 7 Brew $155,000/yr and Wendy's $157,659/yr. A ground lease (tenant builds) typically runs 40-55% of a BTS rent", CUR),
     ("EV charging licence — base", 20000, "$/yr", "6-8 DC fast stalls, corridor benchmarks discounted, 10-25% owner revenue share", CUR),
     ("Land build-out cost", 150000, "$", "ESTIMATE — subdivision, entitlement, site work", CUR),
     ("Land income cap rate", 0.0925, "%", "Capitalization rate applied to incremental land NOI", PCT2),
@@ -740,11 +740,11 @@ sechead(ld, r, "INCOME OPPORTUNITIES", 6); r += 1
 colhead(ld, r, ["Opportunity", "Low", "Base", "High", "Land used", "How it is derived"]); r += 1
 L0 = r
 put(ld, r, 1, "Outparcel ground lease", bold=True)
-put(ld, r, 2, 40000, fmt=CUR, color=BLUE, align="right")
+put(ld, r, 2, 60000, fmt=CUR, color=BLUE, align="right")
 put(ld, r, 3, f"={A('Outparcel ground rent — base')}", fmt=CUR, color=GREEN, align="right")
-put(ld, r, 4, 75000, fmt=CUR, color=BLUE, align="right")
+put(ld, r, 4, 110000, fmt=CUR, color=BLUE, align="right")
 put(ld, r, 5, "0.75-1.0 AC", size=9, color=INK2, align="right")
-put(ld, r, 6, "Entitled pad land value of $500k-$800k capitalized at an 8-9% ground-lease yield. QSR, coffee, car wash or medical pad.",
+put(ld, r, 6, "Benchmarked to the listing agent's own comps: 7 Brew pays $155,000/yr and Wendy's $157,659/yr on build-to-suit pads. A ground lease, where the tenant builds, runs ~40-55% of that. QSR, coffee, car wash or medical pad.",
     size=9, color=INK2, wrap=True)
 r += 1
 put(ld, r, 1, "EV fast-charging licence", bold=True)
@@ -1114,6 +1114,66 @@ put(lc, r, 8, "The floor our offer is built on. Range $20-$24/SF; base case $22"
     size=9, italic=True, color=INK2, wrap=True, fill=TEALB)
 r += 2
 
+
+sechead(lc, r, "TIER 3  —  COMPARABLES SUPPLIED BY THE LISTING AGENT", 8); r += 1
+colhead(lc, r, ["Tenant", "Location", "SF", "Rent / SF", "Annual", "Deal type", "Useful?", "What it actually shows"]); r += 1
+AG0 = r
+agent_comps = [
+    ("7 Brew", "1390 Blackwood-Clementon Rd, Clementon", 510, 155_000, "Build-to-suit", "No",
+     "A 510 SF coffee kiosk at an apparent $303.92/SF. Nobody rents a building at that rate - the rent is for the PAD and drive-thru lanes, not the hut"),
+    ("Wawa", "301 White Horse Pike, Chesilhurst", 5_585, 325_000, "Build-to-suit", "No",
+     "Purpose-built store with fuel on a large pad; rent repays land AND construction"),
+    ("Wendy's", "69 NJ-73, Voorhees", 3_321, 157_659, "Build-to-suit", "No",
+     "Purpose-built drive-thru restaurant - same land-plus-building economics"),
+    ("501 Delsea Dr", "Sewell - lease signed 5 Jul", 1_373, 39.33*1373, "2nd generation", "Partly",
+     "A genuine letting, but a very small unit - small units always rent high per foot"),
+    ("Walgreens", "625 N Black Horse Pike, Blackwood", 14_870, 463_823, "Credit BTS", "No",
+     "Purpose-built pharmacy for a national credit tenant on a long-standing rent"),
+    ("Avis Budget", "341 N White Horse Pike, Lawnside - signed 5 Jun 2025", 3_300, 27.96*3300, "2nd generation", "YES",
+     "THE ONE GENUINELY USEFUL COMP: second-hand building, same road, closest size to ours, recently signed"),
+    ("ALDI", "142 NJ-73, Voorhees", 19_054, 246_950, "Grocery big box", "No",
+     "At $12.96/SF it shows the opposite end of the same size effect - big buildings rent low per foot"),
+]
+for n, loc, sf, rent, typ, useful, note in sorted(agent_comps, key=lambda x: -x[3]/x[2]):
+    fill = TEALB if useful == "YES" else None
+    put(lc, r, 1, n, bold=(useful == "YES"), wrap=True, fill=fill)
+    put(lc, r, 2, loc, size=9, color=INK2, wrap=True, fill=fill)
+    put(lc, r, 3, sf, fmt=NUM, align="right", fill=fill)
+    put(lc, r, 4, f"=E{r}/C{r}", fmt=CUR2, bold=True, align="right",
+        color=TEAL if useful == "YES" else (RED if rent / sf > 100 else INK), fill=fill)
+    put(lc, r, 5, round(rent), fmt=CUR, align="right", fill=fill)
+    put(lc, r, 6, typ, size=9, color=INK2, align="right", fill=fill)
+    put(lc, r, 7, useful, size=9, bold=True,
+        color=TEAL if useful == "YES" else INK2, align="right", fill=fill)
+    put(lc, r, 8, note, size=9, color=INK2, wrap=True, fill=fill)
+    lc.row_dimensions[r].height = 34
+    r += 1
+r += 1
+sechead(lc, r, "ADJUSTING THE TWO GENUINE LETTINGS TO OUR BUILDING", 8); r += 1
+colhead(lc, r, ["Adjustment", "Avis, Lawnside", "Berlin drive-thru", "", "", "", "", "Reasoning"]); r += 1
+ADJ = r
+put(lc, r, 1, "Starting rent", bold=True)
+put(lc, r, 2, 27.96, fmt=CUR2, color=BLUE, align="right")
+put(lc, r, 3, 27.43, fmt=CUR2, color=BLUE, align="right")
+put(lc, r, 8, "Avis signed Jun-2025; Berlin is an asking rate", size=9, color=INK2, wrap=True)
+r += 1
+for label, a1, a2, note in [
+    ("Bigger building than the comp", 0.90, 0.80, "Ours is 4,400 SF; larger boxes rent lower per foot"),
+    ("Atco is softer than Lawnside", 0.90, 1.00, "Lawnside is denser and closer in"),
+    ("10-15 yr lease vs a 3-yr deal", 0.95, 1.00, "Short leases carry a premium rate"),
+]:
+    put(lc, r, 1, label, bold=True, wrap=True)
+    put(lc, r, 2, a1, fmt=PCT, color=BLUE, align="right")
+    put(lc, r, 3, a2, fmt=PCT, color=BLUE, align="right")
+    put(lc, r, 8, note, size=9, color=INK2, wrap=True)
+    r += 1
+put(lc, r, 1, "INDICATED RENT FOR OUR BUILDING", bold=True, fill=TEALB)
+put(lc, r, 2, f"=B{ADJ}*B{ADJ+1}*B{ADJ+2}*B{ADJ+3}", fmt=CUR2, bold=True, color=TEAL, align="right", fill=TEALB)
+put(lc, r, 3, f"=C{ADJ}*C{ADJ+1}*C{ADJ+2}*C{ADJ+3}", fmt=CUR2, bold=True, color=TEAL, align="right", fill=TEALB)
+for cc in range(4, 8): put(lc, r, cc, None, fill=TEALB)
+put(lc, r, 8, "Two independent routes converging on ~$22 - the seller's own evidence confirms the market rent we used",
+    size=9, italic=True, color=INK2, wrap=True, fill=TEALB)
+r += 2
 sechead(lc, r, "HOW WE GOT TO $22  —  the adjustment reasoning", 8); r += 1
 for k, note in [
     ("Start from the submarket", "Berlin, Sicklerville and Hammonton all cluster at $20-21/SF for general retail. That is the base."),
