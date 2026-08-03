@@ -151,8 +151,10 @@ def build(s, regs):
     s.put(r, 3, f"={x('Office Condo', 'BUYOUT_TOTAL')}", style="grand", fmt=F_ACCT_TOP, align="right")
     s.put(r, 5, "income value + buy-out premium; adjust the premium on the Office Condo tab", style="note", align="left", merge=(r, 13)); r += 2
 
-    # ============ 4. redevelopment residual (HBU test) ============
-    s.section(r, L, 13, "④  REDEVELOPMENT — LIVE LOCAL RESIDUAL  (assemblage scale · ⚠️ negative → HOLD)"); r += 1
+    # ============ 4. redevelopment residual (quick check — full analysis on the Development Pro Forma) ============
+    s.section(r, L, 13, "④  REDEVELOPMENT — QUICK RESIDUAL CHECK  (⚠️ negative → HOLD · full pro forma on the DEVELOPMENT PRO FORMA tab)"); r += 1
+    s.put(r, L, "→ See the DEVELOPMENT PRO FORMA tab for the full vision", style="note", align="left", merge=(r, 4))
+    s.put(r, 5, "density · product · cost stack · rental vs condo · residual land value · sensitivity", style="note", align="left", merge=(r, 13)); r += 1
     s.put(r, L, "Buildable density (units/acre)", style="label", align="left")
     s.put(r, 3, 100, style="input", fmt=F_NUM, align="right", name="DENSITY")
     s.put(r, 4, "🔵 Live Local target", style="note", align="left", merge=(r, 13)); r += 1

@@ -117,8 +117,8 @@ def main():
     sh["Office Condo"] = add_sheet(wb, "Office Condo", tabcolor=NAVY)
     tab_office.build(sh["Office Condo"], amap("OFF"))
 
-    sh["Land"] = add_sheet(wb, "Land", tabcolor=NAVY)
-    tab_land.build(sh["Land"], A, amap("LND"))
+    sh["Bayview JV"] = add_sheet(wb, "Bayview JV", tabcolor=NAVY)
+    tab_land.build(sh["Bayview JV"], A, amap("LND"))
 
     # ---- assemblage HBU (links to assets + assumptions premium) ----
     asset_regs = {name: s.reg for name, s in sh.items()}
@@ -194,7 +194,7 @@ def main():
     order = ["Start Here", "Executive Summary", "Comps & Pricing", "Development Pro Forma", "Deal Book",
              "Assumptions", "Income Valuation", "Scenarios", "Assemblage", "Highest & Best Use",
              "Review Board", "Capital Stack", "Partner Returns", "Shahidi Retail", "Publix & Starbucks",
-             "Sunrise Plaza", "Office Condo", "Land", "Notes & Sources"]
+             "Sunrise Plaza", "Office Condo", "Bayview JV", "Notes & Sources"]
     wb._sheets = [sh[t].ws for t in order]
     wb.active = 0
 
@@ -208,7 +208,7 @@ def main():
         "Review Board": C_PLAY, "Capital Stack": C_PLAY,
         "Assumptions": C_CTRL,
         "Income Valuation": C_MATH, "Scenarios": C_MATH, "Assemblage": C_MATH, "Highest & Best Use": C_MATH,
-        "Shahidi Retail": NAVY, "Publix & Starbucks": NAVY, "Sunrise Plaza": NAVY, "Office Condo": NAVY, "Land": NAVY,
+        "Shahidi Retail": NAVY, "Publix & Starbucks": NAVY, "Sunrise Plaza": NAVY, "Office Condo": NAVY, "Bayview JV": C_VISION,
         "Notes & Sources": C_REF,
     }
 

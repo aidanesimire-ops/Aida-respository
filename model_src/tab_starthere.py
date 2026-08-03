@@ -25,7 +25,7 @@ def build(s, regs):
     s.section(r, L, 13, "THE DEAL IN THREE LINES"); r += 1
     for lab, txt in [
         ("What", "Acquire 4 contiguous parcels on E Sunrise Blvd and control the corner — buy the income, control the dirt. (Bayview, a 5th parcel, just sold to Willow Bridge — now a JV upside.)"),
-        ("Price", "The rent supports about $65M (income basis); controlling the whole block costs about $127M (covered-land) — the gap is the land + density option."),
+        ("Price", "The rent supports about $60M (income basis); controlling the four-parcel corner costs about $111M (covered-land) — the gap is the land + the density option."),
         ("Return", "At the income basis the LP earns ~20% IRR / 2.4×; the real upside is the entitled land you hold for redevelopment."),
     ]:
         s.put(r, L, lab, style="label_b", align="left")
@@ -72,7 +72,8 @@ def build(s, regs):
         ("tab", "Highest & Best Use", "What's the land worth alone vs. assembled, and does redevelopment pencil?"),
         ("tab", "Partner Returns", "If you raise LP equity: how the money splits (8% pref, promote)"),
         ("group", "⑥ THE ASSETS (one tab each)", None),
-        ("tab", "Shahidi · Publix · Sunrise · Office · Land", "The full underwrite of each property — rent roll, cash flow, P&L."),
+        ("tab", "Shahidi · Publix · Sunrise · Office", "The full underwrite of each core property — rent roll, cash flow, P&L."),
+        ("tab", "Bayview JV", "The 5th parcel — sold to Willow Bridge; modeled as a JV-upside case, not part of the core."),
         ("group", "⑦ WHERE IT COMES FROM", None),
         ("tab", "Notes & Sources", "Where every number came from, what's verified vs. still to confirm, and the methodology."),
     ]

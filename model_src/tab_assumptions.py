@@ -131,7 +131,7 @@ def _blocks():
             ("LTV", "Senior LTV", OA["ltv"], F_PCT1),
             ("RATE", "Senior rate", OA["loan_rate"], F_PCT2),
         ]),
-        ("LND", "1040 Bayview — covered land (interim office)  ⚠️ reported parcel", [
+        ("LND", "1040 Bayview — JV UPSIDE (sold to Willow Bridge ~Aug 2026; NOT in the 4-parcel core)", [
             ("PRICE", "Acquisition basis (entitled land)", LA["price"], F_ACCT_TOP),
             ("IOCC", "Interim office occupancy", LA["interim_occ"], F_PCT1),
             ("IRENT", "Interim office rent ($/SF MG)", LA["interim_rent"], F_PSF),

@@ -98,7 +98,7 @@ ASSET_META = {
     "publix":  ("Publix + Starbucks (sale-leaseback)", "Publix & Starbucks", "VERIFIED"),
     "sunrise": ("Sunrise Plaza (Kar Luen)", "Sunrise Plaza", "REPORTED"),
     "office":  ("Galleria Corporate Centre (office condo)", "Office Condo", "REPORTED"),
-    "land":    ("1040 Bayview (covered land)", "Land", "REPORTED"),
+    "land":    ("1040 Bayview (JV upside)", "Bayview JV", "REPORTED"),
 }
 
 # key OUTPUT cells the model produces (named registry cell -> plain-English meaning)

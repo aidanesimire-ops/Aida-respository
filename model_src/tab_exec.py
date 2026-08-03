@@ -115,7 +115,7 @@ def build(s, regs):
     twocol("Plottage premium", f"={x(HB,'PLOTTAGE')}", F_ACCT, "Avg cash-on-cash (levered)", f"={x(IV,'COC_AVG_I')}", F_PCT1)
     twocol("Office condo FULL BUY-OUT", f"={x('Office Condo','BUYOUT_TOTAL')}", F_ACCT, "Year-1 DSCR", f"={x(IV,'DSCR_I')}", F_MULT)
     twocol("Blended land basis ($/SF)", f"={x(A,'BLEND_LANDPSF')}", F_PSF, "Break-even exit cap", f"={x(IV,'BE_EXITCAP')}", F_PCT2)
-    twocol("Redevelopment residual (Live Local)", f"={x('Land','RESID')}", F_ACCT, "Total senior debt", f"={x(IV,'LOAN')}", F_ACCT)
+    twocol("Redevelopment (see Development Pro Forma)", f"={x('Bayview JV','RESID')}", F_ACCT, "Total senior debt", f"={x(IV,'LOAN')}", F_ACCT)
     # scenario range row
     s.put(r, L, "HBU verdict", style="warn", align="left", merge=(r, 3))
     s.put(r, 4, "HOLD — residual negative", style="warn", align="left", merge=(r, 6))

@@ -143,7 +143,7 @@ def build(s, regs):
     # ---- HBU ----
     s.section(r, L, 13, "HIGHEST & BEST USE  —  redevelopment residual (Live Local) vs. hold"); r += 1
     s.put(r, L, "Redevelopment residual — 1040 Bayview (per Land tab)", style="label", align="left")
-    s.put(r, 3, f"={x('Land', 'RESID')}", style="calc", color="008000", fmt=F_ACCT_TOP, align="right"); r += 1
+    s.put(r, 3, f"={x('Bayview JV', 'RESID')}", style="calc", color="008000", fmt=F_ACCT_TOP, align="right"); r += 1
     s.put(r, L, "Redevelopment verdict", style="warn", align="left")
     s.put(r, 3, "HOLD", style="warn", align="center")
     s.put(r, 4, "Residual runs NEGATIVE in the AE flood zone at current coastal hard costs — do not force it positive. "
