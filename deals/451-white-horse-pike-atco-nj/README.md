@@ -10,11 +10,12 @@ Offered at **$1,600,000 / 8.25% cap** on $132,000 NOI.
 
 | File | What it is |
 |---|---|
-| **`451 White Horse Pike - Acquisition Analysis.pdf`** | **20-page report in four parts. Page 1 orients the reader — what the property is, the tenant, the lease, the ask — plus a contents map. §2–3 make the argument; §4–14 carry the detail. Every section starts on its own page and opens with a plain-English summary.** |
-| **`451 White Horse Pike - Acquisition Model.xlsx`** | **Live 13-tab model, 862 formulas. Change the offer price on `Assumptions` and everything recalculates.** |
+| **`451 White Horse Pike - Acquisition Analysis.pdf`** | **25-page report in four parts, framed as a growth opportunity with controlled downside. Page 1 orients the reader — what the property is, the tenant, the lease, the ask — plus a contents map. §2–3 make the argument; §4–14 carry the detail. Every section starts on its own page and opens with a plain-English summary.** |
+| **`451 White Horse Pike - Acquisition Model.xlsx`** | **Live 14-tab model, 898 formulas. Change the offer price on `Assumptions` and everything recalculates.** |
 | `analysis.html` | The same analysis as a web page |
 | `analysis-print.html` | Print source for the PDF |
 | `build_model.py` | Rebuilds the workbook from scratch |
+| `growth_case_model.py` | Ten-year floor / base / growth cases, levered and unlevered, plus the value bridge |
 | `financing_stress_tests.py` | Loan sizing, DSCR, levered IRR, tenant-health coverage, sensitivity and exit analysis |
 | `audit_consistency.py` | Recomputes every headline figure independently and cross-checks it against the workbook and the PDF |
 | `offer_case_1100k.py` | Returns on the $1.1M basis, payback, downside yields and the negotiation ladder |
@@ -27,12 +28,37 @@ The `.py` models are dependency-free (`python3 underwriting_model.py`); `build_m
 ### Workbook tabs
 
 `Executive Summary` · `Assumptions` · `Reversion Scenarios` · `Returns` · `Valuation` ·
-`Re-Rent Analysis` · `Re-Leasing Options` · `Land Upside` · `Financing` · `Stress Tests` ·
+`Re-Rent Analysis` · `Re-Leasing Options` · `Land Upside` · `Growth Plan` · `Financing` · `Stress Tests` ·
 `Lease Comps` · `Sale Comps` · `Risks & Diligence`
 
-862 formulas, zero errors; every headline figure independently verified against
+898 formulas, zero errors; every headline figure independently verified against
 `audit_consistency.py`. Blue cells are inputs; the yellow cell on `Assumptions` is the
 master lever (our offer price).
+
+## The shape of the bet — ten-year hold at $1,100,000
+
+| Case | What has to happen | Unlevered | Levered (55% LTV) |
+|---|---|---|---|
+| **Floor** | Tenant fails, land never developed, weak re-let | **+5.4%** | −3.7% |
+| **Base** | Building re-let to medical or bank. Land left alone | **+8.7%** | +7.2% |
+| **Growth** | Land monetised *and* building re-let with escalations | **+18.2%** | +24.2% |
+| Sell at lease end 2033 | Weighted across six exit outcomes, land ignored | +12.0% | +14.9% |
+
+**Four growth engines, none of them paid for:** 2.48 idle acres (+$100k/yr, ~$931k of
+value, yield on cost 12%→21%); a re-let that swaps flat rent for a 10–15 yr lease
+*with escalations*; a non-cannabis covenant that makes the asset mortgageable
+(75–125 bps of exit cap); and a $250/SF basis below replacement cost.
+
+**Six layers of downside protection:** entry at conventional-use value; land and shell
+cover 68% of the price; 78% of capital returned before lease expiry; break-even rent
+($21.25) below market ($22.00); every modelled outcome positive; 2.00x DSCR.
+
+**One honest caveat:** leverage magnifies both directions — in the floor case a 55%
+mortgage turns +5.4% into roughly −3.7%. For the floor to hold in every case, buy for
+cash or keep the loan nearer 35–40%.
+
+Stabilised value if the plan executes is about **$2,186,000** against a $1,100,000
+entry — roughly 7% compound growth in value a year, on top of the rent.
 
 ## Position: offering $1,100,000
 

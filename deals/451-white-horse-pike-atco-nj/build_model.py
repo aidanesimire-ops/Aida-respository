@@ -812,6 +812,128 @@ for k, note in [
     r += 1
 
 
+
+# =====================================================================
+# GROWTH PLAN
+# =====================================================================
+gp = wb.create_sheet("Growth Plan")
+title(gp, "GROWTH PLAN  —  the ten-year value-creation case",
+      "Three cases over a 10-year hold. The land is EXCLUDED from the floor and base cases.", 12)
+widths(gp, {"A": 34, **{get_column_letter(i): 11 for i in range(2, 13)}})
+
+r = 4
+sechead(gp, r, "ASSUMPTIONS FOR THE GROWTH CASE", 12); r += 1
+GA = {}
+for k, v, fmt, note in [
+    ("Re-let rent to a medical covenant", 24.00, CUR2, "$/SF - see Re-Leasing Options"),
+    ("Rent increases on the new lease", 0.025, PCT2, "Annual - the flaw the current lease has"),
+    ("Fit-out contribution", 264000, CUR, "$60/SF medical fit-out"),
+    ("Letting fees", 52800, CUR, "5% of the first 10 years' rent"),
+    ("Exit cap - growth case", 0.0800, PCT2, "A non-cannabis covenant is financeable, so tighter"),
+    ("Exit cap - base case", 0.0850, PCT2, "No land income"),
+    ("Exit cap - floor case", 0.0900, PCT2, "Weak covenant, wide"),
+    ("Floor-case re-let rent", 18.00, CUR2, "$/SF - bottom of the corridor"),
+]:
+    put(gp, r, 1, k, bold=True)
+    put(gp, r, 2, v, fmt=fmt, color=BLUE, align="right")
+    gp.merge_cells(start_row=r, start_column=3, end_row=r, end_column=12)
+    put(gp, r, 3, note, size=9, color=INK2, indent=1)
+    GA[k] = r; r += 1
+G = lambda k: f"$B${GA[k]}"
+r += 1
+
+sechead(gp, r, "TEN-YEAR CASH FLOW  —  GROWTH CASE (land executed, building re-let)", 12); r += 1
+colhead(gp, r, ["Year"] + [str(i) for i in range(0, 11)] + [""]); r += 1
+CFR = r
+put(gp, r, 1, "Cash flow", bold=True)
+LANDNOI = f"('Land Upside'!$C${NOIROW})"
+for yr in range(0, 11):
+    col = 2 + yr
+    if yr == 0:
+        f_ = f"=-{PRICE}"
+    else:
+        parts = []
+        if yr <= 6: parts.append(f"{RENT}")
+        elif yr == 7: parts.append(f"{RENT}*0.5-{CARRY}*0.5")
+        if yr == 2: parts.append(f"-{A('Land build-out cost')}")
+        if yr >= 3: parts.append(LANDNOI)
+        if yr == 8: parts.append(f"-{G('Fit-out contribution')}-{G('Letting fees')}-{CARRY}*0.5")
+        if yr >= 9:
+            parts.append(f"{G('Re-let rent to a medical covenant')}*{SF}*(1+{G('Rent increases on the new lease')})^({yr}-9)")
+        f_ = "=" + "+".join(parts) if parts else "=0"
+    put(gp, r, col, f_, fmt=CUR, align="right",
+        bold=(yr == 0), color=TEAL if yr >= 3 and yr not in (8,) else INK)
+put(gp, r, 13, None)
+r += 1
+put(gp, r, 1, "Sale at year 10", bold=True)
+for yr in range(0, 10): put(gp, r, 2 + yr, 0, fmt=CUR, align="right")
+put(gp, r, 12, f"=({G('Re-let rent to a medical covenant')}*{SF}*(1+{G('Rent increases on the new lease')})^2+{LANDNOI})/{G('Exit cap - growth case')}",
+    fmt=CUR, bold=True, color=TEAL, align="right")
+SALE = r; r += 1
+put(gp, r, 1, "TOTAL", bold=True, fill=TEALB)
+for yr in range(0, 11):
+    L = get_column_letter(2 + yr)
+    put(gp, r, 2 + yr, f"=SUM({L}{CFR}:{L}{SALE})", fmt=CUR, bold=True, align="right", fill=TEALB)
+TOT = r; r += 2
+
+sechead(gp, r, "THE THREE CASES", 12); r += 1
+colhead(gp, r, ["Case", "Unlevered IRR", "What has to happen", "", "", "", "", "", "", "", "", ""]); r += 1
+put(gp, r, 1, "Floor - nothing goes right", bold=True)
+put(gp, r, 2, 0.0542, fmt=PCT2, color=BLUE, align="right")
+gp.merge_cells(start_row=r, start_column=3, end_row=r, end_column=12)
+put(gp, r, 3, "Tenant fails, land never developed, building re-let at $18/SF and sold at a 9.00% cap", size=9, color=INK2, indent=1)
+r += 1
+put(gp, r, 1, "Base - the ordinary path", bold=True)
+put(gp, r, 2, 0.0874, fmt=PCT2, color=BLUE, align="right")
+gp.merge_cells(start_row=r, start_column=3, end_row=r, end_column=12)
+put(gp, r, 3, "Building re-let to a medical or bank covenant at $24/SF. Land left alone", size=9, color=INK2, indent=1)
+r += 1
+put(gp, r, 1, "Growth - the plan works", bold=True, fill=TEALB)
+put(gp, r, 2, f"=IRR(B{TOT}:L{TOT})", fmt=PCT2, bold=True, color=TEAL, align="right", fill=TEALB)
+gp.merge_cells(start_row=r, start_column=3, end_row=r, end_column=12)
+put(gp, r, 3, "Land monetised AND building re-let on a 10-15 yr lease with increases", size=9,
+    italic=True, color=INK2, indent=1, fill=TEALB)
+r += 2
+
+sechead(gp, r, "VALUE BRIDGE  —  where the value is created", 12); r += 1
+colhead(gp, r, ["Step", "Annual income", "Value", "", "", "", "", "", "", "", "", "What changed"]); r += 1
+BR = r
+for name, inc, cap, note in [
+    ("Where we start - buy at our offer", f"={RENT}", None, "Cannabis rent, 6.5 yrs left, no growth"),
+    ("Add the spare land", f"={RENT}+{LANDNOI}", 0.0925, "Building plot let, EV chargers licensed"),
+    ("Re-let the building on a proper lease", f"={G('Re-let rent to a medical covenant')}*{SF}+{LANDNOI}", 0.0825, "Medical rent with increases replaces cannabis rent"),
+    ("An ordinary tenant means it is mortgageable", f"={G('Re-let rent to a medical covenant')}*{SF}+{LANDNOI}", 0.0775, "Wider buyer pool tightens the sale yield"),
+]:
+    put(gp, r, 1, name, bold=True, wrap=True)
+    put(gp, r, 2, inc, fmt=CUR, align="right")
+    put(gp, r, 3, f"={PRICE}" if cap is None else f"=B{r}/{cap}", fmt=CUR, bold=True, align="right")
+    for cc in range(4, 12): put(gp, r, cc, None)
+    put(gp, r, 12, note, size=9, color=INK2, wrap=True)
+    r += 1
+put(gp, r, 1, "Less what it costs to get there", bold=True)
+put(gp, r, 2, None)
+put(gp, r, 3, f"=-({A('Land build-out cost')}+{G('Fit-out contribution')}+{G('Letting fees')})",
+    fmt=CUR, color=RED, align="right")
+for cc in range(4, 12): put(gp, r, cc, None)
+put(gp, r, 12, "Land works, fit-out and letting fees", size=9, color=INK2, wrap=True)
+r += 1
+put(gp, r, 1, "STABILISED VALUE", bold=True, fill=TEALB)
+put(gp, r, 2, f"=B{BR+3}", fmt=CUR, bold=True, align="right", fill=TEALB)
+put(gp, r, 3, f"=C{BR+3}+C{r-1}", fmt=CUR, bold=True, color=TEAL, align="right", fill=TEALB)
+for cc in range(4, 12): put(gp, r, cc, None, fill=TEALB)
+put(gp, r, 12, "Roughly double our entry price, over about ten years", size=9,
+    italic=True, color=INK2, wrap=True, fill=TEALB)
+STAB = r; r += 1
+put(gp, r, 1, "Gain on our basis", bold=True)
+put(gp, r, 3, f"=C{STAB}/{PRICE}-1", fmt=PCT, bold=True, color=TEAL, align="right")
+r += 2
+put(gp, r, 1, "The land is excluded from the floor and base cases, and from every return elsewhere in this "
+    "workbook. It is free option value - we should never bid the price up for it. Note also that leverage "
+    "magnifies both directions: in the floor case a 55% mortgage turns +5.4% into roughly -3.7%.",
+    size=9, italic=True, color=INK2, wrap=True, border=False)
+gp.merge_cells(start_row=r, start_column=1, end_row=r + 1, end_column=12)
+gp.row_dimensions[r].height = 26
+
 # =====================================================================
 # FINANCING
 # =====================================================================
