@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>451 White Horse Pike, Atco NJ — Acquisition Recommendation</title>
+<style>
+  @page { size: Letter; margin: 14mm 14mm 16mm; }
+  :root{
+    --ink:#16191A; --ink2:#4A4F4C; --ink3:#7C8280;
+    --teal:#00694F; --ochre:#A9660F; --red:#8E332E;
+    --rule:#D4D6D0; --rule2:#B8BBB4; --band:#F0F1EC; --tealw:#E6F0EC; --ochrew:#F8EFE2;
+    --serif:"Iowan Old Style","Charter",Georgia,"Times New Roman",serif;
+    --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    --mono:"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:var(--sans);font-size:9pt;line-height:1.38;color:var(--ink);
+       -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  h1,h2,h3,h4{margin:0;}
+  p{margin:0 0 7pt;}
+  strong{font-weight:700;}
+  .page{page-break-after:auto;}
+  .page.first{page-break-after:always;}
+  h2.sec{page-break-after:avoid;}
+  h3.sub{page-break-after:avoid;}
+  .call{page-break-inside:avoid;}
+  caption{page-break-after:avoid;}
+  .avoid{page-break-inside:avoid;}
+
+  /* cover / exec */
+  .masthead{background:#14201C;color:#fff;padding:11pt 14pt;margin:-2pt -2pt 9pt;}
+  .eyebrow{font-family:var(--mono);font-size:7pt;letter-spacing:.16em;text-transform:uppercase;
+           color:#9FAAA1;margin:0 0 6pt;}
+  .masthead h1{font-family:var(--serif);font-size:19pt;line-height:1.1;font-weight:600;letter-spacing:-.01em;}
+  .masthead .sub{font-size:8.6pt;color:#B7C0B8;margin-top:5pt;}
+
+  .verdict{border:1.25pt solid var(--teal);background:var(--tealw);padding:8pt 11pt;margin-bottom:9pt;}
+  .verdict .lab{font-family:var(--mono);font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;
+                color:var(--teal);font-weight:700;margin-bottom:5pt;}
+  .verdict p{font-size:9.6pt;line-height:1.42;margin:0;}
+  .verdict p+p{margin-top:6pt;}
+
+  .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border:.5pt solid var(--rule2);
+        margin-bottom:9pt;}
+  .kpi{padding:5.5pt 7pt;border-right:.5pt solid var(--rule);}
+  .kpi:last-child{border-right:none;}
+  .kpi dt{font-family:var(--mono);font-size:6.4pt;letter-spacing:.1em;text-transform:uppercase;
+          color:var(--ink3);margin-bottom:3pt;}
+  .kpi dd{margin:0;font-family:var(--mono);font-size:11.5pt;font-weight:700;color:var(--teal);
+          letter-spacing:-.02em;}
+  .kpi dd small{display:block;font-family:var(--sans);font-size:6.6pt;font-weight:400;
+                color:var(--ink3);margin-top:2pt;letter-spacing:0;}
+
+  h2.sec{font-family:var(--serif);font-size:14pt;font-weight:600;letter-spacing:-.01em;
+         border-bottom:1pt solid var(--ink);padding-bottom:4pt;margin:0 0 9pt;
+         display:flex;align-items:baseline;gap:8pt;}
+  h2.sec .n{font-family:var(--mono);font-size:8.5pt;color:var(--teal);font-weight:700;}
+  h2.sec .note{margin-left:auto;font-family:var(--mono);font-size:7pt;color:var(--ink3);
+               font-weight:400;letter-spacing:.04em;}
+  h3.sub{font-family:var(--mono);font-size:7.4pt;font-weight:700;letter-spacing:.1em;
+         text-transform:uppercase;color:var(--ink2);margin:9pt 0 4pt;}
+  .lede{font-size:9.4pt;color:var(--ink2);margin-bottom:8pt;}
+
+  table{border-collapse:collapse;width:100%;font-size:7.9pt;margin-bottom:7pt;}
+  thead{display:table-header-group;} tr{page-break-inside:avoid;}
+  caption{caption-side:top;text-align:left;font-family:var(--mono);font-size:6.8pt;
+          letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);padding-bottom:3pt;}
+  th,td{padding:3.2pt 5pt;text-align:left;border-bottom:.5pt solid var(--rule);vertical-align:top;}
+  thead th{font-family:var(--mono);font-size:6.6pt;letter-spacing:.07em;text-transform:uppercase;
+           color:var(--ink2);font-weight:700;background:var(--band);
+           border-bottom:.8pt solid var(--ink2);}
+  .num{font-family:var(--mono);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;}
+  th.num{text-align:right;}
+  tr.hi td{background:var(--tealw);font-weight:700;}
+  tr.warn td{background:var(--ochrew);}
+  tr.tot td{background:var(--band);font-weight:700;border-top:.8pt solid var(--ink2);}
+  td small,th small{display:block;color:var(--ink3);font-size:7pt;font-weight:400;line-height:1.3;margin-top:1pt;}
+  .g{color:var(--teal);font-weight:700;} .r{color:var(--red);font-weight:700;} .o{color:var(--ochre);font-weight:700;}
+
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:7pt;margin-bottom:8pt;}
+  .cards.four{grid-template-columns:repeat(4,1fr);}
+  .cards.three{grid-template-columns:1fr 1fr 1fr;}
+  .card{border:.5pt solid var(--rule2);padding:6pt 8pt;}
+  .card h4{font-size:9pt;font-weight:700;margin-bottom:4pt;}
+  .card .big{font-family:var(--mono);font-size:13pt;font-weight:700;color:var(--teal);
+             display:block;margin-bottom:3pt;letter-spacing:-.02em;}
+  .card p{font-size:7.6pt;color:var(--ink2);margin:0;line-height:1.35;}
+  .card p+p{margin-top:4pt;}
+
+  .call{border-left:2.5pt solid var(--teal);background:var(--tealw);padding:7pt 10pt;margin:9pt 0;}
+  .call.w{border-left-color:var(--ochre);background:var(--ochrew);}
+  .call p{margin:0;font-size:9pt;}
+  .call p+p{margin-top:5pt;}
+  .fn{font-size:7.2pt;color:var(--ink3);line-height:1.4;margin-top:5pt;}
+  ul{margin:0 0 7pt;padding-left:13pt;}
+  li{font-size:8.2pt;color:var(--ink2);margin-bottom:2.5pt;}
+  .chk{list-style:none;padding-left:0;}
+  .chk li{padding-left:12pt;position:relative;}
+  .chk li::before{content:"\25A1";position:absolute;left:0;color:var(--ink3);}
+  .bar{height:8pt;background:var(--teal);display:inline-block;vertical-align:middle;}
+  .bar.o{background:var(--ochre);}
+  .foot{position:running(f);}
+</style></head><body>
+
+<!-- ============ PAGE 1 : EXECUTIVE SUMMARY ============ -->
+<section class="page first">
+  <div class="masthead">
+    <p class="eyebrow">Acquisition recommendation &middot; Single-tenant net lease &middot; August 2026</p>
+    <h1>451 White Horse Pike, Atco, New Jersey</h1>
+    <p class="sub">&plusmn;4,400 SF former Wells Fargo branch on &plusmn;3.13 acres &middot; 3-lane drive-thru &middot; Corner of US Route 30 &amp; Cooper Folly Road<br>
+    Leased to Holistic Solutions through January 2033 &middot; Listed at $1,600,000</p>
+  </div>
+
+  <div class="verdict avoid">
+    <p class="lab">Recommendation</p>
+    <p><strong>Offer $1,100,000 — all cash, 30-day diligence, 15-day close.</strong></p>
+    <p>At $1,100,000 we pay what this building is worth with an ordinary tenant paying ordinary market rent. The six and a half years of above-market cannabis rent, the renewal option, the 3-lane drive-thru and 2.5 acres of idle land all come free. Expected unlevered return is <strong>12%</strong>, and every modelled outcome — including total tenant failure — returns a profit.</p>
+  </div>
+
+  <dl class="kpis avoid">
+    <div class="kpi"><dt>Our offer</dt><dd>$1.10M<small>$250.00 / SF</small></dd></div>
+    <div class="kpi"><dt>Going-in cap</dt><dd>12.00%<small>on $132,000 in place</small></dd></div>
+    <div class="kpi"><dt>Value indication</dt><dd>$1.25M<small>four methods converge</small></dd></div>
+    <div class="kpi"><dt>Expected IRR</dt><dd>12.0%<small>unlevered, weighted</small></dd></div>
+    <div class="kpi"><dt>Worst case IRR</dt><dd>+6.2%<small>total tenant failure</small></dd></div>
+    <div class="kpi"><dt>Discount to ask</dt><dd>&minus;31%<small>$500,000 below</small></dd></div>
+  </dl>
+
+  <h3 class="sub">Why it works — four reasons</h3>
+  <div class="cards four avoid">
+    <div class="card"><h4><span class="big">$0</span>We pay nothing for the upside</h4>
+      <p>Market rent of $22/SF capitalizes to <strong>$1,106,000</strong>. Our offer is $1,100,000 — we buy at plain re-let-to-a-bank value, so the cannabis premium, the option, the drive-thru and the land cost us nothing.</p></div>
+    <div class="card"><h4><span class="big">78%</span>Capital returned before expiry</h4>
+      <p>Contracted rent to January 2033 totals <strong>$858,000</strong> — back in hand before the lease matures, with no reliance on renewal, refinancing or resale.</p></div>
+    <div class="card"><h4><span class="big">68%</span>Basis covered by dirt and shell</h4>
+      <p>Land plus vacant building supports ~<strong>$750,000</strong>. Strip it out and only about <strong>$350,000</strong> is genuinely at risk against a $132,000 income stream.</p></div>
+    <div class="card"><h4><span class="big">+6.2%</span>The worst case still pays</h4>
+      <p>Tenant fails, building dark, liquidate — still returns <strong>6.2%</strong>. At the $1.6M ask that scenario returns <strong>&minus;1.4%</strong>. That gap is the whole argument.</p></div>
+  </div>
+
+  <h3 class="sub">The numbers that matter</h3>
+  <table class="avoid">
+    <thead><tr><th>Metric</th><th class="num">At our offer</th><th class="num">At the ask</th><th>What it means</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>Purchase price</td><td class="num">$1,100,000</td><td class="num">$1,600,000</td><td>31% below the ask, 12% below our own value indication</td></tr>
+      <tr><td>Price per square foot</td><td class="num">$250.00</td><td class="num">$363.64</td><td>Well below the cost of building it new</td></tr>
+      <tr><td>Going-in cap rate</td><td class="num g">12.00%</td><td class="num">8.25%</td><td>Cannabis dispensaries trade at 7.4%–9.35%</td></tr>
+      <tr><td>Expected unlevered IRR</td><td class="num g">12.00%</td><td class="num">4.33%</td><td>Probability-weighted across six reversion outcomes</td></tr>
+      <tr><td>Best case (tenant renews, 40%)</td><td class="num g">15.80%</td><td class="num">8.07%</td><td>The single most likely outcome</td></tr>
+      <tr><td>Worst case (total vacancy, 5%)</td><td class="num g">+6.20%</td><td class="num r">&minus;1.43%</td><td>Liquidate land and shell</td></tr>
+      <tr><td>Equity multiple</td><td class="num">1.84x</td><td class="num">1.29x</td><td>Total cash returned per dollar invested</td></tr>
+    </tbody>
+  </table>
+
+  <div class="cards avoid">
+    <div class="card"><h4>Upside we are not paying for</h4>
+      <p>Coverage is only <strong>3.2%</strong>, leaving <strong>±2.48 developable acres</strong> on a highway corner. An outparcel ground lease plus a third-party EV charging licence conservatively adds <strong>$75,000/yr</strong> of NOI and about <strong>$661,000</strong> of value — excluded from every return above. Yield on cost would go to <strong>18.8%</strong>.</p></div>
+    <div class="card"><h4>Negotiation discipline</h4>
+      <p><strong>Open at $1,100,000.</strong> Practical ceiling <strong>$1,250,000</strong> (9.3% expected, 13.1% on renewal) — hold there. Above <strong>$1,300,000</strong> we would be paying more than the property is worth. The $1,600,000 ask returns 4.3%: decline.</p></div>
+  </div>
+  <p class="fn">Detail follows — the asset and lease (§1), valuation (§2), local like-and-kind lease comps (§3), re-leasing options and timing (§4), re-rent economics (§5), the land (§6), sale comps (§7), returns (§8), risks and diligence (§9), recommendation (§10).</p>
+</section>
+
+<!-- ============ PAGE 2 : ASSET + VALUATION ============ -->
+<section class="page">
+  <h3 class="sub">If the tenant leaves — the question that decides the deal</h3>
+  <table class="avoid">
+    <thead><tr><th>Re-let scenario</th><th class="num">Rent / SF</th><th class="num">Annual rent</th><th class="num">Yield on our offer</th><th>Comment</th></tr></thead>
+    <tbody>
+      <tr><td>Another cannabis licensee</td><td class="num">$30.00</td><td class="num">$132,000</td><td class="num g">12.0%</td><td>Holds the rent, but Waterford permits only two licences</td></tr>
+      <tr><td>Bank / credit union or medical</td><td class="num">$24.00</td><td class="num">$105,600</td><td class="num g">9.6%</td><td>Turnkey — the vault and drive-thru are already there</td></tr>
+      <tr class="hi"><td>Conventional market rent</td><td class="num">$22.00</td><td class="num">$96,800</td><td class="num g">8.8%</td><td>Our underwriting case — what we priced the deal on</td></tr>
+      <tr><td>Deep downside</td><td class="num">$18.00</td><td class="num">$79,200</td><td class="num g">7.2%</td><td>Bottom of the range — still clears our cost of capital</td></tr>
+      <tr class="tot"><td>Break-even to hold our basis</td><td class="num">$21.25</td><td class="num">$93,500</td><td class="num">8.5%</td><td>Sits below the market midpoint — that is the cushion</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sec"><span class="n">01</span>The asset and the lease<span class="note">Source: Offering Memorandum</span></h2>
+  <table class="avoid">
+    <tbody>
+      <tr><td style="width:23%"><strong>Address</strong></td><td>451 White Horse Pike (US Route 30), Atco — Waterford Township, Camden County, NJ 08004. <strong>Corner of White Horse Pike &amp; Cooper Folly Road.</strong></td></tr>
+      <tr><td><strong>Building / land</strong></td><td>±4,400 SF per OM · 4,206 SF per tax assessor · ±3.13 acres (≈3.2% site coverage)<small>Confirm GLA by measurement — a 4.4% difference moves price per foot by about $12 at our number.</small></td></tr>
+      <tr><td><strong>Improvements</strong></td><td>Built 1960 as a bank branch, renovated 2023. Vault, secure infrastructure, <strong>3-lane drive-thru</strong>, ample surface parking. ±15,370 vehicles per day.</td></tr>
+      <tr><td><strong>Zoning</strong></td><td>PHB — Planned Highway Business. Atco sits in the Pinelands <strong>Regional Growth Area</strong>, the most permissive of the six CMP designations.</td></tr>
+      <tr><td><strong>Tenant</strong></td><td>Holistic Solutions — NJ medical and adult-use dispensary, founded 2018, single location. Opened February 2023 as New Jersey's 33rd medical dispensary and first Black woman-owned licence holder; converted to adult-use May 2023. Three-plus years of operating history at this site.</td></tr>
+      <tr><td><strong>Lease</strong></td><td>Absolute NNN — tenant carries taxes, insurance, CAM, HVAC, roof and structure. Commenced 1 Feb 2023, expires 31 Jan 2033. <strong>±6.5 years remaining.</strong></td></tr>
+      <tr><td><strong>Rent</strong></td><td>$11,000/month · <strong>$132,000/year</strong> · $30.00/SF — <strong>flat through the base term, no escalations</strong></td></tr>
+      <tr><td><strong>Option</strong></td><td>One 5-year option at $154,000 ($35.00/SF). At our basis that option period yields <strong>14.0%</strong>. Tenant-elective — underwritten as optionality, never as income.</td></tr>
+      <tr><td><strong>Guarantee</strong></td><td>Two personal guarantees, including a senior executive of a global manufacturer. No corporate credit — which is precisely why we are not paying an institutional cap rate.</td></tr>
+      <tr class="hi"><td><strong>Our basis</strong></td><td>$1,100,000 · $250.00/SF · <strong>12.00% going-in cap</strong> · below replacement cost</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sec" style="margin-top:14pt"><span class="n">02</span>Valuation — where the comps land<span class="note">Four independent methods</span></h2>
+  <p class="lede">Four methods, run separately, converge on a weighted indication of $1,252,500. None gets near the $1,600,000 ask; all sit above our offer.</p>
+  <table class="avoid">
+    <thead><tr><th>Method</th><th>How it is derived</th><th class="num">Value</th><th class="num">vs ask</th><th class="num">vs our offer</th></tr></thead>
+    <tbody>
+      <tr><td>In-place income at a market cap rate</td><td>$132,000 capitalized at 9.75% — the correct rate for flat rent on a personally guaranteed lease with 6.5 years left</td><td class="num">$1,353,800</td><td class="num r">&minus;15.4%</td><td class="num g">+23%</td></tr>
+      <tr><td>Tax assessor equalized value</td><td>$760,200 assessed ÷ 59.81% Camden County equalization ratio</td><td class="num">$1,271,000</td><td class="num r">&minus;20.6%</td><td class="num g">+16%</td></tr>
+      <tr><td>County retail price per SF</td><td>Camden County retail listing average ≈ $273/SF × 4,400 SF</td><td class="num">$1,201,200</td><td class="num r">&minus;24.9%</td><td class="num g">+9%</td></tr>
+      <tr><td>Market-rent capitalization</td><td>$22/SF conventional rent → $96,800 NOI at 8.75% — the value with <em>no</em> cannabis premium at all</td><td class="num">$1,106,300</td><td class="num r">&minus;30.9%</td><td class="num g">+0.6%</td></tr>
+      <tr class="tot"><td>Weighted value indication</td><td>In-place income 40%, assessor 20%, $/SF 15%, market-rent floor 25%</td><td class="num">$1,252,500</td><td class="num r">&minus;21.7%</td><td class="num g">+13.9%</td></tr>
+    </tbody>
+  </table>
+  <div class="call avoid">
+    <p><strong>Read the last two rows together.</strong> The value indication is <strong>$1.25M</strong>. The absolute floor — what the property is worth stripped of every cannabis dollar — is <strong>$1.11M</strong>. Our offer sits <em>at the floor</em>.</p>
+    <p>That is what makes this a strong entry rather than a reckless one: we are not betting the property is worth less than $1.25M. We are declining to pay the difference between $1.11M and $1.25M, and taking it as margin instead.</p>
+  </div>
+</section>
+
+<!-- ============ PAGE 3 : LEASE COMPS ============ -->
+<section class="page">
+  <h2 class="sec" style="margin-top:14pt"><span class="n">03</span>Local lease comps — like and kind<span class="note">Asking rates &middot; NNN</span></h2>
+  <p class="lede">The corridor evidence is what makes $1.1M safe: it tells us what this box rents for with <em>any</em> tenant. Tier 1 is genuinely like-and-kind — freestanding buildings with a drive-thru. Tier 2 is submarket context.</p>
+
+  <table class="avoid">
+    <caption>Tier 1 — like and kind: freestanding, drive-thru</caption>
+    <thead><tr><th>Comparable</th><th>Type</th><th class="num">SF</th><th class="num">Rent / SF</th><th class="num">Annual</th><th>DT</th><th>Corner</th><th>Read-through</th></tr></thead>
+    <tbody>
+      <tr class="warn"><td><strong>451 White Horse Pike, Atco</strong><small>SUBJECT — in place</small></td><td>Freestanding, drive-thru, cannabis</td><td class="num">4,400</td><td class="num o">$30.00</td><td class="num">$132,000</td><td>3-lane</td><td>Yes</td><td>36% above conventional market — a premium that expires with the tenant</td></tr>
+      <tr><td>340 S White Horse Pike, Berlin</td><td>Freestanding retail w/ drive-thru</td><td class="num">1,750</td><td class="num">$27.43</td><td class="num">$48,000</td><td>Yes</td><td>—</td><td>The best direct comp we have ($4,000/mo). But it is a small box, and small boxes always earn more per foot — a 4,400 SF building will not beat this rate</td></tr>
+      <tr><td>804 N White Horse Pike, Magnolia</td><td>Former Arby's, drive-thru, 38 spaces</td><td class="num">3,035</td><td class="num">On req.</td><td class="num">—</td><td>Yes</td><td>—</td><td>Closest second-generation drive-thru analogue on the corridor — worth a call to pin the number</td></tr>
+      <tr><td>2 S White Horse Pike, Stratford</td><td>Freestanding QSR (Freebyrd Chicken)</td><td class="num">—</td><td class="num">On req.</td><td class="num">—</td><td>Yes</td><td>Yes</td><td>Corner freestanding QSR on the same pike — evidence of active drive-thru demand here</td></tr>
+    </tbody>
+  </table>
+
+  <table class="avoid">
+    <caption>Tier 2 — submarket context</caption>
+    <thead><tr><th>Comparable</th><th>Type</th><th class="num">SF</th><th class="num">Rent / SF</th><th class="num">If applied to 4,400 SF</th><th>Read-through</th></tr></thead>
+    <tbody>
+      <tr><td>NJ medical office average</td><td>Medical</td><td class="num">—</td><td class="num">$24.00</td><td class="num">$105,600</td><td>Ceiling for a healthcare backfill — and healthcare is the deepest demand pool for this box</td></tr>
+      <tr><td>Berlin submarket average</td><td>Retail, all formats</td><td class="num">—</td><td class="num">$21.00</td><td class="num">$92,400</td><td>Adjacent submarket, comparable demographics</td></tr>
+      <tr><td>Sicklerville submarket average</td><td>Retail, all formats</td><td class="num">—</td><td class="num">$20.00</td><td class="num">$88,000</td><td>Adjacent submarket, comparable demographics</td></tr>
+      <tr><td>Hammonton submarket average</td><td>Retail, all formats</td><td class="num">—</td><td class="num">$20.00</td><td class="num">$88,000</td><td>Route 30 east, comparable</td></tr>
+      <tr><td>Atco submarket average</td><td>Retail, all formats</td><td class="num">—</td><td class="num">$13.00</td><td class="num">$57,200</td><td><strong>This is in-line strip space</strong> — which is why it is low. Our freestanding corner drive-thru beats it comfortably. Do not read this as our market rent</td></tr>
+      <tr><td>706 N White Horse Pike, Magnolia</td><td>Flex / industrial</td><td class="num">40,000</td><td class="num">$11.50</td><td class="num">—</td><td>Scale reference only — large boxes on this pike clear in the low teens</td></tr>
+      <tr class="tot"><td>CONCLUDED MARKET RENT</td><td>Freestanding, drive-thru, corner, large lot</td><td class="num">4,400</td><td class="num g">$20–$24</td><td class="num g">$88,000–$105,600</td><td>Base case $22.00/SF — the floor our offer is built on</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub">How we got to $22 — the adjustment reasoning</h3>
+  <table class="avoid">
+    <tbody>
+      <tr><td style="width:22%"><strong>Start from the submarket</strong></td><td>Berlin, Sicklerville and Hammonton all cluster at $20–21/SF for general retail. That is the base.</td></tr>
+      <tr><td><strong>Add for freestanding</strong></td><td>A standalone building with its own identity, signage and parking field commands a premium over in-line strip space. Atco's $13/SF average is in-line space and is not our comp.</td></tr>
+      <tr><td><strong>Add for the drive-thru</strong></td><td>The Berlin comp at $27.43/SF is the only priced like-and-kind evidence we have — a freestanding drive-thru.</td></tr>
+      <tr><td><strong>Add for the corner</strong></td><td>Two frontages, signage on both, and secondary-road access. A real premium over mid-block, and what makes the drive-thru circulation work at all.</td></tr>
+      <tr><td><strong>Subtract for size</strong></td><td>At 4,400 SF this is roughly 2.5× the Berlin comp. Larger boxes lease at lower rates per foot, pulling us back from $27.</td></tr>
+      <tr class="tot"><td><strong>Land at $20–$24, base $22</strong></td><td>Below the small-box drive-thru comp, above the general submarket average. Our entire offer is built on this box re-letting at $22 — and the deal still works at $18.</td></tr>
+    </tbody>
+  </table>
+  <p class="fn">Submarket averages are asking-rate averages published by commercial listing platforms, not verified closed leases. Verify against CoStar comparable-lease data in diligence. Our offer holds even at the bottom of this range.</p>
+</section>
+
+<!-- ============ PAGE 4 : RE-LEASING OPTIONS + TIMING + CORNER ============ -->
+<section class="page">
+  <h2 class="sec" style="margin-top:14pt"><span class="n">04</span>Re-leasing options and how long each takes<span class="note">Ranked by speed and cost to execute</span></h2>
+  <p class="lede">Six realistic paths back to full rent. They are ranked not by headline rent but by how quickly and cheaply each one gets the building occupied — because downtime and landlord capital are what actually erode returns.</p>
+
+  <table>
+    <thead><tr><th>#</th><th>Tenant type</th><th class="num">Rent / SF</th><th class="num">Annual rent</th><th class="num">Yield on $1.1M</th><th class="num">Time to rent</th><th class="num">Landlord cost</th><th>Why it works here</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td>1</td><td><strong>Bank / credit union</strong></td><td class="num">$22–26</td><td class="num">$96,800–$114,400</td><td class="num">8.8–10.4%</td><td class="num">6–10 mo</td><td class="num">$22,000</td><td>The building already <em>is</em> one. Vault, 3-lane drive-thru, teller infrastructure and parking transfer as-is, so fit-out is cosmetic. Fastest and cheapest path back to full rent.</td></tr>
+      <tr class="hi"><td>2</td><td><strong>Urgent care / dental / vet</strong></td><td class="num">$22–26</td><td class="num">$96,800–$114,400</td><td class="num">8.8–10.4%</td><td class="num">12–17 mo</td><td class="num">$264,000</td><td>Deepest tenant pool in South Jersey. The drive-thru bay converts to a covered patient drop-off and the corner gives two-street visibility. They sign 10–15 year NNN leases <em>with escalations</em> — which is what makes a future sale financeable.</td></tr>
+      <tr><td>3</td><td>Conventional retail / service</td><td class="num">$18–22</td><td class="num">$79,200–$96,800</td><td class="num">7.2–8.8%</td><td class="num">8–12 mo</td><td class="num">$132,000</td><td>Liquor, convenience, pharmacy, auto parts, fitness. Always available on this corridor. The floor — and the floor still pays.</td></tr>
+      <tr><td>4</td><td>Cannabis — new NJ licensee</td><td class="num">$28–34</td><td class="num">$123,200–$149,600</td><td class="num">11.2–13.6%</td><td class="num">12–18 mo</td><td class="num">$66,000</td><td>Holds the full rent and needs almost no fit-out, but Waterford permits only two retail licences and the incumbent holds one. Also needs CRC approval at this specific premises. Highest rent, thinnest demand, longest regulatory lag.</td></tr>
+      <tr><td>5</td><td>QSR / coffee drive-thru</td><td class="num">$38–48</td><td class="num">$83,600–$105,600</td><td class="num">7.6–9.6%</td><td class="num">18–24 mo</td><td class="num">$286,000</td><td>Best rent per foot in the market. But 4,400 SF is nearly double a modern QSR prototype, so it means a demise to ~2,200 SF or a pad rebuild. Better pursued on the excess land while a Tier 1 user takes the box.</td></tr>
+      <tr><td>6</td><td>Daycare / early education</td><td class="num">$18–22</td><td class="num">$79,200–$96,800</td><td class="num">7.2–8.8%</td><td class="num">18–30 mo</td><td class="num">$308,000</td><td>Three acres easily supports playground and drop-off requirements, but site plan approval and state licensing add real time.</td></tr>
+      <tr class="warn"><td></td><td><strong>In place today (cannabis)</strong></td><td class="num o">$30.00</td><td class="num o">$132,000</td><td class="num o">12.0%</td><td class="num">—</td><td class="num">—</td><td>No action required while the lease runs to January 2033</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub">How long it takes — indicative timeline from vacancy to rent commencing</h3>
+  <table class="avoid">
+    <thead><tr><th>Stage</th><th class="num">Bank / CU</th><th class="num">Medical</th><th class="num">Retail</th><th class="num">Cannabis</th><th class="num">QSR</th><th>What happens</th></tr></thead>
+    <tbody>
+      <tr><td>Marketing and tenant sourcing</td><td class="num">4</td><td class="num">6</td><td class="num">4</td><td class="num">6</td><td class="num">9</td><td>List, tour, negotiate LOI. A corner drive-thru property tours well and shortens this.</td></tr>
+      <tr><td>Lease negotiation and signature</td><td class="num">2</td><td class="num">2</td><td class="num">2</td><td class="num">3</td><td class="num">3</td><td>Longer where a licence or franchise approval is involved.</td></tr>
+      <tr><td>Permits, approvals, licensing</td><td class="num">1</td><td class="num">3</td><td class="num">1</td><td class="num">12</td><td class="num">4</td><td>The cannabis line is CRC plus township approval — the long pole in that option.</td></tr>
+      <tr><td>Construction and fit-out</td><td class="num">3</td><td class="num">6</td><td class="num">3</td><td class="num">3</td><td class="num">8</td><td>Bank and retail are cosmetic. Medical and QSR are full build-outs.</td></tr>
+      <tr class="tot"><td>TOTAL MONTHS TO RENT COMMENCING</td><td class="num g">10</td><td class="num g">17</td><td class="num g">10</td><td class="num g">24</td><td class="num g">24</td><td>Overlapping stages can compress this; assume the longer end in a slow market</td></tr>
+      <tr><td>Rent forgone during downtime</td><td class="num">$80,700</td><td class="num">$137,100</td><td class="num">$80,700</td><td class="num">$193,600</td><td class="num">$193,600</td><td>Market rent lost while the building sits empty</td></tr>
+      <tr><td>Carry cost during downtime</td><td class="num">$51,200</td><td class="num">$87,000</td><td class="num">$51,200</td><td class="num">$122,800</td><td class="num">$122,800</td><td>Taxes, insurance and maintenance the landlord picks up when vacant</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub">Why the corner matters — this is not an ordinary in-line box</h3>
+  <div class="cards avoid">
+    <div class="card"><h4>Two frontages, two access points</h4>
+      <p>The property sits at the corner of US Route 30 and Cooper Folly Road. Corner sites carry a genuine rent premium over mid-block space: signage on two streets, ingress and egress from a secondary road so customers avoid turning across highway traffic, and far easier circulation.</p></div>
+    <div class="card"><h4>It is what makes the drive-thru work</h4>
+      <p>A 3-lane drive-thru needs stacking depth and a clean in-and-out loop. On a mid-block parcel that is hard; on a corner it is straightforward. This single feature is what puts banks, QSR, coffee and pharmacy tenants in play at all.</p></div>
+    <div class="card"><h4>It widens the tenant pool</h4>
+      <p>The uses that require or strongly prefer a corner — QSR, coffee, pharmacy, convenience, car wash, bank — are precisely the covenant-strength tenants who sign long NNN leases with escalations. A mid-block box does not get those calls.</p></div>
+    <div class="card"><h4>It supports subdividing a pad</h4>
+      <p>A corner parcel of 3.13 acres can usually yield a second access point and a separate pad with its own frontage without compromising the existing building's parking or circulation. That is what makes the land upside physically realistic rather than theoretical.</p></div>
+  </div>
+  <p class="fn">Marketing periods, fit-out durations and landlord costs are analyst estimates based on typical South Jersey second-generation retail transactions.</p>
+</section>
+
+<!-- ============ PAGE 5 : RE-RENT ECONOMICS + LAND ============ -->
+<section class="page">
+  <h2 class="sec" style="margin-top:14pt"><span class="n">05</span>Re-rent economics — every outcome works<span class="note">Yield on a $1.1M basis</span></h2>
+  <p class="lede">This is the table that decides the deal. At $1,100,000 there is no realistic tenant type that fails to produce an acceptable yield on cost.</p>
+  <table class="avoid">
+    <thead><tr><th>Scenario</th><th class="num">Rent / SF</th><th class="num">Annual rent</th><th class="num">Yield on cost</th><th style="width:34%">Relative to an 8% threshold</th></tr></thead>
+    <tbody>
+      <tr class="warn"><td><strong>In place today (cannabis)</strong></td><td class="num o">$30.00</td><td class="num o">$132,000</td><td class="num o">12.00%</td><td><span class="bar o" style="width:86%"></span></td></tr>
+      <tr><td>Cannabis — new NJ licensee</td><td class="num">$30.00</td><td class="num">$132,000</td><td class="num g">12.00%</td><td><span class="bar" style="width:86%"></span></td></tr>
+      <tr><td>Medical / urgent care / vet</td><td class="num">$26.00</td><td class="num">$114,400</td><td class="num g">10.40%</td><td><span class="bar" style="width:74%"></span></td></tr>
+      <tr><td>Bank / credit union</td><td class="num">$24.00</td><td class="num">$105,600</td><td class="num g">9.60%</td><td><span class="bar" style="width:69%"></span></td></tr>
+      <tr class="hi"><td>Blended conventional market</td><td class="num">$22.00</td><td class="num">$96,800</td><td class="num g">8.80%</td><td><span class="bar" style="width:63%"></span></td></tr>
+      <tr><td>Conventional retail / service</td><td class="num">$20.00</td><td class="num">$88,000</td><td class="num g">8.00%</td><td><span class="bar" style="width:57%"></span></td></tr>
+      <tr><td>Deep downside re-let</td><td class="num">$18.00</td><td class="num">$79,200</td><td class="num g">7.20%</td><td><span class="bar" style="width:51%"></span></td></tr>
+      <tr class="tot"><td>Break-even to hold our basis</td><td class="num">$21.25</td><td class="num">$93,500</td><td class="num">8.50%</td><td>Below the market midpoint of $22.00</td></tr>
+    </tbody>
+  </table>
+  <div class="call avoid">
+    <p><strong>The margin of safety, stated exactly.</strong> To merely hold our $1,100,000 basis the building needs to re-let at <strong>$21.25/SF</strong>. Conventional market rent is $20–24, midpoint $22. We are protected at the middle of the market — everything above $21.25 is profit.</p>
+  </div>
+
+  <h2 class="sec" style="margin-top:14pt"><span class="n">06</span>The land — 2.5 acres we are not paying for<span class="note">Excluded from every return</span></h2>
+  <p class="lede">The building covers <strong>3.2% of the site</strong>. After parking and drive-thru stacking, roughly <strong>2.48 acres sit idle</strong> on a highway corner. No return in this analysis assumes a dollar of it.</p>
+  <table class="avoid">
+    <thead><tr><th>Opportunity</th><th>How it is derived</th><th class="num">Low</th><th class="num">Base</th><th class="num">High</th><th class="num">Land used</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Outparcel ground lease</strong><small>QSR, coffee, car wash or medical pad</small></td><td>Entitled pad land value of $500k–$800k capitalized at an 8–9% ground-lease yield</td><td class="num">$40,000</td><td class="num">$55,000</td><td class="num">$75,000</td><td class="num">0.75–1.0 AC</td></tr>
+      <tr><td><strong>EV fast-charging licence</strong><small>6–8 DC fast stalls</small></td><td>Corridor DCFC benchmarks of $2,200–3,500/stall/mo discounted to $1,000–1,800 for a 15,370-VPD secondary route, at a 10–25% owner revenue share. Operator funds 100% of capex</td><td class="num">$12,000</td><td class="num">$20,000</td><td class="num">$34,000</td><td class="num">0.30–0.40 AC</td></tr>
+      <tr class="tot"><td>Combined incremental NOI</td><td>On land carried at zero in our base case</td><td class="num">$52,000</td><td class="num">$75,000</td><td class="num">$109,000</td><td class="num">≈1.3 AC</td></tr>
+      <tr class="hi"><td>Value created at a 9.25% cap</td><td>Net of ~$150,000 of subdivision, entitlement and site work</td><td class="num">$412,000</td><td class="num">$661,000</td><td class="num">$1,028,000</td><td class="num">—</td></tr>
+    </tbody>
+  </table>
+  <div class="cards avoid">
+    <div class="card"><h4>What it does to the deal</h4>
+      <p>Base case adds <strong>$75,000</strong> of NOI, taking yield on cost from 12.0% to <strong>18.8%</strong>. More importantly it transforms the downside: with a pad in place, even a dark building re-let at $18/SF still yields <strong>14.0% on cost</strong>. The land does not just add upside — it removes the downside.</p></div>
+    <div class="card"><h4>The gating item</h4>
+      <p>The offering markets ±3.13 AC as the leased premises. <strong>If the lease demises the entire lot to the tenant, we cannot develop any of it during the term without their consent.</strong> Read the demised-premises clause first. Also confirm Pinelands review, sewer capacity (the CMP requires centralized wastewater for sub-acre nonresidential parcels), and that a pad leaves the tenant compliant parking.</p></div>
+  </div>
+  <div class="call w avoid">
+    <p><strong>On EV charging — set expectations correctly.</strong> Tesla's own historic model pays site hosts little or no ground rent, and its newer "Supercharger for Business" program is host-owned, meaning <em>we</em> would fund the hardware. The rent is with third-party operators — EVgo, Electrify America, Applegreen and similar — who fund 100% of capex and pay a fixed licence fee or 10–25% of gross charging revenue. Pursue a third-party operator for income; treat a Tesla install as a traffic-and-visibility play.</p>
+  </div>
+</section>
+
+<!-- ============ PAGE 6 : SALE COMPS + RETURNS ============ -->
+<section class="page">
+  <h2 class="sec" style="margin-top:14pt"><span class="n">07</span>Sale comps and cap rate positioning<span class="note">Cannabis STNL benchmarks</span></h2>
+  <p class="lede">Cannabis dispensaries trade between 7.4% and 9.35%. Our entry at 12.00% is wider than every comparable transaction in the set, and 520 bps wide of the broader net lease market.</p>
+  <table class="avoid">
+    <thead><tr><th>Comparable</th><th class="num">Price</th><th class="num">Cap rate</th><th>Note</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>STNL market average, Q1 2026</td><td class="num">—</td><td class="num">6.80%</td><td>All tenants, all sectors</td><td>Benchmark</td></tr>
+      <tr><td>Jungle Boys — Naples, FL</td><td class="num">—</td><td class="num">7.40%</td><td>Dispensary with 2% annual increases</td><td>Listing</td></tr>
+      <tr><td>Cookies — Kalamazoo, MI</td><td class="num">$3,100,000</td><td class="num">8.25%</td><td>10 years remaining, corporate guarantee</td><td>Listing</td></tr>
+      <tr class="warn"><td>SUBJECT at the $1.6M asking price</td><td class="num">$1,600,000</td><td class="num o">8.25%</td><td>6.5 years, flat rent, personal guarantees only</td><td>Asking</td></tr>
+      <tr><td>LivWell — Aurora, CO</td><td class="num">$1,025,000</td><td class="num">8.87%</td><td>Lowest cap for a Colorado dispensary since 2022</td><td><strong>CLOSED</strong></td></tr>
+      <tr><td>Ascend — Pennsylvania</td><td class="num">—</td><td class="num">9.25%</td><td>Medical-only market</td><td>Listing</td></tr>
+      <tr><td>Curaleaf — Worth, IL</td><td class="num">—</td><td class="num">9.35%</td><td>10% rent increases every 5 years</td><td>Listing</td></tr>
+      <tr class="hi"><td><strong>SUBJECT at our offer</strong></td><td class="num">$1,100,000</td><td class="num g">12.00%</td><td>Wider than every comparable in the set</td><td><strong>OUR BID</strong></td></tr>
+    </tbody>
+  </table>
+  <table class="avoid">
+    <caption>Adjustment grid — why this asset belongs wide of the comp set</caption>
+    <thead><tr><th>Attribute</th><th>Comp set</th><th>Subject</th><th class="num">Adjustment</th></tr></thead>
+    <tbody>
+      <tr><td>Guarantee</td><td>Corporate / MSO guarantees</td><td>Two personal guarantees, single-store operator</td><td class="num r">+50 to +100 bps</td></tr>
+      <tr><td>Rent escalations</td><td>2% annual or 10% every 5 years</td><td>Flat — 0% for the full base term</td><td class="num r">+50 to +75 bps</td></tr>
+      <tr><td>Rent vs market</td><td>Generally at or near market</td><td>~36% above conventional market rent</td><td class="num r">+50 to +75 bps</td></tr>
+      <tr><td>Term remaining</td><td>8–15 years typical</td><td>6.5 years</td><td class="num r">+25 to +50 bps</td></tr>
+      <tr><td>Market fundamentals</td><td>Mixed; several limited-licence states</td><td>NJ — 300+ stores, flower &minus;23% YoY</td><td class="num r">+25 bps</td></tr>
+      <tr><td>Real estate quality</td><td>Varies</td><td>Corner, drive-thru, 3.13 AC, below replacement cost</td><td class="num g">&minus;50 to &minus;75 bps</td></tr>
+      <tr><td>Licensing moat</td><td>Varies</td><td>Waterford caps retail cannabis at two licences</td><td class="num g">&minus;25 bps</td></tr>
+      <tr class="tot"><td>Fair cap rate, fully adjusted</td><td>Cannabis STNL 7.00–9.35%</td><td>Implying a value of $1.29M–$1.43M</td><td class="num">9.25%–10.25%</td></tr>
+    </tbody>
+  </table>
+
+  <h2 class="sec" style="margin-top:12pt"><span class="n">08</span>Returns — there is no losing scenario<span class="note">Unlevered, hold to expiry</span></h2>
+  <table class="avoid">
+    <thead><tr><th>Outcome at lease expiry, January 2033</th><th class="num">Prob.</th><th class="num">Net value</th><th class="num">IRR at our $1.10M</th><th class="num">IRR at the $1.60M ask</th></tr></thead>
+    <tbody>
+      <tr><td>Tenant renews at the option rent</td><td class="num">40%</td><td class="num">$1,639,900</td><td class="num g">15.80%</td><td class="num">8.07%</td></tr>
+      <tr><td>New NJ cannabis licensee @ $30/SF</td><td class="num">10%</td><td class="num">$1,064,500</td><td class="num g">11.06%</td><td class="num">3.40%</td></tr>
+      <tr><td>QSR pad rebuild</td><td class="num">5%</td><td class="num">$990,000</td><td class="num g">10.33%</td><td class="num">2.68%</td></tr>
+      <tr><td>Bank / credit union / retail @ $22/SF</td><td class="num">20%</td><td class="num">$831,300</td><td class="num g">8.66%</td><td class="num">1.02%</td></tr>
+      <tr><td>Medical / urgent care / vet @ $24/SF</td><td class="num">20%</td><td class="num">$780,000</td><td class="num g">8.08%</td><td class="num">0.44%</td></tr>
+      <tr><td>Extended vacancy → land + shell only</td><td class="num">5%</td><td class="num">$627,000</td><td class="num g">6.20%</td><td class="num r">&minus;1.43%</td></tr>
+      <tr class="tot"><td>Probability-weighted expectation</td><td class="num">100%</td><td class="num">$1,165,500</td><td class="num g">12.00%</td><td class="num">4.33%</td></tr>
+    </tbody>
+  </table>
+  <table class="avoid">
+    <caption>Negotiation ladder — what each dollar of price costs us</caption>
+    <thead><tr><th class="num">Price</th><th class="num">$ / SF</th><th class="num">Cap</th><th class="num">Expected IRR</th><th class="num">If tenant renews</th><th class="num">Worst case</th><th>Position</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td class="num">$1,100,000</td><td class="num">$250</td><td class="num">12.00%</td><td class="num g">12.00%</td><td class="num">15.80%</td><td class="num">6.20%</td><td><strong>OUR OFFER</strong></td></tr>
+      <tr><td class="num">$1,150,000</td><td class="num">$261</td><td class="num">11.48%</td><td class="num">11.03%</td><td class="num">14.83%</td><td class="num">5.23%</td><td>Comfortable</td></tr>
+      <tr><td class="num">$1,200,000</td><td class="num">$273</td><td class="num">11.00%</td><td class="num">10.12%</td><td class="num">13.91%</td><td class="num">4.32%</td><td>Comfortable</td></tr>
+      <tr><td class="num">$1,250,000</td><td class="num">$284</td><td class="num">10.56%</td><td class="num">9.26%</td><td class="num">13.05%</td><td class="num">3.47%</td><td><strong>Practical ceiling</strong></td></tr>
+      <tr><td class="num">$1,300,000</td><td class="num">$295</td><td class="num">10.15%</td><td class="num">8.45%</td><td class="num">12.23%</td><td class="num">2.66%</td><td>Above fair value — walk</td></tr>
+      <tr class="warn"><td class="num">$1,600,000</td><td class="num">$364</td><td class="num">8.25%</td><td class="num">4.33%</td><td class="num">8.07%</td><td class="num r">&minus;1.43%</td><td><strong>Asking price — decline</strong></td></tr>
+    </tbody>
+  </table>
+  <p class="fn">Assumes sale at lease expiry, absorbing the full cost of downtime, tenant improvements and leasing commissions in the exit price. Holding through a re-tenanting and selling stabilized improves every figure by roughly 150–200 bps.</p>
+</section>
+
+<!-- ============ PAGE 7 : RISKS + RECOMMENDATION ============ -->
+<section class="page">
+  <h2 class="sec" style="margin-top:14pt"><span class="n">09</span>What we are being paid to take on<span class="note">Risks, and how the price answers them</span></h2>
+  <p class="lede">The risks are real. They are also exactly why the asset is available at 12% instead of 8.25% — and each one is already paid for in the basis.</p>
+  <table class="avoid">
+    <thead><tr><th style="width:26%">Risk</th><th>How our offer price answers it</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Rent is 36% above market</strong><small>$30/SF vs $20–24 conventional</small></td><td>We capitalized the <em>market</em> rent, not the contract rent, to set our price. The premium is upside we did not pay for.</td></tr>
+      <tr><td><strong>Flat rent, no escalations</strong><small>Zero growth through 2033</small></td><td>Priced in at a 12% entry. We do not need growth — we need the coupon, and the coupon returns 78% of capital before expiry.</td></tr>
+      <tr><td><strong>Personal guarantees only</strong><small>No corporate credit</small></td><td>Worth ~75 bps of cap rate; we took 375. Verify guarantor net worth in diligence — the basis does not depend on it.</td></tr>
+      <tr><td><strong>NJ cannabis compression</strong><small>300+ stores, flower &minus;23% YoY, medical &minus;42%</small></td><td>The reason this is a 12% deal and not an 8% one. Our downside case already assumes the tenant fails.</td></tr>
+      <tr><td><strong>Financing is hard</strong><small>Banks and CMBS avoid cannabis collateral</small></td><td>At a 12% cap, private debt at 9–11% is <em>positive</em> leverage. At the 8.25% ask it would have been negative. Our number is what makes the deal financeable at all.</td></tr>
+      <tr><td><strong>Special-purpose improvements</strong><small>Vault, secure build-out, drive-thru</small></td><td>Cuts both ways — narrows the pool, but makes us the only compliant corner drive-thru site on the corridor for banks, medical and cannabis alike.</td></tr>
+      <tr><td><strong>Reassessment on sale</strong></td><td>A $1.1M deed sits <em>below</em> the assessor's $1.27M implied value — buying at our number argues for an appeal, not an increase.</td></tr>
+      <tr><td><strong>GLA discrepancy</strong><small>4,400 SF per OM vs 4,206 per assessor</small></td><td>Confirm by measurement. At our price the difference is ~$12/SF — material to reporting, not to the decision.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub">Diligence — confirm before hard money</h3>
+  <div class="cards avoid">
+    <div class="card"><h4>Tenant &amp; lease</h4>
+      <ul class="chk">
+        <li>Tenant sales reports and P&amp;L — occupancy cost runs ~$193,400 all-in; at $3.0M of store sales that is a workable 6.4%</li>
+        <li><strong>Demised premises clause</strong> — does the lease include the full 3.13 AC? Gates all land upside</li>
+        <li>Complete lease with all amendments; confirm roof, structure and HVAC allocation</li>
+        <li>Both personal guarantees — scope, caps, burn-off, joint-and-several</li>
+        <li>Guarantor personal financial statements</li>
+        <li>Estoppel certificate, SNDA, full rent payment history since 2023</li>
+      </ul></div>
+    <div class="card"><h4>Regulatory &amp; physical</h4>
+      <ul class="chk">
+        <li>CRC licence status, expiry and site-specific conditions</li>
+        <li>Waterford Township approval and status of the two-licence cap</li>
+        <li>Pinelands Commission jurisdiction; sewer vs septic capacity</li>
+        <li>Subdivision feasibility for the ±2.5 excess acres</li>
+        <li>Actual current tax bill and reassessment exposure</li>
+        <li>Confirm GLA by measurement; roof and HVAC condition</li>
+        <li>Phase I ESA, ALTA survey, title, zoning compliance letter</li>
+      </ul></div>
+  </div>
+
+  <h2 class="sec" style="margin-top:12pt"><span class="n">10</span>Recommendation<span class="note">Subject to diligence</span></h2>
+  <div class="cards avoid">
+    <div class="card"><h4>Lead with the rent, not the cap rate</h4>
+      <p>Do not argue about whether 8.25% is the right cap. Argue that $30.00/SF is not a market rent — and put the corridor comps in front of them. Every one of the seller's own value arguments survives; only the rent assumption changes.</p></div>
+    <div class="card"><h4>Point at the assessor</h4>
+      <p>Camden County's own equalized value is $1,271,000. A third party with no stake in the outcome already says this property is not worth $1.6M. That is the single hardest fact to argue with.</p></div>
+    <div class="card"><h4>Name the financing reality</h4>
+      <p>Most buyers cannot get a loan on cannabis collateral. An all-cash offer with a short close is worth real money to a seller whose alternative is a financed buyer who cannot perform. Sell the certainty.</p></div>
+    <div class="card"><h4>Give them a ladder, not a wall</h4>
+      <p>If $1.1M is rejected outright, $1,250,000 still delivers 9.3% expected and 13.1% on renewal. Hold there. Above $1.25M the margin of safety is gone and we should let it go — there will be another one.</p></div>
+  </div>
+  <div class="call avoid">
+    <p><strong>Bottom line.</strong> At $1,100,000 we buy a corner drive-thru property on a 15,370-VPD highway at <strong>$250/SF</strong> — below replacement cost, below the tax assessor's own equalized value, and at the same price the building would fetch with an ordinary tenant paying ordinary rent. We collect a <strong>12% coupon</strong> for six and a half years, recover 78% of our capital before the lease even expires, and hold six separate re-tenanting paths — the fastest of which, a bank or credit union, needs almost no landlord capital because the vault and drive-thru are already in place.</p>
+    <p>Then there is the land: monetizing the idle 2.5 acres adds roughly <strong>$75,000 of NOI</strong> and <strong>$661,000 of value</strong>, carried at zero in every figure above. The expected return is <strong>12.0%</strong> before any of that. The worst case is <strong>+6.2%</strong>. There is no version of this where we lose money.</p>
+  </div>
+  <p class="fn"><strong>Basis of analysis.</strong> Deal terms, rent schedule, guarantee structure and site dimensions are from the Matthews offering memorandum for 451 White Horse Pike. Assessment, GLA, year built, zoning and prior use are from public tax-assessor records. Lease and sale comparables were assembled from public commercial listing platforms, brokerage transaction announcements and published Q1 2026 net lease research — <strong>these are predominantly asking rates and marketed cap rates, not verified closed transactions</strong>, and should be re-run against CoStar, Crexi and Camden County deed records before hard money. Property tax, insurance, maintenance, tenant-improvement, downtime, leasing-commission and land figures are analyst estimates; land and shell value is an estimate. Reversion probabilities are judgmental. NJ cannabis market data reflects Cannabis Regulatory Commission certified 2025 sales and 2026 published pricing series. All returns are unlevered and pre-tax. Prepared for the buyer's internal use — not an appraisal, and not investment, legal or tax advice.</p>
+</section>
+
+</body></html>

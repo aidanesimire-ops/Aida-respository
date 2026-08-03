@@ -10,13 +10,26 @@ Offered at **$1,600,000 / 8.25% cap** on $132,000 NOI.
 
 | File | What it is |
 |---|---|
-| `analysis.html` | The acquisition case at $1,100,000 — comps, re-rent economics, backfill strategy, land monetization, cap rate positioning, returns, risk register, offer strategy |
+| **`451 White Horse Pike - Acquisition Analysis.pdf`** | **9-page report. Page 1 is a standalone executive summary; §1–10 carry the full detail.** |
+| **`451 White Horse Pike - Acquisition Model.xlsx`** | **Live 11-tab model. Change the offer price on `Assumptions` and everything recalculates.** |
+| `analysis.html` | The same analysis as a web page |
+| `analysis-print.html` | Print source for the PDF |
+| `build_model.py` | Rebuilds the workbook from scratch |
 | `offer_case_1100k.py` | Returns on the $1.1M basis, payback, downside yields and the negotiation ladder |
 | `land_upside_model.py` | Outparcel ground lease and EV charging licence sizing, and value created |
 | `underwriting_model.py` | Reversion scenario model and unlevered IRR by purchase price |
 | `sensitivity_model.py` | Renewal-probability sensitivity and the re-rent matrix by tenant type |
 
-Both scripts are dependency-free — `python3 underwriting_model.py`.
+The `.py` models are dependency-free (`python3 underwriting_model.py`); `build_model.py` needs `openpyxl`.
+
+### Workbook tabs
+
+`Executive Summary` · `Assumptions` · `Reversion Scenarios` · `Returns` · `Valuation` ·
+`Re-Rent Analysis` · `Re-Leasing Options` · `Land Upside` · `Lease Comps` · `Sale Comps` ·
+`Risks & Diligence`
+
+539 formulas, zero errors. Blue cells are inputs; the yellow cell on `Assumptions` is the
+master lever (our offer price).
 
 ## Position: offering $1,100,000
 
@@ -29,8 +42,8 @@ The offer sits at the market-rent capitalization value of $1,106,000, meaning th
 building is bought at its plain conventional-use worth and the cannabis premium,
 the renewal option and the excess land are unpaid-for upside.
 
-Practical ceiling **$1,250,000** (9.3% expected). Above $1.3M the margin of safety
-is gone.
+Practical ceiling **$1,250,000** (9.3% expected). Above $1,300,000 we would be
+paying more than the property is worth.
 
 ## Headline findings
 
@@ -45,9 +58,16 @@ is gone.
   on the ±2.5 acres of excess land.
 - Expected unlevered IRR at the $1.6M ask is **4.3%**. Even assuming a 90%
   renewal probability it only reaches 7.5%.
-- Four independent value checks converge on **$1.11M–$1.43M**, indicating a
-  value around **$1.30M** — so $1.1M is roughly 15% inside value and 31% inside
-  the ask.
+- Four independent value methods produce a weighted indication of **$1,252,500**
+  (in-place income 40%, assessor 20%, county $/SF 15%, market-rent floor 25%) —
+  so $1.1M is **12% inside value and 31% inside the ask**.
+- **Re-leasing options and timing:** six paths back to full rent. Fastest and
+  cheapest is a bank or credit union (~10 months, ~$22k landlord cost — the vault
+  and drive-thru are already there); deepest demand is medical/urgent care
+  (~17 months, ~$264k); cannabis carries the longest regulatory lag (~24 months).
+- **The corner matters.** Two frontages on Route 30 and Cooper Folly Road give
+  signage on two streets, secondary-road access, drive-thru circulation that a
+  mid-block parcel cannot support, and a physically realistic second pad.
 - **Land upside, excluded from every return figure:** ±2.48 developable acres
   (site coverage is only 3.2%). An outparcel ground lease plus a third-party EV
   fast-charging licence conservatively adds **$75,000/yr** of NOI and about
