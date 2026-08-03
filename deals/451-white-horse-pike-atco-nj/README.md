@@ -10,7 +10,7 @@ Offered at **$1,600,000 / 8.25% cap** on $132,000 NOI.
 
 | File | What it is |
 |---|---|
-| **`451 White Horse Pike - IC Deck.pdf`** | **THE presentation document. 6 landscape slides for an executive audience: recommendation → why it is mispriced → what we make → the upside → the risk → the decision.** |
+| **`451 White Horse Pike - IC Deck.pdf`** | **THE presentation document. 15 landscape slides in four parts, built to take a reader from cold to an approved offer.**<br>Part 1 decision · Part 2 asset and price · Part 3 return · Part 4 risk and execution. |
 | `451 White Horse Pike - Full Analysis (backup).pdf` | 25-page diligence backup, not the presentation document. Four parts. Page 1 orients the reader — what the property is, the tenant, the lease, the ask — plus a contents map. §2–3 make the argument; §4–14 carry the detail. Every section starts on its own page and opens with a plain-English summary.** |
 | **`451 White Horse Pike - Acquisition Model.xlsx`** | **Live 14-tab model, 898 formulas. Change the offer price on `Assumptions` and everything recalculates.** |
 | `analysis.html` | The same analysis as a web page |
@@ -18,6 +18,7 @@ Offered at **$1,600,000 / 8.25% cap** on $132,000 NOI.
 | `analysis-print.html` | Source for the full analysis backup |
 | `build_model.py` | Rebuilds the workbook from scratch |
 | `growth_case_model.py` | Ten-year floor / base / growth cases, levered and unlevered, plus the value bridge |
+| `broker_comparison.py` | Ask-to-offer bridge, combined broker/our comp set, and the size-vs-rent regression |
 | `financing_stress_tests.py` | Loan sizing, DSCR, levered IRR, tenant-health coverage, sensitivity and exit analysis |
 | `audit_consistency.py` | Recomputes every headline figure independently and cross-checks it against the workbook and the PDF |
 | `offer_case_1100k.py` | Returns on the $1.1M basis, payback, downside yields and the negotiation ladder |
@@ -36,6 +37,28 @@ The `.py` models are dependency-free (`python3 underwriting_model.py`); `build_m
 898 formulas, zero errors; every headline figure independently verified against
 `audit_consistency.py`. Blue cells are inputs; the yellow cell on `Assumptions` is the
 master lever (our offer price).
+
+## Us vs the broker, side by side
+
+The $500,000 gap between their ask and our offer decomposes to one argument:
+
+| Step | Amount |
+|---|---|
+| Their ask — $132,000 contract rent ÷ 8.25% | $1,600,000 |
+| 1. Use market rent ($22.00/SF), not their tenant's rent | (426,700) |
+| 2. Widen the yield 8.25% → 8.75% for flat rent, 6.5 yrs, personal guarantees | (67,000) |
+| 3. Negotiating margin | (6,300) |
+| **Our offer** | **$1,100,000** |
+
+**85% of the gap is a single question: is $30.00/SF a market rent?** Negotiate the rent,
+not the cap rate.
+
+On the comps, four of the broker's seven are build-to-suit deals where rent repays land
+*and* construction — which is why 7 Brew reads as $303.92/SF on a 510 SF kiosk. Fitting
+the size-vs-rent curve on second-generation buildings only (both comp sets combined,
+R² 0.89) puts **4,400 SF at $25.74/SF**. His own best comp — Avis Budget, same road,
+signed June 2025 — adjusts to **$21.52**. We underwrite **$22.00** throughout, the
+conservative end; at $25.74 the floor is simply higher than presented.
 
 ## The shape of the bet — ten-year hold at $1,100,000
 
