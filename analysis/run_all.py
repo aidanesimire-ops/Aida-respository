@@ -17,6 +17,7 @@ STEPS = [
     ("MLS per-home hedonic + profiles", "mls_normalize.py"),
     ("Land & dock comps (+ commercial land)", "land_analysis.py"),
     ("Residential-income / multifamily comps", "income_analysis.py"),
+    ("Micro-segmentation (type/band/beds/sqft)", "segmentation.py"),
     ("Street-by-street underwriting", "street_underwrite.py"),
     ("High-ticket underwriting (>=$1M)", "high_ticket.py"),
     ("Underpriced opportunities + reasons", "underpriced.py"),

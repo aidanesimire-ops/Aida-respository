@@ -83,6 +83,9 @@ with open(os.path.join(PROC, "context_bundle.json")) as f:
     CONTEXT = json.load(f)
 with open(os.path.join(PROC, "lease_bundle.json")) as f:
     LEASE = json.load(f)
+with open(os.path.join(PROC, "segmentation_bundle.json")) as f:
+    _SG = json.load(f)
+SEGMENT = {"meta": _SG["meta"], "citywide": _SG["citywide"], "neighborhoods": _SG["neighborhoods"]}
 with open(os.path.join(PROC, "high_ticket_bundle.json")) as f:
     _HT = json.load(f)
 # trim listings out of the dashboard payload (they live in the Excel tab); keep the
@@ -270,6 +273,13 @@ footer.fl-foot a{color:var(--accent)}
   padding:3px 11px;font-size:11.5px;cursor:pointer;font-weight:600;white-space:nowrap;flex:0 0 auto}
 .copybtn:hover{border-color:var(--accent);color:var(--accent)}
 .copybtn.ok{color:var(--good);border-color:var(--good)}
+.seg-row{margin-bottom:6px}
+.seg-line{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;align-items:baseline}
+.seg-line .k{font-weight:600;color:var(--ink)}
+.seg-line .v{color:var(--ink-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.seg-bar{height:6px;border-radius:4px;background:var(--surface-2);margin-top:3px;overflow:hidden}
+.seg-bar i{display:block;height:100%;background:var(--accent);border-radius:4px}
+.seg-sub{margin:3px 0 0 8px;font-size:11px;color:var(--muted)}
 html{scroll-behavior:smooth}
 .fl-nav{position:sticky;top:0;z-index:15;display:flex;gap:6px;overflow-x:auto;
   padding:9px 0;margin:2px 0 4px;background:var(--sand);border-bottom:1px solid var(--line);
@@ -307,6 +317,7 @@ html{scroll-behavior:smooth}
     <a href="#sellers">Seller prospects</a>
     <a href="#trends">Since 2020</a>
     <a href="#ranking">Ranking</a>
+    <a href="#segmentation">Segmentation</a>
     <a href="#repricing">Repricing</a>
     <a href="#streets">Street-by-street</a>
     <a href="#drivers-sec">Price drivers</a>
@@ -530,6 +541,26 @@ html{scroll-behavior:smooth}
     <div id="barChart"></div>
   </div>
 
+  <div class="card" id="segmentation">
+    <h2>Segmentation <span style="font-weight:400;color:var(--muted);font-size:13px">— the market mix inside a neighborhood: asset type × price bracket × floor plan × size</span></h2>
+    <p class="cap">Pick a neighborhood to see how its closed sales split — with market-share % and median $/sqft at each level. Bracket rows show the asset-type mix within them; asset-type rows show the floor-plan (bed) mix within them.</p>
+    <div class="controls" style="margin:2px 0 12px"><select id="sgNb" class="search" style="flex:0 0 auto;min-width:220px" aria-label="Pick a neighborhood"></select><span class="cap" id="sgN" style="margin:0"></span></div>
+    <div class="grid2" style="align-items:start">
+      <div>
+        <div style="font-size:12px;font-weight:600;color:var(--ink-2);margin:0 0 6px">By asset type <span style="font-weight:400;color:var(--muted)">(floor-plan mix within each)</span></div>
+        <div id="sgType"></div>
+        <div style="font-size:12px;font-weight:600;color:var(--ink-2);margin:14px 0 6px">By floor plan (beds)</div>
+        <div id="sgBeds"></div>
+      </div>
+      <div>
+        <div style="font-size:12px;font-weight:600;color:var(--ink-2);margin:0 0 6px">By price bracket <span style="font-weight:400;color:var(--muted)">(asset-type mix within each)</span></div>
+        <div id="sgBand"></div>
+        <div style="font-size:12px;font-weight:600;color:var(--ink-2);margin:14px 0 6px">By square footage</div>
+        <div id="sgSqft"></div>
+      </div>
+    </div>
+  </div>
+
   <div class="card" id="profileCard">
     <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap">
       <h2 id="profName">Neighborhood profile</h2>
@@ -597,6 +628,7 @@ html{scroll-behavior:smooth}
 <script id="backtest-data" type="application/json">__BACKTEST_JSON__</script>
 <script id="context-data" type="application/json">__CONTEXT_JSON__</script>
 <script id="lease-data" type="application/json">__LEASE_JSON__</script>
+<script id="segment-data" type="application/json">__SEGMENT_JSON__</script>
 <script id="scen-data" type="application/json">__SCEN_JSON__</script>
 <script>
 (function(){
@@ -616,6 +648,7 @@ const MKT=JSON.parse(document.getElementById("marketing-data").textContent);
 const BT=JSON.parse(document.getElementById("backtest-data").textContent);
 const CX=JSON.parse(document.getElementById("context-data").textContent);
 const LX=JSON.parse(document.getElementById("lease-data").textContent);
+const SG=JSON.parse(document.getElementById("segment-data").textContent);
 const M=MLS.meta, NB=MLS.neighborhoods;
 function mktColor(m){return {"Seller's market":"var(--neg)","Balanced":"var(--ink-2)",
   "Buyer's market":"var(--good)","Deep buyer's market":"var(--good)"}[m]||"var(--ink-2)";}
@@ -1206,6 +1239,37 @@ function lxInit(){
   $("#lxSearch").addEventListener("input",e=>{lxQ=e.target.value;lxTable();});
 }
 
+// ---------- segmentation ----------
+function segRow(s, extra){
+  const bar=`<div class="seg-bar"><i style="width:${Math.min(100,s.share||0)}%"></i></div>`;
+  const med=s.median_ppsf?` · ${usd(s.median_ppsf)}/ft²`:"";
+  return `<div class="seg-row"><div class="seg-line"><span class="k">${s.key}</span>`
+    +`<span class="v">${s.share!=null?s.share+"%":"—"} · ${s.n}${med}</span></div>${bar}`
+    +(extra?`<div class="seg-sub">${extra}</div>`:"")+`</div>`;
+}
+function segList(sel, rows, mixKey){
+  $(sel).innerHTML=(rows||[]).map(s=>{
+    let extra="";
+    if(mixKey&&(s[mixKey]||[]).length)
+      extra=s[mixKey].slice(0,4).map(m=>`${m.key} ${m.share}%`).join(" · ");
+    return segRow(s, extra);
+  }).join("")||`<div class="cap">Not enough sales.</div>`;
+}
+function sgRender(nb){
+  const s=SG.neighborhoods.find(x=>x.neighborhood===nb)||SG.citywide; if(!s)return;
+  $("#sgN").textContent=`· ${s.n_sold} closed sales`;
+  segList("#sgType", s.by_type, "beds_mix");
+  segList("#sgBand", s.by_band, "type_mix");
+  segList("#sgBeds", s.by_beds);
+  segList("#sgSqft", s.by_sqft);
+}
+function sgInit(){
+  const names=SG.neighborhoods.map(x=>x.neighborhood);
+  $("#sgNb").innerHTML=names.map(n=>`<option>${n}</option>`).join("");
+  $("#sgNb").addEventListener("change",e=>sgRender(e.target.value));
+  if(names.length)sgRender(names[0]);
+}
+
 // ---------- seller prospects ----------
 $("#slSummary").textContent=`· ${SL.meta.n_failed} failed-listing owners, ${SL.meta.n_overpriced_active} overpriced actives`;
 let slType="failed", slQ="";
@@ -1356,6 +1420,7 @@ scInit();
 mktInit();
 cxInit();
 lxInit();
+sgInit();
 
 // ---------- live assumptions controller ----------
 function asApply(){renderRepFlags();renderRepNbhd();renderRepInv();mfTable();htTable();
@@ -1418,6 +1483,7 @@ def build():
              .replace("__BACKTEST_JSON__", json.dumps(BACKTEST, separators=(",", ":")))
              .replace("__CONTEXT_JSON__", json.dumps(CONTEXT, separators=(",", ":")))
              .replace("__LEASE_JSON__", json.dumps(LEASE, separators=(",", ":")))
+             .replace("__SEGMENT_JSON__", json.dumps(SEGMENT, separators=(",", ":")))
              .replace("__SCEN_JSON__", json.dumps(SCEN, separators=(",", ":"))))
     standalone = (
         "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"

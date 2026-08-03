@@ -68,6 +68,7 @@ def main():
     ctx = {c["neighborhood"]: c for c in (_load("context_bundle.json") or {}).get("neighborhoods", [])}
     lease = {l["neighborhood"]: l for l in (_load("lease_bundle.json") or {}).get("neighborhoods", [])}
     absorb = _load("absorption_bundle.json")
+    seg = {s["neighborhood"]: s for s in (_load("segmentation_bundle.json") or {}).get("neighborhoods", [])}
     under = {}
     for o in (_load("underpriced_bundle.json") or {}).get("listings", []):
         under.setdefault(o["neighborhood"], []).append(o)
@@ -206,6 +207,23 @@ def main():
                 f'({o["under_pct"]:.0f}% under)</li>' for o in opps)
             oh = f'<div class="sec"><div class="sh">Live opportunities</div><ul class="opps">{items}</ul></div>'
 
+        # market mix (segmentation)
+        sg = seg.get(nb)
+        mix = ""
+        if sg:
+            def chips(rows, top=6):
+                return " ".join(f'<span class="chip">{esc(x["key"])} {x["share"]:.0f}%</span>'
+                                for x in rows[:top] if x.get("share"))
+            band_sorted = sorted(sg.get("by_band", []), key=lambda z: -z["n"])
+            mix = ('<div class="sec"><div class="sh">Market mix — ' + str(sg["n_sold"])
+                   + ' closed sales</div>'
+                   '<div style="font-size:11px;color:#6a7886;margin:2px 0 3px">Asset type</div>'
+                   f'<div class="chips">{chips(sg.get("by_type", []))}</div>'
+                   '<div style="font-size:11px;color:#6a7886;margin:6px 0 3px">Floor plan (beds)</div>'
+                   f'<div class="chips">{chips(sg.get("by_beds", []))}</div>'
+                   '<div style="font-size:11px;color:#6a7886;margin:6px 0 3px">Price bracket</div>'
+                   f'<div class="chips">{chips(band_sorted)}</div></div>')
+
         # talking points
         tps = prof.get(nb, {}).get("talking_points", [])[:5]
         th = ""
@@ -216,7 +234,7 @@ def main():
         page = (f'<div class="rpt"><div class="rhead"><div><span class="rk">#{r.get("rank")}</span>'
                 f'<span class="rname">{esc(nb)}</span></div>'
                 f'<div class="geo">{esc(r.get("geo_type"))}</div></div>'
-                + hero + f'<div class="mrow">{vm}</div>' + cond + bvb + lzhtml + oh + th
+                + hero + f'<div class="mrow">{vm}</div>' + cond + bvb + lzhtml + mix + oh + th
                 + '<div class="pfoot">Comp-based screening signals — verify condition &amp; exact '
                 'comps before pricing. Cost/rent figures are sourced market estimates.</div></div>')
         pages.append(page)

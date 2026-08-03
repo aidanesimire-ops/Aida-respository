@@ -100,6 +100,17 @@ lease_benchmarks:
   yield_low: 4.0                 # < this % => yield-compressed (typical of luxury)
 
 # ============================================================================
+# Micro-segmentation — breakdowns WITHIN each neighborhood by asset type,
+# price bracket, floor plan (bed count) and square-footage band, with market
+# share % at each level. Edit the band edges to your own brackets.
+# ============================================================================
+segmentation:
+  min_nbhd_sold: 15              # closed sales a neighborhood needs to be segmented
+  min_cell: 2                    # min sales in a cell before a median is shown
+  price_bands: [500000, 1000000, 2000000, 3000000, 5000000, 10000000]
+  sqft_bands: [1000, 1500, 2500, 4000, 6000, 10000]
+
+# ============================================================================
 # Data sources — one block per asset class.
 #   folder        : where to drop the CSV exports for this asset
 #   status_from   : "filename" (status = file name) or "column" (status in a field)

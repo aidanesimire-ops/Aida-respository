@@ -1476,6 +1476,44 @@ def costs_sheet(wb, cx):
     ws.hide_gridlines(2)
 
 
+def segmentation_sheet(wb, sg):
+    f = _blk_formats(wb)
+    m = sg["meta"]
+    ws = wb.add_worksheet("Segmentation")
+    ws.write(0, 0, "Market segmentation — the mix inside each neighborhood", f["title"])
+    ws.write(1, 0, "Closed sales split by asset type, price bracket, floor plan (beds) and sqft band, "
+             f"with market-share %. {m['n_neighborhoods']} neighborhoods (≥{m['min_nbhd_sold']} sales) "
+             "plus Citywide. Filter by Neighborhood + Dimension. 'Within' = what the share is a % of "
+             "(the neighborhood, an asset class, or a price bracket).", f["sub"])
+    ws.set_row(1, 42)
+    heads = ["Neighborhood", "Dimension", "Category", "Share of…", "Sold n", "Share %",
+             "Median $/sqft", "Median price", "Median sqft"]
+    widths = [22, 30, 16, 16, 8, 9, 13, 15, 12]
+    top = 3
+    for c, (h, wd) in enumerate(zip(heads, widths)):
+        ws.write(top, c, h, f["hdr"])
+        ws.set_column(c, c, wd)
+    txt = f["txt"]; nbf = f["txtb"]
+    usd = wb.add_format({"num_format": "$#,##0", "border": 1, "border_color": "#e1e0d9", "align": "center"})
+    pctf = wb.add_format({"num_format": '0.0"%"', "border": 1, "border_color": "#e1e0d9", "align": "center"})
+    num = wb.add_format({"num_format": "#,##0", "border": 1, "border_color": "#e1e0d9", "align": "center"})
+    r = top
+    for row in sg["flat"]:
+        r += 1
+        ws.write(r, 0, row["neighborhood"], nbf)
+        ws.write(r, 1, row["dimension"], txt)
+        ws.write(r, 2, row["category"], txt)
+        ws.write(r, 3, row["within"] or "—", txt)
+        ws.write_number(r, 4, row["n"], num)
+        ws.write_number(r, 5, row["share_pct"] / 100 if row["share_pct"] is not None else 0, pctf)
+        ws.write_number(r, 6, row["median_ppsf"], usd) if row.get("median_ppsf") else ws.write(r, 6, "", txt)
+        ws.write_number(r, 7, row["median_price"], usd) if row.get("median_price") else ws.write(r, 7, "", txt)
+        ws.write_number(r, 8, row["median_sqft"], num) if row.get("median_sqft") else ws.write(r, 8, "", txt)
+    ws.freeze_panes(top + 1, 1)
+    ws.autofilter(top, 0, r, len(heads) - 1)
+    ws.hide_gridlines(2)
+
+
 def leasing_sheet(wb, lz):
     f = _blk_formats(wb)
     m = lz["meta"]
@@ -1622,6 +1660,7 @@ SHEET_INDEX = {
     "Comps Drill-Down": ("High-ticket (≥$1M)", "The actual comparable sales behind each ≥$1M valuation — filter by listing to defend a number."),
     "Neighborhood Profiles": ("Neighborhood detail", "Copy-ready, data-backed talking points for a homeowner conversation, one row per neighborhood."),
     "Normalized Ranking": ("Neighborhood detail", "Per-home normalized $/sqft with waterfront / new / by-type / land angles for every neighborhood."),
+    "Segmentation": ("Neighborhood detail", "The mix inside each neighborhood — asset type × price bracket × floor plan (beds) × sqft band, with market-share % and median $/sqft. Filter by Neighborhood + Dimension."),
     "Price Drivers": ("Neighborhood detail", "Marginal effect of waterfront, pool, new construction, baths and age on $/sqft, with 95% ranges."),
     "Live Deals": ("Neighborhood detail", "Live single-family listings priced below the per-home model."),
     "Condo Repricing": ("Repricing", "Condo asking vs. recent SOLD comps per neighborhood, with a verdict."),
@@ -1796,6 +1835,10 @@ def main():
     # ---- PRIMARY: MLS per-home layer ----
     mls_profiles_sheet(wb, mm)
     mls_ranking_sheet(wb, fmts, mm)
+    try:
+        segmentation_sheet(wb, _jload("segmentation_bundle.json"))
+    except FileNotFoundError:
+        pass
     mls_drivers_sheet(wb, mm)
     mls_deals_sheet(wb, fmts, mm)
     try:

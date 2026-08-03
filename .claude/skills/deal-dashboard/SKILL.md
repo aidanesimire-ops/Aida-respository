@@ -131,6 +131,7 @@ deliverables never touch raw data.
 | `mls_normalize.py` | `mls_bundle.json`, `mls_all_valued.csv` | **Core** per-home hedonic: normalized $/sqft, premiums, geography, land value, per-listing valuations, profiles |
 | `land_analysis.py` | `land_bundle.json` | Vacant-land + dock + commercial-land comps: land $/sqft by neighborhood, lot geography, zoning/density, size gradient, implied-vs-actual |
 | `income_analysis.py` | `income_bundle.json` | Small-multifamily $/unit & $/sqft comps by neighborhood and unit tier, live repricing |
+| `segmentation.py` | `segmentation_bundle.json` | Per-neighborhood market mix: asset type × price bracket × floor plan (beds) × sqft band, with market-share % and median $/sqft (nested + flat) |
 | `street_underwrite.py` | `street_bundle.json` | Street-by-street value + live listings underwritten vs their own street's comps |
 | `high_ticket.py` | `high_ticket_bundle.json` | ≥ $1M underwriting; band × neighborhood matrix |
 | `underpriced.py` | `underpriced_bundle.json` | Underpriced opportunities with generated reasons |

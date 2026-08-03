@@ -85,6 +85,13 @@ DEFAULTS = {
         "yield_hold": 6.0,                 # >= this % gross yield => rental-supported
         "yield_low": 4.0,                  # < this % => yield-compressed (luxury)
     },
+    # ---- micro-segmentation (breakdowns within each neighborhood) ----
+    "segmentation": {
+        "min_nbhd_sold": 15,               # closed sales a neighborhood needs to segment
+        "min_cell": 2,                     # min sold in a cell to report a median
+        "price_bands": [500_000, 1_000_000, 2_000_000, 3_000_000, 5_000_000, 10_000_000],
+        "sqft_bands": [1_000, 1_500, 2_500, 4_000, 6_000, 10_000],
+    },
     "assets": {
         "residential": {
             "folder": "data/raw/mls",
@@ -204,6 +211,10 @@ class Config:
     @property
     def lease_benchmarks(self):
         return self._d.get("lease_benchmarks", {})
+
+    @property
+    def segmentation(self):
+        return self._d.get("segmentation", {})
 
     @property
     def thresholds(self):

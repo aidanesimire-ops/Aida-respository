@@ -126,6 +126,7 @@ python analysis/normalize_ppsf.py   # Redfin layer  -> data/processed/*.csv, ana
 python analysis/mls_normalize.py    # MLS per-home  -> data/processed/mls_*.csv, mls_bundle.json
 python analysis/land_analysis.py    # vacant land + docks + commercial land -> land_bundle.json
 python analysis/income_analysis.py  # small-multifamily $/unit & $/sqft comps -> income_bundle.json
+python analysis/segmentation.py     # per-nbhd mix: type/band/beds/sqft + shares -> segmentation_bundle.json
 python analysis/street_underwrite.py# street-by-street value + deal underwriting -> street_bundle.json
 python analysis/high_ticket.py      # >=$1M underwriting + band x neighborhood -> high_ticket_bundle.json
 python analysis/underpriced.py      # underpriced opportunities + reasons -> underpriced_bundle.json
