@@ -9,6 +9,7 @@ Assumptions, every yellow cell live).
 from __future__ import annotations
 import json
 import os
+from datetime import datetime
 
 import pandas as pd
 import xlsxwriter  # noqa: F401
@@ -105,7 +106,8 @@ def _comp_block(ws, f, records, label, start, title):
     return r + 2
 
 
-def _table(ws, f, df, spec, start=3, autofilter=True):
+def _table(ws, f, df, spec, start=3, autofilter=True, blank_na=False):
+    numeric = ("usd", "pct2", "pct0", "gap", "num", "num1")
     for j, (_, h, _) in enumerate(spec):
         ws.write(start, j, h, f["hdr"])
     for i, (_, row) in enumerate(df.iterrows()):
@@ -113,8 +115,12 @@ def _table(ws, f, df, spec, start=3, autofilter=True):
             v = row.get(col)
             fmt = f.get(fk, f["cell"])
             if v is None or (isinstance(v, float) and pd.isna(v)):
-                ws.write(start + 1 + i, j, "—", f["cell"])
-            elif fk in ("usd", "pct2", "pct0", "gap", "num", "num1"):
+                # leave numeric cells truly blank when asked, so AVERAGEIFS/SUMIFS stay clean
+                if blank_na and fk in numeric:
+                    ws.write_blank(start + 1 + i, j, None, f["cell"])
+                else:
+                    ws.write(start + 1 + i, j, "—", f["cell"])
+            elif fk in numeric:
                 ws.write_number(start + 1 + i, j, float(v), fmt)
             else:
                 ws.write(start + 1 + i, j, v, fmt)
@@ -340,12 +346,15 @@ def index_sheet(wb, f, meta):
     ws.hide_gridlines(2)
     ws.set_column(0, 0, 24); ws.set_column(1, 1, 96)
     ws.write(0, 0, "Commercial Deal Dashboard — Fort Lauderdale", f["title"])
-    ws.merge_range(1, 0, 1, 1, "Everything in one workbook. The MLS export has no income, so cap / "
+    ws.merge_range(1, 0, 1, 1, "Everything lives in this one workbook — the raw data (Data tab), the analytics, the "
+                   "live Dashboard and this index. Nothing external. The MLS export has no income, so cap / "
                    "rent / value figures are assumption- or comp-based — a screening & pitching tool, "
                    "not an appraisal. Verify before quoting. Click any tab below.", f["sub"])
-    ws.set_row(1, 42)
+    ws.set_row(1, 52)
     ws.write(3, 0, "How to use it on a call", f["title"])
     howto = [
+        "Dashboard — live KPIs and charts; pick a neighborhood from the dropdown and every number refocuses to it.",
+        "New Property — type in any building's price / size / type / area to see its adjusted basis and income view in seconds.",
         "Call List — your prospect list: a ready opener to say, the value read, and owner-FAQ answers for each owner (motivated/failed first).",
         "Neighborhoods — every submarket as a system: what it supports, rents, yield, supply, and the pitch angle.",
         "Repricing — what each listing is GOING FOR vs what it SHOULD be — adjusted basis, up ▲ or down ▼, in % and $.",
@@ -358,7 +367,10 @@ def index_sheet(wb, f, meta):
         ws.write(4 + i, 0, "•", f["olab"]); ws.write(4 + i, 1, t, f["txt"]); ws.set_row(4 + i, 28)
     base = 4 + len(howto) + 1
     ws.write(base, 0, "Tabs", f["title"])
-    toc = [("Guide", "Plain-English glossary + how to recreate this on new data."),
+    toc = [("Dashboard", "Live KPIs + charts; pick a neighborhood to refocus the numbers."),
+           ("New Property", "Type in any building — get its adjusted basis, income view & market fit."),
+           ("Data", "Every cleaned listing — the backbone every formula runs on."),
+           ("Guide", "Plain-English glossary + how to recreate this on new data."),
            ("Key Takeaways", "The headlines in plain English."),
            ("Call List", "Owners to cold-call — opener + value read + FAQ."),
            ("Neighborhoods", "Every submarket as a system, side by side."),
@@ -490,6 +502,202 @@ def repricing_sheet(wb, f):
         ws.conditional_format(lo, col, hi, col, {"type": "cell", "criteria": "<", "value": 0, "format": bad})
 
 
+def data_sheet(wb, f, df):
+    """The entire cleaned data set, embedded — the backbone every formula references."""
+    ws = wb.add_worksheet("Data")
+    _head(ws, f, "Data — every listing (the backbone)",
+          "The full cleaned data set the whole workbook runs on. Filter/sort freely; the Dashboard "
+          "and New Property tabs compute live off these rows.", 13)
+    d = df.copy()
+    d["price_band"] = d["price"].map(CRE.price_band)
+    d["waterfront"] = d["waterfront"].map(lambda x: "Yes" if x else "")
+    ws.set_column(0, 0, 11); ws.set_column(1, 1, 26); ws.set_column(2, 3, 15)
+    ws.set_column(4, 5, 11); ws.set_column(6, 13, 11)
+    _table(ws, f, d, [("mls", "MLS", "txt"), ("address", "Address", "txt"),
+                      ("submarket", "Submarket", "txt"), ("asset_type", "Type", "txt"),
+                      ("status", "Status", "txt"), ("deal_kind", "Sale/Lease", "txt"),
+                      ("price", "Price", "usd"), ("sqft", "SqFt", "num"), ("ppsf", "$/SqFt", "usd"),
+                      ("year_built", "Year", "num"), ("price_band", "Price bracket", "txt"),
+                      ("lease_rate_psf", "Lease $/SF", "usd"), ("waterfront", "Waterfront", "txt"),
+                      ("zoning", "Zoning", "txt")], blank_na=True)
+
+
+def dashboard_sheet(wb, f, df, meta, seg, leasing, built_at):
+    ws = wb.add_worksheet("Dashboard")
+    ws.hide_gridlines(2)
+    ws.set_column(0, 0, 22); ws.set_column(1, 4, 14)
+    kpi = wb.add_format({"bold": True, "font_size": 20, "font_color": DARK, "align": "left"})
+    klab = wb.add_format({"font_size": 10, "font_color": "#7a786f"})
+    hi = wb.add_format({"bg_color": "#fff7d6", "border": 1, "border_color": "#d9cf9a", "bold": True, "align": "center"})
+    ws.write(0, 0, "Dashboard", f["title"])
+    ws.merge_range(1, 0, 1, 6, f"Self-contained — the data, the analytics and the tools all live in this workbook. "
+                   f"Built {built_at}. Pick a neighborhood below to refocus the numbers; charts are to the right.", f["sub"])
+    ws.set_row(1, 30)
+    # top KPIs (formula-driven off Data). Cache from df so the shown numbers equal what
+    # Excel recomputes off the Data tab — no contradiction on open.
+    is_sale = df["deal_kind"] == "Sale"
+    is_lease = df["deal_kind"] == "Lease"
+    is_sold = df["status"] == "Sold"
+    kpis = [
+        ("Listings", "=COUNTA(Data!A:A)-3", len(df)),
+        ("Sale listings", '=COUNTIF(Data!F:F,"Sale")', int(is_sale.sum())),
+        ("Closed sales", '=COUNTIFS(Data!E:E,"Sold",Data!F:F,"Sale")', int((is_sold & is_sale).sum())),
+        ("Lease listings", '=COUNTIF(Data!F:F,"Lease")', int(is_lease.sum())),
+        ("City norm $/SqFt", None, meta["city_norm_ppsf"]),
+    ]
+    for i, (lab, formula, cached) in enumerate(kpis):
+        c = i
+        ws.write(3, c, lab, klab)
+        if formula:
+            ws.write_formula(4, c, formula, kpi, cached)
+        elif lab.startswith("City"):
+            ws.write_number(4, c, cached, wb.add_format({"bold": True, "font_size": 20, "num_format": "$#,##0"}))
+        else:
+            ws.write_number(4, c, cached, kpi)
+    # neighborhood selector
+    subs = [s["submarket"] for s in seg.get("nbhd_by_type", [])]
+    subs = sorted(set(subs)) or ["Area 3600"]
+    ws.write(6, 0, "Focus neighborhood →", f["olab"])
+    ws.data_validation(6, 1, 6, 1, {"validate": "list", "source": subs})
+    ws.write(6, 1, subs[0], hi)
+    sel = "$B$7"
+    # cached values for the default selection so non-recalc viewers see real numbers
+    d0 = df[df["submarket"] == subs[0]]
+    d0_sold = d0[(d0["status"] == "Sold") & (d0["deal_kind"] == "Sale")]
+    d0_live = d0[(d0["status"].isin(["Active", "Pending", "UnderContract"])) & (d0["deal_kind"] == "Sale")]
+    d0_lease = d0[d0["deal_kind"] == "Lease"]
+
+    def _avg(s):
+        s = pd.to_numeric(s, errors="coerce").dropna()
+        return round(float(s.mean()), 0) if len(s) else "—"
+    selkpis = [
+        ("Sold $/SqFt (avg)", f'=IFERROR(AVERAGEIFS(Data!I:I,Data!C:C,{sel},Data!E:E,"Sold",Data!F:F,"Sale"),"—")', "$#,##0", _avg(d0_sold["ppsf"])),
+        ("Closed sales", f'=COUNTIFS(Data!C:C,{sel},Data!E:E,"Sold",Data!F:F,"Sale")', "#,##0", len(d0_sold)),
+        ("Live for-sale", f'=COUNTIFS(Data!C:C,{sel},Data!E:E,"Active",Data!F:F,"Sale")+COUNTIFS(Data!C:C,{sel},Data!E:E,"Pending",Data!F:F,"Sale")+COUNTIFS(Data!C:C,{sel},Data!E:E,"UnderContract",Data!F:F,"Sale")', "#,##0", len(d0_live)),
+        ("Avg price", f'=IFERROR(AVERAGEIFS(Data!G:G,Data!C:C,{sel},Data!E:E,"Sold",Data!F:F,"Sale"),"—")', "$#,##0", _avg(d0_sold["price"])),
+        ("Avg lease $/SqFt", f'=IFERROR(AVERAGEIFS(Data!L:L,Data!C:C,{sel},Data!F:F,"Lease"),"—")', "$#,##0", _avg(d0_lease["lease_rate_psf"])),
+    ]
+    for i, (lab, formula, numfmt, cached) in enumerate(selkpis):
+        ws.write(8 + i, 0, lab, f["lab"])
+        ws.write_formula(8 + i, 1, formula, wb.add_format({"border": 1, "border_color": "#e1e0d9",
+                         "num_format": numfmt, "align": "right", "bold": True}), cached)
+    # ---- chart source tables (far right, cols J+) ----
+    J = 9
+    def src(title, rows, r0):
+        ws.write(r0, J, title, f["olab"])
+        for k, (a, b) in enumerate(rows):
+            ws.write(r0 + 1 + k, J, a); ws.write_number(r0 + 1 + k, J + 1, float(b))
+        return r0 + 1, r0 + len(rows)
+    by_type = [(r["asset_type"], r["share_pct"]) for r in seg.get("market", {}).get("by_type", [])]
+    a0, a1 = src("Market share by type (%)", by_type, 3)
+    nb = sorted([(s["submarket"], s["norm_ppsf"]) for s in [x for x in _load("cre_bundle.json")["submarkets"]]],
+                key=lambda x: -x[1])
+    b0, b1 = src("Norm $/SqFt by area", nb, a1 + 3)
+    cap = [(r["asset_type"], (r.get("implied_cap_data") or 0) * 100) for r in leasing.get("by_type", [])]
+    c0, c1 = src("Implied cap by type (%)", cap, b1 + 3)
+
+    def bar(title, r0, r1, pos_row):
+        ch = wb.add_chart({"type": "bar"})
+        ch.add_series({"categories": ["Dashboard", r0, J, r1, J], "values": ["Dashboard", r0, J + 1, r1, J + 1],
+                       "fill": {"color": BLUE}, "data_labels": {"value": True, "num_format": "0.0"}})
+        ch.set_title({"name": title}); ch.set_legend({"none": True})
+        ch.set_size({"width": 460, "height": 260})
+        ws.insert_chart(pos_row, 0, ch)
+    bar("Market share by asset type (%)", a0, a1, 15)
+    bar("Normalized $/SqFt by neighborhood", b0, b1, 29)
+    bar("Data-implied cap rate by asset type (%)", c0, c1, 43)
+    ws.set_column(J, J + 1, None, None, {"hidden": True})   # tuck away the chart source tables
+
+
+def newprop_sheet(wb, f, types, seg, df):
+    ws = wb.add_worksheet("New Property")
+    ws.hide_gridlines(2)
+    ws.set_column(0, 0, 24); ws.set_column(1, 1, 16); ws.set_column(2, 2, 3)
+    ws.set_column(3, 3, 24); ws.set_column(4, 4, 16); ws.set_column(7, 11, 11)
+    ws.write(0, 0, "Analyze a new property", f["title"])
+    ws.merge_range(1, 0, 1, 5, "Type in any building's price, size, type and area. It compares your $/SqFt to the "
+                   "comps, shows the adjusted basis (up/down), the income view at your assumptions, and where it "
+                   "sits in the market. Everything recomputes.", f["sub"])
+    ws.set_row(1, 40)
+    hi = {"bg_color": "#fff7d6", "border": 1, "border_color": "#d9cf9a", "align": "right", "bold": True}
+    im = wb.add_format({**hi, "num_format": "$#,##0"}); inum = wb.add_format({**hi, "num_format": "#,##0"})
+    isel = wb.add_format({**hi, "align": "left"})
+    o = wb.add_format({"border": 1, "border_color": "#e1e0d9", "align": "right", "num_format": "$#,##0"})
+    opct = wb.add_format({"border": 1, "border_color": "#e1e0d9", "align": "right", "num_format": "0.00%", "bold": True})
+    opct1 = wb.add_format({"border": 1, "border_color": "#e1e0d9", "align": "right", "num_format": "+0.0%;-0.0%", "bold": True})
+    otxt = wb.add_format({"border": 1, "border_color": "#e1e0d9", "align": "right", "bold": True})
+
+    # ---- helper lookup tables (cols H..L) ----
+    tl = list(types.reset_index()[["asset_type", "assume_rent_psf", "assume_vacancy",
+                                   "assume_opex_ratio", "assume_cap_rate"]].itertuples(index=False, name=None))
+    ws.write(3, 7, "type"); ws.write(3, 8, "rent"); ws.write(3, 9, "vac"); ws.write(3, 10, "opex"); ws.write(3, 11, "cap")
+    for i, (t, rent, vac, opex, cap) in enumerate(tl):
+        rr = 4 + i
+        ws.write(rr, 7, t); ws.write_number(rr, 8, float(rent)); ws.write_number(rr, 9, float(vac))
+        ws.write_number(rr, 10, float(opex)); ws.write_number(rr, 11, float(cap))
+    n = len(tl)
+    TY, RENT, VAC, OPEX, CAP = (f"$H$4:$H${3+n}", f"$I$4:$I${3+n}", f"$J$4:$J${3+n}", f"$K$4:$K${3+n}", f"$L$4:$L${3+n}")
+    # price / size bracket shares
+    pr = seg.get("market", {}).get("by_price", []); sz = seg.get("market", {}).get("by_size", [])
+    pr0 = 4 + n + 1
+    ws.write(pr0 - 1, 7, "price bracket"); ws.write(pr0 - 1, 8, "share%")
+    for i, r in enumerate(pr):
+        ws.write(pr0 + i, 7, r["price_band"]); ws.write_number(pr0 + i, 8, float(r["share_pct"]))
+    PB, PBS = f"$H${pr0+1}:$H${pr0+len(pr)}", f"$I${pr0+1}:$I${pr0+len(pr)}"
+    sz0 = pr0 + len(pr) + 1
+    ws.write(sz0 - 1, 7, "size class"); ws.write(sz0 - 1, 8, "share%")
+    for i, r in enumerate(sz):
+        ws.write(sz0 + i, 7, r["size_band"]); ws.write_number(sz0 + i, 8, float(r["share_pct"]))
+    SB, SBS = f"$H${sz0+1}:$H${sz0+len(sz)}", f"$I${sz0+1}:$I${sz0+len(sz)}"
+    # area dropdown list
+    subs = ["Any"] + sorted({s["submarket"] for s in seg.get("nbhd_by_type", [])})
+    ar0 = sz0 + len(sz) + 1
+    for i, s in enumerate(subs):
+        ws.write(ar0 + i, 13, s)
+    AREA_LIST = f"=$N${ar0+1}:$N${ar0+len(subs)}"
+
+    # ---- inputs ----
+    dtype = tl[0][0]
+    ws.write(3, 0, "Price ($)", f["lab"]); ws.write_number(3, 1, 2000000, im)         # B4
+    ws.write(4, 0, "Size (SqFt)", f["lab"]); ws.write_number(4, 1, 10000, inum)        # B5
+    ws.write(5, 0, "Asset type", f["lab"]); ws.write(5, 1, dtype, isel)                # B6
+    ws.data_validation(5, 1, 5, 1, {"validate": "list", "source": f"={TY}"})
+    ws.write(6, 0, "Area / submarket", f["lab"]); ws.write(6, 1, "Any", isel)          # B7
+    ws.data_validation(6, 1, 6, 1, {"validate": "list", "source": AREA_LIST})
+
+    # cached values (Multifamily, Any, 2M/10K)
+    a = A.for_type(dtype)
+    comp0 = float(df[(df["asset_type"] == dtype) & (df["status"] == "Sold") & (df["deal_kind"] == "Sale")]["ppsf"].mean())
+    ppsf0 = 2000000 / 10000
+    noi0 = 10000 * a["rent_psf"] * (1 - a["vacancy"]) * (1 - a["opex_ratio"])
+
+    def out(row, lab, formula, fmt, cached):
+        ws.write(row, 3, lab, f["olab"]); ws.write_formula(row, 4, formula, fmt, cached)
+    out(3, "Your $/SqFt", "=B4/B5", o, ppsf0)
+    comp_f = (f'=IFERROR(IF($B$7="Any",AVERAGEIFS(Data!I:I,Data!D:D,$B$6,Data!E:E,"Sold",Data!F:F,"Sale"),'
+              f'AVERAGEIFS(Data!I:I,Data!C:C,$B$7,Data!D:D,$B$6,Data!E:E,"Sold",Data!F:F,"Sale")),'
+              f'IFERROR(AVERAGEIFS(Data!I:I,Data!D:D,$B$6,Data!E:E,"Sold",Data!F:F,"Sale"),0))')
+    out(4, "Comp $/SqFt (avg)", comp_f, o, round(comp0, 0))
+    out(5, "Adjust (model vs going)", "=IFERROR(E5/E4-1,0)", opct1, comp0 / ppsf0 - 1)
+    out(6, "Adjusted basis ($)", "=(E5-E4)*B5", o, (comp0 - ppsf0) * 10000)
+    out(7, "Assumed rent $/SqFt", f"=INDEX({RENT},MATCH($B$6,{TY},0))", o, a["rent_psf"])
+    out(8, "NOI (assumed)", f"=B5*E8*(1-INDEX({VAC},MATCH($B$6,{TY},0)))*(1-INDEX({OPEX},MATCH($B$6,{TY},0)))", o, noi0)
+    out(9, "Implied cap", "=IFERROR(E9/B4,0)", opct, noi0 / 2000000)
+    out(10, "Value @ market cap", f"=IFERROR(E9/INDEX({CAP},MATCH($B$6,{TY},0)),0)", o, noi0 / a["cap_rate"])
+    out(11, "Ask vs value", "=IFERROR(B4/E11-1,0)", opct1, 2000000 / (noi0 / a["cap_rate"]) - 1)
+    pbf = '=IF(B4<1000000,"< $1M",IF(B4<2500000,"$1–2.5M",IF(B4<5000000,"$2.5–5M",IF(B4<10000000,"$5–10M","$10M+"))))'
+    out(12, "Price bracket", pbf, otxt, CRE.price_band(2000000))
+    szf = '=IF(B5<2500,"< 2.5K",IF(B5<5000,"2.5–5K",IF(B5<10000,"5–10K",IF(B5<25000,"10–25K",IF(B5<50000,"25–50K","50K+")))))'
+    out(13, "Size class (SqFt)", szf, otxt, "10–25K")
+    pshare0 = next((r["share_pct"] for r in pr if r["price_band"] == CRE.price_band(2000000)), 0)
+    out(14, "Price bracket = % of market", f'=IFERROR(INDEX({PBS},MATCH(E13,{PB},0))/100,0)', opct, pshare0 / 100)
+    sshare0 = next((r["share_pct"] for r in sz if r["size_band"] == "10–25K"), 0)
+    out(15, "Size class = % of market", f'=IFERROR(INDEX({SBS},MATCH(E14,{SB},0))/100,0)', opct, sshare0 / 100)
+    ws.write(17, 0, "▲ Adjust positive = priced BELOW comps (room to raise / a buy) · ▼ negative = priced above. "
+             "Income figures use the Assumptions tab. Comp = average of closed sales of that type (and area).", f["sub"])
+    ws.set_column(7, 13, None, None, {"hidden": True})   # hide the lookup scaffolding (H..N)
+
+
 def guide_sheet(wb, f, meta):
     import math
     ws = wb.add_worksheet("Guide")
@@ -511,6 +719,9 @@ def guide_sheet(wb, f, meta):
     item("The short version", "A comp-based commercial screening & pitching tool built from an MLS export. "
          "The export has price, size, type, age and location but NO income — so cap rate, rent and value "
          "figures are ASSUMPTION- or COMP-based. Use it to screen, prospect and price — not to appraise.")
+    item("Everything's inside this file", "Fully self-contained. The raw data (Data tab), every analytic, the live "
+         "Dashboard and the Start-Here index all live in this one workbook — no CSVs, no separate dashboard needed. "
+         "The Dashboard and New Property tabs compute live off the Data tab, so editing a row there flows through.")
     sec("What's real vs. what's assumed")
     item("Real (from your data)", "Price, building SqFt, asset type, year built, MLS area, status — and everything "
          "derived from them: $/SqFt, the price/size/type brackets, market share, closed comps, and asking lease rates.")
@@ -614,6 +825,10 @@ def main():
     meta = cre["meta"]
     master = _load("master_bundle.json") or {"submarkets": cre["submarkets"]}
     reb, pros, seg = _load("reprice_bundle.json"), _load("prospects_bundle.json"), _load("segments_bundle.json")
+    segf = _load("segmentation_bundle.json")   # full segmentation (market share, nbhd cross-tabs)
+    lb = _load("leases_bundle.json")
+    df = CRE.load_clean()
+    built_at = datetime.now().strftime("%b %-d, %Y")
     types = pd.DataFrame(cre["types"])
     seed = SC.seed()
     v = SC.compute(seed["price"], seed["sqft"], seed["rent_psf"], seed["vacancy"], seed["opex_ratio"],
@@ -624,6 +839,9 @@ def main():
     wb = xlsxwriter.Workbook(OUT, {"nan_inf_to_errors": True})
     f = _fmts(wb)
     index_sheet(wb, f, meta)
+    if segf:
+        dashboard_sheet(wb, f, df, meta, segf, lb or {}, built_at)
+        newprop_sheet(wb, f, types, segf, df)
     guide_sheet(wb, f, meta)
     key_sheet(wb, f, meta, master, reb, pros, seed, v)
     callist_sheet(wb, f)
@@ -650,7 +868,6 @@ def main():
                 ("price", "Last ask", "usd"), ("ppsf", "$/SqFt", "usd"),
                 ("pred_ppsf", "Comp $/SqFt", "usd"), ("ppsf_gap_pct", "Overpricing", "gap")])
 
-    lb = _load("leases_bundle.json")
     if lb:
         ws = wb.add_worksheet("Leasing")
         _head(ws, f, "Leasing — asking rents & data-derived caps",
@@ -703,6 +920,8 @@ def main():
                [("asset_type", "Type", "txt"), ("n", "n", "num"), ("n_sold", "Sold", "num"),
                 ("n_live", "Live", "num"), ("median_ppsf", "Median $/SqFt", "usd"),
                 ("months_supply", "Mo supply", "num1")])
+
+    data_sheet(wb, f, df)   # the raw backbone, last — Dashboard & New Property compute off it
 
     wb.close()
     print(f"Workbook -> {os.path.relpath(OUT, CRE.ROOT)} ({len(wb.worksheets())} tabs)")
