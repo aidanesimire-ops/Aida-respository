@@ -352,8 +352,10 @@ _BODY = r"""<div class="themeToggle" onclick="toggleTheme()">◐ theme</div>
   <div><h3>Price mix</h3><div id="segNbPrice"></div></div>
   <div><h3>Size mix</h3><div id="segNbSize"></div></div>
  </div>
- <h3 style="margin-top:16px">Asset type × price bracket — % share (within type)</h3>
- <div class="scroll"><table id="segMatrix"></table></div>
+ <div class="grid two" style="margin-top:16px">
+  <div><h3>Asset type × price bracket — % share (within type)</h3><div class="scroll"><table id="segMatrix"></table></div></div>
+  <div><h3>Price bracket × size class — % share (which sizes trade in which price bands)</h3><div class="scroll"><table id="segMatrix2"></table></div></div>
+ </div>
 </div>
 
 <div class="card" id="absorption">
@@ -676,12 +678,14 @@ function renderSeg(){
   segBars("#segNbPrice",(sg.nbhd_by_price||[]).filter(r=>r.submarket===nb),"price_band");
   segBars("#segNbSize",(sg.nbhd_by_size||[]).filter(r=>r.submarket===nb),"size_band");};
  $("#segNb").onchange=drawNb;if(nbs.length)drawNb();
- // type × price share matrix
- const m=sg.matrix_type_price;if(m){const cols=m.cols;
-  let h="<thead><tr><th>Asset type</th>"+cols.map(c=>`<th>${c}</th>`).join("")+"</tr></thead><tbody>";
+ // share matrices
+ const shareMatrix=(el,m,rowlabel)=>{if(!m)return;const cols=m.cols;
+  let h=`<thead><tr><th>${rowlabel}</th>`+cols.map(c=>`<th>${c}</th>`).join("")+"</tr></thead><tbody>";
   m.share.forEach(rec=>{const rk=Object.keys(rec).find(k=>!cols.includes(k));
    h+=`<tr><td>${rec[rk]}</td>`+cols.map(c=>{const v=rec[c];return `<td class="tnum">${v==null?"—":v.toFixed(0)+"%"}</td>`;}).join("")+"</tr>";});
-  $("#segMatrix").innerHTML=h+"</tbody>";}
+  $(el).innerHTML=h+"</tbody>";};
+ shareMatrix("#segMatrix",sg.matrix_type_price,"Asset type");
+ shareMatrix("#segMatrix2",sg.matrix_price_size,"Price bracket");
 }
 
 // ---------- static tables ----------

@@ -358,7 +358,8 @@ def index_sheet(wb, f, meta):
         ws.write(4 + i, 0, "•", f["olab"]); ws.write(4 + i, 1, t, f["txt"]); ws.set_row(4 + i, 28)
     base = 4 + len(howto) + 1
     ws.write(base, 0, "Tabs", f["title"])
-    toc = [("Key Takeaways", "The headlines in plain English."),
+    toc = [("Guide", "Plain-English glossary + how to recreate this on new data."),
+           ("Key Takeaways", "The headlines in plain English."),
            ("Call List", "Owners to cold-call — opener + value read + FAQ."),
            ("Neighborhoods", "Every submarket as a system, side by side."),
            ("Repricing", "Going-for vs should-be, adjusted basis up/down."),
@@ -489,6 +490,89 @@ def repricing_sheet(wb, f):
         ws.conditional_format(lo, col, hi, col, {"type": "cell", "criteria": "<", "value": 0, "format": bad})
 
 
+def guide_sheet(wb, f, meta):
+    import math
+    ws = wb.add_worksheet("Guide")
+    ws.hide_gridlines(2)
+    ws.set_column(0, 0, 30); ws.set_column(1, 1, 112)
+    ws.write(0, 0, "Guide — understand it & recreate it", f["title"])
+    ws.merge_range(1, 0, 1, 1, "A plain-English glossary of every number, what's real vs assumed, and "
+                   "how to run this on a new set of properties.", f["sub"]); ws.set_row(1, 24)
+    r = [3]
+
+    def sec(t):
+        ws.write(r[0], 0, t, f["title"]); r[0] += 1
+
+    def item(term, desc):
+        ws.write(r[0], 0, term, f["olab"]); ws.write(r[0], 1, desc, f["txt"])
+        ws.set_row(r[0], 15 * max(1, math.ceil(len(desc) / 105)) + 6); r[0] += 1
+
+    sec("What this is")
+    item("The short version", "A comp-based commercial screening & pitching tool built from an MLS export. "
+         "The export has price, size, type, age and location but NO income — so cap rate, rent and value "
+         "figures are ASSUMPTION- or COMP-based. Use it to screen, prospect and price — not to appraise.")
+    sec("What's real vs. what's assumed")
+    item("Real (from your data)", "Price, building SqFt, asset type, year built, MLS area, status — and everything "
+         "derived from them: $/SqFt, the price/size/type brackets, market share, closed comps, and asking lease rates.")
+    item("Assumed (editable)", "Rent $/SqFt, vacancy, operating-expense ratio, market cap rate, rent/expense growth, "
+         "and financing (LTV, rate, hold). Change these on the Assumptions & Scenario tabs (yellow cells) or in the dashboard.")
+    sec("Glossary — every number explained")
+    for term, desc in [
+        ("Normalized $/SqFt", "The model's price per SqFt for a STANDARDIZED building in that area — size, age, type "
+         "and the closed-vs-listed gap removed — so areas compare apples-to-apples."),
+        ("Going $/SF", "What a listing is actually asking per SqFt right now."),
+        ("Model $/SF", "What comps say that exact building SHOULD be per SqFt (its normalized value for size/age/type/area)."),
+        ("Adjust ▲ up / ▼ down", "How far the asking is from the model. ▲ up = priced BELOW market (room to raise, or a buy); "
+         "▼ down = priced ABOVE market."),
+        ("Adjusted basis (Δ $)", "The dollar version of the adjustment: (Model $/SF − Going $/SF) × SqFt."),
+        ("Implied cap (assumptions)", "NOI ÷ price, where NOI = SqFt × assumed rent × (1−vacancy) × (1−opex). Moves when you "
+         "change assumptions."),
+        ("Implied cap (data)", "Anchored to real rents & prices: (lease $/SF ÷ sale $/SF gross yield) × (1−vacancy) × (1−opex). "
+         "A market-level proxy, not a specific building's cap."),
+        ("Gross yield", "Annual asking lease $/SF ÷ sale $/SF — rent per dollar of price, before expenses."),
+        ("Lease $/SF", "Asking rent per SqFt per year (rate basis inferred from the listing)."),
+        ("Value / Comp value", "What comps or assumptions say it's worth — compare against the asking price."),
+        ("Market share %", "What percentage a category (asset type, price bracket, size class) makes up of its parent — "
+         "the whole market, an asset class, or a neighborhood."),
+    ]:
+        item(term, desc)
+    sec("The brackets")
+    item("Price brackets", "< $1M · $1–2.5M · $2.5–5M · $5–10M · $10M+")
+    item("Size classes (SqFt)", "< 2.5K · 2.5–5K · 5–10K · 10–25K · 25–50K · 50K+  — the 'floor plan' analog "
+         "(the export has no unit-mix / bed-bath data).")
+    item("Multifamily unit brackets", "< 10 · 10–25 · 25–50 · 50–100 · 100+ units — only where a unit count could be "
+         "parsed from the address (limited coverage).")
+    sec("Confidence & flags")
+    item("Confidence: High / Med / Indicative", "How many closed comps back a number (≥8 High, ≥4 Med, else Indicative). "
+         "Treat 'Indicative' cells as directional.")
+    item("Flag: Underpriced / Fair / Overpriced", "Asking vs value on the income lens (>10% under, within ±10%, >10% over).")
+    item("Flag: Check", "Implied cap outside a plausible band — usually the SqFt or assumed rent is off; verify before quoting.")
+    sec("How to recreate this for other properties")
+    ws.merge_range(r[0], 0, r[0], 1, "The whole workbook + dashboard regenerate from a folder of CSVs. To analyze a "
+                   "different set of properties (a new MLS pull, another market, or a specific list):", f["sub"])
+    ws.set_row(r[0], 26); r[0] += 1
+    for term, desc in [
+        ("1. Export", "From the MLS, export the properties as a CSV in the 'Agent Single Line — COM' layout "
+         "(or any CSV with the columns below)."),
+        ("2. Replace the data", "Put your CSV(s) in  commercial/data/raw/  and delete the old ones (the tool reads "
+         "every CSV in that folder)."),
+        ("3. Run", "In a terminal from the commercial/ folder:  pip install -r requirements.txt   then   "
+         "python analysis/run_all.py   (or double-click run.sh). ~30 seconds."),
+        ("4. Open", "outputs/Commercial_Deal_Dashboard.xlsx  and  dashboard/index.html — everything is rebuilt on your data."),
+        ("Columns it reads", "MLS #, St (status), Area, Address, Current Price, Sale Price, Year Built, Prop Type "
+         "(Sale/Lease), Type of Property, Property SqFt, Waterfront (Y/N), #Bays. Different headers? Edit the mapping "
+         "at the top of  analysis/cre_common.py."),
+        ("Tune the assumptions", "Rents/vacancy/opex/cap live in  analysis/cre_assumptions.py  (or edit live on the "
+         "dashboard). Refresh the market benchmarks in  analysis/market_context.py."),
+    ]:
+        item(term, desc)
+    sec("Sources & freshness")
+    item("Market benchmarks", f"Researched from CBRE, Colliers, JLL, Matthews, Yardi, The Real Deal, RSMeans/Turner/RLB, "
+         f"LandSearch, Holland & Knight and others ({MKT.AS_OF}). Full list on the Market tab — refresh periodically.")
+    item("Your data", f"Source: {', '.join(meta.get('sources', []))}. {meta.get('n_listings','')} listings, "
+         f"{meta.get('n_sale_comps','')} priced sale comps.")
+
+
 def segmentation_sheet(wb, f):
     sb = _load("segmentation_bundle.json")
     if not sb:
@@ -503,6 +587,8 @@ def segmentation_sheet(wb, f):
     r = _comp_block(ws, f, sb["market"]["by_size"], "Size class (SqFt)", r, "Market composition — by size class")
     r = _matrix_block(ws, f, sb["matrix_type_price"], "Asset type × price bracket", r)
     r = _matrix_block(ws, f, sb["matrix_type_size"], "Asset type × size class (SqFt)", r)
+    if sb.get("matrix_price_size"):
+        r = _matrix_block(ws, f, sb["matrix_price_size"], "Price bracket × size class (which sizes trade in which price bands)", r)
     if sb.get("mf_unit_mix"):
         _comp_block(ws, f, sb["mf_unit_mix"], "Units",
                     r, f"Multifamily unit-count mix ({sb['meta'].get('mf_units_parsed',0)} parsed — limited coverage)")
@@ -537,6 +623,7 @@ def main():
     wb = xlsxwriter.Workbook(OUT, {"nan_inf_to_errors": True})
     f = _fmts(wb)
     index_sheet(wb, f, meta)
+    guide_sheet(wb, f, meta)
     key_sheet(wb, f, meta, master, reb, pros, seed, v)
     callist_sheet(wb, f)
     neighborhoods_sheet(wb, f)

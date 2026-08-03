@@ -94,6 +94,7 @@ def main():
         # pivot matrices (for the Excel)
         "matrix_type_price": _matrix(v, "asset_type", "price_band", PRICE_ORDER, asset_order),
         "matrix_type_size": _matrix(v, "asset_type", "size_band", SIZE_ORDER, asset_order),
+        "matrix_price_size": _matrix(v, "price_band", "size_band", SIZE_ORDER, PRICE_ORDER),
         "matrix_nbhd_type": _matrix(vv, "submarket", "asset_type", asset_order),
         "matrix_nbhd_price": _matrix(vv, "submarket", "price_band", PRICE_ORDER),
         "matrix_nbhd_size": _matrix(vv, "submarket", "size_band", SIZE_ORDER),

@@ -33,8 +33,27 @@ def main():
     master = {s["submarket"]: s for s in (_load("master_bundle.json") or {"submarkets": []})["submarkets"]}
     leases = _load("leases_bundle.json") or {"by_submarket": []}
     lease_sub = {r["submarket"]: r for r in leases["by_submarket"]}
+    seg = _load("segmentation_bundle.json") or {}
     v = pd.read_csv(os.path.join(CRE.PROC, "cre_all_valued.csv"))
     subs = sorted(cre["submarkets"], key=lambda s: -(s.get("norm_ppsf") or 0))
+
+    def mix_html(sub):
+        """Small type/price/size composition blocks for one submarket."""
+        def block(title, rows, key):
+            rows = [r for r in rows if r.get("submarket") == sub]
+            rows = sorted(rows, key=lambda r: -(r.get("share_pct") or 0))[:6]
+            if not rows:
+                return ""
+            items = "".join(
+                f"<div class='mixrow'><span>{esc(r[key])}</span>"
+                f"<b>{(r.get('share_pct') or 0):.0f}%</b>"
+                f"<i>{('$'+format(int(r['median_ppsf']),',')+'/SF') if r.get('median_ppsf') else ''}</i></div>"
+                for r in rows)
+            return f"<div class='mixcol'><h4>{title}</h4>{items}</div>"
+        t = block("By type", seg.get("nbhd_by_type", []), "asset_type")
+        p = block("By price", seg.get("nbhd_by_price", []), "price_band")
+        z = block("By size (SqFt)", seg.get("nbhd_by_size", []), "size_band")
+        return (f"<div class='mix'>{t}{p}{z}</div>" if (t or p or z) else "")
 
     def esc(x):
         return str(x).replace("&", "&amp;").replace("<", "&lt;")
@@ -113,7 +132,9 @@ def main():
    <div class="sub">{esc(prof_key or '')}{f" · <span class='conf'>{esc(s.get('confidence',''))} confidence</span>" if s.get('confidence') else ''}</div></div></div>
  <div class="kpis">{kpis}</div>
  {f'<div class="play"><b>{esc(prof.get("blurb",""))}</b><br><span class="muted"><b>Recent:</b> {esc(prof.get("deals",""))}</span><br><b>The play:</b> {esc(prof.get("angle",""))}</div>' if prof else ''}
- <h3>Going for vs. should be going for — adjusted basis</h3>
+ <h3>What this area is made of — market share</h3>
+ {mix_html(sub)}
+ <h3 style="margin-top:14px">Going for vs. should be going for — adjusted basis</h3>
  <p class="note">"Model $/SF" is the normalized value for that exact building (size / age / type removed). "Adjust" is how far its asking is from the model — <span class="up">▲ up</span> = priced below the market (room to raise / a buy), <span class="down">▼ down</span> = priced above.</p>
  {rep_tbl}
  <h3 style="margin-top:14px">Closed comps</h3>
@@ -147,6 +168,10 @@ th,td{{text-align:right;padding:4px 7px;border-bottom:1px solid var(--line);whit
 th:first-child,td:first-child,td.c{{text-align:left}}
 th{{color:var(--muted);font-size:9.5px;text-transform:uppercase;font-weight:600}}
 td.c{{color:var(--muted)}}.up{{color:var(--good);font-weight:600}}.down{{color:var(--bad);font-weight:600}}.muted{{color:var(--muted)}}
+.mix{{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:2px 0 4px}}
+.mixcol h4{{font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:0 0 5px;font-weight:700}}
+.mixrow{{display:flex;justify-content:space-between;gap:6px;font-size:12px;padding:2px 0;border-bottom:1px solid var(--line)}}
+.mixrow b{{font-variant-numeric:tabular-nums}}.mixrow i{{color:var(--muted);font-style:normal;font-size:11px}}
 @media print{{body{{background:#fff}}.wrap{{max-width:100%;padding:0}}.page{{border:none;border-radius:0;page-break-after:always;padding:0 0 10px}}.summary{{page-break-after:always}}}}
 </style></head><body><div class="wrap">
 <h1>Fort Lauderdale Commercial — Neighborhood Systems</h1>
