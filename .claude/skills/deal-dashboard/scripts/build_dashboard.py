@@ -86,6 +86,20 @@ with open(os.path.join(PROC, "lease_bundle.json")) as f:
 with open(os.path.join(PROC, "segmentation_bundle.json")) as f:
     _SG = json.load(f)
 SEGMENT = {"meta": _SG["meta"], "citywide": _SG["citywide"], "neighborhoods": _SG["neighborhoods"]}
+try:
+    with open(os.path.join(PROC, "manifest.json")) as f:
+        MANIFEST = json.load(f)
+except FileNotFoundError:
+    MANIFEST = {"data_as_of": None, "sources": [], "total_rows": 0, "n_sources": 0}
+# property-analyzer reference: neighborhood -> typical/waterfront/should-be/replace/rent $/sqft
+_CX2 = {c["neighborhood"]: c for c in CONTEXT.get("neighborhoods", [])}
+_LZ2 = {l["neighborhood"]: l for l in LEASE.get("neighborhoods", [])}
+ANALYZER = {r["neighborhood"]: {
+    "typical": r.get("should_be_ppsf") or r.get("norm_ppsf"),
+    "wf": r.get("waterfront_ppsf"), "should": r.get("should_be_ppsf") or r.get("norm_ppsf"),
+    "replace": (_CX2.get(r["neighborhood"], {}) or {}).get("replacement_psf_typ"),
+    "rent": (_LZ2.get(r["neighborhood"], {}) or {}).get("rent_psf_yr")}
+    for r in _MASTER["neighborhoods"] if (r.get("should_be_ppsf") or r.get("norm_ppsf"))}
 with open(os.path.join(PROC, "high_ticket_bundle.json")) as f:
     _HT = json.load(f)
 # trim listings out of the dashboard payload (they live in the Excel tab); keep the
@@ -298,12 +312,14 @@ html{scroll-behavior:smooth}
       <p class="fl-eyebrow">Neighborhood market intelligence</p>
       <h1 class="fl-title fl-serif">Fort&nbsp;Lauderdale, normalized</h1>
       <p class="fl-sub" id="subline"></p>
+      <p class="note-line" id="dataStamp" style="margin-top:6px"></p>
     </div>
     <button class="fl-toggle" id="themeBtn" type="button">Toggle theme</button>
   </header>
 
   <nav class="fl-nav" id="secNav" aria-label="Jump to section">
     <a href="#howto">Start here</a>
+    <a href="#analyzer">Property Analyzer</a>
     <a href="#marketing">Marketing</a>
     <a href="#costs">Costs &amp; realities</a>
     <a href="#leasing">Leasing &amp; yield</a>
@@ -328,6 +344,7 @@ html{scroll-behavior:smooth}
   <div class="card" id="howto">
     <h2>Start here <span style="font-weight:400;color:var(--muted);font-size:13px">— what to open for each job</span></h2>
     <div class="howto" style="margin-top:8px">
+      <a href="#analyzer"><div class="j">Analyze a property</div><div class="w">Value, should-be, yield &amp; replacement for any home</div></a>
       <a href="#marketing"><div class="j">Talk to a homeowner</div><div class="w">Market snapshot + talking points to paste</div></a>
       <a href="#repricing"><div class="j">Price a listing (CMA)</div><div class="w">Asking vs comps, suggested list + CMA line</div></a>
       <a href="#sellers"><div class="j">Prospect for listings</div><div class="w">Owners to call + ready outreach lines</div></a>
@@ -369,6 +386,23 @@ html{scroll-behavior:smooth}
     <ul class="opp-reasons" id="lxFacts" style="gap:7px;margin-bottom:12px"></ul>
     <div class="controls" style="margin:0 0 10px"><input class="search" id="lxSearch" type="search" placeholder="Search neighborhood…" aria-label="Search leasing"></div>
     <div class="tbl-scroll"><table class="fl" id="lxTbl"><thead></thead><tbody></tbody></table></div>
+  </div>
+
+  <div class="card" id="analyzer">
+    <h2>Property Analyzer <span style="font-weight:400;color:var(--muted);font-size:13px">— plug in any property, get its numbers</span></h2>
+    <p class="cap">Estimate a home's value, should-be $/sqft, rent &amp; yield and replacement cost from your neighborhood comps. Directional screening, not an appraisal.</p>
+    <div class="scn-grid">
+      <div class="scn-inputs">
+        <div class="scn-group">The property</div>
+        <label>Neighborhood<select id="paNb"></select></label>
+        <label>Property type<select id="paType"><option>Single Family</option><option>Condo</option><option>Townhouse</option></select></label>
+        <label>Square footage<input id="paSqft" type="number" step="100" value="3000"></label>
+        <label>Beds<input id="paBeds" type="number" step="1" value="4"></label>
+        <label>Waterfront?<select id="paWf"><option value="N">No</option><option value="Y">Yes</option></select></label>
+        <label>Asking price (optional)<input id="paAsk" type="number" step="50000" value="0"></label>
+      </div>
+      <div class="scn-out"><div class="scn-tiles" id="paTiles"></div><p class="note-line" id="paNote"></p></div>
+    </div>
   </div>
 
   <div class="card" id="assumptions">
@@ -629,6 +663,8 @@ html{scroll-behavior:smooth}
 <script id="context-data" type="application/json">__CONTEXT_JSON__</script>
 <script id="lease-data" type="application/json">__LEASE_JSON__</script>
 <script id="segment-data" type="application/json">__SEGMENT_JSON__</script>
+<script id="manifest-data" type="application/json">__MANIFEST_JSON__</script>
+<script id="analyzer-data" type="application/json">__ANALYZER_JSON__</script>
 <script id="scen-data" type="application/json">__SCEN_JSON__</script>
 <script>
 (function(){
@@ -649,6 +685,8 @@ const BT=JSON.parse(document.getElementById("backtest-data").textContent);
 const CX=JSON.parse(document.getElementById("context-data").textContent);
 const LX=JSON.parse(document.getElementById("lease-data").textContent);
 const SG=JSON.parse(document.getElementById("segment-data").textContent);
+const MAN=JSON.parse(document.getElementById("manifest-data").textContent);
+const PA=JSON.parse(document.getElementById("analyzer-data").textContent);
 const M=MLS.meta, NB=MLS.neighborhoods;
 function mktColor(m){return {"Seller's market":"var(--neg)","Balanced":"var(--ink-2)",
   "Buyer's market":"var(--good)","Deep buyer's market":"var(--good)"}[m]||"var(--ink-2)";}
@@ -693,6 +731,7 @@ $("#subline").textContent=
   +`per-home hedonic R² ${M.hedonic_r2} · waterfront worth +${M.premiums.waterfront_pct}% · `
   +`market up ${appr.toFixed(1)}× since ${RED.meta.generated_span[0].slice(0,4)}`;
 $("#fn").textContent=M.n_sold.toLocaleString();
+if(MAN.data_as_of){$("#dataStamp").textContent=`Data as of ${MAN.data_as_of} · ${MAN.n_sources} sources · ${(MAN.total_rows||0).toLocaleString()} rows loaded · re-run analysis/refresh.py to update`;}
 
 function kpis(){
   const rows=[
@@ -1270,6 +1309,39 @@ function sgInit(){
   if(names.length)sgRender(names[0]);
 }
 
+// ---------- property analyzer ----------
+function paCalc(){
+  const r=PA[$("#paNb").value]||{}, sqft=gv("#paSqft"),
+        wf=$("#paWf").value==="Y", ask=gv("#paAsk");
+  const base=(wf&&r.wf)?r.wf:r.typical;
+  const val=base?base*sqft:null;
+  const rent=r.rent?r.rent*sqft/12:null;
+  const yld=(r.rent&&base)?r.rent/base*100:null;
+  const vsAsk=(ask>0&&val)?(ask/val-1)*100:null;
+  const vsRep=(r.replace&&base)?(base/r.replace-1)*100:null;
+  const tile=(t,v,s,cls)=>`<div class="scn-tile${cls&&cls.hi?' hi':''}"><div class="t">${t}</div>`
+    +`<div class="v ${cls&&cls.dir||''}">${v}</div><div class="s">${s||""}</div></div>`;
+  $("#paTiles").innerHTML=[
+    tile("Estimated value",val?usd(val):"—",val?`${usd(val*0.84)} – ${usd(val*1.16)} (±16%)`:"pick a neighborhood",{hi:1}),
+    tile("Estimated $/sqft",base?usd(base):"—",wf&&r.wf?"waterfront comps":"typical comps",{hi:1}),
+    tile("Should-be $/sqft",r.should?usd(r.should):"—","recent sold comps"),
+    tile("Est. rent",rent?usd(rent)+"/mo":"add lease data",yld?`${yld.toFixed(1)}% gross yield`:""),
+    tile("Replacement $/sqft",r.replace?usd(r.replace):"—","land + build + soft"),
+    tile("vs Replacement",vsRep==null?"—":(vsRep>=0?"+":"")+vsRep.toFixed(0)+"%","build-vs-buy",{dir:vsRep>0?"up":"down"}),
+    tile("Your asking vs est.",vsAsk==null?"— enter asking":(vsAsk>=0?"+":"")+vsAsk.toFixed(1)+"%",ask>0?usd(ask):"",{dir:vsAsk>0?"down":"up"}),
+  ].join("");
+  $("#paNote").textContent="Estimate = neighborhood comp $/sqft × size (waterfront $/sqft if flagged). "
+    +"±16% band = the model's out-of-sample accuracy. Screening only — confirm with real comps.";
+}
+function paInit(){
+  const names=Object.keys(PA).sort();
+  $("#paNb").innerHTML=names.map(n=>`<option>${n}</option>`).join("");
+  const def=["Rio Vista","Coral Ridge","Las Olas"].find(n=>n in PA)||names[0];
+  if(def)$("#paNb").value=def;
+  ["#paNb","#paType","#paSqft","#paBeds","#paWf","#paAsk"].forEach(id=>$(id).addEventListener("input",paCalc));
+  paCalc();
+}
+
 // ---------- seller prospects ----------
 $("#slSummary").textContent=`· ${SL.meta.n_failed} failed-listing owners, ${SL.meta.n_overpriced_active} overpriced actives`;
 let slType="failed", slQ="";
@@ -1421,6 +1493,7 @@ mktInit();
 cxInit();
 lxInit();
 sgInit();
+paInit();
 
 // ---------- live assumptions controller ----------
 function asApply(){renderRepFlags();renderRepNbhd();renderRepInv();mfTable();htTable();
@@ -1484,6 +1557,8 @@ def build():
              .replace("__CONTEXT_JSON__", json.dumps(CONTEXT, separators=(",", ":")))
              .replace("__LEASE_JSON__", json.dumps(LEASE, separators=(",", ":")))
              .replace("__SEGMENT_JSON__", json.dumps(SEGMENT, separators=(",", ":")))
+             .replace("__MANIFEST_JSON__", json.dumps(MANIFEST, separators=(",", ":")))
+             .replace("__ANALYZER_JSON__", json.dumps(ANALYZER, separators=(",", ":")))
              .replace("__SCEN_JSON__", json.dumps(SCEN, separators=(",", ":"))))
     standalone = (
         "<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"

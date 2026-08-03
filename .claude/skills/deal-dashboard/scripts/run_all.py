@@ -13,6 +13,7 @@ import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 STEPS = [
+    ("Data manifest (what's loaded, how fresh)", "manifest.py"),
     ("Redfin neighborhood normalization", "normalize_ppsf.py"),
     ("MLS per-home hedonic + profiles", "mls_normalize.py"),
     ("Land & dock comps (+ commercial land)", "land_analysis.py"),

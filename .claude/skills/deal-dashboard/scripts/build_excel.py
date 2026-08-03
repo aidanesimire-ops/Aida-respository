@@ -1583,6 +1583,24 @@ GLOSSARY = [
 ]
 
 
+def data_sheet(wb, man):
+    f = _blk_formats(wb)
+    ws = wb.add_worksheet("Data")
+    ws.write(0, 0, "Data — what's loaded and how fresh it is", f["title"])
+    ws.write(1, 0, f"Market: {man.get('market','—')}.  Data as of {man.get('data_as_of','—')}  ·  "
+             f"{man.get('n_sources',0)} sources  ·  {man.get('total_rows',0):,} rows. " + (man.get("note") or ""),
+             f["sub"])
+    ws.set_row(1, 30)
+    rows = [[(s["source"], "txtb"), (s["folder"], "txt"), (s["files"], "num"),
+             (s["rows"], "num"), (s["updated"], "txt")] for s in man.get("sources", [])]
+    _write_block(ws, 3, ["Source", "Folder", "Files", "Rows", "Newest export"],
+                 [22, 26, 8, 10, 15], rows, f)
+    ws.write(5 + len(rows), 0, "To update: drop new CSV exports into the folders above and run "
+             "`python analysis/refresh.py`. This stamp and every tab move to your latest data.",
+             wb.add_format({"italic": True, "font_color": "#898781", "text_wrap": True}))
+    ws.hide_gridlines(2)
+
+
 def glossary_sheet(wb):
     ws = wb.add_worksheet("Glossary")
     title = wb.add_format({"bold": True, "font_size": 16, "font_color": DARK})
@@ -1810,6 +1828,7 @@ def neighborhood_systems_sheet(wb, mb, ctx, lease, absorb, mm):
 
 SHEET_INDEX = {
     "Key Conclusions": ("Start here", "Every headline finding with the evidence behind it and a confidence rating."),
+    "Data": ("Start here", "What data is loaded, how many rows, and how fresh (the 'data as of' date). Update by dropping new CSVs and re-running refresh.py."),
     "Glossary": ("Start here", "Every term in plain English — what each number means and how to read it. Skim once before diving in."),
     "Property Analyzer": ("Start here", "Plug in ANY property (neighborhood, size, beds, waterfront) and get its estimated value, should-be, rent/yield and replacement cost. Reuse for every deal."),
     "Neighborhood Pricing": ("Start here", "THE consolidated view — one row per neighborhood: renormalized pricing (asking vs should-be, adjusted up/down), value, waterfront, build-vs-buy, yield & market. Same as the PDF reports."),
@@ -1864,10 +1883,12 @@ def index_sheet(wb, ws):
                           "border": 1, "border_color": "#e1e0d9", "font_color": "#4a5c6b"})
     ws.set_column(0, 0, 34)
     ws.set_column(1, 1, 92)
+    _man = _jload_opt("manifest.json") or {}
+    asof = f"   ·   Data as of {_man.get('data_as_of')}" if _man.get("data_as_of") else ""
     ws.write(0, 0, "Fort Lauderdale — Deal Dashboard", title)
     ws.write(1, 0, "One workbook, everything inside. Click any row below to jump to that tab — tabs "
              "are colour-coded by the coloured section headings here. New to it? Start with "
-             "Neighborhood Pricing (every neighborhood in one row) and Key Conclusions.", sub)
+             "Neighborhood Pricing (every neighborhood in one row) and Key Conclusions." + asof, sub)
     ws.set_row(1, 44)
     names = [w.name for w in wb.worksheets() if w.name != "Index"]
     order = ["Start here", "Marketing & proof", "Deal tools", "High-ticket (≥$1M)",
@@ -1950,6 +1971,9 @@ def main():
                                        _jload_opt("lease_bundle.json"), _jload_opt("absorption_bundle.json"), mm)
             glossary_sheet(wb)
             property_analyzer_sheet(wb, _mb, _jload_opt("context_bundle.json"), _jload_opt("lease_bundle.json"))
+            _man = _jload_opt("manifest.json")
+            if _man:
+                data_sheet(wb, _man)
         except Exception as e:  # noqa: BLE001 -- best-effort helper tabs
             print("  (helper tab skipped:", e, ")")
         scenario_sheet(wb, _mb)

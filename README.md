@@ -95,7 +95,7 @@ python analysis/refresh.py --check  # just validate data & column maps, no rebui
 
 `refresh.py` reports what data it found for each asset class and checks your column
 maps against the actual export headers before building — so a renamed column is caught,
-not silently dropped. (`python analysis/run_all.py` still runs the raw 18-step pipeline
+not silently dropped. (`python analysis/run_all.py` still runs the raw 25-step pipeline
 if you prefer.)
 
 ## Dynamic — config-driven & live
@@ -122,6 +122,7 @@ per device.
 Or step by step:
 
 ```bash
+python analysis/manifest.py         # what data is loaded + how fresh -> data/processed/manifest.json
 python analysis/normalize_ppsf.py   # Redfin layer  -> data/processed/*.csv, analysis_bundle.json
 python analysis/mls_normalize.py    # MLS per-home  -> data/processed/mls_*.csv, mls_bundle.json
 python analysis/land_analysis.py    # vacant land + docks + commercial land -> land_bundle.json
@@ -163,6 +164,31 @@ blocks those hosts, so run it on a machine with normal network access.
 
 Re-run any time you get fresh data — drop new MLS exports in `data/raw/mls/` (named by
 status) and re-run.
+
+## Built to grow — update with more data over time
+
+The model is designed to **absorb more data as you get it**, without touching code:
+
+1. **Drop new exports** into the matching folder under `data/raw/` — more `mls/` status
+   files, `land/`, `income/`, `commercial_land/`, or a new `lease/` folder for MLS lease
+   comps (which turns the rent/yield figures from sourced benchmarks into real comps).
+2. **Re-run** `python analysis/refresh.py`. Every bundle, the workbook, the dashboard, the
+   report and the neighborhood PDFs rebuild from whatever is now on disk.
+3. **The vintage moves with your data.** `manifest.py` scans each folder and stamps a
+   **"Data as of …"** line — on the dashboard header, in the Excel **Data** tab, and on the
+   **Index** — showing the newest export date, every source, its file/row counts and last
+   update. You always know exactly what the numbers are built from.
+
+Because sources are declared in the config, adding a **new asset class** is cloning one
+`assets:` block and pointing a module at it — the manifest and stamps pick it up
+automatically. Nothing is a one-time build; it's a pipeline you keep feeding.
+
+The dashboard's **Property Analyzer** card is the fast way to put that data to work on a
+single home: pick a neighborhood, type, size, beds and waterfront (and optionally an asking
+price) and it returns an estimated value and $/sqft, the should-be $/sqft from recent solds,
+an estimated rent and gross yield, and the replacement (build-vs-buy) cost — with your
+asking benchmarked against the estimate. The Excel **Property Analyzer** tab does the same
+with dropdowns and live formulas, so you can screen a property in either tool.
 
 ## Layout
 

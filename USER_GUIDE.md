@@ -21,7 +21,8 @@ and the **workbook** (`outputs/Fort_Lauderdale_PPSF_Normalized.xlsx`, open the *
 | **Small multifamily** | Dashboard → **Multifamily** · Excel → **Multifamily** | $/unit and $/sqft comps by neighborhood and building size |
 | **Backing up your pricing claims** | Dashboard KPI **Model accuracy** · Excel → **Model Accuracy** | The out-of-sample accuracy figure — your "data-backed pricing" proof |
 | **Understanding any term** | Excel → **Glossary** | Every metric in plain English — read it once |
-| **Analyzing a specific property** | Excel → **Property Analyzer** | Type in neighborhood/size/beds/waterfront → estimated value, should-be, rent/yield, replacement cost |
+| **Analyzing a specific property** | Dashboard → **Property Analyzer** · Excel → **Property Analyzer** | Type in neighborhood/size/beds/waterfront → estimated value, should-be $/sqft, rent/yield, replacement cost — with your asking benchmarked against the estimate |
+| **Checking how fresh the data is** | Dashboard header **"Data as of…"** · Excel → **Data** tab | The newest export date, every source, and its file/row counts — the vintage behind every number |
 | **Running this on a new dataset/market** | [`docs/RECREATE.md`](docs/RECREATE.md) + [`templates/`](templates/) | Drop in new CSVs, run one command, everything rebuilds |
 
 ---
@@ -66,6 +67,11 @@ Drop new MLS exports into the folders under `data/raw/`, then:
 python analysis/refresh.py --check   # confirms it read your files & columns
 python analysis/refresh.py           # rebuilds the dashboard, workbook, and report
 ```
+
+Everything is **built to grow with your data.** Each refresh re-reads whatever is on disk
+and re-stamps the **"Data as of…"** line (dashboard header, Excel **Data** tab, and Index),
+so the vintage always tracks your latest export — add lease exports to `data/raw/lease/` and
+the rent/yield numbers switch from sourced benchmarks to real comps automatically.
 
 To sharpen accuracy and unlock more, see **[docs/DATA_TO_ADD.md](docs/DATA_TO_ADD.md)** —
 the exact columns to add to your next export and what each one turns on.

@@ -100,8 +100,11 @@ new data) go through config + `refresh.py`; day-to-day screening what-ifs are li
 When you adapt this skill, keep that architecture: read tunables from `CFG`, never
 re-hard-code them, and seed any new live control from the config default.
 
-`run_all.py` runs 16 stages in dependency order and writes everything to `data/processed/`,
-`outputs/` and `dashboard/`. Re-run any time fresh data arrives.
+`run_all.py` runs 25 stages in dependency order and writes everything to `data/processed/`,
+`outputs/` and `dashboard/`. The first stage, `manifest.py`, records what data is loaded and
+how fresh it is (`data/processed/manifest.json`) so the dashboard header, Excel **Data** tab
+and Index all carry a **"Data as of…"** stamp that moves with your latest export. Re-run any
+time fresh data arrives — the model is built to keep absorbing more data over time.
 
 **Path resolution:** each script computes `ROOT` as the parent of `scripts/` and reads/writes
 `data/`, `outputs/`, `dashboard/` under it — so drop your `data/raw/` alongside `scripts/`, or
