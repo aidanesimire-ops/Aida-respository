@@ -10,12 +10,10 @@ Offered at **$1,600,000 / 8.25% cap** on $132,000 NOI.
 
 | File | What it is |
 |---|---|
-| **`451 White Horse Pike - IC Deck.pdf`** | **THE presentation document. 17 landscape slides in four parts, built to take a reader from cold to an approved offer.**<br>Part 1 decision · Part 2 asset and price · Part 3 return · Part 4 risk and execution. |
-| `451 White Horse Pike - Full Analysis (backup).pdf` | 25-page diligence backup, not the presentation document. Four parts. Page 1 orients the reader — what the property is, the tenant, the lease, the ask — plus a contents map. §2–3 make the argument; §4–14 carry the detail. Every section starts on its own page and opens with a plain-English summary.** |
+| **`451 White Horse Pike - IC Deck.pdf`** | **THE presentation document, and the complete analysis. 19 landscape slides in four parts plus two appendices, built to take a reader from cold to an approved offer.**<br>Part 1 decision · Part 2 asset and price · Part 3 return · Part 4 risk and execution · Appendix A price sensitivity · Appendix B site quality. |
 | **`451 White Horse Pike - Acquisition Model.xlsx`** | **Live 14-tab model, 898 formulas. Change the offer price on `Assumptions` and everything recalculates.** |
 | `analysis.html` | The same analysis as a web page |
 | `deck.html` | Source for the IC deck |
-| `analysis-print.html` | Source for the full analysis backup |
 | `build_model.py` | Rebuilds the workbook from scratch |
 | **`ONE_MODEL.py`** | **The single source of truth. One 10-year hold, four cases. Every figure in the deck comes from here.** |
 | **`METRICS.py`** | **The full standard metric set: cap rates, IRR, cash-on-cash, DSCR, debt yield, equity multiples, payback, yield on cost.** |
@@ -23,6 +21,8 @@ Offered at **$1,600,000 / 8.25% cap** on $132,000 NOI.
 | `comp_adjustment_grid.py` | Lease comp adjustment grid, exclusions with reasons, and the sale comp schedule |
 | `broker_comparison.py` | Ask-to-offer bridge, combined broker/our comp set, and the size-vs-rent regression |
 | `financing_stress_tests.py` | Loan sizing, DSCR, levered IRR, tenant-health coverage, sensitivity and exit analysis |
+| `price_ladder.py` | Re-runs all four cases at every price on the negotiating ladder (Appendix A) |
+| `consistency_gate.py` | Gate: asserts the deck PDF carries every canonical figure and no superseded one |
 | `audit_consistency.py` | Recomputes every headline figure independently and cross-checks it against the workbook and the PDF |
 | `offer_case_1100k.py` | Returns on the $1.1M basis, payback, downside yields and the negotiation ladder |
 | `land_upside_model.py` | Outparcel ground lease and EV charging licence sizing, and value created |
