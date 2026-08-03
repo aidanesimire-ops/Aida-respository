@@ -86,6 +86,24 @@
   .stat .t{font-size:11pt;line-height:1.4;color:var(--ink2);}
   .stat .t b{color:var(--ink);}
 
+  /* outcome range bar */
+  .rangewrap{margin:6pt 0 4pt;}
+  .rangebar{position:relative;height:26pt;background:linear-gradient(90deg,#DCE9E3 0%,#BFDCD0 45%,#8CC7B0 100%);
+            border:.75pt solid var(--teal);}
+  .rmark{position:absolute;top:-7pt;bottom:-7pt;width:2pt;background:var(--ink);}
+  .rmark.big{width:3pt;background:var(--teal);}
+  .rlab{position:absolute;transform:translateX(-50%);text-align:center;white-space:nowrap;}
+  .rlab .v{font-family:var(--mono);font-size:14pt;font-weight:700;color:var(--teal);line-height:1;}
+  .rlab .v.sm{font-size:11pt;color:var(--ink2);}
+  .rlab .n{font-family:var(--mono);font-size:6.6pt;letter-spacing:.1em;text-transform:uppercase;
+           color:var(--ink3);margin-top:3pt;}
+  .glos{border:1pt solid var(--ink2);padding:8pt 11pt;background:#FBFCFA;}
+  .glos h4{font-family:var(--mono);font-size:7.4pt;letter-spacing:.14em;text-transform:uppercase;
+           color:var(--ink2);font-weight:700;margin:0 0 7pt;}
+  .glos dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:3pt 9pt;}
+  .glos dt{font-weight:700;font-size:8.2pt;white-space:nowrap;}
+  .glos dd{margin:0;font-size:8.2pt;color:var(--ink2);line-height:1.3;}
+
   /* spreadsheet-style schedule */
   table.sheet{font-size:8.5pt;border:.75pt solid var(--ink2);}
   table.sheet th,table.sheet td{border:.4pt solid #C9CDC8;padding:3.6pt 5pt;line-height:1.2;}
@@ -96,6 +114,8 @@
       font-variant-numeric:tabular-nums;white-space:nowrap;}
   table.sheet.tighter th,table.sheet.tighter td{padding:2.9pt 4pt;font-size:8pt;}
   table.sheet.tiny th,table.sheet.tiny td{padding:2.6pt 4pt;font-size:7.6pt;line-height:1.15;}
+  table.sheet td small{display:block;font-family:var(--sans);font-size:7.4pt;
+      font-weight:400;color:var(--ink3);margin-top:2pt;line-height:1.2;}
   table.sheet tr.sub td{background:var(--wash)!important;font-weight:700;}
   table.sheet tr.out td{color:var(--ink3);}
   table.sheet tr.tot td{background:var(--band)!important;font-weight:700;border-top:.9pt solid var(--ink);}
@@ -486,59 +506,58 @@
 <!-- ══════════ WHAT WE MAKE ══════════ -->
 <section class="slide">
   <p class="eyebrow">Part 3 &middot; The return &nbsp;|&nbsp; What we make</p>
-  <h2>Four outcomes. One model. Every number below traces to this table.</h2>
-  <div class="rule" style="margin:11pt 0 13pt"></div>
+  <h2>Four ways this plays out. All four make money.</h2>
+  <div class="rule" style="margin:11pt 0 16pt"></div>
 
-  <table class="sheet tighter" style="margin-bottom:12pt">
+  <div class="rangewrap" style="margin-top:10pt">
+    <div style="position:relative;height:34pt;margin-bottom:2pt">
+      <div class="rlab" style="left:0%;bottom:0"><span class="v sm">6.1%</span><p class="n">Worst</p></div>
+      <div class="rlab" style="left:18.7%;bottom:0"><span class="v sm">8.4%</span><p class="n">Tenant leaves</p></div>
+      <div class="rlab" style="left:72.1%;bottom:0"><span class="v">15.0%</span><p class="n">Likeliest &mdash; renewal</p></div>
+      <div class="rlab" style="left:100%;bottom:0"><span class="v">18.3%</span><p class="n">Land plan works</p></div>
+    </div>
+    <div class="rangebar">
+      <span class="rmark" style="left:0%"></span>
+      <span class="rmark" style="left:18.7%"></span>
+      <span class="rmark big" style="left:72.1%"></span>
+      <span class="rmark big" style="left:100%"></span>
+    </div>
+    <p style="font-family:var(--mono);font-size:7pt;letter-spacing:.1em;color:var(--ink3);text-align:center;margin:9pt 0 0">
+      TEN-YEAR ANNUAL RETURN, ALL CASH, ON A $1,100,000 PURCHASE</p>
+  </div>
+
+  <table class="sheet" style="margin-top:20pt">
     <thead><tr>
-      <th style="width:8%">Year</th>
-      <th style="width:6%">&nbsp;</th>
-      <th class="num" style="width:16%">Floor</th>
-      <th class="num" style="width:16%">Base</th>
-      <th class="num" style="width:16%">Renewal</th>
-      <th class="num" style="width:16%">Growth</th>
-      <th style="width:22%">What is happening</th>
+      <th style="width:13%">Outcome</th><th style="width:38%">What has to happen</th>
+      <th class="num" style="width:13%">Annual return</th><th class="num" style="width:15%">Cash back on $1.1M</th>
+      <th class="num" style="width:11%">Profit</th><th style="width:10%">How likely</th>
     </tr></thead>
     <tbody>
-      <tr><td class="k">0</td><td>Buy</td><td class="num">(1,100,000)</td><td class="num">(1,100,000)</td><td class="num">(1,100,000)</td><td class="num">(1,100,000)</td><td>All cash</td></tr>
-      <tr><td class="k">1</td><td>Rent</td><td class="num">132,000</td><td class="num">132,000</td><td class="num">132,000</td><td class="num">132,000</td><td>Cannabis rent, absolute NNN</td></tr>
-      <tr><td class="k">2</td><td>Rent</td><td class="num">132,000</td><td class="num">132,000</td><td class="num">132,000</td><td class="num">(18,000)</td><td>Growth case spends $150,000 on the pad</td></tr>
-      <tr><td class="k">3&ndash;6</td><td>Rent</td><td class="num">132,000<small>a year</small></td><td class="num">132,000<small>a year</small></td><td class="num">132,000<small>a year</small></td><td class="num">232,000<small>a year</small></td><td>Growth case adds $100,000 of land income</td></tr>
-      <tr><td class="k">7</td><td>Expiry</td><td class="num">35,299</td><td class="num">35,299</td><td class="num">135,299</td><td class="num">143,000</td><td>Lease ends Jan-2033; void begins except on renewal</td></tr>
-      <tr><td class="k">8</td><td>Re-let</td><td class="num">(255,002)</td><td class="num">(228,701)</td><td class="num">154,000</td><td class="num">(194,701)</td><td>Fit-out and letting fees; renewal case just collects</td></tr>
-      <tr><td class="k">9</td><td>Income</td><td class="num">79,200</td><td class="num">96,800</td><td class="num">154,000</td><td class="num">205,600</td><td>New tenant paying $18 / $22 / option / $24 per SF</td></tr>
-      <tr class="tot"><td class="k">10</td><td>Sale</td><td class="num">983,180</td><td class="num">1,233,163</td><td class="num">1,818,865</td><td class="num">2,811,240</td><td>Final year's rent plus the sale proceeds</td></tr>
-      <tr class="sub"><td colspan="2"><strong>10-YEAR RETURN, ALL CASH</strong></td><td class="num"><strong>6.13%</strong></td><td class="num"><strong>8.40%</strong></td><td class="num"><strong>14.95%</strong></td><td class="num"><strong>18.33%</strong></td><td>Internal rate of return</td></tr>
-      <tr class="tot"><td colspan="2"><strong>Same, with a 55% mortgage</strong></td><td class="num r">&minus;1.08%</td><td class="num">6.29%</td><td class="num">19.40%</td><td class="num">24.43%</td><td>$605,000 at 10%, 25-year amortisation</td></tr>
+      <tr class="sub"><td class="k">Renewal</td><td>The tenant takes its five-year option at $154,000. No void, nothing for us to spend.</td><td class="num">14.95%</td><td class="num">$3,061,865<small>2.78&times; our money</small></td><td class="num">$1,961,865</td><td><strong>Likeliest</strong></td></tr>
+      <tr class="sub"><td class="k">Growth</td><td>We let the spare land from year 3 <em>and</em> re-let the building to a medical tenant on a lease with increases.</td><td class="num">18.33%</td><td class="num">$3,999,438<small>3.64&times; our money</small></td><td class="num">$2,899,438</td><td>If we execute</td></tr>
+      <tr><td class="k">Base</td><td>Tenant leaves. Twelve months empty. We re-let at ordinary market rent and never touch the land.</td><td class="num">8.40%</td><td class="num">$1,928,561<small>1.75&times; our money</small></td><td class="num">$828,561</td><td>Realistic</td></tr>
+      <tr><td class="k">Floor</td><td>Tenant fails. Eighteen months empty. We re-let at the very bottom of the market. Land never touched.</td><td class="num">6.13%</td><td class="num">$1,634,677<small>1.49&times; our money</small></td><td class="num">$534,677</td><td>Downside</td></tr>
     </tbody>
   </table>
 
-  <div class="cols c2" style="flex:0;align-content:start;gap:18pt">
-    <div>
-      <table class="sheet tiny">
-        <thead><tr><th style="width:16%">Case</th><th style="width:34%">What has to happen</th><th class="num" style="width:16%">Re-let rent</th><th class="num" style="width:16%">Exit yield</th><th class="num" style="width:18%">Sale price</th></tr></thead>
-        <tbody>
-          <tr><td class="k">Floor</td><td>Tenant fails; 18 months empty; re-let at the bottom of the market; land never touched</td><td class="num">$18.00/SF</td><td class="num">9.00%</td><td class="num">$902,000</td></tr>
-          <tr><td class="k">Base</td><td>Tenant leaves; 12 months empty; re-let at market rent; land never touched</td><td class="num">$22.00/SF</td><td class="num">8.75%</td><td class="num">$1,133,900</td></tr>
-          <tr><td class="k">Renewal</td><td>Tenant exercises its option at $154,000. No void, no fit-out cost</td><td class="num">$35.00/SF</td><td class="num">9.25%</td><td class="num">$1,664,900</td></tr>
-          <tr class="sub"><td class="k">Growth</td><td>Pad and EV licence let from year 3; building re-let to a medical covenant with increases</td><td class="num">$24.00/SF</td><td class="num">8.00%</td><td class="num">$2,603,000</td></tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="cols c2" style="flex:0;margin-top:16pt;gap:18pt">
     <div class="box fill">
-      <h4>Two things to keep straight</h4>
-      <p style="font-size:10.4pt"><strong>The 12.0% on the cover is a yield, not a return.</strong> It is year-one rent divided by price. The returns above are ten-year IRRs. They are different measures and they will not match.</p>
-      <p style="font-size:10.4pt"><strong>Renewal is the single likeliest outcome</strong> &mdash; the tenant has sunk fit-out cost, a site-specific licence, and the township allows only two. That case returns <strong>14.95%</strong> and needs nothing from us.</p>
+      <h4>The one sentence</h4>
+      <p style="font-size:11.4pt;margin:0">Across every outcome we can model, the money comes back with a profit &mdash; between <strong>1.49&times; and 3.64&times;</strong>. The question is not whether this works, it is how well.</p>
+    </div>
+    <div class="box gold">
+      <h4>Careful with one number</h4>
+      <p style="font-size:10.2pt;margin:0">The <strong>12.0%</strong> on the cover is the <em>day-one rent yield</em> &mdash; rent divided by price. The returns above are ten-year annual returns. Different measures; they are not meant to match.</p>
     </div>
   </div>
   <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>9</span></div>
 </section>
 
-
 <!-- ══════════ RETURNS SUMMARY ══════════ -->
 <section class="slide">
-  <p class="eyebrow">Part 3 &middot; The return &nbsp;|&nbsp; Returns summary</p>
-  <h2>Every metric, defined and stated.</h2>
+  <p class="eyebrow">Part 3 &middot; The return &nbsp;|&nbsp; Backup detail</p>
+  <h2>The same four outcomes, with every standard metric.</h2>
+  <p style="font-size:10pt;color:var(--ink2);margin:-4pt 0 0">For reference &mdash; the slide before this one carries the decision.</p>
   <div class="rule" style="margin:11pt 0 12pt"></div>
 
   <div class="cols" style="grid-template-columns:1fr 1.45fr;gap:17pt;align-content:start">
@@ -606,7 +625,7 @@
         </tbody>
       </table>
 
-      <h3 style="margin:11pt 0 5pt">The same four cases at their $1,600,000 ask</h3>
+      <h3 style="margin:9pt 0 4pt">The same four cases at their $1,600,000 ask</h3>
       <table class="sheet tiny">
         <thead><tr><th style="width:34%">Metric</th><th class="num" style="width:16.5%">Floor</th><th class="num" style="width:16.5%">Base</th><th class="num" style="width:16.5%">Renewal</th><th class="num" style="width:16.5%">Growth</th></tr></thead>
         <tbody>
@@ -616,9 +635,19 @@
         </tbody>
       </table>
 
-      <div class="box gold" style="margin-top:10pt;padding:10pt 12pt">
-        <h4>Read the two red figures</h4>
-        <p style="font-size:9.6pt;margin:0">At our price the floor case levered returns <strong>&minus;1.08%</strong> and an equity multiple of <strong>0.94x</strong> &mdash; with debt, the worst case gives back slightly less than you put in. Unlevered it still returns 6.13% and 1.49x. <strong>Buy for cash, or hold leverage to 35&ndash;40%, and every case is positive.</strong> At their ask the same case is &minus;39.93% levered.</p>
+      <div class="glos" style="margin-top:10pt">
+        <h4>What these terms mean</h4>
+        <dl>
+          <dt>Cap rate</dt><dd>Year-one rent divided by price. A snapshot yield, not a return over time.</dd>
+          <dt>IRR</dt><dd>The annual return over the whole ten years, counting rent and the sale together.</dd>
+          <dt>Cash-on-cash</dt><dd>Cash in your pocket each year divided by cash you put in.</dd>
+          <dt>Equity multiple</dt><dd>Total money back divided by money in. 2.0&times; means you doubled it.</dd>
+          <dt>DSCR</dt><dd>Rent divided by the loan payment. Lenders want 1.25&times; or better.</dd>
+        </dl>
+      </div>
+      <div class="box gold" style="margin-top:9pt;padding:8pt 11pt">
+        <h4>The two red figures</h4>
+        <p style="font-size:9.2pt;margin:0">With debt, the worst case returns <strong>&minus;1.08%</strong> and <strong>0.94x</strong> &mdash; slightly less back than you put in. Unlevered that case is still 6.13% and 1.49x. <strong>Buy for cash, or keep leverage at 35&ndash;40%, and every case is positive.</strong></p>
       </div>
     </div>
   </div>

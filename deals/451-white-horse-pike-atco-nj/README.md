@@ -75,7 +75,21 @@ R² 0.89) puts **4,400 SF at $25.74/SF**. His own best comp — Avis Budget, sam
 signed June 2025 — adjusts to **$21.52**. We underwrite **$22.00** throughout, the
 conservative end; at $25.74 the floor is simply higher than presented.
 
-## Returns — all from one model
+## Returns — the buyer's view
+
+Slide 9 carries the decision in four rows, ordered by likelihood, with a range bar
+showing that **every outcome lands between 6.1% and 18.3%**. Slide 10 is labelled
+*backup detail* and carries the full metric set plus a plain-English glossary
+(cap rate, IRR, cash-on-cash, equity multiple, DSCR) so no term trips the reader up.
+
+| Outcome | What has to happen | Return | Cash back | Likelihood |
+|---|---|---|---|---|
+| **Renewal** | Tenant takes its option at $154,000 | **14.95%** | $3,061,865 (2.78×) | Likeliest |
+| **Growth** | Land let from yr 3 *and* quality re-let | **18.33%** | $3,999,438 (3.64×) | If we execute |
+| Base | Tenant leaves, re-let at market, no land | 8.40% | $1,928,561 (1.75×) | Realistic |
+| Floor | Tenant fails, weak re-let, no land | 6.13% | $1,634,677 (1.49×) | Downside |
+
+## Full metric set — all from one model
 
 **One 10-year hold at $1,100,000. Four cases. Every number below is from `ONE_MODEL.py`.**
 
