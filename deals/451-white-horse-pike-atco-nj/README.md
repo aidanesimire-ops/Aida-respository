@@ -17,6 +17,8 @@ Offered at **$1,600,000 / 8.25% cap** on $132,000 NOI.
 | `deck.html` | Source for the IC deck |
 | `analysis-print.html` | Source for the full analysis backup |
 | `build_model.py` | Rebuilds the workbook from scratch |
+| **`ONE_MODEL.py`** | **The single source of truth. One 10-year hold, four cases. Every figure in the deck comes from here.** |
+| **`METRICS.py`** | **The full standard metric set: cap rates, IRR, cash-on-cash, DSCR, debt yield, equity multiples, payback, yield on cost.** |
 | `growth_case_model.py` | Ten-year floor / base / growth cases, levered and unlevered, plus the value bridge |
 | `comp_adjustment_grid.py` | Lease comp adjustment grid, exclusions with reasons, and the sale comp schedule |
 | `broker_comparison.py` | Ask-to-offer bridge, combined broker/our comp set, and the size-vs-rent regression |
@@ -73,30 +75,34 @@ R² 0.89) puts **4,400 SF at $25.74/SF**. His own best comp — Avis Budget, sam
 signed June 2025 — adjusts to **$21.52**. We underwrite **$22.00** throughout, the
 conservative end; at $25.74 the floor is simply higher than presented.
 
-## The shape of the bet — ten-year hold at $1,100,000
+## Returns — all from one model
 
-| Case | What has to happen | Unlevered | Levered (55% LTV) |
-|---|---|---|---|
-| **Floor** | Tenant fails, land never developed, weak re-let | **+5.4%** | −3.7% |
-| **Base** | Building re-let to medical or bank. Land left alone | **+8.7%** | +7.2% |
-| **Growth** | Land monetised *and* building re-let with escalations | **+18.2%** | +24.2% |
-| Sell at lease end 2033 | Weighted across six exit outcomes, land ignored | +12.0% | +14.9% |
+**One 10-year hold at $1,100,000. Four cases. Every number below is from `ONE_MODEL.py`.**
 
-**Four growth engines, none of them paid for:** 2.48 idle acres (+$100k/yr, ~$931k of
-value, yield on cost 12%→21%); a re-let that swaps flat rent for a 10–15 yr lease
-*with escalations*; a non-cannabis covenant that makes the asset mortgageable
-(75–125 bps of exit cap); and a $250/SF basis below replacement cost.
+| Metric | Floor | Base | Renewal | Growth |
+|---|---|---|---|---|
+| Exit NOI | $81,180 | $99,220 | $154,000 | $208,240 |
+| Exit cap rate | 9.00% | 8.75% | 9.25% | 8.00% |
+| Sale price, yr 10 | $902,000 | $1,133,943 | $1,664,865 | $2,603,000 |
+| **Unlevered IRR** | **6.13%** | **8.40%** | **14.95%** | **18.33%** |
+| Equity multiple | 1.49x | 1.75x | 2.78x | 3.64x |
+| **Levered IRR** (55% LTV) | **−1.08%** | **6.29%** | **19.40%** | **24.43%** |
+| Levered equity multiple | 0.94x | 1.53x | 3.82x | 5.71x |
+| Yield on cost | 7.4% | 9.0% | 14.0% | 16.7% |
 
-**Six layers of downside protection:** entry at conventional-use value; land and shell
-cover 68% of the price; 78% of capital returned before lease expiry; break-even rent
-($21.25) below market ($22.00); every modelled outcome positive; 2.00x DSCR.
+**Acquisition:** $1,100,000 · $250.00/SF · NOI $132,000 · **going-in cap 12.00%** ·
+cap on market rent 8.80% · cap at their ask 8.25%
 
-**One honest caveat:** leverage magnifies both directions — in the floor case a 55%
-mortgage turns +5.4% into roughly −3.7%. For the floor to hold in every case, buy for
-cash or keep the loan nearer 35–40%.
+**Debt (55% LTV, 10%, 25-yr):** loan $605,000 · equity $495,000 · constant 10.90% ·
+debt service $65,972 · **DSCR 2.00x** · **debt yield 21.8%** · break-even 50% of rent
 
-Stabilised value if the plan executes is about **$2,186,000** against a $1,100,000
-entry — roughly 7% compound growth in value a year, on top of the rent.
+**Cash-on-cash yr 1:** unlevered 12.00% (= the cap rate) · **levered 13.34%** ·
+payback 8.3 yrs unlevered / 7.5 yrs levered
+
+**Caveat, stated plainly:** in the floor case *with* debt the levered IRR is −1.08% and
+the equity multiple 0.94x — you get back slightly less than you put in. Unlevered that
+case still returns 6.13% and 1.49x. Buy for cash or hold leverage to 35–40% and every
+case is positive. At their $1.6M ask the floor case is −39.93% levered.
 
 ## Position: offering $1,100,000
 
