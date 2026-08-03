@@ -205,3 +205,9 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Waterfront engine outputs
+data/
+demo_output/
+*.xlsx
+run_report_*.json
