@@ -26,13 +26,13 @@
   .avoid{page-break-inside:avoid;}
 
   /* cover / exec */
-  .masthead{background:#14201C;color:#fff;padding:11pt 14pt;margin:-2pt -2pt 9pt;}
+  .masthead{background:#14201C;color:#fff;padding:9pt 13pt;margin:-2pt -2pt 8pt;}
   .eyebrow{font-family:var(--mono);font-size:7pt;letter-spacing:.16em;text-transform:uppercase;
            color:#9FAAA1;margin:0 0 6pt;}
   .masthead h1{font-family:var(--serif);font-size:19pt;line-height:1.1;font-weight:600;letter-spacing:-.01em;}
   .masthead .sub{font-size:8.6pt;color:#B7C0B8;margin-top:5pt;}
 
-  .verdict{border:1.25pt solid var(--teal);background:var(--tealw);padding:8pt 11pt;margin-bottom:9pt;}
+  .verdict{border:1.25pt solid var(--teal);background:var(--tealw);padding:7pt 10pt;margin-bottom:8pt;}
   .verdict .lab{font-family:var(--mono);font-size:7.5pt;letter-spacing:.12em;text-transform:uppercase;
                 color:var(--teal);font-weight:700;margin-bottom:5pt;}
   .verdict p{font-size:9.6pt;line-height:1.42;margin:0;}
@@ -40,7 +40,7 @@
 
   .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:0;border:.5pt solid var(--rule2);
         margin-bottom:9pt;}
-  .kpi{padding:5.5pt 7pt;border-right:.5pt solid var(--rule);}
+  .kpi{padding:5pt 6.5pt;border-right:.5pt solid var(--rule);}
   .kpi:last-child{border-right:none;}
   .kpi dt{font-family:var(--mono);font-size:6.4pt;letter-spacing:.1em;text-transform:uppercase;
           color:var(--ink3);margin-bottom:3pt;}
@@ -56,7 +56,7 @@
   h2.sec .note{margin-left:auto;font-family:var(--mono);font-size:7pt;color:var(--ink3);
                font-weight:400;letter-spacing:.04em;}
   h3.sub{font-family:var(--mono);font-size:7.4pt;font-weight:700;letter-spacing:.1em;
-         text-transform:uppercase;color:var(--ink2);margin:9pt 0 4pt;}
+         text-transform:uppercase;color:var(--ink2);margin:8pt 0 3.5pt;}
   .lede{font-size:9.4pt;color:var(--ink2);margin-bottom:8pt;}
 
   table{border-collapse:collapse;width:100%;font-size:7.9pt;margin-bottom:7pt;}
@@ -78,7 +78,7 @@
   .cards{display:grid;grid-template-columns:1fr 1fr;gap:7pt;margin-bottom:8pt;}
   .cards.four{grid-template-columns:repeat(4,1fr);}
   .cards.three{grid-template-columns:1fr 1fr 1fr;}
-  .card{border:.5pt solid var(--rule2);padding:6pt 8pt;}
+  .card{border:.5pt solid var(--rule2);padding:5.5pt 7.5pt;}
   .card h4{font-size:9pt;font-weight:700;margin-bottom:4pt;}
   .card .big{font-family:var(--mono);font-size:13pt;font-weight:700;color:var(--teal);
              display:block;margin-bottom:3pt;letter-spacing:-.02em;}
@@ -112,7 +112,7 @@
   <div class="verdict avoid">
     <p class="lab">Recommendation</p>
     <p><strong>Offer $1,100,000 — all cash, 30-day diligence, 15-day close.</strong></p>
-    <p>At $1,100,000 we pay what this building is worth with an ordinary tenant paying ordinary market rent. The six and a half years of above-market cannabis rent, the renewal option, the 3-lane drive-thru and 2.5 acres of idle land all come free. Expected unlevered return is <strong>12%</strong>, and every modelled outcome — including total tenant failure — returns a profit.</p>
+    <p>At $1,100,000 we pay what this building is worth with an ordinary tenant paying ordinary market rent. The 6.5 years of above-market cannabis rent, the renewal option, the drive-thru and 2.5 acres of idle land all come free. Expected unlevered return <strong>12%</strong> (levered <strong>14.9%</strong>), and every modelled outcome — including total tenant failure — returns a profit.</p>
   </div>
 
   <dl class="kpis avoid">
@@ -146,21 +146,24 @@
       <tr><td>Expected unlevered IRR</td><td class="num g">12.00%</td><td class="num">4.33%</td><td>Probability-weighted across six reversion outcomes</td></tr>
       <tr><td>Best case (tenant renews, 40%)</td><td class="num g">15.80%</td><td class="num">8.07%</td><td>The single most likely outcome</td></tr>
       <tr><td>Worst case (total vacancy, 5%)</td><td class="num g">+6.20%</td><td class="num r">&minus;1.43%</td><td>Liquidate land and shell</td></tr>
-      <tr><td>Equity multiple</td><td class="num">1.84x</td><td class="num">1.29x</td><td>Total cash returned per dollar invested</td></tr>
+      <tr><td>Debt service coverage (55% LTV)</td><td class="num g">2.00x</td><td class="num">1.38x</td><td>Most lenders decline below 1.25x</td></tr>
+      <tr><td>Cash-on-cash (55% LTV)</td><td class="num g">13.3%</td><td class="num">5.0%</td><td>Annual cash return on equity after debt service</td></tr>
+      <tr><td>Levered IRR (55% LTV)</td><td class="num g">14.85%</td><td class="num r">&minus;3.32%</td><td>At the ask, debt costs more than the property yields</td></tr>
     </tbody>
   </table>
 
   <div class="cards avoid">
     <div class="card"><h4>Upside we are not paying for</h4>
-      <p>Coverage is only <strong>3.2%</strong>, leaving <strong>±2.48 developable acres</strong> on a highway corner. An outparcel ground lease plus a third-party EV charging licence conservatively adds <strong>$75,000/yr</strong> of NOI and about <strong>$661,000</strong> of value — excluded from every return above. Yield on cost would go to <strong>18.8%</strong>.</p></div>
+      <p>Coverage is only <strong>3.2%</strong>, leaving <strong>±2.48 developable acres</strong> on a highway corner. An outparcel ground lease plus an EV charging licence adds ~<strong>$75,000/yr</strong> and ~<strong>$661,000</strong> of value — excluded from every return above. Yield on cost would go to <strong>18.8%</strong>.</p></div>
     <div class="card"><h4>Negotiation discipline</h4>
-      <p><strong>Open at $1,100,000.</strong> Practical ceiling <strong>$1,250,000</strong> (9.3% expected, 13.1% on renewal) — hold there. Above <strong>$1,300,000</strong> we would be paying more than the property is worth. The $1,600,000 ask returns 4.3%: decline.</p></div>
+      <p><strong>Open at $1,100,000.</strong> Ceiling <strong>$1,250,000</strong> — also the point where leverage turns neutral. Above that we pay more than the property is worth. The $1,600,000 ask returns 4.3% unlevered and <strong>&minus;3.3% levered</strong>: decline.</p></div>
   </div>
-  <p class="fn">Detail follows — the asset and lease (§1), valuation (§2), local like-and-kind lease comps (§3), re-leasing options and timing (§4), re-rent economics (§5), the land (§6), sale comps (§7), returns (§8), risks and diligence (§9), recommendation (§10).</p>
+  
 </section>
 
 <!-- ============ PAGE 2 : ASSET + VALUATION ============ -->
 <section class="page">
+  <p class="fn" style="margin:0 0 8pt">Detail: asset &amp; lease (§1) · valuation (§2) · like-and-kind lease comps (§3) · re-leasing options &amp; timing (§4) · re-rent economics (§5) · the land (§6) · sale comps (§7) · returns (§8) · stress tests (§9) · risks (§10) · recommendation (§11).</p>
   <h3 class="sub">If the tenant leaves — the question that decides the deal</h3>
   <table class="avoid">
     <thead><tr><th>Re-let scenario</th><th class="num">Rent / SF</th><th class="num">Annual rent</th><th class="num">Yield on our offer</th><th>Comment</th></tr></thead>
@@ -254,18 +257,22 @@
 <!-- ============ PAGE 4 : RE-LEASING OPTIONS + TIMING + CORNER ============ -->
 <section class="page">
   <h2 class="sec" style="margin-top:14pt"><span class="n">04</span>Re-leasing options and how long each takes<span class="note">Ranked by speed and cost to execute</span></h2>
-  <p class="lede">Six realistic paths back to full rent. They are ranked not by headline rent but by how quickly and cheaply each one gets the building occupied — because downtime and landlord capital are what actually erode returns.</p>
+  <div class="call avoid" style="margin-top:0">
+    <p><strong>The objective: one re-tenanting, not perpetual churn.</strong> This asset should not become a management job. The plan is a <em>single</em> re-tenanting event into a tenant that signs a 10–15 year NNN lease <em>with escalations</em> — and then it goes passive again for a decade or more.</p>
+    <p>That objective changes the ranking below. The right tenants are the ones with sunk fit-out cost and a location-bound customer base — medical groups, banks and credit unions — because they stay. The wrong answer is a string of short conventional retail deals at $18–22/SF that roll every five years and put us back in the market again and again. It also argues against demising the box for a QSR: that trades one covenant for two and doubles the management. <strong>Keep it single-tenant, and buy duration.</strong></p>
+  </div>
+  <p class="lede">Six realistic paths back to full rent, ranked by <strong>durability first</strong>, then speed and cost. Note that re-tenanting also fixes the one real flaw in the lease we are buying: a new covenant comes with rent escalations, which the current lease does not have.</p>
 
   <table>
-    <thead><tr><th>#</th><th>Tenant type</th><th class="num">Rent / SF</th><th class="num">Annual rent</th><th class="num">Yield on $1.1M</th><th class="num">Time to rent</th><th class="num">Landlord cost</th><th>Why it works here</th></tr></thead>
+    <thead><tr><th>#</th><th>Tenant type</th><th class="num">Rent / SF</th><th class="num">Yield on $1.1M</th><th class="num">Time to rent</th><th class="num">Landlord cost</th><th class="num">Typical term</th><th class="num">Rollover risk</th><th>Why it works here</th></tr></thead>
     <tbody>
-      <tr class="hi"><td>1</td><td><strong>Bank / credit union</strong></td><td class="num">$22–26</td><td class="num">$96,800–$114,400</td><td class="num">8.8–10.4%</td><td class="num">6–10 mo</td><td class="num">$22,000</td><td>The building already <em>is</em> one. Vault, 3-lane drive-thru, teller infrastructure and parking transfer as-is, so fit-out is cosmetic. Fastest and cheapest path back to full rent.</td></tr>
-      <tr class="hi"><td>2</td><td><strong>Urgent care / dental / vet</strong></td><td class="num">$22–26</td><td class="num">$96,800–$114,400</td><td class="num">8.8–10.4%</td><td class="num">12–17 mo</td><td class="num">$264,000</td><td>Deepest tenant pool in South Jersey. The drive-thru bay converts to a covered patient drop-off and the corner gives two-street visibility. They sign 10–15 year NNN leases <em>with escalations</em> — which is what makes a future sale financeable.</td></tr>
-      <tr><td>3</td><td>Conventional retail / service</td><td class="num">$18–22</td><td class="num">$79,200–$96,800</td><td class="num">7.2–8.8%</td><td class="num">8–12 mo</td><td class="num">$132,000</td><td>Liquor, convenience, pharmacy, auto parts, fitness. Always available on this corridor. The floor — and the floor still pays.</td></tr>
-      <tr><td>4</td><td>Cannabis — new NJ licensee</td><td class="num">$28–34</td><td class="num">$123,200–$149,600</td><td class="num">11.2–13.6%</td><td class="num">12–18 mo</td><td class="num">$66,000</td><td>Holds the full rent and needs almost no fit-out, but Waterford permits only two retail licences and the incumbent holds one. Also needs CRC approval at this specific premises. Highest rent, thinnest demand, longest regulatory lag.</td></tr>
-      <tr><td>5</td><td>QSR / coffee drive-thru</td><td class="num">$38–48</td><td class="num">$83,600–$105,600</td><td class="num">7.6–9.6%</td><td class="num">18–24 mo</td><td class="num">$286,000</td><td>Best rent per foot in the market. But 4,400 SF is nearly double a modern QSR prototype, so it means a demise to ~2,200 SF or a pad rebuild. Better pursued on the excess land while a Tier 1 user takes the box.</td></tr>
-      <tr><td>6</td><td>Daycare / early education</td><td class="num">$18–22</td><td class="num">$79,200–$96,800</td><td class="num">7.2–8.8%</td><td class="num">18–30 mo</td><td class="num">$308,000</td><td>Three acres easily supports playground and drop-off requirements, but site plan approval and state licensing add real time.</td></tr>
-      <tr class="warn"><td></td><td><strong>In place today (cannabis)</strong></td><td class="num o">$30.00</td><td class="num o">$132,000</td><td class="num o">12.0%</td><td class="num">—</td><td class="num">—</td><td>No action required while the lease runs to January 2033</td></tr>
+      <tr class="hi"><td>1</td><td><strong>Urgent care / dental / vet</strong></td><td class="num">$22&ndash;26</td><td class="num">8.8&ndash;10.4%</td><td class="num">12&ndash;17 mo</td><td class="num">$264,000</td><td class="num">10&ndash;15 yrs</td><td class="num g">Very low</td><td>The best answer for a passive owner. Huge sunk fit-out and a location-bound patient base mean they do not move. They sign 10&ndash;15 year NNN leases <em>with escalations</em> — fixing the one real flaw in the lease we are buying. Deepest tenant pool in South Jersey; the drive-thru converts to a covered patient drop-off.</td></tr>
+      <tr class="hi"><td>2</td><td><strong>Bank / credit union</strong></td><td class="num">$22&ndash;26</td><td class="num">8.8&ndash;10.4%</td><td class="num">6&ndash;10 mo</td><td class="num">$22,000</td><td class="num">10&ndash;15 yrs</td><td class="num g">Very low</td><td>The building already <em>is</em> one — vault, 3-lane drive-thru and teller infrastructure transfer as-is, so fit-out is cosmetic and occupancy is fastest. Branches are capital-intensive and banks stay put. Cheapest and quickest route to a long covenant.</td></tr>
+      <tr><td>3</td><td>Cannabis — new NJ licensee</td><td class="num">$28&ndash;34</td><td class="num">11.2&ndash;13.6%</td><td class="num">12&ndash;18 mo</td><td class="num">$66,000</td><td class="num">10 yrs</td><td class="num g">Low</td><td>Holds the full rent with almost no fit-out, and the licence is tied to this premises so the tenant is sticky. But Waterford permits only two retail licences and the incumbent holds one, and CRC approval adds a long regulatory lag.</td></tr>
+      <tr><td>4</td><td>QSR / coffee drive-thru</td><td class="num">$38&ndash;48</td><td class="num">7.6&ndash;9.6%</td><td class="num">18&ndash;24 mo</td><td class="num">$286,000</td><td class="num">15&ndash;20 yrs</td><td class="num g">Very low</td><td>Longest lease terms of any use and very sticky — but it needs a demise to ~2,200 SF or a pad rebuild, which trades one covenant for two and doubles the management. Pursue it on the excess <em>land</em> as a ground lease instead, and keep the box single-tenant.</td></tr>
+      <tr><td>5</td><td>Daycare / early education</td><td class="num">$18&ndash;22</td><td class="num">7.2&ndash;8.8%</td><td class="num">18&ndash;30 mo</td><td class="num">$308,000</td><td class="num">10&ndash;15 yrs</td><td class="num g">Low</td><td>Sticky once open — licensing and parent relationships are location-bound — but site plan approval and state licensing make this the slowest option to start.</td></tr>
+      <tr><td>6</td><td>Conventional retail / service</td><td class="num">$18&ndash;22</td><td class="num">7.2&ndash;8.8%</td><td class="num">8&ndash;12 mo</td><td class="num">$132,000</td><td class="num">5&ndash;10 yrs</td><td class="num r">HIGH</td><td>Liquor, convenience, pharmacy, auto parts, fitness. Always available, and it pays — but these roll every five years and put us straight back in the market. A fallback, not a plan, precisely because it is the churn outcome we are trying to avoid.</td></tr>
+      <tr class="warn"><td></td><td><strong>In place today (cannabis)</strong></td><td class="num o">$30.00</td><td class="num o">12.0%</td><td class="num">—</td><td class="num">—</td><td class="num o">10 yrs, flat</td><td class="num">n/a</td><td>No action required while the lease runs to January 2033. Note it has no escalations — re-tenanting is how we fix that.</td></tr>
     </tbody>
   </table>
 
@@ -402,7 +409,84 @@
 
 <!-- ============ PAGE 7 : RISKS + RECOMMENDATION ============ -->
 <section class="page">
-  <h2 class="sec" style="margin-top:14pt"><span class="n">09</span>What we are being paid to take on<span class="note">Risks, and how the price answers them</span></h2>
+
+  <h2 class="sec" style="margin-top:14pt"><span class="n">09</span>Stress-testing the deal<span class="note">Financing &middot; tenant health &middot; sensitivity &middot; exit</span></h2>
+  <p class="lede">Four tests an approver will ask for: can he borrow against it, can the tenant actually pay, how wrong can the assumptions be, and who buys it at the end.</p>
+
+  <h3 class="sub">1. Financing — cannabis collateral is not bankable, so assume private or credit-union debt at 9&ndash;11%</h3>
+  <table class="avoid">
+    <thead><tr><th>Purchase price</th><th class="num">Loan (55% LTV)</th><th class="num">Equity</th><th class="num">Debt service</th><th class="num">DSCR</th><th class="num">Cash-on-cash</th><th class="num">Levered IRR</th><th>Verdict</th></tr></thead>
+    <tbody>
+      <tr class="hi"><td><strong>$1,100,000 — our offer</strong></td><td class="num">$605,000</td><td class="num">$495,000</td><td class="num">$65,972</td><td class="num g">2.00x</td><td class="num g">13.3%</td><td class="num g">14.85%</td><td>Comfortably financeable; leverage <em>adds</em> 285 bps</td></tr>
+      <tr><td>$1,250,000 — ceiling</td><td class="num">$687,500</td><td class="num">$562,500</td><td class="num">$74,968</td><td class="num">1.76x</td><td class="num">10.1%</td><td class="num">9.05%</td><td>Financeable, but leverage is now neutral</td></tr>
+      <tr class="warn"><td>$1,600,000 — asking</td><td class="num">$880,000</td><td class="num">$720,000</td><td class="num">$95,959</td><td class="num r">1.38x</td><td class="num r">5.0%</td><td class="num r">&minus;3.32%</td><td>Most lenders decline; leverage <em>destroys</em> 765 bps</td></tr>
+    </tbody>
+  </table>
+  <div class="call avoid">
+    <p><strong>Note where the crossover sits.</strong> At our offer, debt adds 285 bps to the return. At $1,250,000 it is almost exactly neutral. At the asking price it turns a 4.3% unlevered return into a <strong>negative</strong> levered one, because the debt costs more than the property yields. The leverage math independently confirms the same ceiling the valuation work produced — <strong>$1.25M is the line, from two directions.</strong></p>
+  </div>
+
+  <h3 class="sub">2. Tenant health — can they carry the rent for 6.5 years?</h3>
+  <table class="avoid">
+    <thead><tr><th>Occupancy cost the store must carry</th><th class="num">Annual</th><th class="num">Per SF</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>Base rent</td><td class="num">$132,000</td><td class="num">$30.00</td><td>Contractual</td></tr>
+      <tr><td>Property taxes (est.)</td><td class="num">$39,400</td><td class="num">$8.95</td><td>Confirm the actual bill in diligence</td></tr>
+      <tr><td>Insurance and maintenance (est.)</td><td class="num">$22,000</td><td class="num">$5.00</td><td>Cannabis-use premium loading; roof, HVAC, lot</td></tr>
+      <tr class="tot"><td>GROSS OCCUPANCY COST</td><td class="num">$193,400</td><td class="num">$43.95</td><td>Under absolute NNN the tenant carries all of it</td></tr>
+    </tbody>
+  </table>
+  <table class="avoid">
+    <thead><tr><th>If the store does…</th><th class="num">$1.5M</th><th class="num">$2.0M</th><th class="num">$2.5M</th><th class="num">$3.0M</th><th class="num">$3.9M</th><th>Context</th></tr></thead>
+    <tbody>
+      <tr><td>Occupancy cost as % of sales</td><td class="num">12.9%</td><td class="num">9.7%</td><td class="num">7.7%</td><td class="num">6.4%</td><td class="num">5.0%</td><td>Cannabis retail is generally healthy below ~7%, stressed above ~9%</td></tr>
+      <tr><td>Assessment</td><td class="r">Distressed</td><td class="r">Distressed</td><td class="o">Tight</td><td class="g">Workable</td><td class="g">Healthy</td><td>NJ certified 2025 sales of $1.164bn across ~300 stores average $3.88M per store — but that average is carried by multi-state operators</td></tr>
+    </tbody>
+  </table>
+  <div class="call w avoid">
+    <p><strong>This is the honest risk, and the highest-value item in diligence.</strong> The tenant needs roughly <strong>$2.15M of annual sales</strong> to keep occupancy cost under 9%. A single-unit independent in a rural-suburban Camden County location is plausibly $1.5M–$3.0M, which straddles the line. <strong>Get the tenant's actual sales figures</strong> — that one number drives the renewal probability the whole model turns on.</p>
+    <p>It is also precisely why we are not paying for the cannabis rent. Our $1,100,000 basis does not require this tenant to survive.</p>
+  </div>
+
+  <h3 class="sub">3. Sensitivity — how wrong can we be?</h3>
+  <table class="avoid">
+    <thead><tr><th class="num">Probability the tenant renews</th><th class="num">Weighted reversion</th><th class="num">IRR at $1.10M</th><th class="num">IRR at $1.25M</th><th class="num">IRR at $1.60M</th><th>Read</th></tr></thead>
+    <tbody>
+      <tr><td class="num">20%</td><td class="num">$1,007,400</td><td class="num g">10.50%</td><td class="num">7.77%</td><td class="num">2.85%</td><td>Deeply pessimistic — and it still works at our price</td></tr>
+      <tr><td class="num">25%</td><td class="num">$1,046,900</td><td class="num g">10.89%</td><td class="num">8.16%</td><td class="num">3.24%</td><td></td></tr>
+      <tr class="hi"><td class="num">40% — base case</td><td class="num">$1,165,500</td><td class="num g">12.00%</td><td class="num">9.26%</td><td class="num">4.33%</td><td>Our assumption</td></tr>
+      <tr><td class="num">60%</td><td class="num">$1,323,600</td><td class="num g">13.36%</td><td class="num">10.62%</td><td class="num">5.68%</td><td></td></tr>
+      <tr><td class="num">90%</td><td class="num">$1,560,800</td><td class="num g">15.22%</td><td class="num">12.47%</td><td class="num">7.50%</td><td>Near-certainty — the ask still only reaches 7.5%</td></tr>
+    </tbody>
+  </table>
+  <table class="avoid">
+    <thead><tr><th class="num">If market rent is really…</th><th class="num">NOI</th><th class="num">Yield on our offer</th><th class="num">Value at 8.75% cap</th><th class="num">vs our basis</th><th>Read</th></tr></thead>
+    <tbody>
+      <tr><td class="num">$16.00 / SF</td><td class="num">$70,400</td><td class="num">6.40%</td><td class="num">$804,600</td><td class="num r">&minus;27%</td><td>Below anything on the corridor except in-line strip space</td></tr>
+      <tr><td class="num">$18.00 / SF</td><td class="num">$79,200</td><td class="num">7.20%</td><td class="num">$905,100</td><td class="num">&minus;18%</td><td>Bottom of the conventional range</td></tr>
+      <tr><td class="num">$20.00 / SF</td><td class="num">$88,000</td><td class="num g">8.00%</td><td class="num">$1,005,700</td><td class="num">&minus;9%</td><td></td></tr>
+      <tr class="hi"><td class="num">$22.00 / SF — base</td><td class="num">$96,800</td><td class="num g">8.80%</td><td class="num">$1,106,300</td><td class="num g">+1%</td><td>Our underwriting case</td></tr>
+      <tr><td class="num">$24.00 / SF</td><td class="num">$105,600</td><td class="num g">9.60%</td><td class="num">$1,206,900</td><td class="num g">+10%</td><td></td></tr>
+    </tbody>
+  </table>
+  <p class="fn">Two conclusions. The deal does not depend on the 40% renewal assumption — even at 20% it returns over 10% at our price. And market rent would have to fall to about $18/SF, below every conventional comp on the corridor, before our basis stopped being covered by the building alone.</p>
+
+  <h3 class="sub">4. The exit — who buys it from us in 2033</h3>
+  <table class="avoid">
+    <thead><tr><th>Exit scenario</th><th class="num">NOI</th><th class="num">Exit cap</th><th class="num">Value</th><th>Buyer pool</th></tr></thead>
+    <tbody>
+      <tr><td>Renewed cannabis lease, 5 years term</td><td class="num">$154,000</td><td class="num">9.25%</td><td class="num">$1,664,900</td><td>Cannabis net-lease buyers only — all-cash, limited pool, wide caps</td></tr>
+      <tr class="hi"><td>Re-let to bank / credit union, 10&ndash;15 yr NNN with bumps</td><td class="num">$105,600</td><td class="num">8.00%</td><td class="num">$1,320,000</td><td><strong>Non-cannabis covenant: bankable and CMBS-eligible, national net-lease buyer pool</strong></td></tr>
+      <tr class="hi"><td>Re-let to medical / urgent care, 10&ndash;15 yr NNN with bumps</td><td class="num">$105,600</td><td class="num">7.75%</td><td class="num">$1,362,600</td><td>Medical net lease trades tighter still; deepest institutional demand</td></tr>
+      <tr><td>Vacant — land and shell</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">$750,000</td><td>Local owner-user or developer</td></tr>
+    </tbody>
+  </table>
+  <div class="call avoid">
+    <p><strong>The counter-intuitive point.</strong> Losing the cannabis tenant is not purely a downside. A conventional covenant — a bank, credit union or medical group on a 10&ndash;15 year NNN lease <em>with escalations</em> — removes the financing constraint entirely. That widens the buyer pool from cash-only cannabis specialists to the whole institutional net-lease market, and is worth roughly <strong>75&ndash;125 bps of exit cap rate</strong>.</p>
+    <p>Re-tenanting costs money up front and buys a more valuable, more liquid, more financeable asset — one that does not need to be re-leased again for a decade. That is the plan, not the fallback.</p>
+  </div>
+
+  <h2 class="sec" style="margin-top:14pt"><span class="n">10</span>What we are being paid to take on<span class="note">Risks, and how the price answers them</span></h2>
   <p class="lede">The risks are real. They are also exactly why the asset is available at 12% instead of 8.25% — and each one is already paid for in the basis.</p>
   <table class="avoid">
     <thead><tr><th style="width:26%">Risk</th><th>How our offer price answers it</th></tr></thead>
@@ -441,7 +525,7 @@
       </ul></div>
   </div>
 
-  <h2 class="sec" style="margin-top:12pt"><span class="n">10</span>Recommendation<span class="note">Subject to diligence</span></h2>
+  <h2 class="sec" style="margin-top:12pt"><span class="n">11</span>Recommendation<span class="note">Subject to diligence</span></h2>
   <div class="cards avoid">
     <div class="card"><h4>Lead with the rent, not the cap rate</h4>
       <p>Do not argue about whether 8.25% is the right cap. Argue that $30.00/SF is not a market rent — and put the corridor comps in front of them. Every one of the seller's own value arguments survives; only the rent assumption changes.</p></div>

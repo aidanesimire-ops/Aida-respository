@@ -564,48 +564,72 @@ for k, f_, fmt, note in [
 # RE-LEASING OPTIONS & TIMELINE
 # =====================================================================
 rl = wb.create_sheet("Re-Leasing Options")
-title(rl, "RE-LEASING OPTIONS  —  who takes it, what they pay, and how long it takes",
-      "Ranked by how quickly and cheaply each option gets the building back to full rent.", 9)
+title(rl, "RE-LEASING OPTIONS  —  who takes it, what they pay, how long it takes, and how long they stay",
+      "The goal is one re-tenanting into a long covenant, then a passive hold - not an asset that churns.", 9)
 widths(rl, {"A": 4, "B": 30, "C": 12, "D": 13, "E": 11, "F": 11, "G": 12, "H": 13, "I": 52})
 
 r = 4
-sechead(rl, r, "THE OPTIONS, RANKED BY SPEED AND COST TO EXECUTE", 9); r += 1
-colhead(rl, r, ["#", "Tenant type", "Rent / SF", "Annual rent", "Marketing",
-                "Fit-out", "Total months", "Landlord cost", "Why this works here"]); r += 1
+sechead(rl, r, "THE OBJECTIVE:  ONE RE-TENANTING, NOT PERPETUAL CHURN", 9); r += 1
+rl.merge_cells(start_row=r, start_column=1, end_row=r + 2, end_column=9)
+_c = rl.cell(r, 1, "This asset should not become a management job. The plan is a SINGLE re-tenanting event, "
+    "into a tenant that signs a 10-15 year NNN lease with escalations, and then it goes passive again for a "
+    "decade or more.\n"
+    "That objective changes the ranking. The right tenants are the ones with sunk fit-out cost and a "
+    "location-bound customer base - banks, credit unions and medical groups - because they stay. The wrong "
+    "answer is a string of short conventional retail deals at $18-22/SF that roll every five years and put "
+    "us back in the market again and again.\n"
+    "It also argues against demising the box into two spaces for a QSR: that trades one covenant for two, "
+    "and doubles the management. Keep it single-tenant.")
+_c.font = Font(name=F, size=9.5, color=INK)
+_c.alignment = Alignment(vertical="center", wrap_text=True, indent=1)
+for _rr in range(r, r + 3):
+    for _cc in range(1, 10):
+        rl.cell(_rr, _cc).fill = PatternFill("solid", fgColor=TEALB)
+rl.row_dimensions[r].height = 30
+rl.row_dimensions[r + 1].height = 30
+rl.row_dimensions[r + 2].height = 30
+r += 4
+
+sechead(rl, r, "THE OPTIONS  —  ranked by durability first, then speed and cost", 9); r += 1
+colhead(rl, r, ["#", "Tenant type", "Rent / SF", "Annual rent", "Time to rent",
+                "Landlord cost", "Typical lease term", "Rollover risk", "Why this works here"]); r += 1
 O0 = r
 opts = [
-    (1, "Bank / credit union", 24, 4400, 4, 5, 10,
-     "The building already IS one. Vault, 3-lane drive-thru, teller infrastructure and parking transfer as-is, so fit-out is cosmetic. Fastest path back to full rent and the cheapest to execute."),
-    (2, "Urgent care / dental / vet", 24, 4400, 60, 6, 9,
-     "Deepest tenant pool in South Jersey. The drive-thru bay converts to a covered patient drop-off and the corner gives two-street visibility. They sign 10-15 year NNN leases WITH escalations - which is what makes a future sale financeable."),
-    (3, "Conventional retail / service", 20, 4400, 30, 4, 8,
-     "Liquor, convenience, pharmacy, auto parts, fitness. Always available on this corridor. This is the floor, and the floor still pays."),
-    (4, "Cannabis - new NJ licensee", 30, 4400, 15, 6, 15,
-     "Holds the full rent and needs almost no fit-out, but Waterford permits only two retail licences and the incumbent holds one. Also needs CRC approval at this specific premises. Highest rent, thinnest demand, longest regulatory lag."),
-    (5, "QSR / coffee drive-thru", 42, 2200, 130, 9, 20,
-     "Best rent per foot in the market. But 4,400 SF is nearly double a modern QSR prototype, so it means a demise to ~2,200 SF or a pad rebuild. Better pursued on the excess land while a Tier 1 user takes the box."),
-    (6, "Daycare / early education", 20, 4400, 70, 10, 22,
-     "Three acres easily supports playground and drop-off requirements, but site plan approval and state licensing add real time."),
+    (1, "Urgent care / dental / vet", 24, 4400, 60, 17, "10-15 yrs + options", "Very low",
+     "The best answer for a passive owner. Huge sunk fit-out and a location-bound patient base mean they do not move. They sign 10-15 year NNN leases WITH escalations - fixing the one real flaw in the lease we are buying. Deepest tenant pool in South Jersey; the drive-thru converts to a covered patient drop-off."),
+    (2, "Bank / credit union", 24, 4400, 5, 10, "10-15 yrs + options", "Very low",
+     "The building already IS one - vault, 3-lane drive-thru and teller infrastructure transfer as-is, so fit-out is cosmetic and occupancy is fastest. Branches are capital-intensive and banks stay put. Cheapest and quickest route to a long covenant."),
+    (3, "Cannabis - new NJ licensee", 30, 4400, 15, 24, "10 yrs", "Low",
+     "Holds the full rent with almost no fit-out, and the licence is tied to this premises so the tenant is sticky. But Waterford permits only two retail licences and the incumbent holds one, and CRC approval adds a long regulatory lag."),
+    (4, "QSR / coffee drive-thru", 42, 2200, 130, 24, "15-20 yrs", "Very low",
+     "Longest lease terms of any use and very sticky - but it needs a demise to ~2,200 SF or a pad rebuild, which trades one covenant for two and doubles the management. Pursue it on the excess LAND as a ground lease instead, and keep the box single-tenant."),
+    (5, "Daycare / early education", 20, 4400, 70, 22, "10-15 yrs", "Low",
+     "Sticky once open - licensing and parent relationships are location-bound - but site plan approval and state licensing make this the slowest option to start."),
+    (6, "Conventional retail / service", 20, 4400, 30, 10, "5-10 yrs", "HIGH",
+     "Liquor, convenience, pharmacy, auto parts, fitness. Always available, and it pays - but these roll every five years and put us straight back in the market. Use it as a fallback, not a plan, precisely because it is the churn outcome we are trying to avoid."),
 ]
-for n, name, psf, sf, ti, mkt, mos, note in opts:
+for n, name, psf, sf, ti, mos, term, roll, note in opts:
     fill = TEALB if n <= 2 else None
     put(rl, r, 1, n, bold=True, color=TEAL, align="center", fill=fill)
     put(rl, r, 2, name, bold=True, wrap=True, fill=fill)
     put(rl, r, 3, psf, fmt=CUR2, color=BLUE, align="right", fill=fill)
     put(rl, r, 4, f"=C{r}*{sf}", fmt=CUR, bold=True, align="right", fill=fill)
-    put(rl, r, 5, mkt, fmt='0"  mo"', color=BLUE, align="right", fill=fill)
-    put(rl, r, 6, f"=G{r}-E{r}", fmt='0"  mo"', align="right", fill=fill)
-    put(rl, r, 7, mos, fmt='0"  mo"', bold=True, color=BLUE, align="right", fill=fill)
-    put(rl, r, 8, f"=C{r}*0+{ti}*{sf}", fmt=CUR, align="right", fill=fill)
+    put(rl, r, 5, mos, fmt='0"  mo"', bold=True, color=BLUE, align="right", fill=fill)
+    put(rl, r, 6, f"=C{r}*0+{ti}*{sf}", fmt=CUR, align="right", fill=fill)
+    put(rl, r, 7, term, size=9, bold=True, color=TEAL, align="right", fill=fill)
+    put(rl, r, 8, roll, size=9, bold=True,
+        color=RED if roll == "HIGH" else TEAL, align="right", fill=fill)
     put(rl, r, 9, note, size=9, color=INK2, wrap=True, fill=fill)
-    rl.row_dimensions[r].height = 46
+    rl.row_dimensions[r].height = 52
     r += 1
 O1 = r - 1
 put(rl, r, 1, None, fill=BAND)
 put(rl, r, 2, "IN PLACE TODAY (cannabis)", bold=True, fill=BAND)
 put(rl, r, 3, f"={RENT}/{SF}", fmt=CUR2, bold=True, color=OCHRE, align="right", fill=BAND)
 put(rl, r, 4, f"={RENT}", fmt=CUR, bold=True, color=OCHRE, align="right", fill=BAND)
-for cc in (5, 6, 7, 8): put(rl, r, cc, "-", align="right", fill=BAND)
+for cc in (5, 6): put(rl, r, cc, "-", align="right", fill=BAND)
+put(rl, r, 7, "10 yrs, flat", size=9, bold=True, color=OCHRE, align="right", fill=BAND)
+put(rl, r, 8, "n/a", size=9, color=INK2, align="right", fill=BAND)
 put(rl, r, 9, "No action required while the lease runs to January 2033",
     size=9, italic=True, color=INK2, wrap=True, fill=BAND)
 r += 2
@@ -786,6 +810,231 @@ for k, note in [
     put(ld, r, 2, note, size=9, color=INK2, wrap=True, indent=1)
     ld.row_dimensions[r].height = 30
     r += 1
+
+
+# =====================================================================
+# FINANCING
+# =====================================================================
+fi = wb.create_sheet("Financing")
+title(fi, "FINANCING  —  can he borrow against it, and what does leverage do?",
+      "Cannabis collateral is not bankable or CMBS-eligible. Assume private or credit-union debt.", 9)
+widths(fi, {"A": 30, "B": 13, "C": 13, "D": 13, "E": 13, "F": 13, "G": 13, "H": 13, "I": 40})
+
+r = 4
+sechead(fi, r, "DEBT ASSUMPTIONS", 9); r += 1
+FA = {}
+for k, v, fmt, note in [
+    ("Loan to value", 0.55, PCT2, "Private lenders cap cannabis-collateral LTV well below conventional"),
+    ("Interest rate", 0.10, PCT2, "Private / credit-union pricing for cannabis-tenanted real estate"),
+    ("Amortization (years)", 25, '0', "Typical for this lender class"),
+    ("Hold period (years)", 6.5, '0.0', "To lease expiry, January 2033"),
+]:
+    put(fi, r, 1, k, bold=True)
+    put(fi, r, 2, v, fmt=fmt, color=BLUE, align="right")
+    fi.merge_cells(start_row=r, start_column=3, end_row=r, end_column=9)
+    put(fi, r, 3, note, size=9, color=INK2, indent=1)
+    FA[k] = r; r += 1
+LTV, RATE, AM, HOLD = (f"$B${FA['Loan to value']}", f"$B${FA['Interest rate']}",
+                       f"$B${FA['Amortization (years)']}", f"$B${FA['Hold period (years)']}")
+r += 1
+
+sechead(fi, r, "LOAN SIZING AND COVERAGE AT THREE PRICE POINTS", 9); r += 1
+colhead(fi, r, ["Purchase price", "Loan amount", "Equity", "Annual debt service", "NOI",
+                "DSCR", "Cash flow after debt", "Cash-on-cash", "Verdict"]); r += 1
+F0 = r
+for label, pxref in [("Our offer", PRICE), ("Practical ceiling", A("Practical ceiling")),
+                     ("Asking price", ASK)]:
+    put(fi, r, 1, f"{label}", bold=True)
+    put(fi, r, 2, f"={pxref}*{LTV}", fmt=CUR, align="right")
+    put(fi, r, 3, f"={pxref}-B{r}", fmt=CUR, align="right")
+    put(fi, r, 4, f"=-PMT({RATE}/12,{AM}*12,B{r})*12", fmt=CUR, align="right")
+    put(fi, r, 5, f"={RENT}", fmt=CUR, color=GREEN, align="right")
+    put(fi, r, 6, f"=E{r}/D{r}", fmt='0.00"x"', bold=True, color=TEAL, align="right")
+    put(fi, r, 7, f"=E{r}-D{r}", fmt=CUR, align="right")
+    put(fi, r, 8, f"=G{r}/C{r}", fmt=PCT, bold=True, color=TEAL, align="right")
+    put(fi, r, 9, f'=IF(F{r}>=1.5,"Comfortably financeable",IF(F{r}>=1.25,"Financeable, tight","Lender would decline"))',
+        size=9, color=INK2, wrap=True)
+    r += 1
+F1 = r - 1
+r += 1
+
+sechead(fi, r, "LEVERED RETURN  —  hold to expiry, sold at the weighted reversion", 9); r += 1
+colhead(fi, r, ["Purchase price", "Equity in", "Annual cash flow", "Loan balance at exit",
+                "Net sale proceeds", "Levered IRR", "Unlevered IRR", "Leverage adds", ""]); r += 1
+L0 = r
+HC = 12
+for i, (label, pxref) in enumerate([("Our offer", PRICE), ("Practical ceiling", A("Practical ceiling")),
+                                    ("Asking price", ASK)]):
+    fr = F0 + i
+    put(fi, r, 1, label, bold=True)
+    put(fi, r, 2, f"=C{fr}", fmt=CUR, align="right")
+    put(fi, r, 3, f"=G{fr}", fmt=CUR, align="right")
+    put(fi, r, 4, f"=B{fr}*(1+{RATE}/12)^({HOLD}*12)-(-PMT({RATE}/12,{AM}*12,B{fr}))*((1+{RATE}/12)^({HOLD}*12)-1)/({RATE}/12)",
+        fmt=CUR, align="right")
+    put(fi, r, 5, f"={WREV}-D{r}", fmt=CUR, align="right")
+    # helper levered cash flow
+    hrow = 4 + i
+    put(fi, hrow, HC, f"=-B{r}", fmt=CUR, size=9, border=False)
+    for j in range(1, 7):
+        put(fi, hrow, HC + j, f"=C{r}", fmt=CUR, size=9, border=False)
+    put(fi, hrow, HC + 7, f"=C{r}*0.5+E{r}", fmt=CUR, size=9, border=False)
+    c1, c2 = get_column_letter(HC), get_column_letter(HC + 7)
+    put(fi, r, 6, f"=IRR({c1}{hrow}:{c2}{hrow})", fmt=PCT2, bold=True, color=TEAL, align="right")
+    put(fi, r, 7, f"=Returns!$D${LAD + [0, 3, 6][i]}", fmt=PCT2, align="right")
+    put(fi, r, 8, f"=F{r}-G{r}", fmt=PCT2, align="right")
+    put(fi, r, 9, None)
+    r += 1
+for cidx in range(HC, HC + 9):
+    fi.column_dimensions[get_column_letter(cidx)].hidden = True
+r += 1
+put(fi, r, 1, "Read the DSCR column. At our offer the loan covers itself twice over and the deal throws off "
+    "a double-digit cash-on-cash return. At the asking price coverage falls to a level most lenders decline, "
+    "cash-on-cash drops to about 5%, and leverage turns the return NEGATIVE - because the debt costs more "
+    "than the 8.25% the property yields. Our price is what makes this financeable at all.",
+    size=9, italic=True, color=INK2, wrap=True, border=False)
+fi.merge_cells(start_row=r, start_column=1, end_row=r + 1, end_column=9)
+fi.row_dimensions[r].height = 26
+
+# =====================================================================
+# STRESS TESTS
+# =====================================================================
+st = wb.create_sheet("Stress Tests")
+title(st, "STRESS TESTS  —  tenant health, sensitivity, and the exit",
+      "How wrong can the assumptions be before the deal stops working?", 7)
+widths(st, {"A": 38, "B": 15, "C": 15, "D": 15, "E": 15, "F": 15, "G": 44})
+
+r = 4
+sechead(st, r, "1.  TENANT HEALTH  —  can they carry the rent for 6.5 years?", 7); r += 1
+colhead(st, r, ["Component", "Annual", "Per SF", "", "", "", "Note"]); r += 1
+T0 = r
+for k, f_, note in [
+    ("Base rent", f"={RENT}", "Contractual"),
+    ("Property taxes", f"={TAX}", "Estimate - confirm the actual bill"),
+    ("Insurance", f"={INS}", "Cannabis-use premium loading"),
+    ("Maintenance / CAM", f"={CAM}", "Roof, HVAC, lot"),
+]:
+    put(st, r, 1, k, bold=True)
+    put(st, r, 2, f_, fmt=CUR, color=GREEN, align="right")
+    put(st, r, 3, f"=B{r}/{SF}", fmt=CUR2, align="right")
+    for c in (4, 5, 6): put(st, r, c, None)
+    put(st, r, 7, note, size=9, color=INK2, wrap=True)
+    r += 1
+T1 = r - 1
+put(st, r, 1, "GROSS OCCUPANCY COST", bold=True, fill=TEALB)
+put(st, r, 2, f"=SUM(B{T0}:B{T1})", fmt=CUR, bold=True, color=TEAL, align="right", fill=TEALB)
+put(st, r, 3, f"=B{r}/{SF}", fmt=CUR2, bold=True, color=TEAL, align="right", fill=TEALB)
+for c in (4, 5, 6): put(st, r, c, None, fill=TEALB)
+put(st, r, 7, "What the store must carry, not just the rent", size=9, italic=True,
+    color=INK2, wrap=True, fill=TEALB)
+OCC = r; r += 2
+colhead(st, r, ["Store sales scenario", "$1.5M", "$2.0M", "$2.5M", "$3.0M", "$3.9M", "Assessment"]); r += 1
+put(st, r, 1, "Occupancy cost as % of sales", bold=True)
+for i, sv in enumerate([1_500_000, 2_000_000, 2_500_000, 3_000_000, 3_900_000]):
+    put(st, r, 2 + i, f"=$B${OCC}/{sv}", fmt=PCT, bold=True, align="right")
+put(st, r, 7, "Cannabis retail is generally healthy below ~7% and stressed above ~9%",
+    size=9, color=INK2, wrap=True)
+r += 1
+put(st, r, 1, "Verdict", bold=True)
+for i in range(5):
+    L = get_column_letter(2 + i)
+    put(st, r, 2 + i, f'=IF({L}{r-1}>0.09,"Distressed",IF({L}{r-1}>0.07,"Tight",IF({L}{r-1}>0.055,"Workable","Healthy")))',
+        size=9, bold=True, align="right")
+put(st, r, 7, "NJ certified 2025 sales of $1.164bn across ~300 stores average $3.88M per store, "
+    "but that average is carried by multi-state operators", size=9, color=INK2, wrap=True)
+r += 1
+put(st, r, 1, "Sales needed to keep occupancy under 9%", bold=True)
+put(st, r, 2, f"=$B${OCC}/0.09", fmt=CUR, bold=True, color=TEAL, align="right")
+st.merge_cells(start_row=r, start_column=3, end_row=r, end_column=7)
+put(st, r, 3, "THE key diligence item: get the tenant's actual sales. This single number drives the "
+    "renewal probability that the whole model turns on.", size=9, italic=True, color=INK2, indent=1)
+r += 2
+
+sechead(st, r, "2.  SENSITIVITY  —  how wrong can the renewal assumption be?", 7); r += 1
+colhead(st, r, ["Probability the tenant renews", "Weighted reversion", "IRR at our offer",
+                "IRR at the ceiling", "IRR at the ask", "", "Read"]); r += 1
+SEN = r
+RENEW_V = f"'Reversion Scenarios'!$G${FIRST}"
+OTHER_W = f"SUMPRODUCT('Reversion Scenarios'!$B${FIRST+1}:$B${LAST},'Reversion Scenarios'!$G${FIRST+1}:$G${LAST})/SUM('Reversion Scenarios'!$B${FIRST+1}:$B${LAST})"
+HS = 10
+for i, pr in enumerate([0.20, 0.25, 0.40, 0.50, 0.60, 0.75, 0.90]):
+    is_base = (pr == 0.40)
+    fill = TEALB if is_base else None
+    put(st, r, 1, pr, fmt=PCT, color=BLUE, bold=is_base, align="right", fill=fill)
+    put(st, r, 2, f"=A{r}*{RENEW_V}+(1-A{r})*({OTHER_W})", fmt=CUR, align="right", fill=fill)
+    for j, pxref in enumerate([PRICE, A("Practical ceiling"), ASK]):
+        hrow = 4 + i
+        base_c = HS + j * 9
+        put(st, hrow, base_c, f"=-{pxref}", fmt=CUR, size=9, border=False)
+        for k2 in range(1, 7):
+            put(st, hrow, base_c + k2, f"={RENT}", fmt=CUR, size=9, border=False)
+        put(st, hrow, base_c + 7, f"={RENT}*0.5+$B${r}", fmt=CUR, size=9, border=False)
+        c1, c2 = get_column_letter(base_c), get_column_letter(base_c + 7)
+        put(st, r, 3 + j, f"=IRR({c1}{hrow}:{c2}{hrow})", fmt=PCT2, bold=(j == 0),
+            color=TEAL if j == 0 else INK, align="right", fill=fill)
+    put(st, r, 6, None, fill=fill)
+    put(st, r, 7, "Base case" if is_base else ("Deeply pessimistic" if pr <= 0.25 else
+        ("Optimistic" if pr >= 0.75 else "")), size=9, italic=True, color=INK2, fill=fill)
+    r += 1
+for cidx in range(HS, HS + 27):
+    st.column_dimensions[get_column_letter(cidx)].hidden = True
+put(st, r, 1, "Even at a 20% renewal probability - far more pessimistic than we think reasonable - our offer "
+    "still returns over 10%. The conclusion does not depend on the 40% assumption. At the asking price, even "
+    "a 90% renewal probability only reaches 7.5%.", size=9, italic=True, color=INK2, wrap=True, border=False)
+st.merge_cells(start_row=r, start_column=1, end_row=r + 1, end_column=7)
+st.row_dimensions[r].height = 26
+r += 3
+
+sechead(st, r, "3.  SENSITIVITY  —  what if market rent is wrong?", 7); r += 1
+colhead(st, r, ["Market rent / SF", "NOI", "Yield on our offer", "Value at 8.75% cap",
+                "vs our basis", "", "Read"]); r += 1
+for psf in (16, 18, 20, 22, 24, 26):
+    is_base = (psf == 22)
+    fill = TEALB if is_base else None
+    put(st, r, 1, psf, fmt=CUR2, color=BLUE, bold=is_base, align="right", fill=fill)
+    put(st, r, 2, f"=A{r}*{SF}", fmt=CUR, align="right", fill=fill)
+    put(st, r, 3, f"=B{r}/{PRICE}", fmt=PCT, bold=True, color=TEAL, align="right", fill=fill)
+    put(st, r, 4, f"=B{r}/0.0875", fmt=CUR, align="right", fill=fill)
+    put(st, r, 5, f"=D{r}/{PRICE}-1", fmt=PCT, align="right", fill=fill)
+    put(st, r, 6, None, fill=fill)
+    put(st, r, 7, "Base case - our underwriting" if is_base else
+        ("Below anything on the corridor" if psf <= 16 else ""), size=9, italic=True,
+        color=INK2, wrap=True, fill=fill)
+    r += 1
+put(st, r, 1, "Market rent would have to fall to about $18/SF - below every conventional comp on the corridor "
+    "except in-line strip space - before our basis stopped being covered by the building alone.",
+    size=9, italic=True, color=INK2, wrap=True, border=False)
+st.merge_cells(start_row=r, start_column=1, end_row=r + 1, end_column=7)
+st.row_dimensions[r].height = 26
+r += 3
+
+sechead(st, r, "4.  THE EXIT  —  who buys it from us in 2033", 7); r += 1
+colhead(st, r, ["Exit scenario", "NOI at exit", "Exit cap", "Value", "", "", "Buyer pool"]); r += 1
+for name, noi, cap, pool in [
+    ("Renewed cannabis lease, 5 years term", 154_000, 0.0925,
+     "Cannabis net-lease buyers only - all-cash, limited pool, wide caps"),
+    ("Re-let to bank / credit union, 10-15 yr NNN with bumps", 105_600, 0.0800,
+     "NON-cannabis covenant: bankable and CMBS-eligible, national net-lease buyer pool"),
+    ("Re-let to medical / urgent care, 10-15 yr NNN with bumps", 105_600, 0.0775,
+     "Medical net lease trades tighter still; deepest institutional demand"),
+    ("Vacant - land and shell", 0, 0, "Local owner-user or developer"),
+]:
+    put(st, r, 1, name, bold=True, wrap=True)
+    put(st, r, 2, noi if noi else "-", fmt=CUR, align="right")
+    put(st, r, 3, cap if cap else "-", fmt=PCT2, align="right")
+    put(st, r, 4, f"=IF(C{r}=\"-\",750000,B{r}/C{r})", fmt=CUR, bold=True, color=TEAL, align="right")
+    put(st, r, 5, None); put(st, r, 6, None)
+    put(st, r, 7, pool, size=9, color=INK2, wrap=True)
+    st.row_dimensions[r].height = 28
+    r += 1
+r += 1
+put(st, r, 1, "THE COUNTER-INTUITIVE POINT: losing the cannabis tenant is not purely a downside. A conventional "
+    "covenant - a bank, credit union or medical group on a 10-15 year NNN lease WITH escalations - removes the "
+    "financing constraint entirely. That widens the buyer pool from cash-only cannabis specialists to the whole "
+    "institutional net-lease market, and is worth roughly 75-125 bps of exit cap rate. Re-tenanting costs money "
+    "up front and buys a more valuable, more liquid asset.",
+    size=9, italic=True, color=INK2, wrap=True, border=False)
+st.merge_cells(start_row=r, start_column=1, end_row=r + 2, end_column=7)
+st.row_dimensions[r].height = 26
 
 # =====================================================================
 # LEASE COMPS
@@ -1057,6 +1306,12 @@ for k, f1, f2, fmt, note in [
      "The single most likely outcome at 40% probability"),
     ("Worst case IRR (total vacancy)", f"=Returns!D{SCEN_IRR+5}", f"=Returns!E{SCEN_IRR+5}", PCT2,
      "Tenant fails, building goes dark, we liquidate land and shell"),
+    ("Debt service coverage (55% LTV)", f"=Financing!F{F0}", f"=Financing!F{F0+2}", '0.00"x"',
+     "Most lenders decline below 1.25x. Our price is what makes this financeable"),
+    ("Cash-on-cash (55% LTV)", f"=Financing!H{F0}", f"=Financing!H{F0+2}", PCT,
+     "Annual cash return on equity after debt service"),
+    ("Levered IRR (55% LTV)", f"=Financing!F{L0}", f"=Financing!F{L0+2}", PCT2,
+     "At the ask, leverage turns the return negative - debt costs more than the property yields"),
 ]:
     put(es, r, 1, k, bold=True)
     put(es, r, 2, f1, fmt=fmt, bold=True, color=TEAL, align="right")
