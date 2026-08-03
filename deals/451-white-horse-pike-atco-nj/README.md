@@ -10,7 +10,7 @@ Offered at **$1,600,000 / 8.25% cap** on $132,000 NOI.
 
 | File | What it is |
 |---|---|
-| **`451 White Horse Pike - IC Deck.pdf`** | **THE presentation document. 15 landscape slides in four parts, built to take a reader from cold to an approved offer.**<br>Part 1 decision · Part 2 asset and price · Part 3 return · Part 4 risk and execution. |
+| **`451 White Horse Pike - IC Deck.pdf`** | **THE presentation document. 16 landscape slides in four parts, built to take a reader from cold to an approved offer.**<br>Part 1 decision · Part 2 asset and price · Part 3 return · Part 4 risk and execution. |
 | `451 White Horse Pike - Full Analysis (backup).pdf` | 25-page diligence backup, not the presentation document. Four parts. Page 1 orients the reader — what the property is, the tenant, the lease, the ask — plus a contents map. §2–3 make the argument; §4–14 carry the detail. Every section starts on its own page and opens with a plain-English summary.** |
 | **`451 White Horse Pike - Acquisition Model.xlsx`** | **Live 14-tab model, 898 formulas. Change the offer price on `Assumptions` and everything recalculates.** |
 | `analysis.html` | The same analysis as a web page |
@@ -18,6 +18,7 @@ Offered at **$1,600,000 / 8.25% cap** on $132,000 NOI.
 | `analysis-print.html` | Source for the full analysis backup |
 | `build_model.py` | Rebuilds the workbook from scratch |
 | `growth_case_model.py` | Ten-year floor / base / growth cases, levered and unlevered, plus the value bridge |
+| `comp_adjustment_grid.py` | Lease comp adjustment grid, exclusions with reasons, and the sale comp schedule |
 | `broker_comparison.py` | Ask-to-offer bridge, combined broker/our comp set, and the size-vs-rent regression |
 | `financing_stress_tests.py` | Loan sizing, DSCR, levered IRR, tenant-health coverage, sensitivity and exit analysis |
 | `audit_consistency.py` | Recomputes every headline figure independently and cross-checks it against the workbook and the PDF |
@@ -52,6 +53,18 @@ The $500,000 gap between their ask and our offer decomposes to one argument:
 
 **85% of the gap is a single question: is $30.00/SF a market rent?** Negotiate the rent,
 not the cap rate.
+
+Slides 6–8 present this as schedules rather than prose: a **16-row lease comp
+schedule** (every comp, both sides, with size, rent/SF, annual, drive-thru, source
+and status), an **adjustment grid** in appraisal format, and a **sale comp schedule**.
+
+| # | Comparable | City | SF | Rent/SF | Size | Loc | Term | Adjusted |
+|---|---|---|---|---|---|---|---|---|
+| 1 | 501 Delsea Drive | Sewell | 1,373 | $39.33 | −30% | −10% | — | **$24.78** |
+| 2 | 340 S White Horse Pike | Berlin | 1,750 | $27.43 | −20% | — | — | **$21.94** |
+| 3 | 341 N WHP (Avis Budget) | Lawnside | 3,300 | $27.96 | −10% | −10% | −5% | **$21.52** |
+| | *Indicated range* | | | | | | | *$21.52–$24.78* |
+| | **Concluded — we use** | | | | | | | **$22.00** |
 
 On the comps, four of the broker's seven are build-to-suit deals where rent repays land
 *and* construction — which is why 7 Brew reads as $303.92/SF on a 510 SF kiosk. Fitting

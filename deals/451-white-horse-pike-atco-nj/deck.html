@@ -86,6 +86,23 @@
   .stat .t{font-size:11pt;line-height:1.4;color:var(--ink2);}
   .stat .t b{color:var(--ink);}
 
+  /* spreadsheet-style schedule */
+  table.sheet{font-size:8.5pt;border:.75pt solid var(--ink2);}
+  table.sheet th,table.sheet td{border:.4pt solid #C9CDC8;padding:3.6pt 5pt;line-height:1.2;}
+  table.sheet thead th{background:var(--ink);color:#fff;font-family:var(--mono);font-size:6.6pt;
+      letter-spacing:.07em;text-transform:uppercase;border-color:var(--ink);padding:5pt 5pt;}
+  table.sheet tbody tr:nth-child(even) td{background:#FAFBF9;}
+  table.sheet td.num,table.sheet th.num{font-family:var(--mono);text-align:right;
+      font-variant-numeric:tabular-nums;white-space:nowrap;}
+  table.sheet.tighter th,table.sheet.tighter td{padding:2.9pt 4pt;font-size:8pt;}
+  table.sheet.tiny th,table.sheet.tiny td{padding:2.6pt 4pt;font-size:7.6pt;line-height:1.15;}
+  table.sheet tr.sub td{background:var(--wash)!important;font-weight:700;}
+  table.sheet tr.out td{color:var(--ink3);}
+  table.sheet tr.tot td{background:var(--band)!important;font-weight:700;border-top:.9pt solid var(--ink);}
+  table.sheet td.k{font-weight:700;}
+  .srcpill{font-family:var(--mono);font-size:6.4pt;letter-spacing:.06em;padding:1pt 4pt;border-radius:2pt;}
+  .srcpill.t{background:#F3E6CE;color:#7A5410;} .srcpill.o{background:var(--wash);color:var(--teal);}
+
   /* scatter */
   .plot{position:relative;height:2.15in;border-left:1pt solid var(--ink);
         border-bottom:1pt solid var(--ink);margin:6pt 0 2pt;}
@@ -304,105 +321,166 @@
   <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>5</span></div>
 </section>
 
-<!-- ══════════ 4. THEIR COMPS vs OURS ══════════ -->
-<section class="slide">
-  <p class="eyebrow">Part 2 &middot; The asset and the price &nbsp;|&nbsp; Their comps vs ours</p>
-  <h2>Put both sets on one chart and the argument ends.</h2>
-  <div class="rule"></div>
 
-  <div class="cols c55" style="align-content:start">
-    <div>
-      <div class="plot">
-        <div class="gline" style="bottom:100%"></div><div class="gline" style="bottom:66.7%"></div>
-        <div class="gline" style="bottom:33.3%"></div>
-        <span class="ax" style="left:-24pt;bottom:97%">$60</span>
-        <span class="ax" style="left:-24pt;bottom:64%">$40</span>
-        <span class="ax" style="left:-24pt;bottom:31%">$20</span>
-        <span class="ax" style="left:-20pt;bottom:-2%">$0</span>
-        <!-- fitted line: 34.27 at x=23.1% -> 11.50 at x=100% -->
-        <div class="fitline" style="left:23.1%;width:76.9%;bottom:57.1%;
-             transform:rotate(9.6deg);transform-origin:left center;"></div>
-        <span class="pt theirs" style="left:23.1%;bottom:65.6%"></span><span class="pl" style="left:23.1%;bottom:73%">1,373</span>
-        <span class="pt ours"   style="left:28.6%;bottom:45.7%"></span><span class="pl" style="left:28.6%;bottom:53%">1,750</span>
-        <span class="pt theirs" style="left:43.1%;bottom:46.6%"></span><span class="pl" style="left:43.1%;bottom:54%">3,300</span>
-        <span class="pt subj"   style="left:49.6%;bottom:42.9%"></span>
-        <span class="pl" style="left:49.6%;bottom:34%;color:var(--red);font-weight:700">4,400</span>
-        <span class="pt theirs" style="left:83.1%;bottom:21.6%"></span><span class="pl" style="left:83.1%;bottom:29%">19,054</span>
-        <span class="pt ours"   style="left:100%;bottom:19.2%"></span><span class="pl" style="left:97%;bottom:27%">40,000</span>
-      </div>
-      <p style="font-family:var(--mono);font-size:6.6pt;color:var(--ink3);text-align:center;margin:2pt 0 0">
-        BUILDING SIZE (SQ FT, LOG SCALE) &mdash; RENT PER SQ FT ON THE VERTICAL</p>
-      <div class="legend">
-        <span><i style="background:var(--gold)"></i>Broker's comps</span>
-        <span><i style="background:var(--teal)"></i>Our comps</span>
-        <span><i style="background:var(--red)"></i>451 White Horse Pike</span>
-        <span style="color:var(--ink3)">— fitted trend, R&sup2; 0.89</span>
-      </div>
-      <div class="box gold" style="margin-top:11pt">
-        <h4>Why their headline numbers are not comps</h4>
-        <p style="font-size:10.4pt">Four of the seven he sent are <strong>build-to-suit</strong> deals &mdash; a developer bought land and built to the tenant's design, so the rent repays <em>land plus construction</em>. That is why <strong>7 Brew appears to pay $303.92/SF</strong> on a 510 SF coffee kiosk. Those are not lettings of an existing building, and they are excluded from the chart.</p>
-      </div>
-    </div>
-    <div>
-      <h3>Every comp, both sides, sorted by size</h3>
-      <table class="tight">
-        <thead><tr><th style="width:44%">Comparable</th><th style="width:12%">Whose</th><th class="num" style="width:13%">SF</th><th class="num" style="width:16%">$/SF</th><th style="width:15%">Use?</th></tr></thead>
-        <tbody>
-          <tr><td>7 Brew, Clementon</td><td class="o">Theirs</td><td class="num">510</td><td class="num r">$303.92</td><td class="r">No &mdash; BTS</td></tr>
-          <tr><td>501 Delsea Dr, Sewell</td><td class="o">Theirs</td><td class="num">1,373</td><td class="num">$39.33</td><td class="g">Yes</td></tr>
-          <tr><td>340 S White Horse Pike, Berlin</td><td class="g">Ours</td><td class="num">1,750</td><td class="num">$27.43</td><td class="g">Yes</td></tr>
-          <tr><td>804 N White Horse Pike, Magnolia</td><td class="g">Ours</td><td class="num">3,035</td><td class="num">n/a</td><td class="g">Yes</td></tr>
-          <tr class="hi"><td><strong>Avis Budget, Lawnside</strong><span class="why">Signed June 2025, same road</span></td><td class="o">Theirs</td><td class="num">3,300</td><td class="num">$27.96</td><td class="g"><strong>Best</strong></td></tr>
-          <tr><td>Wendy's, Voorhees</td><td class="o">Theirs</td><td class="num">3,321</td><td class="num r">$47.47</td><td class="r">No &mdash; BTS</td></tr>
-          <tr><td>Wawa, Chesilhurst</td><td class="o">Theirs</td><td class="num">5,585</td><td class="num r">$58.19</td><td class="r">No &mdash; BTS</td></tr>
-          <tr><td>Walgreens, Blackwood</td><td class="o">Theirs</td><td class="num">14,870</td><td class="num r">$31.19</td><td class="r">No &mdash; BTS</td></tr>
-          <tr><td>ALDI, Voorhees</td><td class="o">Theirs</td><td class="num">19,054</td><td class="num">$12.96</td><td class="g">Yes</td></tr>
-          <tr><td>706 N White Horse Pike, Magnolia</td><td class="g">Ours</td><td class="num">40,000</td><td class="num">$11.50</td><td class="g">Yes</td></tr>
-        </tbody>
-      </table>
-      <div class="box fill" style="margin-top:12pt">
-        <h4>Where that leaves the rent &mdash; and we are being conservative</h4>
-        <p style="font-size:10.4pt">Fit the trend on second-hand buildings only and <strong>4,400 SF lands at $25.74/SF</strong>. Adjust his best comp &mdash; Avis, same road, signed last June &mdash; for size, for Atco being weaker than Lawnside, and for a long lease rather than a three-year deal, and it gives <strong>$21.52</strong>.</p>
-        <p style="font-size:10.4pt"><strong>Every number in this deck uses $22.00.</strong> We could have used $25.74 and made the deal look better. We did not &mdash; and at $25.74 the floor is simply higher than shown.</p>
-      </div>
-    </div>
-  </div>
+<!-- ══════════ LEASE COMP SCHEDULE ══════════ -->
+<section class="slide">
+  <p class="eyebrow">Part 2 &middot; The asset and the price &nbsp;|&nbsp; Lease comp schedule</p>
+  <h2>Every lease comp, both sides, one schedule.</h2>
+  <div class="rule" style="margin:11pt 0 13pt"></div>
+
+  <table class="sheet">
+    <thead><tr>
+      <th style="width:4%">#</th><th style="width:24%">Address</th><th style="width:11%">City</th>
+      <th style="width:15%">Property type</th><th class="num" style="width:7%">SF</th>
+      <th class="num" style="width:8%">Rent/SF</th><th class="num" style="width:9%">Annual</th>
+      <th style="width:6%">D/T</th><th style="width:7%">Source</th><th style="width:9%">Status</th>
+    </tr></thead>
+    <tbody>
+      <tr class="sub"><td class="num">&mdash;</td><td class="k">451 White Horse Pike</td><td>Atco</td><td>Freestanding, cannabis</td><td class="num">4,400</td><td class="num">$30.00</td><td class="num">$132,000</td><td>3-lane</td><td>&mdash;</td><td>SUBJECT</td></tr>
+      <tr><td class="num">1</td><td>1390 Blackwood-Clementon Rd</td><td>Clementon</td><td>Coffee kiosk, build-to-suit</td><td class="num">510</td><td class="num">$303.92</td><td class="num">$155,000</td><td>Yes</td><td><span class="srcpill t">THEIRS</span></td><td>In place</td></tr>
+      <tr><td class="num">2</td><td>501 Delsea Drive</td><td>Sewell</td><td>Retail, second-hand</td><td class="num">1,373</td><td class="num">$39.33</td><td class="num">$54,000</td><td>No</td><td><span class="srcpill t">THEIRS</span></td><td>Signed 5 Jul</td></tr>
+      <tr><td class="num">3</td><td>340 S White Horse Pike</td><td>Berlin</td><td>Freestanding retail</td><td class="num">1,750</td><td class="num">$27.43</td><td class="num">$48,000</td><td>Yes</td><td><span class="srcpill o">OURS</span></td><td>Asking</td></tr>
+      <tr><td class="num">4</td><td>804 N White Horse Pike</td><td>Magnolia</td><td>Former Arby's, 38 spaces</td><td class="num">3,035</td><td class="num">n/a</td><td class="num">n/a</td><td>Yes</td><td><span class="srcpill o">OURS</span></td><td>On request</td></tr>
+      <tr><td class="num">5</td><td>341 N White Horse Pike</td><td>Lawnside</td><td>Retail, second-hand (Avis)</td><td class="num">3,300</td><td class="num">$27.96</td><td class="num">$92,268</td><td>n/a</td><td><span class="srcpill t">THEIRS</span></td><td>Signed 5 Jun 25</td></tr>
+      <tr><td class="num">6</td><td>69 NJ Route 73</td><td>Voorhees</td><td>QSR, build-to-suit (Wendy's)</td><td class="num">3,321</td><td class="num">$47.47</td><td class="num">$157,659</td><td>Yes</td><td><span class="srcpill t">THEIRS</span></td><td>In place</td></tr>
+      <tr><td class="num">7</td><td>301 White Horse Pike</td><td>Chesilhurst</td><td>Convenience + fuel, BTS (Wawa)</td><td class="num">5,585</td><td class="num">$58.19</td><td class="num">$325,000</td><td>Yes</td><td><span class="srcpill t">THEIRS</span></td><td>In place</td></tr>
+      <tr><td class="num">8</td><td>625 N Black Horse Pike</td><td>Blackwood</td><td>Pharmacy, BTS (Walgreens)</td><td class="num">14,870</td><td class="num">$31.19</td><td class="num">$463,823</td><td>Yes</td><td><span class="srcpill t">THEIRS</span></td><td>In place</td></tr>
+      <tr><td class="num">9</td><td>142 NJ Route 73</td><td>Voorhees</td><td>Grocery big box (ALDI)</td><td class="num">19,054</td><td class="num">$12.96</td><td class="num">$246,950</td><td>No</td><td><span class="srcpill t">THEIRS</span></td><td>In place</td></tr>
+      <tr><td class="num">10</td><td>706 N White Horse Pike</td><td>Magnolia</td><td>Flex / industrial</td><td class="num">40,000</td><td class="num">$11.50</td><td class="num">$460,000</td><td>No</td><td><span class="srcpill o">OURS</span></td><td>Asking</td></tr>
+      <tr><td class="num">11</td><td>2 S White Horse Pike</td><td>Stratford</td><td>Freestanding QSR, corner</td><td class="num">n/a</td><td class="num">n/a</td><td class="num">n/a</td><td>Yes</td><td><span class="srcpill o">OURS</span></td><td>On request</td></tr>
+      <tr class="out"><td class="num">12</td><td>Submarket average &mdash; retail</td><td>Berlin</td><td>All formats</td><td class="num">&mdash;</td><td class="num">$21.00</td><td class="num">&mdash;</td><td>&mdash;</td><td><span class="srcpill o">OURS</span></td><td>Survey</td></tr>
+      <tr class="out"><td class="num">13</td><td>Submarket average &mdash; retail</td><td>Sicklerville</td><td>All formats</td><td class="num">&mdash;</td><td class="num">$20.00</td><td class="num">&mdash;</td><td>&mdash;</td><td><span class="srcpill o">OURS</span></td><td>Survey</td></tr>
+      <tr class="out"><td class="num">14</td><td>Submarket average &mdash; retail</td><td>Hammonton</td><td>All formats</td><td class="num">&mdash;</td><td class="num">$20.00</td><td class="num">&mdash;</td><td>&mdash;</td><td><span class="srcpill o">OURS</span></td><td>Survey</td></tr>
+      <tr class="out"><td class="num">15</td><td>Submarket average &mdash; retail</td><td>Atco</td><td>In-line strip space</td><td class="num">&mdash;</td><td class="num">$13.00</td><td class="num">&mdash;</td><td>&mdash;</td><td><span class="srcpill o">OURS</span></td><td>Survey</td></tr>
+      <tr class="out"><td class="num">16</td><td>Medical space average</td><td>New Jersey</td><td>Medical</td><td class="num">&mdash;</td><td class="num">$24.00</td><td class="num">&mdash;</td><td>&mdash;</td><td><span class="srcpill o">OURS</span></td><td>Survey</td></tr>
+    </tbody>
+  </table>
+  <p style="font-family:var(--mono);font-size:7pt;color:var(--ink3);margin-top:8pt">
+    D/T = DRIVE-THRU &nbsp;·&nbsp; BTS = BUILD-TO-SUIT &nbsp;·&nbsp; ROWS 1, 6, 7, 8 ARE BUILD-TO-SUIT: RENT REPAYS LAND <em>AND</em> CONSTRUCTION, NOT COMPARABLE TO A SECOND-HAND LETTING</p>
   <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>6</span></div>
 </section>
 
-
-<!-- ══════════ VALUATION ══════════ -->
+<!-- ══════════ ADJUSTMENT GRID ══════════ -->
 <section class="slide">
-  <p class="eyebrow">Part 2 &middot; The asset and the price &nbsp;|&nbsp; What it is worth</p>
-  <h2>Four ways to value it. All four land above our offer.</h2>
-  <div class="rule"></div>
+  <p class="eyebrow">Part 2 &middot; The asset and the price &nbsp;|&nbsp; Adjustment grid</p>
+  <h2>Adjusted to our building: $21.52&ndash;$24.78. We underwrite $22.00.</h2>
+  <div class="rule" style="margin:11pt 0 13pt"></div>
 
-  <table style="margin-bottom:14pt">
-    <thead><tr><th style="width:26%">Method</th><th>How it works</th><th class="num">Value</th><th class="num">Weight</th><th class="num">vs our offer</th></tr></thead>
+  <table class="sheet tighter" style="margin-bottom:11pt">
+    <thead><tr>
+      <th style="width:4%">#</th><th style="width:21%">Comparable</th><th style="width:9%">City</th>
+      <th class="num" style="width:7%">SF</th><th class="num" style="width:8%">Rent/SF</th>
+      <th class="num" style="width:8%">Size adj</th><th class="num" style="width:8%">Location</th>
+      <th class="num" style="width:7%">Term</th><th class="num" style="width:7%">Net</th>
+      <th class="num" style="width:9%">Adjusted</th><th style="width:12%">Basis of adjustment</th>
+    </tr></thead>
     <tbody>
-      <tr><td><strong>Current income</strong></td><td>The $132,000 rent valued at 9.75% &mdash; the yield this lease quality should command</td><td class="num">$1,353,800</td><td class="num">40%</td><td class="num g">+23%</td></tr>
-      <tr><td><strong>Tax assessor</strong></td><td>Camden County's own equalized value &mdash; an independent third party with no stake</td><td class="num">$1,271,000</td><td class="num">20%</td><td class="num g">+16%</td></tr>
-      <tr><td><strong>County price per foot</strong></td><td>Camden County retail averages ~$273/SF applied to 4,400 SF</td><td class="num">$1,201,200</td><td class="num">15%</td><td class="num g">+9%</td></tr>
-      <tr><td><strong>Ordinary-tenant income</strong></td><td>Let at $22/SF to any normal tenant, valued at 8.75% &mdash; <strong>the floor</strong></td><td class="num">$1,106,300</td><td class="num">25%</td><td class="num g">+0.6%</td></tr>
-      <tr class="hi"><td><strong>Weighted value</strong></td><td>All four combined</td><td class="num g" style="font-size:13pt">$1,252,500</td><td class="num">100%</td><td class="num g">+14%</td></tr>
+      <tr><td class="num">1</td><td class="k">501 Delsea Drive</td><td>Sewell</td><td class="num">1,373</td><td class="num">$39.33</td><td class="num">&minus;30%</td><td class="num">&minus;10%</td><td class="num">&mdash;</td><td class="num">&minus;37%</td><td class="num k">$24.78</td><td>3.2&times; smaller; term not disclosed</td></tr>
+      <tr><td class="num">2</td><td class="k">340 S White Horse Pike</td><td>Berlin</td><td class="num">1,750</td><td class="num">$27.43</td><td class="num">&minus;20%</td><td class="num">&mdash;</td><td class="num">&mdash;</td><td class="num">&minus;20%</td><td class="num k">$21.94</td><td>2.5&times; smaller; same market; has drive-thru</td></tr>
+      <tr><td class="num">3</td><td class="k">341 N WHP (Avis Budget)</td><td>Lawnside</td><td class="num">3,300</td><td class="num">$27.96</td><td class="num">&minus;10%</td><td class="num">&minus;10%</td><td class="num">&minus;5%</td><td class="num">&minus;23%</td><td class="num k">$21.52</td><td>Signed Jun-25; 3-yr term; denser location</td></tr>
+      <tr class="tot"><td class="num">&mdash;</td><td>INDICATED RANGE</td><td colspan="7" class="num">$21.52 &mdash; $24.78&nbsp;&nbsp;&nbsp;&nbsp;mean $22.75&nbsp;&nbsp;&nbsp;&nbsp;median $21.94</td><td>Three second-hand lettings</td></tr>
+      <tr class="sub"><td class="num">&mdash;</td><td>CONCLUDED MARKET RENT</td><td colspan="7" class="num">$22.00 / SF&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;$96,800 per year</td><td>Low end of the range, deliberately</td></tr>
+      <tr class="tot"><td class="num">&mdash;</td><td>IN-PLACE CANNABIS RENT</td><td colspan="7" class="num">$30.00 / SF&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;$132,000 per year&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:#9B3A33">a 36% premium</span></td><td>Expires with the tenant</td></tr>
     </tbody>
   </table>
 
-  <div class="cols c3" style="flex:0;margin-top:auto">
-    <div class="box fill">
-      <h4>We buy at the floor</h4>
-      <p style="font-size:10pt">Our $1,100,000 sits within $6,300 of the <em>lowest</em> of the four methods &mdash; the value with no cannabis premium whatsoever. Everything above that line is margin.</p>
+  <div class="cols c2" style="flex:0;align-content:start;gap:18pt">
+    <div>
+      <h3 style="margin-bottom:5pt">Excluded from the grid, and why</h3>
+      <table class="sheet tiny">
+        <thead><tr><th style="width:26%">Comparable</th><th class="num" style="width:14%">SF</th><th class="num" style="width:14%">$/SF</th><th>Reason for exclusion</th></tr></thead>
+        <tbody>
+          <tr class="out"><td>7 Brew, Clementon</td><td class="num">510</td><td class="num">$303.92</td><td>Build-to-suit &mdash; rent repays land + construction</td></tr>
+          <tr class="out"><td>Wendy's, Voorhees</td><td class="num">3,321</td><td class="num">$47.47</td><td>Build-to-suit</td></tr>
+          <tr class="out"><td>Wawa, Chesilhurst</td><td class="num">5,585</td><td class="num">$58.19</td><td>Build-to-suit; includes fuel</td></tr>
+          <tr class="out"><td>Walgreens, Blackwood</td><td class="num">14,870</td><td class="num">$31.19</td><td>Build-to-suit; national credit; legacy rent</td></tr>
+          <tr class="out"><td>ALDI, Voorhees</td><td class="num">19,054</td><td class="num">$12.96</td><td>4.3&times; subject size; different product</td></tr>
+          <tr class="out"><td>706 N WHP, Magnolia</td><td class="num">40,000</td><td class="num">$11.50</td><td>Flex / industrial &mdash; different use class</td></tr>
+          <tr class="out"><td>804 N WHP, Magnolia</td><td class="num">3,035</td><td class="num">n/a</td><td>Rate not published &mdash; closest analogue, call the agent</td></tr>
+        </tbody>
+      </table>
     </div>
-    <div class="box fill">
-      <h4>An independent voice</h4>
-      <p style="font-size:10pt">Camden County's assessor already values this at <strong>$1,271,000</strong>. That is the hardest single fact to argue with across the table, and it costs us nothing to cite.</p>
-    </div>
-    <div class="box gold">
-      <h4>Where we stop</h4>
-      <p style="font-size:10pt">Ceiling <strong>$1,250,000</strong> &mdash; just under weighted value, and the point where debt stops adding return. Above <strong>$1,300,000</strong> we would pay more than it is worth.</p>
+    <div>
+      <h3 style="margin-bottom:5pt">Cross-check: regression on second-hand comps only</h3>
+      <table class="sheet tiny">
+        <thead><tr><th>Building size</th><th class="num">Fitted rent/SF</th></tr></thead>
+        <tbody>
+          <tr><td>1,373 SF</td><td class="num">$34.27</td></tr>
+          <tr><td>1,750 SF</td><td class="num">$32.49</td></tr>
+          <tr><td>3,300 SF</td><td class="num">$27.85</td></tr>
+          <tr class="sub"><td><strong>4,400 SF &mdash; subject</strong></td><td class="num"><strong>$25.74</strong></td></tr>
+          <tr><td>19,054 SF</td><td class="num">$15.00</td></tr>
+          <tr class="tot"><td>Fit quality</td><td class="num">R&sup2; = 0.89</td></tr>
+        </tbody>
+      </table>
+      <div class="box fill" style="margin-top:9pt;padding:10pt 12pt">
+        <h4>Read this line</h4>
+        <p style="font-size:9.6pt;margin:0">Regression says <strong>$25.74</strong>. The grid says <strong>$21.52&ndash;$24.78</strong>. <strong>We use $22.00</strong> &mdash; at or below both. Every return in this deck is struck on the conservative number.</p>
+      </div>
     </div>
   </div>
   <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>7</span></div>
+</section>
+
+<!-- ══════════ SALE COMP SCHEDULE ══════════ -->
+<section class="slide">
+  <p class="eyebrow">Part 2 &middot; The asset and the price &nbsp;|&nbsp; Sale comp schedule</p>
+  <h2>Cannabis net lease trades 7.40% to 9.35%.<br>We buy at 12.00%.</h2>
+  <div class="rule" style="margin:11pt 0 13pt"></div>
+
+  <table class="sheet" style="margin-bottom:14pt">
+    <thead><tr>
+      <th style="width:5%">#</th><th style="width:19%">Comparable</th><th style="width:14%">Market</th>
+      <th class="num" style="width:12%">Price</th><th class="num" style="width:8%">Cap</th>
+      <th class="num" style="width:9%">Term left</th><th style="width:13%">Guarantee</th>
+      <th style="width:11%">Rent bumps</th><th style="width:9%">Status</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="num">1</td><td class="k">STNL all-tenant average</td><td>United States</td><td class="num">&mdash;</td><td class="num">6.80%</td><td class="num">&mdash;</td><td>Mixed</td><td>&mdash;</td><td>Q1-2026</td></tr>
+      <tr><td class="num">2</td><td class="k">Jungle Boys</td><td>Naples, FL</td><td class="num">&mdash;</td><td class="num">7.40%</td><td class="num">n/a</td><td>Corporate</td><td>2% / yr</td><td>Listing</td></tr>
+      <tr><td class="num">3</td><td class="k">Cookies</td><td>Kalamazoo, MI</td><td class="num">$3,100,000</td><td class="num">8.25%</td><td class="num">10 yrs</td><td>Corporate</td><td>&mdash;</td><td>Listing</td></tr>
+      <tr class="out"><td class="num">4</td><td class="k">SUBJECT at their ask</td><td>Atco, NJ</td><td class="num">$1,600,000</td><td class="num">8.25%</td><td class="num">6.5 yrs</td><td>2 personal</td><td><strong>NONE</strong></td><td>Asking</td></tr>
+      <tr><td class="num">5</td><td class="k">LivWell</td><td>Aurora, CO</td><td class="num">$1,025,000</td><td class="num">8.87%</td><td class="num">n/a</td><td>Corporate</td><td>&mdash;</td><td><strong>CLOSED</strong></td></tr>
+      <tr><td class="num">6</td><td class="k">Ascend</td><td>Pennsylvania</td><td class="num">&mdash;</td><td class="num">9.25%</td><td class="num">n/a</td><td>Corporate</td><td>&mdash;</td><td>Listing</td></tr>
+      <tr><td class="num">7</td><td class="k">Curaleaf</td><td>Worth, IL</td><td class="num">&mdash;</td><td class="num">9.35%</td><td class="num">n/a</td><td>Corporate</td><td>10% / 5 yrs</td><td>Listing</td></tr>
+      <tr class="sub"><td class="num">&mdash;</td><td class="k">SUBJECT at our offer</td><td>Atco, NJ</td><td class="num">$1,100,000</td><td class="num">12.00%</td><td class="num">6.5 yrs</td><td>2 personal</td><td><strong>NONE</strong></td><td>OUR BID</td></tr>
+    </tbody>
+  </table>
+
+  <div class="cols c2" style="flex:0;align-content:start;gap:18pt">
+    <div>
+      <h3>Attribute comparison &mdash; subject vs the comp set</h3>
+      <table class="sheet">
+        <thead><tr><th style="width:26%">Attribute</th><th style="width:30%">Comp set</th><th style="width:30%">Subject</th><th class="num" style="width:14%">Effect</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Guarantee</td><td>Corporate / MSO</td><td>2 individuals, 1 shop</td><td class="num r">Worse</td></tr>
+          <tr><td class="k">Rent bumps</td><td>2%/yr or 10%/5yr</td><td>None at all</td><td class="num r">Worse</td></tr>
+          <tr><td class="k">Rent vs market</td><td>At or near market</td><td>36% above</td><td class="num r">Worse</td></tr>
+          <tr><td class="k">Term remaining</td><td>8&ndash;15 yrs typical</td><td>6.5 yrs</td><td class="num r">Worse</td></tr>
+          <tr><td class="k">Market backdrop</td><td>Mixed</td><td>NJ: 300+ shops, &minus;23%</td><td class="num r">Worse</td></tr>
+          <tr><td class="k">Real estate</td><td>Varies</td><td>Corner, drive-thru, 3 ac</td><td class="num g">Better</td></tr>
+          <tr><td class="k">Local competition</td><td>Varies</td><td>2-licence township cap</td><td class="num g">Better</td></tr>
+          <tr class="tot"><td colspan="3">Fair cap rate for this asset</td><td class="num">9.25&ndash;10.25%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h3>Valuation summary &mdash; four methods</h3>
+      <table class="sheet">
+        <thead><tr><th style="width:38%">Method</th><th class="num" style="width:22%">Value</th><th class="num" style="width:14%">Weight</th><th class="num" style="width:26%">vs our offer</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Current income @ 9.75%</td><td class="num">$1,353,800</td><td class="num">40%</td><td class="num g">+23%</td></tr>
+          <tr><td class="k">Tax assessor equalized</td><td class="num">$1,271,000</td><td class="num">20%</td><td class="num g">+16%</td></tr>
+          <tr><td class="k">County $/SF &times; 4,400</td><td class="num">$1,201,200</td><td class="num">15%</td><td class="num g">+9%</td></tr>
+          <tr><td class="k">Market rent @ 8.75%</td><td class="num">$1,106,300</td><td class="num">25%</td><td class="num g">+0.6%</td></tr>
+          <tr class="tot"><td>WEIGHTED VALUE</td><td class="num">$1,252,500</td><td class="num">100%</td><td class="num g">+14%</td></tr>
+          <tr class="sub"><td>OUR OFFER</td><td class="num">$1,100,000</td><td class="num">&mdash;</td><td class="num">$250 / SF</td></tr>
+          <tr class="out"><td>THEIR ASK</td><td class="num">$1,600,000</td><td class="num">&mdash;</td><td class="num r">28% over value</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>8</span></div>
 </section>
 
 <!-- ══════════ 3. WHAT WE MAKE ══════════ -->
@@ -435,7 +513,7 @@
       <p style="font-size:9.8pt">Debt cuts both ways. In the floor case a 55% mortgage turns +5.4% into <strong>&minus;3.7%</strong>. If the floor must hold in every case, buy for cash or borrow 35&ndash;40%.</p>
     </div>
   </div>
-  <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>8</span></div>
+  <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>9</span></div>
 </section>
 
 
@@ -473,7 +551,7 @@
       </table>
     </div>
   </div>
-  <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>9</span></div>
+  <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>10</span></div>
 </section>
 
 <!-- ══════════ 4. THE UPSIDE ══════════ -->
@@ -514,7 +592,7 @@
       <p style="font-size:9.8pt;color:var(--ink2);margin-top:10pt;margin-bottom:0">Roughly <strong>double our entry price</strong> over about ten years — about 7% compound growth in value, on top of the rent collected the whole way through.</p>
     </div>
   </div>
-  <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>10</span></div>
+  <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>11</span></div>
 </section>
 
 
@@ -549,7 +627,7 @@
       <p style="font-size:10pt">Because almost no buyer can finance this, <strong>all cash in 45 days</strong> is worth real money to a seller whose alternative is a buyer whose loan dies in diligence. Sell that hard.</p>
     </div>
   </div>
-  <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>11</span></div>
+  <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>12</span></div>
 </section>
 
 <!-- ══════════ 5. THE RISK ══════════ -->
@@ -587,7 +665,7 @@
       </div>
     </div>
   </div>
-  <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>12</span></div>
+  <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>13</span></div>
 </section>
 
 
@@ -641,7 +719,7 @@
       </div>
     </div>
   </div>
-  <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>13</span></div>
+  <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>14</span></div>
 </section>
 
 <!-- ══════════ DILIGENCE ══════════ -->
@@ -682,7 +760,7 @@
       </div>
     </div>
   </div>
-  <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>14</span></div>
+  <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>15</span></div>
 </section>
 
 <!-- ══════════ 6. THE ASK ══════════ -->
@@ -721,7 +799,7 @@
       </div>
     </div>
   </div>
-  <div class="foot">Full analysis, comps and model available on request &middot; not an appraisal<span>15</span></div>
+  <div class="foot">Full analysis, comps and model available on request &middot; not an appraisal<span>16</span></div>
 </section>
 
 </body></html>
