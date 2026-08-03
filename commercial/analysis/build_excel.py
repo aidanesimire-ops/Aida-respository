@@ -50,8 +50,59 @@ def _fmts(wb):
     f["gap"] = wb.add_format({"border": 1, "border_color": "#ecebe4", "num_format": "+0.0;-0.0", "align": "right"})
     f["num"] = wb.add_format({"border": 1, "border_color": "#ecebe4", "num_format": "#,##0", "align": "right"})
     f["num1"] = wb.add_format({"border": 1, "border_color": "#ecebe4", "num_format": "0.0", "align": "right"})
+    f["pctn"] = wb.add_format({"border": 1, "border_color": "#ecebe4", "num_format": "0.0\"%\"", "align": "right"})
     f["cell"] = wb.add_format({"border": 1, "border_color": "#ecebe4"})
     return f
+
+
+def _matrix_block(ws, f, mtx, title, start):
+    """Write a count matrix then a %-share matrix (share within each row)."""
+    cols = mtx["cols"]
+    recs = mtx["counts"]
+    rowkey = next((k for k in recs[0].keys() if k not in cols), "row") if recs else "row"
+    r = start
+    ws.write(r, 0, title, f["title"]); r += 1
+    ws.write(r, 0, "Count", f["olab"])
+    for j, c in enumerate(cols):
+        ws.write(r, 1 + j, c, f["hdr"])
+    ws.write(r, 1 + len(cols), "Total", f["hdr"]); r += 1
+    for rec in recs:
+        ws.write(r, 0, rec.get(rowkey), f["lab"]); tot = 0
+        for j, c in enumerate(cols):
+            val = int(rec.get(c, 0) or 0); tot += val; ws.write_number(r, 1 + j, val, f["num"])
+        ws.write_number(r, 1 + len(cols), tot, f["olab"] if False else f["num"]); r += 1
+    r += 1
+    ws.write(r, 0, "% share (within row)", f["olab"])
+    for j, c in enumerate(cols):
+        ws.write(r, 1 + j, c, f["hdr"])
+    r += 1
+    for rec in mtx["share"]:
+        ws.write(r, 0, rec.get(rowkey), f["lab"])
+        for j, c in enumerate(cols):
+            val = rec.get(c)
+            if val is None or (isinstance(val, float) and pd.isna(val)):
+                ws.write(r, 1 + j, "—", f["cell"])
+            else:
+                ws.write_number(r, 1 + j, float(val), f["pctn"])
+        r += 1
+    return r + 2
+
+
+def _comp_block(ws, f, records, label, start, title):
+    r = start
+    ws.write(r, 0, title, f["title"]); r += 1
+    for j, h in enumerate([label, "Count", "% of market", "Median $/SqFt"]):
+        ws.write(r, j, h, f["hdr"])
+    r += 1
+    for rec in records:
+        k = next(iter(rec))
+        ws.write(r, 0, rec.get(k), f["lab"])
+        ws.write_number(r, 1, int(rec["n"]), f["num"])
+        ws.write_number(r, 2, float(rec["share_pct"]), f["pctn"])
+        mp = rec.get("median_ppsf")
+        ws.write_number(r, 3, float(mp), f["usd"]) if mp is not None and not pd.isna(mp) else ws.write(r, 3, "—", f["cell"])
+        r += 1
+    return r + 2
 
 
 def _table(ws, f, df, spec, start=3, autofilter=True):
@@ -311,6 +362,8 @@ def index_sheet(wb, f, meta):
            ("Call List", "Owners to cold-call — opener + value read + FAQ."),
            ("Neighborhoods", "Every submarket as a system, side by side."),
            ("Repricing", "Going-for vs should-be, adjusted basis up/down."),
+           ("Segmentation", "Market share by asset type, price bracket & size class."),
+           ("Neighborhood Mix", "What each area is made of (type / price / size)."),
            ("Opportunities", "Underpriced buys."),
            ("Prospects", "Failed listings + overpriced actives."),
            ("Leasing", "Asking rents + data-derived cap rates."),
@@ -436,6 +489,39 @@ def repricing_sheet(wb, f):
         ws.conditional_format(lo, col, hi, col, {"type": "cell", "criteria": "<", "value": 0, "format": bad})
 
 
+def segmentation_sheet(wb, f):
+    sb = _load("segmentation_bundle.json")
+    if not sb:
+        return
+    ws = wb.add_worksheet("Segmentation")
+    _head(ws, f, "Segmentation & market share — by asset type, price bracket, size class",
+          sb["meta"]["note"] + " Size class = SqFt bracket (no floor-plan data in the export).", 7)
+    ws.set_column(0, 0, 22); ws.set_column(1, 8, 12)
+    r = 3
+    r = _comp_block(ws, f, sb["market"]["by_type"], "Asset type", r, "Market composition — by asset type")
+    r = _comp_block(ws, f, sb["market"]["by_price"], "Price bracket", r, "Market composition — by price bracket")
+    r = _comp_block(ws, f, sb["market"]["by_size"], "Size class (SqFt)", r, "Market composition — by size class")
+    r = _matrix_block(ws, f, sb["matrix_type_price"], "Asset type × price bracket", r)
+    r = _matrix_block(ws, f, sb["matrix_type_size"], "Asset type × size class (SqFt)", r)
+    if sb.get("mf_unit_mix"):
+        _comp_block(ws, f, sb["mf_unit_mix"], "Units",
+                    r, f"Multifamily unit-count mix ({sb['meta'].get('mf_units_parsed',0)} parsed — limited coverage)")
+
+
+def nbhd_mix_sheet(wb, f):
+    sb = _load("segmentation_bundle.json")
+    if not sb:
+        return
+    ws = wb.add_worksheet("Neighborhood Mix")
+    _head(ws, f, "Neighborhood mix — what each area is made of",
+          "Share is within the neighborhood: e.g. what % of Area X is each asset type / price bracket / size class.", 8)
+    ws.set_column(0, 0, 16); ws.set_column(1, 11, 12)
+    r = 3
+    r = _matrix_block(ws, f, sb["matrix_nbhd_type"], "Neighborhood × asset type", r)
+    r = _matrix_block(ws, f, sb["matrix_nbhd_price"], "Neighborhood × price bracket", r)
+    r = _matrix_block(ws, f, sb["matrix_nbhd_size"], "Neighborhood × size class (SqFt)", r)
+
+
 def main():
     cre = _load("cre_bundle.json")
     meta = cre["meta"]
@@ -455,6 +541,8 @@ def main():
     callist_sheet(wb, f)
     neighborhoods_sheet(wb, f)
     repricing_sheet(wb, f)
+    segmentation_sheet(wb, f)
+    nbhd_mix_sheet(wb, f)
 
     if reb and reb["opportunities"]:
         ws = wb.add_worksheet("Opportunities")

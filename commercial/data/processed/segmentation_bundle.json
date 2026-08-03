@@ -1,0 +1,5736 @@
+{
+  "meta": {
+    "n": 331,
+    "note": "Shares are within the stated parent. 'Size class' is a SqFt bracket (no floor-plan/unit-mix data in the export); unit brackets cover only multifamily with a parsed unit count.",
+    "price_bands": [
+      "< $1M",
+      "$1\u20132.5M",
+      "$2.5\u20135M",
+      "$5\u201310M",
+      "$10M+"
+    ],
+    "size_bands": [
+      "< 2.5K",
+      "2.5\u20135K",
+      "5\u201310K",
+      "10\u201325K",
+      "25\u201350K",
+      "50K+"
+    ],
+    "ppsf_bands": [
+      "< $100",
+      "$100\u2013200",
+      "$200\u2013300",
+      "$300\u2013500",
+      "$500+"
+    ],
+    "mf_units_parsed": 30
+  },
+  "type_by_price": [
+    {
+      "asset_type": "Commercial (other)",
+      "price_band": "< $1M",
+      "n": 30,
+      "median_ppsf": 130.0,
+      "median_price": 537000.0,
+      "median_sqft": 5996.0,
+      "share_pct": 31.2
+    },
+    {
+      "asset_type": "Commercial (other)",
+      "price_band": "$1\u20132.5M",
+      "n": 31,
+      "median_ppsf": 192.0,
+      "median_price": 1700000.0,
+      "median_sqft": 8381.0,
+      "share_pct": 32.3
+    },
+    {
+      "asset_type": "Commercial (other)",
+      "price_band": "$2.5\u20135M",
+      "n": 26,
+      "median_ppsf": 246.0,
+      "median_price": 3450000.0,
+      "median_sqft": 14930.0,
+      "share_pct": 27.1
+    },
+    {
+      "asset_type": "Commercial (other)",
+      "price_band": "$5\u201310M",
+      "n": 5,
+      "median_ppsf": 738.0,
+      "median_price": 6000000.0,
+      "median_sqft": 8126.0,
+      "share_pct": 5.2
+    },
+    {
+      "asset_type": "Commercial (other)",
+      "price_band": "$10M+",
+      "n": 4,
+      "median_ppsf": 390.0,
+      "median_price": 12900000.0,
+      "median_sqft": 38136.0,
+      "share_pct": 4.2
+    },
+    {
+      "asset_type": "Flex",
+      "price_band": "$1\u20132.5M",
+      "n": 2,
+      "median_ppsf": 329.0,
+      "median_price": 2099000.0,
+      "median_sqft": 6378.0,
+      "share_pct": 66.7
+    },
+    {
+      "asset_type": "Flex",
+      "price_band": "$5\u201310M",
+      "n": 1,
+      "median_ppsf": 875.0,
+      "median_price": 5000000.0,
+      "median_sqft": 5715.0,
+      "share_pct": 33.3
+    },
+    {
+      "asset_type": "Hotel",
+      "price_band": "$2.5\u20135M",
+      "n": 2,
+      "median_ppsf": 218.0,
+      "median_price": 4350000.0,
+      "median_sqft": 20004.0,
+      "share_pct": 18.2
+    },
+    {
+      "asset_type": "Hotel",
+      "price_band": "$5\u201310M",
+      "n": 5,
+      "median_ppsf": 280.0,
+      "median_price": 7995000.0,
+      "median_sqft": 27696.0,
+      "share_pct": 45.5
+    },
+    {
+      "asset_type": "Hotel",
+      "price_band": "$10M+",
+      "n": 4,
+      "median_ppsf": 1124.0,
+      "median_price": 13575000.0,
+      "median_sqft": 12738.0,
+      "share_pct": 36.4
+    },
+    {
+      "asset_type": "Industrial",
+      "price_band": "< $1M",
+      "n": 8,
+      "median_ppsf": 273.0,
+      "median_price": 862000.0,
+      "median_sqft": 4375.0,
+      "share_pct": 23.5
+    },
+    {
+      "asset_type": "Industrial",
+      "price_band": "$1\u20132.5M",
+      "n": 17,
+      "median_ppsf": 116.0,
+      "median_price": 1725000.0,
+      "median_sqft": 11800.0,
+      "share_pct": 50.0
+    },
+    {
+      "asset_type": "Industrial",
+      "price_band": "$2.5\u20135M",
+      "n": 7,
+      "median_ppsf": 168.0,
+      "median_price": 3395000.0,
+      "median_sqft": 20250.0,
+      "share_pct": 20.6
+    },
+    {
+      "asset_type": "Industrial",
+      "price_band": "$5\u201310M",
+      "n": 2,
+      "median_ppsf": 322.0,
+      "median_price": 7100000.0,
+      "median_sqft": 30396.0,
+      "share_pct": 5.9
+    },
+    {
+      "asset_type": "Mixed Use",
+      "price_band": "< $1M",
+      "n": 12,
+      "median_ppsf": 102.0,
+      "median_price": 762000.0,
+      "median_sqft": 6600.0,
+      "share_pct": 36.4
+    },
+    {
+      "asset_type": "Mixed Use",
+      "price_band": "$1\u20132.5M",
+      "n": 14,
+      "median_ppsf": 154.0,
+      "median_price": 1325000.0,
+      "median_sqft": 7854.0,
+      "share_pct": 42.4
+    },
+    {
+      "asset_type": "Mixed Use",
+      "price_band": "$2.5\u20135M",
+      "n": 4,
+      "median_ppsf": 168.0,
+      "median_price": 3750000.0,
+      "median_sqft": 26424.0,
+      "share_pct": 12.1
+    },
+    {
+      "asset_type": "Mixed Use",
+      "price_band": "$5\u201310M",
+      "n": 2,
+      "median_ppsf": 310.0,
+      "median_price": 8250000.0,
+      "median_sqft": 26576.0,
+      "share_pct": 6.1
+    },
+    {
+      "asset_type": "Mixed Use",
+      "price_band": "$10M+",
+      "n": 1,
+      "median_ppsf": 653.0,
+      "median_price": 11250000.0,
+      "median_sqft": 17220.0,
+      "share_pct": 3.0
+    },
+    {
+      "asset_type": "Multifamily",
+      "price_band": "< $1M",
+      "n": 8,
+      "median_ppsf": 133.0,
+      "median_price": 910000.0,
+      "median_sqft": 6750.0,
+      "share_pct": 8.9
+    },
+    {
+      "asset_type": "Multifamily",
+      "price_band": "$1\u20132.5M",
+      "n": 52,
+      "median_ppsf": 157.0,
+      "median_price": 1649000.0,
+      "median_sqft": 10126.0,
+      "share_pct": 57.8
+    },
+    {
+      "asset_type": "Multifamily",
+      "price_band": "$2.5\u20135M",
+      "n": 21,
+      "median_ppsf": 216.0,
+      "median_price": 3000000.0,
+      "median_sqft": 12960.0,
+      "share_pct": 23.3
+    },
+    {
+      "asset_type": "Multifamily",
+      "price_band": "$5\u201310M",
+      "n": 8,
+      "median_ppsf": 246.0,
+      "median_price": 5900000.0,
+      "median_sqft": 23210.0,
+      "share_pct": 8.9
+    },
+    {
+      "asset_type": "Multifamily",
+      "price_band": "$10M+",
+      "n": 1,
+      "median_ppsf": 506.0,
+      "median_price": 10795000.0,
+      "median_sqft": 21315.0,
+      "share_pct": 1.1
+    },
+    {
+      "asset_type": "Office",
+      "price_band": "< $1M",
+      "n": 11,
+      "median_ppsf": 113.0,
+      "median_price": 700000.0,
+      "median_sqft": 6624.0,
+      "share_pct": 37.9
+    },
+    {
+      "asset_type": "Office",
+      "price_band": "$1\u20132.5M",
+      "n": 12,
+      "median_ppsf": 302.0,
+      "median_price": 1525000.0,
+      "median_sqft": 5644.0,
+      "share_pct": 41.4
+    },
+    {
+      "asset_type": "Office",
+      "price_band": "$2.5\u20135M",
+      "n": 3,
+      "median_ppsf": 373.0,
+      "median_price": 2850000.0,
+      "median_sqft": 7505.0,
+      "share_pct": 10.3
+    },
+    {
+      "asset_type": "Office",
+      "price_band": "$5\u201310M",
+      "n": 1,
+      "median_ppsf": 179.0,
+      "median_price": 6000000.0,
+      "median_sqft": 33482.0,
+      "share_pct": 3.4
+    },
+    {
+      "asset_type": "Office",
+      "price_band": "$10M+",
+      "n": 2,
+      "median_ppsf": 681.0,
+      "median_price": 16750000.0,
+      "median_sqft": 26610.0,
+      "share_pct": 6.9
+    },
+    {
+      "asset_type": "Restaurant",
+      "price_band": "< $1M",
+      "n": 2,
+      "median_ppsf": 443.0,
+      "median_price": 948000.0,
+      "median_sqft": 8478.0,
+      "share_pct": 25.0
+    },
+    {
+      "asset_type": "Restaurant",
+      "price_band": "$1\u20132.5M",
+      "n": 4,
+      "median_ppsf": 327.0,
+      "median_price": 2074000.0,
+      "median_sqft": 6312.0,
+      "share_pct": 50.0
+    },
+    {
+      "asset_type": "Restaurant",
+      "price_band": "$2.5\u20135M",
+      "n": 1,
+      "median_ppsf": 345.0,
+      "median_price": 2750000.0,
+      "median_sqft": 7960.0,
+      "share_pct": 12.5
+    },
+    {
+      "asset_type": "Restaurant",
+      "price_band": "$5\u201310M",
+      "n": 1,
+      "median_ppsf": 577.0,
+      "median_price": 5000000.0,
+      "median_sqft": 8664.0,
+      "share_pct": 12.5
+    },
+    {
+      "asset_type": "Retail",
+      "price_band": "< $1M",
+      "n": 5,
+      "median_ppsf": 387.0,
+      "median_price": 710000.0,
+      "median_sqft": 1833.0,
+      "share_pct": 20.0
+    },
+    {
+      "asset_type": "Retail",
+      "price_band": "$1\u20132.5M",
+      "n": 11,
+      "median_ppsf": 156.0,
+      "median_price": 1200000.0,
+      "median_sqft": 6751.0,
+      "share_pct": 44.0
+    },
+    {
+      "asset_type": "Retail",
+      "price_band": "$2.5\u20135M",
+      "n": 6,
+      "median_ppsf": 218.0,
+      "median_price": 3545000.0,
+      "median_sqft": 18438.0,
+      "share_pct": 24.0
+    },
+    {
+      "asset_type": "Retail",
+      "price_band": "$5\u201310M",
+      "n": 3,
+      "median_ppsf": 415.0,
+      "median_price": 7000000.0,
+      "median_sqft": 16875.0,
+      "share_pct": 12.0
+    },
+    {
+      "asset_type": "Special Purpose",
+      "price_band": "$2.5\u20135M",
+      "n": 2,
+      "median_ppsf": 319.0,
+      "median_price": 3248000.0,
+      "median_sqft": 12957.0,
+      "share_pct": 100.0
+    }
+  ],
+  "price_by_type": [
+    {
+      "price_band": "< $1M",
+      "asset_type": "Commercial (other)",
+      "n": 30,
+      "median_ppsf": 130.0,
+      "median_price": 537000.0,
+      "median_sqft": 5996.0,
+      "share_pct": 39.5
+    },
+    {
+      "price_band": "< $1M",
+      "asset_type": "Industrial",
+      "n": 8,
+      "median_ppsf": 273.0,
+      "median_price": 862000.0,
+      "median_sqft": 4375.0,
+      "share_pct": 10.5
+    },
+    {
+      "price_band": "< $1M",
+      "asset_type": "Mixed Use",
+      "n": 12,
+      "median_ppsf": 102.0,
+      "median_price": 762000.0,
+      "median_sqft": 6600.0,
+      "share_pct": 15.8
+    },
+    {
+      "price_band": "< $1M",
+      "asset_type": "Multifamily",
+      "n": 8,
+      "median_ppsf": 133.0,
+      "median_price": 910000.0,
+      "median_sqft": 6750.0,
+      "share_pct": 10.5
+    },
+    {
+      "price_band": "< $1M",
+      "asset_type": "Office",
+      "n": 11,
+      "median_ppsf": 113.0,
+      "median_price": 700000.0,
+      "median_sqft": 6624.0,
+      "share_pct": 14.5
+    },
+    {
+      "price_band": "< $1M",
+      "asset_type": "Restaurant",
+      "n": 2,
+      "median_ppsf": 443.0,
+      "median_price": 948000.0,
+      "median_sqft": 8478.0,
+      "share_pct": 2.6
+    },
+    {
+      "price_band": "< $1M",
+      "asset_type": "Retail",
+      "n": 5,
+      "median_ppsf": 387.0,
+      "median_price": 710000.0,
+      "median_sqft": 1833.0,
+      "share_pct": 6.6
+    },
+    {
+      "price_band": "$1\u20132.5M",
+      "asset_type": "Commercial (other)",
+      "n": 31,
+      "median_ppsf": 192.0,
+      "median_price": 1700000.0,
+      "median_sqft": 8381.0,
+      "share_pct": 21.7
+    },
+    {
+      "price_band": "$1\u20132.5M",
+      "asset_type": "Flex",
+      "n": 2,
+      "median_ppsf": 329.0,
+      "median_price": 2099000.0,
+      "median_sqft": 6378.0,
+      "share_pct": 1.4
+    },
+    {
+      "price_band": "$1\u20132.5M",
+      "asset_type": "Industrial",
+      "n": 17,
+      "median_ppsf": 116.0,
+      "median_price": 1725000.0,
+      "median_sqft": 11800.0,
+      "share_pct": 11.9
+    },
+    {
+      "price_band": "$1\u20132.5M",
+      "asset_type": "Mixed Use",
+      "n": 14,
+      "median_ppsf": 154.0,
+      "median_price": 1325000.0,
+      "median_sqft": 7854.0,
+      "share_pct": 9.8
+    },
+    {
+      "price_band": "$1\u20132.5M",
+      "asset_type": "Multifamily",
+      "n": 52,
+      "median_ppsf": 157.0,
+      "median_price": 1649000.0,
+      "median_sqft": 10126.0,
+      "share_pct": 36.4
+    },
+    {
+      "price_band": "$1\u20132.5M",
+      "asset_type": "Office",
+      "n": 12,
+      "median_ppsf": 302.0,
+      "median_price": 1525000.0,
+      "median_sqft": 5644.0,
+      "share_pct": 8.4
+    },
+    {
+      "price_band": "$1\u20132.5M",
+      "asset_type": "Restaurant",
+      "n": 4,
+      "median_ppsf": 327.0,
+      "median_price": 2074000.0,
+      "median_sqft": 6312.0,
+      "share_pct": 2.8
+    },
+    {
+      "price_band": "$1\u20132.5M",
+      "asset_type": "Retail",
+      "n": 11,
+      "median_ppsf": 156.0,
+      "median_price": 1200000.0,
+      "median_sqft": 6751.0,
+      "share_pct": 7.7
+    },
+    {
+      "price_band": "$2.5\u20135M",
+      "asset_type": "Commercial (other)",
+      "n": 26,
+      "median_ppsf": 246.0,
+      "median_price": 3450000.0,
+      "median_sqft": 14930.0,
+      "share_pct": 36.1
+    },
+    {
+      "price_band": "$2.5\u20135M",
+      "asset_type": "Hotel",
+      "n": 2,
+      "median_ppsf": 218.0,
+      "median_price": 4350000.0,
+      "median_sqft": 20004.0,
+      "share_pct": 2.8
+    },
+    {
+      "price_band": "$2.5\u20135M",
+      "asset_type": "Industrial",
+      "n": 7,
+      "median_ppsf": 168.0,
+      "median_price": 3395000.0,
+      "median_sqft": 20250.0,
+      "share_pct": 9.7
+    },
+    {
+      "price_band": "$2.5\u20135M",
+      "asset_type": "Mixed Use",
+      "n": 4,
+      "median_ppsf": 168.0,
+      "median_price": 3750000.0,
+      "median_sqft": 26424.0,
+      "share_pct": 5.6
+    },
+    {
+      "price_band": "$2.5\u20135M",
+      "asset_type": "Multifamily",
+      "n": 21,
+      "median_ppsf": 216.0,
+      "median_price": 3000000.0,
+      "median_sqft": 12960.0,
+      "share_pct": 29.2
+    },
+    {
+      "price_band": "$2.5\u20135M",
+      "asset_type": "Office",
+      "n": 3,
+      "median_ppsf": 373.0,
+      "median_price": 2850000.0,
+      "median_sqft": 7505.0,
+      "share_pct": 4.2
+    },
+    {
+      "price_band": "$2.5\u20135M",
+      "asset_type": "Restaurant",
+      "n": 1,
+      "median_ppsf": 345.0,
+      "median_price": 2750000.0,
+      "median_sqft": 7960.0,
+      "share_pct": 1.4
+    },
+    {
+      "price_band": "$2.5\u20135M",
+      "asset_type": "Retail",
+      "n": 6,
+      "median_ppsf": 218.0,
+      "median_price": 3545000.0,
+      "median_sqft": 18438.0,
+      "share_pct": 8.3
+    },
+    {
+      "price_band": "$2.5\u20135M",
+      "asset_type": "Special Purpose",
+      "n": 2,
+      "median_ppsf": 319.0,
+      "median_price": 3248000.0,
+      "median_sqft": 12957.0,
+      "share_pct": 2.8
+    },
+    {
+      "price_band": "$5\u201310M",
+      "asset_type": "Commercial (other)",
+      "n": 5,
+      "median_ppsf": 738.0,
+      "median_price": 6000000.0,
+      "median_sqft": 8126.0,
+      "share_pct": 17.9
+    },
+    {
+      "price_band": "$5\u201310M",
+      "asset_type": "Flex",
+      "n": 1,
+      "median_ppsf": 875.0,
+      "median_price": 5000000.0,
+      "median_sqft": 5715.0,
+      "share_pct": 3.6
+    },
+    {
+      "price_band": "$5\u201310M",
+      "asset_type": "Hotel",
+      "n": 5,
+      "median_ppsf": 280.0,
+      "median_price": 7995000.0,
+      "median_sqft": 27696.0,
+      "share_pct": 17.9
+    },
+    {
+      "price_band": "$5\u201310M",
+      "asset_type": "Industrial",
+      "n": 2,
+      "median_ppsf": 322.0,
+      "median_price": 7100000.0,
+      "median_sqft": 30396.0,
+      "share_pct": 7.1
+    },
+    {
+      "price_band": "$5\u201310M",
+      "asset_type": "Mixed Use",
+      "n": 2,
+      "median_ppsf": 310.0,
+      "median_price": 8250000.0,
+      "median_sqft": 26576.0,
+      "share_pct": 7.1
+    },
+    {
+      "price_band": "$5\u201310M",
+      "asset_type": "Multifamily",
+      "n": 8,
+      "median_ppsf": 246.0,
+      "median_price": 5900000.0,
+      "median_sqft": 23210.0,
+      "share_pct": 28.6
+    },
+    {
+      "price_band": "$5\u201310M",
+      "asset_type": "Office",
+      "n": 1,
+      "median_ppsf": 179.0,
+      "median_price": 6000000.0,
+      "median_sqft": 33482.0,
+      "share_pct": 3.6
+    },
+    {
+      "price_band": "$5\u201310M",
+      "asset_type": "Restaurant",
+      "n": 1,
+      "median_ppsf": 577.0,
+      "median_price": 5000000.0,
+      "median_sqft": 8664.0,
+      "share_pct": 3.6
+    },
+    {
+      "price_band": "$5\u201310M",
+      "asset_type": "Retail",
+      "n": 3,
+      "median_ppsf": 415.0,
+      "median_price": 7000000.0,
+      "median_sqft": 16875.0,
+      "share_pct": 10.7
+    },
+    {
+      "price_band": "$10M+",
+      "asset_type": "Commercial (other)",
+      "n": 4,
+      "median_ppsf": 390.0,
+      "median_price": 12900000.0,
+      "median_sqft": 38136.0,
+      "share_pct": 33.3
+    },
+    {
+      "price_band": "$10M+",
+      "asset_type": "Hotel",
+      "n": 4,
+      "median_ppsf": 1124.0,
+      "median_price": 13575000.0,
+      "median_sqft": 12738.0,
+      "share_pct": 33.3
+    },
+    {
+      "price_band": "$10M+",
+      "asset_type": "Mixed Use",
+      "n": 1,
+      "median_ppsf": 653.0,
+      "median_price": 11250000.0,
+      "median_sqft": 17220.0,
+      "share_pct": 8.3
+    },
+    {
+      "price_band": "$10M+",
+      "asset_type": "Multifamily",
+      "n": 1,
+      "median_ppsf": 506.0,
+      "median_price": 10795000.0,
+      "median_sqft": 21315.0,
+      "share_pct": 8.3
+    },
+    {
+      "price_band": "$10M+",
+      "asset_type": "Office",
+      "n": 2,
+      "median_ppsf": 681.0,
+      "median_price": 16750000.0,
+      "median_sqft": 26610.0,
+      "share_pct": 16.7
+    }
+  ],
+  "type_by_size": [
+    {
+      "asset_type": "Commercial (other)",
+      "size_band": "< 2.5K",
+      "n": 18,
+      "median_ppsf": 335.0,
+      "median_price": 424000.0,
+      "median_sqft": 1490.0,
+      "share_pct": 18.8
+    },
+    {
+      "asset_type": "Commercial (other)",
+      "size_band": "2.5\u20135K",
+      "n": 5,
+      "median_ppsf": 343.0,
+      "median_price": 1262000.0,
+      "median_sqft": 3321.0,
+      "share_pct": 5.2
+    },
+    {
+      "asset_type": "Commercial (other)",
+      "size_band": "5\u201310K",
+      "n": 32,
+      "median_ppsf": 142.0,
+      "median_price": 1107000.0,
+      "median_sqft": 7000.0,
+      "share_pct": 33.3
+    },
+    {
+      "asset_type": "Commercial (other)",
+      "size_band": "10\u201325K",
+      "n": 31,
+      "median_ppsf": 192.0,
+      "median_price": 2850000.0,
+      "median_sqft": 14491.0,
+      "share_pct": 32.3
+    },
+    {
+      "asset_type": "Commercial (other)",
+      "size_band": "25\u201350K",
+      "n": 9,
+      "median_ppsf": 127.0,
+      "median_price": 4500000.0,
+      "median_sqft": 28321.0,
+      "share_pct": 9.4
+    },
+    {
+      "asset_type": "Commercial (other)",
+      "size_band": "50K+",
+      "n": 1,
+      "median_ppsf": 132.0,
+      "median_price": 11900000.0,
+      "median_sqft": 90193.0,
+      "share_pct": 1.0
+    },
+    {
+      "asset_type": "Flex",
+      "size_band": "5\u201310K",
+      "n": 3,
+      "median_ppsf": 345.0,
+      "median_price": 2199000.0,
+      "median_sqft": 6378.0,
+      "share_pct": 100.0
+    },
+    {
+      "asset_type": "Hotel",
+      "size_band": "5\u201310K",
+      "n": 1,
+      "median_ppsf": 1920.0,
+      "median_price": 12000000.0,
+      "median_sqft": 6250.0,
+      "share_pct": 9.1
+    },
+    {
+      "asset_type": "Hotel",
+      "size_band": "10\u201325K",
+      "n": 7,
+      "median_ppsf": 442.0,
+      "median_price": 8000000.0,
+      "median_sqft": 18110.0,
+      "share_pct": 63.6
+    },
+    {
+      "asset_type": "Hotel",
+      "size_band": "25\u201350K",
+      "n": 3,
+      "median_ppsf": 220.0,
+      "median_price": 7995000.0,
+      "median_sqft": 29865.0,
+      "share_pct": 27.3
+    },
+    {
+      "asset_type": "Industrial",
+      "size_band": "< 2.5K",
+      "n": 4,
+      "median_ppsf": 484.0,
+      "median_price": 872000.0,
+      "median_sqft": 1586.0,
+      "share_pct": 11.8
+    },
+    {
+      "asset_type": "Industrial",
+      "size_band": "5\u201310K",
+      "n": 6,
+      "median_ppsf": 202.0,
+      "median_price": 1355000.0,
+      "median_sqft": 6750.0,
+      "share_pct": 17.6
+    },
+    {
+      "asset_type": "Industrial",
+      "size_band": "10\u201325K",
+      "n": 21,
+      "median_ppsf": 131.0,
+      "median_price": 1900000.0,
+      "median_sqft": 13000.0,
+      "share_pct": 61.8
+    },
+    {
+      "asset_type": "Industrial",
+      "size_band": "25\u201350K",
+      "n": 3,
+      "median_ppsf": 128.0,
+      "median_price": 4050000.0,
+      "median_sqft": 32374.0,
+      "share_pct": 8.8
+    },
+    {
+      "asset_type": "Mixed Use",
+      "size_band": "2.5\u20135K",
+      "n": 4,
+      "median_ppsf": 159.0,
+      "median_price": 725000.0,
+      "median_sqft": 4548.0,
+      "share_pct": 12.1
+    },
+    {
+      "asset_type": "Mixed Use",
+      "size_band": "5\u201310K",
+      "n": 15,
+      "median_ppsf": 136.0,
+      "median_price": 1090000.0,
+      "median_sqft": 6385.0,
+      "share_pct": 45.5
+    },
+    {
+      "asset_type": "Mixed Use",
+      "size_band": "10\u201325K",
+      "n": 10,
+      "median_ppsf": 120.0,
+      "median_price": 1963000.0,
+      "median_sqft": 14008.0,
+      "share_pct": 30.3
+    },
+    {
+      "asset_type": "Mixed Use",
+      "size_band": "25\u201350K",
+      "n": 4,
+      "median_ppsf": 206.0,
+      "median_price": 5925000.0,
+      "median_sqft": 30150.0,
+      "share_pct": 12.1
+    },
+    {
+      "asset_type": "Multifamily",
+      "size_band": "2.5\u20135K",
+      "n": 3,
+      "median_ppsf": 414.0,
+      "median_price": 1575000.0,
+      "median_sqft": 3801.0,
+      "share_pct": 3.3
+    },
+    {
+      "asset_type": "Multifamily",
+      "size_band": "5\u201310K",
+      "n": 34,
+      "median_ppsf": 172.0,
+      "median_price": 1445000.0,
+      "median_sqft": 6864.0,
+      "share_pct": 37.8
+    },
+    {
+      "asset_type": "Multifamily",
+      "size_band": "10\u201325K",
+      "n": 48,
+      "median_ppsf": 173.0,
+      "median_price": 2140000.0,
+      "median_sqft": 13451.0,
+      "share_pct": 53.3
+    },
+    {
+      "asset_type": "Multifamily",
+      "size_band": "25\u201350K",
+      "n": 5,
+      "median_ppsf": 204.0,
+      "median_price": 6000000.0,
+      "median_sqft": 35087.0,
+      "share_pct": 5.6
+    },
+    {
+      "asset_type": "Office",
+      "size_band": "< 2.5K",
+      "n": 4,
+      "median_ppsf": 420.0,
+      "median_price": 995000.0,
+      "median_sqft": 2400.0,
+      "share_pct": 13.8
+    },
+    {
+      "asset_type": "Office",
+      "size_band": "2.5\u20135K",
+      "n": 4,
+      "median_ppsf": 388.0,
+      "median_price": 1720000.0,
+      "median_sqft": 4440.0,
+      "share_pct": 13.8
+    },
+    {
+      "asset_type": "Office",
+      "size_band": "5\u201310K",
+      "n": 13,
+      "median_ppsf": 132.0,
+      "median_price": 900000.0,
+      "median_sqft": 6840.0,
+      "share_pct": 44.8
+    },
+    {
+      "asset_type": "Office",
+      "size_band": "10\u201325K",
+      "n": 6,
+      "median_ppsf": 110.0,
+      "median_price": 1672000.0,
+      "median_sqft": 14399.0,
+      "share_pct": 20.7
+    },
+    {
+      "asset_type": "Office",
+      "size_band": "25\u201350K",
+      "n": 2,
+      "median_ppsf": 368.0,
+      "median_price": 13500000.0,
+      "median_sqft": 35584.0,
+      "share_pct": 6.9
+    },
+    {
+      "asset_type": "Restaurant",
+      "size_band": "< 2.5K",
+      "n": 1,
+      "median_ppsf": 829.0,
+      "median_price": 995000.0,
+      "median_sqft": 1200.0,
+      "share_pct": 12.5
+    },
+    {
+      "asset_type": "Restaurant",
+      "size_band": "5\u201310K",
+      "n": 6,
+      "median_ppsf": 364.0,
+      "median_price": 2325000.0,
+      "median_sqft": 7168.0,
+      "share_pct": 75.0
+    },
+    {
+      "asset_type": "Restaurant",
+      "size_band": "10\u201325K",
+      "n": 1,
+      "median_ppsf": 57.0,
+      "median_price": 901000.0,
+      "median_sqft": 15756.0,
+      "share_pct": 12.5
+    },
+    {
+      "asset_type": "Retail",
+      "size_band": "< 2.5K",
+      "n": 4,
+      "median_ppsf": 482.0,
+      "median_price": 692000.0,
+      "median_sqft": 1516.0,
+      "share_pct": 16.0
+    },
+    {
+      "asset_type": "Retail",
+      "size_band": "2.5\u20135K",
+      "n": 1,
+      "median_ppsf": 306.0,
+      "median_price": 1200000.0,
+      "median_sqft": 3921.0,
+      "share_pct": 4.0
+    },
+    {
+      "asset_type": "Retail",
+      "size_band": "5\u201310K",
+      "n": 8,
+      "median_ppsf": 172.0,
+      "median_price": 1100000.0,
+      "median_sqft": 6751.0,
+      "share_pct": 32.0
+    },
+    {
+      "asset_type": "Retail",
+      "size_band": "10\u201325K",
+      "n": 10,
+      "median_ppsf": 218.0,
+      "median_price": 3545000.0,
+      "median_sqft": 13748.0,
+      "share_pct": 40.0
+    },
+    {
+      "asset_type": "Retail",
+      "size_band": "25\u201350K",
+      "n": 2,
+      "median_ppsf": 122.0,
+      "median_price": 3550000.0,
+      "median_sqft": 29788.0,
+      "share_pct": 8.0
+    },
+    {
+      "asset_type": "Special Purpose",
+      "size_band": "5\u201310K",
+      "n": 1,
+      "median_ppsf": 441.0,
+      "median_price": 2500000.0,
+      "median_sqft": 5664.0,
+      "share_pct": 50.0
+    },
+    {
+      "asset_type": "Special Purpose",
+      "size_band": "10\u201325K",
+      "n": 1,
+      "median_ppsf": 197.0,
+      "median_price": 3995000.0,
+      "median_sqft": 20250.0,
+      "share_pct": 50.0
+    }
+  ],
+  "type_by_ppsf": [
+    {
+      "asset_type": "Commercial (other)",
+      "ppsf_band": "< $100",
+      "n": 14,
+      "median_ppsf": 85.0,
+      "median_price": 549000.0,
+      "median_sqft": 8381.0,
+      "share_pct": 14.6
+    },
+    {
+      "asset_type": "Commercial (other)",
+      "ppsf_band": "$100\u2013200",
+      "n": 35,
+      "median_ppsf": 133.0,
+      "median_price": 1725000.0,
+      "median_sqft": 12398.0,
+      "share_pct": 36.5
+    },
+    {
+      "asset_type": "Commercial (other)",
+      "ppsf_band": "$200\u2013300",
+      "n": 16,
+      "median_ppsf": 239.0,
+      "median_price": 2487000.0,
+      "median_sqft": 11175.0,
+      "share_pct": 16.7
+    },
+    {
+      "asset_type": "Commercial (other)",
+      "ppsf_band": "$300\u2013500",
+      "n": 18,
+      "median_ppsf": 344.0,
+      "median_price": 2270000.0,
+      "median_sqft": 5960.0,
+      "share_pct": 18.8
+    },
+    {
+      "asset_type": "Commercial (other)",
+      "ppsf_band": "$500+",
+      "n": 13,
+      "median_ppsf": 738.0,
+      "median_price": 2500000.0,
+      "median_sqft": 3130.0,
+      "share_pct": 13.5
+    },
+    {
+      "asset_type": "Flex",
+      "ppsf_band": "$300\u2013500",
+      "n": 2,
+      "median_ppsf": 329.0,
+      "median_price": 2099000.0,
+      "median_sqft": 6378.0,
+      "share_pct": 66.7
+    },
+    {
+      "asset_type": "Flex",
+      "ppsf_band": "$500+",
+      "n": 1,
+      "median_ppsf": 875.0,
+      "median_price": 5000000.0,
+      "median_sqft": 5715.0,
+      "share_pct": 33.3
+    },
+    {
+      "asset_type": "Hotel",
+      "ppsf_band": "$200\u2013300",
+      "n": 5,
+      "median_ppsf": 220.0,
+      "median_price": 6000000.0,
+      "median_sqft": 21450.0,
+      "share_pct": 45.5
+    },
+    {
+      "asset_type": "Hotel",
+      "ppsf_band": "$300\u2013500",
+      "n": 2,
+      "median_ppsf": 394.0,
+      "median_price": 8800000.0,
+      "median_sqft": 22903.0,
+      "share_pct": 18.2
+    },
+    {
+      "asset_type": "Hotel",
+      "ppsf_band": "$500+",
+      "n": 4,
+      "median_ppsf": 1124.0,
+      "median_price": 13575000.0,
+      "median_sqft": 12738.0,
+      "share_pct": 36.4
+    },
+    {
+      "asset_type": "Industrial",
+      "ppsf_band": "< $100",
+      "n": 4,
+      "median_ppsf": 64.0,
+      "median_price": 1348000.0,
+      "median_sqft": 16875.0,
+      "share_pct": 11.8
+    },
+    {
+      "asset_type": "Industrial",
+      "ppsf_band": "$100\u2013200",
+      "n": 18,
+      "median_ppsf": 129.0,
+      "median_price": 1775000.0,
+      "median_sqft": 12876.0,
+      "share_pct": 52.9
+    },
+    {
+      "asset_type": "Industrial",
+      "ppsf_band": "$200\u2013300",
+      "n": 4,
+      "median_ppsf": 225.0,
+      "median_price": 2225000.0,
+      "median_sqft": 10125.0,
+      "share_pct": 11.8
+    },
+    {
+      "asset_type": "Industrial",
+      "ppsf_band": "$300\u2013500",
+      "n": 6,
+      "median_ppsf": 396.0,
+      "median_price": 2238000.0,
+      "median_sqft": 6085.0,
+      "share_pct": 17.6
+    },
+    {
+      "asset_type": "Industrial",
+      "ppsf_band": "$500+",
+      "n": 2,
+      "median_ppsf": 570.0,
+      "median_price": 900000.0,
+      "median_sqft": 1586.0,
+      "share_pct": 5.9
+    },
+    {
+      "asset_type": "Mixed Use",
+      "ppsf_band": "< $100",
+      "n": 6,
+      "median_ppsf": 82.0,
+      "median_price": 837000.0,
+      "median_sqft": 11136.0,
+      "share_pct": 18.2
+    },
+    {
+      "asset_type": "Mixed Use",
+      "ppsf_band": "$100\u2013200",
+      "n": 17,
+      "median_ppsf": 132.0,
+      "median_price": 1100000.0,
+      "median_sqft": 7393.0,
+      "share_pct": 51.5
+    },
+    {
+      "asset_type": "Mixed Use",
+      "ppsf_band": "$200\u2013300",
+      "n": 5,
+      "median_ppsf": 238.0,
+      "median_price": 2800000.0,
+      "median_sqft": 11761.0,
+      "share_pct": 15.2
+    },
+    {
+      "asset_type": "Mixed Use",
+      "ppsf_band": "$300\u2013500",
+      "n": 4,
+      "median_ppsf": 376.0,
+      "median_price": 2249000.0,
+      "median_sqft": 6021.0,
+      "share_pct": 12.1
+    },
+    {
+      "asset_type": "Mixed Use",
+      "ppsf_band": "$500+",
+      "n": 1,
+      "median_ppsf": 653.0,
+      "median_price": 11250000.0,
+      "median_sqft": 17220.0,
+      "share_pct": 3.0
+    },
+    {
+      "asset_type": "Multifamily",
+      "ppsf_band": "< $100",
+      "n": 6,
+      "median_ppsf": 90.0,
+      "median_price": 1190000.0,
+      "median_sqft": 12574.0,
+      "share_pct": 6.7
+    },
+    {
+      "asset_type": "Multifamily",
+      "ppsf_band": "$100\u2013200",
+      "n": 48,
+      "median_ppsf": 150.0,
+      "median_price": 1525000.0,
+      "median_sqft": 11390.0,
+      "share_pct": 53.3
+    },
+    {
+      "asset_type": "Multifamily",
+      "ppsf_band": "$200\u2013300",
+      "n": 22,
+      "median_ppsf": 224.0,
+      "median_price": 2600000.0,
+      "median_sqft": 10950.0,
+      "share_pct": 24.4
+    },
+    {
+      "asset_type": "Multifamily",
+      "ppsf_band": "$300\u2013500",
+      "n": 10,
+      "median_ppsf": 393.0,
+      "median_price": 2875000.0,
+      "median_sqft": 8039.0,
+      "share_pct": 11.1
+    },
+    {
+      "asset_type": "Multifamily",
+      "ppsf_band": "$500+",
+      "n": 4,
+      "median_ppsf": 622.0,
+      "median_price": 6048000.0,
+      "median_sqft": 8375.0,
+      "share_pct": 4.4
+    },
+    {
+      "asset_type": "Office",
+      "ppsf_band": "< $100",
+      "n": 5,
+      "median_ppsf": 38.0,
+      "median_price": 350000.0,
+      "median_sqft": 13263.0,
+      "share_pct": 17.2
+    },
+    {
+      "asset_type": "Office",
+      "ppsf_band": "$100\u2013200",
+      "n": 10,
+      "median_ppsf": 130.0,
+      "median_price": 1047000.0,
+      "median_sqft": 6840.0,
+      "share_pct": 34.5
+    },
+    {
+      "asset_type": "Office",
+      "ppsf_band": "$200\u2013300",
+      "n": 2,
+      "median_ppsf": 214.0,
+      "median_price": 2025000.0,
+      "median_sqft": 9470.0,
+      "share_pct": 6.9
+    },
+    {
+      "asset_type": "Office",
+      "ppsf_band": "$300\u2013500",
+      "n": 10,
+      "median_ppsf": 402.0,
+      "median_price": 1475000.0,
+      "median_sqft": 3820.0,
+      "share_pct": 34.5
+    },
+    {
+      "asset_type": "Office",
+      "ppsf_band": "$500+",
+      "n": 2,
+      "median_ppsf": 681.0,
+      "median_price": 16750000.0,
+      "median_sqft": 26610.0,
+      "share_pct": 6.9
+    },
+    {
+      "asset_type": "Restaurant",
+      "ppsf_band": "< $100",
+      "n": 1,
+      "median_ppsf": 57.0,
+      "median_price": 901000.0,
+      "median_sqft": 15756.0,
+      "share_pct": 12.5
+    },
+    {
+      "asset_type": "Restaurant",
+      "ppsf_band": "$100\u2013200",
+      "n": 1,
+      "median_ppsf": 182.0,
+      "median_price": 1140000.0,
+      "median_sqft": 6250.0,
+      "share_pct": 12.5
+    },
+    {
+      "asset_type": "Restaurant",
+      "ppsf_band": "$200\u2013300",
+      "n": 1,
+      "median_ppsf": 270.0,
+      "median_price": 2150000.0,
+      "median_sqft": 7960.0,
+      "share_pct": 12.5
+    },
+    {
+      "asset_type": "Restaurant",
+      "ppsf_band": "$300\u2013500",
+      "n": 3,
+      "median_ppsf": 384.0,
+      "median_price": 2500000.0,
+      "median_sqft": 6375.0,
+      "share_pct": 37.5
+    },
+    {
+      "asset_type": "Restaurant",
+      "ppsf_band": "$500+",
+      "n": 2,
+      "median_ppsf": 703.0,
+      "median_price": 2998000.0,
+      "median_sqft": 4932.0,
+      "share_pct": 25.0
+    },
+    {
+      "asset_type": "Retail",
+      "ppsf_band": "< $100",
+      "n": 2,
+      "median_ppsf": 87.0,
+      "median_price": 2075000.0,
+      "median_sqft": 22618.0,
+      "share_pct": 8.0
+    },
+    {
+      "asset_type": "Retail",
+      "ppsf_band": "$100\u2013200",
+      "n": 10,
+      "median_ppsf": 146.0,
+      "median_price": 1175000.0,
+      "median_sqft": 8482.0,
+      "share_pct": 40.0
+    },
+    {
+      "asset_type": "Retail",
+      "ppsf_band": "$200\u2013300",
+      "n": 4,
+      "median_ppsf": 286.0,
+      "median_price": 2747000.0,
+      "median_sqft": 10129.0,
+      "share_pct": 16.0
+    },
+    {
+      "asset_type": "Retail",
+      "ppsf_band": "$300\u2013500",
+      "n": 6,
+      "median_ppsf": 395.0,
+      "median_price": 1925000.0,
+      "median_sqft": 5898.0,
+      "share_pct": 24.0
+    },
+    {
+      "asset_type": "Retail",
+      "ppsf_band": "$500+",
+      "n": 3,
+      "median_ppsf": 643.0,
+      "median_price": 2200000.0,
+      "median_sqft": 1849.0,
+      "share_pct": 12.0
+    },
+    {
+      "asset_type": "Special Purpose",
+      "ppsf_band": "$100\u2013200",
+      "n": 1,
+      "median_ppsf": 197.0,
+      "median_price": 3995000.0,
+      "median_sqft": 20250.0,
+      "share_pct": 50.0
+    },
+    {
+      "asset_type": "Special Purpose",
+      "ppsf_band": "$300\u2013500",
+      "n": 1,
+      "median_ppsf": 441.0,
+      "median_price": 2500000.0,
+      "median_sqft": 5664.0,
+      "share_pct": 50.0
+    }
+  ],
+  "nbhd_by_type": [
+    {
+      "submarket": "Area 3160",
+      "asset_type": "Commercial (other)",
+      "n": 6,
+      "median_ppsf": 166.0,
+      "median_price": 338000.0,
+      "median_sqft": 1938.0,
+      "share_pct": 50.0
+    },
+    {
+      "submarket": "Area 3160",
+      "asset_type": "Mixed Use",
+      "n": 1,
+      "median_ppsf": 200.0,
+      "median_price": 1040000.0,
+      "median_sqft": 5200.0,
+      "share_pct": 8.3
+    },
+    {
+      "submarket": "Area 3160",
+      "asset_type": "Multifamily",
+      "n": 3,
+      "median_ppsf": 414.0,
+      "median_price": 2700000.0,
+      "median_sqft": 10000.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3160",
+      "asset_type": "Office",
+      "n": 1,
+      "median_ppsf": 38.0,
+      "median_price": 200000.0,
+      "median_sqft": 5200.0,
+      "share_pct": 8.3
+    },
+    {
+      "submarket": "Area 3160",
+      "asset_type": "Retail",
+      "n": 1,
+      "median_ppsf": 643.0,
+      "median_price": 7995000.0,
+      "median_sqft": 12433.0,
+      "share_pct": 8.3
+    },
+    {
+      "submarket": "Area 3170",
+      "asset_type": "Commercial (other)",
+      "n": 2,
+      "median_ppsf": 1082.0,
+      "median_price": 12750000.0,
+      "median_sqft": 15085.0,
+      "share_pct": 33.3
+    },
+    {
+      "submarket": "Area 3170",
+      "asset_type": "Hotel",
+      "n": 3,
+      "median_ppsf": 1112.0,
+      "median_price": 14750000.0,
+      "median_sqft": 12976.0,
+      "share_pct": 50.0
+    },
+    {
+      "submarket": "Area 3170",
+      "asset_type": "Multifamily",
+      "n": 1,
+      "median_ppsf": 506.0,
+      "median_price": 10795000.0,
+      "median_sqft": 21315.0,
+      "share_pct": 16.7
+    },
+    {
+      "submarket": "Area 3250",
+      "asset_type": "Commercial (other)",
+      "n": 4,
+      "median_ppsf": 266.0,
+      "median_price": 3700000.0,
+      "median_sqft": 14930.0,
+      "share_pct": 40.0
+    },
+    {
+      "submarket": "Area 3250",
+      "asset_type": "Hotel",
+      "n": 3,
+      "median_ppsf": 210.0,
+      "median_price": 4500000.0,
+      "median_sqft": 20004.0,
+      "share_pct": 30.0
+    },
+    {
+      "submarket": "Area 3250",
+      "asset_type": "Mixed Use",
+      "n": 1,
+      "median_ppsf": 96.0,
+      "median_price": 3500000.0,
+      "median_sqft": 36491.0,
+      "share_pct": 10.0
+    },
+    {
+      "submarket": "Area 3250",
+      "asset_type": "Office",
+      "n": 2,
+      "median_ppsf": 468.0,
+      "median_price": 11925000.0,
+      "median_sqft": 22595.0,
+      "share_pct": 20.0
+    },
+    {
+      "submarket": "Area 3260",
+      "asset_type": "Commercial (other)",
+      "n": 14,
+      "median_ppsf": 249.0,
+      "median_price": 955000.0,
+      "median_sqft": 8381.0,
+      "share_pct": 58.3
+    },
+    {
+      "submarket": "Area 3260",
+      "asset_type": "Multifamily",
+      "n": 7,
+      "median_ppsf": 245.0,
+      "median_price": 3349000.0,
+      "median_sqft": 13650.0,
+      "share_pct": 29.2
+    },
+    {
+      "submarket": "Area 3260",
+      "asset_type": "Office",
+      "n": 2,
+      "median_ppsf": 25.0,
+      "median_price": 335000.0,
+      "median_sqft": 13263.0,
+      "share_pct": 8.3
+    },
+    {
+      "submarket": "Area 3260",
+      "asset_type": "Retail",
+      "n": 1,
+      "median_ppsf": 133.0,
+      "median_price": 1990000.0,
+      "median_sqft": 15000.0,
+      "share_pct": 4.2
+    },
+    {
+      "submarket": "Area 3270",
+      "asset_type": "Commercial (other)",
+      "n": 5,
+      "median_ppsf": 433.0,
+      "median_price": 2400000.0,
+      "median_sqft": 7500.0,
+      "share_pct": 38.5
+    },
+    {
+      "submarket": "Area 3270",
+      "asset_type": "Flex",
+      "n": 1,
+      "median_ppsf": 875.0,
+      "median_price": 5000000.0,
+      "median_sqft": 5715.0,
+      "share_pct": 7.7
+    },
+    {
+      "submarket": "Area 3270",
+      "asset_type": "Mixed Use",
+      "n": 1,
+      "median_ppsf": 209.0,
+      "median_price": 4000000.0,
+      "median_sqft": 19125.0,
+      "share_pct": 7.7
+    },
+    {
+      "submarket": "Area 3270",
+      "asset_type": "Multifamily",
+      "n": 6,
+      "median_ppsf": 166.0,
+      "median_price": 1824000.0,
+      "median_sqft": 9563.0,
+      "share_pct": 46.2
+    },
+    {
+      "submarket": "Area 3280",
+      "asset_type": "Commercial (other)",
+      "n": 2,
+      "median_ppsf": 98.0,
+      "median_price": 1400000.0,
+      "median_sqft": 12542.0,
+      "share_pct": 28.6
+    },
+    {
+      "submarket": "Area 3280",
+      "asset_type": "Multifamily",
+      "n": 4,
+      "median_ppsf": 340.0,
+      "median_price": 1865000.0,
+      "median_sqft": 5846.0,
+      "share_pct": 57.1
+    },
+    {
+      "submarket": "Area 3280",
+      "asset_type": "Retail",
+      "n": 1,
+      "median_ppsf": 1190.0,
+      "median_price": 2200000.0,
+      "median_sqft": 1849.0,
+      "share_pct": 14.3
+    },
+    {
+      "submarket": "Area 3360",
+      "asset_type": "Industrial",
+      "n": 3,
+      "median_ppsf": 134.0,
+      "median_price": 1575000.0,
+      "median_sqft": 11736.0,
+      "share_pct": 75.0
+    },
+    {
+      "submarket": "Area 3360",
+      "asset_type": "Office",
+      "n": 1,
+      "median_ppsf": 179.0,
+      "median_price": 6000000.0,
+      "median_sqft": 33482.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3370",
+      "asset_type": "Commercial (other)",
+      "n": 12,
+      "median_ppsf": 155.0,
+      "median_price": 1700000.0,
+      "median_sqft": 8662.0,
+      "share_pct": 30.0
+    },
+    {
+      "submarket": "Area 3370",
+      "asset_type": "Hotel",
+      "n": 2,
+      "median_ppsf": 284.0,
+      "median_price": 8798000.0,
+      "median_sqft": 32052.0,
+      "share_pct": 5.0
+    },
+    {
+      "submarket": "Area 3370",
+      "asset_type": "Industrial",
+      "n": 1,
+      "median_ppsf": 300.0,
+      "median_price": 3900000.0,
+      "median_sqft": 13000.0,
+      "share_pct": 2.5
+    },
+    {
+      "submarket": "Area 3370",
+      "asset_type": "Mixed Use",
+      "n": 4,
+      "median_ppsf": 187.0,
+      "median_price": 1750000.0,
+      "median_sqft": 8798.0,
+      "share_pct": 10.0
+    },
+    {
+      "submarket": "Area 3370",
+      "asset_type": "Multifamily",
+      "n": 13,
+      "median_ppsf": 133.0,
+      "median_price": 1350000.0,
+      "median_sqft": 9466.0,
+      "share_pct": 32.5
+    },
+    {
+      "submarket": "Area 3370",
+      "asset_type": "Office",
+      "n": 1,
+      "median_ppsf": 136.0,
+      "median_price": 1200000.0,
+      "median_sqft": 8798.0,
+      "share_pct": 2.5
+    },
+    {
+      "submarket": "Area 3370",
+      "asset_type": "Retail",
+      "n": 5,
+      "median_ppsf": 123.0,
+      "median_price": 2050000.0,
+      "median_sqft": 16728.0,
+      "share_pct": 12.5
+    },
+    {
+      "submarket": "Area 3370",
+      "asset_type": "Special Purpose",
+      "n": 2,
+      "median_ppsf": 319.0,
+      "median_price": 3248000.0,
+      "median_sqft": 12957.0,
+      "share_pct": 5.0
+    },
+    {
+      "submarket": "Area 3380",
+      "asset_type": "Commercial (other)",
+      "n": 7,
+      "median_ppsf": 381.0,
+      "median_price": 2850000.0,
+      "median_sqft": 11156.0,
+      "share_pct": 38.9
+    },
+    {
+      "submarket": "Area 3380",
+      "asset_type": "Flex",
+      "n": 1,
+      "median_ppsf": 313.0,
+      "median_price": 1999000.0,
+      "median_sqft": 6378.0,
+      "share_pct": 5.6
+    },
+    {
+      "submarket": "Area 3380",
+      "asset_type": "Mixed Use",
+      "n": 1,
+      "median_ppsf": 298.0,
+      "median_price": 1900000.0,
+      "median_sqft": 6385.0,
+      "share_pct": 5.6
+    },
+    {
+      "submarket": "Area 3380",
+      "asset_type": "Multifamily",
+      "n": 5,
+      "median_ppsf": 170.0,
+      "median_price": 2051000.0,
+      "median_sqft": 13011.0,
+      "share_pct": 27.8
+    },
+    {
+      "submarket": "Area 3380",
+      "asset_type": "Office",
+      "n": 1,
+      "median_ppsf": 202.0,
+      "median_price": 1950000.0,
+      "median_sqft": 9652.0,
+      "share_pct": 5.6
+    },
+    {
+      "submarket": "Area 3380",
+      "asset_type": "Restaurant",
+      "n": 2,
+      "median_ppsf": 308.0,
+      "median_price": 2450000.0,
+      "median_sqft": 7960.0,
+      "share_pct": 11.1
+    },
+    {
+      "submarket": "Area 3380",
+      "asset_type": "Retail",
+      "n": 1,
+      "median_ppsf": 247.0,
+      "median_price": 1999000.0,
+      "median_sqft": 8108.0,
+      "share_pct": 5.6
+    },
+    {
+      "submarket": "Area 3390",
+      "asset_type": "Commercial (other)",
+      "n": 1,
+      "median_ppsf": 110.0,
+      "median_price": 1990000.0,
+      "median_sqft": 18100.0,
+      "share_pct": 12.5
+    },
+    {
+      "submarket": "Area 3390",
+      "asset_type": "Mixed Use",
+      "n": 1,
+      "median_ppsf": 80.0,
+      "median_price": 750000.0,
+      "median_sqft": 9351.0,
+      "share_pct": 12.5
+    },
+    {
+      "submarket": "Area 3390",
+      "asset_type": "Multifamily",
+      "n": 5,
+      "median_ppsf": 165.0,
+      "median_price": 2179000.0,
+      "median_sqft": 13220.0,
+      "share_pct": 62.5
+    },
+    {
+      "submarket": "Area 3390",
+      "asset_type": "Retail",
+      "n": 1,
+      "median_ppsf": 117.0,
+      "median_price": 1200000.0,
+      "median_sqft": 10213.0,
+      "share_pct": 12.5
+    },
+    {
+      "submarket": "Area 3400",
+      "asset_type": "Commercial (other)",
+      "n": 2,
+      "median_ppsf": 120.0,
+      "median_price": 2525000.0,
+      "median_sqft": 17079.0,
+      "share_pct": 50.0
+    },
+    {
+      "submarket": "Area 3400",
+      "asset_type": "Industrial",
+      "n": 1,
+      "median_ppsf": 116.0,
+      "median_price": 1950000.0,
+      "median_sqft": 16875.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3400",
+      "asset_type": "Restaurant",
+      "n": 1,
+      "median_ppsf": 182.0,
+      "median_price": 1140000.0,
+      "median_sqft": 6250.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3450",
+      "asset_type": "Commercial (other)",
+      "n": 1,
+      "median_ppsf": 110.0,
+      "median_price": 1890000.0,
+      "median_sqft": 17111.0,
+      "share_pct": 20.0
+    },
+    {
+      "submarket": "Area 3450",
+      "asset_type": "Industrial",
+      "n": 1,
+      "median_ppsf": 127.0,
+      "median_price": 2575000.0,
+      "median_sqft": 20250.0,
+      "share_pct": 20.0
+    },
+    {
+      "submarket": "Area 3450",
+      "asset_type": "Mixed Use",
+      "n": 2,
+      "median_ppsf": 99.0,
+      "median_price": 520000.0,
+      "median_sqft": 5268.0,
+      "share_pct": 40.0
+    },
+    {
+      "submarket": "Area 3450",
+      "asset_type": "Multifamily",
+      "n": 1,
+      "median_ppsf": 138.0,
+      "median_price": 600000.0,
+      "median_sqft": 4335.0,
+      "share_pct": 20.0
+    },
+    {
+      "submarket": "Area 3460",
+      "asset_type": "Commercial (other)",
+      "n": 3,
+      "median_ppsf": 177.0,
+      "median_price": 3400000.0,
+      "median_sqft": 22630.0,
+      "share_pct": 14.3
+    },
+    {
+      "submarket": "Area 3460",
+      "asset_type": "Industrial",
+      "n": 6,
+      "median_ppsf": 115.0,
+      "median_price": 1675000.0,
+      "median_sqft": 13500.0,
+      "share_pct": 28.6
+    },
+    {
+      "submarket": "Area 3460",
+      "asset_type": "Mixed Use",
+      "n": 5,
+      "median_ppsf": 132.0,
+      "median_price": 875000.0,
+      "median_sqft": 12217.0,
+      "share_pct": 23.8
+    },
+    {
+      "submarket": "Area 3460",
+      "asset_type": "Multifamily",
+      "n": 7,
+      "median_ppsf": 154.0,
+      "median_price": 1300000.0,
+      "median_sqft": 6750.0,
+      "share_pct": 33.3
+    },
+    {
+      "submarket": "Area 3470",
+      "asset_type": "Commercial (other)",
+      "n": 2,
+      "median_ppsf": 116.0,
+      "median_price": 1438000.0,
+      "median_sqft": 13807.0,
+      "share_pct": 9.5
+    },
+    {
+      "submarket": "Area 3470",
+      "asset_type": "Industrial",
+      "n": 5,
+      "median_ppsf": 257.0,
+      "median_price": 2464000.0,
+      "median_sqft": 7000.0,
+      "share_pct": 23.8
+    },
+    {
+      "submarket": "Area 3470",
+      "asset_type": "Mixed Use",
+      "n": 1,
+      "median_ppsf": 109.0,
+      "median_price": 1727000.0,
+      "median_sqft": 15800.0,
+      "share_pct": 4.8
+    },
+    {
+      "submarket": "Area 3470",
+      "asset_type": "Multifamily",
+      "n": 12,
+      "median_ppsf": 149.0,
+      "median_price": 1822000.0,
+      "median_sqft": 13802.0,
+      "share_pct": 57.1
+    },
+    {
+      "submarket": "Area 3470",
+      "asset_type": "Retail",
+      "n": 1,
+      "median_ppsf": 337.0,
+      "median_price": 2650000.0,
+      "median_sqft": 7875.0,
+      "share_pct": 4.8
+    },
+    {
+      "submarket": "Area 3480",
+      "asset_type": "Commercial (other)",
+      "n": 2,
+      "median_ppsf": 146.0,
+      "median_price": 1945000.0,
+      "median_sqft": 13888.0,
+      "share_pct": 33.3
+    },
+    {
+      "submarket": "Area 3480",
+      "asset_type": "Industrial",
+      "n": 1,
+      "median_ppsf": 425.0,
+      "median_price": 850000.0,
+      "median_sqft": 2000.0,
+      "share_pct": 16.7
+    },
+    {
+      "submarket": "Area 3480",
+      "asset_type": "Mixed Use",
+      "n": 1,
+      "median_ppsf": 115.0,
+      "median_price": 849000.0,
+      "median_sqft": 7380.0,
+      "share_pct": 16.7
+    },
+    {
+      "submarket": "Area 3480",
+      "asset_type": "Retail",
+      "n": 2,
+      "median_ppsf": 401.0,
+      "median_price": 3855000.0,
+      "median_sqft": 9354.0,
+      "share_pct": 33.3
+    },
+    {
+      "submarket": "Area 3490",
+      "asset_type": "Commercial (other)",
+      "n": 2,
+      "median_ppsf": 290.0,
+      "median_price": 778000.0,
+      "median_sqft": 4194.0,
+      "share_pct": 50.0
+    },
+    {
+      "submarket": "Area 3490",
+      "asset_type": "Industrial",
+      "n": 1,
+      "median_ppsf": 178.0,
+      "median_price": 8700000.0,
+      "median_sqft": 48992.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3490",
+      "asset_type": "Multifamily",
+      "n": 1,
+      "median_ppsf": 318.0,
+      "median_price": 3000000.0,
+      "median_sqft": 9445.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3500",
+      "asset_type": "Commercial (other)",
+      "n": 5,
+      "median_ppsf": 240.0,
+      "median_price": 1262000.0,
+      "median_sqft": 6250.0,
+      "share_pct": 50.0
+    },
+    {
+      "submarket": "Area 3500",
+      "asset_type": "Industrial",
+      "n": 3,
+      "median_ppsf": 163.0,
+      "median_price": 3495000.0,
+      "median_sqft": 20827.0,
+      "share_pct": 30.0
+    },
+    {
+      "submarket": "Area 3500",
+      "asset_type": "Mixed Use",
+      "n": 1,
+      "median_ppsf": 174.0,
+      "median_price": 1090000.0,
+      "median_sqft": 6250.0,
+      "share_pct": 10.0
+    },
+    {
+      "submarket": "Area 3500",
+      "asset_type": "Multifamily",
+      "n": 1,
+      "median_ppsf": 150.0,
+      "median_price": 954000.0,
+      "median_sqft": 6375.0,
+      "share_pct": 10.0
+    },
+    {
+      "submarket": "Area 3560",
+      "asset_type": "Commercial (other)",
+      "n": 2,
+      "median_ppsf": 124.0,
+      "median_price": 696000.0,
+      "median_sqft": 5085.0,
+      "share_pct": 20.0
+    },
+    {
+      "submarket": "Area 3560",
+      "asset_type": "Flex",
+      "n": 1,
+      "median_ppsf": 345.0,
+      "median_price": 2199000.0,
+      "median_sqft": 6378.0,
+      "share_pct": 10.0
+    },
+    {
+      "submarket": "Area 3560",
+      "asset_type": "Mixed Use",
+      "n": 6,
+      "median_ppsf": 310.0,
+      "median_price": 4899000.0,
+      "median_sqft": 14178.0,
+      "share_pct": 60.0
+    },
+    {
+      "submarket": "Area 3560",
+      "asset_type": "Retail",
+      "n": 1,
+      "median_ppsf": 145.0,
+      "median_price": 3900000.0,
+      "median_sqft": 26836.0,
+      "share_pct": 10.0
+    },
+    {
+      "submarket": "Area 3580",
+      "asset_type": "Industrial",
+      "n": 4,
+      "median_ppsf": 106.0,
+      "median_price": 1250000.0,
+      "median_sqft": 11800.0,
+      "share_pct": 100.0
+    },
+    {
+      "submarket": "Area 3600",
+      "asset_type": "Commercial (other)",
+      "n": 2,
+      "median_ppsf": 180.0,
+      "median_price": 6125000.0,
+      "median_sqft": 30125.0,
+      "share_pct": 13.3
+    },
+    {
+      "submarket": "Area 3600",
+      "asset_type": "Hotel",
+      "n": 1,
+      "median_ppsf": 280.0,
+      "median_price": 6000000.0,
+      "median_sqft": 21450.0,
+      "share_pct": 6.7
+    },
+    {
+      "submarket": "Area 3600",
+      "asset_type": "Mixed Use",
+      "n": 1,
+      "median_ppsf": 126.0,
+      "median_price": 4250000.0,
+      "median_sqft": 33723.0,
+      "share_pct": 6.7
+    },
+    {
+      "submarket": "Area 3600",
+      "asset_type": "Multifamily",
+      "n": 3,
+      "median_ppsf": 258.0,
+      "median_price": 1799000.0,
+      "median_sqft": 6977.0,
+      "share_pct": 20.0
+    },
+    {
+      "submarket": "Area 3600",
+      "asset_type": "Office",
+      "n": 1,
+      "median_ppsf": 177.0,
+      "median_price": 1195000.0,
+      "median_sqft": 6749.0,
+      "share_pct": 6.7
+    },
+    {
+      "submarket": "Area 3600",
+      "asset_type": "Restaurant",
+      "n": 1,
+      "median_ppsf": 829.0,
+      "median_price": 995000.0,
+      "median_sqft": 1200.0,
+      "share_pct": 6.7
+    },
+    {
+      "submarket": "Area 3600",
+      "asset_type": "Retail",
+      "n": 6,
+      "median_ppsf": 354.0,
+      "median_price": 2348000.0,
+      "median_sqft": 8036.0,
+      "share_pct": 40.0
+    },
+    {
+      "submarket": "Area 3700",
+      "asset_type": "Commercial (other)",
+      "n": 1,
+      "median_ppsf": 457.0,
+      "median_price": 3200000.0,
+      "median_sqft": 6997.0,
+      "share_pct": 12.5
+    },
+    {
+      "submarket": "Area 3700",
+      "asset_type": "Mixed Use",
+      "n": 1,
+      "median_ppsf": 415.0,
+      "median_price": 1400000.0,
+      "median_sqft": 3375.0,
+      "share_pct": 12.5
+    },
+    {
+      "submarket": "Area 3700",
+      "asset_type": "Multifamily",
+      "n": 3,
+      "median_ppsf": 372.0,
+      "median_price": 3768000.0,
+      "median_sqft": 10125.0,
+      "share_pct": 37.5
+    },
+    {
+      "submarket": "Area 3700",
+      "asset_type": "Restaurant",
+      "n": 1,
+      "median_ppsf": 392.0,
+      "median_price": 2500000.0,
+      "median_sqft": 6375.0,
+      "share_pct": 12.5
+    },
+    {
+      "submarket": "Area 3700",
+      "asset_type": "Retail",
+      "n": 2,
+      "median_ppsf": 180.0,
+      "median_price": 1275000.0,
+      "median_sqft": 9060.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3800",
+      "asset_type": "Commercial (other)",
+      "n": 14,
+      "median_ppsf": 130.0,
+      "median_price": 1017000.0,
+      "median_sqft": 6975.0,
+      "share_pct": 36.8
+    },
+    {
+      "submarket": "Area 3800",
+      "asset_type": "Industrial",
+      "n": 1,
+      "median_ppsf": 542.0,
+      "median_price": 905000.0,
+      "median_sqft": 1671.0,
+      "share_pct": 2.6
+    },
+    {
+      "submarket": "Area 3800",
+      "asset_type": "Mixed Use",
+      "n": 6,
+      "median_ppsf": 133.0,
+      "median_price": 975000.0,
+      "median_sqft": 7172.0,
+      "share_pct": 15.8
+    },
+    {
+      "submarket": "Area 3800",
+      "asset_type": "Multifamily",
+      "n": 2,
+      "median_ppsf": 192.0,
+      "median_price": 2125000.0,
+      "median_sqft": 11932.0,
+      "share_pct": 5.3
+    },
+    {
+      "submarket": "Area 3800",
+      "asset_type": "Office",
+      "n": 14,
+      "median_ppsf": 302.0,
+      "median_price": 1135000.0,
+      "median_sqft": 5395.0,
+      "share_pct": 36.8
+    },
+    {
+      "submarket": "Area 3800",
+      "asset_type": "Restaurant",
+      "n": 1,
+      "median_ppsf": 577.0,
+      "median_price": 5000000.0,
+      "median_sqft": 8664.0,
+      "share_pct": 2.6
+    },
+    {
+      "submarket": "Area 3810",
+      "asset_type": "Commercial (other)",
+      "n": 5,
+      "median_ppsf": 738.0,
+      "median_price": 5000000.0,
+      "median_sqft": 8126.0,
+      "share_pct": 45.5
+    },
+    {
+      "submarket": "Area 3810",
+      "asset_type": "Multifamily",
+      "n": 6,
+      "median_ppsf": 195.0,
+      "median_price": 2000000.0,
+      "median_sqft": 10126.0,
+      "share_pct": 54.5
+    }
+  ],
+  "nbhd_by_price": [
+    {
+      "submarket": "Area 3160",
+      "price_band": "< $1M",
+      "n": 6,
+      "median_ppsf": 166.0,
+      "median_price": 320000.0,
+      "median_sqft": 1938.0,
+      "share_pct": 50.0
+    },
+    {
+      "submarket": "Area 3160",
+      "price_band": "$1\u20132.5M",
+      "n": 2,
+      "median_ppsf": 307.0,
+      "median_price": 1308000.0,
+      "median_sqft": 4500.0,
+      "share_pct": 16.7
+    },
+    {
+      "submarket": "Area 3160",
+      "price_band": "$2.5\u20135M",
+      "n": 2,
+      "median_ppsf": 158.0,
+      "median_price": 3600000.0,
+      "median_sqft": 29034.0,
+      "share_pct": 16.7
+    },
+    {
+      "submarket": "Area 3160",
+      "price_band": "$5\u201310M",
+      "n": 2,
+      "median_ppsf": 666.0,
+      "median_price": 7445000.0,
+      "median_sqft": 11216.0,
+      "share_pct": 16.7
+    },
+    {
+      "submarket": "Area 3170",
+      "price_band": "$2.5\u20135M",
+      "n": 1,
+      "median_ppsf": 1352.0,
+      "median_price": 2500000.0,
+      "median_sqft": 1849.0,
+      "share_pct": 16.7
+    },
+    {
+      "submarket": "Area 3170",
+      "price_band": "$10M+",
+      "n": 5,
+      "median_ppsf": 992.0,
+      "median_price": 14750000.0,
+      "median_sqft": 13483.0,
+      "share_pct": 83.3
+    },
+    {
+      "submarket": "Area 3250",
+      "price_band": "$1\u20132.5M",
+      "n": 1,
+      "median_ppsf": 280.0,
+      "median_price": 2100000.0,
+      "median_sqft": 7503.0,
+      "share_pct": 10.0
+    },
+    {
+      "submarket": "Area 3250",
+      "price_band": "$2.5\u20135M",
+      "n": 7,
+      "median_ppsf": 240.0,
+      "median_price": 3800000.0,
+      "median_sqft": 15000.0,
+      "share_pct": 70.0
+    },
+    {
+      "submarket": "Area 3250",
+      "price_band": "$5\u201310M",
+      "n": 1,
+      "median_ppsf": 201.0,
+      "median_price": 6000000.0,
+      "median_sqft": 29865.0,
+      "share_pct": 10.0
+    },
+    {
+      "submarket": "Area 3250",
+      "price_band": "$10M+",
+      "n": 1,
+      "median_ppsf": 557.0,
+      "median_price": 21000000.0,
+      "median_sqft": 37685.0,
+      "share_pct": 10.0
+    },
+    {
+      "submarket": "Area 3260",
+      "price_band": "< $1M",
+      "n": 9,
+      "median_ppsf": 99.0,
+      "median_price": 417000.0,
+      "median_sqft": 8381.0,
+      "share_pct": 37.5
+    },
+    {
+      "submarket": "Area 3260",
+      "price_band": "$1\u20132.5M",
+      "n": 6,
+      "median_ppsf": 186.0,
+      "median_price": 1795000.0,
+      "median_sqft": 10400.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3260",
+      "price_band": "$2.5\u20135M",
+      "n": 7,
+      "median_ppsf": 245.0,
+      "median_price": 3450000.0,
+      "median_sqft": 13650.0,
+      "share_pct": 29.2
+    },
+    {
+      "submarket": "Area 3260",
+      "price_band": "$5\u201310M",
+      "n": 2,
+      "median_ppsf": 271.0,
+      "median_price": 5975000.0,
+      "median_sqft": 22149.0,
+      "share_pct": 8.3
+    },
+    {
+      "submarket": "Area 3270",
+      "price_band": "< $1M",
+      "n": 1,
+      "median_ppsf": 526.0,
+      "median_price": 824000.0,
+      "median_sqft": 1568.0,
+      "share_pct": 7.7
+    },
+    {
+      "submarket": "Area 3270",
+      "price_band": "$1\u20132.5M",
+      "n": 6,
+      "median_ppsf": 166.0,
+      "median_price": 1824000.0,
+      "median_sqft": 8156.0,
+      "share_pct": 46.2
+    },
+    {
+      "submarket": "Area 3270",
+      "price_band": "$2.5\u20135M",
+      "n": 5,
+      "median_ppsf": 197.0,
+      "median_price": 3250000.0,
+      "median_sqft": 15625.0,
+      "share_pct": 38.5
+    },
+    {
+      "submarket": "Area 3270",
+      "price_band": "$5\u201310M",
+      "n": 1,
+      "median_ppsf": 875.0,
+      "median_price": 5000000.0,
+      "median_sqft": 5715.0,
+      "share_pct": 7.7
+    },
+    {
+      "submarket": "Area 3280",
+      "price_band": "< $1M",
+      "n": 1,
+      "median_ppsf": 30.0,
+      "median_price": 299000.0,
+      "median_sqft": 10082.0,
+      "share_pct": 14.3
+    },
+    {
+      "submarket": "Area 3280",
+      "price_band": "$1\u20132.5M",
+      "n": 4,
+      "median_ppsf": 340.0,
+      "median_price": 1865000.0,
+      "median_sqft": 5500.0,
+      "share_pct": 57.1
+    },
+    {
+      "submarket": "Area 3280",
+      "price_band": "$2.5\u20135M",
+      "n": 2,
+      "median_ppsf": 304.0,
+      "median_price": 2625000.0,
+      "median_sqft": 10626.0,
+      "share_pct": 28.6
+    },
+    {
+      "submarket": "Area 3360",
+      "price_band": "$1\u20132.5M",
+      "n": 3,
+      "median_ppsf": 134.0,
+      "median_price": 1575000.0,
+      "median_sqft": 11736.0,
+      "share_pct": 75.0
+    },
+    {
+      "submarket": "Area 3360",
+      "price_band": "$5\u201310M",
+      "n": 1,
+      "median_ppsf": 179.0,
+      "median_price": 6000000.0,
+      "median_sqft": 33482.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3370",
+      "price_band": "< $1M",
+      "n": 6,
+      "median_ppsf": 123.0,
+      "median_price": 818000.0,
+      "median_sqft": 6500.0,
+      "share_pct": 15.0
+    },
+    {
+      "submarket": "Area 3370",
+      "price_band": "$1\u20132.5M",
+      "n": 23,
+      "median_ppsf": 136.0,
+      "median_price": 1395000.0,
+      "median_sqft": 9167.0,
+      "share_pct": 57.5
+    },
+    {
+      "submarket": "Area 3370",
+      "price_band": "$2.5\u20135M",
+      "n": 9,
+      "median_ppsf": 197.0,
+      "median_price": 3200000.0,
+      "median_sqft": 13683.0,
+      "share_pct": 22.5
+    },
+    {
+      "submarket": "Area 3370",
+      "price_band": "$5\u201310M",
+      "n": 2,
+      "median_ppsf": 284.0,
+      "median_price": 8798000.0,
+      "median_sqft": 32052.0,
+      "share_pct": 5.0
+    },
+    {
+      "submarket": "Area 3380",
+      "price_band": "< $1M",
+      "n": 1,
+      "median_ppsf": 451.0,
+      "median_price": 575000.0,
+      "median_sqft": 1276.0,
+      "share_pct": 5.6
+    },
+    {
+      "submarket": "Area 3380",
+      "price_band": "$1\u20132.5M",
+      "n": 10,
+      "median_ppsf": 224.0,
+      "median_price": 1974000.0,
+      "median_sqft": 8034.0,
+      "share_pct": 55.6
+    },
+    {
+      "submarket": "Area 3380",
+      "price_band": "$2.5\u20135M",
+      "n": 6,
+      "median_ppsf": 354.0,
+      "median_price": 3550000.0,
+      "median_sqft": 12340.0,
+      "share_pct": 33.3
+    },
+    {
+      "submarket": "Area 3380",
+      "price_band": "$5\u201310M",
+      "n": 1,
+      "median_ppsf": 180.0,
+      "median_price": 6300000.0,
+      "median_sqft": 35087.0,
+      "share_pct": 5.6
+    },
+    {
+      "submarket": "Area 3390",
+      "price_band": "< $1M",
+      "n": 2,
+      "median_ppsf": 82.0,
+      "median_price": 662000.0,
+      "median_sqft": 8050.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3390",
+      "price_band": "$1\u20132.5M",
+      "n": 5,
+      "median_ppsf": 165.0,
+      "median_price": 1990000.0,
+      "median_sqft": 13220.0,
+      "share_pct": 62.5
+    },
+    {
+      "submarket": "Area 3390",
+      "price_band": "$2.5\u20135M",
+      "n": 1,
+      "median_ppsf": 68.0,
+      "median_price": 2750000.0,
+      "median_sqft": 40196.0,
+      "share_pct": 12.5
+    },
+    {
+      "submarket": "Area 3400",
+      "price_band": "< $1M",
+      "n": 1,
+      "median_ppsf": 60.0,
+      "median_price": 550000.0,
+      "median_sqft": 9134.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3400",
+      "price_band": "$1\u20132.5M",
+      "n": 2,
+      "median_ppsf": 149.0,
+      "median_price": 1545000.0,
+      "median_sqft": 11562.0,
+      "share_pct": 50.0
+    },
+    {
+      "submarket": "Area 3400",
+      "price_band": "$2.5\u20135M",
+      "n": 1,
+      "median_ppsf": 180.0,
+      "median_price": 4500000.0,
+      "median_sqft": 25024.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3450",
+      "price_band": "< $1M",
+      "n": 3,
+      "median_ppsf": 103.0,
+      "median_price": 540000.0,
+      "median_sqft": 5268.0,
+      "share_pct": 60.0
+    },
+    {
+      "submarket": "Area 3450",
+      "price_band": "$1\u20132.5M",
+      "n": 1,
+      "median_ppsf": 110.0,
+      "median_price": 1890000.0,
+      "median_sqft": 17111.0,
+      "share_pct": 20.0
+    },
+    {
+      "submarket": "Area 3450",
+      "price_band": "$2.5\u20135M",
+      "n": 1,
+      "median_ppsf": 127.0,
+      "median_price": 2575000.0,
+      "median_sqft": 20250.0,
+      "share_pct": 20.0
+    },
+    {
+      "submarket": "Area 3460",
+      "price_band": "< $1M",
+      "n": 4,
+      "median_ppsf": 135.0,
+      "median_price": 812000.0,
+      "median_sqft": 5715.0,
+      "share_pct": 19.0
+    },
+    {
+      "submarket": "Area 3460",
+      "price_band": "$1\u20132.5M",
+      "n": 14,
+      "median_ppsf": 135.0,
+      "median_price": 1412000.0,
+      "median_sqft": 10712.0,
+      "share_pct": 66.7
+    },
+    {
+      "submarket": "Area 3460",
+      "price_band": "$2.5\u20135M",
+      "n": 2,
+      "median_ppsf": 152.0,
+      "median_price": 3698000.0,
+      "median_sqft": 24733.0,
+      "share_pct": 9.5
+    },
+    {
+      "submarket": "Area 3460",
+      "price_band": "$5\u201310M",
+      "n": 1,
+      "median_ppsf": 1932.0,
+      "median_price": 5200000.0,
+      "median_sqft": 2691.0,
+      "share_pct": 4.8
+    },
+    {
+      "submarket": "Area 3470",
+      "price_band": "< $1M",
+      "n": 3,
+      "median_ppsf": 139.0,
+      "median_price": 950000.0,
+      "median_sqft": 7000.0,
+      "share_pct": 14.3
+    },
+    {
+      "submarket": "Area 3470",
+      "price_band": "$1\u20132.5M",
+      "n": 11,
+      "median_ppsf": 137.0,
+      "median_price": 1749000.0,
+      "median_sqft": 13802.0,
+      "share_pct": 52.4
+    },
+    {
+      "submarket": "Area 3470",
+      "price_band": "$2.5\u20135M",
+      "n": 6,
+      "median_ppsf": 237.0,
+      "median_price": 2958000.0,
+      "median_sqft": 12726.0,
+      "share_pct": 28.6
+    },
+    {
+      "submarket": "Area 3470",
+      "price_band": "$5\u201310M",
+      "n": 1,
+      "median_ppsf": 204.0,
+      "median_price": 7950000.0,
+      "median_sqft": 39000.0,
+      "share_pct": 4.8
+    },
+    {
+      "submarket": "Area 3480",
+      "price_band": "< $1M",
+      "n": 4,
+      "median_ppsf": 272.0,
+      "median_price": 850000.0,
+      "median_sqft": 4162.0,
+      "share_pct": 66.7
+    },
+    {
+      "submarket": "Area 3480",
+      "price_band": "$2.5\u20135M",
+      "n": 1,
+      "median_ppsf": 135.0,
+      "median_price": 2900000.0,
+      "median_sqft": 21450.0,
+      "share_pct": 16.7
+    },
+    {
+      "submarket": "Area 3480",
+      "price_band": "$5\u201310M",
+      "n": 1,
+      "median_ppsf": 415.0,
+      "median_price": 7000000.0,
+      "median_sqft": 16875.0,
+      "share_pct": 16.7
+    },
+    {
+      "submarket": "Area 3490",
+      "price_band": "< $1M",
+      "n": 1,
+      "median_ppsf": 61.0,
+      "median_price": 375000.0,
+      "median_sqft": 6120.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3490",
+      "price_band": "$1\u20132.5M",
+      "n": 1,
+      "median_ppsf": 520.0,
+      "median_price": 1180000.0,
+      "median_sqft": 2268.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3490",
+      "price_band": "$2.5\u20135M",
+      "n": 1,
+      "median_ppsf": 318.0,
+      "median_price": 3000000.0,
+      "median_sqft": 9445.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3490",
+      "price_band": "$5\u201310M",
+      "n": 1,
+      "median_ppsf": 178.0,
+      "median_price": 8700000.0,
+      "median_sqft": 48992.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3500",
+      "price_band": "< $1M",
+      "n": 2,
+      "median_ppsf": 131.0,
+      "median_price": 827000.0,
+      "median_sqft": 6312.0,
+      "share_pct": 20.0
+    },
+    {
+      "submarket": "Area 3500",
+      "price_band": "$1\u20132.5M",
+      "n": 4,
+      "median_ppsf": 216.0,
+      "median_price": 1262000.0,
+      "median_sqft": 5750.0,
+      "share_pct": 40.0
+    },
+    {
+      "submarket": "Area 3500",
+      "price_band": "$2.5\u20135M",
+      "n": 4,
+      "median_ppsf": 166.0,
+      "median_price": 3445000.0,
+      "median_sqft": 20827.0,
+      "share_pct": 40.0
+    },
+    {
+      "submarket": "Area 3560",
+      "price_band": "< $1M",
+      "n": 3,
+      "median_ppsf": 85.0,
+      "median_price": 800000.0,
+      "median_sqft": 11136.0,
+      "share_pct": 30.0
+    },
+    {
+      "submarket": "Area 3560",
+      "price_band": "$1\u20132.5M",
+      "n": 3,
+      "median_ppsf": 345.0,
+      "median_price": 2199000.0,
+      "median_sqft": 6378.0,
+      "share_pct": 30.0
+    },
+    {
+      "submarket": "Area 3560",
+      "price_band": "$2.5\u20135M",
+      "n": 1,
+      "median_ppsf": 145.0,
+      "median_price": 3900000.0,
+      "median_sqft": 26836.0,
+      "share_pct": 10.0
+    },
+    {
+      "submarket": "Area 3560",
+      "price_band": "$5\u201310M",
+      "n": 2,
+      "median_ppsf": 310.0,
+      "median_price": 8250000.0,
+      "median_sqft": 26576.0,
+      "share_pct": 20.0
+    },
+    {
+      "submarket": "Area 3560",
+      "price_band": "$10M+",
+      "n": 1,
+      "median_ppsf": 653.0,
+      "median_price": 11250000.0,
+      "median_sqft": 17220.0,
+      "share_pct": 10.0
+    },
+    {
+      "submarket": "Area 3580",
+      "price_band": "< $1M",
+      "n": 1,
+      "median_ppsf": 45.0,
+      "median_price": 535000.0,
+      "median_sqft": 11800.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3580",
+      "price_band": "$1\u20132.5M",
+      "n": 2,
+      "median_ppsf": 106.0,
+      "median_price": 1250000.0,
+      "median_sqft": 11800.0,
+      "share_pct": 50.0
+    },
+    {
+      "submarket": "Area 3580",
+      "price_band": "$5\u201310M",
+      "n": 1,
+      "median_ppsf": 466.0,
+      "median_price": 5500000.0,
+      "median_sqft": 11800.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3600",
+      "price_band": "< $1M",
+      "n": 3,
+      "median_ppsf": 562.0,
+      "median_price": 675000.0,
+      "median_sqft": 1200.0,
+      "share_pct": 20.0
+    },
+    {
+      "submarket": "Area 3600",
+      "price_band": "$1\u20132.5M",
+      "n": 5,
+      "median_ppsf": 214.0,
+      "median_price": 1490000.0,
+      "median_sqft": 6977.0,
+      "share_pct": 33.3
+    },
+    {
+      "submarket": "Area 3600",
+      "price_band": "$2.5\u20135M",
+      "n": 3,
+      "median_ppsf": 288.0,
+      "median_price": 3595000.0,
+      "median_sqft": 12150.0,
+      "share_pct": 20.0
+    },
+    {
+      "submarket": "Area 3600",
+      "price_band": "$5\u201310M",
+      "n": 3,
+      "median_ppsf": 280.0,
+      "median_price": 6000000.0,
+      "median_sqft": 20020.0,
+      "share_pct": 20.0
+    },
+    {
+      "submarket": "Area 3600",
+      "price_band": "$10M+",
+      "n": 1,
+      "median_ppsf": 219.0,
+      "median_price": 10500000.0,
+      "median_sqft": 47950.0,
+      "share_pct": 6.7
+    },
+    {
+      "submarket": "Area 3700",
+      "price_band": "< $1M",
+      "n": 1,
+      "median_ppsf": 76.0,
+      "median_price": 950000.0,
+      "median_sqft": 12496.0,
+      "share_pct": 12.5
+    },
+    {
+      "submarket": "Area 3700",
+      "price_band": "$1\u20132.5M",
+      "n": 4,
+      "median_ppsf": 338.0,
+      "median_price": 1550000.0,
+      "median_sqft": 6000.0,
+      "share_pct": 50.0
+    },
+    {
+      "submarket": "Area 3700",
+      "price_band": "$2.5\u20135M",
+      "n": 3,
+      "median_ppsf": 444.0,
+      "median_price": 3768000.0,
+      "median_sqft": 10125.0,
+      "share_pct": 37.5
+    },
+    {
+      "submarket": "Area 3800",
+      "price_band": "< $1M",
+      "n": 16,
+      "median_ppsf": 122.0,
+      "median_price": 750000.0,
+      "median_sqft": 6808.0,
+      "share_pct": 42.1
+    },
+    {
+      "submarket": "Area 3800",
+      "price_band": "$1\u20132.5M",
+      "n": 17,
+      "median_ppsf": 200.0,
+      "median_price": 1400000.0,
+      "median_sqft": 7393.0,
+      "share_pct": 44.7
+    },
+    {
+      "submarket": "Area 3800",
+      "price_band": "$2.5\u20135M",
+      "n": 3,
+      "median_ppsf": 261.0,
+      "median_price": 2695000.0,
+      "median_sqft": 12715.0,
+      "share_pct": 7.9
+    },
+    {
+      "submarket": "Area 3800",
+      "price_band": "$5\u201310M",
+      "n": 1,
+      "median_ppsf": 577.0,
+      "median_price": 5000000.0,
+      "median_sqft": 8664.0,
+      "share_pct": 2.6
+    },
+    {
+      "submarket": "Area 3800",
+      "price_band": "$10M+",
+      "n": 1,
+      "median_ppsf": 132.0,
+      "median_price": 11900000.0,
+      "median_sqft": 90193.0,
+      "share_pct": 2.6
+    },
+    {
+      "submarket": "Area 3810",
+      "price_band": "< $1M",
+      "n": 1,
+      "median_ppsf": 144.0,
+      "median_price": 975000.0,
+      "median_sqft": 6750.0,
+      "share_pct": 9.1
+    },
+    {
+      "submarket": "Area 3810",
+      "price_band": "$1\u20132.5M",
+      "n": 4,
+      "median_ppsf": 195.0,
+      "median_price": 2000000.0,
+      "median_sqft": 10126.0,
+      "share_pct": 36.4
+    },
+    {
+      "submarket": "Area 3810",
+      "price_band": "$2.5\u20135M",
+      "n": 2,
+      "median_ppsf": 332.0,
+      "median_price": 3600000.0,
+      "median_sqft": 19146.0,
+      "share_pct": 18.2
+    },
+    {
+      "submarket": "Area 3810",
+      "price_band": "$5\u201310M",
+      "n": 4,
+      "median_ppsf": 738.0,
+      "median_price": 5500000.0,
+      "median_sqft": 8126.0,
+      "share_pct": 36.4
+    }
+  ],
+  "nbhd_by_size": [
+    {
+      "submarket": "Area 3160",
+      "size_band": "< 2.5K",
+      "n": 5,
+      "median_ppsf": 168.0,
+      "median_price": 325000.0,
+      "median_sqft": 1938.0,
+      "share_pct": 41.7
+    },
+    {
+      "submarket": "Area 3160",
+      "size_band": "2.5\u20135K",
+      "n": 1,
+      "median_ppsf": 414.0,
+      "median_price": 1575000.0,
+      "median_sqft": 3801.0,
+      "share_pct": 8.3
+    },
+    {
+      "submarket": "Area 3160",
+      "size_band": "5\u201310K",
+      "n": 2,
+      "median_ppsf": 119.0,
+      "median_price": 620000.0,
+      "median_sqft": 5200.0,
+      "share_pct": 16.7
+    },
+    {
+      "submarket": "Area 3160",
+      "size_band": "10\u201325K",
+      "n": 3,
+      "median_ppsf": 643.0,
+      "median_price": 6895000.0,
+      "median_sqft": 12433.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3160",
+      "size_band": "25\u201350K",
+      "n": 1,
+      "median_ppsf": 99.0,
+      "median_price": 4500000.0,
+      "median_sqft": 45568.0,
+      "share_pct": 8.3
+    },
+    {
+      "submarket": "Area 3170",
+      "size_band": "< 2.5K",
+      "n": 1,
+      "median_ppsf": 1352.0,
+      "median_price": 2500000.0,
+      "median_sqft": 1849.0,
+      "share_pct": 16.7
+    },
+    {
+      "submarket": "Area 3170",
+      "size_band": "10\u201325K",
+      "n": 4,
+      "median_ppsf": 1052.0,
+      "median_price": 13575000.0,
+      "median_sqft": 13230.0,
+      "share_pct": 66.7
+    },
+    {
+      "submarket": "Area 3170",
+      "size_band": "25\u201350K",
+      "n": 1,
+      "median_ppsf": 812.0,
+      "median_price": 23000000.0,
+      "median_sqft": 28321.0,
+      "share_pct": 16.7
+    },
+    {
+      "submarket": "Area 3250",
+      "size_band": "5\u201310K",
+      "n": 2,
+      "median_ppsf": 330.0,
+      "median_price": 2475000.0,
+      "median_sqft": 7504.0,
+      "share_pct": 20.0
+    },
+    {
+      "submarket": "Area 3250",
+      "size_band": "10\u201325K",
+      "n": 5,
+      "median_ppsf": 240.0,
+      "median_price": 4200000.0,
+      "median_sqft": 15000.0,
+      "share_pct": 50.0
+    },
+    {
+      "submarket": "Area 3250",
+      "size_band": "25\u201350K",
+      "n": 3,
+      "median_ppsf": 201.0,
+      "median_price": 6000000.0,
+      "median_sqft": 36491.0,
+      "share_pct": 30.0
+    },
+    {
+      "submarket": "Area 3260",
+      "size_band": "< 2.5K",
+      "n": 4,
+      "median_ppsf": 325.0,
+      "median_price": 393000.0,
+      "median_sqft": 1195.0,
+      "share_pct": 16.7
+    },
+    {
+      "submarket": "Area 3260",
+      "size_band": "2.5\u20135K",
+      "n": 1,
+      "median_ppsf": 325.0,
+      "median_price": 1079000.0,
+      "median_sqft": 3321.0,
+      "share_pct": 4.2
+    },
+    {
+      "submarket": "Area 3260",
+      "size_band": "5\u201310K",
+      "n": 4,
+      "median_ppsf": 79.0,
+      "median_price": 661000.0,
+      "median_sqft": 8381.0,
+      "share_pct": 16.7
+    },
+    {
+      "submarket": "Area 3260",
+      "size_band": "10\u201325K",
+      "n": 14,
+      "median_ppsf": 224.0,
+      "median_price": 2775000.0,
+      "median_sqft": 13263.0,
+      "share_pct": 58.3
+    },
+    {
+      "submarket": "Area 3260",
+      "size_band": "25\u201350K",
+      "n": 1,
+      "median_ppsf": 260.0,
+      "median_price": 6500000.0,
+      "median_sqft": 25000.0,
+      "share_pct": 4.2
+    },
+    {
+      "submarket": "Area 3270",
+      "size_band": "< 2.5K",
+      "n": 2,
+      "median_ppsf": 1346.0,
+      "median_price": 1612000.0,
+      "median_sqft": 1338.0,
+      "share_pct": 15.4
+    },
+    {
+      "submarket": "Area 3270",
+      "size_band": "5\u201310K",
+      "n": 6,
+      "median_ppsf": 240.0,
+      "median_price": 1824000.0,
+      "median_sqft": 7125.0,
+      "share_pct": 46.2
+    },
+    {
+      "submarket": "Area 3270",
+      "size_band": "10\u201325K",
+      "n": 5,
+      "median_ppsf": 175.0,
+      "median_price": 2734000.0,
+      "median_sqft": 15625.0,
+      "share_pct": 38.5
+    },
+    {
+      "submarket": "Area 3280",
+      "size_band": "< 2.5K",
+      "n": 1,
+      "median_ppsf": 1190.0,
+      "median_price": 2200000.0,
+      "median_sqft": 1849.0,
+      "share_pct": 14.3
+    },
+    {
+      "submarket": "Area 3280",
+      "size_band": "5\u201310K",
+      "n": 4,
+      "median_ppsf": 340.0,
+      "median_price": 1865000.0,
+      "median_sqft": 5846.0,
+      "share_pct": 57.1
+    },
+    {
+      "submarket": "Area 3280",
+      "size_band": "10\u201325K",
+      "n": 2,
+      "median_ppsf": 98.0,
+      "median_price": 1400000.0,
+      "median_sqft": 12542.0,
+      "share_pct": 28.6
+    },
+    {
+      "submarket": "Area 3360",
+      "size_band": "10\u201325K",
+      "n": 3,
+      "median_ppsf": 134.0,
+      "median_price": 1575000.0,
+      "median_sqft": 11736.0,
+      "share_pct": 75.0
+    },
+    {
+      "submarket": "Area 3360",
+      "size_band": "25\u201350K",
+      "n": 1,
+      "median_ppsf": 179.0,
+      "median_price": 6000000.0,
+      "median_sqft": 33482.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3370",
+      "size_band": "< 2.5K",
+      "n": 1,
+      "median_ppsf": 461.0,
+      "median_price": 580000.0,
+      "median_sqft": 1258.0,
+      "share_pct": 2.5
+    },
+    {
+      "submarket": "Area 3370",
+      "size_band": "2.5\u20135K",
+      "n": 1,
+      "median_ppsf": 343.0,
+      "median_price": 1175000.0,
+      "median_sqft": 3429.0,
+      "share_pct": 2.5
+    },
+    {
+      "submarket": "Area 3370",
+      "size_band": "5\u201310K",
+      "n": 21,
+      "median_ppsf": 164.0,
+      "median_price": 1200000.0,
+      "median_sqft": 7497.0,
+      "share_pct": 52.5
+    },
+    {
+      "submarket": "Area 3370",
+      "size_band": "10\u201325K",
+      "n": 13,
+      "median_ppsf": 133.0,
+      "median_price": 1750000.0,
+      "median_sqft": 13504.0,
+      "share_pct": 32.5
+    },
+    {
+      "submarket": "Area 3370",
+      "size_band": "25\u201350K",
+      "n": 4,
+      "median_ppsf": 170.0,
+      "median_price": 5798000.0,
+      "median_sqft": 31417.0,
+      "share_pct": 10.0
+    },
+    {
+      "submarket": "Area 3380",
+      "size_band": "< 2.5K",
+      "n": 1,
+      "median_ppsf": 451.0,
+      "median_price": 575000.0,
+      "median_sqft": 1276.0,
+      "share_pct": 5.6
+    },
+    {
+      "submarket": "Area 3380",
+      "size_band": "2.5\u20135K",
+      "n": 2,
+      "median_ppsf": 703.0,
+      "median_price": 2200000.0,
+      "median_sqft": 3130.0,
+      "share_pct": 11.1
+    },
+    {
+      "submarket": "Area 3380",
+      "size_band": "5\u201310K",
+      "n": 7,
+      "median_ppsf": 270.0,
+      "median_price": 1999000.0,
+      "median_sqft": 7960.0,
+      "share_pct": 38.9
+    },
+    {
+      "submarket": "Area 3380",
+      "size_band": "10\u201325K",
+      "n": 7,
+      "median_ppsf": 197.0,
+      "median_price": 2850000.0,
+      "median_sqft": 13512.0,
+      "share_pct": 38.9
+    },
+    {
+      "submarket": "Area 3380",
+      "size_band": "25\u201350K",
+      "n": 1,
+      "median_ppsf": 180.0,
+      "median_price": 6300000.0,
+      "median_sqft": 35087.0,
+      "share_pct": 5.6
+    },
+    {
+      "submarket": "Area 3390",
+      "size_band": "5\u201310K",
+      "n": 3,
+      "median_ppsf": 85.0,
+      "median_price": 750000.0,
+      "median_sqft": 8518.0,
+      "share_pct": 37.5
+    },
+    {
+      "submarket": "Area 3390",
+      "size_band": "10\u201325K",
+      "n": 4,
+      "median_ppsf": 141.0,
+      "median_price": 2085000.0,
+      "median_sqft": 13365.0,
+      "share_pct": 50.0
+    },
+    {
+      "submarket": "Area 3390",
+      "size_band": "25\u201350K",
+      "n": 1,
+      "median_ppsf": 68.0,
+      "median_price": 2750000.0,
+      "median_sqft": 40196.0,
+      "share_pct": 12.5
+    },
+    {
+      "submarket": "Area 3400",
+      "size_band": "5\u201310K",
+      "n": 2,
+      "median_ppsf": 121.0,
+      "median_price": 845000.0,
+      "median_sqft": 7692.0,
+      "share_pct": 50.0
+    },
+    {
+      "submarket": "Area 3400",
+      "size_band": "10\u201325K",
+      "n": 1,
+      "median_ppsf": 116.0,
+      "median_price": 1950000.0,
+      "median_sqft": 16875.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3400",
+      "size_band": "25\u201350K",
+      "n": 1,
+      "median_ppsf": 180.0,
+      "median_price": 4500000.0,
+      "median_sqft": 25024.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3450",
+      "size_band": "2.5\u20135K",
+      "n": 1,
+      "median_ppsf": 138.0,
+      "median_price": 600000.0,
+      "median_sqft": 4335.0,
+      "share_pct": 20.0
+    },
+    {
+      "submarket": "Area 3450",
+      "size_band": "5\u201310K",
+      "n": 2,
+      "median_ppsf": 99.0,
+      "median_price": 520000.0,
+      "median_sqft": 5268.0,
+      "share_pct": 40.0
+    },
+    {
+      "submarket": "Area 3450",
+      "size_band": "10\u201325K",
+      "n": 2,
+      "median_ppsf": 118.0,
+      "median_price": 2232000.0,
+      "median_sqft": 18680.0,
+      "share_pct": 40.0
+    },
+    {
+      "submarket": "Area 3460",
+      "size_band": "2.5\u20135K",
+      "n": 3,
+      "median_ppsf": 174.0,
+      "median_price": 775000.0,
+      "median_sqft": 4463.0,
+      "share_pct": 14.3
+    },
+    {
+      "submarket": "Area 3460",
+      "size_band": "5\u201310K",
+      "n": 5,
+      "median_ppsf": 162.0,
+      "median_price": 1095000.0,
+      "median_sqft": 6750.0,
+      "share_pct": 23.8
+    },
+    {
+      "submarket": "Area 3460",
+      "size_band": "10\u201325K",
+      "n": 12,
+      "median_ppsf": 125.0,
+      "median_price": 1675000.0,
+      "median_sqft": 14546.0,
+      "share_pct": 57.1
+    },
+    {
+      "submarket": "Area 3460",
+      "size_band": "25\u201350K",
+      "n": 1,
+      "median_ppsf": 127.0,
+      "median_price": 3400000.0,
+      "median_sqft": 26836.0,
+      "share_pct": 4.8
+    },
+    {
+      "submarket": "Area 3470",
+      "size_band": "< 2.5K",
+      "n": 1,
+      "median_ppsf": 400.0,
+      "median_price": 595000.0,
+      "median_sqft": 1488.0,
+      "share_pct": 4.8
+    },
+    {
+      "submarket": "Area 3470",
+      "size_band": "5\u201310K",
+      "n": 7,
+      "median_ppsf": 217.0,
+      "median_price": 1749000.0,
+      "median_sqft": 7070.0,
+      "share_pct": 33.3
+    },
+    {
+      "submarket": "Area 3470",
+      "size_band": "10\u201325K",
+      "n": 12,
+      "median_ppsf": 144.0,
+      "median_price": 2000000.0,
+      "median_sqft": 13976.0,
+      "share_pct": 57.1
+    },
+    {
+      "submarket": "Area 3470",
+      "size_band": "25\u201350K",
+      "n": 1,
+      "median_ppsf": 204.0,
+      "median_price": 7950000.0,
+      "median_sqft": 39000.0,
+      "share_pct": 4.8
+    },
+    {
+      "submarket": "Area 3480",
+      "size_band": "< 2.5K",
+      "n": 2,
+      "median_ppsf": 406.0,
+      "median_price": 780000.0,
+      "median_sqft": 1916.0,
+      "share_pct": 33.3
+    },
+    {
+      "submarket": "Area 3480",
+      "size_band": "5\u201310K",
+      "n": 2,
+      "median_ppsf": 136.0,
+      "median_price": 920000.0,
+      "median_sqft": 6852.0,
+      "share_pct": 33.3
+    },
+    {
+      "submarket": "Area 3480",
+      "size_band": "10\u201325K",
+      "n": 2,
+      "median_ppsf": 275.0,
+      "median_price": 4950000.0,
+      "median_sqft": 19162.0,
+      "share_pct": 33.3
+    },
+    {
+      "submarket": "Area 3490",
+      "size_band": "< 2.5K",
+      "n": 1,
+      "median_ppsf": 520.0,
+      "median_price": 1180000.0,
+      "median_sqft": 2268.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3490",
+      "size_band": "5\u201310K",
+      "n": 2,
+      "median_ppsf": 190.0,
+      "median_price": 1688000.0,
+      "median_sqft": 7782.0,
+      "share_pct": 50.0
+    },
+    {
+      "submarket": "Area 3490",
+      "size_band": "25\u201350K",
+      "n": 1,
+      "median_ppsf": 178.0,
+      "median_price": 8700000.0,
+      "median_sqft": 48992.0,
+      "share_pct": 25.0
+    },
+    {
+      "submarket": "Area 3500",
+      "size_band": "2.5\u20135K",
+      "n": 1,
+      "median_ppsf": 297.0,
+      "median_price": 1262000.0,
+      "median_sqft": 4250.0,
+      "share_pct": 10.0
+    },
+    {
+      "submarket": "Area 3500",
+      "size_band": "5\u201310K",
+      "n": 5,
+      "median_ppsf": 174.0,
+      "median_price": 1090000.0,
+      "median_sqft": 6250.0,
+      "share_pct": 50.0
+    },
+    {
+      "submarket": "Area 3500",
+      "size_band": "10\u201325K",
+      "n": 3,
+      "median_ppsf": 168.0,
+      "median_price": 3395000.0,
+      "median_sqft": 20827.0,
+      "share_pct": 30.0
+    },
+    {
+      "submarket": "Area 3500",
+      "size_band": "25\u201350K",
+      "n": 1,
+      "median_ppsf": 128.0,
+      "median_price": 4050000.0,
+      "median_sqft": 31764.0,
+      "share_pct": 10.0
+    },
+    {
+      "submarket": "Area 3560",
+      "size_band": "< 2.5K",
+      "n": 1,
+      "median_ppsf": 105.0,
+      "median_price": 192000.0,
+      "median_sqft": 1837.0,
+      "share_pct": 10.0
+    },
+    {
+      "submarket": "Area 3560",
+      "size_band": "5\u201310K",
+      "n": 3,
+      "median_ppsf": 345.0,
+      "median_price": 2199000.0,
+      "median_sqft": 6378.0,
+      "share_pct": 30.0
+    },
+    {
+      "submarket": "Area 3560",
+      "size_band": "10\u201325K",
+      "n": 3,
+      "median_ppsf": 85.0,
+      "median_price": 950000.0,
+      "median_sqft": 11136.0,
+      "share_pct": 30.0
+    },
+    {
+      "submarket": "Area 3560",
+      "size_band": "25\u201350K",
+      "n": 3,
+      "median_ppsf": 286.0,
+      "median_price": 7600000.0,
+      "median_sqft": 26576.0,
+      "share_pct": 30.0
+    },
+    {
+      "submarket": "Area 3580",
+      "size_band": "10\u201325K",
+      "n": 4,
+      "median_ppsf": 106.0,
+      "median_price": 1250000.0,
+      "median_sqft": 11800.0,
+      "share_pct": 100.0
+    },
+    {
+      "submarket": "Area 3600",
+      "size_band": "< 2.5K",
+      "n": 3,
+      "median_ppsf": 562.0,
+      "median_price": 675000.0,
+      "median_sqft": 1200.0,
+      "share_pct": 20.0
+    },
+    {
+      "submarket": "Area 3600",
+      "size_band": "2.5\u20135K",
+      "n": 1,
+      "median_ppsf": 306.0,
+      "median_price": 1200000.0,
+      "median_sqft": 3921.0,
+      "share_pct": 6.7
+    },
+    {
+      "submarket": "Area 3600",
+      "size_band": "5\u201310K",
+      "n": 3,
+      "median_ppsf": 214.0,
+      "median_price": 1490000.0,
+      "median_sqft": 6977.0,
+      "share_pct": 20.0
+    },
+    {
+      "submarket": "Area 3600",
+      "size_band": "10\u201325K",
+      "n": 6,
+      "median_ppsf": 284.0,
+      "median_price": 4445000.0,
+      "median_sqft": 14588.0,
+      "share_pct": 40.0
+    },
+    {
+      "submarket": "Area 3600",
+      "size_band": "25\u201350K",
+      "n": 2,
+      "median_ppsf": 172.0,
+      "median_price": 7375000.0,
+      "median_sqft": 40836.0,
+      "share_pct": 13.3
+    },
+    {
+      "submarket": "Area 3700",
+      "size_band": "2.5\u20135K",
+      "n": 1,
+      "median_ppsf": 415.0,
+      "median_price": 1400000.0,
+      "median_sqft": 3375.0,
+      "share_pct": 12.5
+    },
+    {
+      "submarket": "Area 3700",
+      "size_band": "5\u201310K",
+      "n": 4,
+      "median_ppsf": 338.0,
+      "median_price": 2050000.0,
+      "median_sqft": 6408.0,
+      "share_pct": 50.0
+    },
+    {
+      "submarket": "Area 3700",
+      "size_band": "10\u201325K",
+      "n": 3,
+      "median_ppsf": 372.0,
+      "median_price": 3768000.0,
+      "median_sqft": 10126.0,
+      "share_pct": 37.5
+    },
+    {
+      "submarket": "Area 3800",
+      "size_band": "< 2.5K",
+      "n": 6,
+      "median_ppsf": 484.0,
+      "median_price": 995000.0,
+      "median_sqft": 2036.0,
+      "share_pct": 15.8
+    },
+    {
+      "submarket": "Area 3800",
+      "size_band": "2.5\u20135K",
+      "n": 5,
+      "median_ppsf": 383.0,
+      "median_price": 1700000.0,
+      "median_sqft": 4540.0,
+      "share_pct": 13.2
+    },
+    {
+      "submarket": "Area 3800",
+      "size_band": "5\u201310K",
+      "n": 18,
+      "median_ppsf": 130.0,
+      "median_price": 862000.0,
+      "median_sqft": 6950.0,
+      "share_pct": 47.4
+    },
+    {
+      "submarket": "Area 3800",
+      "size_band": "10\u201325K",
+      "n": 7,
+      "median_ppsf": 129.0,
+      "median_price": 1850000.0,
+      "median_sqft": 14000.0,
+      "share_pct": 18.4
+    },
+    {
+      "submarket": "Area 3800",
+      "size_band": "25\u201350K",
+      "n": 1,
+      "median_ppsf": 84.0,
+      "median_price": 2350000.0,
+      "median_sqft": 27878.0,
+      "share_pct": 2.6
+    },
+    {
+      "submarket": "Area 3800",
+      "size_band": "50K+",
+      "n": 1,
+      "median_ppsf": 132.0,
+      "median_price": 11900000.0,
+      "median_sqft": 90193.0,
+      "share_pct": 2.6
+    },
+    {
+      "submarket": "Area 3810",
+      "size_band": "5\u201310K",
+      "n": 5,
+      "median_ppsf": 738.0,
+      "median_price": 5000000.0,
+      "median_sqft": 6750.0,
+      "share_pct": 45.5
+    },
+    {
+      "submarket": "Area 3810",
+      "size_band": "10\u201325K",
+      "n": 5,
+      "median_ppsf": 202.0,
+      "median_price": 2049000.0,
+      "median_sqft": 10126.0,
+      "share_pct": 45.5
+    },
+    {
+      "submarket": "Area 3810",
+      "size_band": "25\u201350K",
+      "n": 1,
+      "median_ppsf": 109.0,
+      "median_price": 3450000.0,
+      "median_sqft": 31542.0,
+      "share_pct": 9.1
+    }
+  ],
+  "matrix_type_price": {
+    "cols": [
+      "< $1M",
+      "$1\u20132.5M",
+      "$2.5\u20135M",
+      "$5\u201310M",
+      "$10M+"
+    ],
+    "counts": [
+      {
+        "asset_type": "Multifamily",
+        "< $1M": 8,
+        "$1\u20132.5M": 52,
+        "$2.5\u20135M": 21,
+        "$5\u201310M": 8,
+        "$10M+": 1
+      },
+      {
+        "asset_type": "Office",
+        "< $1M": 11,
+        "$1\u20132.5M": 12,
+        "$2.5\u20135M": 3,
+        "$5\u201310M": 1,
+        "$10M+": 2
+      },
+      {
+        "asset_type": "Retail",
+        "< $1M": 5,
+        "$1\u20132.5M": 11,
+        "$2.5\u20135M": 6,
+        "$5\u201310M": 3,
+        "$10M+": 0
+      },
+      {
+        "asset_type": "Industrial",
+        "< $1M": 8,
+        "$1\u20132.5M": 17,
+        "$2.5\u20135M": 7,
+        "$5\u201310M": 2,
+        "$10M+": 0
+      },
+      {
+        "asset_type": "Mixed Use",
+        "< $1M": 12,
+        "$1\u20132.5M": 14,
+        "$2.5\u20135M": 4,
+        "$5\u201310M": 2,
+        "$10M+": 1
+      },
+      {
+        "asset_type": "Hotel",
+        "< $1M": 0,
+        "$1\u20132.5M": 0,
+        "$2.5\u20135M": 2,
+        "$5\u201310M": 5,
+        "$10M+": 4
+      },
+      {
+        "asset_type": "Restaurant",
+        "< $1M": 2,
+        "$1\u20132.5M": 4,
+        "$2.5\u20135M": 1,
+        "$5\u201310M": 1,
+        "$10M+": 0
+      },
+      {
+        "asset_type": "Flex",
+        "< $1M": 0,
+        "$1\u20132.5M": 2,
+        "$2.5\u20135M": 0,
+        "$5\u201310M": 1,
+        "$10M+": 0
+      },
+      {
+        "asset_type": "Special Purpose",
+        "< $1M": 0,
+        "$1\u20132.5M": 0,
+        "$2.5\u20135M": 2,
+        "$5\u201310M": 0,
+        "$10M+": 0
+      },
+      {
+        "asset_type": "Commercial (other)",
+        "< $1M": 30,
+        "$1\u20132.5M": 31,
+        "$2.5\u20135M": 26,
+        "$5\u201310M": 5,
+        "$10M+": 4
+      }
+    ],
+    "share": [
+      {
+        "asset_type": "Multifamily",
+        "< $1M": 8.9,
+        "$1\u20132.5M": 57.8,
+        "$2.5\u20135M": 23.3,
+        "$5\u201310M": 8.9,
+        "$10M+": 1.1
+      },
+      {
+        "asset_type": "Office",
+        "< $1M": 37.9,
+        "$1\u20132.5M": 41.4,
+        "$2.5\u20135M": 10.3,
+        "$5\u201310M": 3.4,
+        "$10M+": 6.9
+      },
+      {
+        "asset_type": "Retail",
+        "< $1M": 20.0,
+        "$1\u20132.5M": 44.0,
+        "$2.5\u20135M": 24.0,
+        "$5\u201310M": 12.0,
+        "$10M+": 0.0
+      },
+      {
+        "asset_type": "Industrial",
+        "< $1M": 23.5,
+        "$1\u20132.5M": 50.0,
+        "$2.5\u20135M": 20.6,
+        "$5\u201310M": 5.9,
+        "$10M+": 0.0
+      },
+      {
+        "asset_type": "Mixed Use",
+        "< $1M": 36.4,
+        "$1\u20132.5M": 42.4,
+        "$2.5\u20135M": 12.1,
+        "$5\u201310M": 6.1,
+        "$10M+": 3.0
+      },
+      {
+        "asset_type": "Hotel",
+        "< $1M": 0.0,
+        "$1\u20132.5M": 0.0,
+        "$2.5\u20135M": 18.2,
+        "$5\u201310M": 45.5,
+        "$10M+": 36.4
+      },
+      {
+        "asset_type": "Restaurant",
+        "< $1M": 25.0,
+        "$1\u20132.5M": 50.0,
+        "$2.5\u20135M": 12.5,
+        "$5\u201310M": 12.5,
+        "$10M+": 0.0
+      },
+      {
+        "asset_type": "Flex",
+        "< $1M": 0.0,
+        "$1\u20132.5M": 66.7,
+        "$2.5\u20135M": 0.0,
+        "$5\u201310M": 33.3,
+        "$10M+": 0.0
+      },
+      {
+        "asset_type": "Special Purpose",
+        "< $1M": 0.0,
+        "$1\u20132.5M": 0.0,
+        "$2.5\u20135M": 100.0,
+        "$5\u201310M": 0.0,
+        "$10M+": 0.0
+      },
+      {
+        "asset_type": "Commercial (other)",
+        "< $1M": 31.2,
+        "$1\u20132.5M": 32.3,
+        "$2.5\u20135M": 27.1,
+        "$5\u201310M": 5.2,
+        "$10M+": 4.2
+      }
+    ]
+  },
+  "matrix_type_size": {
+    "cols": [
+      "< 2.5K",
+      "2.5\u20135K",
+      "5\u201310K",
+      "10\u201325K",
+      "25\u201350K",
+      "50K+"
+    ],
+    "counts": [
+      {
+        "asset_type": "Multifamily",
+        "< 2.5K": 0,
+        "2.5\u20135K": 3,
+        "5\u201310K": 34,
+        "10\u201325K": 48,
+        "25\u201350K": 5,
+        "50K+": 0
+      },
+      {
+        "asset_type": "Office",
+        "< 2.5K": 4,
+        "2.5\u20135K": 4,
+        "5\u201310K": 13,
+        "10\u201325K": 6,
+        "25\u201350K": 2,
+        "50K+": 0
+      },
+      {
+        "asset_type": "Retail",
+        "< 2.5K": 4,
+        "2.5\u20135K": 1,
+        "5\u201310K": 8,
+        "10\u201325K": 10,
+        "25\u201350K": 2,
+        "50K+": 0
+      },
+      {
+        "asset_type": "Industrial",
+        "< 2.5K": 4,
+        "2.5\u20135K": 0,
+        "5\u201310K": 6,
+        "10\u201325K": 21,
+        "25\u201350K": 3,
+        "50K+": 0
+      },
+      {
+        "asset_type": "Mixed Use",
+        "< 2.5K": 0,
+        "2.5\u20135K": 4,
+        "5\u201310K": 15,
+        "10\u201325K": 10,
+        "25\u201350K": 4,
+        "50K+": 0
+      },
+      {
+        "asset_type": "Hotel",
+        "< 2.5K": 0,
+        "2.5\u20135K": 0,
+        "5\u201310K": 1,
+        "10\u201325K": 7,
+        "25\u201350K": 3,
+        "50K+": 0
+      },
+      {
+        "asset_type": "Restaurant",
+        "< 2.5K": 1,
+        "2.5\u20135K": 0,
+        "5\u201310K": 6,
+        "10\u201325K": 1,
+        "25\u201350K": 0,
+        "50K+": 0
+      },
+      {
+        "asset_type": "Flex",
+        "< 2.5K": 0,
+        "2.5\u20135K": 0,
+        "5\u201310K": 3,
+        "10\u201325K": 0,
+        "25\u201350K": 0,
+        "50K+": 0
+      },
+      {
+        "asset_type": "Special Purpose",
+        "< 2.5K": 0,
+        "2.5\u20135K": 0,
+        "5\u201310K": 1,
+        "10\u201325K": 1,
+        "25\u201350K": 0,
+        "50K+": 0
+      },
+      {
+        "asset_type": "Commercial (other)",
+        "< 2.5K": 18,
+        "2.5\u20135K": 5,
+        "5\u201310K": 32,
+        "10\u201325K": 31,
+        "25\u201350K": 9,
+        "50K+": 1
+      }
+    ],
+    "share": [
+      {
+        "asset_type": "Multifamily",
+        "< 2.5K": 0.0,
+        "2.5\u20135K": 3.3,
+        "5\u201310K": 37.8,
+        "10\u201325K": 53.3,
+        "25\u201350K": 5.6,
+        "50K+": 0.0
+      },
+      {
+        "asset_type": "Office",
+        "< 2.5K": 13.8,
+        "2.5\u20135K": 13.8,
+        "5\u201310K": 44.8,
+        "10\u201325K": 20.7,
+        "25\u201350K": 6.9,
+        "50K+": 0.0
+      },
+      {
+        "asset_type": "Retail",
+        "< 2.5K": 16.0,
+        "2.5\u20135K": 4.0,
+        "5\u201310K": 32.0,
+        "10\u201325K": 40.0,
+        "25\u201350K": 8.0,
+        "50K+": 0.0
+      },
+      {
+        "asset_type": "Industrial",
+        "< 2.5K": 11.8,
+        "2.5\u20135K": 0.0,
+        "5\u201310K": 17.6,
+        "10\u201325K": 61.8,
+        "25\u201350K": 8.8,
+        "50K+": 0.0
+      },
+      {
+        "asset_type": "Mixed Use",
+        "< 2.5K": 0.0,
+        "2.5\u20135K": 12.1,
+        "5\u201310K": 45.5,
+        "10\u201325K": 30.3,
+        "25\u201350K": 12.1,
+        "50K+": 0.0
+      },
+      {
+        "asset_type": "Hotel",
+        "< 2.5K": 0.0,
+        "2.5\u20135K": 0.0,
+        "5\u201310K": 9.1,
+        "10\u201325K": 63.6,
+        "25\u201350K": 27.3,
+        "50K+": 0.0
+      },
+      {
+        "asset_type": "Restaurant",
+        "< 2.5K": 12.5,
+        "2.5\u20135K": 0.0,
+        "5\u201310K": 75.0,
+        "10\u201325K": 12.5,
+        "25\u201350K": 0.0,
+        "50K+": 0.0
+      },
+      {
+        "asset_type": "Flex",
+        "< 2.5K": 0.0,
+        "2.5\u20135K": 0.0,
+        "5\u201310K": 100.0,
+        "10\u201325K": 0.0,
+        "25\u201350K": 0.0,
+        "50K+": 0.0
+      },
+      {
+        "asset_type": "Special Purpose",
+        "< 2.5K": 0.0,
+        "2.5\u20135K": 0.0,
+        "5\u201310K": 50.0,
+        "10\u201325K": 50.0,
+        "25\u201350K": 0.0,
+        "50K+": 0.0
+      },
+      {
+        "asset_type": "Commercial (other)",
+        "< 2.5K": 18.8,
+        "2.5\u20135K": 5.2,
+        "5\u201310K": 33.3,
+        "10\u201325K": 32.3,
+        "25\u201350K": 9.4,
+        "50K+": 1.0
+      }
+    ]
+  },
+  "matrix_nbhd_type": {
+    "cols": [
+      "Multifamily",
+      "Office",
+      "Retail",
+      "Industrial",
+      "Mixed Use",
+      "Hotel",
+      "Restaurant",
+      "Flex",
+      "Special Purpose",
+      "Commercial (other)"
+    ],
+    "counts": [
+      {
+        "submarket": "Area 3160",
+        "Multifamily": 3,
+        "Office": 1,
+        "Retail": 1,
+        "Industrial": 0,
+        "Mixed Use": 1,
+        "Hotel": 0,
+        "Restaurant": 0,
+        "Flex": 0,
+        "Special Purpose": 0,
+        "Commercial (other)": 6
+      },
+      {
+        "submarket": "Area 3170",
+        "Multifamily": 1,
+        "Office": 0,
+        "Retail": 0,
+        "Industrial": 0,
+        "Mixed Use": 0,
+        "Hotel": 3,
+        "Restaurant": 0,
+        "Flex": 0,
+        "Special Purpose": 0,
+        "Commercial (other)": 2
+      },
+      {
+        "submarket": "Area 3250",
+        "Multifamily": 0,
+        "Office": 2,
+        "Retail": 0,
+        "Industrial": 0,
+        "Mixed Use": 1,
+        "Hotel": 3,
+        "Restaurant": 0,
+        "Flex": 0,
+        "Special Purpose": 0,
+        "Commercial (other)": 4
+      },
+      {
+        "submarket": "Area 3260",
+        "Multifamily": 7,
+        "Office": 2,
+        "Retail": 1,
+        "Industrial": 0,
+        "Mixed Use": 0,
+        "Hotel": 0,
+        "Restaurant": 0,
+        "Flex": 0,
+        "Special Purpose": 0,
+        "Commercial (other)": 14
+      },
+      {
+        "submarket": "Area 3270",
+        "Multifamily": 6,
+        "Office": 0,
+        "Retail": 0,
+        "Industrial": 0,
+        "Mixed Use": 1,
+        "Hotel": 0,
+        "Restaurant": 0,
+        "Flex": 1,
+        "Special Purpose": 0,
+        "Commercial (other)": 5
+      },
+      {
+        "submarket": "Area 3280",
+        "Multifamily": 4,
+        "Office": 0,
+        "Retail": 1,
+        "Industrial": 0,
+        "Mixed Use": 0,
+        "Hotel": 0,
+        "Restaurant": 0,
+        "Flex": 0,
+        "Special Purpose": 0,
+        "Commercial (other)": 2
+      },
+      {
+        "submarket": "Area 3360",
+        "Multifamily": 0,
+        "Office": 1,
+        "Retail": 0,
+        "Industrial": 3,
+        "Mixed Use": 0,
+        "Hotel": 0,
+        "Restaurant": 0,
+        "Flex": 0,
+        "Special Purpose": 0,
+        "Commercial (other)": 0
+      },
+      {
+        "submarket": "Area 3370",
+        "Multifamily": 13,
+        "Office": 1,
+        "Retail": 5,
+        "Industrial": 1,
+        "Mixed Use": 4,
+        "Hotel": 2,
+        "Restaurant": 0,
+        "Flex": 0,
+        "Special Purpose": 2,
+        "Commercial (other)": 12
+      },
+      {
+        "submarket": "Area 3380",
+        "Multifamily": 5,
+        "Office": 1,
+        "Retail": 1,
+        "Industrial": 0,
+        "Mixed Use": 1,
+        "Hotel": 0,
+        "Restaurant": 2,
+        "Flex": 1,
+        "Special Purpose": 0,
+        "Commercial (other)": 7
+      },
+      {
+        "submarket": "Area 3390",
+        "Multifamily": 5,
+        "Office": 0,
+        "Retail": 1,
+        "Industrial": 0,
+        "Mixed Use": 1,
+        "Hotel": 0,
+        "Restaurant": 0,
+        "Flex": 0,
+        "Special Purpose": 0,
+        "Commercial (other)": 1
+      },
+      {
+        "submarket": "Area 3400",
+        "Multifamily": 0,
+        "Office": 0,
+        "Retail": 0,
+        "Industrial": 1,
+        "Mixed Use": 0,
+        "Hotel": 0,
+        "Restaurant": 1,
+        "Flex": 0,
+        "Special Purpose": 0,
+        "Commercial (other)": 2
+      },
+      {
+        "submarket": "Area 3450",
+        "Multifamily": 1,
+        "Office": 0,
+        "Retail": 0,
+        "Industrial": 1,
+        "Mixed Use": 2,
+        "Hotel": 0,
+        "Restaurant": 0,
+        "Flex": 0,
+        "Special Purpose": 0,
+        "Commercial (other)": 1
+      },
+      {
+        "submarket": "Area 3460",
+        "Multifamily": 7,
+        "Office": 0,
+        "Retail": 0,
+        "Industrial": 6,
+        "Mixed Use": 5,
+        "Hotel": 0,
+        "Restaurant": 0,
+        "Flex": 0,
+        "Special Purpose": 0,
+        "Commercial (other)": 3
+      },
+      {
+        "submarket": "Area 3470",
+        "Multifamily": 12,
+        "Office": 0,
+        "Retail": 1,
+        "Industrial": 5,
+        "Mixed Use": 1,
+        "Hotel": 0,
+        "Restaurant": 0,
+        "Flex": 0,
+        "Special Purpose": 0,
+        "Commercial (other)": 2
+      },
+      {
+        "submarket": "Area 3480",
+        "Multifamily": 0,
+        "Office": 0,
+        "Retail": 2,
+        "Industrial": 1,
+        "Mixed Use": 1,
+        "Hotel": 0,
+        "Restaurant": 0,
+        "Flex": 0,
+        "Special Purpose": 0,
+        "Commercial (other)": 2
+      },
+      {
+        "submarket": "Area 3490",
+        "Multifamily": 1,
+        "Office": 0,
+        "Retail": 0,
+        "Industrial": 1,
+        "Mixed Use": 0,
+        "Hotel": 0,
+        "Restaurant": 0,
+        "Flex": 0,
+        "Special Purpose": 0,
+        "Commercial (other)": 2
+      },
+      {
+        "submarket": "Area 3500",
+        "Multifamily": 1,
+        "Office": 0,
+        "Retail": 0,
+        "Industrial": 3,
+        "Mixed Use": 1,
+        "Hotel": 0,
+        "Restaurant": 0,
+        "Flex": 0,
+        "Special Purpose": 0,
+        "Commercial (other)": 5
+      },
+      {
+        "submarket": "Area 3560",
+        "Multifamily": 0,
+        "Office": 0,
+        "Retail": 1,
+        "Industrial": 0,
+        "Mixed Use": 6,
+        "Hotel": 0,
+        "Restaurant": 0,
+        "Flex": 1,
+        "Special Purpose": 0,
+        "Commercial (other)": 2
+      },
+      {
+        "submarket": "Area 3580",
+        "Multifamily": 0,
+        "Office": 0,
+        "Retail": 0,
+        "Industrial": 4,
+        "Mixed Use": 0,
+        "Hotel": 0,
+        "Restaurant": 0,
+        "Flex": 0,
+        "Special Purpose": 0,
+        "Commercial (other)": 0
+      },
+      {
+        "submarket": "Area 3600",
+        "Multifamily": 3,
+        "Office": 1,
+        "Retail": 6,
+        "Industrial": 0,
+        "Mixed Use": 1,
+        "Hotel": 1,
+        "Restaurant": 1,
+        "Flex": 0,
+        "Special Purpose": 0,
+        "Commercial (other)": 2
+      },
+      {
+        "submarket": "Area 3700",
+        "Multifamily": 3,
+        "Office": 0,
+        "Retail": 2,
+        "Industrial": 0,
+        "Mixed Use": 1,
+        "Hotel": 0,
+        "Restaurant": 1,
+        "Flex": 0,
+        "Special Purpose": 0,
+        "Commercial (other)": 1
+      },
+      {
+        "submarket": "Area 3800",
+        "Multifamily": 2,
+        "Office": 14,
+        "Retail": 0,
+        "Industrial": 1,
+        "Mixed Use": 6,
+        "Hotel": 0,
+        "Restaurant": 1,
+        "Flex": 0,
+        "Special Purpose": 0,
+        "Commercial (other)": 14
+      },
+      {
+        "submarket": "Area 3810",
+        "Multifamily": 6,
+        "Office": 0,
+        "Retail": 0,
+        "Industrial": 0,
+        "Mixed Use": 0,
+        "Hotel": 0,
+        "Restaurant": 0,
+        "Flex": 0,
+        "Special Purpose": 0,
+        "Commercial (other)": 5
+      }
+    ],
+    "share": [
+      {
+        "submarket": "Area 3160",
+        "Multifamily": 25.0,
+        "Office": 8.3,
+        "Retail": 8.3,
+        "Industrial": 0.0,
+        "Mixed Use": 8.3,
+        "Hotel": 0.0,
+        "Restaurant": 0.0,
+        "Flex": 0.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 50.0
+      },
+      {
+        "submarket": "Area 3170",
+        "Multifamily": 16.7,
+        "Office": 0.0,
+        "Retail": 0.0,
+        "Industrial": 0.0,
+        "Mixed Use": 0.0,
+        "Hotel": 50.0,
+        "Restaurant": 0.0,
+        "Flex": 0.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 33.3
+      },
+      {
+        "submarket": "Area 3250",
+        "Multifamily": 0.0,
+        "Office": 20.0,
+        "Retail": 0.0,
+        "Industrial": 0.0,
+        "Mixed Use": 10.0,
+        "Hotel": 30.0,
+        "Restaurant": 0.0,
+        "Flex": 0.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 40.0
+      },
+      {
+        "submarket": "Area 3260",
+        "Multifamily": 29.2,
+        "Office": 8.3,
+        "Retail": 4.2,
+        "Industrial": 0.0,
+        "Mixed Use": 0.0,
+        "Hotel": 0.0,
+        "Restaurant": 0.0,
+        "Flex": 0.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 58.3
+      },
+      {
+        "submarket": "Area 3270",
+        "Multifamily": 46.2,
+        "Office": 0.0,
+        "Retail": 0.0,
+        "Industrial": 0.0,
+        "Mixed Use": 7.7,
+        "Hotel": 0.0,
+        "Restaurant": 0.0,
+        "Flex": 7.7,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 38.5
+      },
+      {
+        "submarket": "Area 3280",
+        "Multifamily": 57.1,
+        "Office": 0.0,
+        "Retail": 14.3,
+        "Industrial": 0.0,
+        "Mixed Use": 0.0,
+        "Hotel": 0.0,
+        "Restaurant": 0.0,
+        "Flex": 0.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 28.6
+      },
+      {
+        "submarket": "Area 3360",
+        "Multifamily": 0.0,
+        "Office": 25.0,
+        "Retail": 0.0,
+        "Industrial": 75.0,
+        "Mixed Use": 0.0,
+        "Hotel": 0.0,
+        "Restaurant": 0.0,
+        "Flex": 0.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 0.0
+      },
+      {
+        "submarket": "Area 3370",
+        "Multifamily": 32.5,
+        "Office": 2.5,
+        "Retail": 12.5,
+        "Industrial": 2.5,
+        "Mixed Use": 10.0,
+        "Hotel": 5.0,
+        "Restaurant": 0.0,
+        "Flex": 0.0,
+        "Special Purpose": 5.0,
+        "Commercial (other)": 30.0
+      },
+      {
+        "submarket": "Area 3380",
+        "Multifamily": 27.8,
+        "Office": 5.6,
+        "Retail": 5.6,
+        "Industrial": 0.0,
+        "Mixed Use": 5.6,
+        "Hotel": 0.0,
+        "Restaurant": 11.1,
+        "Flex": 5.6,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 38.9
+      },
+      {
+        "submarket": "Area 3390",
+        "Multifamily": 62.5,
+        "Office": 0.0,
+        "Retail": 12.5,
+        "Industrial": 0.0,
+        "Mixed Use": 12.5,
+        "Hotel": 0.0,
+        "Restaurant": 0.0,
+        "Flex": 0.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 12.5
+      },
+      {
+        "submarket": "Area 3400",
+        "Multifamily": 0.0,
+        "Office": 0.0,
+        "Retail": 0.0,
+        "Industrial": 25.0,
+        "Mixed Use": 0.0,
+        "Hotel": 0.0,
+        "Restaurant": 25.0,
+        "Flex": 0.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 50.0
+      },
+      {
+        "submarket": "Area 3450",
+        "Multifamily": 20.0,
+        "Office": 0.0,
+        "Retail": 0.0,
+        "Industrial": 20.0,
+        "Mixed Use": 40.0,
+        "Hotel": 0.0,
+        "Restaurant": 0.0,
+        "Flex": 0.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 20.0
+      },
+      {
+        "submarket": "Area 3460",
+        "Multifamily": 33.3,
+        "Office": 0.0,
+        "Retail": 0.0,
+        "Industrial": 28.6,
+        "Mixed Use": 23.8,
+        "Hotel": 0.0,
+        "Restaurant": 0.0,
+        "Flex": 0.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 14.3
+      },
+      {
+        "submarket": "Area 3470",
+        "Multifamily": 57.1,
+        "Office": 0.0,
+        "Retail": 4.8,
+        "Industrial": 23.8,
+        "Mixed Use": 4.8,
+        "Hotel": 0.0,
+        "Restaurant": 0.0,
+        "Flex": 0.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 9.5
+      },
+      {
+        "submarket": "Area 3480",
+        "Multifamily": 0.0,
+        "Office": 0.0,
+        "Retail": 33.3,
+        "Industrial": 16.7,
+        "Mixed Use": 16.7,
+        "Hotel": 0.0,
+        "Restaurant": 0.0,
+        "Flex": 0.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 33.3
+      },
+      {
+        "submarket": "Area 3490",
+        "Multifamily": 25.0,
+        "Office": 0.0,
+        "Retail": 0.0,
+        "Industrial": 25.0,
+        "Mixed Use": 0.0,
+        "Hotel": 0.0,
+        "Restaurant": 0.0,
+        "Flex": 0.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 50.0
+      },
+      {
+        "submarket": "Area 3500",
+        "Multifamily": 10.0,
+        "Office": 0.0,
+        "Retail": 0.0,
+        "Industrial": 30.0,
+        "Mixed Use": 10.0,
+        "Hotel": 0.0,
+        "Restaurant": 0.0,
+        "Flex": 0.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 50.0
+      },
+      {
+        "submarket": "Area 3560",
+        "Multifamily": 0.0,
+        "Office": 0.0,
+        "Retail": 10.0,
+        "Industrial": 0.0,
+        "Mixed Use": 60.0,
+        "Hotel": 0.0,
+        "Restaurant": 0.0,
+        "Flex": 10.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 20.0
+      },
+      {
+        "submarket": "Area 3580",
+        "Multifamily": 0.0,
+        "Office": 0.0,
+        "Retail": 0.0,
+        "Industrial": 100.0,
+        "Mixed Use": 0.0,
+        "Hotel": 0.0,
+        "Restaurant": 0.0,
+        "Flex": 0.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 0.0
+      },
+      {
+        "submarket": "Area 3600",
+        "Multifamily": 20.0,
+        "Office": 6.7,
+        "Retail": 40.0,
+        "Industrial": 0.0,
+        "Mixed Use": 6.7,
+        "Hotel": 6.7,
+        "Restaurant": 6.7,
+        "Flex": 0.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 13.3
+      },
+      {
+        "submarket": "Area 3700",
+        "Multifamily": 37.5,
+        "Office": 0.0,
+        "Retail": 25.0,
+        "Industrial": 0.0,
+        "Mixed Use": 12.5,
+        "Hotel": 0.0,
+        "Restaurant": 12.5,
+        "Flex": 0.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 12.5
+      },
+      {
+        "submarket": "Area 3800",
+        "Multifamily": 5.3,
+        "Office": 36.8,
+        "Retail": 0.0,
+        "Industrial": 2.6,
+        "Mixed Use": 15.8,
+        "Hotel": 0.0,
+        "Restaurant": 2.6,
+        "Flex": 0.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 36.8
+      },
+      {
+        "submarket": "Area 3810",
+        "Multifamily": 54.5,
+        "Office": 0.0,
+        "Retail": 0.0,
+        "Industrial": 0.0,
+        "Mixed Use": 0.0,
+        "Hotel": 0.0,
+        "Restaurant": 0.0,
+        "Flex": 0.0,
+        "Special Purpose": 0.0,
+        "Commercial (other)": 45.5
+      }
+    ]
+  },
+  "matrix_nbhd_price": {
+    "cols": [
+      "< $1M",
+      "$1\u20132.5M",
+      "$2.5\u20135M",
+      "$5\u201310M",
+      "$10M+"
+    ],
+    "counts": [
+      {
+        "submarket": "Area 3160",
+        "< $1M": 6,
+        "$1\u20132.5M": 2,
+        "$2.5\u20135M": 2,
+        "$5\u201310M": 2,
+        "$10M+": 0
+      },
+      {
+        "submarket": "Area 3170",
+        "< $1M": 0,
+        "$1\u20132.5M": 0,
+        "$2.5\u20135M": 1,
+        "$5\u201310M": 0,
+        "$10M+": 5
+      },
+      {
+        "submarket": "Area 3250",
+        "< $1M": 0,
+        "$1\u20132.5M": 1,
+        "$2.5\u20135M": 7,
+        "$5\u201310M": 1,
+        "$10M+": 1
+      },
+      {
+        "submarket": "Area 3260",
+        "< $1M": 9,
+        "$1\u20132.5M": 6,
+        "$2.5\u20135M": 7,
+        "$5\u201310M": 2,
+        "$10M+": 0
+      },
+      {
+        "submarket": "Area 3270",
+        "< $1M": 1,
+        "$1\u20132.5M": 6,
+        "$2.5\u20135M": 5,
+        "$5\u201310M": 1,
+        "$10M+": 0
+      },
+      {
+        "submarket": "Area 3280",
+        "< $1M": 1,
+        "$1\u20132.5M": 4,
+        "$2.5\u20135M": 2,
+        "$5\u201310M": 0,
+        "$10M+": 0
+      },
+      {
+        "submarket": "Area 3360",
+        "< $1M": 0,
+        "$1\u20132.5M": 3,
+        "$2.5\u20135M": 0,
+        "$5\u201310M": 1,
+        "$10M+": 0
+      },
+      {
+        "submarket": "Area 3370",
+        "< $1M": 6,
+        "$1\u20132.5M": 23,
+        "$2.5\u20135M": 9,
+        "$5\u201310M": 2,
+        "$10M+": 0
+      },
+      {
+        "submarket": "Area 3380",
+        "< $1M": 1,
+        "$1\u20132.5M": 10,
+        "$2.5\u20135M": 6,
+        "$5\u201310M": 1,
+        "$10M+": 0
+      },
+      {
+        "submarket": "Area 3390",
+        "< $1M": 2,
+        "$1\u20132.5M": 5,
+        "$2.5\u20135M": 1,
+        "$5\u201310M": 0,
+        "$10M+": 0
+      },
+      {
+        "submarket": "Area 3400",
+        "< $1M": 1,
+        "$1\u20132.5M": 2,
+        "$2.5\u20135M": 1,
+        "$5\u201310M": 0,
+        "$10M+": 0
+      },
+      {
+        "submarket": "Area 3450",
+        "< $1M": 3,
+        "$1\u20132.5M": 1,
+        "$2.5\u20135M": 1,
+        "$5\u201310M": 0,
+        "$10M+": 0
+      },
+      {
+        "submarket": "Area 3460",
+        "< $1M": 4,
+        "$1\u20132.5M": 14,
+        "$2.5\u20135M": 2,
+        "$5\u201310M": 1,
+        "$10M+": 0
+      },
+      {
+        "submarket": "Area 3470",
+        "< $1M": 3,
+        "$1\u20132.5M": 11,
+        "$2.5\u20135M": 6,
+        "$5\u201310M": 1,
+        "$10M+": 0
+      },
+      {
+        "submarket": "Area 3480",
+        "< $1M": 4,
+        "$1\u20132.5M": 0,
+        "$2.5\u20135M": 1,
+        "$5\u201310M": 1,
+        "$10M+": 0
+      },
+      {
+        "submarket": "Area 3490",
+        "< $1M": 1,
+        "$1\u20132.5M": 1,
+        "$2.5\u20135M": 1,
+        "$5\u201310M": 1,
+        "$10M+": 0
+      },
+      {
+        "submarket": "Area 3500",
+        "< $1M": 2,
+        "$1\u20132.5M": 4,
+        "$2.5\u20135M": 4,
+        "$5\u201310M": 0,
+        "$10M+": 0
+      },
+      {
+        "submarket": "Area 3560",
+        "< $1M": 3,
+        "$1\u20132.5M": 3,
+        "$2.5\u20135M": 1,
+        "$5\u201310M": 2,
+        "$10M+": 1
+      },
+      {
+        "submarket": "Area 3580",
+        "< $1M": 1,
+        "$1\u20132.5M": 2,
+        "$2.5\u20135M": 0,
+        "$5\u201310M": 1,
+        "$10M+": 0
+      },
+      {
+        "submarket": "Area 3600",
+        "< $1M": 3,
+        "$1\u20132.5M": 5,
+        "$2.5\u20135M": 3,
+        "$5\u201310M": 3,
+        "$10M+": 1
+      },
+      {
+        "submarket": "Area 3700",
+        "< $1M": 1,
+        "$1\u20132.5M": 4,
+        "$2.5\u20135M": 3,
+        "$5\u201310M": 0,
+        "$10M+": 0
+      },
+      {
+        "submarket": "Area 3800",
+        "< $1M": 16,
+        "$1\u20132.5M": 17,
+        "$2.5\u20135M": 3,
+        "$5\u201310M": 1,
+        "$10M+": 1
+      },
+      {
+        "submarket": "Area 3810",
+        "< $1M": 1,
+        "$1\u20132.5M": 4,
+        "$2.5\u20135M": 2,
+        "$5\u201310M": 4,
+        "$10M+": 0
+      }
+    ],
+    "share": [
+      {
+        "submarket": "Area 3160",
+        "< $1M": 50.0,
+        "$1\u20132.5M": 16.7,
+        "$2.5\u20135M": 16.7,
+        "$5\u201310M": 16.7,
+        "$10M+": 0.0
+      },
+      {
+        "submarket": "Area 3170",
+        "< $1M": 0.0,
+        "$1\u20132.5M": 0.0,
+        "$2.5\u20135M": 16.7,
+        "$5\u201310M": 0.0,
+        "$10M+": 83.3
+      },
+      {
+        "submarket": "Area 3250",
+        "< $1M": 0.0,
+        "$1\u20132.5M": 10.0,
+        "$2.5\u20135M": 70.0,
+        "$5\u201310M": 10.0,
+        "$10M+": 10.0
+      },
+      {
+        "submarket": "Area 3260",
+        "< $1M": 37.5,
+        "$1\u20132.5M": 25.0,
+        "$2.5\u20135M": 29.2,
+        "$5\u201310M": 8.3,
+        "$10M+": 0.0
+      },
+      {
+        "submarket": "Area 3270",
+        "< $1M": 7.7,
+        "$1\u20132.5M": 46.2,
+        "$2.5\u20135M": 38.5,
+        "$5\u201310M": 7.7,
+        "$10M+": 0.0
+      },
+      {
+        "submarket": "Area 3280",
+        "< $1M": 14.3,
+        "$1\u20132.5M": 57.1,
+        "$2.5\u20135M": 28.6,
+        "$5\u201310M": 0.0,
+        "$10M+": 0.0
+      },
+      {
+        "submarket": "Area 3360",
+        "< $1M": 0.0,
+        "$1\u20132.5M": 75.0,
+        "$2.5\u20135M": 0.0,
+        "$5\u201310M": 25.0,
+        "$10M+": 0.0
+      },
+      {
+        "submarket": "Area 3370",
+        "< $1M": 15.0,
+        "$1\u20132.5M": 57.5,
+        "$2.5\u20135M": 22.5,
+        "$5\u201310M": 5.0,
+        "$10M+": 0.0
+      },
+      {
+        "submarket": "Area 3380",
+        "< $1M": 5.6,
+        "$1\u20132.5M": 55.6,
+        "$2.5\u20135M": 33.3,
+        "$5\u201310M": 5.6,
+        "$10M+": 0.0
+      },
+      {
+        "submarket": "Area 3390",
+        "< $1M": 25.0,
+        "$1\u20132.5M": 62.5,
+        "$2.5\u20135M": 12.5,
+        "$5\u201310M": 0.0,
+        "$10M+": 0.0
+      },
+      {
+        "submarket": "Area 3400",
+        "< $1M": 25.0,
+        "$1\u20132.5M": 50.0,
+        "$2.5\u20135M": 25.0,
+        "$5\u201310M": 0.0,
+        "$10M+": 0.0
+      },
+      {
+        "submarket": "Area 3450",
+        "< $1M": 60.0,
+        "$1\u20132.5M": 20.0,
+        "$2.5\u20135M": 20.0,
+        "$5\u201310M": 0.0,
+        "$10M+": 0.0
+      },
+      {
+        "submarket": "Area 3460",
+        "< $1M": 19.0,
+        "$1\u20132.5M": 66.7,
+        "$2.5\u20135M": 9.5,
+        "$5\u201310M": 4.8,
+        "$10M+": 0.0
+      },
+      {
+        "submarket": "Area 3470",
+        "< $1M": 14.3,
+        "$1\u20132.5M": 52.4,
+        "$2.5\u20135M": 28.6,
+        "$5\u201310M": 4.8,
+        "$10M+": 0.0
+      },
+      {
+        "submarket": "Area 3480",
+        "< $1M": 66.7,
+        "$1\u20132.5M": 0.0,
+        "$2.5\u20135M": 16.7,
+        "$5\u201310M": 16.7,
+        "$10M+": 0.0
+      },
+      {
+        "submarket": "Area 3490",
+        "< $1M": 25.0,
+        "$1\u20132.5M": 25.0,
+        "$2.5\u20135M": 25.0,
+        "$5\u201310M": 25.0,
+        "$10M+": 0.0
+      },
+      {
+        "submarket": "Area 3500",
+        "< $1M": 20.0,
+        "$1\u20132.5M": 40.0,
+        "$2.5\u20135M": 40.0,
+        "$5\u201310M": 0.0,
+        "$10M+": 0.0
+      },
+      {
+        "submarket": "Area 3560",
+        "< $1M": 30.0,
+        "$1\u20132.5M": 30.0,
+        "$2.5\u20135M": 10.0,
+        "$5\u201310M": 20.0,
+        "$10M+": 10.0
+      },
+      {
+        "submarket": "Area 3580",
+        "< $1M": 25.0,
+        "$1\u20132.5M": 50.0,
+        "$2.5\u20135M": 0.0,
+        "$5\u201310M": 25.0,
+        "$10M+": 0.0
+      },
+      {
+        "submarket": "Area 3600",
+        "< $1M": 20.0,
+        "$1\u20132.5M": 33.3,
+        "$2.5\u20135M": 20.0,
+        "$5\u201310M": 20.0,
+        "$10M+": 6.7
+      },
+      {
+        "submarket": "Area 3700",
+        "< $1M": 12.5,
+        "$1\u20132.5M": 50.0,
+        "$2.5\u20135M": 37.5,
+        "$5\u201310M": 0.0,
+        "$10M+": 0.0
+      },
+      {
+        "submarket": "Area 3800",
+        "< $1M": 42.1,
+        "$1\u20132.5M": 44.7,
+        "$2.5\u20135M": 7.9,
+        "$5\u201310M": 2.6,
+        "$10M+": 2.6
+      },
+      {
+        "submarket": "Area 3810",
+        "< $1M": 9.1,
+        "$1\u20132.5M": 36.4,
+        "$2.5\u20135M": 18.2,
+        "$5\u201310M": 36.4,
+        "$10M+": 0.0
+      }
+    ]
+  },
+  "matrix_nbhd_size": {
+    "cols": [
+      "< 2.5K",
+      "2.5\u20135K",
+      "5\u201310K",
+      "10\u201325K",
+      "25\u201350K",
+      "50K+"
+    ],
+    "counts": [
+      {
+        "submarket": "Area 3160",
+        "< 2.5K": 5,
+        "2.5\u20135K": 1,
+        "5\u201310K": 2,
+        "10\u201325K": 3,
+        "25\u201350K": 1,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3170",
+        "< 2.5K": 1,
+        "2.5\u20135K": 0,
+        "5\u201310K": 0,
+        "10\u201325K": 4,
+        "25\u201350K": 1,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3250",
+        "< 2.5K": 0,
+        "2.5\u20135K": 0,
+        "5\u201310K": 2,
+        "10\u201325K": 5,
+        "25\u201350K": 3,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3260",
+        "< 2.5K": 4,
+        "2.5\u20135K": 1,
+        "5\u201310K": 4,
+        "10\u201325K": 14,
+        "25\u201350K": 1,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3270",
+        "< 2.5K": 2,
+        "2.5\u20135K": 0,
+        "5\u201310K": 6,
+        "10\u201325K": 5,
+        "25\u201350K": 0,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3280",
+        "< 2.5K": 1,
+        "2.5\u20135K": 0,
+        "5\u201310K": 4,
+        "10\u201325K": 2,
+        "25\u201350K": 0,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3360",
+        "< 2.5K": 0,
+        "2.5\u20135K": 0,
+        "5\u201310K": 0,
+        "10\u201325K": 3,
+        "25\u201350K": 1,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3370",
+        "< 2.5K": 1,
+        "2.5\u20135K": 1,
+        "5\u201310K": 21,
+        "10\u201325K": 13,
+        "25\u201350K": 4,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3380",
+        "< 2.5K": 1,
+        "2.5\u20135K": 2,
+        "5\u201310K": 7,
+        "10\u201325K": 7,
+        "25\u201350K": 1,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3390",
+        "< 2.5K": 0,
+        "2.5\u20135K": 0,
+        "5\u201310K": 3,
+        "10\u201325K": 4,
+        "25\u201350K": 1,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3400",
+        "< 2.5K": 0,
+        "2.5\u20135K": 0,
+        "5\u201310K": 2,
+        "10\u201325K": 1,
+        "25\u201350K": 1,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3450",
+        "< 2.5K": 0,
+        "2.5\u20135K": 1,
+        "5\u201310K": 2,
+        "10\u201325K": 2,
+        "25\u201350K": 0,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3460",
+        "< 2.5K": 0,
+        "2.5\u20135K": 3,
+        "5\u201310K": 5,
+        "10\u201325K": 12,
+        "25\u201350K": 1,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3470",
+        "< 2.5K": 1,
+        "2.5\u20135K": 0,
+        "5\u201310K": 7,
+        "10\u201325K": 12,
+        "25\u201350K": 1,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3480",
+        "< 2.5K": 2,
+        "2.5\u20135K": 0,
+        "5\u201310K": 2,
+        "10\u201325K": 2,
+        "25\u201350K": 0,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3490",
+        "< 2.5K": 1,
+        "2.5\u20135K": 0,
+        "5\u201310K": 2,
+        "10\u201325K": 0,
+        "25\u201350K": 1,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3500",
+        "< 2.5K": 0,
+        "2.5\u20135K": 1,
+        "5\u201310K": 5,
+        "10\u201325K": 3,
+        "25\u201350K": 1,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3560",
+        "< 2.5K": 1,
+        "2.5\u20135K": 0,
+        "5\u201310K": 3,
+        "10\u201325K": 3,
+        "25\u201350K": 3,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3580",
+        "< 2.5K": 0,
+        "2.5\u20135K": 0,
+        "5\u201310K": 0,
+        "10\u201325K": 4,
+        "25\u201350K": 0,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3600",
+        "< 2.5K": 3,
+        "2.5\u20135K": 1,
+        "5\u201310K": 3,
+        "10\u201325K": 6,
+        "25\u201350K": 2,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3700",
+        "< 2.5K": 0,
+        "2.5\u20135K": 1,
+        "5\u201310K": 4,
+        "10\u201325K": 3,
+        "25\u201350K": 0,
+        "50K+": 0
+      },
+      {
+        "submarket": "Area 3800",
+        "< 2.5K": 6,
+        "2.5\u20135K": 5,
+        "5\u201310K": 18,
+        "10\u201325K": 7,
+        "25\u201350K": 1,
+        "50K+": 1
+      },
+      {
+        "submarket": "Area 3810",
+        "< 2.5K": 0,
+        "2.5\u20135K": 0,
+        "5\u201310K": 5,
+        "10\u201325K": 5,
+        "25\u201350K": 1,
+        "50K+": 0
+      }
+    ],
+    "share": [
+      {
+        "submarket": "Area 3160",
+        "< 2.5K": 41.7,
+        "2.5\u20135K": 8.3,
+        "5\u201310K": 16.7,
+        "10\u201325K": 25.0,
+        "25\u201350K": 8.3,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3170",
+        "< 2.5K": 16.7,
+        "2.5\u20135K": 0.0,
+        "5\u201310K": 0.0,
+        "10\u201325K": 66.7,
+        "25\u201350K": 16.7,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3250",
+        "< 2.5K": 0.0,
+        "2.5\u20135K": 0.0,
+        "5\u201310K": 20.0,
+        "10\u201325K": 50.0,
+        "25\u201350K": 30.0,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3260",
+        "< 2.5K": 16.7,
+        "2.5\u20135K": 4.2,
+        "5\u201310K": 16.7,
+        "10\u201325K": 58.3,
+        "25\u201350K": 4.2,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3270",
+        "< 2.5K": 15.4,
+        "2.5\u20135K": 0.0,
+        "5\u201310K": 46.2,
+        "10\u201325K": 38.5,
+        "25\u201350K": 0.0,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3280",
+        "< 2.5K": 14.3,
+        "2.5\u20135K": 0.0,
+        "5\u201310K": 57.1,
+        "10\u201325K": 28.6,
+        "25\u201350K": 0.0,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3360",
+        "< 2.5K": 0.0,
+        "2.5\u20135K": 0.0,
+        "5\u201310K": 0.0,
+        "10\u201325K": 75.0,
+        "25\u201350K": 25.0,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3370",
+        "< 2.5K": 2.5,
+        "2.5\u20135K": 2.5,
+        "5\u201310K": 52.5,
+        "10\u201325K": 32.5,
+        "25\u201350K": 10.0,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3380",
+        "< 2.5K": 5.6,
+        "2.5\u20135K": 11.1,
+        "5\u201310K": 38.9,
+        "10\u201325K": 38.9,
+        "25\u201350K": 5.6,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3390",
+        "< 2.5K": 0.0,
+        "2.5\u20135K": 0.0,
+        "5\u201310K": 37.5,
+        "10\u201325K": 50.0,
+        "25\u201350K": 12.5,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3400",
+        "< 2.5K": 0.0,
+        "2.5\u20135K": 0.0,
+        "5\u201310K": 50.0,
+        "10\u201325K": 25.0,
+        "25\u201350K": 25.0,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3450",
+        "< 2.5K": 0.0,
+        "2.5\u20135K": 20.0,
+        "5\u201310K": 40.0,
+        "10\u201325K": 40.0,
+        "25\u201350K": 0.0,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3460",
+        "< 2.5K": 0.0,
+        "2.5\u20135K": 14.3,
+        "5\u201310K": 23.8,
+        "10\u201325K": 57.1,
+        "25\u201350K": 4.8,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3470",
+        "< 2.5K": 4.8,
+        "2.5\u20135K": 0.0,
+        "5\u201310K": 33.3,
+        "10\u201325K": 57.1,
+        "25\u201350K": 4.8,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3480",
+        "< 2.5K": 33.3,
+        "2.5\u20135K": 0.0,
+        "5\u201310K": 33.3,
+        "10\u201325K": 33.3,
+        "25\u201350K": 0.0,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3490",
+        "< 2.5K": 25.0,
+        "2.5\u20135K": 0.0,
+        "5\u201310K": 50.0,
+        "10\u201325K": 0.0,
+        "25\u201350K": 25.0,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3500",
+        "< 2.5K": 0.0,
+        "2.5\u20135K": 10.0,
+        "5\u201310K": 50.0,
+        "10\u201325K": 30.0,
+        "25\u201350K": 10.0,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3560",
+        "< 2.5K": 10.0,
+        "2.5\u20135K": 0.0,
+        "5\u201310K": 30.0,
+        "10\u201325K": 30.0,
+        "25\u201350K": 30.0,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3580",
+        "< 2.5K": 0.0,
+        "2.5\u20135K": 0.0,
+        "5\u201310K": 0.0,
+        "10\u201325K": 100.0,
+        "25\u201350K": 0.0,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3600",
+        "< 2.5K": 20.0,
+        "2.5\u20135K": 6.7,
+        "5\u201310K": 20.0,
+        "10\u201325K": 40.0,
+        "25\u201350K": 13.3,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3700",
+        "< 2.5K": 0.0,
+        "2.5\u20135K": 12.5,
+        "5\u201310K": 50.0,
+        "10\u201325K": 37.5,
+        "25\u201350K": 0.0,
+        "50K+": 0.0
+      },
+      {
+        "submarket": "Area 3800",
+        "< 2.5K": 15.8,
+        "2.5\u20135K": 13.2,
+        "5\u201310K": 47.4,
+        "10\u201325K": 18.4,
+        "25\u201350K": 2.6,
+        "50K+": 2.6
+      },
+      {
+        "submarket": "Area 3810",
+        "< 2.5K": 0.0,
+        "2.5\u20135K": 0.0,
+        "5\u201310K": 45.5,
+        "10\u201325K": 45.5,
+        "25\u201350K": 9.1,
+        "50K+": 0.0
+      }
+    ]
+  },
+  "market": {
+    "by_type": [
+      {
+        "asset_type": "Commercial (other)",
+        "n": 96,
+        "median_ppsf": 194.0,
+        "share_pct": 29.0
+      },
+      {
+        "asset_type": "Multifamily",
+        "n": 90,
+        "median_ppsf": 178.0,
+        "share_pct": 27.2
+      },
+      {
+        "asset_type": "Industrial",
+        "n": 34,
+        "median_ppsf": 150.0,
+        "share_pct": 10.3
+      },
+      {
+        "asset_type": "Mixed Use",
+        "n": 33,
+        "median_ppsf": 136.0,
+        "share_pct": 10.0
+      },
+      {
+        "asset_type": "Office",
+        "n": 29,
+        "median_ppsf": 197.0,
+        "share_pct": 8.8
+      },
+      {
+        "asset_type": "Retail",
+        "n": 25,
+        "median_ppsf": 247.0,
+        "share_pct": 7.6
+      },
+      {
+        "asset_type": "Hotel",
+        "n": 11,
+        "median_ppsf": 347.0,
+        "share_pct": 3.3
+      },
+      {
+        "asset_type": "Restaurant",
+        "n": 8,
+        "median_ppsf": 364.0,
+        "share_pct": 2.4
+      },
+      {
+        "asset_type": "Flex",
+        "n": 3,
+        "median_ppsf": 345.0,
+        "share_pct": 0.9
+      },
+      {
+        "asset_type": "Special Purpose",
+        "n": 2,
+        "median_ppsf": 319.0,
+        "share_pct": 0.6
+      }
+    ],
+    "by_price": [
+      {
+        "price_band": "$1\u20132.5M",
+        "n": 143,
+        "median_ppsf": 169.0,
+        "share_pct": 43.2
+      },
+      {
+        "price_band": "< $1M",
+        "n": 76,
+        "median_ppsf": 127.0,
+        "share_pct": 23.0
+      },
+      {
+        "price_band": "$2.5\u20135M",
+        "n": 72,
+        "median_ppsf": 214.0,
+        "share_pct": 21.8
+      },
+      {
+        "price_band": "$5\u201310M",
+        "n": 28,
+        "median_ppsf": 324.0,
+        "share_pct": 8.5
+      },
+      {
+        "price_band": "$10M+",
+        "n": 12,
+        "median_ppsf": 729.0,
+        "share_pct": 3.6
+      }
+    ],
+    "by_size": [
+      {
+        "size_band": "10\u201325K",
+        "n": 135,
+        "median_ppsf": 171.0,
+        "share_pct": 40.8
+      },
+      {
+        "size_band": "5\u201310K",
+        "n": 119,
+        "median_ppsf": 170.0,
+        "share_pct": 36.0
+      },
+      {
+        "size_band": "< 2.5K",
+        "n": 31,
+        "median_ppsf": 424.0,
+        "share_pct": 9.4
+      },
+      {
+        "size_band": "25\u201350K",
+        "n": 28,
+        "median_ppsf": 180.0,
+        "share_pct": 8.5
+      },
+      {
+        "size_band": "2.5\u20135K",
+        "n": 17,
+        "median_ppsf": 379.0,
+        "share_pct": 5.1
+      },
+      {
+        "size_band": "50K+",
+        "n": 1,
+        "median_ppsf": 132.0,
+        "share_pct": 0.3
+      }
+    ]
+  },
+  "mf_unit_mix": [
+    {
+      "unit_band": "< 10",
+      "n": 29,
+      "median_ppsf": 164.0,
+      "share_pct": 96.7
+    },
+    {
+      "unit_band": "25\u201350",
+      "n": 1,
+      "median_ppsf": 180.0,
+      "share_pct": 3.3
+    }
+  ]
+}

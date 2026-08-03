@@ -67,6 +67,7 @@ def main():
         "failure_type": pros_b.get("failure_rate_type", []),
         "market_rents": cre.get("market_rents", {}),
         "market": MKT.to_dict(),
+        "segmentation": _load("segmentation_bundle.json") or {},
         "area_corridors": {s["submarket"]: s.get("corridors") for s in cre["submarkets"]},
         "seed": SC.seed(),
         "asset_order": CRE.ASSET_ORDER,
@@ -220,7 +221,7 @@ _BODY = r"""<div class="themeToggle" onclick="toggleTheme()">◐ theme</div>
  <a href="#answers">Answers</a><a href="#assumptions">Assumptions</a><a href="#financing">Financing</a>
  <a href="#overview">$/SqFt map</a><a href="#inventory">Reprice inventory</a>
  <a href="#underwrite">Underwrite</a><a href="#solver">Goal-seek</a>
- <a href="#market">Market context</a><a href="#absorption">Absorption</a><a href="#prospects">Prospects</a>
+ <a href="#market">Market context</a><a href="#segments">Segmentation</a><a href="#absorption">Absorption</a><a href="#prospects">Prospects</a>
 </nav>
 
 <div class="card" id="answers">
@@ -335,6 +336,24 @@ _BODY = r"""<div class="themeToggle" onclick="toggleTheme()">◐ theme</div>
  <details class="guide" style="margin-top:12px;border:none;box-shadow:none;padding:0;background:none">
   <summary>Sources (researched 2024–2025)</summary><div id="mktSrc" class="small" style="margin-top:8px"></div>
  </details>
+</div>
+
+<div class="card" id="segments">
+ <h2>Segmentation &amp; market share <span class="muted small">— by asset type, price bracket &amp; size class</span></h2>
+ <div class="sub" style="margin:6px 0 12px">Size class = SqFt bracket (the export has no floor-plan / unit-mix data). Shares are within the stated parent; bars scale to the largest slice.</div>
+ <div class="grid" style="grid-template-columns:repeat(3,1fr);gap:20px">
+  <div><h3>Market by asset type</h3><div id="segType"></div></div>
+  <div><h3>Market by price bracket</h3><div id="segPrice"></div></div>
+  <div><h3>Market by size class (SqFt)</h3><div id="segSize"></div></div>
+ </div>
+ <div class="flex" style="margin:16px 0 6px"><label class="small">What is this neighborhood made of? <select id="segNb"></select></label></div>
+ <div class="grid" style="grid-template-columns:repeat(3,1fr);gap:20px">
+  <div><h3>Type mix</h3><div id="segNbType"></div></div>
+  <div><h3>Price mix</h3><div id="segNbPrice"></div></div>
+  <div><h3>Size mix</h3><div id="segNbSize"></div></div>
+ </div>
+ <h3 style="margin-top:16px">Asset type × price bracket — % share (within type)</h3>
+ <div class="scroll"><table id="segMatrix"></table></div>
 </div>
 
 <div class="card" id="absorption">
@@ -634,6 +653,37 @@ function renderMarket(){
  $("#mktSrc").innerHTML=mk.sources.map(s=>`<div style="margin-bottom:3px">• <a href="${s.url}" target="_blank" rel="noopener">${s.name}</a></div>`).join("");
 }
 
+// ---------- segmentation ----------
+function segBars(el,records,keyField){
+ if(!records||!records.length){$(el).innerHTML="<div class='muted small'>—</div>";return;}
+ const mx=Math.max(...records.map(r=>r.share_pct||0))||1;
+ $(el).innerHTML=records.map(r=>{const k=r[keyField]!=null?r[keyField]:r[Object.keys(r)[0]];
+  const mp=r.median_ppsf?` · ${usd(r.median_ppsf)}/SF`:"";
+  return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;font-size:12.5px">`+
+   `<div style="width:118px;flex:0 0 auto">${k}</div>`+
+   `<div style="flex:1;background:var(--bg);border-radius:5px;overflow:hidden"><div style="width:${100*(r.share_pct||0)/mx}%;background:var(--accent);height:14px;border-radius:5px"></div></div>`+
+   `<div class="tnum" style="width:96px;text-align:right;flex:0 0 auto">${(r.share_pct||0).toFixed(1)}%${mp}</div></div>`;}).join("");
+}
+function renderSeg(){
+ const sg=D.segmentation;if(!sg||!sg.market){$("#segments").style.display="none";return;}
+ segBars("#segType",sg.market.by_type,"asset_type");
+ segBars("#segPrice",sg.market.by_price,"price_band");
+ segBars("#segSize",sg.market.by_size,"size_band");
+ const nbs=[...new Set((sg.nbhd_by_type||[]).map(r=>r.submarket))].sort();
+ $("#segNb").innerHTML=nbs.map(n=>`<option>${n}</option>`).join("");
+ const drawNb=()=>{const nb=$("#segNb").value;
+  segBars("#segNbType",(sg.nbhd_by_type||[]).filter(r=>r.submarket===nb).sort((a,b)=>b.share_pct-a.share_pct),"asset_type");
+  segBars("#segNbPrice",(sg.nbhd_by_price||[]).filter(r=>r.submarket===nb),"price_band");
+  segBars("#segNbSize",(sg.nbhd_by_size||[]).filter(r=>r.submarket===nb),"size_band");};
+ $("#segNb").onchange=drawNb;if(nbs.length)drawNb();
+ // type × price share matrix
+ const m=sg.matrix_type_price;if(m){const cols=m.cols;
+  let h="<thead><tr><th>Asset type</th>"+cols.map(c=>`<th>${c}</th>`).join("")+"</tr></thead><tbody>";
+  m.share.forEach(rec=>{const rk=Object.keys(rec).find(k=>!cols.includes(k));
+   h+=`<tr><td>${rec[rk]}</td>`+cols.map(c=>{const v=rec[c];return `<td class="tnum">${v==null?"—":v.toFixed(0)+"%"}</td>`;}).join("")+"</tr>";});
+  $("#segMatrix").innerHTML=h+"</tbody>";}
+}
+
 // ---------- static tables ----------
 function renderAbs(){$("#absNote").textContent=window.__absnote||"Months of supply = live ÷ (closed per month); closed assumed to span a fixed window (no dates in export).";
  let h="<thead><tr><th>Submarket</th><th>Mo supply</th><th>Live</th><th>Sold</th><th>Failed</th></tr></thead><tbody>";
@@ -677,7 +727,7 @@ function header(){const m=D.meta,c=D.coverage;
 function toggleTheme(){const r=document.documentElement,cur=r.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light");r.setAttribute("data-theme",cur==="dark"?"light":"dark");}
 
 ASM=JSON.parse(JSON.stringify(D.assumptions.by_type));
-header();initFin();renderAsm();renderSub();renderTypeFilter();fillSubFilter();renderAbs();renderFail();renderMarket();initUnderwrite();recompute();
+header();initFin();renderAsm();renderSub();renderTypeFilter();fillSubFilter();renderAbs();renderFail();renderMarket();renderSeg();initUnderwrite();recompute();
 </script>"""
 
 

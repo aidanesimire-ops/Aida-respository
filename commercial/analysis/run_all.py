@@ -20,6 +20,7 @@ STEPS = [
     ("Prospecting", "prospects.py"),
     ("Comps drill-down", "comps.py"),
     ("Leasing layer + data-derived caps", "cre_leases.py"),
+    ("Segmentation (price/size/neighborhood + market share)", "cre_segments.py"),
     ("Master ranked submarkets", "master_summary.py"),
     ("Cold-call sheets", "callsheets.py"),
     ("Charts", "build_charts.py"),
