@@ -20,6 +20,9 @@ and the **workbook** (`outputs/Fort_Lauderdale_PPSF_Normalized.xlsx`, open the *
 | **Land / lots / docks** | Dashboard → **Land & docks** · Excel → **Land Comps** | Land $/sqft by neighborhood, geography, zoning, dock & commercial-land comps |
 | **Small multifamily** | Dashboard → **Multifamily** · Excel → **Multifamily** | $/unit and $/sqft comps by neighborhood and building size |
 | **Backing up your pricing claims** | Dashboard KPI **Model accuracy** · Excel → **Model Accuracy** | The out-of-sample accuracy figure — your "data-backed pricing" proof |
+| **Understanding any term** | Excel → **Glossary** | Every metric in plain English — read it once |
+| **Analyzing a specific property** | Excel → **Property Analyzer** | Type in neighborhood/size/beds/waterfront → estimated value, should-be, rent/yield, replacement cost |
+| **Running this on a new dataset/market** | [`docs/RECREATE.md`](docs/RECREATE.md) + [`templates/`](templates/) | Drop in new CSVs, run one command, everything rebuilds |
 
 ---
 

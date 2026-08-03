@@ -1547,6 +1547,178 @@ def leasing_sheet(wb, lz):
     ws.hide_gridlines(2)
 
 
+GLOSSARY = [
+    ("HOW TO READ THIS BOOK", ""),
+    ("Index tab", "Your front door — every tab is colour-coded by section and linked. Click a row to jump; click '◄ Index' on any tab to come back."),
+    ("Neighborhood Pricing", "The one-row-per-neighborhood summary: what's asking vs what it should be, and every key metric. Start here."),
+    ("Property Analyzer", "Type in ANY property (neighborhood, size, beds, waterfront) and it estimates value, should-be, rent/yield and replacement cost. Reuse it for every property you look at."),
+    ("Segmentation", "The market mix inside a neighborhood — split by type, price bracket, floor plan and size, with market-share %."),
+    ("THE CORE PRICING TERMS", ""),
+    ("$/sqft (PPSF)", "Price per square foot = price ÷ living square footage. The great equalizer for comparing homes of different sizes."),
+    ("Normalized $/sqft", "The model's $/sqft for ONE standardized home (dry lot, no pool, median size/age) placed in each neighborhood — so you compare location to location, apples to apples."),
+    ("Should-be $/sqft", "What recent comparable SALES support, per foot. The defensible 'correct' price, from closed deals not wishful asking prices."),
+    ("Now asking $/sqft", "What live inventory is currently listed at, per foot."),
+    ("Adjustment / Reduce / Raise", "Should-be minus asking, as a %. 'Reduce' = asking is above comps; 'Raise' = below. The direction and size of the repricing."),
+    ("Waterfront vs Dry $/sqft", "Median $/sqft of waterfront homes vs non-waterfront (dry-lot) homes in that neighborhood. Waterfront is the biggest single price driver."),
+    ("New vs existing premium", "How much more, per foot, new construction (≤6 yrs) sells for vs comparable older homes."),
+    ("VALUE, COST & YIELD", ""),
+    ("Build-vs-buy / Replacement cost", "What it would cost to REPRODUCE a home: land + construction × (1 + soft costs). 'Below replacement' = cheaper to buy finished than to build."),
+    ("Land $/sqft", "Value per square foot of LOT. 'comp' = from real land sales; 'implied' = inferred by the model."),
+    ("Soft costs", "Design, permits, GC fee and financing added on top of hard construction cost (~25%)."),
+    ("Est. rent / Rent $/sqft/yr", "Estimated monthly rent, and annual rent per square foot. (Sourced estimates until you add MLS lease data.)"),
+    ("Gross yield", "Annual rent ÷ price, as a %. High = rental cash-flows; low (<4%) = a sale/appreciation market (typical of luxury)."),
+    ("GRM", "Gross rent multiplier = price ÷ annual rent. Lower = better cash flow."),
+    ("MARKET CONDITIONS", ""),
+    ("Absorption / Months of supply", "Active listings ÷ sales-per-month. <6 = seller's market, 6–12 balanced, 12–24 buyer's, >24 deep buyer's."),
+    ("Days on market (DOM)", "How long homes take to sell. Lower = hotter."),
+    ("Discount to list", "How far under the asking price homes actually close, on average."),
+    ("Failure rate", "Share of listing attempts that came off market without selling (expired/withdrawn/cancelled) — pricing risk."),
+    ("Appreciation since 2020", "How much values are up since 2020 (from the Redfin time layer)."),
+    ("Price band / bracket", "A price range ($1–2M, $2–3M, …) used to group homes. Different bands behave differently even in the same neighborhood."),
+    ("Market share %", "What portion of a neighborhood's sales fall in a given slice (a type, a bracket, a floor plan)."),
+    ("CONFIDENCE & HONESTY", ""),
+    ("Model accuracy (±%)", "Out-of-sample: on a home it never saw, the model prices within this % (median). ~16% overall, tighter mid-market, looser at $10M+."),
+    ("Comp-backed / Insufficient comps", "A number backed by enough comparable sales, vs. a segment too thin to trust (flagged, not faked)."),
+    ("Sourced estimate", "An external market figure (construction/rent costs) — directional, editable in config, not from your MLS data."),
+]
+
+
+def glossary_sheet(wb):
+    ws = wb.add_worksheet("Glossary")
+    title = wb.add_format({"bold": True, "font_size": 16, "font_color": DARK})
+    sub = wb.add_format({"font_size": 10, "italic": True, "font_color": "#898781", "text_wrap": True})
+    sec = wb.add_format({"bold": True, "font_size": 11, "font_color": "white", "bg_color": DARK,
+                         "border": 1, "border_color": "white", "valign": "vcenter"})
+    term = wb.add_format({"bold": True, "border": 1, "border_color": "#e1e0d9", "valign": "top"})
+    defn = wb.add_format({"border": 1, "border_color": "#e1e0d9", "valign": "top",
+                          "text_wrap": True, "font_size": 10})
+    ws.set_column(0, 0, 30)
+    ws.set_column(1, 1, 100)
+    ws.write(0, 0, "Glossary — every term in plain English", title)
+    ws.write(1, 0, "What each number means and how to read it. New to the workbook? Skim this once, "
+             "then start on Neighborhood Pricing and Property Analyzer.", sub)
+    r = 3
+    for t, d in GLOSSARY:
+        if d == "":   # section header
+            ws.merge_range(r, 0, r, 1, t, sec)
+            ws.set_row(r, 20)
+        else:
+            ws.write(r, 0, t, term)
+            ws.write(r, 1, d, defn)
+            ws.set_row(r, 14 * max(2, len(d) // 95 + 1))
+        r += 1
+    ws.freeze_panes(3, 0)
+    ws.hide_gridlines(2)
+
+
+def property_analyzer_sheet(wb, mb, ctx, lease):
+    """Type in any property; get its estimated value, should-be, rent/yield and
+    replacement cost via lookups against the neighborhood data. Reusable for any deal."""
+    ws = wb.add_worksheet("Property Analyzer")
+    title = wb.add_format({"bold": True, "font_size": 16, "font_color": DARK})
+    sub = wb.add_format({"font_size": 10, "italic": True, "font_color": "#898781", "text_wrap": True})
+    grp = wb.add_format({"bold": True, "font_color": "white", "bg_color": BLUE, "border": 1, "border_color": "white"})
+    lab = wb.add_format({"border": 1, "border_color": "#e1e0d9"})
+    olab = wb.add_format({"border": 1, "border_color": "#e1e0d9", "bold": True})
+    hi = {"bg_color": "#fff7d6", "border": 1, "border_color": "#d9cf9a", "bold": True}
+    inp = wb.add_format({**hi, "align": "left"})
+    inp_n = wb.add_format({**hi, "num_format": "#,##0", "align": "right"})
+    inp_u = wb.add_format({**hi, "num_format": "$#,##0", "align": "right"})
+    outf = wb.add_format({"border": 1, "border_color": "#e1e0d9", "num_format": "$#,##0", "align": "right"})
+    outf_hi = wb.add_format({"border": 1, "border_color": "#e1e0d9", "num_format": "$#,##0",
+                             "align": "right", "bold": True, "font_color": DARK, "bg_color": "#eef5fc"})
+    outf_p = wb.add_format({"border": 1, "border_color": "#e1e0d9", "num_format": '+0.0"%";-0.0"%"', "align": "right", "bold": True})
+    outf_y = wb.add_format({"border": 1, "border_color": "#e1e0d9", "num_format": '0.0"%"', "align": "right", "bold": True})
+
+    cxb = {c["neighborhood"]: c for c in (ctx or {}).get("neighborhoods", [])}
+    lzb = {l["neighborhood"]: l for l in (lease or {}).get("neighborhoods", [])}
+    rows = []
+    for n in mb["neighborhoods"]:
+        nb = n["neighborhood"]
+        typ = n.get("should_be_ppsf") or n.get("norm_ppsf")
+        if not typ:
+            continue
+        rows.append((nb, typ, n.get("waterfront_ppsf") or "", n.get("should_be_ppsf") or typ,
+                     (cxb.get(nb, {}) or {}).get("replacement_psf_typ") or "",
+                     (lzb.get(nb, {}) or {}).get("rent_psf_yr") or ""))
+
+    ws.set_column(0, 0, 26); ws.set_column(1, 1, 15); ws.set_column(2, 2, 3)
+    ws.set_column(3, 3, 28); ws.set_column(4, 4, 16)
+    ws.write(0, 0, "Property Analyzer — plug in a property, get its numbers", title)
+    ws.write(1, 0, "Fill the yellow cells. Estimates use your neighborhood comps: value = typical (or "
+             "waterfront) $/sqft × size. Directional screening, not an appraisal — confirm with comps.", sub)
+    ws.set_row(1, 30)
+
+    RB = 22                      # header written at 0-indexed row RB (Excel row RB+1)
+    n = len(rows)
+    first, last = RB + 2, RB + 1 + n     # Excel row numbers of the DATA rows (below header)
+    NA = f"$A${first}:$A${last}"
+    def col(letter):
+        return f"${letter}${first}:${letter}${last}"
+    MATCH = f"MATCH($B$4,{NA},0)"
+    def idx(letter):
+        return f"INDEX({col(letter)},{MATCH})"
+
+    # ---- inputs ----
+    ws.merge_range(3, 0, 3, 1, "YOUR PROPERTY", grp)
+    ws.write(4, 0, "Neighborhood", lab)
+    ws.write(4, 1, rows[0][0] if rows else "", inp)     # B5? -> actually row index 4 = Excel row 5
+    ws.write(5, 0, "Property type", lab); ws.write(5, 1, "Single Family", inp)
+    ws.write(6, 0, "Square footage", lab); ws.write_number(6, 1, 3000, inp_n)
+    ws.write(7, 0, "Beds", lab); ws.write_number(7, 1, 4, inp_n)
+    ws.write(8, 0, "Waterfront? (Y/N)", lab); ws.write(8, 1, "N", inp)
+    ws.write(9, 0, "Asking price (optional)", lab); ws.write_number(9, 1, 0, inp_u)
+    # the neighborhood input is B5 (row index 4). MATCH against the reference table.
+    MATCH = f"MATCH($B$5,{NA},0)"
+    def idx(letter):  # noqa: F811
+        return f"IFERROR(INDEX({col(letter)},{MATCH}),0)"
+
+    # ---- outputs ----
+    ws.merge_range(3, 3, 3, 4, "ESTIMATE (from neighborhood comps)", grp)
+    ws.write(4, 3, "Typical $/sqft here", olab); ws.write_formula(4, 4, f"={idx('B')}", outf)
+    ws.write(5, 3, "Waterfront $/sqft", olab); ws.write_formula(5, 4, f"={idx('C')}", outf)
+    ws.write(6, 3, "Estimated $/sqft (this home)", olab)
+    ws.write_formula(6, 4, f'=IF(AND(UPPER($B$9)="Y",{idx("C")}>0),{idx("C")},{idx("B")})', outf_hi)
+    ws.write(7, 3, "Estimated value", olab); ws.write_formula(7, 4, "=$E$7*$B$7", outf_hi)  # $/sqft E7 * sqft B7
+    ws.write(8, 3, "Value range (low −16%)", olab); ws.write_formula(8, 4, "=$E$8*0.84", outf)
+    ws.write(9, 3, "Value range (high +16%)", olab); ws.write_formula(9, 4, "=$E$8*1.16", outf)
+    ws.write(10, 3, "Should-be $/sqft (comps)", olab); ws.write_formula(10, 4, f"={idx('D')}", outf)
+    ws.write(11, 3, "Your asking vs estimate", olab)
+    ws.write_formula(11, 4, '=IF($B$10>0,$B$10/$E$8-1,\"— enter asking\")', outf_p)
+    ws.write(12, 3, "Est. rent / month", olab)
+    ws.write_formula(12, 4, f'=IF({idx("F")}>0,{idx("F")}*$B$7/12,"— add lease data")', outf)
+    ws.write(13, 3, "Gross yield", olab)
+    ws.write_formula(13, 4, f'=IF(AND({idx("F")}>0,$E$7>0),{idx("F")}/$E$7,"—")', outf_y)
+    ws.write(14, 3, "Replacement cost $/sqft", olab); ws.write_formula(14, 4, f"={idx('E')}", outf)
+    ws.write(15, 3, "vs replacement (build-vs-buy)", olab)
+    ws.write_formula(15, 4, f'=IF({idx("E")}>0,$E$7/{idx("E")}-1,"—")', outf_p)
+    ws.write(17, 0, "Tip: pick the Neighborhood from the dropdown; toggle Waterfront Y/N. "
+             "'Estimated value' updates instantly. Model accuracy is ~±16% (band shown).",
+             sub)
+
+    # ---- reference table (the neighborhood data the formulas read) ----
+    ws.write(RB - 1, 0, "Reference data (per neighborhood) — the formulas read this; leave it be", sub)
+    hdr = wb.add_format({"bold": True, "font_color": "white", "bg_color": "#8a94a0", "border": 1, "border_color": "white"})
+    for c, h in enumerate(["Neighborhood", "Typical $/sqft", "Waterfront $/sqft", "Should-be $/sqft",
+                           "Replace $/sqft", "Rent $/sqft/yr"]):
+        ws.write(RB, c, h, hdr)
+    refnum = wb.add_format({"num_format": "$#,##0", "border": 1, "border_color": "#eef1f4"})
+    reftxt = wb.add_format({"border": 1, "border_color": "#eef1f4"})
+    for i, (nb, typ, wf, sb, rep, rent) in enumerate(rows):
+        rr = RB + 1 + i
+        ws.write(rr, 0, nb, reftxt)
+        ws.write_number(rr, 1, float(typ), refnum)
+        ws.write_number(rr, 2, float(wf) if wf != "" else 0, refnum)     # 0 = no waterfront comps
+        ws.write_number(rr, 3, float(sb), refnum)
+        ws.write_number(rr, 4, float(rep) if rep != "" else 0, refnum)   # 0 = no replacement figure
+        ws.write_number(rr, 5, float(rent) if rent != "" else 0, refnum)
+    # dropdown for the neighborhood input cell (B5)
+    ws.data_validation(4, 1, 4, 1, {"validate": "list", "source": f"={NA}"})
+    ws.data_validation(8, 1, 8, 1, {"validate": "list", "source": ["Y", "N"]})
+    ws.freeze_panes(3, 0)
+    ws.hide_gridlines(2)
+
+
 def _dominant_market(nb, absorb):
     rows = [r for r in (absorb or {}).get("by_band_neighborhood", []) if r["neighborhood"] == nb]
     c = {}
@@ -1638,6 +1810,8 @@ def neighborhood_systems_sheet(wb, mb, ctx, lease, absorb, mm):
 
 SHEET_INDEX = {
     "Key Conclusions": ("Start here", "Every headline finding with the evidence behind it and a confidence rating."),
+    "Glossary": ("Start here", "Every term in plain English — what each number means and how to read it. Skim once before diving in."),
+    "Property Analyzer": ("Start here", "Plug in ANY property (neighborhood, size, beds, waterfront) and get its estimated value, should-be, rent/yield and replacement cost. Reuse for every deal."),
     "Neighborhood Pricing": ("Start here", "THE consolidated view — one row per neighborhood: renormalized pricing (asking vs should-be, adjusted up/down), value, waterfront, build-vs-buy, yield & market. Same as the PDF reports."),
     "Leasing & Yield": ("Marketing & proof", "Estimated rent, rent $/sqft, gross yield, GRM and a sell-vs-hold verdict per neighborhood — the owner's rent-or-sell conversation."),
     "Marketing Kit": ("Marketing & proof", "Copy-ready market snapshots, shareable stats, CMA lines, buyer opportunities and prospect outreach — per neighborhood. Paste into emails, CMAs, postcards, posts."),
@@ -1774,8 +1948,10 @@ def main():
         try:
             neighborhood_systems_sheet(wb, _mb, _jload_opt("context_bundle.json"),
                                        _jload_opt("lease_bundle.json"), _jload_opt("absorption_bundle.json"), mm)
-        except Exception as e:  # noqa: BLE001 -- consolidated tab is best-effort
-            print("  (neighborhood systems tab skipped:", e, ")")
+            glossary_sheet(wb)
+            property_analyzer_sheet(wb, _mb, _jload_opt("context_bundle.json"), _jload_opt("lease_bundle.json"))
+        except Exception as e:  # noqa: BLE001 -- best-effort helper tabs
+            print("  (helper tab skipped:", e, ")")
         scenario_sheet(wb, _mb)
     except FileNotFoundError:
         pass

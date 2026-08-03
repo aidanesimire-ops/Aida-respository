@@ -1,0 +1,4 @@
+Area,Address,Subdivision/Complex,List Price,Sale Price,#Beds,#FBaths,#HBaths,SqFt LA,Type of Property,Year Built,#Garage Spaces,Pool YN,Waterfront Property (Y/N),Lot SqFt
+3280,123 Example Isle Dr,Rio Vista,"$2,495,000","$2,350,000",4,3,1,3100,Single Family,2016,2,Yes,Yes,7500
+3260,456 Sample Ave,Coral Ridge,"$1,150,000","$1,100,000",3,2,0,1950,Single Family,1998,2,No,No,8200
+3160,789 Demo Blvd #402,Galt Ocean Mile,"$725,000","$700,000",2,2,0,1350,Condo,2005,1,No,Yes,0
