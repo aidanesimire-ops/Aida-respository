@@ -1827,6 +1827,7 @@ def neighborhood_systems_sheet(wb, mb, ctx, lease, absorb, mm):
 
 
 SHEET_INDEX = {
+    "Dashboard": ("Start here", "The visual home — headline KPIs, a job→tab navigator, the interactive tools, and the key charts. Start here; this is the whole system on one page."),
     "Key Conclusions": ("Start here", "Every headline finding with the evidence behind it and a confidence rating."),
     "Data": ("Start here", "What data is loaded, how many rows, and how fresh (the 'data as of' date). Update by dropping new CSVs and re-running refresh.py."),
     "Glossary": ("Start here", "Every term in plain English — what each number means and how to read it. Skim once before diving in."),
@@ -1870,6 +1871,220 @@ SHEET_INDEX = {
 }
 
 
+# chart file -> (pixel w, h) so we can scale to the grid width without needing PIL
+_CHART_DIMS = {
+    "chart_market_index.png": (1650, 825),
+    "chart_premiums.png": (1275, 780),
+    "chart_geography.png": (1500, 780),
+    "chart_mls_ranking.png": (1575, 1275),
+    "chart_vs_city.png": (1575, 1350),
+    "chart_timeline.png": (1650, 1350),
+}
+
+
+def dashboard_sheet(wb, ws, mm, red, bt=None, man=None):
+    """The visual home page — KPI cards, a job->tab navigator, the interactive tools, and
+    the key charts embedded as images. This makes the workbook self-contained: the whole
+    system (all data + the dashboard + the index) lives inside this one file, no separate
+    HTML needed. Uses the SAME headline numbers as the browser dashboard."""
+    m = mm["meta"]
+    pr = m["premiums"]
+    n_nb = len(mm["neighborhoods"])
+    city = m["city_norm_ppsf"]
+    wf = pr["waterfront_pct"]
+    idx = (red or {}).get("market_index") or []
+    appr = (idx[-1]["index_100"] / idx[0]["index_100"]) if idx else None
+    span0 = ((red or {}).get("meta") or {}).get("generated_span", ["", ""])[0][:4]
+    ov = (bt or {}).get("overall", {})
+    mdape, n_scored = ov.get("mdape"), ov.get("n")
+    asof = (man or {}).get("data_as_of")
+    n_src = (man or {}).get("n_sources")
+    n_rows = (man or {}).get("total_rows")
+
+    ws.hide_gridlines(2)
+    ws.set_column("A:A", 2)
+    ws.set_column("B:K", 12.2)
+    ws.set_column("L:L", 2)
+    ws.set_zoom(110)
+
+    WHITE = "#ffffff"
+    title = wb.add_format({"bold": True, "font_size": 26, "font_color": DARK, "font_name": "Georgia"})
+    tagline = wb.add_format({"font_size": 12, "font_color": "#4a5c6b", "valign": "vcenter"})
+    stamp = wb.add_format({"font_size": 10, "italic": True, "font_color": "#8a94a0", "valign": "vcenter"})
+    ws.merge_range(0, 1, 0, 10, "Fort Lauderdale — Deal Dashboard", title)
+    ws.set_row(0, 34)
+    ws.merge_range(1, 1, 1, 10,
+                   "Everything in one file: the data, this dashboard, and the Index. "
+                   "Comp-based market intelligence — screening signals, not appraisals.", tagline)
+    ws.set_row(1, 20)
+    stamp_txt = (f"Data as of {asof}   ·   {n_src} sources   ·   {n_rows:,} rows"
+                 if asof else "Data manifest not found — run analysis/refresh.py")
+    ws.merge_range(2, 1, 2, 10, stamp_txt, stamp)
+
+    # ---------- KPI cards ----------
+    accents = ["#0d3b66", "#0f8a3c", "#2a78d6", "#7b4fa3", "#e0623a"]
+
+    def _card(bg, **kw):
+        base = {"bg_color": bg, "border": 1, "border_color": "#dfe4ea", "valign": "vcenter"}
+        base.update(kw)
+        return wb.add_format(base)
+
+    kpis = [
+        ("NEIGHBORHOODS PRICED", f"{n_nb}", "sample-gated"),
+        ("CITYWIDE NORMALIZED", f"${city:,.0f}/ft²", "standardized dry-lot home"),
+        ("WATERFRONT PREMIUM", f"+{wf:.0f}%", "per-home, all else equal"),
+        ("APPRECIATION", f"{appr:.1f}×" if appr else "—", f"since {span0}" if span0 else ""),
+        ("MODEL ACCURACY", f"±{mdape:.0f}%" if mdape else "—",
+         f"median, {n_scored:,} sales" if n_scored else "out-of-sample"),
+    ]
+    kr = 4
+    for i, (lab, val, note) in enumerate(kpis):
+        c = 1 + i * 2
+        acc = accents[i]
+        ws.merge_range(kr, c, kr, c + 1, lab,
+                       _card("#f4f6f9", font_size=9, bold=True, font_color="#7a8896", align="center"))
+        ws.merge_range(kr + 1, c, kr + 1, c + 1, val,
+                       _card("#f4f6f9", font_size=19, bold=True, font_color=acc,
+                             align="center", font_name="Georgia"))
+        ws.merge_range(kr + 2, c, kr + 2, c + 1, note,
+                       _card("#f4f6f9", font_size=9, italic=True, font_color="#8a94a0",
+                             align="center", text_wrap=True))
+    ws.set_row(kr, 18)
+    ws.set_row(kr + 1, 32)
+    ws.set_row(kr + 2, 24)
+
+    existing = {w.name for w in wb.worksheets()}
+
+    # ---------- interactive tools call-out ----------
+    tr = kr + 4
+    tool_h = wb.add_format({"bold": True, "font_size": 12, "font_color": "white", "bg_color": DARK,
+                            "valign": "vcenter", "indent": 1})
+    ws.merge_range(tr, 1, tr, 10, "Interactive tools — type in the yellow cells, everything recomputes",
+                   tool_h)
+    ws.set_row(tr, 22)
+    tools = [
+        ("Property Analyzer", "Plug in a property → value, should-be, rent/yield, replacement"),
+        ("Scenario", "Financing what-if → price, $/sqft, DOM, cash-to-close, returns"),
+        ("Neighborhood Pricing", "Every neighborhood in one row: asking vs should-be, up/down"),
+    ]
+    tlink = wb.add_format({"font_color": BLUE, "bold": True, "underline": 1, "font_size": 11.5,
+                           "border": 1, "border_color": "#dfe4ea", "bg_color": "#eef4fb",
+                           "valign": "vcenter", "indent": 1})
+    tdesc = wb.add_format({"font_size": 10, "font_color": "#4a5c6b", "border": 1,
+                           "border_color": "#dfe4ea", "valign": "vcenter", "text_wrap": True, "indent": 1})
+    tr += 1
+    for name, desc in tools:
+        if name not in existing:
+            continue
+        ws.merge_range(tr, 1, tr, 3, "", tlink)
+        ws.write_url(tr, 1, f"internal:'{name}'!A1", tlink, name)
+        ws.merge_range(tr, 4, tr, 10, desc, tdesc)
+        ws.set_row(tr, 24)
+        tr += 1
+
+    # ---------- job -> tab navigator ----------
+    nr = tr + 1
+    nav_h = wb.add_format({"bold": True, "font_size": 12, "font_color": "white", "bg_color": BLUE,
+                           "valign": "vcenter", "indent": 1})
+    ws.merge_range(nr, 1, nr, 10, "Jump to what you need — click a tab", nav_h)
+    ws.set_row(nr, 22)
+    nr += 1
+    colh = wb.add_format({"bold": True, "font_size": 9.5, "font_color": "white", "bg_color": "#5a6b7b",
+                          "border": 1, "border_color": "white", "valign": "vcenter", "indent": 1})
+    ws.merge_range(nr, 1, nr, 3, "FOR THIS JOB", colh)
+    ws.merge_range(nr, 4, nr, 5, "OPEN", colh)
+    ws.merge_range(nr, 6, nr, 10, "WHAT YOU GET", colh)
+    nr += 1
+    nav = [
+        ("Talk to an owner about their area", "Marketing Kit",
+         "Copy-ready snapshot, talking points, shareable stat, CMA line"),
+        ("See a neighborhood as one system", "Neighborhood Pricing",
+         "One row per neighborhood: renormalized pricing, value, yield, market"),
+        ("Analyze a specific property", "Property Analyzer",
+         "Value, should-be $/sqft, rent & yield, replacement — for any home"),
+        ("Price a listing (CMA)", "High-Ticket Underwriting",
+         "Every live listing ≥$1M repriced to a suggested list, with confidence"),
+        ("Find a deal for a buyer", "Underpriced + Why",
+         "Live listings below comp value, ranked by $ opportunity, with reasons"),
+        ("Prospect for listings", "Seller Prospects",
+         "Owners who tried and couldn't + overpriced actives, each with a pitch"),
+        ("Judge if a market is hot or cold", "Absorption",
+         "Months of supply by price band and neighborhood"),
+        ("Rent vs sell / yield", "Leasing & Yield",
+         "Rent $/sqft, gross yield, GRM and a sell-vs-hold verdict per area"),
+        ("Costs & build-vs-buy", "Costs & Realities",
+         "Construction, seawall, dock & insurance benchmarks + replacement cost"),
+        ("Model a financing scenario", "Scenario",
+         "Rate/down/appreciation what-ifs → price, DOM, cash-to-close, returns"),
+        ("The mix inside a neighborhood", "Segmentation",
+         "Type × price bracket × beds × sqft, with market-share % and $/sqft"),
+        ("Prove the pricing", "Model Accuracy",
+         "Out-of-sample backtest — your data-backed pricing proof"),
+        ("Every headline finding", "Key Conclusions",
+         "Each conclusion with the evidence and a confidence rating"),
+        ("What data / how fresh", "Data",
+         "Sources, rows, and the 'data as of' date. Update: drop CSVs, re-run"),
+        ("Every term explained", "Glossary",
+         "Plain-English definition of every metric — skim once"),
+        ("Full table of contents", "Index",
+         "The complete linked index of all tabs, colour-coded by section"),
+    ]
+    jobf = wb.add_format({"font_size": 10.5, "font_color": "#2c3e50", "border": 1,
+                          "border_color": "#e1e0d9", "valign": "vcenter", "indent": 1})
+    lnkf = wb.add_format({"font_color": BLUE, "bold": True, "underline": 1, "font_size": 10.5,
+                          "border": 1, "border_color": "#e1e0d9", "valign": "vcenter", "indent": 1})
+    dscf = wb.add_format({"font_size": 9.5, "font_color": "#5a6b7b", "border": 1,
+                          "border_color": "#e1e0d9", "valign": "vcenter", "text_wrap": True, "indent": 1})
+    for job, tab, desc in nav:
+        if tab not in existing:
+            continue
+        ws.merge_range(nr, 1, nr, 3, job, jobf)
+        ws.merge_range(nr, 4, nr, 5, "", lnkf)
+        ws.write_url(nr, 4, f"internal:'{tab}'!A1", lnkf, tab)
+        ws.merge_range(nr, 6, nr, 10, desc, dscf)
+        ws.set_row(nr, 26)
+        nr += 1
+
+    # ---------- charts embedded (the market at a glance) ----------
+    gr = nr + 1
+    glance_h = wb.add_format({"bold": True, "font_size": 12, "font_color": "white",
+                              "bg_color": "#2a9d8f", "valign": "vcenter", "indent": 1})
+    ws.merge_range(gr, 1, gr, 10, "The market at a glance", glance_h)
+    ws.set_row(gr, 22)
+    cap = wb.add_format({"bold": True, "font_size": 11, "font_color": DARK, "valign": "vcenter"})
+    gr += 2
+    charts = [
+        ("chart_market_index.png", "Citywide quality-adjusted $/sqft index (2012 → today)"),
+        ("chart_premiums.png", "What drives price — per-home premiums, all else equal"),
+        ("chart_geography.png", "Value by lot geography — waterfront tiers vs inland"),
+        ("chart_mls_ranking.png", "Normalized $/sqft — every neighborhood ranked"),
+    ]
+    target_px = 900.0
+    for fname, caption in charts:
+        path = os.path.join(OUT, fname)
+        if not os.path.exists(path):
+            continue
+        w, h = _CHART_DIMS.get(fname, (1575, 900))
+        sc = target_px / w
+        ws.merge_range(gr, 1, gr, 10, caption, cap)
+        ws.set_row(gr, 20)
+        try:
+            ws.insert_image(gr + 1, 1, path,
+                            {"x_scale": sc, "y_scale": sc, "object_position": 1})
+        except Exception:  # noqa: BLE001 -- never let a missing/locked image break the build
+            pass
+        gr += int(h * sc / 20) + 4
+
+    footer = wb.add_format({"font_size": 9.5, "italic": True, "font_color": "#8a94a0", "text_wrap": True})
+    ws.merge_range(gr + 1, 1, gr + 1, 10,
+                   "This one workbook holds the entire system — every data tab, this dashboard, "
+                   "and the Index. To update, drop new MLS/lease exports into data/raw/… and re-run "
+                   "analysis/refresh.py; every number, chart and the 'data as of' stamp move with "
+                   "your latest data.", footer)
+    ws.set_row(gr + 1, 40)
+    ws.set_tab_color("#0d3b66")
+
+
 def index_sheet(wb, ws):
     """Populate the Index / table-of-contents sheet with links to every tab. Called
     LAST, once all worksheets exist, so it can enumerate them in order."""
@@ -1885,10 +2100,10 @@ def index_sheet(wb, ws):
     ws.set_column(1, 1, 92)
     _man = _jload_opt("manifest.json") or {}
     asof = f"   ·   Data as of {_man.get('data_as_of')}" if _man.get("data_as_of") else ""
-    ws.write(0, 0, "Fort Lauderdale — Deal Dashboard", title)
-    ws.write(1, 0, "One workbook, everything inside. Click any row below to jump to that tab — tabs "
-             "are colour-coded by the coloured section headings here. New to it? Start with "
-             "Neighborhood Pricing (every neighborhood in one row) and Key Conclusions." + asof, sub)
+    ws.write(0, 0, "Fort Lauderdale — Index (full contents)", title)
+    ws.write(1, 0, "One workbook, everything inside. The visual home is the Dashboard tab (KPIs, "
+             "navigator and charts); this Index is the complete linked table of contents. Click any "
+             "row below to jump to that tab — tabs are colour-coded by the section headings here." + asof, sub)
     ws.set_row(1, 44)
     names = [w.name for w in wb.worksheets() if w.name != "Index"]
     order = ["Start here", "Marketing & proof", "Deal tools", "High-ticket (≥$1M)",
@@ -1952,7 +2167,9 @@ def main():
     wb = wb_writer.book
     fmts = make_formats(wb)
 
-    # Index is created FIRST so it lands as tab #1, but populated LAST (needs all sheets).
+    # Dashboard (tab #1) and Index (tab #2) are created FIRST so they lead the workbook,
+    # but populated LAST — both need every other sheet to exist first.
+    ws_dash = wb.add_worksheet("Dashboard")
     ws_index = wb.add_worksheet("Index")
 
     try:
@@ -2097,7 +2314,10 @@ def main():
 
     market_index_sheet(wb, fmts, b["market_index"])
 
+    dashboard_sheet(wb, ws_dash, mm, b, _jload_opt("backtest_bundle.json"),
+                    _jload_opt("manifest.json"))
     index_sheet(wb, ws_index)
+    ws_dash.activate()     # open the workbook on the visual Dashboard
     wb_writer.close()
     print("Wrote", XLSX)
 

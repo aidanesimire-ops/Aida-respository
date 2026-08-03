@@ -29,9 +29,10 @@ in from the same style of MLS exports:
 
 **Start here:** [`USER_GUIDE.md`](USER_GUIDE.md) (which tool for which job + how to use it
 in your marketing) · [`REPORT.md`](REPORT.md) (written analysis) ·
-[`outputs/Fort_Lauderdale_PPSF_Normalized.xlsx`](outputs/) (workbook — open the **Index**
-tab for a linked table of contents) · [`dashboard/index.html`](dashboard/index.html)
-(open in a browser — the **Start here** card maps each job to a section).
+[`outputs/Fort_Lauderdale_PPSF_Normalized.xlsx`](outputs/) (workbook — opens on a visual
+**Dashboard** tab with KPIs, a job→tab navigator and the key charts, plus a full **Index**
+and every data tab in the one self-contained file) · [`dashboard/index.html`](dashboard/index.html)
+(the same dashboard as a live web page if you prefer the browser).
 
 **For marketing:** the dashboard's **Marketing** card and the Excel **Marketing Kit** tab
 generate copy-ready content per neighborhood — a market-snapshot paragraph, a shareable

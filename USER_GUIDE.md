@@ -1,8 +1,12 @@
 # How to use your deal dashboard
 
 Plain-English guide: what to open for each job, and how to put it to work in your
-marketing. Two main tools — the **dashboard** (`dashboard/index.html`, open in a browser)
-and the **workbook** (`outputs/Fort_Lauderdale_PPSF_Normalized.xlsx`, open the **Index** tab).
+marketing. Everything lives in the **workbook**
+(`outputs/Fort_Lauderdale_PPSF_Normalized.xlsx`) — it opens on a visual **Dashboard** tab
+(headline KPIs, a job→tab navigator, the interactive tools, and the key charts), with a
+full **Index** right behind it and every data tab in the one file. The browser
+**dashboard** (`dashboard/index.html`) is the same thing as a live web page if you prefer
+it — but you no longer need it; the Excel file is self-contained.
 
 ---
 
@@ -10,6 +14,7 @@ and the **workbook** (`outputs/Fort_Lauderdale_PPSF_Normalized.xlsx`, open the *
 
 | When you're… | Open this | What you get |
 |---|---|---|
+| **Getting oriented** (the home page) | Excel → **Dashboard** tab (opens here) · or `dashboard/index.html` | Headline KPIs, a job→tab navigator, the interactive tools, and the key charts — the whole system on one page |
 | **Talking to a homeowner** about their area | Dashboard → **Marketing** card · Excel → **Marketing Kit** | A copy-ready market snapshot, talking points, and a shareable stat for that neighborhood |
 | **Pricing a listing** (CMA) | Dashboard → **Repricing** · Excel → **High-Ticket Underwriting** / **Repriced Inventory** | What comps support vs. current asking, a suggested list, and the CMA line to say it |
 | **Prospecting for listings** | Dashboard → **Seller prospects** · Excel → **Seller Prospects** / **Overpriced Actives** · Marketing → **prospect lines** | Owners who tried and couldn't + overpriced actives, each with a ready outreach line |
