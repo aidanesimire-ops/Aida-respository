@@ -202,12 +202,28 @@ def seed_fixture(cfg: MarketConfig) -> None:
     log.info("fixture: %d parcels, %d water features", len(parcels), len(water))
 
 
+SYNTHETIC_WARNING = (
+    "*** SYNTHETIC DEMO DATA — DO NOT CALL ANYONE FROM THIS WORKBOOK. ***",
+    "Every parcel, owner name, mailing address and entity filing in this file was invented by "
+    "waterfront_engine/demo.py to exercise the pipeline offline. None of it describes a real "
+    "property or a real person. Real output comes from `cli run` against the live county layer.",
+)
+
+
 def run_demo(out_dir: Path, market_path: str = "configs/fort_lauderdale.py") -> dict[str, Path]:
-    """Full offline run against the real market config, on fixture data."""
+    """Full offline run against the real market config, on fixture data.
+
+    The market name is stamped SYNTHETIC DEMO so it carries into the workbook
+    filenames and title rows — a fixture call sheet that reads as genuine is
+    worse than no call sheet.
+    """
+    import dataclasses
+
     from . import pipeline
 
     out_dir = Path(out_dir)
     cfg = load_config(market_path, data_dir=out_dir / "data", out_dir=out_dir)
+    cfg.market = dataclasses.replace(cfg.market, name=f"{cfg.market.name} SYNTHETIC DEMO")
 
     seed_fixture(cfg)
     pipeline.classify_stage(cfg)
@@ -215,8 +231,8 @@ def run_demo(out_dir: Path, market_path: str = "configs/fort_lauderdale.py") -> 
     pipeline.flags_stage(cfg)
     pipeline.enrich_stage(cfg, DemoResolver())
 
-    paths = {"ownership_workbook": pipeline.build_ownership_workbook(cfg)}
-    condo = pipeline.build_condo_workbook(cfg)
+    paths = {"ownership_workbook": pipeline.build_ownership_workbook(cfg, SYNTHETIC_WARNING)}
+    condo = pipeline.build_condo_workbook(cfg, SYNTHETIC_WARNING)
     if condo:
         paths["condo_workbook"] = condo
     paths["run_report"] = pipeline.write_run_report(cfg, {"data_source": "SYNTHETIC FIXTURE"})

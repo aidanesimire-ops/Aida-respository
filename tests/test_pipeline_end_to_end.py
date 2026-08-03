@@ -20,7 +20,10 @@ def test_demo_writes_both_workbooks_and_report(demo):
     assert paths["ownership_workbook"].exists()
     assert paths["condo_workbook"].exists()
     report = json.loads(paths["run_report"].read_text())
-    assert report["market"] == "Fort Lauderdale, FL"
+    assert report["market"] == "Fort Lauderdale, FL SYNTHETIC DEMO"
+    # the fixture must never be mistakable for real ownership data
+    assert "SYNTHETIC" in paths["ownership_workbook"].name.upper()
+    assert "SYNTHETIC" in paths["condo_workbook"].name.upper()
     assert report["classes"]["Single-Family"]["waterfront"] > 0
     assert report["beach_condo_units"] == 8
 

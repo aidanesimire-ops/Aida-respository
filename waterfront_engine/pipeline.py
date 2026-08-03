@@ -289,7 +289,7 @@ def ownership_sheets(cfg: MarketConfig) -> dict[str, pd.DataFrame]:
     return sheets
 
 
-def build_ownership_workbook(cfg: MarketConfig) -> Path:
+def build_ownership_workbook(cfg: MarketConfig, extra_notes: tuple[str, ...] = ()) -> Path:
     sheets = ownership_sheets(cfg)
     groups = {asset.label: asset.group for asset in cfg.asset_classes.values()}
     summary = summary_table(sheets, groups)
@@ -313,11 +313,11 @@ def build_ownership_workbook(cfg: MarketConfig) -> Path:
         path,
         ordered,
         title=f"{cfg.market.name} — Waterfront Ownership",
-        notes=PROVENANCE_NOTES,
+        notes=tuple(extra_notes) + PROVENANCE_NOTES,
     )
 
 
-def build_condo_workbook(cfg: MarketConfig) -> Path | None:
+def build_condo_workbook(cfg: MarketConfig, extra_notes: tuple[str, ...] = ()) -> Path | None:
     if not cfg.condo:
         return None
     frame = _load(cfg.stage_path(CONDO_FILE))
@@ -329,7 +329,7 @@ def build_condo_workbook(cfg: MarketConfig) -> Path | None:
         path,
         {"By Building": index, "Units": units},
         title=f"{cfg.market.name} — {cfg.condo.label}",
-        notes=PROVENANCE_NOTES,
+        notes=tuple(extra_notes) + PROVENANCE_NOTES,
     )
 
 
