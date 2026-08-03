@@ -10,10 +10,12 @@ Offered at **$1,600,000 / 8.25% cap** on $132,000 NOI.
 
 | File | What it is |
 |---|---|
-| **`451 White Horse Pike - Acquisition Analysis.pdf`** | **25-page report in four parts, framed as a growth opportunity with controlled downside. Page 1 orients the reader — what the property is, the tenant, the lease, the ask — plus a contents map. §2–3 make the argument; §4–14 carry the detail. Every section starts on its own page and opens with a plain-English summary.** |
+| **`451 White Horse Pike - IC Deck.pdf`** | **THE presentation document. 6 landscape slides for an executive audience: recommendation → why it is mispriced → what we make → the upside → the risk → the decision.** |
+| `451 White Horse Pike - Full Analysis (backup).pdf` | 25-page diligence backup, not the presentation document. Four parts. Page 1 orients the reader — what the property is, the tenant, the lease, the ask — plus a contents map. §2–3 make the argument; §4–14 carry the detail. Every section starts on its own page and opens with a plain-English summary.** |
 | **`451 White Horse Pike - Acquisition Model.xlsx`** | **Live 14-tab model, 898 formulas. Change the offer price on `Assumptions` and everything recalculates.** |
 | `analysis.html` | The same analysis as a web page |
-| `analysis-print.html` | Print source for the PDF |
+| `deck.html` | Source for the IC deck |
+| `analysis-print.html` | Source for the full analysis backup |
 | `build_model.py` | Rebuilds the workbook from scratch |
 | `growth_case_model.py` | Ten-year floor / base / growth cases, levered and unlevered, plus the value bridge |
 | `financing_stress_tests.py` | Loan sizing, DSCR, levered IRR, tenant-health coverage, sensitivity and exit analysis |

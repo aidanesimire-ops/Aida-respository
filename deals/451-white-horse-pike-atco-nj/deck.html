@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<title>451 White Horse Pike — Investment Committee</title>
+<style>
+  @page { size: Letter landscape; margin: 0; }
+  :root{
+    --ink:#12161A; --ink2:#4B5257; --ink3:#8A9198;
+    --teal:#00674E; --teal2:#0E8B6B; --gold:#B07A18; --red:#9B3A33;
+    --line:#DDE0DC; --band:#F2F3EF; --wash:#E6F0EC; --goldw:#FAF2E4;
+    --dark:#101815;
+    --serif:"Iowan Old Style","Charter",Georgia,"Times New Roman",serif;
+    --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+    --mono:"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:var(--sans);color:var(--ink);
+       -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .slide{width:11in;height:8.5in;padding:0.55in 0.65in 0.62in;page-break-after:always;
+         position:relative;overflow:hidden;display:flex;flex-direction:column;}
+  .slide:last-child{page-break-after:auto;}
+
+  .eyebrow{font-family:var(--mono);font-size:8pt;letter-spacing:.2em;text-transform:uppercase;
+           color:var(--teal);font-weight:700;}
+  h1{font-family:var(--serif);font-size:31pt;line-height:1.05;font-weight:600;
+     letter-spacing:-.02em;margin:6pt 0 0;}
+  h2{font-family:var(--serif);font-size:28pt;line-height:1.08;font-weight:600;
+     letter-spacing:-.018em;margin:5pt 0 0;}
+  .rule{height:1.6pt;background:var(--ink);margin:13pt 0 18pt;}
+  .kicker{font-size:12pt;color:var(--ink2);margin:7pt 0 0;line-height:1.4;max-width:8.4in;}
+  .foot{position:absolute;bottom:.28in;left:.62in;right:.62in;font-family:var(--mono);
+        font-size:6.6pt;letter-spacing:.09em;text-transform:uppercase;color:var(--ink3);
+        border-top:.5pt solid var(--line);padding-top:4pt;}
+  .foot span{float:right;}
+
+  /* big number row */
+  .bignums{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1.4pt solid var(--ink);
+           border-bottom:1.4pt solid var(--ink);margin:0 0 16pt;}
+  .bn{padding:16pt 16pt 15pt;border-right:.5pt solid var(--line);}
+  .bn:last-child{border-right:none;}
+  .bn .lab{font-family:var(--mono);font-size:7pt;letter-spacing:.15em;text-transform:uppercase;
+           color:var(--ink3);margin-bottom:6pt;}
+  .bn .val{font-family:var(--mono);font-size:33pt;font-weight:700;letter-spacing:-.03em;
+           line-height:1;color:var(--teal);}
+  .bn .val.red{color:var(--red);} .bn .val.dk{color:var(--ink);}
+  .bignums.narrow .bn{padding:14pt 11pt 13pt;}
+  .bignums.narrow .bn .val{font-size:21.5pt;letter-spacing:-.04em;}
+  .bn .sub{font-size:9pt;color:var(--ink2);margin-top:6pt;line-height:1.3;}
+
+  .cols{display:grid;gap:24pt;flex:1;align-content:start;}
+  .c2{grid-template-columns:1fr 1fr;}
+  .c3{grid-template-columns:1fr 1fr 1fr;}
+  .c58{grid-template-columns:1.35fr 1fr;}
+
+  h3{font-family:var(--mono);font-size:8.2pt;letter-spacing:.15em;text-transform:uppercase;
+     color:var(--ink2);font-weight:700;margin:0 0 8pt;}
+  p{margin:0 0 10pt;font-size:11.4pt;line-height:1.5;}
+  .lead{font-size:12.5pt;line-height:1.4;}
+  strong{font-weight:700;}
+  ul{margin:0;padding-left:14pt;} li{font-size:11.4pt;line-height:1.5;margin-bottom:9pt;}
+
+  table{border-collapse:collapse;width:100%;font-size:11.4pt;}
+  th,td{padding:10pt 10pt;text-align:left;border-bottom:.5pt solid var(--line);vertical-align:middle;}
+  thead th{font-family:var(--mono);font-size:7.4pt;letter-spacing:.12em;text-transform:uppercase;
+           color:var(--ink3);font-weight:700;border-bottom:1pt solid var(--ink2);padding-bottom:5pt;}
+  .num{font-family:var(--mono);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums;
+       font-weight:700;}
+  th.num{text-align:right;font-weight:700;}
+  tr.hi td{background:var(--wash);}
+  tr.warn td{background:var(--goldw);}
+  .g{color:var(--teal);} .r{color:var(--red);} .o{color:var(--gold);}
+  td .why{display:block;font-size:9.4pt;color:var(--ink2);font-weight:400;margin-top:2pt;
+          font-family:var(--sans);}
+
+  .box{border:1pt solid var(--ink);padding:15pt 17pt;}
+  .box.fill{background:var(--wash);border-color:var(--teal);}
+  .box.gold{background:var(--goldw);border-color:var(--gold);}
+  .box h4{font-family:var(--mono);font-size:7.8pt;letter-spacing:.15em;text-transform:uppercase;
+          color:var(--teal);font-weight:700;margin:0 0 7pt;}
+  .box.gold h4{color:var(--gold);}
+  .box p:last-child{margin-bottom:0;}
+
+  .stat{display:flex;align-items:baseline;gap:11pt;margin-bottom:15pt;}
+  .stat .n{font-family:var(--mono);font-size:24pt;font-weight:700;color:var(--teal);
+           letter-spacing:-.02em;min-width:1.35in;line-height:1;}
+  .stat .t{font-size:11pt;line-height:1.4;color:var(--ink2);}
+  .stat .t b{color:var(--ink);}
+
+  /* title slide */
+  .title-slide{background:var(--dark);color:#fff;justify-content:center;}
+  .title-slide .eyebrow{color:#7FA394;}
+  .title-slide h1{font-size:46pt;color:#fff;}
+  .title-slide .kicker{color:#AEBAB3;font-size:14.5pt;max-width:8in;margin-top:14pt;}
+  .title-slide .rule{background:#2C3D36;height:1pt;margin:20pt 0;}
+  .tsnums{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:6pt;}
+  .tsn{padding-right:18pt;}
+  .tsn .lab{font-family:var(--mono);font-size:7pt;letter-spacing:.16em;text-transform:uppercase;
+            color:#7FA394;margin-bottom:7pt;}
+  .tsn .val{font-family:var(--mono);font-size:30pt;font-weight:700;color:#fff;letter-spacing:-.03em;line-height:1;}
+  .tsn .sub{font-size:8.4pt;color:#9CAAA3;margin-top:6pt;}
+</style></head><body>
+
+<!-- ══════════ 1. RECOMMENDATION ══════════ -->
+<section class="slide title-slide">
+  <p class="eyebrow">Investment Committee &middot; August 2026 &middot; For approval</p>
+  <h1>451 White Horse Pike, Atco NJ</h1>
+  <p class="kicker" style="margin-top:12pt"><strong style="color:#fff">Recommendation: acquire at $1,100,000, all cash. Ceiling $1,250,000.</strong><br>
+  A corner drive-thru on a Philadelphia&ndash;shore highway, bought at the value of the building alone &mdash; with 2.5 developable acres thrown in for nothing.</p>
+  <div class="rule"></div>
+  <div class="tsnums">
+    <div class="tsn"><p class="lab">We pay</p><p class="val">$1.10M</p><p class="sub">$250/SF &middot; they ask $1.6M</p></div>
+    <div class="tsn"><p class="lab">Day-one yield</p><p class="val">12.0%</p><p class="sub">$132,000 NNN, in place</p></div>
+    <div class="tsn"><p class="lab">Target return</p><p class="val">18.2%</p><p class="sub">24.2% with a mortgage</p></div>
+    <div class="tsn"><p class="lab">Worst case</p><p class="val">+5.4%</p><p class="sub">No modelled case loses money</p></div>
+  </div>
+  <div class="rule" style="margin:20pt 0 14pt"></div>
+  <p style="font-size:11.5pt;color:#AEBAB3;margin:0;max-width:9in;line-height:1.45">
+    <strong style="color:#fff">Why it is cheap:</strong> the sitting cannabis tenant pays 36% over market rent. We refuse to pay for rent that leaves with them &mdash; so we bid what the building is worth let to a bank or a doctor, and take everything else as free option value.</p>
+</section>
+
+<!-- ══════════ 2. THE DEAL ══════════ -->
+<section class="slide">
+  <p class="eyebrow">1 &middot; Why this is mispriced</p>
+  <h2>They are selling us a rent that walks out the door.<br>We are buying the building underneath it.</h2>
+  <div class="rule"></div>
+
+  <div class="cols c58" style="align-content:start">
+    <div>
+      <h3>What we are buying</h3>
+      <table>
+        <tbody>
+          <tr><td style="width:33%"><strong>Property</strong></td><td>4,400 SF freestanding building on <strong>3.13 acres</strong>, corner of US Route 30 and Cooper Folly Road<span class="why">Former bank branch. Vault, 3-lane drive-thru, big parking field. 15,370 cars a day.</span></td></tr>
+          <tr><td><strong>Tenant</strong></td><td>Cannabis dispensary, <strong>one location</strong>, private<span class="why">Three years trading here. Two personal guarantees, no corporate covenant.</span></td></tr>
+          <tr><td><strong>Lease</strong></td><td><strong>$132,000/yr, absolute NNN</strong>, 6.5 years left<span class="why">Tenant pays taxes, insurance, roof, structure. Landlord does nothing. No rent increases.</span></td></tr>
+          <tr class="warn"><td><strong>Asking</strong></td><td class="o"><strong>$1,600,000</strong> — an 8.25% yield<span class="why">Priced as if $30/SF were a market rent. It is not.</span></td></tr>
+          <tr class="hi"><td><strong>We offer</strong></td><td class="g"><strong>$1,100,000</strong> — a 12.0% yield<span class="why">$250/SF, below replacement cost and below the county's own valuation.</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div class="box fill" style="margin-bottom:13pt">
+        <h4>The whole thesis</h4>
+        <p style="font-size:11.4pt;line-height:1.45">The dispensary pays <strong>$30/SF</strong>. Any ordinary tenant pays <strong>$22</strong>. That 36% premium belongs to their licence, not to our building — and it disappears when they leave.</p>
+        <p style="font-size:11.4pt;line-height:1.45">So we refuse to pay for it. We bid what the building is worth let to a bank or a doctor: <strong>$1.1M</strong>.</p>
+      </div>
+      <div class="box">
+        <h4>What that buys us for nothing</h4>
+        <ul style="margin:0;padding-left:13pt">
+          <li>6.5 years of <strong>above-market</strong> cannabis rent</li>
+          <li>The tenant's renewal option at $154,000</li>
+          <li>A 3-lane drive-thru on a corner</li>
+          <li><strong>2.5 undeveloped acres</strong> — the growth</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>2</span></div>
+</section>
+
+<!-- ══════════ 3. WHAT WE MAKE ══════════ -->
+<section class="slide">
+  <p class="eyebrow">2 &middot; What we make</p>
+  <h2>Every outcome makes money.<br>The good one makes 18%.</h2>
+  <div class="rule"></div>
+
+  <table style="margin-bottom:14pt">
+    <thead><tr><th style="width:20%">Ten-year hold</th><th>What has to happen</th><th class="num">All cash</th><th class="num">55% mortgage</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Floor</strong></td><td>Tenant fails. Land never developed. Building re-let at the bottom of the market.</td><td class="num g">+5.4%</td><td class="num r">&minus;3.7%</td></tr>
+      <tr><td><strong>Base</strong></td><td>Building re-let to a doctor or a credit union. We never touch the land.</td><td class="num g">+8.7%</td><td class="num g">+7.2%</td></tr>
+      <tr class="hi"><td><strong>Growth</strong></td><td><strong>Land monetised and building re-let on a proper lease with increases.</strong></td><td class="num g" style="font-size:13pt">+18.2%</td><td class="num g" style="font-size:13pt">+24.2%</td></tr>
+      <tr><td><strong>Or flip it</strong></td><td>Just sell when the lease ends in 2033. Land ignored entirely.</td><td class="num g">+12.0%</td><td class="num g">+14.9%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="cols c3" style="flex:0;margin-top:auto">
+    <div class="box fill">
+      <h4>Why the floor holds</h4>
+      <p style="font-size:9.8pt">Land and empty shell alone are worth <strong>$750,000</strong> — 68% of our price. Only ~$350,000 is genuinely at risk, against an income stream of $132,000 a year.</p>
+    </div>
+    <div class="box fill">
+      <h4>Cash back fast</h4>
+      <p style="font-size:9.8pt">Contracted rent to 2033 is <strong>$858,000</strong> — <strong>78%</strong> of the purchase price returned before the lease even matures. No renewal, refinancing or resale required.</p>
+    </div>
+    <div class="box gold">
+      <h4>One honest caveat</h4>
+      <p style="font-size:9.8pt">Debt cuts both ways. In the floor case a 55% mortgage turns +5.4% into <strong>&minus;3.7%</strong>. If the floor must hold in every case, buy for cash or borrow 35&ndash;40%.</p>
+    </div>
+  </div>
+  <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>3</span></div>
+</section>
+
+<!-- ══════════ 4. THE UPSIDE ══════════ -->
+<section class="slide">
+  <p class="eyebrow">3 &middot; The upside</p>
+  <h2>The building sits on 3.13 acres.<br>It uses 3% of them.</h2>
+  <div class="rule"></div>
+
+  <div class="bignums">
+    <div class="bn"><p class="lab">Idle land</p><p class="val">2.48 ac</p><p class="sub">Coverage is 3.2% of the site</p></div>
+    <div class="bn"><p class="lab">New income</p><p class="val">$100k</p><p class="sub">Per year, on land earning zero</p></div>
+    <div class="bn"><p class="lab">Value created</p><p class="val">$931k</p><p class="sub">Net of build-out cost</p></div>
+    <div class="bn"><p class="lab">Yield on cost</p><p class="val dk" style="font-size:26pt">12% &rarr; 21%</p><p class="sub">On the same $1.1M basis</p></div>
+  </div>
+
+  <div class="cols c2" style="flex:1;align-content:start">
+    <div>
+      <h3>Two income streams, neither of them paid for</h3>
+      <div class="stat"><span class="n">$80,000</span><span class="t"><b>Ground-lease a pad.</b> Fast food, coffee, car wash or a medical building. The tenant builds at their own cost; we let them the dirt.</span></div>
+      <div class="stat"><span class="n">$20,000</span><span class="t"><b>Licence space for EV charging.</b> Six to eight rapid chargers. The operator funds all the equipment and pays us a share of revenue.</span></div>
+      <div class="box gold" style="margin-top:4pt">
+        <h4>The seller's own comps prove this</h4>
+        <p style="font-size:9.8pt">He sent us drive-thru pad deals on this exact kind of highway: <strong>7 Brew at $155,000 a year, Wendy's at $157,659, Wawa at $325,000.</strong> Those are build-to-suit rents; a ground lease runs 40&ndash;55% of that. Our $80,000 is the conservative read.</p>
+      </div>
+    </div>
+    <div>
+      <h3>What it does to the deal</h3>
+      <table>
+        <tbody>
+          <tr><td>Buy at our offer</td><td class="num">$1,100,000</td></tr>
+          <tr><td>Monetise the spare land</td><td class="num">$2,508,000</td></tr>
+          <tr><td>Re-let building on a proper lease</td><td class="num">$2,492,000</td></tr>
+          <tr><td>Ordinary tenant &rarr; it becomes mortgageable</td><td class="num">$2,653,000</td></tr>
+          <tr><td>Less land works, fit-out, letting fees</td><td class="num r">($466,800)</td></tr>
+          <tr class="hi"><td><strong>Stabilised value</strong></td><td class="num g" style="font-size:13pt">$2,186,000</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:9.8pt;color:var(--ink2);margin-top:10pt;margin-bottom:0">Roughly <strong>double our entry price</strong> over about ten years — about 7% compound growth in value, on top of the rent collected the whole way through.</p>
+    </div>
+  </div>
+  <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>4</span></div>
+</section>
+
+<!-- ══════════ 5. THE RISK ══════════ -->
+<section class="slide">
+  <p class="eyebrow">4 &middot; The risk</p>
+  <h2>What kills this deal, and why it does not.</h2>
+  <div class="rule"></div>
+
+  <div class="cols c2" style="flex:1;align-content:start">
+    <div>
+      <h3>The real risk: can the tenant pay?</h3>
+      <p>Under this lease the shop carries rent <em>plus</em> taxes, insurance and upkeep — <strong>$193,400 a year</strong>, or $43.95 per foot. It needs roughly <strong>$2.15M of annual sales</strong> to carry that comfortably.</p>
+      <table style="margin-bottom:11pt">
+        <thead><tr><th>If the shop turns over</th><th class="num">$2.0M</th><th class="num">$2.5M</th><th class="num">$3.0M</th></tr></thead>
+        <tbody>
+          <tr><td>Occupancy cost</td><td class="num">9.7%</td><td class="num">7.7%</td><td class="num">6.4%</td></tr>
+          <tr><td>Verdict</td><td class="num r">Struggling</td><td class="num o">Tight</td><td class="num g">Fine</td></tr>
+        </tbody>
+      </table>
+      <div class="box fill">
+        <h4>Why it does not sink us</h4>
+        <p style="font-size:10.6pt">We priced the building as if the tenant were <strong>already gone</strong>. Our $1.1M is what it is worth let to any ordinary tenant at $22/SF. <strong>We do not need this dispensary to survive.</strong></p>
+      </div>
+    </div>
+    <div>
+      <h3>Four layers under the price</h3>
+      <div class="stat"><span class="n">$1.11M</span><span class="t"><b>Ordinary-tenant value.</b> Our offer equals what the building fetches let to a bank or doctor. Zero exposure to the cannabis rent.</span></div>
+      <div class="stat"><span class="n">68%</span><span class="t"><b>Covered by dirt and shell.</b> $750,000 of hard asset value behind a $1.1M price.</span></div>
+      <div class="stat"><span class="n">$21.25</span><span class="t"><b>Break-even rent per foot</b> versus a $22.00 market — and the seller's own signed comp on this road confirms $22.</span></div>
+      <div class="stat"><span class="n">2.00&times;</span><span class="t"><b>Debt cover.</b> Rent is double the loan payment. Lenders want 1.25&times;.</span></div>
+      <div class="box gold">
+        <h4>Two things to confirm before hard money</h4>
+        <p style="font-size:9.8pt"><strong>1.</strong> The tenant's actual sales figures — the single most valuable number in diligence.<br>
+        <strong>2.</strong> Whether the lease demises all 3.13 acres. If it does, the land plan waits until 2033. <em>Our price does not depend on it either way.</em></p>
+      </div>
+    </div>
+  </div>
+  <div class="foot">451 White Horse Pike, Atco NJ &mdash; Investment Committee<span>5</span></div>
+</section>
+
+<!-- ══════════ 6. THE ASK ══════════ -->
+<section class="slide">
+  <p class="eyebrow">5 &middot; The decision</p>
+  <h2>Approve $1,100,000. Hold to $1,250,000.</h2>
+  <div class="rule"></div>
+
+  <div class="bignums narrow">
+    <div class="bn"><p class="lab">Offer</p><p class="val">$1,100,000</p><p class="sub">All cash &middot; 30-day diligence &middot; 15-day close</p></div>
+    <div class="bn"><p class="lab">Ceiling</p><p class="val dk">$1,250,000</p><p class="sub">Still returns 9.3%. Also where debt stops helping</p></div>
+    <div class="bn"><p class="lab">Walk away</p><p class="val red">$1,300,000</p><p class="sub">Above the property's own value</p></div>
+    <div class="bn"><p class="lab">Their ask</p><p class="val red">$1,600,000</p><p class="sub">Returns 4.3%. Decline</p></div>
+  </div>
+
+  <div class="cols c2" style="flex:1;align-content:start">
+    <div>
+      <h3>How we win the negotiation</h3>
+      <div class="stat"><span class="n">1</span><span class="t"><b>Argue the rent, not the yield.</b> Do not debate whether 8.25% is right. Show that $30/SF is not a market rent — and use <em>his own</em> signed comp on this road, which adjusts to $21.52.</span></div>
+      <div class="stat"><span class="n">2</span><span class="t"><b>Point at the county.</b> Camden County's own equalized value is <strong>$1,271,000</strong>. An independent third party already says this is not a $1.6M building.</span></div>
+      <div class="stat" style="margin-bottom:0"><span class="n">3</span><span class="t"><b>Sell certainty.</b> Almost nobody can finance a cannabis-let building. All cash in 45 days is worth real money against a buyer whose loan dies.</span></div>
+    </div>
+    <div>
+      <h3>What we do after we own it</h3>
+      <table>
+        <tbody>
+          <tr><td style="width:22%"><strong>Yr 0&ndash;1</strong></td><td>Collect $132,000. Confirm the lease boundary and the tenant's sales. Appeal the assessment.</td></tr>
+          <tr><td><strong>Yr 1&ndash;3</strong></td><td>Entitle and let a pad; licence the EV charging. Spend ~$150,000, add ~$100,000 a year.</td></tr>
+          <tr><td><strong>Yr 5&ndash;7</strong></td><td>Market 18 months early. Land a doctor or credit union on a 10&ndash;15 year lease <strong>with increases</strong>.</td></tr>
+          <tr class="hi"><td><strong>Yr 8&ndash;10</strong></td><td><strong>Hold a passive, growing, mortgageable asset — or sell at ~$2.19M.</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="box fill" style="margin-top:11pt">
+        <h4>In one line</h4>
+        <p style="font-size:10.8pt;line-height:1.42">A corner drive-thru at <strong>$250 a foot</strong>. Most of our money back before the lease ends, no modelled case that loses money, and 2.5 acres of free optionality that could double the asset.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot">Full analysis, comps and model available on request &middot; not an appraisal<span>6</span></div>
+</section>
+
+</body></html>
