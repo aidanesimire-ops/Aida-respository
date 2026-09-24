@@ -54,6 +54,12 @@ def _parser() -> argparse.ArgumentParser:
         help="CSV/parquet of pre-parsed state entity filings to match instead of live lookups",
     )
     run.add_argument("--sunbiz-delay", type=float, default=1.6, help="seconds between lookups")
+    run.add_argument("--no-kml", action="store_true", help="skip the Google Earth exports")
+    run.add_argument(
+        "--kml-polygons",
+        action="store_true",
+        help="draw lot outlines instead of pins (slower to open in Google Earth)",
+    )
 
     demo = sub.add_parser("demo", help="run end to end on a synthetic fixture (no network)")
     demo.add_argument("--market", default=DEFAULT_MARKET)
@@ -149,6 +155,9 @@ def main(argv: list[str] | None = None) -> int:
         print(f"ownership workbook: {ownership}")
         if condo:
             print(f"condo workbook:     {condo}")
+        if not args.no_kml:
+            for path in pipeline.build_kml_exports(cfg, polygons=args.kml_polygons):
+                print(f"kml:                {path}")
         print(f"run report:         {report}")
     return 0
 

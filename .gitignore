@@ -211,3 +211,6 @@ data/
 demo_output/
 *.xlsx
 run_report_*.json
+.venv/
+output/
+*.kml

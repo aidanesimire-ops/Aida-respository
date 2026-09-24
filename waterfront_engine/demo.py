@@ -236,4 +236,6 @@ def run_demo(out_dir: Path, market_path: str = "configs/fort_lauderdale.py") -> 
     if condo:
         paths["condo_workbook"] = condo
     paths["run_report"] = pipeline.write_run_report(cfg, {"data_source": "SYNTHETIC FIXTURE"})
+    for i, kml in enumerate(pipeline.build_kml_exports(cfg)):
+        paths[f"kml_{i}"] = kml
     return paths

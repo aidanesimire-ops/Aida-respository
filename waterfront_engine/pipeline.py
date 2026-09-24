@@ -289,6 +289,49 @@ def ownership_sheets(cfg: MarketConfig) -> dict[str, pd.DataFrame]:
     return sheets
 
 
+def build_kml_exports(cfg: MarketConfig, *, polygons: bool = False) -> list[Path]:
+    """Google Earth versions of both deliverables — a folder per asset class."""
+    from .kml import write_kml
+
+    written: list[Path] = []
+    layout = ownership_layout(cfg.market)
+
+    layers: dict[str, tuple[gpd.GeoDataFrame, pd.DataFrame, str]] = {}
+    for key, asset in cfg.asset_classes.items():
+        frame = _load_stage(cfg, key, ("enriched", "flagged", "waterfront"))
+        if frame.empty:
+            continue
+        layers[asset.label] = (frame, to_sheet(frame, layout), asset.group)
+    if layers:
+        written.append(
+            write_kml(
+                cfg.out_dir / f"Waterfront_Ownership_{cfg.market.slug()}.kml",
+                layers,
+                document_name=f"{cfg.market.name} — Waterfront Ownership",
+                polygons=polygons,
+            )
+        )
+
+    if cfg.condo:
+        condo_frame = _load(cfg.stage_path(CONDO_FILE))
+        if not condo_frame.empty:
+            written.append(
+                write_kml(
+                    cfg.out_dir / f"Beach_Condos_{cfg.market.slug()}.kml",
+                    {
+                        cfg.condo.label: (
+                            condo_frame,
+                            to_sheet(condo_frame, condo_layout(cfg.market)),
+                            "Condo",
+                        )
+                    },
+                    document_name=f"{cfg.market.name} — {cfg.condo.label}",
+                    polygons=polygons,
+                )
+            )
+    return written
+
+
 def build_ownership_workbook(cfg: MarketConfig, extra_notes: tuple[str, ...] = ()) -> Path:
     sheets = ownership_sheets(cfg)
     groups = {asset.label: asset.group for asset in cfg.asset_classes.values()}
